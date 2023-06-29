@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>스프링 컨테이너와 스프링 빈 - Jinsu’s story</title>
-<meta name="description" content="스프링 컨테이너 생성 과정">
+<!-- begin _includes/seo.html --><title>컴포넌트 스캔 - Jinsu’s story</title>
+<meta name="description" content="컴포넌트 스캔    스프링은 설정 정보가 없어도 자동으로 스프링 빈을 등록하는 컴포넌트 스캔이라는 기능을 제공한다.   컴포넌트 스캔을 사용하면 @Component가 붙은 클래스를 찾아서 다 빈으로 등록한다.   @Repository, @Service, @Configuration, @Controller를 까보면 안에 @Component를 가지고 있다. -&gt; 다 빈으로 등록된다.(Spring이 제공하는 기능)   컴포넌트 스캔을 사용하려면 @ComponentScan을 설정 정보에 붙여줘야 한다. (@SpringBootApplication 안에 @ComponentScan이 있어서 default로 쓰면 최상위 패키지부터 훑는다.)">
 
 
   <meta name="author" content="Moon JinSu">
@@ -22,11 +22,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="Jinsu's story">
-<meta property="og:title" content="스프링 컨테이너와 스프링 빈">
-<meta property="og:url" content="http://localhost:4000/spring/Spring3/">
+<meta property="og:title" content="컴포넌트 스캔">
+<meta property="og:url" content="http://localhost:4000/spring/Spring5/">
 
 
-  <meta property="og:description" content="스프링 컨테이너 생성 과정">
+  <meta property="og:description" content="컴포넌트 스캔    스프링은 설정 정보가 없어도 자동으로 스프링 빈을 등록하는 컴포넌트 스캔이라는 기능을 제공한다.   컴포넌트 스캔을 사용하면 @Component가 붙은 클래스를 찾아서 다 빈으로 등록한다.   @Repository, @Service, @Configuration, @Controller를 까보면 안에 @Component를 가지고 있다. -&gt; 다 빈으로 등록된다.(Spring이 제공하는 기능)   컴포넌트 스캔을 사용하려면 @ComponentScan을 설정 정보에 붙여줘야 한다. (@SpringBootApplication 안에 @ComponentScan이 있어서 default로 쓰면 최상위 패키지부터 훑는다.)">
 
 
 
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/spring/Spring3/">
+<link rel="canonical" href="http://localhost:4000/spring/Spring5/">
 
 
 
@@ -248,8 +248,8 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="스프링 컨테이너와 스프링 빈">
-    <meta itemprop="description" content="스프링 컨테이너 생성 과정 ">
+    <meta itemprop="headline" content="컴포넌트 스캔">
+    <meta itemprop="description" content="컴포넌트 스캔  스프링은 설정 정보가 없어도 자동으로 스프링 빈을 등록하는 컴포넌트 스캔이라는 기능을 제공한다.  컴포넌트 스캔을 사용하면 @Component가 붙은 클래스를 찾아서 다 빈으로 등록한다.  @Repository, @Service, @Configuration, @Controller를 까보면 안에 @Component를 가지고 있다. -&gt; 다 빈으로 등록된다.(Spring이 제공하는 기능)  컴포넌트 스캔을 사용하려면 @ComponentScan을 설정 정보에 붙여줘야 한다. (@SpringBootApplication 안에 @ComponentScan이 있어서 default로 쓰면 최상위 패키지부터 훑는다.)">
     <meta itemprop="datePublished" content="2023-06-28T00:00:00+09:00">
     
 
@@ -257,7 +257,7 @@
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="http://localhost:4000/spring/Spring3/" class="u-url" itemprop="url">스프링 컨테이너와 스프링 빈
+            <a href="http://localhost:4000/spring/Spring5/" class="u-url" itemprop="url">컴포넌트 스캔
 </a>
           </h1>
           
@@ -274,7 +274,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          최대 1 분 소요
+          1 분 소요
         
       </span>
     
@@ -286,63 +286,85 @@
 
       <section class="page__content e-content" itemprop="text">
         
-        <h3 id="스프링-컨테이너-생성-과정-"><strong>스프링 컨테이너 생성 과정</strong> <br /><br /></h3>
+        <h2 id="컴포넌트-스캔"><strong>컴포넌트 스캔</strong></h2>
+<ul>
+  <li>스프링은 설정 정보가 없어도 자동으로 스프링 빈을 등록하는 컴포넌트 스캔이라는 기능을 제공한다.</li>
+  <li>컴포넌트 스캔을 사용하면 @Component가 붙은 클래스를 찾아서 다 빈으로 등록한다.</li>
+  <li>@Repository, @Service, @Configuration, @Controller를 까보면 안에 @Component를 가지고 있다. -&gt; 다 빈으로 등록된다.(Spring이 제공하는 기능)</li>
+  <li>컴포넌트 스캔을 사용하려면 @ComponentScan을 설정 정보에 붙여줘야 한다. (@SpringBootApplication 안에 @ComponentScan이 있어서 default로 쓰면 최상위 패키지부터 훑는다.)<br /><br /></li>
+</ul>
+
+<p><strong>컴포넌트 스캔과 자동 의존관계 주입 과정</strong> <br /><br />
+<img src="/assets/images/5_1.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
+
+<p>@ComponentScan 과정</p>
+<ol>
+  <li>@Component가 붙은 모든 클래스를 스프링 빈으로 등록한다.</li>
+  <li>스프링 빈의 기본 이름은 클래스명을 사용하는데 맨 앞글자는 소문자로 바뀐다.</li>
+  <li>이름을 직접 지정할 수도 있는데 @Component(“지정할 이름”) &lt;- 이런 식으로 부여하면 된다. <br /><br /></li>
+</ol>
+
+<p><img src="/assets/images/5_2.png" alt="img2" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
+
+<p>@Autowired 의존관계 주입 과정</p>
+<ol>
+  <li>생성자에 @Autowired를 지정하면 스프링 컨테이너가 자동으로 해당 스프링 빈을 찾아서 의존관계를 주입한다.</li>
+  <li>기본 전략은 같은 타입의 빈을 찾는 것이다. -&gt; getBean(MemberRepository.class) 와 동일하다고 생각하면 된다.</li>
+  <li>생성자에 파라미터가 많아도 알아서 다 찾아서 의존관계를 주입한다. <br /><br /></li>
+</ol>
+
+<p><strong>컴포넌트 스캔 위치</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ComponentScan</span><span class="o">(</span>
+          <span class="n">basePackages</span> <span class="o">=</span> <span class="s">"hello.core"</span><span class="o">,</span>
+<span class="o">)</span>
+</code></pre></div></div>
 
 <ul>
-  <li>
-    <p><strong>스프링 컨테이너 생성</strong> <br /><br />
-<img src="/assets/images/3_1.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
+  <li>basePackages 값을 설정해서 시작 위치를 지정할 수 있다.</li>
+  <li>그냥 프로젝트 시작 루트 위치에 두고 쓰는게 좋다. (default값) <br /><br /></li>
+</ul>
+
+<p><strong>컴포넌트 스캔 대상</strong></p>
+<ul>
+  <li>@Component가 붙은 모든 것이다.</li>
+  <li>위에 설명한 것처럼 @Repository, @Configuration, @Service, @Controller 도 스캔 대상이다.(아래 코드 참고, @Component를 가지고 있다.) <br /><br /></li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+  <span class="kd">public</span> <span class="nd">@interface</span> <span class="nc">Controller</span> <span class="o">{</span>
+  <span class="o">}</span>
+  <span class="nd">@Component</span>
+  <span class="kd">public</span> <span class="nd">@interface</span> <span class="nc">Service</span> <span class="o">{</span>
+  <span class="o">}</span>
+  <span class="nd">@Component</span>
+  <span class="kd">public</span> <span class="nd">@interface</span> <span class="nc">Configuration</span> <span class="o">{</span>
+  <span class="o">}</span>
+</code></pre></div></div>
+<p><br />
+<strong>필터</strong></p>
+<ul>
+  <li>includeFilters : 컴포넌트 스캔 대상 추가 지정</li>
+  <li>excludeFilters : 컴포넌트 스캔에서 제외할 대상 지정</li>
+  <li>최근 Spring은 컴포넌트 스캔을 기본으로 제공한다. 그리고 옵션을 변경하면서 쓰기보다는 기본 설정대로 사용하는 게 좋다. <br /><br /></li>
+</ul>
+
+<p><strong>중복 등록과 충돌</strong> <br /></p>
+<ul>
+  <li>컴포넌트 스캔에 같은 빈 이름을 등록하면 충돌이 발생한다.
+    <ol>
+      <li>자동 빈 등록 vs 자동 빈 등록
+        <ul>
+          <li>ConflictingBeanDefinitionException 에러 발생</li>
+        </ul>
+      </li>
+      <li>수동 빈 등록 vs 자동 빈 등록
+        <ul>
+          <li>일반적으로 수동으로 등록한게 우선권을 가진다.</li>
+          <li>스프링은 최근 수동 빈 등록과 자동 빈 등록이 충돌하면 오류가 발생하도록 설정이 변경되었다.</li>
+        </ul>
+      </li>
+    </ol>
   </li>
-  <li>new AnnotationConfigApplicationContext(AppConfig.class)</li>
-  <li>
-    <p>스프링 컨테이너를 생성할 때는 구성 정보를 지정해줘야 한다. (AppConfig) <br /><br /></p>
-  </li>
-  <li>
-    <p><strong>스프링 빈 등록</strong> <br /><br />
-<img src="/assets/images/3_2.png" alt="img2" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
-  </li>
-  <li>설정 정보 클래스 (AppConfig)를 통해서 스프링 빈을 등록한다.</li>
-  <li>빈 이름은 default로 메서드 이름이 사용된다. (직접 지정할 수도 있다.)</li>
-  <li>빈 이름은 항상 다른 이름이 부여되야 한다. 같은 이름이 들어오게 되면 무시되거나, 기존 빈을 덮어버리는 현상이 발생할 수 있다. <br /><br /></li>
-</ul>
-
-<p><strong>스프링 빈 의존관계 설정</strong> <br /><br /></p>
-
-<p><img src="/assets/images/3_3.png" alt="img3" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br />
-<img src="/assets/images/3_4.png" alt="img4" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
-
-<ul>
-  <li>스프링은 빈을 생성하는 단계와, 의존관계를 주입하는 단계가 나뉘어 있다. <br /><br /></li>
-</ul>
-
-<p><strong>BeanFactory와 ApplicationContext</strong> <br /><br /></p>
-
-<p><img src="/assets/images/3_5.png" alt="img5" width="20%&quot;&quot;, height=&quot;20%&quot;" /> <br /><br /></p>
-
-<ul>
-  <li>BeanFactory는 스프링 컨테이너의 최상위 인터페이스이다.</li>
-  <li>BeanFactory는 스프링 빈을 관리하고 조회하는 역할을 담당한다. getBean()함수도 BeanFactory가 제공하는 것이다. <br /><br /></li>
-</ul>
-
-<p><img src="/assets/images/3_6.png" alt="img6" width="60%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
-
-<ul>
-  <li>ApplicationContext는 이러한 BeanFactory뿐 아니라 MessageSource, EnvironmentCapable 등 여러 부가적인 인터페이스를 상속하여 더 많은 기능을 제공한다. <br /><br /></li>
-</ul>
-
-<p><img src="/assets/images/3_7.png" alt="img7" width="60%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
-
-<ul>
-  <li>스프링 컨테이너(ApplicationContext)는 자바 코드로 설정하는 방식뿐 아니라 XML 등 다른 설정정보를 바탕으로 생성할 수도 있다.</li>
-  <li>자바 코드로 설정 -&gt; AnnotationConfigApplicationContext</li>
-  <li>XML로 설정 -&gt; GenericXmlApplicationContext <br /><br /></li>
-</ul>
-
-<p><strong>BeanDefinition</strong><br /><br />
-<img src="/assets/images/3_8.png" alt="img8" width="60%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
-
-<ul>
-  <li>스프링 컨테이너는 BeanDefinition만 알면 된다. BeanDefinition이 자바코드, XML 등 어떤걸로 생성됬는지 몰라도 된다.</li>
 </ul>
 
 
@@ -395,22 +417,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%EC%8A%A4%ED%94%84%EB%A7%81+%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EC%99%80+%EC%8A%A4%ED%94%84%EB%A7%81+%EB%B9%88%20http%3A%2F%2Flocalhost%3A4000%2Fspring%2FSpring3%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8+%EC%8A%A4%EC%BA%94%20http%3A%2F%2Flocalhost%3A4000%2Fspring%2FSpring5%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fspring%2FSpring3%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fspring%2FSpring5%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fspring%2FSpring3%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fspring%2FSpring5%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/spring/Spring2/" class="pagination--pager" title="스프링 핵심 원리 이해
+      <a href="/spring/Spring4/" class="pagination--pager" title="싱글톤 컨테이너
 ">이전</a>
     
     
-      <a href="/spring/Spring4/" class="pagination--pager" title="싱글톤 컨테이너
+      <a href="/spring/Spring6/" class="pagination--pager" title="의존관계 자동 주입
 ">다음</a>
     
   </nav>
@@ -515,49 +537,6 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/spring/Spring5/" rel="permalink">컴포넌트 스캔
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-
-    
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
-        
-          1 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">컴포넌트 스캔
-
-  스프링은 설정 정보가 없어도 자동으로 스프링 빈을 등록하는 컴포넌트 스캔이라는 기능을 제공한다.
-  컴포넌트 스캔을 사용하면 @Component가 붙은 클래스를 찾아서 다 빈으로 등록한다.
-  @Repository, @Service, @Configuration,...</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
         <a href="/spring/Spring4/" rel="permalink">싱글톤 컨테이너
 </a>
       
@@ -585,6 +564,46 @@
 
     <p class="archive__item-excerpt" itemprop="description">싱글톤 패턴을 사용하는 이유 
  
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/Spring3/" rel="permalink">스프링 컨테이너와 스프링 빈
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">스프링 컨테이너 생성 과정 
 </p>
   </article>
 </div>

@@ -1,0 +1,32 @@
+<p><strong>의존관계 주입 방법</strong></p>
+<ol>
+  <li>생성자 주입
+    <ul>
+      <li>생성자를 통해서 의존관계를 주입 받는 방식이다.</li>
+      <li>생성자 호출시점에 딱 1번만 호출된다. 변경이 불가능하지만 대부분의 경우 초기 세팅값을 변경할 일이 없다. (변경하면 실수할 가능성만 높아진다.)</li>
+      <li>불변, 필수 의존관계에 사용 <br /><br /></li>
+    </ul>
+  </li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+  <span class="kd">public</span> <span class="kd">class</span> <span class="nc">OrderServiceImpl</span> <span class="kd">implements</span> <span class="nc">OrderService</span> <span class="o">{</span>
+      <span class="kd">private</span> <span class="kd">final</span> <span class="nc">MemberRepository</span> <span class="n">memberRepository</span><span class="o">;</span>
+      <span class="kd">private</span> <span class="kd">final</span> <span class="nc">DiscountPolicy</span> <span class="n">discountPolicy</span><span class="o">;</span>
+  
+ <span class="nd">@Autowired</span>
+      <span class="kd">public</span> <span class="nf">OrderServiceImpl</span><span class="o">(</span><span class="nc">MemberRepository</span> <span class="n">memberRepository</span><span class="o">,</span> <span class="nc">DiscountPolicy</span>
+  <span class="n">discountPolicy</span><span class="o">)</span> <span class="o">{</span>
+          <span class="k">this</span><span class="o">.</span><span class="na">memberRepository</span> <span class="o">=</span> <span class="n">memberRepository</span><span class="o">;</span>
+          <span class="k">this</span><span class="o">.</span><span class="na">discountPolicy</span> <span class="o">=</span> <span class="n">discountPolicy</span><span class="o">;</span>
+      <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ol>
+  <li>수정자 주입</li>
+  <li>필드 주입</li>
+  <li>일반 메서드 주입 
+<br /><br /></li>
+</ol>
+

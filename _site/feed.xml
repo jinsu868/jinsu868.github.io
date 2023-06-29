@@ -1,32 +1,149 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-28T17:45:08+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">스프링 핵심 원리 이해</title><link href="http://localhost:4000/spring/Spring2/" rel="alternate" type="text/html" title="스프링 핵심 원리 이해" /><published>2023-06-28T00:00:00+09:00</published><updated>2023-06-28T00:00:00+09:00</updated><id>http://localhost:4000/spring/Spring2</id><content type="html" xml:base="http://localhost:4000/spring/Spring2/">&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;      &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-          &lt;span class=&quot;nc&quot;&gt;MemberService&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberService&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MemberServiceImpl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-          &lt;span class=&quot;nc&quot;&gt;OrderService&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;orderService&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OrderServiceImpl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-          &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;  
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-29T17:07:09+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">빈 생명주기 콜백</title><link href="http://localhost:4000/spring/Spring7/" rel="alternate" type="text/html" title="빈 생명주기 콜백" /><published>2023-06-29T00:00:00+09:00</published><updated>2023-06-29T00:00:00+09:00</updated><id>http://localhost:4000/spring/Spring7</id><content type="html" xml:base="http://localhost:4000/spring/Spring7/">&lt;h2 id=&quot;빈-생명주기-콜백-&quot;&gt;&lt;strong&gt;빈 생명주기 콜백&lt;/strong&gt; &lt;br /&gt;&lt;/h2&gt;
 
-&lt;p&gt;&lt;strong&gt;위 코드의 문제점&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;콜백의 필요성&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;OrderServiceImpl이 MemberRepository, DiscountPolicy 뿐만 아니라 구현체까지 직접 의존하고 있다.&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;DB, network 커넥션들을 애플리케이션 시작 시점에 미리 연결해둬야 빠르게 사용할 수 있다.&lt;/li&gt;
+  &lt;li&gt;이를 위해서는 객체의 초기화와 종료 작업이 필요하다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/2_2.png&quot; alt=&quot;img2&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;스프링 빈의 라이프사이클&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;객체 생성&lt;/li&gt;
+  &lt;li&gt;의존관계 주입&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;DIP 위반 : 인터페이스뿐 아니라 구현체까지 직접 의존하고 있다.&lt;/li&gt;
-  &lt;li&gt;OCP 위반 : 할인 정책을 바꾸려면 직접 클라이언트인 OrderServiceImpl 안의 FixDiscountPolicy를 RateDiscountPolicy로 바꿔야 한다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;스프링 빈은 객체가 생성되고, 의존관계 주입이 다 끝나야 사용할 수 있다.&lt;/li&gt;
+  &lt;li&gt;스프링은 의존관계 주입이 완료되면 스프링 빈에게 콜백 메서드를 통해서 초기화 시점을 알려주는 다양한 기능을 제공한다.&lt;/li&gt;
+  &lt;li&gt;뿐만 아니라 스프링 컨테이너가 종료되기 직전에 소멸 콜백도 해준다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;스프링 빈의 이벤트 라이프사이클&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;스프링 컨테이너 생성&lt;/li&gt;
+  &lt;li&gt;스프링 빈 생성&lt;/li&gt;
+  &lt;li&gt;의존관계 주입&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;초기화 콜백&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;사용&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;소멸전 콜백&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;스프링 종료 &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;스프링이 빈 생명주기 콜백을 해주는 방식&lt;/strong&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h4 id=&quot;initializingbean-disposablebean-인터페이스-사용-이제-거의-사용되지-않는다-&quot;&gt;InitializingBean, DisposableBean 인터페이스 사용 (이제 거의 사용되지 않는다.) &lt;br /&gt;&lt;/h4&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;NetworkClient&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;InitializingBean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DisposableBean&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;afterPropertiesSet&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;초기화 연결 메시지&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;destroy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;disConnect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;빈으로 등록할 클래스에서 afterPropertiesSet(), destroy() 메서드를 구현하면 된다.&lt;/li&gt;
+  &lt;li&gt;단점
+    &lt;ul&gt;
+      &lt;li&gt;스프링 전용 인터페이스이기 때문에 해당 코드가 스프링 전용 인터페이스에 의존하게 된다.&lt;/li&gt;
+      &lt;li&gt;초기화, 소멸 메서드의 이름을 변경하지 못한다.&lt;/li&gt;
+      &lt;li&gt;내가 코드를 손볼 수 없는 외부 라이브러리에 적용할 수 없다. &lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;초기화-소멸-메서드-직접-지정-&quot;&gt;초기화, 소멸 메서드 직접 지정 &lt;br /&gt;&lt;/h4&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Configuration&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;LifeCycleConfig&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Bean&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;initMethod&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;init&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;destroyMethod&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;close&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;NetworkClient&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;networkClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;nc&quot;&gt;NetworkClient&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;networkClient&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;NetworkClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;networkClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setUrl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://hello-spring.dev&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+          &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;networkClient&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; 
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;빈으로 등록할 때, initMethod와 destroyMethod를 직접 등록할 수 있다.&lt;/li&gt;
+  &lt;li&gt;그리고 아래 코드와 같이 빈으로 등록할 객체 클래스 안에 함수를 초기화, 소멸 함수를 구현하면 된다. &lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;NetworkClient&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;...&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; 
+        &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;NetworkClient.init&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;초기화 연결 메시지&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;NetworkClient.close&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;disConnect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;메서드 이름을 자유롭게 지을 수 있다.&lt;/li&gt;
+  &lt;li&gt;스프링 빈이 스프링 코드에 의존하지 않는다.&lt;/li&gt;
+  &lt;li&gt;설정 정보를 사용하는 것이기 때문에 코드를 고칠 수 없는 외부 라이브러리에도 초기화, 종료 메서드를 적용할 수 있다.&lt;/li&gt;
+  &lt;li&gt;destroyMethod는 기본값이 있다.(close, shutdown) -&amp;gt; 따로 종료 메서드를 적어주지 않아도 잘 작동한다.&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;postconstruct-predestroy-사용-&quot;&gt;@PostConstruct, @PreDestroy 사용 &lt;br /&gt;&lt;/h4&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;NetworkClient&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@PostConstruct&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;NetworkClient.init&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;call&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;초기화 연결 메시지&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@PreDestroy&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;NetworkClient.close&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;disConnect&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;에노테이션만 붙이면 되기 때문에 사용하기 굉장히 편하다. (스프링이 밀고 있는 방식)&lt;/li&gt;
+  &lt;li&gt;스프링 종속 기술이 아니라 자바 표준이기 때문에 스프링이 아닌 다른 컨테이너에서도 잘 작동한다.&lt;/li&gt;
+  &lt;li&gt;외부 라이브러리에는 적용하지 못하기 때문에 외부 라이브러리에 적용하고 싶으면 @Bean에 초기화, 소멸 메서드를 지정하는 방식을 사용하면 된다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><summary type="html">빈 생명주기 콜백</summary></entry><entry><title type="html">스프링 핵심 원리 이해</title><link href="http://localhost:4000/spring/Spring2/" rel="alternate" type="text/html" title="스프링 핵심 원리 이해" /><published>2023-06-28T00:00:00+09:00</published><updated>2023-06-28T00:00:00+09:00</updated><id>http://localhost:4000/spring/Spring2</id><content type="html" xml:base="http://localhost:4000/spring/Spring2/">&lt;h3 id=&quot;스프링의-핵심-원리-&quot;&gt;스프링의 핵심 원리 &lt;br /&gt;&lt;br /&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;아래 코드의 문제점은 무엇일까?&lt;/strong&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OrderServiceImpl&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OrderService&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MemberRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MemoryMemberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FixDiscountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;클라이언트인 OrderServiceImpl이 구현체를 직접 의존하고 있다. (DIP 위반)&lt;/li&gt;
+  &lt;li&gt;만약 저장소를 DB로 바꾸려고 하거나, 할인 정책을 바꾸려고 한다면 클라이언트 코드를 수정해야 한다. (OCP 위반)
+&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/2_3.png&quot; alt=&quot;img3&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;이렇게 되도록 변경해야 하는데 구현체가 없으니 당연히 NullPointException이 발생한다.&lt;/li&gt;
-  &lt;li&gt;이 문제를 해결하기 위해서 다른 무언가가 클라이언트인 OrderServiceImpl에 DiscountPolicy의 구현체를 직접 생성하고 의존성을 주입해줘야 한다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;위 그림과 같이 클라이언트 OrderServiceImpl이 interface에 의존하도록 설계해야 한다.&lt;/li&gt;
+  &lt;li&gt;하지만 이렇게 변경하게 되면 구현체가 없으니 NullPointException이 발생한다.&lt;/li&gt;
+  &lt;li&gt;이 문제를 해결하려면 외부의 다른 무언가가 클라이언트인 OrderServiceImpl에 DiscountPolicy의 구현체를 직접 생성하고 의존성을 주입해줘야 한다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;strong&gt;관심사의 분리&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
-  &lt;li&gt;실제 실행되는 부분과 구현 객체를 생성하고 연결하는 부분을 분리하자!&lt;/li&gt;
+  &lt;li&gt;실제 실행되는 부분과 구현 객체를 생성하고 연결하는 부분을 분리하자! (ISP 적용)&lt;/li&gt;
   &lt;li&gt;AppConfig &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -65,7 +182,7 @@
 &lt;p&gt;&lt;img src=&quot;/assets/images/2_4.png&quot; alt=&quot;img4&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;FixDiscountPolicy -&amp;gt; RateDiscountPolicy로 바꾸고 싶을 때, AppConfig의 설정 정보만 변경해주면 클라이언트 코드의 변경 없이 바꿀 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;할인정책을 바꾸고 싶을 때, AppConfig의 설정 정보만 변경해주면 클라이언트 코드의 변경 없이 바꿀 수 있다. &lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;strong&gt;IoC, DI 컨테이너&lt;/strong&gt;&lt;/p&gt;
@@ -91,7 +208,7 @@
 &lt;ul&gt;
   &lt;li&gt;위 그림에서 OrderServiceImpl이 MemberRepository, DiscountPolicy에 의존하는 것은 알 수 있지만 실제로 어떤 객체가 주입될지는 알 수 없다.&lt;/li&gt;
   &lt;li&gt;의존관계 주입 (DI) 을 사용하면 클라이언트(OrderServiceImpl)을 변경하지 않고, 클라이언트가 호출하는 대상의 type instance(MemoryMemberRepository or DbMemberRepository)를 변경할 수 있다.&lt;/li&gt;
-  &lt;li&gt;의존관계 주입을 사용하면 정적인 클래스 의존관계를 변경하지 않고, 동적인 객체 인스턴스 의존관계를 쉽게 변경 가능하다. (본 강의 예시 : AppConfig를 조금 손보면 쉽게 변경 가능) &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;의존관계 주입을 사용하면 정적인 클래스 의존관계를 변경하지 않고, 동적인 객체 인스턴스 의존관계를 쉽게 변경 가능하다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;strong&gt;스프링 컨테이너&lt;/strong&gt;&lt;/p&gt;
@@ -99,13 +216,16 @@
   &lt;li&gt;&lt;strong&gt;ApplicationContext&lt;/strong&gt;를 스프링 컨테이너라고 한다.&lt;/li&gt;
   &lt;li&gt;스프링은 @Configuration이 붙은 설정 정보를 활용해서 @Bean이 붙은 메서드를 모두 호출해서 반환 객체를 스프링 컨테이너에 등록한다. 이렇게 등록된 객체를 &lt;strong&gt;스프링 빈&lt;/strong&gt;이라고 한다.&lt;/li&gt;
   &lt;li&gt;스프링 빈은 getBean()함수를 통해서 가져올 수 있다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><summary type="html">public static void main(String[] args) { MemberService memberService = new MemberServiceImpl(); OrderService orderService = new OrderServiceImpl(); ... }</summary></entry><entry><title type="html">스프링 컨테이너와 스프링 빈</title><link href="http://localhost:4000/spring/Spring3/" rel="alternate" type="text/html" title="스프링 컨테이너와 스프링 빈" /><published>2023-06-28T00:00:00+09:00</published><updated>2023-06-28T00:00:00+09:00</updated><id>http://localhost:4000/spring/Spring3</id><content type="html" xml:base="http://localhost:4000/spring/Spring3/">&lt;ul&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><summary type="html">스프링의 핵심 원리</summary></entry><entry><title type="html">스프링 컨테이너와 스프링 빈</title><link href="http://localhost:4000/spring/Spring3/" rel="alternate" type="text/html" title="스프링 컨테이너와 스프링 빈" /><published>2023-06-28T00:00:00+09:00</published><updated>2023-06-28T00:00:00+09:00</updated><id>http://localhost:4000/spring/Spring3</id><content type="html" xml:base="http://localhost:4000/spring/Spring3/">&lt;h3 id=&quot;스프링-컨테이너-생성-과정-&quot;&gt;&lt;strong&gt;스프링 컨테이너 생성 과정&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
   &lt;li&gt;
     &lt;p&gt;&lt;strong&gt;스프링 컨테이너 생성&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;
 &lt;img src=&quot;/assets/images/3_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
   &lt;/li&gt;
+  &lt;li&gt;new AnnotationConfigApplicationContext(AppConfig.class)&lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;new AnnotationConfigApplicationContext(AppConfig.class), 스프링 컨테이너를 생성할 때는 구성 정보를 지정해줘야 한다. (AppConfig) &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+    &lt;p&gt;스프링 컨테이너를 생성할 때는 구성 정보를 지정해줘야 한다. (AppConfig) &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;&lt;strong&gt;스프링 빈 등록&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;
@@ -127,7 +247,7 @@
 
 &lt;p&gt;&lt;strong&gt;BeanFactory와 ApplicationContext&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/3_5.png&quot; alt=&quot;img5&quot; width=&quot;40%&amp;quot;&amp;quot;, height=&amp;quot;30%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/3_5.png&quot; alt=&quot;img5&quot; width=&quot;20%&amp;quot;&amp;quot;, height=&amp;quot;20%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;BeanFactory는 스프링 컨테이너의 최상위 인터페이스이다.&lt;/li&gt;
@@ -137,13 +257,13 @@
 &lt;p&gt;&lt;img src=&quot;/assets/images/3_6.png&quot; alt=&quot;img6&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;ApplicationContext는 이러한 BeanFactory뿐 아니라 MessageSource, EnvironmentCapable 등 여러 부가적인 인터페이스를 상속하여 더 많은 기능을 제공한다.&lt;/li&gt;
-  &lt;li&gt;그리고 스프링 컨테이너(ApplicationContext)는 자바 코드로 설정하는 방식뿐 아니라 XML 등 다른 설정정보를 바탕으로 생성할 수도 있다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;ApplicationContext는 이러한 BeanFactory뿐 아니라 MessageSource, EnvironmentCapable 등 여러 부가적인 인터페이스를 상속하여 더 많은 기능을 제공한다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/3_7.png&quot; alt=&quot;img7&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
+  &lt;li&gt;스프링 컨테이너(ApplicationContext)는 자바 코드로 설정하는 방식뿐 아니라 XML 등 다른 설정정보를 바탕으로 생성할 수도 있다.&lt;/li&gt;
   &lt;li&gt;자바 코드로 설정 -&amp;gt; AnnotationConfigApplicationContext&lt;/li&gt;
   &lt;li&gt;XML로 설정 -&amp;gt; GenericXmlApplicationContext &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -153,11 +273,12 @@
 
 &lt;ul&gt;
   &lt;li&gt;스프링 컨테이너는 BeanDefinition만 알면 된다. BeanDefinition이 자바코드, XML 등 어떤걸로 생성됬는지 몰라도 된다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><summary type="html">스프링 컨테이너 생성</summary></entry><entry><title type="html">싱글톤 컨테이너</title><link href="http://localhost:4000/spring/Spring4/" rel="alternate" type="text/html" title="싱글톤 컨테이너" /><published>2023-06-28T00:00:00+09:00</published><updated>2023-06-28T00:00:00+09:00</updated><id>http://localhost:4000/spring/Spring4</id><content type="html" xml:base="http://localhost:4000/spring/Spring4/">&lt;p&gt;&lt;img src=&quot;/assets/images/4_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><summary type="html">스프링 컨테이너 생성 과정</summary></entry><entry><title type="html">싱글톤 컨테이너</title><link href="http://localhost:4000/spring/Spring4/" rel="alternate" type="text/html" title="싱글톤 컨테이너" /><published>2023-06-28T00:00:00+09:00</published><updated>2023-06-28T00:00:00+09:00</updated><id>http://localhost:4000/spring/Spring4</id><content type="html" xml:base="http://localhost:4000/spring/Spring4/">&lt;h2 id=&quot;싱글톤-패턴을-사용하는-이유-&quot;&gt;&lt;strong&gt;싱글톤 패턴을 사용하는 이유&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/4_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;여러 클라이언트가 요청할 때마다 새로운 객체를 생성하는 것은 메모리 낭비가 심하다.&lt;/li&gt;
-  &lt;li&gt;객체를 하나만 생성하고 이를 공유하도록 설계하면 된다. (싱글톤) &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;객체를 하나만 생성하고 이를 공유하도록 설계하자. -&amp;gt; &lt;strong&gt;싱글톤 패턴&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;strong&gt;싱글톤 패턴&lt;/strong&gt;&lt;/p&gt;
@@ -167,13 +288,11 @@
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SingletonService&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//1. static 영역에 객체를 딱 1개만 생성해둔다.&lt;/span&gt;
     &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SingletonService&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SingletonService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//2. public으로 열어서 객체 인스턴스가 필요하면 이 static 메서드를 통해서만 조회하도록 허용한다.&lt;/span&gt;
       &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SingletonService&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
           &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
       &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;//3. 생성자를 private으로 선언해서 외부에서 new 키워드를 사용한 객체 생성을 못하게 막는다. private SingletonService() {&lt;/span&gt;
+
       &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SingletonService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
       &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
       
@@ -182,35 +301,321 @@
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;객체를 미리 생성해두고 생성자를 private으로 막아서 getInstance()를 통해서만 객체에 접근할 수 있게 한다.&lt;/li&gt;
   &lt;li&gt;유연성이 떨어지고 코드 길이도 길어지고 구체 클래스를 의존해야 되서 DIP, OCP를 위반할 가능성이 높다.&lt;/li&gt;
-  &lt;li&gt;이러한 문제들은 Spring이 다 해결해준다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;싱글톤 패턴 자체에 여러 문제가 있지만 이러한 것들은 Spring 이 다 해결해준다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/4_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/4_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;스프링 컨테이너는 요청이 올 때마다 객체를 생성하는 것이 아니라 미리 만들어둔 instance를 공유하는 방식으로 돌아간다.&lt;/li&gt;
-  &lt;li&gt;객체 하나를 공유하는 방식이기 때문에 빈을 구현할 때 반드시 stateless로 설계해야 한다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;객체 하나를 공유하는 방식이기 때문에 빈을 구현할 때 반드시 &lt;strong&gt;stateless&lt;/strong&gt;로 설계해야 한다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;strong&gt;Configuration과 바이트 조작&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Configuration과 바이트 조작&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/4_3.png&quot; alt=&quot;img3&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/4_3.png&quot; alt=&quot;img3&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;스프링 설정 정보로 넘긴 AppConfig도 빈으로 등록되는데 바이트조작된 AppConfig를 상속하는 객체가 빈으로 등록된다. (CGLIB 기술) &amp;lt;- @Configuration이 붙으면 해줌.&lt;/li&gt;
   &lt;li&gt;@Configuration을 안 넣으면 @Bean이 붙은 method가 빈으로 등록되긴 하지만 싱글톤으로 관리되지 않는다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><summary type="html"></summary></entry><entry><title type="html">객체 지향 설계와 스프링</title><link href="http://localhost:4000/spring/Spring1/" rel="alternate" type="text/html" title="객체 지향 설계와 스프링" /><published>2023-06-27T00:00:00+09:00</published><updated>2023-06-27T00:00:00+09:00</updated><id>http://localhost:4000/spring/Spring1</id><content type="html" xml:base="http://localhost:4000/spring/Spring1/">&lt;h3 id=&quot;객체-지향-설계와-스프링&quot;&gt;객체 지향 설계와 스프링&lt;/h3&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><summary type="html">싱글톤 패턴을 사용하는 이유</summary></entry><entry><title type="html">컴포넌트 스캔</title><link href="http://localhost:4000/spring/Spring5/" rel="alternate" type="text/html" title="컴포넌트 스캔" /><published>2023-06-28T00:00:00+09:00</published><updated>2023-06-28T00:00:00+09:00</updated><id>http://localhost:4000/spring/Spring5</id><content type="html" xml:base="http://localhost:4000/spring/Spring5/">&lt;h2 id=&quot;컴포넌트-스캔&quot;&gt;&lt;strong&gt;컴포넌트 스캔&lt;/strong&gt;&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;스프링은 설정 정보가 없어도 자동으로 스프링 빈을 등록하는 컴포넌트 스캔이라는 기능을 제공한다.&lt;/li&gt;
+  &lt;li&gt;컴포넌트 스캔을 사용하면 @Component가 붙은 클래스를 찾아서 다 빈으로 등록한다.&lt;/li&gt;
+  &lt;li&gt;@Repository, @Service, @Configuration, @Controller를 까보면 안에 @Component를 가지고 있다. -&amp;gt; 다 빈으로 등록된다.(Spring이 제공하는 기능)&lt;/li&gt;
+  &lt;li&gt;컴포넌트 스캔을 사용하려면 @ComponentScan을 설정 정보에 붙여줘야 한다. (@SpringBootApplication 안에 @ComponentScan이 있어서 default로 쓰면 최상위 패키지부터 훑는다.)&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;컴포넌트 스캔과 자동 의존관계 주입 과정&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;
+&lt;img src=&quot;/assets/images/5_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;@ComponentScan 과정&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;@Component가 붙은 모든 클래스를 스프링 빈으로 등록한다.&lt;/li&gt;
+  &lt;li&gt;스프링 빈의 기본 이름은 클래스명을 사용하는데 맨 앞글자는 소문자로 바뀐다.&lt;/li&gt;
+  &lt;li&gt;이름을 직접 지정할 수도 있는데 @Component(“지정할 이름”) &amp;lt;- 이런 식으로 부여하면 된다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/5_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;@Autowired 의존관계 주입 과정&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;생성자에 @Autowired를 지정하면 스프링 컨테이너가 자동으로 해당 스프링 빈을 찾아서 의존관계를 주입한다.&lt;/li&gt;
+  &lt;li&gt;기본 전략은 같은 타입의 빈을 찾는 것이다. -&amp;gt; getBean(MemberRepository.class) 와 동일하다고 생각하면 된다.&lt;/li&gt;
+  &lt;li&gt;생성자에 파라미터가 많아도 알아서 다 찾아서 의존관계를 주입한다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;컴포넌트 스캔 위치&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@ComponentScan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+          &lt;span class=&quot;n&quot;&gt;basePackages&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;hello.core&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;basePackages 값을 설정해서 시작 위치를 지정할 수 있다.&lt;/li&gt;
+  &lt;li&gt;그냥 프로젝트 시작 루트 위치에 두고 쓰는게 좋다. (default값) &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;컴포넌트 스캔 대상&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;@Component가 붙은 모든 것이다.&lt;/li&gt;
+  &lt;li&gt;위에 설명한 것처럼 @Repository, @Configuration, @Service, @Controller 도 스캔 대상이다.(아래 코드 참고, @Component를 가지고 있다.) &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Component&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Controller&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;nd&quot;&gt;@Component&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Service&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;nd&quot;&gt;@Component&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Configuration&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;
+&lt;strong&gt;필터&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;includeFilters : 컴포넌트 스캔 대상 추가 지정&lt;/li&gt;
+  &lt;li&gt;excludeFilters : 컴포넌트 스캔에서 제외할 대상 지정&lt;/li&gt;
+  &lt;li&gt;최근 Spring은 컴포넌트 스캔을 기본으로 제공한다. 그리고 옵션을 변경하면서 쓰기보다는 기본 설정대로 사용하는 게 좋다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;중복 등록과 충돌&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;컴포넌트 스캔에 같은 빈 이름을 등록하면 충돌이 발생한다.
+    &lt;ol&gt;
+      &lt;li&gt;자동 빈 등록 vs 자동 빈 등록
+        &lt;ul&gt;
+          &lt;li&gt;ConflictingBeanDefinitionException 에러 발생&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;수동 빈 등록 vs 자동 빈 등록
+        &lt;ul&gt;
+          &lt;li&gt;일반적으로 수동으로 등록한게 우선권을 가진다.&lt;/li&gt;
+          &lt;li&gt;스프링은 최근 수동 빈 등록과 자동 빈 등록이 충돌하면 오류가 발생하도록 설정이 변경되었다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><summary type="html">컴포넌트 스캔 스프링은 설정 정보가 없어도 자동으로 스프링 빈을 등록하는 컴포넌트 스캔이라는 기능을 제공한다. 컴포넌트 스캔을 사용하면 @Component가 붙은 클래스를 찾아서 다 빈으로 등록한다. @Repository, @Service, @Configuration, @Controller를 까보면 안에 @Component를 가지고 있다. -&amp;gt; 다 빈으로 등록된다.(Spring이 제공하는 기능) 컴포넌트 스캔을 사용하려면 @ComponentScan을 설정 정보에 붙여줘야 한다. (@SpringBootApplication 안에 @ComponentScan이 있어서 default로 쓰면 최상위 패키지부터 훑는다.)</summary></entry><entry><title type="html">의존관계 자동 주입</title><link href="http://localhost:4000/spring/Spring6/" rel="alternate" type="text/html" title="의존관계 자동 주입" /><published>2023-06-28T00:00:00+09:00</published><updated>2023-06-28T00:00:00+09:00</updated><id>http://localhost:4000/spring/Spring6</id><content type="html" xml:base="http://localhost:4000/spring/Spring6/">&lt;h2 id=&quot;의존관계-주입-방식&quot;&gt;의존관계 주입 방식&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;생성자 주입&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Component&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OrderServiceImpl&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OrderService&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MemberRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  
+ &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;OrderServiceImpl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;MemberRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;memberRepository&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+          &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;discountPolicy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;생성자를 통해서 의존관계를 주입 받는 방식이다.&lt;/li&gt;
+  &lt;li&gt;생성자 호출시점에 딱 1번만 호출된다. 변경이 불가능하지만 대부분의 경우 초기 세팅값을 변경할 일이 없다. (변경하면 실수할 가능성만 높아진다.)&lt;/li&gt;
+  &lt;li&gt;불변, 필수 의존관계에 사용&lt;/li&gt;
+  &lt;li&gt;생성자가 단 하나라면 @Autowired를 생략해도 된다.
+&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;수정자 주입&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Component&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OrderServiceImpl&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OrderService&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MemberRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  
+         &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setMemberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;MemberRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;memberRepository&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setDiscountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;discountPolicy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;변경 가능성이 있는 의존관계에 사용한다.&lt;/li&gt;
+  &lt;li&gt;@Autowired의 기본 동작은 의존관계를 주입할 대상이 없으면 오류가 발생한다.&lt;/li&gt;
+  &lt;li&gt;주입 대상이 없어도 동작하게 하려면 @Autowired(required = false)로 설정하면 된다.
+&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;필드 주입 방식&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Component&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OrderServiceImpl&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OrderService&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MemberRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;외부에서 의존관계를 변경하지 못하기 때문에 테스트 하기가 힘들다는 치명적인 단점이 있다.&lt;/li&gt;
+  &lt;li&gt;DI 프레임워크가 없으면 아무것도 못한다.&lt;/li&gt;
+  &lt;li&gt;왠만하면 사용하지 말고 설정 목적으로 하는 @Configuration 같은 곳에서만 필요할 때 사용하자.
+&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;일반 메서드 주입 방식&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Component&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OrderServiceImpl&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OrderService&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MemberRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;MemberRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;memberRepository&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;discountPolicy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;한번에 여러 필드를 주입받을 수 있는데 일반적으로 사용하지 않는다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;참고 : 의존관계 자동 주입은 스프링 컨테이너가 관리하는 스프링 빈이어야 작동한다. 빈이 아닌 클래스에 @Autowired 박는다고 적용되지 않는다.&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h1 id=&quot;결론--생성자-주입을-선택하고-필요할-때만-수정자-주입을-선별적으로-사용&quot;&gt;결론 : 생성자 주입을 선택하고 필요할 때만 수정자 주입을 선별적으로 사용&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;이유
+    &lt;ul&gt;
+      &lt;li&gt;대부분의 의존관계 주입은 한번 일어나면 애플리케이션 종료까지 변경되지 않는다.&lt;/li&gt;
+      &lt;li&gt;수정자 주입을 쓰려면 setter를 public로 열어놔야 하는데 실수가 발생할 가능성이 높아진다.&lt;/li&gt;
+      &lt;li&gt;생성자 주입을 사용하면 final 키워드를 사용할 수 있어서 혹시 값이 설정되지 않으면 컴파일 시점에 에러를 던진다.&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;RequiredArgsConstructor&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;lombok이 제공하는 기능으로 final이 붙은 필드를 모아서 생성자를 만들어준다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;조회-빈이-2개-이상일-때-발생하는-문제-&quot;&gt;&lt;strong&gt;조회 빈이 2개 이상일 때 발생하는 문제&lt;/strong&gt; &lt;br /&gt;&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;@Autowired는 타입으로 조회하기 때문에 같은 타입의 빈이 2개 이상일 때 문제가 발생한다. (NoUniqueBeanDefinitionException)&lt;/li&gt;
+  &lt;li&gt;이를 해결하기 위한 방법을 몇 가지 소개하겠다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;@Autowired 필드 명 매칭&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rateDiscountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;@Autowired는 우선 타입으로 매칭을 시도하고 만약 빈이 2개 이상 찾아지면 필드 명, 파라미터 명으로 빈 이름을 매칭시킨다.&lt;/li&gt;
+  &lt;li&gt;위에서는 rateDiscountPolicy라는 빈 이름으로 시도한다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;@Qualifier&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;빈 등록시에 @Qualifier를 붙여준다. (아래 코드 참고)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Component&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Qualifier&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;mainDiscountPolicy&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RateDiscountPolicy&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Component&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Qualifier&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fixDiscountPolicy&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FixDiscountPolicy&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;주입하는 부분에서 @Qualifier를 붙여주고 등록한 이름을 적어준다. (아래 코드 참고)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Autowired&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;OrderServiceImpl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;MemberRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+                          &lt;span class=&quot;nd&quot;&gt;@Qualifier&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;mainDiscountPolicy&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;memberRepository&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;discountPolicy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;@Qualifier는 우선 @Qualifier끼리 매칭하고 대상이 없으면 빈 이름으로 매칭한다. 만약 빈 이름도 없으면 NoSuchBeanDefinitionException을 발생시킨다.
+&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;@Primary&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;@Primary는 작동방식이 단순한다. 여러 빈이 매칭되면 @Primary가 붙은 것이 우선권을 가진다. &lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Component&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Primary&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RateDiscountPolicy&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Component&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FixDiscountPolicy&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;DiscountPolicy를 주입할 때, RateDiscountPolicy, FixDiscountPolicy가 매칭되는데 @Primary가 붙은 RateDiscountPolicy가 선택된다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;우선순위&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;@Qualifier는 구체적으로 작동하고 @Primary는 기본값처럼 작동한다. 더 구체적인 것이 우선권을 가지는게 일반적이다.&lt;/li&gt;
+  &lt;li&gt;@Qualifier와 @Primary가 겹치면 @Qualifier가 우선권을 가진다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;에노테이션 만들기&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;@Qualifier(“~~~”) 처럼 문자로 넘기면 컴파일 시점에 타입체크가 불가능하다.&lt;/li&gt;
+  &lt;li&gt;에노테이션을 만들어서 사용하면 컴파일 시점에 타입체크를 할 수 있다. (코드 참고) &lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Target&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ElementType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;FIELD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ElementType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;METHOD&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ElementType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;PARAMETER&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;ElementType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;TYPE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ElementType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;ANNOTATION_TYPE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Retention&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;RetentionPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;RUNTIME&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Documented&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Qualifier&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;mainDiscountPolicy&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MainDiscountPolicy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;위와 같이 코드를 작성하면 @MainDiscountPolicy라는 에노테이션이 만들어진다.&lt;/li&gt;
+  &lt;li&gt;@MainDiscountPolicy를 사용하면 이제 컴파일 시점에 타입체크를 할 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;실무에서는 어떻게 해야하는가?&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;자동을 기본으로 사용하자!&lt;/li&gt;
+  &lt;li&gt;직접 기술 지원 객체를 스프링 빈으로 등록한다면 자동이 아니라 수동으로 등록해서 명확하게 하자!&lt;/li&gt;
+  &lt;li&gt;다형성을 적극적으로 활용하는 로직은 수동 등록을 고민해보자!&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><summary type="html">의존관계 주입 방식</summary></entry><entry><title type="html">객체 지향 설계와 스프링</title><link href="http://localhost:4000/spring/Spring1/" rel="alternate" type="text/html" title="객체 지향 설계와 스프링" /><published>2023-06-27T00:00:00+09:00</published><updated>2023-06-27T00:00:00+09:00</updated><id>http://localhost:4000/spring/Spring1</id><content type="html" xml:base="http://localhost:4000/spring/Spring1/">&lt;h3 id=&quot;객체-지향-설계와-스프링&quot;&gt;객체 지향 설계와 스프링&lt;/h3&gt;
 &lt;hr /&gt;
 &lt;p&gt;&lt;strong&gt;스프링의 핵심&lt;/strong&gt;&lt;/p&gt;
 &lt;blockquote&gt;
   &lt;p&gt;좋은 객체 지향 application을 만들 수 있게 도와주는 프레임워크&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;strong&gt;SOLID&lt;/strong&gt;
+&lt;p&gt;&lt;strong&gt;SOLID&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;
 SRP (Single responsiblity principle)&lt;/p&gt;
 &lt;ul&gt;
   &lt;li&gt;한 클래스는 하나의 책임만 가져야 한다.&lt;/li&gt;
@@ -236,6 +641,7 @@ SRP (Single responsiblity principle)&lt;/p&gt;
 
 &lt;p&gt;DIP (Dependency Inversion Principle)&lt;/p&gt;
 &lt;ul&gt;
+  &lt;li&gt;상위 모듈은 하위 모듈에 의존해서는 안된다. (추상화는 세부 사항에 의존해서는 안된다.)&lt;/li&gt;
   &lt;li&gt;클라이언트가 구현을 의존하는 것이 아니라 interface를 의존하게 설계해야 한다.&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 

@@ -6,20 +6,38 @@ var store = [{
         "teaser": null
       },{
         "title": "스프링 핵심 원리 이해",
-        "excerpt":"public static void main(String[] args) { MemberService memberService = new MemberServiceImpl(); OrderService orderService = new OrderServiceImpl(); ... } 위 코드의 문제점 OrderServiceImpl이 MemberRepository, DiscountPolicy 뿐만 아니라 구현체까지 직접 의존하고 있다. DIP 위반 : 인터페이스뿐 아니라 구현체까지 직접 의존하고 있다. OCP 위반 : 할인 정책을 바꾸려면 직접 클라이언트인 OrderServiceImpl 안의 FixDiscountPolicy를...","categories": ["Spring"],
+        "excerpt":"스프링의 핵심 원리 아래 코드의 문제점은 무엇일까? public class OrderServiceImpl implements OrderService { private final MemberRepository memberRepository = new MemoryMemberRepository(); private final DiscountPolicy discountPolicy = new FixDiscountPolicy(); } 클라이언트인 OrderServiceImpl이 구현체를 직접 의존하고 있다. (DIP 위반) 만약 저장소를 DB로 바꾸려고 하거나, 할인 정책을 바꾸려고 한다면 클라이언트 코드를 수정해야 한다. (OCP...","categories": ["Spring"],
         "tags": ["Spring"],
         "url": "/spring/Spring2/",
         "teaser": null
       },{
         "title": "스프링 컨테이너와 스프링 빈",
-        "excerpt":"스프링 컨테이너 생성 new AnnotationConfigApplicationContext(AppConfig.class), 스프링 컨테이너를 생성할 때는 구성 정보를 지정해줘야 한다. (AppConfig) 스프링 빈 등록 설정 정보 클래스 (AppConfig)를 통해서 스프링 빈을 등록한다. 빈 이름은 default로 메서드 이름이 사용된다. (직접 지정할 수도 있다.) 빈 이름은 항상 다른 이름이 부여되야 한다. 같은 이름이 들어오게 되면 무시되거나, 기존 빈을 덮어버리는...","categories": ["Spring"],
+        "excerpt":"스프링 컨테이너 생성 과정 스프링 컨테이너 생성 new AnnotationConfigApplicationContext(AppConfig.class) 스프링 컨테이너를 생성할 때는 구성 정보를 지정해줘야 한다. (AppConfig) 스프링 빈 등록 설정 정보 클래스 (AppConfig)를 통해서 스프링 빈을 등록한다. 빈 이름은 default로 메서드 이름이 사용된다. (직접 지정할 수도 있다.) 빈 이름은 항상 다른 이름이 부여되야 한다. 같은 이름이 들어오게 되면...","categories": ["Spring"],
         "tags": ["Spring"],
         "url": "/spring/Spring3/",
         "teaser": null
       },{
         "title": "싱글톤 컨테이너",
-        "excerpt":"여러 클라이언트가 요청할 때마다 새로운 객체를 생성하는 것은 메모리 낭비가 심하다. 객체를 하나만 생성하고 이를 공유하도록 설계하면 된다. (싱글톤) 싱글톤 패턴 클래스의 인스턴스를 딱 1개만 생성되도록 보장하는 디자인 패턴이다. public class SingletonService { //1. static 영역에 객체를 딱 1개만 생성해둔다. private static final SingletonService instance = new SingletonService(); //2. public으로...","categories": ["Spring"],
+        "excerpt":"싱글톤 패턴을 사용하는 이유 여러 클라이언트가 요청할 때마다 새로운 객체를 생성하는 것은 메모리 낭비가 심하다. 객체를 하나만 생성하고 이를 공유하도록 설계하자. -&gt; 싱글톤 패턴 싱글톤 패턴 클래스의 인스턴스를 딱 1개만 생성되도록 보장하는 디자인 패턴이다. public class SingletonService { private static final SingletonService instance = new SingletonService(); public static SingletonService getInstance()...","categories": ["Spring"],
         "tags": ["Spring"],
         "url": "/spring/Spring4/",
+        "teaser": null
+      },{
+        "title": "컴포넌트 스캔",
+        "excerpt":"컴포넌트 스캔 스프링은 설정 정보가 없어도 자동으로 스프링 빈을 등록하는 컴포넌트 스캔이라는 기능을 제공한다. 컴포넌트 스캔을 사용하면 @Component가 붙은 클래스를 찾아서 다 빈으로 등록한다. @Repository, @Service, @Configuration, @Controller를 까보면 안에 @Component를 가지고 있다. -&gt; 다 빈으로 등록된다.(Spring이 제공하는 기능) 컴포넌트 스캔을 사용하려면 @ComponentScan을 설정 정보에 붙여줘야 한다. (@SpringBootApplication 안에 @ComponentScan이...","categories": ["Spring"],
+        "tags": ["Spring"],
+        "url": "/spring/Spring5/",
+        "teaser": null
+      },{
+        "title": "의존관계 자동 주입",
+        "excerpt":"의존관계 주입 방식 생성자 주입 @Component public class OrderServiceImpl implements OrderService { private final MemberRepository memberRepository; private final DiscountPolicy discountPolicy; @Autowired public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) { this.memberRepository = memberRepository; this.discountPolicy = discountPolicy; } } 생성자를 통해서 의존관계를 주입 받는 방식이다. 생성자 호출시점에 딱 1번만 호출된다. 변경이 불가능하지만 대부분의 경우...","categories": ["Spring"],
+        "tags": ["Spring"],
+        "url": "/spring/Spring6/",
+        "teaser": null
+      },{
+        "title": "빈 생명주기 콜백",
+        "excerpt":"빈 생명주기 콜백 콜백의 필요성 DB, network 커넥션들을 애플리케이션 시작 시점에 미리 연결해둬야 빠르게 사용할 수 있다. 이를 위해서는 객체의 초기화와 종료 작업이 필요하다. 스프링 빈의 라이프사이클 객체 생성 의존관계 주입 스프링 빈은 객체가 생성되고, 의존관계 주입이 다 끝나야 사용할 수 있다. 스프링은 의존관계 주입이 완료되면 스프링 빈에게 콜백 메서드를...","categories": ["Spring"],
+        "tags": ["Spring"],
+        "url": "/spring/Spring7/",
         "teaser": null
       }]
