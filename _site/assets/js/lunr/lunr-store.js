@@ -40,4 +40,10 @@ var store = [{
         "tags": ["Spring"],
         "url": "/spring/Spring7/",
         "teaser": null
+      },{
+        "title": "빈 스코프",
+        "excerpt":"Bean Scope 스프링은 default로 빈을 싱글톤 스코프로 생성한다. 싱글톤 스코프로 생성된 빈은 스프링 컨테이너 시작 시점에 생성되어 스프링 컨테이너 종료까지 유지된다. 스프링은 싱글톤 스코프 말고도 프로토타입 스코프, 웹 스코프(request, session, application)를 지원한다. 하나씩 살펴보자 프로토타입 스코프 프로토타입 스코프를 잘 이해하기 위해 싱글톤 스코프부터 복습해보자. 싱글톤 스코프로 생성된 빈은 조회를 하면...","categories": ["Spring"],
+        "tags": ["Spring"],
+        "url": "/spring/Spring8/",
+        "teaser": null
       }]
