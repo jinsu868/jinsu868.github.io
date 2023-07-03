@@ -46,4 +46,16 @@ var store = [{
         "tags": ["Spring"],
         "url": "/spring/Spring8/",
         "teaser": null
+      },{
+        "title": "스프링 웹 MVC",
+        "excerpt":"웹 서버와 웹 애플리케이션 서버 웹 서버 (Web server) 정적 리소스 제공 (html, css, js, 이미지, 영상) 웹 애플리케이션 서버 (WAS - Web Application Server) 웹 서버의 기능을 포함하고 프로그램 코드를 실행해서 애플리케이션 로직 수행 동적 html, HTTP API(JSON), 서블릿, JSP, 스프링 MVC 등 이 둘은 경계가 모호하다. 웹 시스템의...","categories": ["MVC"],
+        "tags": ["MVC"],
+        "url": "/mvc/mvc1/",
+        "teaser": null
+      },{
+        "title": "Mvc2",
+        "excerpt":"qwe  ","categories": [],
+        "tags": [],
+        "url": "/mvc2/",
+        "teaser": null
       }]
