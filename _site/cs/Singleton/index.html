@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Mvc2 - Jinsu’s story</title>
-<meta name="description" content="qwe">
+<!-- begin _includes/seo.html --><title>싱글톤 패턴 - Jinsu’s story</title>
+<meta name="description" content="디자인패턴     디자인 패턴이란 프로그램을 설계할 때 발생했던 문제점들을 객체 간의 상호 관계 등을 이용해서 해결할 수 있도록 하나의 규약 형태로 만들어 놓은 것을 뜻한다.">
 
 
   <meta name="author" content="Moon JinSu">
@@ -22,30 +22,30 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="Jinsu's story">
-<meta property="og:title" content="Mvc2">
-<meta property="og:url" content="http://localhost:4000/mvc2/">
+<meta property="og:title" content="싱글톤 패턴">
+<meta property="og:url" content="http://localhost:4000/cs/Singleton/">
 
 
-  <meta property="og:description" content="qwe">
-
-
-
-
-
-
-
-  <meta property="article:published_time" content="2023-07-03T00:00:00+09:00">
+  <meta property="og:description" content="디자인패턴     디자인 패턴이란 프로그램을 설계할 때 발생했던 문제점들을 객체 간의 상호 관계 등을 이용해서 해결할 수 있도록 하나의 규약 형태로 만들어 놓은 것을 뜻한다.">
 
 
 
 
 
-  
+
+
+  <meta property="article:published_time" content="2023-07-04T00:00:00+09:00">
+
+
+
+
 
   
 
+  
 
-<link rel="canonical" href="http://localhost:4000/mvc2/">
+
+<link rel="canonical" href="http://localhost:4000/cs/Singleton/">
 
 
 
@@ -248,16 +248,16 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Mvc2">
-    <meta itemprop="description" content="qwe">
-    <meta itemprop="datePublished" content="2023-07-03T00:00:00+09:00">
+    <meta itemprop="headline" content="싱글톤 패턴">
+    <meta itemprop="description" content="디자인패턴   디자인 패턴이란 프로그램을 설계할 때 발생했던 문제점들을 객체 간의 상호 관계 등을 이용해서 해결할 수 있도록 하나의 규약 형태로 만들어 놓은 것을 뜻한다. ">
+    <meta itemprop="datePublished" content="2023-07-04T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="http://localhost:4000/mvc2/" class="u-url" itemprop="url">Mvc2
+            <a href="http://localhost:4000/cs/Singleton/" class="u-url" itemprop="url">싱글톤 패턴
 </a>
           </h1>
           
@@ -274,7 +274,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          최대 1 분 소요
+          1 분 소요
         
       </span>
     
@@ -286,7 +286,58 @@
 
       <section class="page__content e-content" itemprop="text">
         
-        <p>qwe</p>
+        <h2 id="디자인패턴-"><strong>디자인패턴</strong> <br /></h2>
+<ul>
+  <li>디자인 패턴이란 프로그램을 설계할 때 발생했던 문제점들을 객체 간의 상호 관계 등을 이용해서 해결할 수 있도록 하나의 규약 형태로 만들어 놓은 것을 뜻한다. <br /><br /></li>
+</ul>
+
+<h1 id="싱글톤-패턴이란"><strong>싱글톤 패턴이란?</strong></h1>
+<p><strong>싱글톤 패턴이란 하나의 클래스에 대해 오직 하나의 인스턴스만 가지고 이를 공유하는 패턴이다. 데이터베이스 연결 모듈에 많이 사용된다.</strong><br /><br /></p>
+
+<p><strong>장점</strong> <br /></p>
+<ul>
+  <li>인스턴스를 한 번 생성하면 더 이상 생성할 일이 없기 때문에 인스턴스 생성 비용이 줄어든다.</li>
+  <li>단 하나의 인스턴스를 통해서만 리소스에 접근해야 하는 제약이 있는 상황에서 유용하다.</li>
+  <li>사용자가 실수로 여러번 객체 생성을 시도하더라도 내부적으로 단 하나의 객체만 생성된다.</li>
+</ul>
+
+<p><strong>단점</strong> <br /></p>
+<ul>
+  <li>의존성이 높아지는 단점이 있다.(모듈 간의 결합이 강해진다.)</li>
+  <li>구현하는 코드가 좀 길다.</li>
+  <li>TDD(Test Driven Development)를 할 때 걸림돌이 된다.
+    <ul>
+      <li>TDD를 할 때 단위 테스트가 서로 독립적이어서 어떤 순서로도 실행이 가능해야 하는데 싱글톤 패턴은 하나의 인스턴스를 기반으로 구현하는 패턴이라 <strong>각 테스트마다 독립적인 인스턴스를 만들기 어렵다.</strong> <br /><br /><br /></li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="의존성-주입">의존성 주입</h1>
+<p>싱글톤 패턴은 사용하기 쉽고 실용적이지만 모듈 간의 결합을 강하게 만든다. 즉 하나의 모듈의 변경사항이 다른 모듈에 영향을 미칠 수 있다. 그런데 <strong>의존성 주입</strong>을 통해 모듈 간의 결합을 조금 느슨하게 만들 수 있다. <br /><br /></p>
+
+<p><img src="/assets/images/10_1.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
+
+<p>위 그림처럼 메인 모듈이 직접 다른 하위 모듈에 의존성을 주기보다는 중간에 의존성 주입자가 이 부분을 가로채 메인 모듈이 간접적으로 의존성을 주입하게 하는 방식이다.
+이를 통해 메인 모듈은 하위 모듈에 대한 의존성이 떨어진다. 참고로 이를 <strong>디커플링 된다</strong> 라고 한다. <br /><br /></p>
+
+<h1 id="의존성-주입의-장점">의존성 주입의 장점</h1>
+<ul>
+  <li>모듈을 쉽게 교체할 수 있게 되어 테스트하기 쉽고 마이그레이션하기도 수월하다.</li>
+  <li>구현할 때 추상화를 만들고 이를 기반으로 구현체를 넣어 주기 때문에 애플리케이션 의존성 방향이 일관되고, 애플리케이션을 쉽게 추론할 수 있다.</li>
+  <li>낮은 결합도로 변경에 용이하고, 다른 객체와의 협력 관계에 좀 더 집중할 수 있다. <br /><br /></li>
+</ul>
+
+<h1 id="의존성-주입의-단점">의존성 주입의 단점</h1>
+<ul>
+  <li>모듈이 더욱 분리되므로 클래스 수가 늘어나서 복잡도가 증가한다.
+약간의 런타임 패널티가 있을 수 있다. <br /><br /></li>
+</ul>
+
+<h1 id="의존성-주입-원칙">의존성 주입 원칙</h1>
+<ul>
+  <li>상위 모듈은 하위 모듈의 어떠한 것도 가져오지 않아야 한다.</li>
+  <li>추상화에만 의존해야 하며, 인터페이스는 구현체에 의존하면 안 된다.</li>
+</ul>
 
         
       </section>
@@ -294,11 +345,41 @@
       <footer class="page__meta">
         
         
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#design-pattern" class="page__taxonomy-item p-category" rel="tag">Design pattern</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#cs" class="page__taxonomy-item p-category" rel="tag">CS</a>
+    
+    </span>
+  </p>
 
 
         
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-07-03T00:00:00+09:00">July 3, 2023</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-07-04T00:00:00+09:00">July 4, 2023</time></p>
 
       </footer>
 
@@ -307,11 +388,11 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Mvc2%20http%3A%2F%2Flocalhost%3A4000%2Fmvc2%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%EC%8B%B1%EA%B8%80%ED%86%A4+%ED%8C%A8%ED%84%B4%20http%3A%2F%2Flocalhost%3A4000%2Fcs%2FSingleton%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fmvc2%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fcs%2FSingleton%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fmvc2%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fcs%2FSingleton%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 

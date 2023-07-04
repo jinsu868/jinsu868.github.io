@@ -53,9 +53,9 @@ var store = [{
         "url": "/mvc/mvc1/",
         "teaser": null
       },{
-        "title": "Mvc2",
-        "excerpt":"qwe  ","categories": [],
-        "tags": [],
-        "url": "/mvc2/",
+        "title": "싱글톤 패턴",
+        "excerpt":"디자인패턴 디자인 패턴이란 프로그램을 설계할 때 발생했던 문제점들을 객체 간의 상호 관계 등을 이용해서 해결할 수 있도록 하나의 규약 형태로 만들어 놓은 것을 뜻한다. 싱글톤 패턴이란? 싱글톤 패턴이란 하나의 클래스에 대해 오직 하나의 인스턴스만 가지고 이를 공유하는 패턴이다. 데이터베이스 연결 모듈에 많이 사용된다. 장점 인스턴스를 한 번 생성하면 더 이상...","categories": ["CS"],
+        "tags": ["Design pattern"],
+        "url": "/cs/Singleton/",
         "teaser": null
       }]

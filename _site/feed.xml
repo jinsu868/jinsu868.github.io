@@ -1,4 +1,55 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-03T17:44:01+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">Mvc2</title><link href="http://localhost:4000/mvc2/" rel="alternate" type="text/html" title="Mvc2" /><published>2023-07-03T00:00:00+09:00</published><updated>2023-07-03T00:00:00+09:00</updated><id>http://localhost:4000/mvc2</id><content type="html" xml:base="http://localhost:4000/mvc2/">&lt;p&gt;qwe&lt;/p&gt;</content><author><name>Moon JinSu</name></author><summary type="html">qwe</summary></entry><entry><title type="html">스프링 웹 MVC</title><link href="http://localhost:4000/mvc/mvc1/" rel="alternate" type="text/html" title="스프링 웹 MVC" /><published>2023-07-03T00:00:00+09:00</published><updated>2023-07-03T00:00:00+09:00</updated><id>http://localhost:4000/mvc/mvc1</id><content type="html" xml:base="http://localhost:4000/mvc/mvc1/">&lt;h2 id=&quot;웹-서버와-웹-애플리케이션-서버-&quot;&gt;&lt;strong&gt;웹 서버와 웹 애플리케이션 서버&lt;/strong&gt; &lt;br /&gt;&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-04T18:13:12+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">싱글톤 패턴</title><link href="http://localhost:4000/cs/Singleton/" rel="alternate" type="text/html" title="싱글톤 패턴" /><published>2023-07-04T00:00:00+09:00</published><updated>2023-07-04T00:00:00+09:00</updated><id>http://localhost:4000/cs/Singleton</id><content type="html" xml:base="http://localhost:4000/cs/Singleton/">&lt;h2 id=&quot;디자인패턴-&quot;&gt;&lt;strong&gt;디자인패턴&lt;/strong&gt; &lt;br /&gt;&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;디자인 패턴이란 프로그램을 설계할 때 발생했던 문제점들을 객체 간의 상호 관계 등을 이용해서 해결할 수 있도록 하나의 규약 형태로 만들어 놓은 것을 뜻한다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;싱글톤-패턴이란&quot;&gt;&lt;strong&gt;싱글톤 패턴이란?&lt;/strong&gt;&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;싱글톤 패턴이란 하나의 클래스에 대해 오직 하나의 인스턴스만 가지고 이를 공유하는 패턴이다. 데이터베이스 연결 모듈에 많이 사용된다.&lt;/strong&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;장점&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;인스턴스를 한 번 생성하면 더 이상 생성할 일이 없기 때문에 인스턴스 생성 비용이 줄어든다.&lt;/li&gt;
+  &lt;li&gt;단 하나의 인스턴스를 통해서만 리소스에 접근해야 하는 제약이 있는 상황에서 유용하다.&lt;/li&gt;
+  &lt;li&gt;사용자가 실수로 여러번 객체 생성을 시도하더라도 내부적으로 단 하나의 객체만 생성된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;단점&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;의존성이 높아지는 단점이 있다.(모듈 간의 결합이 강해진다.)&lt;/li&gt;
+  &lt;li&gt;구현하는 코드가 좀 길다.&lt;/li&gt;
+  &lt;li&gt;TDD(Test Driven Development)를 할 때 걸림돌이 된다.
+    &lt;ul&gt;
+      &lt;li&gt;TDD를 할 때 단위 테스트가 서로 독립적이어서 어떤 순서로도 실행이 가능해야 하는데 싱글톤 패턴은 하나의 인스턴스를 기반으로 구현하는 패턴이라 &lt;strong&gt;각 테스트마다 독립적인 인스턴스를 만들기 어렵다.&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;의존성-주입&quot;&gt;의존성 주입&lt;/h1&gt;
+&lt;p&gt;싱글톤 패턴은 사용하기 쉽고 실용적이지만 모듈 간의 결합을 강하게 만든다. 즉 하나의 모듈의 변경사항이 다른 모듈에 영향을 미칠 수 있다. 그런데 &lt;strong&gt;의존성 주입&lt;/strong&gt;을 통해 모듈 간의 결합을 조금 느슨하게 만들 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/10_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;위 그림처럼 메인 모듈이 직접 다른 하위 모듈에 의존성을 주기보다는 중간에 의존성 주입자가 이 부분을 가로채 메인 모듈이 간접적으로 의존성을 주입하게 하는 방식이다.
+이를 통해 메인 모듈은 하위 모듈에 대한 의존성이 떨어진다. 참고로 이를 &lt;strong&gt;디커플링 된다&lt;/strong&gt; 라고 한다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;의존성-주입의-장점&quot;&gt;의존성 주입의 장점&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;모듈을 쉽게 교체할 수 있게 되어 테스트하기 쉽고 마이그레이션하기도 수월하다.&lt;/li&gt;
+  &lt;li&gt;구현할 때 추상화를 만들고 이를 기반으로 구현체를 넣어 주기 때문에 애플리케이션 의존성 방향이 일관되고, 애플리케이션을 쉽게 추론할 수 있다.&lt;/li&gt;
+  &lt;li&gt;낮은 결합도로 변경에 용이하고, 다른 객체와의 협력 관계에 좀 더 집중할 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;의존성-주입의-단점&quot;&gt;의존성 주입의 단점&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;모듈이 더욱 분리되므로 클래스 수가 늘어나서 복잡도가 증가한다.
+약간의 런타임 패널티가 있을 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;의존성-주입-원칙&quot;&gt;의존성 주입 원칙&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;상위 모듈은 하위 모듈의 어떠한 것도 가져오지 않아야 한다.&lt;/li&gt;
+  &lt;li&gt;추상화에만 의존해야 하며, 인터페이스는 구현체에 의존하면 안 된다.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="CS" /><category term="Design pattern" /><summary type="html">디자인패턴 디자인 패턴이란 프로그램을 설계할 때 발생했던 문제점들을 객체 간의 상호 관계 등을 이용해서 해결할 수 있도록 하나의 규약 형태로 만들어 놓은 것을 뜻한다.</summary></entry><entry><title type="html">스프링 웹 MVC</title><link href="http://localhost:4000/mvc/mvc1/" rel="alternate" type="text/html" title="스프링 웹 MVC" /><published>2023-07-03T00:00:00+09:00</published><updated>2023-07-03T00:00:00+09:00</updated><id>http://localhost:4000/mvc/mvc1</id><content type="html" xml:base="http://localhost:4000/mvc/mvc1/">&lt;h2 id=&quot;웹-서버와-웹-애플리케이션-서버-&quot;&gt;&lt;strong&gt;웹 서버와 웹 애플리케이션 서버&lt;/strong&gt; &lt;br /&gt;&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;웹 서버 (Web server)
     &lt;ul&gt;
