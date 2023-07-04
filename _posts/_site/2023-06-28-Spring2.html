@@ -1,32 +1,29 @@
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>      <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-          <span class="nc">MemberService</span> <span class="n">memberService</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MemberServiceImpl</span><span class="o">();</span>
-          <span class="nc">OrderService</span> <span class="n">orderService</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">OrderServiceImpl</span><span class="o">();</span>
-          <span class="o">...</span>
-      <span class="o">}</span>  
+<h3 id="스프링의-핵심-원리-">스프링의 핵심 원리 <br /><br /></h3>
+
+<p><strong>아래 코드의 문제점은 무엇일까?</strong><br /></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">OrderServiceImpl</span> <span class="kd">implements</span> <span class="nc">OrderService</span> <span class="o">{</span>
+      <span class="kd">private</span> <span class="kd">final</span> <span class="nc">MemberRepository</span> <span class="n">memberRepository</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MemoryMemberRepository</span><span class="o">();</span>
+      <span class="kd">private</span> <span class="kd">final</span> <span class="nc">DiscountPolicy</span> <span class="n">discountPolicy</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FixDiscountPolicy</span><span class="o">();</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
-<p><strong>위 코드의 문제점</strong></p>
 <ul>
-  <li>OrderServiceImpl이 MemberRepository, DiscountPolicy 뿐만 아니라 구현체까지 직접 의존하고 있다.<br /><br /></li>
-</ul>
-
-<p><img src="/assets/images/2_2.png" alt="img2" width="60%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
-
-<ul>
-  <li>DIP 위반 : 인터페이스뿐 아니라 구현체까지 직접 의존하고 있다.</li>
-  <li>OCP 위반 : 할인 정책을 바꾸려면 직접 클라이언트인 OrderServiceImpl 안의 FixDiscountPolicy를 RateDiscountPolicy로 바꿔야 한다. <br /><br /></li>
+  <li>클라이언트인 OrderServiceImpl이 구현체를 직접 의존하고 있다. (DIP 위반)</li>
+  <li>만약 저장소를 DB로 바꾸려고 하거나, 할인 정책을 바꾸려고 한다면 클라이언트 코드를 수정해야 한다. (OCP 위반)
+<br /><br /></li>
 </ul>
 
 <p><img src="/assets/images/2_3.png" alt="img3" width="60%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
 
 <ul>
-  <li>이렇게 되도록 변경해야 하는데 구현체가 없으니 당연히 NullPointException이 발생한다.</li>
-  <li>이 문제를 해결하기 위해서 다른 무언가가 클라이언트인 OrderServiceImpl에 DiscountPolicy의 구현체를 직접 생성하고 의존성을 주입해줘야 한다. <br /><br /></li>
+  <li>위 그림과 같이 클라이언트 OrderServiceImpl이 interface에 의존하도록 설계해야 한다.</li>
+  <li>하지만 이렇게 변경하게 되면 구현체가 없으니 NullPointException이 발생한다.</li>
+  <li>이 문제를 해결하려면 외부의 다른 무언가가 클라이언트인 OrderServiceImpl에 DiscountPolicy의 구현체를 직접 생성하고 의존성을 주입해줘야 한다. <br /><br /></li>
 </ul>
 
 <p><strong>관심사의 분리</strong></p>
 <ul>
-  <li>실제 실행되는 부분과 구현 객체를 생성하고 연결하는 부분을 분리하자!</li>
+  <li>실제 실행되는 부분과 구현 객체를 생성하고 연결하는 부분을 분리하자! (ISP 적용)</li>
   <li>AppConfig <br /><br /></li>
 </ul>
 
@@ -65,7 +62,7 @@
 <p><img src="/assets/images/2_4.png" alt="img4" width="60%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
 
 <ul>
-  <li>FixDiscountPolicy -&gt; RateDiscountPolicy로 바꾸고 싶을 때, AppConfig의 설정 정보만 변경해주면 클라이언트 코드의 변경 없이 바꿀 수 있다. <br /><br /></li>
+  <li>할인정책을 바꾸고 싶을 때, AppConfig의 설정 정보만 변경해주면 클라이언트 코드의 변경 없이 바꿀 수 있다. <br /></li>
 </ul>
 
 <p><strong>IoC, DI 컨테이너</strong></p>
@@ -91,7 +88,7 @@
 <ul>
   <li>위 그림에서 OrderServiceImpl이 MemberRepository, DiscountPolicy에 의존하는 것은 알 수 있지만 실제로 어떤 객체가 주입될지는 알 수 없다.</li>
   <li>의존관계 주입 (DI) 을 사용하면 클라이언트(OrderServiceImpl)을 변경하지 않고, 클라이언트가 호출하는 대상의 type instance(MemoryMemberRepository or DbMemberRepository)를 변경할 수 있다.</li>
-  <li>의존관계 주입을 사용하면 정적인 클래스 의존관계를 변경하지 않고, 동적인 객체 인스턴스 의존관계를 쉽게 변경 가능하다. (본 강의 예시 : AppConfig를 조금 손보면 쉽게 변경 가능) <br /><br /></li>
+  <li>의존관계 주입을 사용하면 정적인 클래스 의존관계를 변경하지 않고, 동적인 객체 인스턴스 의존관계를 쉽게 변경 가능하다. <br /><br /></li>
 </ul>
 
 <p><strong>스프링 컨테이너</strong></p>

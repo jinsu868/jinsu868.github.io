@@ -1,10 +1,13 @@
+<h3 id="스프링-컨테이너-생성-과정-"><strong>스프링 컨테이너 생성 과정</strong> <br /><br /></h3>
+
 <ul>
   <li>
     <p><strong>스프링 컨테이너 생성</strong> <br /><br />
 <img src="/assets/images/3_1.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
   </li>
+  <li>new AnnotationConfigApplicationContext(AppConfig.class)</li>
   <li>
-    <p>new AnnotationConfigApplicationContext(AppConfig.class), 스프링 컨테이너를 생성할 때는 구성 정보를 지정해줘야 한다. (AppConfig) <br /><br /></p>
+    <p>스프링 컨테이너를 생성할 때는 구성 정보를 지정해줘야 한다. (AppConfig) <br /><br /></p>
   </li>
   <li>
     <p><strong>스프링 빈 등록</strong> <br /><br />
@@ -26,7 +29,7 @@
 
 <p><strong>BeanFactory와 ApplicationContext</strong> <br /><br /></p>
 
-<p><img src="/assets/images/3_5.png" alt="img5" width="40%&quot;&quot;, height=&quot;30%&quot;" /> <br /><br /></p>
+<p><img src="/assets/images/3_5.png" alt="img5" width="20%&quot;&quot;, height=&quot;20%&quot;" /> <br /><br /></p>
 
 <ul>
   <li>BeanFactory는 스프링 컨테이너의 최상위 인터페이스이다.</li>
@@ -36,13 +39,13 @@
 <p><img src="/assets/images/3_6.png" alt="img6" width="60%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
 
 <ul>
-  <li>ApplicationContext는 이러한 BeanFactory뿐 아니라 MessageSource, EnvironmentCapable 등 여러 부가적인 인터페이스를 상속하여 더 많은 기능을 제공한다.</li>
-  <li>그리고 스프링 컨테이너(ApplicationContext)는 자바 코드로 설정하는 방식뿐 아니라 XML 등 다른 설정정보를 바탕으로 생성할 수도 있다. <br /><br /></li>
+  <li>ApplicationContext는 이러한 BeanFactory뿐 아니라 MessageSource, EnvironmentCapable 등 여러 부가적인 인터페이스를 상속하여 더 많은 기능을 제공한다. <br /><br /></li>
 </ul>
 
 <p><img src="/assets/images/3_7.png" alt="img7" width="60%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
 
 <ul>
+  <li>스프링 컨테이너(ApplicationContext)는 자바 코드로 설정하는 방식뿐 아니라 XML 등 다른 설정정보를 바탕으로 생성할 수도 있다.</li>
   <li>자바 코드로 설정 -&gt; AnnotationConfigApplicationContext</li>
   <li>XML로 설정 -&gt; GenericXmlApplicationContext <br /><br /></li>
 </ul>
