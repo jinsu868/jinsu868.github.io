@@ -274,7 +274,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          최대 1 분 소요
+          1 분 소요
         
       </span>
     
@@ -339,7 +339,25 @@
   <li>미리 쓰레드를 생성해두고 필요할 때마다 쓰레드 풀에서 꺼내서 사용한다.</li>
   <li>다 사용하면 다시 반납한다.</li>
   <li>쓰레드가 이미 다 생성되어 있기 때문에 쓰레드 생성, 종료 비용이 절약되고, 응답 시간도 빠르다.</li>
-  <li>생성 가능 쓰레드 최대치가 정해져 있어서 너무 많은 요청이 들어와도 안전하게 처리할 수 있다.</li>
+  <li>생성 가능 쓰레드 최대치가 정해져 있어서 너무 많은 요청이 들어와도 안전하게 처리할 수 있다. <br /><br /></li>
+</ul>
+
+<h2 id="튜닝-포인트"><strong>튜닝 포인트</strong></h2>
+<ul>
+  <li>WAS의 주요 튜닝 포인트는 최대 쓰레드 수이다.
+    <ul>
+      <li>너무 낮게 설정하면 트레픽이 많을 때, 서버 리소스는 남는데, 클라이언트의 응답이 계속 지연된다.</li>
+      <li>너무 높게 설정하면 CPU 메모리 리소스 임계 초과로 서버가 다운될 수 있다.</li>
+    </ul>
+  </li>
+  <li>일단 클라우드면 서버를 늘리고 이후에 튜닝하자.</li>
+  <li>적정 숫자를 찾는 방법
+    <ul>
+      <li>애플리케이션 로직의 복잡도, CPU, IO 리소스 상황에 따라 다르다.</li>
+      <li>오픈하기 전에 어떤 로직이 변하거나 기능을 넣을 때 성능 테스트를 해야 한다.</li>
+    </ul>
+  </li>
+  <li>개발자는 설정만 잘 해주면 WAS가 멀티 쓰레드 관련 코드를 관리해준다.</li>
 </ul>
 
 
@@ -476,6 +494,48 @@ Strategy pattern
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
+        <a href="/mvc/Servlet/" rel="permalink">서블릿
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Servlet
+
+  서블릿은 TCP/IP connection, Socket connection, HTTP message parsing, HTTP response message 생성 등, 핵심 비즈니스 로직을 제외한 부분을 대신 해준다.
+  스프링 부트에서 servlet을 직접 등록...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
         <a href="/cs/Singleton/" rel="permalink">싱글톤 패턴
 </a>
       
@@ -545,46 +605,6 @@ Strategy pattern
 
 
     <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/spring/Spring8/" rel="permalink">빈 스코프
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-
-    
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
-        
-          3 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">Bean Scope 
 </p>
   </article>
 </div>

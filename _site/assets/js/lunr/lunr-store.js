@@ -65,6 +65,12 @@ var store = [{
         "url": "/cs/Singleton/",
         "teaser": null
       },{
+        "title": "서블릿",
+        "excerpt":"Servlet 서블릿은 TCP/IP connection, Socket connection, HTTP message parsing, HTTP response message 생성 등, 핵심 비즈니스 로직을 제외한 부분을 대신 해준다. 스프링 부트에서 servlet을 직접 등록해서 사용하려면 @ServletComponentScan 을 붙이면 된다. WAS의 요청 구조 스프링 부트가 톰켓(WAS)를 띄워준다. 톰켓은 서블릿 컨테이너에 서블릿을 등록하고 싱글톤으로 관리한다. HTTP 요청마다 톰켓이 request, response...","categories": ["MVC"],
+        "tags": ["MVC"],
+        "url": "/mvc/Servlet/",
+        "teaser": null
+      },{
         "title": "전략 패턴",
         "excerpt":"Strategy pattern 객체의 행위를 바꾸고 싶은 경우 직접 수정하지 않고 전략이라고 부르는 캡슐화한 알고리즘을 컨텍스트 안에서 바꿔주면서 상호 교체가 가능하게 만드는 패턴이다. 특정 컨텍스트에서 알고리즘을 별도로 분리하는 설계 방법을 의미한다. 쉽게 말해서 특정 기능을 수행하는데 다양한 알고리즘이 적용될 수 있을 때, 알고리즘을 별도로 분리하는 설계 방법을 의미하는 것이다. Strategy pattern의...","categories": ["CS"],
         "tags": ["Design pattern"],

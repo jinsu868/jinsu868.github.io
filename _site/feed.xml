@@ -1,4 +1,59 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-05T15:25:20+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">전략 패턴</title><link href="http://localhost:4000/cs/Strategy/" rel="alternate" type="text/html" title="전략 패턴" /><published>2023-07-05T00:00:00+09:00</published><updated>2023-07-05T00:00:00+09:00</updated><id>http://localhost:4000/cs/Strategy</id><content type="html" xml:base="http://localhost:4000/cs/Strategy/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-05T18:28:37+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">서블릿</title><link href="http://localhost:4000/mvc/Servlet/" rel="alternate" type="text/html" title="서블릿" /><published>2023-07-05T00:00:00+09:00</published><updated>2023-07-05T00:00:00+09:00</updated><id>http://localhost:4000/mvc/Servlet</id><content type="html" xml:base="http://localhost:4000/mvc/Servlet/">&lt;h1 id=&quot;servlet&quot;&gt;&lt;em&gt;Servlet&lt;/em&gt;&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;서블릿은 TCP/IP connection, Socket connection, HTTP message parsing, HTTP response message 생성 등, 핵심 비즈니스 로직을 제외한 부분을 대신 해준다.&lt;/li&gt;
+  &lt;li&gt;스프링 부트에서 servlet을 직접 등록해서 사용하려면 @ServletComponentScan 을 붙이면 된다. &lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;was의-요청-구조&quot;&gt;&lt;em&gt;WAS의 요청 구조&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/13_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;스프링 부트가 톰켓(WAS)를 띄워준다.&lt;/li&gt;
+  &lt;li&gt;톰켓은 서블릿 컨테이너에 서블릿을 등록하고 싱글톤으로 관리한다.&lt;/li&gt;
+  &lt;li&gt;HTTP 요청마다 톰켓이 request, response 객체를 새로 생성하고 서블릿 객체에 넣어서 실행한다. &lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;httpservletrequest&quot;&gt;&lt;em&gt;HttpServletRequest&lt;/em&gt;&lt;/h1&gt;
+&lt;p&gt;개발자가 HTTP 메시지를 직접 파싱해서 사용할 수도 있겠지만 굉장히 불편하고 반복적인 작업이다. 서블릿은 HTTP 메시지를 대신 파싱해서 HttpServletRequest 객체에 담아서 준다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;기능&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;임시 저장소 역할을 한다. request.setAttribute(name, value)로 저장, request.getAttribute(name)으로 조회&lt;/li&gt;
+  &lt;li&gt;세션 관리를 해준다. request.getSession(create: true)&lt;/li&gt;
+  &lt;li&gt;이 외에도 HTTP 메시지를 다 조회할 수 있다. startline, header, body &lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;http-요청-데이터&quot;&gt;HTTP 요청 데이터&lt;/h1&gt;
+&lt;p&gt;HTTP 요청 메시지를 통해 클라이언트에서 서버로 데이터를 전달하는 방식은 크게 3가지이다. &lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;GET - 쿼리 파라미터&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;ex- /url?username=hello&amp;amp;age=20&lt;/li&gt;
+      &lt;li&gt;검색, 필터, 페이징 등에 많이 사용된다.&lt;/li&gt;
+      &lt;li&gt;body를 사용하지 않기 때문에 content-type이 없다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;POST - HTML Form&lt;/strong&gt; &lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/13_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;content-type: applicaiton/x-www.form-urlencoded&lt;/li&gt;
+  &lt;li&gt;메시지 바디에 쿼리 파라미터 형식으로 전달&lt;/li&gt;
+  &lt;li&gt;GET 쿼리 파라미터 방식이랑 동일한 폼으로 들어오기 때문에 서버측에서는 동일한 방법으로 적용해서 조회할 수 있다. -&amp;gt; request.getParameter()&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;HTTP 메시지 바디를 사용하기 때문에 content-type을 지정해야 한다. (application/x-www-form-urlencoded)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;HTTP message body에 데이터 넣어서 요청 (JSON)&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;HTTP API에 주로 사용된다. 거의 Json&lt;/li&gt;
+      &lt;li&gt;Json 형식으로 데이터를 넘길때는 content-type을 application/json으로 설정해야 한다.&lt;/li&gt;
+      &lt;li&gt;ObjectMapper를 사용해서 json을 파싱할 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="MVC" /><category term="MVC" /><summary type="html">Servlet 서블릿은 TCP/IP connection, Socket connection, HTTP message parsing, HTTP response message 생성 등, 핵심 비즈니스 로직을 제외한 부분을 대신 해준다. 스프링 부트에서 servlet을 직접 등록해서 사용하려면 @ServletComponentScan 을 붙이면 된다.</summary></entry><entry><title type="html">전략 패턴</title><link href="http://localhost:4000/cs/Strategy/" rel="alternate" type="text/html" title="전략 패턴" /><published>2023-07-05T00:00:00+09:00</published><updated>2023-07-05T00:00:00+09:00</updated><id>http://localhost:4000/cs/Strategy</id><content type="html" xml:base="http://localhost:4000/cs/Strategy/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h1 id=&quot;strategy-pattern&quot;&gt;Strategy pattern&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;객체의 행위를 바꾸고 싶은 경우 직접 수정하지 않고 전략이라고 부르는 캡슐화한 알고리즘을 컨텍스트 안에서 바꿔주면서 상호 교체가 가능하게 만드는 패턴이다.&lt;/li&gt;
@@ -85,7 +140,58 @@ OCP 지킴 : 새로운 요구사항이 생겼을 때, 기존 코드를 건드리
 
 &lt;h1 id=&quot;단점&quot;&gt;&lt;strong&gt;단점&lt;/strong&gt;&lt;/h1&gt;
 &lt;p&gt;전략패턴을 적용하면 코드가 길어지고 보기 힘들어진다. 
-컨텍스트에 적용되는 알고리즘이 적다면 분기를 타는 것이 더 좋을 수 있다.&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="CS" /><category term="Design pattern" /><summary type="html">Strategy pattern 객체의 행위를 바꾸고 싶은 경우 직접 수정하지 않고 전략이라고 부르는 캡슐화한 알고리즘을 컨텍스트 안에서 바꿔주면서 상호 교체가 가능하게 만드는 패턴이다. 특정 컨텍스트에서 알고리즘을 별도로 분리하는 설계 방법을 의미한다. 쉽게 말해서 특정 기능을 수행하는데 다양한 알고리즘이 적용될 수 있을 때, 알고리즘을 별도로 분리하는 설계 방법을 의미하는 것이다.</summary></entry><entry><title type="html">팩토리 패턴</title><link href="http://localhost:4000/cs/Factory/" rel="alternate" type="text/html" title="팩토리 패턴" /><published>2023-07-04T00:00:00+09:00</published><updated>2023-07-04T00:00:00+09:00</updated><id>http://localhost:4000/cs/Factory</id><content type="html" xml:base="http://localhost:4000/cs/Factory/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+컨텍스트에 적용되는 알고리즘이 적다면 분기를 타는 것이 더 좋을 수 있다.&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="CS" /><category term="Design pattern" /><summary type="html">Strategy pattern 객체의 행위를 바꾸고 싶은 경우 직접 수정하지 않고 전략이라고 부르는 캡슐화한 알고리즘을 컨텍스트 안에서 바꿔주면서 상호 교체가 가능하게 만드는 패턴이다. 특정 컨텍스트에서 알고리즘을 별도로 분리하는 설계 방법을 의미한다. 쉽게 말해서 특정 기능을 수행하는데 다양한 알고리즘이 적용될 수 있을 때, 알고리즘을 별도로 분리하는 설계 방법을 의미하는 것이다.</summary></entry><entry><title type="html">싱글톤 패턴</title><link href="http://localhost:4000/cs/Singleton/" rel="alternate" type="text/html" title="싱글톤 패턴" /><published>2023-07-04T00:00:00+09:00</published><updated>2023-07-04T00:00:00+09:00</updated><id>http://localhost:4000/cs/Singleton</id><content type="html" xml:base="http://localhost:4000/cs/Singleton/">&lt;h2 id=&quot;디자인패턴-&quot;&gt;&lt;strong&gt;디자인패턴&lt;/strong&gt; &lt;br /&gt;&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;디자인 패턴이란 프로그램을 설계할 때 발생했던 문제점들을 객체 간의 상호 관계 등을 이용해서 해결할 수 있도록 하나의 규약 형태로 만들어 놓은 것을 뜻한다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;싱글톤-패턴이란&quot;&gt;&lt;strong&gt;싱글톤 패턴이란?&lt;/strong&gt;&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;싱글톤 패턴이란 하나의 클래스에 대해 오직 하나의 인스턴스만 가지고 이를 공유하는 패턴이다. 데이터베이스 연결 모듈에 많이 사용된다.&lt;/strong&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;장점&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;인스턴스를 한 번 생성하면 더 이상 생성할 일이 없기 때문에 인스턴스 생성 비용이 줄어든다.&lt;/li&gt;
+  &lt;li&gt;단 하나의 인스턴스를 통해서만 리소스에 접근해야 하는 제약이 있는 상황에서 유용하다.&lt;/li&gt;
+  &lt;li&gt;사용자가 실수로 여러번 객체 생성을 시도하더라도 내부적으로 단 하나의 객체만 생성된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;단점&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;의존성이 높아지는 단점이 있다.(모듈 간의 결합이 강해진다.)&lt;/li&gt;
+  &lt;li&gt;구현하는 코드가 좀 길다.&lt;/li&gt;
+  &lt;li&gt;TDD(Test Driven Development)를 할 때 걸림돌이 된다.
+    &lt;ul&gt;
+      &lt;li&gt;TDD를 할 때 단위 테스트가 서로 독립적이어서 어떤 순서로도 실행이 가능해야 하는데 싱글톤 패턴은 하나의 인스턴스를 기반으로 구현하는 패턴이라 &lt;strong&gt;각 테스트마다 독립적인 인스턴스를 만들기 어렵다.&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;의존성-주입&quot;&gt;의존성 주입&lt;/h1&gt;
+&lt;p&gt;싱글톤 패턴은 사용하기 쉽고 실용적이지만 모듈 간의 결합을 강하게 만든다. 즉 하나의 모듈의 변경사항이 다른 모듈에 영향을 미칠 수 있다. 그런데 &lt;strong&gt;의존성 주입&lt;/strong&gt;을 통해 모듈 간의 결합을 조금 느슨하게 만들 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/10_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;위 그림처럼 메인 모듈이 직접 다른 하위 모듈에 의존성을 주기보다는 중간에 의존성 주입자가 이 부분을 가로채 메인 모듈이 간접적으로 의존성을 주입하게 하는 방식이다.
+이를 통해 메인 모듈은 하위 모듈에 대한 의존성이 떨어진다. 참고로 이를 &lt;strong&gt;디커플링 된다&lt;/strong&gt; 라고 한다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;의존성-주입의-장점&quot;&gt;의존성 주입의 장점&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;모듈을 쉽게 교체할 수 있게 되어 테스트하기 쉽고 마이그레이션하기도 수월하다.&lt;/li&gt;
+  &lt;li&gt;구현할 때 추상화를 만들고 이를 기반으로 구현체를 넣어 주기 때문에 애플리케이션 의존성 방향이 일관되고, 애플리케이션을 쉽게 추론할 수 있다.&lt;/li&gt;
+  &lt;li&gt;낮은 결합도로 변경에 용이하고, 다른 객체와의 협력 관계에 좀 더 집중할 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;의존성-주입의-단점&quot;&gt;의존성 주입의 단점&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;모듈이 더욱 분리되므로 클래스 수가 늘어나서 복잡도가 증가한다.
+약간의 런타임 패널티가 있을 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;의존성-주입-원칙&quot;&gt;의존성 주입 원칙&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;상위 모듈은 하위 모듈의 어떠한 것도 가져오지 않아야 한다.&lt;/li&gt;
+  &lt;li&gt;추상화에만 의존해야 하며, 인터페이스는 구현체에 의존하면 안 된다.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="CS" /><category term="Design pattern" /><summary type="html">디자인패턴 디자인 패턴이란 프로그램을 설계할 때 발생했던 문제점들을 객체 간의 상호 관계 등을 이용해서 해결할 수 있도록 하나의 규약 형태로 만들어 놓은 것을 뜻한다.</summary></entry><entry><title type="html">팩토리 패턴</title><link href="http://localhost:4000/cs/Factory/" rel="alternate" type="text/html" title="팩토리 패턴" /><published>2023-07-04T00:00:00+09:00</published><updated>2023-07-04T00:00:00+09:00</updated><id>http://localhost:4000/cs/Factory</id><content type="html" xml:base="http://localhost:4000/cs/Factory/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/11_1.png&quot; alt=&quot;img1&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
 
@@ -201,58 +307,7 @@ OCP 지킴 : 새로운 요구사항이 생겼을 때, 기존 코드를 건드리
         &lt;span class=&quot;n&quot;&gt;cat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;speak&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Moon JinSu</name></author><category term="CS" /><category term="Design pattern" /><summary type="html"></summary></entry><entry><title type="html">싱글톤 패턴</title><link href="http://localhost:4000/cs/Singleton/" rel="alternate" type="text/html" title="싱글톤 패턴" /><published>2023-07-04T00:00:00+09:00</published><updated>2023-07-04T00:00:00+09:00</updated><id>http://localhost:4000/cs/Singleton</id><content type="html" xml:base="http://localhost:4000/cs/Singleton/">&lt;h2 id=&quot;디자인패턴-&quot;&gt;&lt;strong&gt;디자인패턴&lt;/strong&gt; &lt;br /&gt;&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;디자인 패턴이란 프로그램을 설계할 때 발생했던 문제점들을 객체 간의 상호 관계 등을 이용해서 해결할 수 있도록 하나의 규약 형태로 만들어 놓은 것을 뜻한다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;싱글톤-패턴이란&quot;&gt;&lt;strong&gt;싱글톤 패턴이란?&lt;/strong&gt;&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;싱글톤 패턴이란 하나의 클래스에 대해 오직 하나의 인스턴스만 가지고 이를 공유하는 패턴이다. 데이터베이스 연결 모듈에 많이 사용된다.&lt;/strong&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;장점&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;인스턴스를 한 번 생성하면 더 이상 생성할 일이 없기 때문에 인스턴스 생성 비용이 줄어든다.&lt;/li&gt;
-  &lt;li&gt;단 하나의 인스턴스를 통해서만 리소스에 접근해야 하는 제약이 있는 상황에서 유용하다.&lt;/li&gt;
-  &lt;li&gt;사용자가 실수로 여러번 객체 생성을 시도하더라도 내부적으로 단 하나의 객체만 생성된다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;단점&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;의존성이 높아지는 단점이 있다.(모듈 간의 결합이 강해진다.)&lt;/li&gt;
-  &lt;li&gt;구현하는 코드가 좀 길다.&lt;/li&gt;
-  &lt;li&gt;TDD(Test Driven Development)를 할 때 걸림돌이 된다.
-    &lt;ul&gt;
-      &lt;li&gt;TDD를 할 때 단위 테스트가 서로 독립적이어서 어떤 순서로도 실행이 가능해야 하는데 싱글톤 패턴은 하나의 인스턴스를 기반으로 구현하는 패턴이라 &lt;strong&gt;각 테스트마다 독립적인 인스턴스를 만들기 어렵다.&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;의존성-주입&quot;&gt;의존성 주입&lt;/h1&gt;
-&lt;p&gt;싱글톤 패턴은 사용하기 쉽고 실용적이지만 모듈 간의 결합을 강하게 만든다. 즉 하나의 모듈의 변경사항이 다른 모듈에 영향을 미칠 수 있다. 그런데 &lt;strong&gt;의존성 주입&lt;/strong&gt;을 통해 모듈 간의 결합을 조금 느슨하게 만들 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/10_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;위 그림처럼 메인 모듈이 직접 다른 하위 모듈에 의존성을 주기보다는 중간에 의존성 주입자가 이 부분을 가로채 메인 모듈이 간접적으로 의존성을 주입하게 하는 방식이다.
-이를 통해 메인 모듈은 하위 모듈에 대한 의존성이 떨어진다. 참고로 이를 &lt;strong&gt;디커플링 된다&lt;/strong&gt; 라고 한다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;의존성-주입의-장점&quot;&gt;의존성 주입의 장점&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;모듈을 쉽게 교체할 수 있게 되어 테스트하기 쉽고 마이그레이션하기도 수월하다.&lt;/li&gt;
-  &lt;li&gt;구현할 때 추상화를 만들고 이를 기반으로 구현체를 넣어 주기 때문에 애플리케이션 의존성 방향이 일관되고, 애플리케이션을 쉽게 추론할 수 있다.&lt;/li&gt;
-  &lt;li&gt;낮은 결합도로 변경에 용이하고, 다른 객체와의 협력 관계에 좀 더 집중할 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;의존성-주입의-단점&quot;&gt;의존성 주입의 단점&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;모듈이 더욱 분리되므로 클래스 수가 늘어나서 복잡도가 증가한다.
-약간의 런타임 패널티가 있을 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;의존성-주입-원칙&quot;&gt;의존성 주입 원칙&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;상위 모듈은 하위 모듈의 어떠한 것도 가져오지 않아야 한다.&lt;/li&gt;
-  &lt;li&gt;추상화에만 의존해야 하며, 인터페이스는 구현체에 의존하면 안 된다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="CS" /><category term="Design pattern" /><summary type="html">디자인패턴 디자인 패턴이란 프로그램을 설계할 때 발생했던 문제점들을 객체 간의 상호 관계 등을 이용해서 해결할 수 있도록 하나의 규약 형태로 만들어 놓은 것을 뜻한다.</summary></entry><entry><title type="html">스프링 웹 MVC</title><link href="http://localhost:4000/mvc/mvc1/" rel="alternate" type="text/html" title="스프링 웹 MVC" /><published>2023-07-03T00:00:00+09:00</published><updated>2023-07-03T00:00:00+09:00</updated><id>http://localhost:4000/mvc/mvc1</id><content type="html" xml:base="http://localhost:4000/mvc/mvc1/">&lt;h2 id=&quot;웹-서버와-웹-애플리케이션-서버-&quot;&gt;&lt;strong&gt;웹 서버와 웹 애플리케이션 서버&lt;/strong&gt; &lt;br /&gt;&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Moon JinSu</name></author><category term="CS" /><category term="Design pattern" /><summary type="html"></summary></entry><entry><title type="html">스프링 웹 MVC</title><link href="http://localhost:4000/mvc/mvc1/" rel="alternate" type="text/html" title="스프링 웹 MVC" /><published>2023-07-03T00:00:00+09:00</published><updated>2023-07-03T00:00:00+09:00</updated><id>http://localhost:4000/mvc/mvc1</id><content type="html" xml:base="http://localhost:4000/mvc/mvc1/">&lt;h2 id=&quot;웹-서버와-웹-애플리케이션-서버-&quot;&gt;&lt;strong&gt;웹 서버와 웹 애플리케이션 서버&lt;/strong&gt; &lt;br /&gt;&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;웹 서버 (Web server)
     &lt;ul&gt;
@@ -305,7 +360,25 @@ OCP 지킴 : 새로운 요구사항이 생겼을 때, 기존 코드를 건드리
   &lt;li&gt;미리 쓰레드를 생성해두고 필요할 때마다 쓰레드 풀에서 꺼내서 사용한다.&lt;/li&gt;
   &lt;li&gt;다 사용하면 다시 반납한다.&lt;/li&gt;
   &lt;li&gt;쓰레드가 이미 다 생성되어 있기 때문에 쓰레드 생성, 종료 비용이 절약되고, 응답 시간도 빠르다.&lt;/li&gt;
-  &lt;li&gt;생성 가능 쓰레드 최대치가 정해져 있어서 너무 많은 요청이 들어와도 안전하게 처리할 수 있다.&lt;/li&gt;
+  &lt;li&gt;생성 가능 쓰레드 최대치가 정해져 있어서 너무 많은 요청이 들어와도 안전하게 처리할 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;튜닝-포인트&quot;&gt;&lt;strong&gt;튜닝 포인트&lt;/strong&gt;&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;WAS의 주요 튜닝 포인트는 최대 쓰레드 수이다.
+    &lt;ul&gt;
+      &lt;li&gt;너무 낮게 설정하면 트레픽이 많을 때, 서버 리소스는 남는데, 클라이언트의 응답이 계속 지연된다.&lt;/li&gt;
+      &lt;li&gt;너무 높게 설정하면 CPU 메모리 리소스 임계 초과로 서버가 다운될 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;일단 클라우드면 서버를 늘리고 이후에 튜닝하자.&lt;/li&gt;
+  &lt;li&gt;적정 숫자를 찾는 방법
+    &lt;ul&gt;
+      &lt;li&gt;애플리케이션 로직의 복잡도, CPU, IO 리소스 상황에 따라 다르다.&lt;/li&gt;
+      &lt;li&gt;오픈하기 전에 어떤 로직이 변하거나 기능을 넣을 때 성능 테스트를 해야 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;개발자는 설정만 잘 해주면 WAS가 멀티 쓰레드 관련 코드를 관리해준다.&lt;/li&gt;
 &lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="MVC" /><category term="MVC" /><summary type="html">웹 서버와 웹 애플리케이션 서버 웹 서버 (Web server) 정적 리소스 제공 (html, css, js, 이미지, 영상) 웹 애플리케이션 서버 (WAS - Web Application Server) 웹 서버의 기능을 포함하고 프로그램 코드를 실행해서 애플리케이션 로직 수행 동적 html, HTTP API(JSON), 서블릿, JSP, 스프링 MVC 등 이 둘은 경계가 모호하다.</summary></entry><entry><title type="html">빈 스코프</title><link href="http://localhost:4000/spring/Spring8/" rel="alternate" type="text/html" title="빈 스코프" /><published>2023-06-30T00:00:00+09:00</published><updated>2023-06-30T00:00:00+09:00</updated><id>http://localhost:4000/spring/Spring8</id><content type="html" xml:base="http://localhost:4000/spring/Spring8/">&lt;h2 id=&quot;bean-scope-&quot;&gt;&lt;strong&gt;Bean Scope&lt;/strong&gt; &lt;br /&gt;&lt;/h2&gt;
 
 &lt;ul&gt;
@@ -650,210 +723,7 @@ OCP 지킴 : 새로운 요구사항이 생겼을 때, 기존 코드를 건드리
   &lt;li&gt;에노테이션만 붙이면 되기 때문에 사용하기 굉장히 편하다. (스프링이 밀고 있는 방식)&lt;/li&gt;
   &lt;li&gt;스프링 종속 기술이 아니라 자바 표준이기 때문에 스프링이 아닌 다른 컨테이너에서도 잘 작동한다.&lt;/li&gt;
   &lt;li&gt;외부 라이브러리에는 적용하지 못하기 때문에 외부 라이브러리에 적용하고 싶으면 @Bean에 초기화, 소멸 메서드를 지정하는 방식을 사용하면 된다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><summary type="html">빈 생명주기 콜백</summary></entry><entry><title type="html">스프링 핵심 원리 이해</title><link href="http://localhost:4000/spring/Spring2/" rel="alternate" type="text/html" title="스프링 핵심 원리 이해" /><published>2023-06-28T00:00:00+09:00</published><updated>2023-06-28T00:00:00+09:00</updated><id>http://localhost:4000/spring/Spring2</id><content type="html" xml:base="http://localhost:4000/spring/Spring2/">&lt;h3 id=&quot;스프링의-핵심-원리-&quot;&gt;스프링의 핵심 원리 &lt;br /&gt;&lt;br /&gt;&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;아래 코드의 문제점은 무엇일까?&lt;/strong&gt;&lt;br /&gt;&lt;/p&gt;
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OrderServiceImpl&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OrderService&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MemberRepository&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MemoryMemberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-      &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FixDiscountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;클라이언트인 OrderServiceImpl이 구현체를 직접 의존하고 있다. (DIP 위반)&lt;/li&gt;
-  &lt;li&gt;만약 저장소를 DB로 바꾸려고 하거나, 할인 정책을 바꾸려고 한다면 클라이언트 코드를 수정해야 한다. (OCP 위반)
-&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/2_3.png&quot; alt=&quot;img3&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;위 그림과 같이 클라이언트 OrderServiceImpl이 interface에 의존하도록 설계해야 한다.&lt;/li&gt;
-  &lt;li&gt;하지만 이렇게 변경하게 되면 구현체가 없으니 NullPointException이 발생한다.&lt;/li&gt;
-  &lt;li&gt;이 문제를 해결하려면 외부의 다른 무언가가 클라이언트인 OrderServiceImpl에 DiscountPolicy의 구현체를 직접 생성하고 의존성을 주입해줘야 한다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;관심사의 분리&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;실제 실행되는 부분과 구현 객체를 생성하고 연결하는 부분을 분리하자! (ISP 적용)&lt;/li&gt;
-  &lt;li&gt;AppConfig &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AppConfig&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MemberService&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;memberService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-          &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;MemberServiceImpl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-      &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OrderService&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;orderService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-          &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;OrderServiceImpl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-                  &lt;span class=&quot;n&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt;
-                  &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-      &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MemberRepository&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;memberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-          &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;MemoryMemberRepository&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-      &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-          &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;FixDiscountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;AppConfig는 애플리케이션의 실제 동작에 필요한 &lt;strong&gt;구현 객체를 생성한다.&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;AppConfig는 객체 인스턴스 참조를 &lt;strong&gt;생성자를 통해서 주입(연결)해준다.&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;MemberServiceImpl -&amp;gt; MemoryMemberRepository&lt;/li&gt;
-      &lt;li&gt;OrderServiceImpl -&amp;gt; MemoryMemberRepository, FixDiscountPolicy
-&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/2_4.png&quot; alt=&quot;img4&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;할인정책을 바꾸고 싶을 때, AppConfig의 설정 정보만 변경해주면 클라이언트 코드의 변경 없이 바꿀 수 있다. &lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;IoC, DI 컨테이너&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;AppConfig처럼 객체를 생성하고 관리하면서 의존관계를 연결해주는 것을 IoC 컨테이너, DI 컨테이너 라고 한다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;IoC(Inversion of Control), 제어의 역전&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;프로그램의 제어 흐름을 직접 제어하는 것이 아니라 외부에서 관리하는 것을 제어의 역전(IoC)라고 한다.&lt;/li&gt;
-  &lt;li&gt;위 예시에서는 AppConfig가 외부에서 제어의 흐름을 관리한다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;DI(Dependency Injection), 의존관계 주입&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;의존관계는 정적인 클래스 의존관계, 실행시점에 결정되는 동적인 객체 의존관계가 있고 이 둘은 구분되어야 한다.&lt;/li&gt;
-  &lt;li&gt;애플리케이션을 실행하지 않고 코드만 봐도 정적인 의존관계는 파악할 수 있다.&lt;/li&gt;
-  &lt;li&gt;하지만 클래스 의존관계만으로는 실제 어떤 객체가 주입되는지는 알 수 없다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/2_5.png&quot; alt=&quot;img5&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;위 그림에서 OrderServiceImpl이 MemberRepository, DiscountPolicy에 의존하는 것은 알 수 있지만 실제로 어떤 객체가 주입될지는 알 수 없다.&lt;/li&gt;
-  &lt;li&gt;의존관계 주입 (DI) 을 사용하면 클라이언트(OrderServiceImpl)을 변경하지 않고, 클라이언트가 호출하는 대상의 type instance(MemoryMemberRepository or DbMemberRepository)를 변경할 수 있다.&lt;/li&gt;
-  &lt;li&gt;의존관계 주입을 사용하면 정적인 클래스 의존관계를 변경하지 않고, 동적인 객체 인스턴스 의존관계를 쉽게 변경 가능하다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;스프링 컨테이너&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;ApplicationContext&lt;/strong&gt;를 스프링 컨테이너라고 한다.&lt;/li&gt;
-  &lt;li&gt;스프링은 @Configuration이 붙은 설정 정보를 활용해서 @Bean이 붙은 메서드를 모두 호출해서 반환 객체를 스프링 컨테이너에 등록한다. 이렇게 등록된 객체를 &lt;strong&gt;스프링 빈&lt;/strong&gt;이라고 한다.&lt;/li&gt;
-  &lt;li&gt;스프링 빈은 getBean()함수를 통해서 가져올 수 있다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><summary type="html">스프링의 핵심 원리</summary></entry><entry><title type="html">스프링 컨테이너와 스프링 빈</title><link href="http://localhost:4000/spring/Spring3/" rel="alternate" type="text/html" title="스프링 컨테이너와 스프링 빈" /><published>2023-06-28T00:00:00+09:00</published><updated>2023-06-28T00:00:00+09:00</updated><id>http://localhost:4000/spring/Spring3</id><content type="html" xml:base="http://localhost:4000/spring/Spring3/">&lt;h3 id=&quot;스프링-컨테이너-생성-과정-&quot;&gt;&lt;strong&gt;스프링 컨테이너 생성 과정&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;스프링 컨테이너 생성&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;
-&lt;img src=&quot;/assets/images/3_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;new AnnotationConfigApplicationContext(AppConfig.class)&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;스프링 컨테이너를 생성할 때는 구성 정보를 지정해줘야 한다. (AppConfig) &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;스프링 빈 등록&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;
-&lt;img src=&quot;/assets/images/3_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;설정 정보 클래스 (AppConfig)를 통해서 스프링 빈을 등록한다.&lt;/li&gt;
-  &lt;li&gt;빈 이름은 default로 메서드 이름이 사용된다. (직접 지정할 수도 있다.)&lt;/li&gt;
-  &lt;li&gt;빈 이름은 항상 다른 이름이 부여되야 한다. 같은 이름이 들어오게 되면 무시되거나, 기존 빈을 덮어버리는 현상이 발생할 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;스프링 빈 의존관계 설정&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/3_3.png&quot; alt=&quot;img3&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;
-&lt;img src=&quot;/assets/images/3_4.png&quot; alt=&quot;img4&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;스프링은 빈을 생성하는 단계와, 의존관계를 주입하는 단계가 나뉘어 있다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;BeanFactory와 ApplicationContext&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/3_5.png&quot; alt=&quot;img5&quot; width=&quot;20%&amp;quot;&amp;quot;, height=&amp;quot;20%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;BeanFactory는 스프링 컨테이너의 최상위 인터페이스이다.&lt;/li&gt;
-  &lt;li&gt;BeanFactory는 스프링 빈을 관리하고 조회하는 역할을 담당한다. getBean()함수도 BeanFactory가 제공하는 것이다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/3_6.png&quot; alt=&quot;img6&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;ApplicationContext는 이러한 BeanFactory뿐 아니라 MessageSource, EnvironmentCapable 등 여러 부가적인 인터페이스를 상속하여 더 많은 기능을 제공한다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/3_7.png&quot; alt=&quot;img7&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;스프링 컨테이너(ApplicationContext)는 자바 코드로 설정하는 방식뿐 아니라 XML 등 다른 설정정보를 바탕으로 생성할 수도 있다.&lt;/li&gt;
-  &lt;li&gt;자바 코드로 설정 -&amp;gt; AnnotationConfigApplicationContext&lt;/li&gt;
-  &lt;li&gt;XML로 설정 -&amp;gt; GenericXmlApplicationContext &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;BeanDefinition&lt;/strong&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;img src=&quot;/assets/images/3_8.png&quot; alt=&quot;img8&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;스프링 컨테이너는 BeanDefinition만 알면 된다. BeanDefinition이 자바코드, XML 등 어떤걸로 생성됬는지 몰라도 된다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><summary type="html">스프링 컨테이너 생성 과정</summary></entry><entry><title type="html">싱글톤 컨테이너</title><link href="http://localhost:4000/spring/Spring4/" rel="alternate" type="text/html" title="싱글톤 컨테이너" /><published>2023-06-28T00:00:00+09:00</published><updated>2023-06-28T00:00:00+09:00</updated><id>http://localhost:4000/spring/Spring4</id><content type="html" xml:base="http://localhost:4000/spring/Spring4/">&lt;h2 id=&quot;싱글톤-패턴을-사용하는-이유-&quot;&gt;&lt;strong&gt;싱글톤 패턴을 사용하는 이유&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;/assets/images/4_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;여러 클라이언트가 요청할 때마다 새로운 객체를 생성하는 것은 메모리 낭비가 심하다.&lt;/li&gt;
-  &lt;li&gt;객체를 하나만 생성하고 이를 공유하도록 설계하자. -&amp;gt; &lt;strong&gt;싱글톤 패턴&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;싱글톤 패턴&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;클래스의 인스턴스를 딱 1개만 생성되도록 보장하는 디자인 패턴이다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SingletonService&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SingletonService&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SingletonService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-      &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SingletonService&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-          &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-      &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SingletonService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-      
-      &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;logic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;싱글톤 객체 로직 호출&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; 
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;객체를 미리 생성해두고 생성자를 private으로 막아서 getInstance()를 통해서만 객체에 접근할 수 있게 한다.&lt;/li&gt;
-  &lt;li&gt;유연성이 떨어지고 코드 길이도 길어지고 구체 클래스를 의존해야 되서 DIP, OCP를 위반할 가능성이 높다.&lt;/li&gt;
-  &lt;li&gt;싱글톤 패턴 자체에 여러 문제가 있지만 이러한 것들은 Spring 이 다 해결해준다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/4_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;스프링 컨테이너는 요청이 올 때마다 객체를 생성하는 것이 아니라 미리 만들어둔 instance를 공유하는 방식으로 돌아간다.&lt;/li&gt;
-  &lt;li&gt;객체 하나를 공유하는 방식이기 때문에 빈을 구현할 때 반드시 &lt;strong&gt;stateless&lt;/strong&gt;로 설계해야 한다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Configuration과 바이트 조작&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/4_3.png&quot; alt=&quot;img3&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;스프링 설정 정보로 넘긴 AppConfig도 빈으로 등록되는데 바이트조작된 AppConfig를 상속하는 객체가 빈으로 등록된다. (CGLIB 기술) &amp;lt;- @Configuration이 붙으면 해줌.&lt;/li&gt;
-  &lt;li&gt;@Configuration을 안 넣으면 @Bean이 붙은 method가 빈으로 등록되긴 하지만 싱글톤으로 관리되지 않는다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><summary type="html">싱글톤 패턴을 사용하는 이유</summary></entry><entry><title type="html">컴포넌트 스캔</title><link href="http://localhost:4000/spring/Spring5/" rel="alternate" type="text/html" title="컴포넌트 스캔" /><published>2023-06-28T00:00:00+09:00</published><updated>2023-06-28T00:00:00+09:00</updated><id>http://localhost:4000/spring/Spring5</id><content type="html" xml:base="http://localhost:4000/spring/Spring5/">&lt;h2 id=&quot;컴포넌트-스캔&quot;&gt;&lt;strong&gt;컴포넌트 스캔&lt;/strong&gt;&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><summary type="html">빈 생명주기 콜백</summary></entry><entry><title type="html">컴포넌트 스캔</title><link href="http://localhost:4000/spring/Spring5/" rel="alternate" type="text/html" title="컴포넌트 스캔" /><published>2023-06-28T00:00:00+09:00</published><updated>2023-06-28T00:00:00+09:00</updated><id>http://localhost:4000/spring/Spring5</id><content type="html" xml:base="http://localhost:4000/spring/Spring5/">&lt;h2 id=&quot;컴포넌트-스캔&quot;&gt;&lt;strong&gt;컴포넌트 스캔&lt;/strong&gt;&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;스프링은 설정 정보가 없어도 자동으로 스프링 빈을 등록하는 컴포넌트 스캔이라는 기능을 제공한다.&lt;/li&gt;
   &lt;li&gt;컴포넌트 스캔을 사용하면 @Component가 붙은 클래스를 찾아서 다 빈으로 등록한다.&lt;/li&gt;
@@ -932,4 +802,109 @@ OCP 지킴 : 새로운 요구사항이 생겼을 때, 기존 코드를 건드리
       &lt;/li&gt;
     &lt;/ol&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><summary type="html">컴포넌트 스캔 스프링은 설정 정보가 없어도 자동으로 스프링 빈을 등록하는 컴포넌트 스캔이라는 기능을 제공한다. 컴포넌트 스캔을 사용하면 @Component가 붙은 클래스를 찾아서 다 빈으로 등록한다. @Repository, @Service, @Configuration, @Controller를 까보면 안에 @Component를 가지고 있다. -&amp;gt; 다 빈으로 등록된다.(Spring이 제공하는 기능) 컴포넌트 스캔을 사용하려면 @ComponentScan을 설정 정보에 붙여줘야 한다. (@SpringBootApplication 안에 @ComponentScan이 있어서 default로 쓰면 최상위 패키지부터 훑는다.)</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><summary type="html">컴포넌트 스캔 스프링은 설정 정보가 없어도 자동으로 스프링 빈을 등록하는 컴포넌트 스캔이라는 기능을 제공한다. 컴포넌트 스캔을 사용하면 @Component가 붙은 클래스를 찾아서 다 빈으로 등록한다. @Repository, @Service, @Configuration, @Controller를 까보면 안에 @Component를 가지고 있다. -&amp;gt; 다 빈으로 등록된다.(Spring이 제공하는 기능) 컴포넌트 스캔을 사용하려면 @ComponentScan을 설정 정보에 붙여줘야 한다. (@SpringBootApplication 안에 @ComponentScan이 있어서 default로 쓰면 최상위 패키지부터 훑는다.)</summary></entry><entry><title type="html">싱글톤 컨테이너</title><link href="http://localhost:4000/spring/Spring4/" rel="alternate" type="text/html" title="싱글톤 컨테이너" /><published>2023-06-28T00:00:00+09:00</published><updated>2023-06-28T00:00:00+09:00</updated><id>http://localhost:4000/spring/Spring4</id><content type="html" xml:base="http://localhost:4000/spring/Spring4/">&lt;h2 id=&quot;싱글톤-패턴을-사용하는-이유-&quot;&gt;&lt;strong&gt;싱글톤 패턴을 사용하는 이유&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/4_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;여러 클라이언트가 요청할 때마다 새로운 객체를 생성하는 것은 메모리 낭비가 심하다.&lt;/li&gt;
+  &lt;li&gt;객체를 하나만 생성하고 이를 공유하도록 설계하자. -&amp;gt; &lt;strong&gt;싱글톤 패턴&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;싱글톤 패턴&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;클래스의 인스턴스를 딱 1개만 생성되도록 보장하는 디자인 패턴이다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SingletonService&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SingletonService&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SingletonService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+      &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SingletonService&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getInstance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;instance&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+      &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SingletonService&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+      
+      &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;logic&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;싱글톤 객체 로직 호출&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+      &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; 
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;객체를 미리 생성해두고 생성자를 private으로 막아서 getInstance()를 통해서만 객체에 접근할 수 있게 한다.&lt;/li&gt;
+  &lt;li&gt;유연성이 떨어지고 코드 길이도 길어지고 구체 클래스를 의존해야 되서 DIP, OCP를 위반할 가능성이 높다.&lt;/li&gt;
+  &lt;li&gt;싱글톤 패턴 자체에 여러 문제가 있지만 이러한 것들은 Spring 이 다 해결해준다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/4_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;스프링 컨테이너는 요청이 올 때마다 객체를 생성하는 것이 아니라 미리 만들어둔 instance를 공유하는 방식으로 돌아간다.&lt;/li&gt;
+  &lt;li&gt;객체 하나를 공유하는 방식이기 때문에 빈을 구현할 때 반드시 &lt;strong&gt;stateless&lt;/strong&gt;로 설계해야 한다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Configuration과 바이트 조작&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/4_3.png&quot; alt=&quot;img3&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;스프링 설정 정보로 넘긴 AppConfig도 빈으로 등록되는데 바이트조작된 AppConfig를 상속하는 객체가 빈으로 등록된다. (CGLIB 기술) &amp;lt;- @Configuration이 붙으면 해줌.&lt;/li&gt;
+  &lt;li&gt;@Configuration을 안 넣으면 @Bean이 붙은 method가 빈으로 등록되긴 하지만 싱글톤으로 관리되지 않는다.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><summary type="html">싱글톤 패턴을 사용하는 이유</summary></entry><entry><title type="html">스프링 컨테이너와 스프링 빈</title><link href="http://localhost:4000/spring/Spring3/" rel="alternate" type="text/html" title="스프링 컨테이너와 스프링 빈" /><published>2023-06-28T00:00:00+09:00</published><updated>2023-06-28T00:00:00+09:00</updated><id>http://localhost:4000/spring/Spring3</id><content type="html" xml:base="http://localhost:4000/spring/Spring3/">&lt;h3 id=&quot;스프링-컨테이너-생성-과정-&quot;&gt;&lt;strong&gt;스프링 컨테이너 생성 과정&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;스프링 컨테이너 생성&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;
+&lt;img src=&quot;/assets/images/3_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;new AnnotationConfigApplicationContext(AppConfig.class)&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;스프링 컨테이너를 생성할 때는 구성 정보를 지정해줘야 한다. (AppConfig) &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;스프링 빈 등록&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;
+&lt;img src=&quot;/assets/images/3_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;설정 정보 클래스 (AppConfig)를 통해서 스프링 빈을 등록한다.&lt;/li&gt;
+  &lt;li&gt;빈 이름은 default로 메서드 이름이 사용된다. (직접 지정할 수도 있다.)&lt;/li&gt;
+  &lt;li&gt;빈 이름은 항상 다른 이름이 부여되야 한다. 같은 이름이 들어오게 되면 무시되거나, 기존 빈을 덮어버리는 현상이 발생할 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;스프링 빈 의존관계 설정&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/3_3.png&quot; alt=&quot;img3&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;
+&lt;img src=&quot;/assets/images/3_4.png&quot; alt=&quot;img4&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;스프링은 빈을 생성하는 단계와, 의존관계를 주입하는 단계가 나뉘어 있다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;BeanFactory와 ApplicationContext&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/3_5.png&quot; alt=&quot;img5&quot; width=&quot;20%&amp;quot;&amp;quot;, height=&amp;quot;20%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;BeanFactory는 스프링 컨테이너의 최상위 인터페이스이다.&lt;/li&gt;
+  &lt;li&gt;BeanFactory는 스프링 빈을 관리하고 조회하는 역할을 담당한다. getBean()함수도 BeanFactory가 제공하는 것이다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/3_6.png&quot; alt=&quot;img6&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ApplicationContext는 이러한 BeanFactory뿐 아니라 MessageSource, EnvironmentCapable 등 여러 부가적인 인터페이스를 상속하여 더 많은 기능을 제공한다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/3_7.png&quot; alt=&quot;img7&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;스프링 컨테이너(ApplicationContext)는 자바 코드로 설정하는 방식뿐 아니라 XML 등 다른 설정정보를 바탕으로 생성할 수도 있다.&lt;/li&gt;
+  &lt;li&gt;자바 코드로 설정 -&amp;gt; AnnotationConfigApplicationContext&lt;/li&gt;
+  &lt;li&gt;XML로 설정 -&amp;gt; GenericXmlApplicationContext &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;BeanDefinition&lt;/strong&gt;&lt;br /&gt;&lt;br /&gt;
+&lt;img src=&quot;/assets/images/3_8.png&quot; alt=&quot;img8&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;스프링 컨테이너는 BeanDefinition만 알면 된다. BeanDefinition이 자바코드, XML 등 어떤걸로 생성됬는지 몰라도 된다.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><summary type="html">스프링 컨테이너 생성 과정</summary></entry></feed>
