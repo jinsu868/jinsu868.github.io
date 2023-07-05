@@ -64,4 +64,10 @@ var store = [{
         "tags": ["Design pattern"],
         "url": "/cs/Singleton/",
         "teaser": null
+      },{
+        "title": "전략 패턴",
+        "excerpt":"Strategy pattern 객체의 행위를 바꾸고 싶은 경우 직접 수정하지 않고 전략이라고 부르는 캡슐화한 알고리즘을 컨텍스트 안에서 바꿔주면서 상호 교체가 가능하게 만드는 패턴이다. 특정 컨텍스트에서 알고리즘을 별도로 분리하는 설계 방법을 의미한다. 쉽게 말해서 특정 기능을 수행하는데 다양한 알고리즘이 적용될 수 있을 때, 알고리즘을 별도로 분리하는 설계 방법을 의미하는 것이다. Strategy pattern의...","categories": ["CS"],
+        "tags": ["Design pattern"],
+        "url": "/cs/Strategy/",
+        "teaser": null
       }]
