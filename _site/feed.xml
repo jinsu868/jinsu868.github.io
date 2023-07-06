@@ -1,59 +1,105 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-05T18:28:37+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">서블릿</title><link href="http://localhost:4000/mvc/Servlet/" rel="alternate" type="text/html" title="서블릿" /><published>2023-07-05T00:00:00+09:00</published><updated>2023-07-05T00:00:00+09:00</updated><id>http://localhost:4000/mvc/Servlet</id><content type="html" xml:base="http://localhost:4000/mvc/Servlet/">&lt;h1 id=&quot;servlet&quot;&gt;&lt;em&gt;Servlet&lt;/em&gt;&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-06T16:35:59+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">옵저버 패턴</title><link href="http://localhost:4000/cs/Observer/" rel="alternate" type="text/html" title="옵저버 패턴" /><published>2023-07-06T00:00:00+09:00</published><updated>2023-07-06T00:00:00+09:00</updated><id>http://localhost:4000/cs/Observer</id><content type="html" xml:base="http://localhost:4000/cs/Observer/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;observer-pattern&quot;&gt;&lt;em&gt;Observer Pattern&lt;/em&gt;&lt;/h1&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;옵저버 패턴&lt;/strong&gt;이란 객체의 상태 변화를 관찰하는 옵저버들의 목록을 객체에 등록하여 객체의 상태 변화가 있을 때마다 객체에 등록된 옵저버들에게 알려주는 디자인 패턴이다.&lt;br /&gt;
+  쉽게 말해서 객체의 상태 변화가 생길 때, 이와 관련된 객체들에게 알림을 보내는 것이다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;옵저버-패턴의-장단점&quot;&gt;&lt;em&gt;옵저버 패턴의 장단점&lt;/em&gt;&lt;/h1&gt;
+
+&lt;h2 id=&quot;장점&quot;&gt;장점&lt;/h2&gt;
 &lt;ul&gt;
-  &lt;li&gt;서블릿은 TCP/IP connection, Socket connection, HTTP message parsing, HTTP response message 생성 등, 핵심 비즈니스 로직을 제외한 부분을 대신 해준다.&lt;/li&gt;
-  &lt;li&gt;스프링 부트에서 servlet을 직접 등록해서 사용하려면 @ServletComponentScan 을 붙이면 된다. &lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;was의-요청-구조&quot;&gt;&lt;em&gt;WAS의 요청 구조&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/13_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;스프링 부트가 톰켓(WAS)를 띄워준다.&lt;/li&gt;
-  &lt;li&gt;톰켓은 서블릿 컨테이너에 서블릿을 등록하고 싱글톤으로 관리한다.&lt;/li&gt;
-  &lt;li&gt;HTTP 요청마다 톰켓이 request, response 객체를 새로 생성하고 서블릿 객체에 넣어서 실행한다. &lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;httpservletrequest&quot;&gt;&lt;em&gt;HttpServletRequest&lt;/em&gt;&lt;/h1&gt;
-&lt;p&gt;개발자가 HTTP 메시지를 직접 파싱해서 사용할 수도 있겠지만 굉장히 불편하고 반복적인 작업이다. 서블릿은 HTTP 메시지를 대신 파싱해서 HttpServletRequest 객체에 담아서 준다.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;기능&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;임시 저장소 역할을 한다. request.setAttribute(name, value)로 저장, request.getAttribute(name)으로 조회&lt;/li&gt;
-  &lt;li&gt;세션 관리를 해준다. request.getSession(create: true)&lt;/li&gt;
-  &lt;li&gt;이 외에도 HTTP 메시지를 다 조회할 수 있다. startline, header, body &lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;http-요청-데이터&quot;&gt;HTTP 요청 데이터&lt;/h1&gt;
-&lt;p&gt;HTTP 요청 메시지를 통해 클라이언트에서 서버로 데이터를 전달하는 방식은 크게 3가지이다. &lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;GET - 쿼리 파라미터&lt;/strong&gt;
+  &lt;li&gt;실시간으로 한 객체의 변경사항을 다른 객체에 전파할 수 이다.
     &lt;ul&gt;
-      &lt;li&gt;ex- /url?username=hello&amp;amp;age=20&lt;/li&gt;
-      &lt;li&gt;검색, 필터, 페이징 등에 많이 사용된다.&lt;/li&gt;
-      &lt;li&gt;body를 사용하지 않기 때문에 content-type이 없다.&lt;/li&gt;
+      &lt;li&gt;옵저버 패턴을 사용하지 않으면 polling 방식으로 일정 시간마다 객체의 상태 변화를 체크해야 한다.&lt;/li&gt;
+      &lt;li&gt;이 방식을 사용하면 polling 시간 내에 이벤트가 발생했다가 사라지게 된다면 체크할 수 없다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;POST - HTML Form&lt;/strong&gt; &lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;느슨한 결합으로 시스템을 유연하게 하고 객체간의 의존성을 낮출 수 있다. &lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/13_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;단점&quot;&gt;단점&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;옵저버 패턴을 너무 많이 사용하게 되면 상태 관리가 어려워진다. &lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;옵저버-패턴의-구조&quot;&gt;&lt;em&gt;옵저버 패턴의 구조&lt;/em&gt;&lt;/h1&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;옵저버 패턴의 핵심은 옵저버의 관찰 대상이 되는 객체에 옵저버들을 등록한 후, 객체에 이벤트가 발생했을 때 옵저버들에게 전파해서 각 옵저버들이 이벤트를 잘 처리할 수 있게 하는 것이다.
+&lt;br /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/14_1.png&quot; alt=&quot;img1&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;content-type: applicaiton/x-www.form-urlencoded&lt;/li&gt;
-  &lt;li&gt;메시지 바디에 쿼리 파라미터 형식으로 전달&lt;/li&gt;
-  &lt;li&gt;GET 쿼리 파라미터 방식이랑 동일한 폼으로 들어오기 때문에 서버측에서는 동일한 방법으로 적용해서 조회할 수 있다. -&amp;gt; request.getParameter()&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;HTTP 메시지 바디를 사용하기 때문에 content-type을 지정해야 한다. (application/x-www-form-urlencoded)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;HTTP message body에 데이터 넣어서 요청 (JSON)&lt;/strong&gt;
+  &lt;li&gt;다이어그램을 보면 Subject(관찰 객체)는 옵저버들을 List로 가지고 있고 옵저버 등록, 삭제를 할 수 있다.&lt;/li&gt;
+  &lt;li&gt;그리고 이벤트가 발생했을 때, 옵저버들에게 전파할 수 있도록 notifyObservers() 메소드를 가지고 있다.&lt;/li&gt;
+  &lt;li&gt;각 옵저버들은 notify 함수를 구현함으로써 subject에 이벤트가 발생했을 때 처리할 동작을 정의한다.&lt;/li&gt;
+  &lt;li&gt;주의점 : 옵저버 패턴을 사용한 시스템에서는 반드시 재귀 호출을 막는 메커니즘이 요구된다.
     &lt;ul&gt;
-      &lt;li&gt;HTTP API에 주로 사용된다. 거의 Json&lt;/li&gt;
-      &lt;li&gt;Json 형식으로 데이터를 넘길때는 content-type을 application/json으로 설정해야 한다.&lt;/li&gt;
-      &lt;li&gt;ObjectMapper를 사용해서 json을 파싱할 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+      &lt;li&gt;이벤트가 발생했을 때, 옵저버1과 옵저버2가 처리 동작 과정에서 서로를 변경한다면 무한 재귀 호출이 될 수 있다. 
+&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="MVC" /><category term="MVC" /><summary type="html">Servlet 서블릿은 TCP/IP connection, Socket connection, HTTP message parsing, HTTP response message 생성 등, 핵심 비즈니스 로직을 제외한 부분을 대신 해준다. 스프링 부트에서 servlet을 직접 등록해서 사용하려면 @ServletComponentScan 을 붙이면 된다.</summary></entry><entry><title type="html">전략 패턴</title><link href="http://localhost:4000/cs/Strategy/" rel="alternate" type="text/html" title="전략 패턴" /><published>2023-07-05T00:00:00+09:00</published><updated>2023-07-05T00:00:00+09:00</updated><id>http://localhost:4000/cs/Strategy</id><content type="html" xml:base="http://localhost:4000/cs/Strategy/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;단순한-옵저버-패턴-구현&quot;&gt;&lt;em&gt;단순한 옵저버 패턴 구현&lt;/em&gt;&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;사람(주인)과 애완동물의 관계로 옵저버 패턴을 구현해보자.&lt;/li&gt;
+  &lt;li&gt;동물에는 Dog, Cat이 있다고 하고 집합이라는 이벤트에 대해서 각 옵저버들의 동작을 정의해보자.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// subject interface&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Owner&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Animal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;animals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Owner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;animals&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ArrayList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;();&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Animal&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;animal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;animals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;contains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;animal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;animals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;animal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;delete&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Animal&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;animal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;animals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;animal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;notifyAnimals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;animals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;forEach&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;animal:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// observer interface&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Animal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// observer Dog&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Dog&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Animal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;system&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;먀먀&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// observer Cat&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Cat&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Animal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;system&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;멍멍&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;위의 예시는 굉장히 단순한 예시이다. 실제로 사용될 때는 훨씬 복잡하게 사용된다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;정리&quot;&gt;&lt;em&gt;정리&lt;/em&gt;&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;옵저버 패턴은 한 객체의 상태 변화에 대해 그 객체에 의존하는 다른 객체들에게 자동으로 연락을 보내서 정보를 갱신시키는 디자인 패턴이다.&lt;/li&gt;
+  &lt;li&gt;연결할 때, 인터페이스를 이용해서 느슨한 결합을 유지한다. subject, observer 인터페이스를 적용한다.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="CS" /><category term="Design pattern" /><summary type="html"></summary></entry><entry><title type="html">전략 패턴</title><link href="http://localhost:4000/cs/Strategy/" rel="alternate" type="text/html" title="전략 패턴" /><published>2023-07-05T00:00:00+09:00</published><updated>2023-07-05T00:00:00+09:00</updated><id>http://localhost:4000/cs/Strategy</id><content type="html" xml:base="http://localhost:4000/cs/Strategy/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h1 id=&quot;strategy-pattern&quot;&gt;Strategy pattern&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;객체의 행위를 바꾸고 싶은 경우 직접 수정하지 않고 전략이라고 부르는 캡슐화한 알고리즘을 컨텍스트 안에서 바꿔주면서 상호 교체가 가능하게 만드는 패턴이다.&lt;/li&gt;
@@ -140,7 +186,62 @@ OCP 지킴 : 새로운 요구사항이 생겼을 때, 기존 코드를 건드리
 
 &lt;h1 id=&quot;단점&quot;&gt;&lt;strong&gt;단점&lt;/strong&gt;&lt;/h1&gt;
 &lt;p&gt;전략패턴을 적용하면 코드가 길어지고 보기 힘들어진다. 
-컨텍스트에 적용되는 알고리즘이 적다면 분기를 타는 것이 더 좋을 수 있다.&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="CS" /><category term="Design pattern" /><summary type="html">Strategy pattern 객체의 행위를 바꾸고 싶은 경우 직접 수정하지 않고 전략이라고 부르는 캡슐화한 알고리즘을 컨텍스트 안에서 바꿔주면서 상호 교체가 가능하게 만드는 패턴이다. 특정 컨텍스트에서 알고리즘을 별도로 분리하는 설계 방법을 의미한다. 쉽게 말해서 특정 기능을 수행하는데 다양한 알고리즘이 적용될 수 있을 때, 알고리즘을 별도로 분리하는 설계 방법을 의미하는 것이다.</summary></entry><entry><title type="html">싱글톤 패턴</title><link href="http://localhost:4000/cs/Singleton/" rel="alternate" type="text/html" title="싱글톤 패턴" /><published>2023-07-04T00:00:00+09:00</published><updated>2023-07-04T00:00:00+09:00</updated><id>http://localhost:4000/cs/Singleton</id><content type="html" xml:base="http://localhost:4000/cs/Singleton/">&lt;h2 id=&quot;디자인패턴-&quot;&gt;&lt;strong&gt;디자인패턴&lt;/strong&gt; &lt;br /&gt;&lt;/h2&gt;
+컨텍스트에 적용되는 알고리즘이 적다면 분기를 타는 것이 더 좋을 수 있다.&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="CS" /><category term="Design pattern" /><summary type="html">Strategy pattern 객체의 행위를 바꾸고 싶은 경우 직접 수정하지 않고 전략이라고 부르는 캡슐화한 알고리즘을 컨텍스트 안에서 바꿔주면서 상호 교체가 가능하게 만드는 패턴이다. 특정 컨텍스트에서 알고리즘을 별도로 분리하는 설계 방법을 의미한다. 쉽게 말해서 특정 기능을 수행하는데 다양한 알고리즘이 적용될 수 있을 때, 알고리즘을 별도로 분리하는 설계 방법을 의미하는 것이다.</summary></entry><entry><title type="html">서블릿</title><link href="http://localhost:4000/mvc/Servlet/" rel="alternate" type="text/html" title="서블릿" /><published>2023-07-05T00:00:00+09:00</published><updated>2023-07-05T00:00:00+09:00</updated><id>http://localhost:4000/mvc/Servlet</id><content type="html" xml:base="http://localhost:4000/mvc/Servlet/">&lt;h1 id=&quot;servlet&quot;&gt;&lt;em&gt;Servlet&lt;/em&gt;&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;서블릿은 TCP/IP connection, Socket connection, HTTP message parsing, HTTP response message 생성 등, 핵심 비즈니스 로직을 제외한 부분을 대신 해준다.&lt;/li&gt;
+  &lt;li&gt;스프링 부트에서 servlet을 직접 등록해서 사용하려면 @ServletComponentScan 을 붙이면 된다. &lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;was의-요청-구조&quot;&gt;&lt;em&gt;WAS의 요청 구조&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/13_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;스프링 부트가 톰켓(WAS)를 띄워준다.&lt;/li&gt;
+  &lt;li&gt;톰켓은 서블릿 컨테이너에 서블릿을 등록하고 싱글톤으로 관리한다.&lt;/li&gt;
+  &lt;li&gt;HTTP 요청마다 톰켓이 request, response 객체를 새로 생성하고 서블릿 객체에 넣어서 실행한다. &lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;httpservletrequest&quot;&gt;&lt;em&gt;HttpServletRequest&lt;/em&gt;&lt;/h1&gt;
+&lt;p&gt;개발자가 HTTP 메시지를 직접 파싱해서 사용할 수도 있겠지만 굉장히 불편하고 반복적인 작업이다. 서블릿은 HTTP 메시지를 대신 파싱해서 HttpServletRequest 객체에 담아서 준다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;기능&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;임시 저장소 역할을 한다. request.setAttribute(name, value)로 저장, request.getAttribute(name)으로 조회&lt;/li&gt;
+  &lt;li&gt;세션 관리를 해준다. request.getSession(create: true)&lt;/li&gt;
+  &lt;li&gt;이 외에도 HTTP 메시지를 다 조회할 수 있다. startline, header, body &lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;http-요청-데이터&quot;&gt;HTTP 요청 데이터&lt;/h1&gt;
+&lt;p&gt;HTTP 요청 메시지를 통해 클라이언트에서 서버로 데이터를 전달하는 방식은 크게 3가지이다. &lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;GET - 쿼리 파라미터&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;ex- /url?username=hello&amp;amp;age=20&lt;/li&gt;
+      &lt;li&gt;검색, 필터, 페이징 등에 많이 사용된다.&lt;/li&gt;
+      &lt;li&gt;body를 사용하지 않기 때문에 content-type이 없다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;POST - HTML Form&lt;/strong&gt; &lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/13_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;content-type: applicaiton/x-www.form-urlencoded&lt;/li&gt;
+  &lt;li&gt;메시지 바디에 쿼리 파라미터 형식으로 전달&lt;/li&gt;
+  &lt;li&gt;GET 쿼리 파라미터 방식이랑 동일한 폼으로 들어오기 때문에 서버측에서는 동일한 방법으로 적용해서 조회할 수 있다. -&amp;gt; request.getParameter()&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;HTTP 메시지 바디를 사용하기 때문에 content-type을 지정해야 한다. (application/x-www-form-urlencoded)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;HTTP message body에 데이터 넣어서 요청 (JSON)&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;HTTP API에 주로 사용된다. 거의 Json&lt;/li&gt;
+      &lt;li&gt;Json 형식으로 데이터를 넘길때는 content-type을 application/json으로 설정해야 한다.&lt;/li&gt;
+      &lt;li&gt;ObjectMapper를 사용해서 json을 파싱할 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="MVC" /><category term="MVC" /><summary type="html">Servlet 서블릿은 TCP/IP connection, Socket connection, HTTP message parsing, HTTP response message 생성 등, 핵심 비즈니스 로직을 제외한 부분을 대신 해준다. 스프링 부트에서 servlet을 직접 등록해서 사용하려면 @ServletComponentScan 을 붙이면 된다.</summary></entry><entry><title type="html">싱글톤 패턴</title><link href="http://localhost:4000/cs/Singleton/" rel="alternate" type="text/html" title="싱글톤 패턴" /><published>2023-07-04T00:00:00+09:00</published><updated>2023-07-04T00:00:00+09:00</updated><id>http://localhost:4000/cs/Singleton</id><content type="html" xml:base="http://localhost:4000/cs/Singleton/">&lt;h2 id=&quot;디자인패턴-&quot;&gt;&lt;strong&gt;디자인패턴&lt;/strong&gt; &lt;br /&gt;&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;디자인 패턴이란 프로그램을 설계할 때 발생했던 문제점들을 객체 간의 상호 관계 등을 이용해서 해결할 수 있도록 하나의 규약 형태로 만들어 놓은 것을 뜻한다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -850,61 +951,4 @@ OCP 지킴 : 새로운 요구사항이 생겼을 때, 기존 코드를 건드리
 &lt;ul&gt;
   &lt;li&gt;스프링 설정 정보로 넘긴 AppConfig도 빈으로 등록되는데 바이트조작된 AppConfig를 상속하는 객체가 빈으로 등록된다. (CGLIB 기술) &amp;lt;- @Configuration이 붙으면 해줌.&lt;/li&gt;
   &lt;li&gt;@Configuration을 안 넣으면 @Bean이 붙은 method가 빈으로 등록되긴 하지만 싱글톤으로 관리되지 않는다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><summary type="html">싱글톤 패턴을 사용하는 이유</summary></entry><entry><title type="html">스프링 컨테이너와 스프링 빈</title><link href="http://localhost:4000/spring/Spring3/" rel="alternate" type="text/html" title="스프링 컨테이너와 스프링 빈" /><published>2023-06-28T00:00:00+09:00</published><updated>2023-06-28T00:00:00+09:00</updated><id>http://localhost:4000/spring/Spring3</id><content type="html" xml:base="http://localhost:4000/spring/Spring3/">&lt;h3 id=&quot;스프링-컨테이너-생성-과정-&quot;&gt;&lt;strong&gt;스프링 컨테이너 생성 과정&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;스프링 컨테이너 생성&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;
-&lt;img src=&quot;/assets/images/3_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;new AnnotationConfigApplicationContext(AppConfig.class)&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;스프링 컨테이너를 생성할 때는 구성 정보를 지정해줘야 한다. (AppConfig) &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;스프링 빈 등록&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;
-&lt;img src=&quot;/assets/images/3_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;설정 정보 클래스 (AppConfig)를 통해서 스프링 빈을 등록한다.&lt;/li&gt;
-  &lt;li&gt;빈 이름은 default로 메서드 이름이 사용된다. (직접 지정할 수도 있다.)&lt;/li&gt;
-  &lt;li&gt;빈 이름은 항상 다른 이름이 부여되야 한다. 같은 이름이 들어오게 되면 무시되거나, 기존 빈을 덮어버리는 현상이 발생할 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;스프링 빈 의존관계 설정&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/3_3.png&quot; alt=&quot;img3&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;
-&lt;img src=&quot;/assets/images/3_4.png&quot; alt=&quot;img4&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;스프링은 빈을 생성하는 단계와, 의존관계를 주입하는 단계가 나뉘어 있다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;BeanFactory와 ApplicationContext&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/3_5.png&quot; alt=&quot;img5&quot; width=&quot;20%&amp;quot;&amp;quot;, height=&amp;quot;20%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;BeanFactory는 스프링 컨테이너의 최상위 인터페이스이다.&lt;/li&gt;
-  &lt;li&gt;BeanFactory는 스프링 빈을 관리하고 조회하는 역할을 담당한다. getBean()함수도 BeanFactory가 제공하는 것이다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/3_6.png&quot; alt=&quot;img6&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;ApplicationContext는 이러한 BeanFactory뿐 아니라 MessageSource, EnvironmentCapable 등 여러 부가적인 인터페이스를 상속하여 더 많은 기능을 제공한다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/3_7.png&quot; alt=&quot;img7&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;스프링 컨테이너(ApplicationContext)는 자바 코드로 설정하는 방식뿐 아니라 XML 등 다른 설정정보를 바탕으로 생성할 수도 있다.&lt;/li&gt;
-  &lt;li&gt;자바 코드로 설정 -&amp;gt; AnnotationConfigApplicationContext&lt;/li&gt;
-  &lt;li&gt;XML로 설정 -&amp;gt; GenericXmlApplicationContext &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;BeanDefinition&lt;/strong&gt;&lt;br /&gt;&lt;br /&gt;
-&lt;img src=&quot;/assets/images/3_8.png&quot; alt=&quot;img8&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;스프링 컨테이너는 BeanDefinition만 알면 된다. BeanDefinition이 자바코드, XML 등 어떤걸로 생성됬는지 몰라도 된다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><summary type="html">스프링 컨테이너 생성 과정</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><summary type="html">싱글톤 패턴을 사용하는 이유</summary></entry></feed>
