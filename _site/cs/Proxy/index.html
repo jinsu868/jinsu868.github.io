@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>옵저버 패턴 - Jinsu’s story</title>
+<!-- begin _includes/seo.html --><title>프록시 패턴 - Jinsu’s story</title>
 <meta name="description" content="">
 
 
@@ -22,8 +22,8 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="Jinsu's story">
-<meta property="og:title" content="옵저버 패턴">
-<meta property="og:url" content="http://localhost:4000/cs/Observer/">
+<meta property="og:title" content="프록시 패턴">
+<meta property="og:url" content="http://localhost:4000/cs/Proxy/">
 
 
   <meta property="og:description" content="">
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/cs/Observer/">
+<link rel="canonical" href="http://localhost:4000/cs/Proxy/">
 
 
 
@@ -248,7 +248,7 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="옵저버 패턴">
+    <meta itemprop="headline" content="프록시 패턴">
     <meta itemprop="description" content="">
     <meta itemprop="datePublished" content="2023-07-06T00:00:00+09:00">
     
@@ -257,7 +257,7 @@
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="http://localhost:4000/cs/Observer/" class="u-url" itemprop="url">옵저버 패턴
+            <a href="http://localhost:4000/cs/Proxy/" class="u-url" itemprop="url">프록시 패턴
 </a>
           </h1>
           
@@ -288,106 +288,141 @@
         
         <p><br /></p>
 
-<h1 id="observer-pattern"><em>Observer Pattern</em></h1>
+<h1 id="proxy-pattern"><em>Proxy Pattern</em></h1>
 <blockquote>
-  <p><strong>옵저버 패턴</strong>이란 객체의 상태 변화를 관찰하는 옵저버들의 목록을 객체에 등록하여 객체의 상태 변화가 있을 때마다 객체에 등록된 옵저버들에게 알려주는 디자인 패턴이다.<br />
-  쉽게 말해서 객체의 상태 변화가 생길 때, 이와 관련된 객체들에게 알림을 보내는 것이다. <br /><br /></p>
+  <p>프록시 패턴은 대상 객체에 접근하기 전 그 접근에 대한 흐름을 가로채 대상 객체 앞단의 인터페이스 역할을 하는 디자인 패턴이다.
+  대상 클래스가 민감한 정보를 가지고 있거나 인스턴스화 하기에는 무겁거나, 추가 기능을 넣고 싶은데 원본 객체를 수정할 수 없는 상황일 때 사용한다.</p>
 </blockquote>
 
-<h1 id="옵저버-패턴의-장단점"><em>옵저버 패턴의 장단점</em></h1>
+<p><br /></p>
 
-<h2 id="장점">장점</h2>
+<h1 id="프록시-패턴의-효과"><em>프록시 패턴의 효과</em></h1>
 <ul>
-  <li>실시간으로 한 객체의 변경사항을 다른 객체에 전파할 수 이다.
-    <ul>
-      <li>옵저버 패턴을 사용하지 않으면 polling 방식으로 일정 시간마다 객체의 상태 변화를 체크해야 한다.</li>
-      <li>이 방식을 사용하면 polling 시간 내에 이벤트가 발생했다가 사라지게 된다면 체크할 수 없다.</li>
-    </ul>
-  </li>
-  <li>느슨한 결합으로 시스템을 유연하게 하고 객체간의 의존성을 낮출 수 있다. <br /></li>
+  <li>보안 : 프록시는 클라이언트가 작업을 수행할 수 있는 권한이 있는지 확인하고 권한이 있을 경우에만 대상 객체에 전달한다.</li>
+  <li>캐싱 : 프록시가 내부 캐시를 유지하며 데이터가 캐시에 존재하지 않는 경우에만 대상에서 작업이 이루어지게 한다.</li>
+  <li>데이터 유효성 검사 : 프록시가 대상으로 접근하기 전에 유효성 검사를 한다.</li>
+  <li>지연 초기화 : 대상 생성 비용이 클 경우에 실제로 대상이 필요할 때까지 생성을 미루다가 필요한 시점에 대상을 생성한다.</li>
+  <li>로깅 : 프록시가 메소드 호출등을 기록한다.</li>
+  <li>원격 객체 : 프록시가 원격에 위치한 객체를 가져와서 로컬에 있는 것처럼 보이게 할 수 있다.</li>
 </ul>
 
-<h2 id="단점">단점</h2>
-<ul>
-  <li>옵저버 패턴을 너무 많이 사용하게 되면 상태 관리가 어려워진다. <br /><br /><br /></li>
-</ul>
+<p><br /></p>
 
-<h1 id="옵저버-패턴의-구조"><em>옵저버 패턴의 구조</em></h1>
+<h1 id="프록시-패턴-구조"><em>프록시 패턴 구조</em></h1>
 <blockquote>
-  <p>옵저버 패턴의 핵심은 옵저버의 관찰 대상이 되는 객체에 옵저버들을 등록한 후, 객체에 이벤트가 발생했을 때 옵저버들에게 전파해서 각 옵저버들이 이벤트를 잘 처리할 수 있게 하는 것이다.
-<br /></p>
+  <p>프록시는 다른 객체에 대한 접근을 제어하는 객체이다. 아래 다이어그램에서 다른 객체는 Subject이다. 프록시와 대상은 동일한 인터페이스를 가진다.</p>
 </blockquote>
 
-<p><img src="/assets/images/14_1.png" alt="img1" width="60%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
+<p><img src="/assets/images/15_1.png" alt="img1" width="60%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
 
 <ul>
-  <li>다이어그램을 보면 Subject(관찰 객체)는 옵저버들을 List로 가지고 있고 옵저버 등록, 삭제를 할 수 있다.</li>
-  <li>그리고 이벤트가 발생했을 때, 옵저버들에게 전파할 수 있도록 notifyObservers() 메소드를 가지고 있다.</li>
-  <li>각 옵저버들은 notify 함수를 구현함으로써 subject에 이벤트가 발생했을 때 처리할 동작을 정의한다.</li>
-  <li>주의점 : 옵저버 패턴을 사용한 시스템에서는 반드시 재귀 호출을 막는 메커니즘이 요구된다.
+  <li>Subject : 프록시와 RealSubject를 하나로 묶은 인터페이스</li>
+  <li>RealSubject : 원본 대상 객체</li>
+  <li>Proxy : RealSubject를 중계할 대리자</li>
+  <li>Client : Subject 인터페이스를 통해서 프록시 객체를 생성 및 이용
     <ul>
-      <li>이벤트가 발생했을 때, 옵저버1과 옵저버2가 처리 동작 과정에서 서로를 변경한다면 무한 재귀 호출이 될 수 있다. 
-<br /><br /><br /></li>
+      <li>클라이언트는 프록시를 중간에 끼고 RealSubject와 데이터를 주고 받는다.</li>
     </ul>
   </li>
 </ul>
 
-<h1 id="단순한-옵저버-패턴-구현"><em>단순한 옵저버 패턴 구현</em></h1>
+<p><br /></p>
+
+<h1 id="프록시-패턴은-언제-사용할까"><em>프록시 패턴은 언제 사용할까?</em></h1>
+<ol>
+  <li>접근을 제어하고 싶거나 기능을 추가하고 싶은 때에 사용한다.</li>
+  <li>초기화 지연, 접근 제어, 로깅, 캐싱 등 기존 객체 동작에 수정을 가하고 싶지 않은 경우에 사용한다.</li>
+</ol>
+
+<h1 id="장점"><em>장점</em></h1>
 <ul>
-  <li>사람(주인)과 애완동물의 관계로 옵저버 패턴을 구현해보자.</li>
-  <li>동물에는 Dog, Cat이 있다고 하고 집합이라는 이벤트에 대해서 각 옵저버들의 동작을 정의해보자.</li>
+  <li>OCP를 준수한다.
+    <ul>
+      <li>기존 대상 코드를 변경하지 않고도 기능을 확장할 수 있다.</li>
+    </ul>
+  </li>
+  <li>SRP를 준수한다.
+    <ul>
+      <li>대상 객체는 자신의 기능에 집중하고, 그 이외의 부가 기능을 프록시에 위임함으로서 다중 책임을 회피할 수있다.</li>
+    </ul>
+  </li>
 </ul>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// subject interface</span>
-<span class="kd">class</span> <span class="nc">Owner</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Animal</span><span class="o">&gt;</span> <span class="n">animals</span><span class="o">;</span>
+<h1 id="단점"><em>단점</em></h1>
+<ul>
+  <li>무분별하게 프록시를 사용하면 코드의 복잡도가 증가할 수 있다.</li>
+  <li>프록시 클래스 자체에 들어가는 리소스가 많으면 서비스로부터의 응답이 늦어질 수 있다.</li>
+</ul>
 
-    <span class="kd">public</span> <span class="nf">Owner</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">animals</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
-    <span class="o">}</span>
+<p><br /><br /></p>
 
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="o">(</span><span class="nc">Animal</span> <span class="n">animal</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(!</span><span class="n">animals</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">animal</span><span class="o">))</span> <span class="o">{</span>
-            <span class="n">animals</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">animal</span><span class="o">);</span>
+<h1 id="프록시-패턴-구현-코드"><em>프록시 패턴 구현 코드</em></h1>
+
+<p><br /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// subject interface, 프록시와 realSubject가 공유하는 인터페이스</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Subject</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">operation</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>Subject 인터페이스 <br /></li>
+  <li>실제 대상 객체와 프록시 객체를 묶는 인터페이스이다.</li>
+</ul>
+
+<p><br /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SubjectImpl</span> <span class="kd">implements</span> <span class="nc">Subject</span> <span class="o">{</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">operation</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">//logic~~</span>
+    <span class="o">}</span>   
+<span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>realSubject 객체</li>
+  <li>실제 대상 객체이다. <br /></li>
+</ul>
+
+<p><br /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SubjectProxy</span> <span class="kd">implements</span> <span class="nc">Subject</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="n">isAuth</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Subject</span> <span class="n">subject</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">SubjectProxy</span><span class="o">(</span><span class="nc">String</span> <span class="n">id</span><span class="o">,</span> <span class="nc">String</span> <span class="n">pw</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="s">"qwer"</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">id</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="s">"asdf"</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">pw</span><span class="o">))</span> <span class="o">{</span>
+            <span class="n">isAuth</span> <span class="o">=</span> <span class="nc">True</span><span class="o">;</span>
         <span class="o">}</span>
+        <span class="n">subject</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SubjectImpl</span><span class="o">();</span>
     <span class="o">}</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">delete</span><span class="o">(</span><span class="nc">Animal</span> <span class="n">animal</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">animals</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="n">animal</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">notifyAnimals</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">this</span><span class="o">.</span><span class="na">animals</span><span class="o">.</span><span class="na">forEach</span><span class="o">(</span><span class="nl">animal:</span><span class="o">:</span><span class="n">update</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
 
-<span class="c1">// observer interface</span>
-<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Animal</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">update</span><span class="o">()</span>
-<span class="o">}</span>
-
-<span class="c1">// observer Dog</span>
-<span class="kd">class</span> <span class="nc">Dog</span> <span class="kd">implements</span> <span class="nc">Animal</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">update</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">system</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"먀먀"</span><span class="o">);</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="c1">// observer Cat</span>
-<span class="kd">class</span> <span class="nc">Cat</span> <span class="kd">implements</span> <span class="nc">Animal</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">update</span><span class="o">()</span> <span class="o">{</span>
-        <span class="n">system</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"멍멍"</span><span class="o">);</span>
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">operation</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">isAuth</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">subject</span><span class="o">.</span><span class="na">operation</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="o">~~</span>
+        <span class="o">}</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
 <ul>
-  <li>위의 예시는 굉장히 단순한 예시이다. 실제로 사용될 때는 훨씬 복잡하게 사용된다. <br /><br /></li>
+  <li>Proxy 객체 <br /></li>
+  <li>프록시 객체에서 id, pw를 통해 유효한 회원인지 체크하고 유효할 떄에만 실제 객체를 생성하고 로직을 호출한다.</li>
 </ul>
 
-<h1 id="정리"><em>정리</em></h1>
-<ul>
-  <li>옵저버 패턴은 한 객체의 상태 변화에 대해 그 객체에 의존하는 다른 객체들에게 자동으로 연락을 보내서 정보를 갱신시키는 디자인 패턴이다.</li>
-  <li>연결할 때, 인터페이스를 이용해서 느슨한 결합을 유지한다. subject, observer 인터페이스를 적용한다.</li>
-</ul>
+<p><br /></p>
+
+<hr />
+
+<h1 id="참고-사이트-출처"><em>참고 사이트 출처</em></h1>
+<p>https://inpa.tistory.com/entry/GOF-%F0%9F%92%A0-%ED%94%84%EB%A1%9D%EC%8B%9CProxy-%ED%8C%A8%ED%84%B4-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EB%B0%B0%EC%9B%8C%EB%B3%B4%EC%9E%90</p>
+
+<p>https://velog.io/@mooh2jj/%EC%8A%A4%ED%94%84%EB%A7%81%EC%9D%84-%EC%9C%84%ED%95%9C-%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4-%EC%A0%95%EB%A6%AC</p>
 
 
         
@@ -439,23 +474,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%EC%98%B5%EC%A0%80%EB%B2%84+%ED%8C%A8%ED%84%B4%20http%3A%2F%2Flocalhost%3A4000%2Fcs%2FObserver%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%ED%94%84%EB%A1%9D%EC%8B%9C+%ED%8C%A8%ED%84%B4%20http%3A%2F%2Flocalhost%3A4000%2Fcs%2FProxy%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fcs%2FObserver%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fcs%2FProxy%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fcs%2FObserver%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fcs%2FProxy%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/cs/Strategy/" class="pagination--pager" title="전략 패턴
+      <a href="/cs/Observer/" class="pagination--pager" title="옵저버 패턴
 ">이전</a>
     
     
-      <a href="/cs/Proxy/" class="pagination--pager" title="프록시 패턴
-">다음</a>
+      <a href="#" class="pagination--pager disabled">다음</a>
     
   </nav>
 
@@ -479,7 +513,7 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/cs/Proxy/" rel="permalink">프록시 패턴
+        <a href="/cs/Observer/" rel="permalink">옵저버 패턴
 </a>
       
     </h2>
@@ -497,7 +531,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          2 분 소요
+          1 분 소요
         
       </span>
     
