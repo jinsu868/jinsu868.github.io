@@ -47,10 +47,22 @@ var store = [{
         "url": "/spring/Spring8/",
         "teaser": null
       },{
+        "title": "Mvcerror",
+        "excerpt":" ","categories": [],
+        "tags": [],
+        "url": "/mvcError/",
+        "teaser": null
+      },{
         "title": "스프링 웹 MVC",
         "excerpt":"웹 서버와 웹 애플리케이션 서버 웹 서버 (Web server) 정적 리소스 제공 (html, css, js, 이미지, 영상) 웹 애플리케이션 서버 (WAS - Web Application Server) 웹 서버의 기능을 포함하고 프로그램 코드를 실행해서 애플리케이션 로직 수행 동적 html, HTTP API(JSON), 서블릿, JSP, 스프링 MVC 등 이 둘은 경계가 모호하다. 웹 시스템의...","categories": ["MVC"],
         "tags": ["MVC"],
         "url": "/mvc/mvc1/",
+        "teaser": null
+      },{
+        "title": "서블릿",
+        "excerpt":"**  ","categories": ["MVC"],
+        "tags": ["MVC"],
+        "url": "/mvc/mvc2/",
         "teaser": null
       },{
         "title": "팩토리 패턴",
@@ -87,5 +99,11 @@ var store = [{
         "excerpt":"Proxy Pattern 프록시 패턴은 대상 객체에 접근하기 전 그 접근에 대한 흐름을 가로채 대상 객체 앞단의 인터페이스 역할을 하는 디자인 패턴이다. 대상 클래스가 민감한 정보를 가지고 있거나 인스턴스화 하기에는 무겁거나, 추가 기능을 넣고 싶은데 원본 객체를 수정할 수 없는 상황일 때 사용한다. 프록시 패턴의 효과 보안 : 프록시는 클라이언트가 작업을...","categories": ["CS"],
         "tags": ["Design pattern"],
         "url": "/cs/Proxy/",
+        "teaser": null
+      },{
+        "title": "MVC 구조",
+        "excerpt":"스프링 MVC 구조 스프링 MVC는 FrontController 패턴으로 구현되어 있다. Dispatcher Servlet(FrontController)에서 공통되는 로직을 처리하고 요청으로 들어온 URL에 해당하는 URL을 처리하는 컨트롤러를 호출한다. 동작 순서 핸들러 조회 : 핸들러 매핑 map을 뒤져서 요청한 URL에 해당하는 컨트롤러가 있는지 확인한다. 핸들러 어댑터 조회 : 해당 핸들러를 실행할 수 있는 어댑터가 존재하는 지 확인한다....","categories": ["MVC"],
+        "tags": ["MVC"],
+        "url": "/mvc/MVC_Structure/",
         "teaser": null
       }]
