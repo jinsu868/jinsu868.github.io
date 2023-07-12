@@ -21,7 +21,7 @@ typora-root-url: ../
 
 
 
-스프링 MVC는 FrontController 패턴으로 구현되어 있다. Dispatcher Servlet(FrontController)에서 공통되는 로직을 처리하고 요청으로 들어온 URL에 해당하는 URL을 처리하는 컨트롤러를 호출한다.
+스프링 MVC는 FrontController 패턴으로 구현되어 있다. Dispatcher Servlet(FrontController)에서 공통되는 로직을 처리하고 요청으로 들어온 URL에 해당하는  컨트롤러를 호출한다.
 
 
 
@@ -69,8 +69,8 @@ typora-root-url: ../
 
 *스프링 부트가 자동 등록하는 Resolver*
 
-1. BeanNameViewResolver : 빈 이름으로 뷰를 찾아서 반환
-2. InternalResourceViewResolver : JSP를 처리할 수 있는 뷰를 반환
+1. `BeanNameViewResolver` : 빈 이름으로 뷰를 찾아서 반환
+2. `InternalResourceViewResolver` : JSP를 처리할 수 있는 뷰를 반환
    * 내부에서 forward()를 호출해서 JSP를 실행한다.
 
 
