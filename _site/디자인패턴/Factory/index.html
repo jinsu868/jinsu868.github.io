@@ -23,7 +23,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="Jinsu's story">
 <meta property="og:title" content="팩토리 패턴">
-<meta property="og:url" content="http://localhost:4000/cs/Factory/">
+<meta property="og:url" content="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Factory/">
 
 
   <meta property="og:description" content="">
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/cs/Factory/">
+<link rel="canonical" href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Factory/">
 
 
 
@@ -258,13 +258,7 @@
               
                   
                   <li>
-                      <a href="/categories/#cs" class="">CS (2)</a>
-                  </li>
-                  
-              
-                  
-                  <li>
-                      <a href="/categories/#디자인패턴" class="">디자인패턴 (3)</a>
+                      <a href="/categories/#디자인패턴" class="">디자인패턴 (5)</a>
                   </li>
                   
               
@@ -292,7 +286,7 @@
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="http://localhost:4000/cs/Factory/" class="u-url" itemprop="url">팩토리 패턴
+            <a href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Factory/" class="u-url" itemprop="url">팩토리 패턴
 </a>
           </h1>
           
@@ -327,31 +321,47 @@
 
 <h1 id="factory-method-pattern이란"><strong>Factory Method Pattern이란?</strong></h1>
 <ul>
-  <li>팩토리 메서드 패턴에서는 객체를 생성하기 위한 인터페이스를 정의하고, 어떤 클래스의 인스턴스를 만들지는 서브 클래스에서 결정하게 하는 패턴이다.</li>
+  <li><code class="language-plaintext highlighter-rouge">팩토리 메서드 패턴</code>에서는 객체를 생성하기 위한 인터페이스를 정의하고, 어떤 클래스의 인스턴스를 만들지는 서브 클래스에서 결정하게 하는 패턴이다.</li>
   <li>팩토리 메서드는 객체를 생성, 반환하는 메서드이다.</li>
   <li>팩토리 클래스는 하위 클래스에서 팩토리 메서드를 오버라이딩해서 객체를 반환하게 하여 상위 클래스와 하위 클래스가 분리되게 함으로써 결합을 느슨하게 한다.</li>
-  <li>DIP를 활용한다. <br /><br /></li>
+  <li>DIP를 활용한다.</li>
 </ul>
 
+<p><br /></p>
+
+<p><br /></p>
+
 <h1 id="팩토리-패턴은-왜-나왔는가">팩토리 패턴은 왜 나왔는가?</h1>
-<p>객체 지향 디자인 패턴의 기본 원칙 중 하나인 OCP를 생각해보자. <strong>OCP는 확장에는 열려있고, 수정에는 닫혀 있어야 한다는 의미이다.</strong> <br />
-코드를 수정하지 않고 모듈의 기능을 확장할 수 있다는 것인데, 이를 위해서는 수정이 일어날 부분과 그렇지 않은 부분을 분리하는 것이 바람직하다.<br />
-객체를 생성하는 부분은 변경될 가능성이 높기 때문에 따로 떼어내서 관리하는게 좋다. 이를 위해 팩토리 패턴이 등장했다. <br /><br /></p>
+<p>객체 지향 디자인 패턴의 기본 원칙 중 하나인 OCP를 생각해보자. <strong>OCP는 확장에는 열려있고, 수정에는 닫혀 있어야 한다는 의미이다.</strong></p>
+
+<p>코드를 수정하지 않고 모듈의 기능을 확장할 수 있다는 것인데, 이를 위해서는 수정이 일어날 부분과 그렇지 않은 부분을 분리하는 것이 바람직하다.</p>
+
+<p>객체를 생성하는 부분은 변경될 가능성이 높기 때문에 따로 떼어내서 관리하는게 좋다. 이를 위해 팩토리 패턴이 등장했다.</p>
+
+<p><br /></p>
+
+<p><br /></p>
 
 <h1 id="장점"><strong>장점</strong></h1>
 <ul>
   <li>코드를 리펙토링할 때 한 곳만 고치면 되서 유지 보수성이 증가된다.</li>
   <li>객체간의 결합도를 낮출 수 있다.</li>
-  <li>SRP를 따른다. 실행 코드에서 생성자 코드를 분리함으로써 코드를 더욱 간결하게 만든다.</li>
-  <li>OCP를 따른다. 기존 클라이언트의 코드를 바꾸지 않고도 새로운 타입으로 바꿀 수 있다.</li>
+  <li><code class="language-plaintext highlighter-rouge">SRP</code>를 따른다. 실행 코드에서 생성자 코드를 분리함으로써 코드를 더욱 간결하게 만든다.</li>
+  <li><code class="language-plaintext highlighter-rouge">OCP</code>를 따른다. 기존 클라이언트의 코드를 바꾸지 않고도 새로운 타입으로 바꿀 수 있다.</li>
 </ul>
+
+<p><br /></p>
 
 <h1 id="단점"><strong>단점</strong></h1>
 <ul>
-  <li>패턴 구현을 위해 많은 서브 클래스가 도입되어야 하기 때문에 코드가 복잡해진다. <br /><br /></li>
+  <li>패턴 구현을 위해 많은 서브 클래스가 도입되어야 하기 때문에 코드가 복잡해진다.</li>
 </ul>
 
-<h1 id="팩토리-패턴-구현-예시-"><strong>팩토리 패턴 구현 예시</strong> <br /></h1>
+<p><br /></p>
+
+<p><br /></p>
+
+<h1 id="팩토리-패턴-구현-예시-simple-factory-pattern"><strong>팩토리 패턴 구현 예시</strong> (simple Factory pattern)</h1>
 
 <ol>
   <li>interface 생성</li>
@@ -364,6 +374,8 @@
 <span class="o">}</span>
 </code></pre></div></div>
 
+<p><br /></p>
+
 <ol>
   <li>하위 클래스를 구분해 주는 클래스 생성 (Enum 이 더 좋음)</li>
 </ol>
@@ -373,6 +385,8 @@
     <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">CAT</span> <span class="o">=</span> <span class="err">'</span><span class="n">cat</span><span class="err">'</span><span class="o">;</span>
 <span class="o">}</span>
 </code></pre></div></div>
+
+<p><br /></p>
 
 <ol>
   <li>interface를 상속 받아 구현할 하위 클래스</li>
@@ -389,7 +403,7 @@
     <span class="o">}</span>
 <span class="o">}</span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Dat</span> <span class="kd">implements</span> <span class="nc">Animal</span> <span class="o">{</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Dog</span> <span class="kd">implements</span> <span class="nc">Animal</span> <span class="o">{</span>
     <span class="nd">@Override</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">speak</span><span class="o">()</span> <span class="o">{</span>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"멍멍"</span><span class="o">);</span>
@@ -400,6 +414,8 @@
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
+
+<p><br /></p>
 
 <ol>
   <li>타입에 따라 객체를 생성해 줄 Factory 클래스 생성</li>
@@ -418,6 +434,8 @@
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
+
+<p><br /></p>
 
 <ol>
   <li>Factory 클래스를 사용하는 Client</li>
@@ -455,7 +473,9 @@
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
     <span itemprop="keywords">
     
-      <a href="/tags/#design-pattern" class="page__taxonomy-item p-category" rel="tag">Design pattern</a>
+      <a href="/tags/#cs" class="page__taxonomy-item p-category" rel="tag">CS</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4" class="page__taxonomy-item p-category" rel="tag">디자인패턴</a>
     
     </span>
   </p>
@@ -472,7 +492,7 @@
     <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
     <span itemprop="keywords">
     
-      <a href="/categories/#cs" class="page__taxonomy-item p-category" rel="tag">CS</a>
+      <a href="/categories/#%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4" class="page__taxonomy-item p-category" rel="tag">디자인패턴</a>
     
     </span>
   </p>
@@ -489,11 +509,11 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%ED%8C%A9%ED%86%A0%EB%A6%AC+%ED%8C%A8%ED%84%B4%20http%3A%2F%2Flocalhost%3A4000%2Fcs%2FFactory%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%ED%8C%A9%ED%86%A0%EB%A6%AC+%ED%8C%A8%ED%84%B4%20http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2FFactory%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fcs%2FFactory%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2FFactory%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fcs%2FFactory%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2FFactory%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -504,7 +524,7 @@
 ">이전</a>
     
     
-      <a href="/cs/Singleton/" class="pagination--pager" title="싱글톤 패턴
+      <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Singleton/" class="pagination--pager" title="싱글톤 패턴
 ">다음</a>
     
   </nav>

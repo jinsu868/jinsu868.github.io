@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-13T20:02:42+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">MVC 기능</title><link href="http://localhost:4000/mvc/Spring_MVC_function/" rel="alternate" type="text/html" title="MVC 기능" /><published>2023-07-12T00:00:00+09:00</published><updated>2023-07-12T00:00:00+09:00</updated><id>http://localhost:4000/mvc/Spring_MVC_function</id><content type="html" xml:base="http://localhost:4000/mvc/Spring_MVC_function/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-13T20:10:42+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">MVC 기능</title><link href="http://localhost:4000/mvc/Spring_MVC_function/" rel="alternate" type="text/html" title="MVC 기능" /><published>2023-07-12T00:00:00+09:00</published><updated>2023-07-12T00:00:00+09:00</updated><id>http://localhost:4000/mvc/Spring_MVC_function</id><content type="html" xml:base="http://localhost:4000/mvc/Spring_MVC_function/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;요청매핑&quot;&gt;요청매핑&lt;/h1&gt;
 
@@ -872,88 +872,129 @@
       &lt;li&gt;ObjectMapper를 사용해서 json을 파싱할 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="MVC" /><category term="MVC" /><summary type="html">Servlet 서블릿은 TCP/IP connection, Socket connection, HTTP message parsing, HTTP response message 생성 등, 핵심 비즈니스 로직을 제외한 부분을 대신 해준다. 스프링 부트에서 servlet을 직접 등록해서 사용하려면 @ServletComponentScan 을 붙이면 된다.</summary></entry><entry><title type="html">싱글톤 패턴</title><link href="http://localhost:4000/cs/Singleton/" rel="alternate" type="text/html" title="싱글톤 패턴" /><published>2023-07-04T00:00:00+09:00</published><updated>2023-07-04T00:00:00+09:00</updated><id>http://localhost:4000/cs/Singleton</id><content type="html" xml:base="http://localhost:4000/cs/Singleton/">&lt;h2 id=&quot;디자인패턴-&quot;&gt;&lt;strong&gt;디자인패턴&lt;/strong&gt; &lt;br /&gt;&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="MVC" /><category term="MVC" /><summary type="html">Servlet 서블릿은 TCP/IP connection, Socket connection, HTTP message parsing, HTTP response message 생성 등, 핵심 비즈니스 로직을 제외한 부분을 대신 해준다. 스프링 부트에서 servlet을 직접 등록해서 사용하려면 @ServletComponentScan 을 붙이면 된다.</summary></entry><entry><title type="html">싱글톤 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Singleton/" rel="alternate" type="text/html" title="싱글톤 패턴" /><published>2023-07-04T00:00:00+09:00</published><updated>2023-07-04T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Singleton</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Singleton/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;디자인패턴&quot;&gt;&lt;strong&gt;디자인패턴&lt;/strong&gt;&lt;/h1&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;디자인 패턴이란 프로그램을 설계할 때 발생했던 문제점들을 객체 간의 상호 관계 등을 이용해서 해결할 수 있도록 하나의 규약 형태로 만들어 놓은 것을 뜻한다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;디자인 패턴&lt;/code&gt;이란 프로그램을 설계할 때 발생했던 문제점들을 객체 간의 상호 관계 등을 이용해서 해결할 수 있도록 하나의 규약 형태로 만들어 놓은 것을 뜻한다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&quot;싱글톤-패턴이란&quot;&gt;&lt;strong&gt;싱글톤 패턴이란?&lt;/strong&gt;&lt;/h1&gt;
-&lt;p&gt;&lt;strong&gt;싱글톤 패턴이란 하나의 클래스에 대해 오직 하나의 인스턴스만 가지고 이를 공유하는 패턴이다. 데이터베이스 연결 모듈에 많이 사용된다.&lt;/strong&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;장점&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;싱글톤-패턴이란&quot;&gt;&lt;strong&gt;싱글톤 패턴이란?&lt;/strong&gt;&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;싱글톤 패턴이란 하나의 클래스에 대해 오직 하나의 인스턴스만 가지고 이를 공유하는 패턴이다. 데이터베이스 연결 모듈에 많이 사용된다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;장점&quot;&gt;&lt;strong&gt;장점&lt;/strong&gt;&lt;/h1&gt;
+
 &lt;ul&gt;
   &lt;li&gt;인스턴스를 한 번 생성하면 더 이상 생성할 일이 없기 때문에 인스턴스 생성 비용이 줄어든다.&lt;/li&gt;
   &lt;li&gt;단 하나의 인스턴스를 통해서만 리소스에 접근해야 하는 제약이 있는 상황에서 유용하다.&lt;/li&gt;
   &lt;li&gt;사용자가 실수로 여러번 객체 생성을 시도하더라도 내부적으로 단 하나의 객체만 생성된다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;strong&gt;단점&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;단점&quot;&gt;&lt;strong&gt;단점&lt;/strong&gt;&lt;/h1&gt;
+
 &lt;ul&gt;
   &lt;li&gt;의존성이 높아지는 단점이 있다.(모듈 간의 결합이 강해진다.)&lt;/li&gt;
   &lt;li&gt;구현하는 코드가 좀 길다.&lt;/li&gt;
-  &lt;li&gt;TDD(Test Driven Development)를 할 때 걸림돌이 된다.
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TDD&lt;/code&gt;(Test Driven Development)를 할 때 걸림돌이 된다.
     &lt;ul&gt;
-      &lt;li&gt;TDD를 할 때 단위 테스트가 서로 독립적이어서 어떤 순서로도 실행이 가능해야 하는데 싱글톤 패턴은 하나의 인스턴스를 기반으로 구현하는 패턴이라 &lt;strong&gt;각 테스트마다 독립적인 인스턴스를 만들기 어렵다.&lt;/strong&gt; &lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+      &lt;li&gt;TDD를 할 때 단위 테스트가 서로 독립적이어서 어떤 순서로도 실행이 가능해야 하는데 싱글톤 패턴은 하나의 인스턴스를 기반으로 구현하는 패턴이라 &lt;strong&gt;각 테스트마다 독립적인 인스턴스를 만들기 어렵다.&lt;/strong&gt;&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&quot;의존성-주입&quot;&gt;의존성 주입&lt;/h1&gt;
-&lt;p&gt;싱글톤 패턴은 사용하기 쉽고 실용적이지만 모듈 간의 결합을 강하게 만든다. 즉 하나의 모듈의 변경사항이 다른 모듈에 영향을 미칠 수 있다. 그런데 &lt;strong&gt;의존성 주입&lt;/strong&gt;을 통해 모듈 간의 결합을 조금 느슨하게 만들 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/10_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;의존성-주입&quot;&gt;의존성 주입&lt;/h1&gt;
+&lt;p&gt;싱글톤 패턴은 사용하기 쉽고 실용적이지만 모듈 간의 결합을 강하게 만든다. 즉 하나의 모듈의 변경사항이 다른 모듈에 영향을 미칠 수 있다. 그런데 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;의존성 주입&lt;/code&gt;을 통해 모듈 간의 결합을 조금 느슨하게 만들 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/10_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;위 그림처럼 메인 모듈이 직접 다른 하위 모듈에 의존성을 주기보다는 중간에 의존성 주입자가 이 부분을 가로채 메인 모듈이 간접적으로 의존성을 주입하게 하는 방식이다.
-이를 통해 메인 모듈은 하위 모듈에 대한 의존성이 떨어진다. 참고로 이를 &lt;strong&gt;디커플링 된다&lt;/strong&gt; 라고 한다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+이를 통해 메인 모듈은 하위 모듈에 대한 의존성이 떨어진다. 참고로 이를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;디커플링&lt;/code&gt; 된다 라고 한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;의존성-주입의-장점&quot;&gt;의존성 주입의 장점&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;모듈을 쉽게 교체할 수 있게 되어 테스트하기 쉽고 마이그레이션하기도 수월하다.&lt;/li&gt;
   &lt;li&gt;구현할 때 추상화를 만들고 이를 기반으로 구현체를 넣어 주기 때문에 애플리케이션 의존성 방향이 일관되고, 애플리케이션을 쉽게 추론할 수 있다.&lt;/li&gt;
-  &lt;li&gt;낮은 결합도로 변경에 용이하고, 다른 객체와의 협력 관계에 좀 더 집중할 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;낮은 결합도로 변경에 용이하고, 다른 객체와의 협력 관계에 좀 더 집중할 수 있다.&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;의존성-주입의-단점&quot;&gt;의존성 주입의 단점&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;모듈이 더욱 분리되므로 클래스 수가 늘어나서 복잡도가 증가한다.
-약간의 런타임 패널티가 있을 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+약간의 런타임 패널티가 있을 수 있다.&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;의존성-주입-원칙&quot;&gt;의존성 주입 원칙&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;상위 모듈은 하위 모듈의 어떠한 것도 가져오지 않아야 한다.&lt;/li&gt;
   &lt;li&gt;추상화에만 의존해야 하며, 인터페이스는 구현체에 의존하면 안 된다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="CS" /><category term="Design pattern" /><summary type="html">디자인패턴 디자인 패턴이란 프로그램을 설계할 때 발생했던 문제점들을 객체 간의 상호 관계 등을 이용해서 해결할 수 있도록 하나의 규약 형태로 만들어 놓은 것을 뜻한다.</summary></entry><entry><title type="html">팩토리 패턴</title><link href="http://localhost:4000/cs/Factory/" rel="alternate" type="text/html" title="팩토리 패턴" /><published>2023-07-04T00:00:00+09:00</published><updated>2023-07-04T00:00:00+09:00</updated><id>http://localhost:4000/cs/Factory</id><content type="html" xml:base="http://localhost:4000/cs/Factory/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><category term="CS" /><summary type="html"></summary></entry><entry><title type="html">팩토리 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Factory/" rel="alternate" type="text/html" title="팩토리 패턴" /><published>2023-07-04T00:00:00+09:00</published><updated>2023-07-04T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Factory</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Factory/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/11_1.png&quot; alt=&quot;img1&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;factory-method-pattern이란&quot;&gt;&lt;strong&gt;Factory Method Pattern이란?&lt;/strong&gt;&lt;/h1&gt;
 &lt;ul&gt;
-  &lt;li&gt;팩토리 메서드 패턴에서는 객체를 생성하기 위한 인터페이스를 정의하고, 어떤 클래스의 인스턴스를 만들지는 서브 클래스에서 결정하게 하는 패턴이다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;팩토리 메서드 패턴&lt;/code&gt;에서는 객체를 생성하기 위한 인터페이스를 정의하고, 어떤 클래스의 인스턴스를 만들지는 서브 클래스에서 결정하게 하는 패턴이다.&lt;/li&gt;
   &lt;li&gt;팩토리 메서드는 객체를 생성, 반환하는 메서드이다.&lt;/li&gt;
   &lt;li&gt;팩토리 클래스는 하위 클래스에서 팩토리 메서드를 오버라이딩해서 객체를 반환하게 하여 상위 클래스와 하위 클래스가 분리되게 함으로써 결합을 느슨하게 한다.&lt;/li&gt;
-  &lt;li&gt;DIP를 활용한다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;DIP를 활용한다.&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;h1 id=&quot;팩토리-패턴은-왜-나왔는가&quot;&gt;팩토리 패턴은 왜 나왔는가?&lt;/h1&gt;
-&lt;p&gt;객체 지향 디자인 패턴의 기본 원칙 중 하나인 OCP를 생각해보자. &lt;strong&gt;OCP는 확장에는 열려있고, 수정에는 닫혀 있어야 한다는 의미이다.&lt;/strong&gt; &lt;br /&gt;
-코드를 수정하지 않고 모듈의 기능을 확장할 수 있다는 것인데, 이를 위해서는 수정이 일어날 부분과 그렇지 않은 부분을 분리하는 것이 바람직하다.&lt;br /&gt;
-객체를 생성하는 부분은 변경될 가능성이 높기 때문에 따로 떼어내서 관리하는게 좋다. 이를 위해 팩토리 패턴이 등장했다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;객체 지향 디자인 패턴의 기본 원칙 중 하나인 OCP를 생각해보자. &lt;strong&gt;OCP는 확장에는 열려있고, 수정에는 닫혀 있어야 한다는 의미이다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;코드를 수정하지 않고 모듈의 기능을 확장할 수 있다는 것인데, 이를 위해서는 수정이 일어날 부분과 그렇지 않은 부분을 분리하는 것이 바람직하다.&lt;/p&gt;
+
+&lt;p&gt;객체를 생성하는 부분은 변경될 가능성이 높기 때문에 따로 떼어내서 관리하는게 좋다. 이를 위해 팩토리 패턴이 등장했다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;장점&quot;&gt;&lt;strong&gt;장점&lt;/strong&gt;&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;코드를 리펙토링할 때 한 곳만 고치면 되서 유지 보수성이 증가된다.&lt;/li&gt;
   &lt;li&gt;객체간의 결합도를 낮출 수 있다.&lt;/li&gt;
-  &lt;li&gt;SRP를 따른다. 실행 코드에서 생성자 코드를 분리함으로써 코드를 더욱 간결하게 만든다.&lt;/li&gt;
-  &lt;li&gt;OCP를 따른다. 기존 클라이언트의 코드를 바꾸지 않고도 새로운 타입으로 바꿀 수 있다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SRP&lt;/code&gt;를 따른다. 실행 코드에서 생성자 코드를 분리함으로써 코드를 더욱 간결하게 만든다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OCP&lt;/code&gt;를 따른다. 기존 클라이언트의 코드를 바꾸지 않고도 새로운 타입으로 바꿀 수 있다.&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;단점&quot;&gt;&lt;strong&gt;단점&lt;/strong&gt;&lt;/h1&gt;
 &lt;ul&gt;
-  &lt;li&gt;패턴 구현을 위해 많은 서브 클래스가 도입되어야 하기 때문에 코드가 복잡해진다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;패턴 구현을 위해 많은 서브 클래스가 도입되어야 하기 때문에 코드가 복잡해진다.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h1 id=&quot;팩토리-패턴-구현-예시-&quot;&gt;&lt;strong&gt;팩토리 패턴 구현 예시&lt;/strong&gt; &lt;br /&gt;&lt;/h1&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;팩토리-패턴-구현-예시-simple-factory-pattern&quot;&gt;&lt;strong&gt;팩토리 패턴 구현 예시&lt;/strong&gt; (simple Factory pattern)&lt;/h1&gt;
 
 &lt;ol&gt;
   &lt;li&gt;interface 생성&lt;/li&gt;
@@ -966,6 +1007,8 @@
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;ol&gt;
   &lt;li&gt;하위 클래스를 구분해 주는 클래스 생성 (Enum 이 더 좋음)&lt;/li&gt;
 &lt;/ol&gt;
@@ -975,6 +1018,8 @@
     &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;CAT&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cat&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;interface를 상속 받아 구현할 하위 클래스&lt;/li&gt;
@@ -991,7 +1036,7 @@
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Dat&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Animal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Dog&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Animal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
     &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;speak&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
         &lt;span class=&quot;nc&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;멍멍&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
@@ -1002,6 +1047,8 @@
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;타입에 따라 객체를 생성해 줄 Factory 클래스 생성&lt;/li&gt;
@@ -1021,6 +1068,8 @@
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;ol&gt;
   &lt;li&gt;Factory 클래스를 사용하는 Client&lt;/li&gt;
 &lt;/ol&gt;
@@ -1039,7 +1088,7 @@
         &lt;span class=&quot;n&quot;&gt;cat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;speak&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Moon JinSu</name></author><category term="CS" /><category term="Design pattern" /><summary type="html"></summary></entry><entry><title type="html">서블릿</title><link href="http://localhost:4000/mvc/mvc2/" rel="alternate" type="text/html" title="서블릿" /><published>2023-07-03T00:00:00+09:00</published><updated>2023-07-03T00:00:00+09:00</updated><id>http://localhost:4000/mvc/mvc2</id><content type="html" xml:base="http://localhost:4000/mvc/mvc2/">&lt;h2&gt;**&lt;/h2&gt;</content><author><name>Moon JinSu</name></author><category term="MVC" /><category term="MVC" /><summary type="html">**</summary></entry><entry><title type="html">스프링 웹 MVC</title><link href="http://localhost:4000/mvc/mvc1/" rel="alternate" type="text/html" title="스프링 웹 MVC" /><published>2023-07-03T00:00:00+09:00</published><updated>2023-07-03T00:00:00+09:00</updated><id>http://localhost:4000/mvc/mvc1</id><content type="html" xml:base="http://localhost:4000/mvc/mvc1/">&lt;h2 id=&quot;웹-서버와-웹-애플리케이션-서버-&quot;&gt;&lt;strong&gt;웹 서버와 웹 애플리케이션 서버&lt;/strong&gt; &lt;br /&gt;&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><category term="CS" /><summary type="html"></summary></entry><entry><title type="html">서블릿</title><link href="http://localhost:4000/mvc/mvc2/" rel="alternate" type="text/html" title="서블릿" /><published>2023-07-03T00:00:00+09:00</published><updated>2023-07-03T00:00:00+09:00</updated><id>http://localhost:4000/mvc/mvc2</id><content type="html" xml:base="http://localhost:4000/mvc/mvc2/">&lt;h2&gt;**&lt;/h2&gt;</content><author><name>Moon JinSu</name></author><category term="MVC" /><category term="MVC" /><summary type="html">**</summary></entry><entry><title type="html">스프링 웹 MVC</title><link href="http://localhost:4000/mvc/mvc1/" rel="alternate" type="text/html" title="스프링 웹 MVC" /><published>2023-07-03T00:00:00+09:00</published><updated>2023-07-03T00:00:00+09:00</updated><id>http://localhost:4000/mvc/mvc1</id><content type="html" xml:base="http://localhost:4000/mvc/mvc1/">&lt;h2 id=&quot;웹-서버와-웹-애플리케이션-서버-&quot;&gt;&lt;strong&gt;웹 서버와 웹 애플리케이션 서버&lt;/strong&gt; &lt;br /&gt;&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;웹 서버 (Web server)
     &lt;ul&gt;
