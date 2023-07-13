@@ -1,8 +1,368 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-12T16:52:06+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">MVC 구조</title><link href="http://localhost:4000/mvc/MVC_Structure/" rel="alternate" type="text/html" title="MVC 구조" /><published>2023-07-12T00:00:00+09:00</published><updated>2023-07-12T00:00:00+09:00</updated><id>http://localhost:4000/mvc/MVC_Structure</id><content type="html" xml:base="http://localhost:4000/mvc/MVC_Structure/">&lt;h2 id=&quot;스프링-mvc-구조&quot;&gt;스프링 MVC 구조&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-13T18:26:14+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">MVC 기능</title><link href="http://localhost:4000/mvc/Spring_MVC_function/" rel="alternate" type="text/html" title="MVC 기능" /><published>2023-07-12T00:00:00+09:00</published><updated>2023-07-12T00:00:00+09:00</updated><id>http://localhost:4000/mvc/Spring_MVC_function</id><content type="html" xml:base="http://localhost:4000/mvc/Spring_MVC_function/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;요청매핑&quot;&gt;요청매핑&lt;/h1&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@RequestMapping&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;@RequestMapping은 파라미터로 URL을 넣을 수 있는데 해당 URL로 호출이 오면 메서드가 실행된다. 여러개의 URL을 배열 형태로 받을 수도 있다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;@RequestMapping은 HTTP 메서드를 지정하지 않으면 HTTP 메서드 종류에 상관없이 무조건 호출된다.&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@GetMapping&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@PostMapping&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@PatchMapping&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@DeleteMapping&lt;/code&gt; , &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@PutMapping&lt;/code&gt; 을 사용하면 HTTP 메서드에 따라 호출 여부를 결정하게 할 수 있다.&lt;/li&gt;
+      &lt;li&gt;@RequestMapping 파라미터에 Method를 직접 지정해서 전달할 수도 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@RestController&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;@Controller + @ResponseBody 이다.&lt;/li&gt;
+  &lt;li&gt;원래 @Controller 는 반환값이 String이면 이것을 View 이름으로 인식하고 화면을 랜더링한다.&lt;/li&gt;
+  &lt;li&gt;@ResponseBody가 있으면 바로 HTTP 메시지 바디로 입력한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@PathVariable&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@GetMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/api/{userId}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;api&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@PathVariable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;userId&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;@PathVariable의 이름과 파마미터 이름이 같으면 생략할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;http-요청---정보-조회&quot;&gt;HTTP 요청 - 정보 조회&lt;/h1&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Slf4j&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@RestController&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nd&quot;&gt;@RequestMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/headers&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;HttpServletRequest&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HttpServletResponse&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+                       &lt;span class=&quot;nc&quot;&gt;HttpMethod&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;httpMethod&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Locale&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;locale&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+                       &lt;span class=&quot;nd&quot;&gt;@RequestHeader&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MultiValueMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;headerMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+                       &lt;span class=&quot;nd&quot;&gt;@RequestHeader&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;host&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@CookieValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;myCookie&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;required&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+                       &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cookie&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HttpMethod&lt;/code&gt; : HTTP Method 종류가 들어있다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Locale&lt;/code&gt; : Locale 정보를 조회&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@RequestHeader MultiValueMap&amp;lt;String, String&amp;gt; headerMap&lt;/code&gt; : 모든 HTTP 헤더를 MultiValueMap 형태로 조회&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@RequestHeader(&quot;host&quot;) String host&lt;/code&gt; : 특정 HTTP 헤더 조회&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Required&lt;/code&gt; : 필수값 여부&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@CookieValue(value = &quot;myCookie&quot;, required = false) String cookie&lt;/code&gt; : 특정 쿠키 조회&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;http-요청-파리미터&quot;&gt;HTTP 요청 파리미터&lt;/h1&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@RequestParam&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;파라미터 이름으로 간단하게 조회할 수 있음.&lt;/li&gt;
+  &lt;li&gt;request.getParameter(“parameterName”) 으로 귀찮게 조회하지 않아도 Annotation 하나면 처리된다.&lt;/li&gt;
+  &lt;li&gt;파라미터 이름과 동일하게 변수명을 지정하면 생략할 수 있다.&lt;/li&gt;
+  &lt;li&gt;단순 타입이면 생략도 가능하지만 그냥 써주는게 좋다. (생략하게 되면 required=false가 기본적으로 적용된다.)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;required&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;필수 파라미터 여부이다.&lt;/li&gt;
+      &lt;li&gt;기본값은 true이다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;주의점
+    &lt;ul&gt;
+      &lt;li&gt;/request-param?username= 과 같이 파라미터 이름만 있고 값이 없는 경우 -&amp;gt; 빈문자로 들어온다.&lt;/li&gt;
+      &lt;li&gt;/request-param 요청, @RequestParam(required = false) int age 와 같이 들어온 경우에 null이 들어왔는데 int에 입력하는 게 불가능하기 때문에 null을 받을 수 있는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Integer&lt;/code&gt; 로 변경하거나, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;defaultValue&lt;/code&gt; 를 사용해야 한다.&lt;/li&gt;
+      &lt;li&gt;defaultValue를 설정하면 required 가 의미가 없어진다. 안들어오면 default 값으로 세팅되고 들어오면 들어온 값으로 세팅된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;동일한 이름으로 여러개의 파라미터가 들어오면 MultiValueMap을 사용하자.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ModelAttribute&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;요청 파라미터로 들어온 값들을 통해서 객체를 조립한다.
+    &lt;ul&gt;
+      &lt;li&gt;해당 객체의 setter를 호출해서 값을 채우는 방식이다.&lt;/li&gt;
+      &lt;li&gt;파라미터 이름이 a이면 setA()메서드를 찾아서 호출한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;@ModelAttribute 도 생략할 수 있다. 그런데 @RequestParam도 생략이 가능하다. 그러면 어떻게 될까?
+    &lt;ul&gt;
+      &lt;li&gt;String, int, Integer 값은 단순한 타입은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@RequestParam&lt;/code&gt; 으로 매핑되고 나머지는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ModelAttribute&lt;/code&gt; 로 매핑된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;http-body로-요청&quot;&gt;HTTP Body로 요청&lt;/h1&gt;
+
+&lt;p&gt;HTTP body로 요청이 들어온 값은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@RequestParam&lt;/code&gt; 이나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ModelAttribute&lt;/code&gt; 로는 바인딩할 수 없다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HttpEntity&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;HTTP header, body 정보를 편리하게 조회할 수 있다.&lt;/li&gt;
+  &lt;li&gt;HTTP 응답에도 사용된다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RequestEntity&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ResponseEntity&lt;/code&gt; 는 HttpEntity를 상속받아서 기능을 제공한다.
+    &lt;ul&gt;
+      &lt;li&gt;RequestEntity 는 HttpMethod 와 url 정보를 추가할 수 있고 요청에서 사용된다.&lt;/li&gt;
+      &lt;li&gt;ResponseEntity 는 HTTP 상태 코드 설정을 할 수 있고, 응답에서 사용된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@RequestBody&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;@RequestBody를 사용하면 HTTP 메시지 바디 정보를 쉽게 조회할 수 있다.&lt;/li&gt;
+  &lt;li&gt;헤더 정보가 따로 필요하면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HttpEntity&lt;/code&gt; 를 사용하거나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@RequestHeader&lt;/code&gt;  를 사용하면 된다.&lt;/li&gt;
+  &lt;li&gt;@RequestBody에 직접 객체를 지정할 수 있다. (메시지 컨버터가 내부적으로 Json 데이터를 객체로 변환해서 넣어준다.)&lt;/li&gt;
+  &lt;li&gt;@RequestBody는 생략할 수 없다. 생략하면 ModelAttribute가 적용된다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;주의점&lt;/code&gt; : 요청 content-type이 application/json이어야 JSON을 처리할 수 있는 메시지 컨버터가 실행된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ResponseBody&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;@ResponseBody를 사용하면 응답 결과를 HTTP body 메시지에 직접 넣을 수 있다.&lt;/li&gt;
+  &lt;li&gt;@ResponseBody가 있으면 View Resolver가 실행되지 않는다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;정리&quot;&gt;정리&lt;/h3&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@GetMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/api&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;api&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;HttpServletResponse&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;IOException&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getWriter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ok&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;HttpServletResponse 객체를 통해서 HTTP 메시지 body에 ok라는 응답 메시지를 전달&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@GetMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/api&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ResponseEntity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;api&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ResponseEntity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ok&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HttpStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;OK&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ResponseEntity는 HttpEntity를 상속받아서 헤더, 바디 정보를 가지고 있다. 여기서 추가로 HTTP 응답 코드를 설정할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@ResponseBody&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@GetMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/api&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;api&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;ok&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;@ResponseBody가 붙으면 View Resolver가 호출되지 않고 HTTP 컨버터를 통해서 HTTP 메시지를 직접 입력할 수 있다. ResponseEntity도 동일하게 메시지 컨버터가 적용된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@GetMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/api&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ResponseEntity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;MyObject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;api&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;MyObject&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyObject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;A&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ResponseEntity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HttpStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;OK&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;HTTP 메시지 컨버터가 동작하고 JSON 형태로 객체가 변환되서 나간다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@ResponseStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;HttpStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;OK&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@ResponseBody&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@GetMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/api&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyObj&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;api&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;MyObj&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyObj&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;A&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;@ResponseStatus Annotation을 사용해서 응답 코드를 설정할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;http-메시지-컨버터&quot;&gt;HTTP 메시지 컨버터&lt;/h1&gt;
+
+&lt;p&gt;JSON 데이터를 HTTP 메시지 바디에서 읽거나 쓰는 경우에는 HTTP 메시지 컨버터가 작동한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/17_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;스프링은 HTTP 요청, 응답에서 @RequestBody, @ResponseBody를 사용하면 HTTP 메시지 컨버터가 작동한다.&lt;/li&gt;
+  &lt;li&gt;HTTP 메시지 컨버터는 요청, 응답에 모두 사용되고 클래스와 미디어타입을 체크해서 적절하게 처리한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;스프링 부트 기본 메시지 컨버터&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;0 = ByteArrayMessageConverter&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;MediaType : * / *&lt;/li&gt;
+  &lt;li&gt;classType : byte[]&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;1 = StringHttpMessageConverter&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;MediaType : * / *&lt;/li&gt;
+  &lt;li&gt;classType : String&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;2 = MappingJackson2HttpMessageConverter&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;MediaType : application/json&lt;/li&gt;
+  &lt;li&gt;classType : 객체, HashMap&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;예제로 확인해보자&lt;/p&gt;
+
+&lt;h4 id=&quot;stringhttpmessageconverter&quot;&gt;StringHttpMessageConverter&lt;/h4&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//content-type: application/json&lt;/span&gt;
+ 
+&lt;span class=&quot;nd&quot;&gt;@RequestMapping&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;api&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@RequestBody&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Media-Type 이 application/json으로 들어오고 class type 이 String인 경우&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Converter 우선순위가 가장 높은 ByteArrayMessageConverter가 먼저 실행되는데 class Type이 byte가 아니기 때문에 통과된다.&lt;/li&gt;
+  &lt;li&gt;다음으로 StringHttpMessageConverter가 실행되는데 모든 미디어 타입을 처리하고 classType이 String이기 때문에 여기서 처리된다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;mappingjakson2httpmessageconverter&quot;&gt;MappingJakson2HttpMessageConverter&lt;/h4&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//content-type: application/json&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@RequestMapping&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;api&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@RequestBody&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyObj&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Media-Type 이 application/json으로 들어오고 class type 이 객체인 경우&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;ByteArrayMessageConverter 가 실행되는데 class-type이 객체라서 통과&lt;/li&gt;
+  &lt;li&gt;StirngHttpMessageConverter가 실행되는데 마찬가지로 class-Type이 객체라서 통과&lt;/li&gt;
+  &lt;li&gt;MappingJakson2HttpMessageConverter가 실행된다. (Media-Type이 일치하고 객체가 들어오기 때문에)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;실패&quot;&gt;실패&lt;/h4&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//content-type: text/html&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@RequestMapping&lt;/span&gt;
+&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@RequestBody&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyObj&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Media_Type 이 text/html으로 들어오고 class type이 객체인 경우&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;ByteArrayMessageConverter가 실행되는데 class-Type이 객체라서 패스&lt;/li&gt;
+  &lt;li&gt;StringHttpMessageConverter가 실행되는데 class-Type이 객체라서 패스&lt;/li&gt;
+  &lt;li&gt;MappingJakson2HttpMessageConverter가 실행되는데 Media-Type 불일치로 패스&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Fail&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;requestmappinghandleradapter-구조&quot;&gt;RequestMappingHandlerAdapter 구조&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/17_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ArgumentResolver&lt;/code&gt; 에 대해서 자세히 알아보자.&lt;/p&gt;
+
+&lt;p&gt;Annotation 기반의 컨트롤러는 다양한 파라미터를 제공한다. HttpServlet, Model, @ReqeustParam, @ModelAttribute, @RequestBody, HttpEntity 등등 정말 많은 파라미터를 제공하는데 이걸 누가 넣어줄까?&lt;/p&gt;
+
+&lt;p&gt;정답은 ArgumentResolver가 넣어준다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RequestMappingHanlderAdapter&lt;/code&gt; 는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ArgumentResolver&lt;/code&gt; 를 호출해서 컨트롤러에 필요한 파라미터 값을 채우고 나서 컨트롤러를 호출한다.&lt;/p&gt;
+
+&lt;p&gt;동작 방식은 다음과 같다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ArgumentResolver&lt;/code&gt; 에서 컨트롤러에 필요한 파라미터를 지원하는지 체크하고 지원한다면 객체를 생성해서 어댑터로 넘긴다. 어댑터는 이 파라미터를 가지고 컨트롤러를 호출한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ReturnValueHandler&lt;/code&gt; 도 거의 비슷하게 작동한다. 컨트롤러의 반환값은 정말 다양하다. @ModelAndView, @ResponseBody, HttpEnttiy, String 등 정말 많은데 이것들을 잘 체크해서 응답값을 변환하고 처리한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;그렇다면-http-메시지-컨버터는-어디에-존재할까&quot;&gt;그렇다면 HTTP 메시지 컨버터는 어디에 존재할까?&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/17_3.png&quot; alt=&quot;img3&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;HTTP 메시지 컨버터는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ArgumentResolver&lt;/code&gt; 와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ReturnValueHandler&lt;/code&gt;  가 사용한다.&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="MVC" /><category term="MVC" /><summary type="html"></summary></entry><entry><title type="html">MVC 구조</title><link href="http://localhost:4000/mvc/MVC_Structure/" rel="alternate" type="text/html" title="MVC 구조" /><published>2023-07-12T00:00:00+09:00</published><updated>2023-07-12T00:00:00+09:00</updated><id>http://localhost:4000/mvc/MVC_Structure</id><content type="html" xml:base="http://localhost:4000/mvc/MVC_Structure/">&lt;h2 id=&quot;스프링-mvc-구조&quot;&gt;스프링 MVC 구조&lt;/h2&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/16_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;스프링 MVC는 FrontController 패턴으로 구현되어 있다. Dispatcher Servlet(FrontController)에서 공통되는 로직을 처리하고 요청으로 들어온 URL에 해당하는 URL을 처리하는 컨트롤러를 호출한다.&lt;/p&gt;
+&lt;p&gt;스프링 MVC는 FrontController 패턴으로 구현되어 있다. Dispatcher Servlet(FrontController)에서 공통되는 로직을 처리하고 요청으로 들어온 URL에 해당하는  컨트롤러를 호출한다.&lt;/p&gt;
 
 &lt;h3 id=&quot;동작-순서&quot;&gt;동작 순서&lt;/h3&gt;
 
@@ -42,8 +402,8 @@
 &lt;p&gt;&lt;em&gt;스프링 부트가 자동 등록하는 Resolver&lt;/em&gt;&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;BeanNameViewResolver : 빈 이름으로 뷰를 찾아서 반환&lt;/li&gt;
-  &lt;li&gt;InternalResourceViewResolver : JSP를 처리할 수 있는 뷰를 반환
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BeanNameViewResolver&lt;/code&gt; : 빈 이름으로 뷰를 찾아서 반환&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;InternalResourceViewResolver&lt;/code&gt; : JSP를 처리할 수 있는 뷰를 반환
     &lt;ul&gt;
       &lt;li&gt;내부에서 forward()를 호출해서 JSP를 실행한다.&lt;/li&gt;
     &lt;/ul&gt;
@@ -323,62 +683,7 @@
 &lt;h1 id=&quot;참고-사이트-출처&quot;&gt;&lt;em&gt;참고 사이트 출처&lt;/em&gt;&lt;/h1&gt;
 &lt;p&gt;https://inpa.tistory.com/entry/GOF-%F0%9F%92%A0-%ED%94%84%EB%A1%9D%EC%8B%9CProxy-%ED%8C%A8%ED%84%B4-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EB%B0%B0%EC%9B%8C%EB%B3%B4%EC%9E%90&lt;/p&gt;
 
-&lt;p&gt;https://velog.io/@mooh2jj/%EC%8A%A4%ED%94%84%EB%A7%81%EC%9D%84-%EC%9C%84%ED%95%9C-%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4-%EC%A0%95%EB%A6%AC&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="CS" /><category term="Design pattern" /><summary type="html"></summary></entry><entry><title type="html">서블릿</title><link href="http://localhost:4000/mvc/Servlet/" rel="alternate" type="text/html" title="서블릿" /><published>2023-07-05T00:00:00+09:00</published><updated>2023-07-05T00:00:00+09:00</updated><id>http://localhost:4000/mvc/Servlet</id><content type="html" xml:base="http://localhost:4000/mvc/Servlet/">&lt;h1 id=&quot;servlet&quot;&gt;&lt;em&gt;Servlet&lt;/em&gt;&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;서블릿은 TCP/IP connection, Socket connection, HTTP message parsing, HTTP response message 생성 등, 핵심 비즈니스 로직을 제외한 부분을 대신 해준다.&lt;/li&gt;
-  &lt;li&gt;스프링 부트에서 servlet을 직접 등록해서 사용하려면 @ServletComponentScan 을 붙이면 된다. &lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;was의-요청-구조&quot;&gt;&lt;em&gt;WAS의 요청 구조&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/13_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;스프링 부트가 톰켓(WAS)를 띄워준다.&lt;/li&gt;
-  &lt;li&gt;톰켓은 서블릿 컨테이너에 서블릿을 등록하고 싱글톤으로 관리한다.&lt;/li&gt;
-  &lt;li&gt;HTTP 요청마다 톰켓이 request, response 객체를 새로 생성하고 서블릿 객체에 넣어서 실행한다. &lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;httpservletrequest&quot;&gt;&lt;em&gt;HttpServletRequest&lt;/em&gt;&lt;/h1&gt;
-&lt;p&gt;개발자가 HTTP 메시지를 직접 파싱해서 사용할 수도 있겠지만 굉장히 불편하고 반복적인 작업이다. 서블릿은 HTTP 메시지를 대신 파싱해서 HttpServletRequest 객체에 담아서 준다.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;기능&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;임시 저장소 역할을 한다. request.setAttribute(name, value)로 저장, request.getAttribute(name)으로 조회&lt;/li&gt;
-  &lt;li&gt;세션 관리를 해준다. request.getSession(create: true)&lt;/li&gt;
-  &lt;li&gt;이 외에도 HTTP 메시지를 다 조회할 수 있다. startline, header, body &lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;http-요청-데이터&quot;&gt;HTTP 요청 데이터&lt;/h1&gt;
-&lt;p&gt;HTTP 요청 메시지를 통해 클라이언트에서 서버로 데이터를 전달하는 방식은 크게 3가지이다. &lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;GET - 쿼리 파라미터&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;ex- /url?username=hello&amp;amp;age=20&lt;/li&gt;
-      &lt;li&gt;검색, 필터, 페이징 등에 많이 사용된다.&lt;/li&gt;
-      &lt;li&gt;body를 사용하지 않기 때문에 content-type이 없다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;POST - HTML Form&lt;/strong&gt; &lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/13_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;content-type: applicaiton/x-www.form-urlencoded&lt;/li&gt;
-  &lt;li&gt;메시지 바디에 쿼리 파라미터 형식으로 전달&lt;/li&gt;
-  &lt;li&gt;GET 쿼리 파라미터 방식이랑 동일한 폼으로 들어오기 때문에 서버측에서는 동일한 방법으로 적용해서 조회할 수 있다. -&amp;gt; request.getParameter()&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;HTTP 메시지 바디를 사용하기 때문에 content-type을 지정해야 한다. (application/x-www-form-urlencoded)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;HTTP message body에 데이터 넣어서 요청 (JSON)&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;HTTP API에 주로 사용된다. 거의 Json&lt;/li&gt;
-      &lt;li&gt;Json 형식으로 데이터를 넘길때는 content-type을 application/json으로 설정해야 한다.&lt;/li&gt;
-      &lt;li&gt;ObjectMapper를 사용해서 json을 파싱할 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="MVC" /><category term="MVC" /><summary type="html">Servlet 서블릿은 TCP/IP connection, Socket connection, HTTP message parsing, HTTP response message 생성 등, 핵심 비즈니스 로직을 제외한 부분을 대신 해준다. 스프링 부트에서 servlet을 직접 등록해서 사용하려면 @ServletComponentScan 을 붙이면 된다.</summary></entry><entry><title type="html">전략 패턴</title><link href="http://localhost:4000/cs/Strategy/" rel="alternate" type="text/html" title="전략 패턴" /><published>2023-07-05T00:00:00+09:00</published><updated>2023-07-05T00:00:00+09:00</updated><id>http://localhost:4000/cs/Strategy</id><content type="html" xml:base="http://localhost:4000/cs/Strategy/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;https://velog.io/@mooh2jj/%EC%8A%A4%ED%94%84%EB%A7%81%EC%9D%84-%EC%9C%84%ED%95%9C-%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4-%EC%A0%95%EB%A6%AC&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="CS" /><category term="Design pattern" /><summary type="html"></summary></entry><entry><title type="html">전략 패턴</title><link href="http://localhost:4000/cs/Strategy/" rel="alternate" type="text/html" title="전략 패턴" /><published>2023-07-05T00:00:00+09:00</published><updated>2023-07-05T00:00:00+09:00</updated><id>http://localhost:4000/cs/Strategy</id><content type="html" xml:base="http://localhost:4000/cs/Strategy/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h1 id=&quot;strategy-pattern&quot;&gt;Strategy pattern&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;객체의 행위를 바꾸고 싶은 경우 직접 수정하지 않고 전략이라고 부르는 캡슐화한 알고리즘을 컨텍스트 안에서 바꿔주면서 상호 교체가 가능하게 만드는 패턴이다.&lt;/li&gt;
@@ -465,7 +770,62 @@ OCP 지킴 : 새로운 요구사항이 생겼을 때, 기존 코드를 건드리
 
 &lt;h1 id=&quot;단점&quot;&gt;&lt;strong&gt;단점&lt;/strong&gt;&lt;/h1&gt;
 &lt;p&gt;전략패턴을 적용하면 코드가 길어지고 보기 힘들어진다. 
-컨텍스트에 적용되는 알고리즘이 적다면 분기를 타는 것이 더 좋을 수 있다.&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="CS" /><category term="Design pattern" /><summary type="html">Strategy pattern 객체의 행위를 바꾸고 싶은 경우 직접 수정하지 않고 전략이라고 부르는 캡슐화한 알고리즘을 컨텍스트 안에서 바꿔주면서 상호 교체가 가능하게 만드는 패턴이다. 특정 컨텍스트에서 알고리즘을 별도로 분리하는 설계 방법을 의미한다. 쉽게 말해서 특정 기능을 수행하는데 다양한 알고리즘이 적용될 수 있을 때, 알고리즘을 별도로 분리하는 설계 방법을 의미하는 것이다.</summary></entry><entry><title type="html">싱글톤 패턴</title><link href="http://localhost:4000/cs/Singleton/" rel="alternate" type="text/html" title="싱글톤 패턴" /><published>2023-07-04T00:00:00+09:00</published><updated>2023-07-04T00:00:00+09:00</updated><id>http://localhost:4000/cs/Singleton</id><content type="html" xml:base="http://localhost:4000/cs/Singleton/">&lt;h2 id=&quot;디자인패턴-&quot;&gt;&lt;strong&gt;디자인패턴&lt;/strong&gt; &lt;br /&gt;&lt;/h2&gt;
+컨텍스트에 적용되는 알고리즘이 적다면 분기를 타는 것이 더 좋을 수 있다.&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="CS" /><category term="Design pattern" /><summary type="html">Strategy pattern 객체의 행위를 바꾸고 싶은 경우 직접 수정하지 않고 전략이라고 부르는 캡슐화한 알고리즘을 컨텍스트 안에서 바꿔주면서 상호 교체가 가능하게 만드는 패턴이다. 특정 컨텍스트에서 알고리즘을 별도로 분리하는 설계 방법을 의미한다. 쉽게 말해서 특정 기능을 수행하는데 다양한 알고리즘이 적용될 수 있을 때, 알고리즘을 별도로 분리하는 설계 방법을 의미하는 것이다.</summary></entry><entry><title type="html">서블릿</title><link href="http://localhost:4000/mvc/Servlet/" rel="alternate" type="text/html" title="서블릿" /><published>2023-07-05T00:00:00+09:00</published><updated>2023-07-05T00:00:00+09:00</updated><id>http://localhost:4000/mvc/Servlet</id><content type="html" xml:base="http://localhost:4000/mvc/Servlet/">&lt;h1 id=&quot;servlet&quot;&gt;&lt;em&gt;Servlet&lt;/em&gt;&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;서블릿은 TCP/IP connection, Socket connection, HTTP message parsing, HTTP response message 생성 등, 핵심 비즈니스 로직을 제외한 부분을 대신 해준다.&lt;/li&gt;
+  &lt;li&gt;스프링 부트에서 servlet을 직접 등록해서 사용하려면 @ServletComponentScan 을 붙이면 된다. &lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;was의-요청-구조&quot;&gt;&lt;em&gt;WAS의 요청 구조&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/13_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;스프링 부트가 톰켓(WAS)를 띄워준다.&lt;/li&gt;
+  &lt;li&gt;톰켓은 서블릿 컨테이너에 서블릿을 등록하고 싱글톤으로 관리한다.&lt;/li&gt;
+  &lt;li&gt;HTTP 요청마다 톰켓이 request, response 객체를 새로 생성하고 서블릿 객체에 넣어서 실행한다. &lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;httpservletrequest&quot;&gt;&lt;em&gt;HttpServletRequest&lt;/em&gt;&lt;/h1&gt;
+&lt;p&gt;개발자가 HTTP 메시지를 직접 파싱해서 사용할 수도 있겠지만 굉장히 불편하고 반복적인 작업이다. 서블릿은 HTTP 메시지를 대신 파싱해서 HttpServletRequest 객체에 담아서 준다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;기능&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;임시 저장소 역할을 한다. request.setAttribute(name, value)로 저장, request.getAttribute(name)으로 조회&lt;/li&gt;
+  &lt;li&gt;세션 관리를 해준다. request.getSession(create: true)&lt;/li&gt;
+  &lt;li&gt;이 외에도 HTTP 메시지를 다 조회할 수 있다. startline, header, body &lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;http-요청-데이터&quot;&gt;HTTP 요청 데이터&lt;/h1&gt;
+&lt;p&gt;HTTP 요청 메시지를 통해 클라이언트에서 서버로 데이터를 전달하는 방식은 크게 3가지이다. &lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;GET - 쿼리 파라미터&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;ex- /url?username=hello&amp;amp;age=20&lt;/li&gt;
+      &lt;li&gt;검색, 필터, 페이징 등에 많이 사용된다.&lt;/li&gt;
+      &lt;li&gt;body를 사용하지 않기 때문에 content-type이 없다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;POST - HTML Form&lt;/strong&gt; &lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/13_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;content-type: applicaiton/x-www.form-urlencoded&lt;/li&gt;
+  &lt;li&gt;메시지 바디에 쿼리 파라미터 형식으로 전달&lt;/li&gt;
+  &lt;li&gt;GET 쿼리 파라미터 방식이랑 동일한 폼으로 들어오기 때문에 서버측에서는 동일한 방법으로 적용해서 조회할 수 있다. -&amp;gt; request.getParameter()&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;HTTP 메시지 바디를 사용하기 때문에 content-type을 지정해야 한다. (application/x-www-form-urlencoded)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;HTTP message body에 데이터 넣어서 요청 (JSON)&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;HTTP API에 주로 사용된다. 거의 Json&lt;/li&gt;
+      &lt;li&gt;Json 형식으로 데이터를 넘길때는 content-type을 application/json으로 설정해야 한다.&lt;/li&gt;
+      &lt;li&gt;ObjectMapper를 사용해서 json을 파싱할 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="MVC" /><category term="MVC" /><summary type="html">Servlet 서블릿은 TCP/IP connection, Socket connection, HTTP message parsing, HTTP response message 생성 등, 핵심 비즈니스 로직을 제외한 부분을 대신 해준다. 스프링 부트에서 servlet을 직접 등록해서 사용하려면 @ServletComponentScan 을 붙이면 된다.</summary></entry><entry><title type="html">싱글톤 패턴</title><link href="http://localhost:4000/cs/Singleton/" rel="alternate" type="text/html" title="싱글톤 패턴" /><published>2023-07-04T00:00:00+09:00</published><updated>2023-07-04T00:00:00+09:00</updated><id>http://localhost:4000/cs/Singleton</id><content type="html" xml:base="http://localhost:4000/cs/Singleton/">&lt;h2 id=&quot;디자인패턴-&quot;&gt;&lt;strong&gt;디자인패턴&lt;/strong&gt; &lt;br /&gt;&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;디자인 패턴이란 프로그램을 설계할 때 발생했던 문제점들을 객체 간의 상호 관계 등을 이용해서 해결할 수 있도록 하나의 규약 형태로 만들어 놓은 것을 뜻한다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -704,4 +1064,4 @@ OCP 지킴 : 새로운 요구사항이 생겼을 때, 기존 코드를 건드리
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;개발자는 설정만 잘 해주면 WAS가 멀티 쓰레드 관련 코드를 관리해준다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="MVC" /><category term="MVC" /><summary type="html">웹 서버와 웹 애플리케이션 서버 웹 서버 (Web server) 정적 리소스 제공 (html, css, js, 이미지, 영상) 웹 애플리케이션 서버 (WAS - Web Application Server) 웹 서버의 기능을 포함하고 프로그램 코드를 실행해서 애플리케이션 로직 수행 동적 html, HTTP API(JSON), 서블릿, JSP, 스프링 MVC 등 이 둘은 경계가 모호하다.</summary></entry><entry><title type="html">Mvcerror</title><link href="http://localhost:4000/mvcError/" rel="alternate" type="text/html" title="Mvcerror" /><published>2023-07-01T00:00:00+09:00</published><updated>2023-07-01T00:00:00+09:00</updated><id>http://localhost:4000/mvcError</id><content type="html" xml:base="http://localhost:4000/mvcError/"></content><author><name>Moon JinSu</name></author><summary type="html"></summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="MVC" /><category term="MVC" /><summary type="html">웹 서버와 웹 애플리케이션 서버 웹 서버 (Web server) 정적 리소스 제공 (html, css, js, 이미지, 영상) 웹 애플리케이션 서버 (WAS - Web Application Server) 웹 서버의 기능을 포함하고 프로그램 코드를 실행해서 애플리케이션 로직 수행 동적 html, HTTP API(JSON), 서블릿, JSP, 스프링 MVC 등 이 둘은 경계가 모호하다.</summary></entry></feed>

@@ -102,8 +102,14 @@ var store = [{
         "teaser": null
       },{
         "title": "MVC 구조",
-        "excerpt":"스프링 MVC 구조 스프링 MVC는 FrontController 패턴으로 구현되어 있다. Dispatcher Servlet(FrontController)에서 공통되는 로직을 처리하고 요청으로 들어온 URL에 해당하는 URL을 처리하는 컨트롤러를 호출한다. 동작 순서 핸들러 조회 : 핸들러 매핑 map을 뒤져서 요청한 URL에 해당하는 컨트롤러가 있는지 확인한다. 핸들러 어댑터 조회 : 해당 핸들러를 실행할 수 있는 어댑터가 존재하는 지 확인한다....","categories": ["MVC"],
+        "excerpt":"스프링 MVC 구조 스프링 MVC는 FrontController 패턴으로 구현되어 있다. Dispatcher Servlet(FrontController)에서 공통되는 로직을 처리하고 요청으로 들어온 URL에 해당하는 컨트롤러를 호출한다. 동작 순서 핸들러 조회 : 핸들러 매핑 map을 뒤져서 요청한 URL에 해당하는 컨트롤러가 있는지 확인한다. 핸들러 어댑터 조회 : 해당 핸들러를 실행할 수 있는 어댑터가 존재하는 지 확인한다. 핸들러 어댑터...","categories": ["MVC"],
         "tags": ["MVC"],
         "url": "/mvc/MVC_Structure/",
+        "teaser": null
+      },{
+        "title": "MVC 기능",
+        "excerpt":"요청매핑 @RequestMapping @RequestMapping은 파라미터로 URL을 넣을 수 있는데 해당 URL로 호출이 오면 메서드가 실행된다. 여러개의 URL을 배열 형태로 받을 수도 있다. @RequestMapping은 HTTP 메서드를 지정하지 않으면 HTTP 메서드 종류에 상관없이 무조건 호출된다. @GetMapping, @PostMapping, @PatchMapping, @DeleteMapping , @PutMapping 을 사용하면 HTTP 메서드에 따라 호출 여부를 결정하게 할 수 있다. @RequestMapping...","categories": ["MVC"],
+        "tags": ["MVC"],
+        "url": "/mvc/Spring_MVC_function/",
         "teaser": null
       }]
