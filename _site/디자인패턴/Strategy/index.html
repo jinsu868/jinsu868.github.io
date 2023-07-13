@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>전략 패턴 - Jinsu’s story</title>
-<meta name="description" content="Strategy pattern    객체의 행위를 바꾸고 싶은 경우 직접 수정하지 않고 전략이라고 부르는 캡슐화한 알고리즘을 컨텍스트 안에서 바꿔주면서 상호 교체가 가능하게 만드는 패턴이다.   특정 컨텍스트에서 알고리즘을 별도로 분리하는 설계 방법을 의미한다.   쉽게 말해서 특정 기능을 수행하는데 다양한 알고리즘이 적용될 수 있을 때, 알고리즘을 별도로 분리하는 설계 방법을 의미하는 것이다.">
+<meta name="description" content="">
 
 
   <meta name="author" content="Moon JinSu">
@@ -23,10 +23,10 @@
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="Jinsu's story">
 <meta property="og:title" content="전략 패턴">
-<meta property="og:url" content="http://localhost:4000/cs/Strategy/">
+<meta property="og:url" content="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Strategy/">
 
 
-  <meta property="og:description" content="Strategy pattern    객체의 행위를 바꾸고 싶은 경우 직접 수정하지 않고 전략이라고 부르는 캡슐화한 알고리즘을 컨텍스트 안에서 바꿔주면서 상호 교체가 가능하게 만드는 패턴이다.   특정 컨텍스트에서 알고리즘을 별도로 분리하는 설계 방법을 의미한다.   쉽게 말해서 특정 기능을 수행하는데 다양한 알고리즘이 적용될 수 있을 때, 알고리즘을 별도로 분리하는 설계 방법을 의미하는 것이다.">
+  <meta property="og:description" content="">
 
 
 
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/cs/Strategy/">
+<link rel="canonical" href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Strategy/">
 
 
 
@@ -258,13 +258,13 @@
               
                   
                   <li>
-                      <a href="/categories/#cs" class="">CS (3)</a>
+                      <a href="/categories/#cs" class="">CS (2)</a>
                   </li>
                   
               
                   
                   <li>
-                      <a href="/categories/#디자인패턴" class="">디자인패턴 (2)</a>
+                      <a href="/categories/#디자인패턴" class="">디자인패턴 (3)</a>
                   </li>
                   
               
@@ -284,7 +284,7 @@
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="전략 패턴">
-    <meta itemprop="description" content="Strategy pattern  객체의 행위를 바꾸고 싶은 경우 직접 수정하지 않고 전략이라고 부르는 캡슐화한 알고리즘을 컨텍스트 안에서 바꿔주면서 상호 교체가 가능하게 만드는 패턴이다.  특정 컨텍스트에서 알고리즘을 별도로 분리하는 설계 방법을 의미한다.  쉽게 말해서 특정 기능을 수행하는데 다양한 알고리즘이 적용될 수 있을 때, 알고리즘을 별도로 분리하는 설계 방법을 의미하는 것이다. ">
+    <meta itemprop="description" content="">
     <meta itemprop="datePublished" content="2023-07-05T00:00:00+09:00">
     
 
@@ -292,7 +292,7 @@
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="http://localhost:4000/cs/Strategy/" class="u-url" itemprop="url">전략 패턴
+            <a href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Strategy/" class="u-url" itemprop="url">전략 패턴
 </a>
           </h1>
           
@@ -322,31 +322,41 @@
       <section class="page__content e-content" itemprop="text">
         
         <p><br /></p>
+
 <h1 id="strategy-pattern">Strategy pattern</h1>
 <ul>
   <li>객체의 행위를 바꾸고 싶은 경우 직접 수정하지 않고 전략이라고 부르는 캡슐화한 알고리즘을 컨텍스트 안에서 바꿔주면서 상호 교체가 가능하게 만드는 패턴이다.</li>
   <li>특정 컨텍스트에서 알고리즘을 별도로 분리하는 설계 방법을 의미한다.</li>
-  <li>쉽게 말해서 특정 기능을 수행하는데 다양한 알고리즘이 적용될 수 있을 때, 알고리즘을 별도로 분리하는 설계 방법을 의미하는 것이다. <br /><br /></li>
+  <li>쉽게 말해서 특정 기능을 수행하는데 다양한 알고리즘이 적용될 수 있을 때, 알고리즘을 별도로 분리하는 설계 방법을 의미하는 것이다.</li>
 </ul>
 
-<h1 id="strategy-pattern의-구조-">Strategy pattern의 구조 <br /></h1>
+<p><br /></p>
 
-<p><img src="/assets/images/12_1.png" alt="img1" width="60%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
+<p><br /></p>
+
+<h1 id="strategy-pattern의-구조">Strategy pattern의 구조</h1>
+
+<p><img src="/assets/images/12_1.png" alt="img1" width="60%&quot;&quot;, height=&quot;40%&quot;" /></p>
 
 <ul>
-  <li><strong>전략 인터페이스</strong> : 모든 전략 구현체에 대한 공용 인터페이스</li>
-  <li><strong>컨텍스트</strong> : 알고리즘을 실행할 때, 해당 알고리즘과 연결된 전략 객체의 메소드 호출</li>
-  <li><strong>클라이언트</strong> : 특정 전략 객체를 컨텍스트에 전달 함으로써 전략을 등록하거나 변경하여 전략 알고리즘을 실행한 결과를 얻는다.</li>
-  <li>전략패턴은 OOP의 집합체 (OCP, DIP, 다형성, 캡슐화, 추상화) <br /><br /></li>
+  <li><code class="language-plaintext highlighter-rouge">전략 인터페이스</code> : 모든 전략 구현체에 대한 공용 인터페이스</li>
+  <li><code class="language-plaintext highlighter-rouge">컨텍스트</code> : 알고리즘을 실행할 때, 해당 알고리즘과 연결된 전략 객체의 메소드 호출</li>
+  <li><code class="language-plaintext highlighter-rouge">클라이언트</code> : 특정 전략 객체를 컨텍스트에 전달 함으로써 전략을 등록하거나 변경하여 전략 알고리즘을 실행한 결과를 얻는다.</li>
+  <li>전략패턴은 OOP의 집합체 (OCP, DIP, 다형성, 캡슐화, 추상화)</li>
 </ul>
+
+<p><br /></p>
+
+<p><br /></p>
 
 <h1 id="전략-패턴-구현-코드">전략 패턴 구현 코드</h1>
 <ul>
   <li>블랙 프라이데이에는 50% 할인, 첫 방문 고객은 20%, 일반 방문은 할인 적용X</li>
-  <li>할인이라는 알고리즘을 <strong>DiscountPolicy</strong> 라는 인터페이스를 통해 분리해서 관리</li>
+  <li>할인이라는 알고리즘을 <code class="language-plaintext highlighter-rouge">DiscountPolicy</code> 라는 인터페이스를 통해 분리해서 관리</li>
 </ul>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">DiscountPolicy</span> <span class="o">{</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//전략 인터페이스</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">DiscountPolicy</span> <span class="o">{</span>
     <span class="kt">double</span> <span class="nf">discount</span><span class="o">(</span><span class="nc">Item</span> <span class="n">item</span><span class="o">);</span>
 <span class="o">}</span>
 
@@ -374,6 +384,7 @@
     <span class="o">}</span>
 <span class="o">}</span>
 
+<span class="c1">//컨텍스트</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Calculator</span> <span class="o">{</span>
     <span class="kd">private</span> <span class="kd">final</span> <span class="nc">DiscountPolicy</span> <span class="n">discountPolicy</span><span class="o">;</span>
 
@@ -390,7 +401,7 @@
     <span class="o">}</span>
 <span class="o">}</span>
 
-<span class="c1">//client</span>
+<span class="c1">//클라이언트</span>
 <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
     <span class="c1">//사용하는 곳에서 전략을 지정</span>
     <span class="nc">Calculator</span> <span class="n">cal</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Calculator</span><span class="o">(</span><span class="k">new</span> <span class="nc">BlackFridayDiscountPolicy</span><span class="o">());</span>
@@ -403,12 +414,26 @@
 <p><br /><br /></p>
 
 <h1 id="장점"><strong>장점</strong></h1>
-<p>컨텍스트 코드의 변경 없이 새로운 전략을 추가할 수 있다. 
-OCP 지킴 : 새로운 요구사항이 생겼을 때, 기존 코드를 건드리지 않고 새로운 클래스를 추가하면 된다. <br /><br /></p>
+<ul>
+  <li>
+    <p>컨텍스트 코드의 변경 없이 새로운 전략을 추가할 수 있다.</p>
+  </li>
+  <li>
+    <p>OCP 지킴 : 새로운 요구사항이 생겼을 때, 기존 코드를 건드리지 않고 새로운 클래스를 추가하면 된다.</p>
+  </li>
+</ul>
+
+<p><br /></p>
 
 <h1 id="단점"><strong>단점</strong></h1>
-<p>전략패턴을 적용하면 코드가 길어지고 보기 힘들어진다. 
-컨텍스트에 적용되는 알고리즘이 적다면 분기를 타는 것이 더 좋을 수 있다.</p>
+<ul>
+  <li>
+    <p>전략패턴을 적용하면 코드가 길어지고 보기 힘들어진다.</p>
+  </li>
+  <li>
+    <p>컨텍스트에 적용되는 알고리즘이 적다면 분기를 타는 것이 더 좋을 수 있다.</p>
+  </li>
+</ul>
 
 
         
@@ -426,7 +451,9 @@ OCP 지킴 : 새로운 요구사항이 생겼을 때, 기존 코드를 건드리
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
     <span itemprop="keywords">
     
-      <a href="/tags/#design-pattern" class="page__taxonomy-item p-category" rel="tag">Design pattern</a>
+      <a href="/tags/#cs" class="page__taxonomy-item p-category" rel="tag">CS</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4" class="page__taxonomy-item p-category" rel="tag">디자인패턴</a>
     
     </span>
   </p>
@@ -443,7 +470,7 @@ OCP 지킴 : 새로운 요구사항이 생겼을 때, 기존 코드를 건드리
     <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
     <span itemprop="keywords">
     
-      <a href="/categories/#cs" class="page__taxonomy-item p-category" rel="tag">CS</a>
+      <a href="/categories/#%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4" class="page__taxonomy-item p-category" rel="tag">디자인패턴</a>
     
     </span>
   </p>
@@ -460,11 +487,11 @@ OCP 지킴 : 새로운 요구사항이 생겼을 때, 기존 코드를 건드리
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%EC%A0%84%EB%9E%B5+%ED%8C%A8%ED%84%B4%20http%3A%2F%2Flocalhost%3A4000%2Fcs%2FStrategy%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%EC%A0%84%EB%9E%B5+%ED%8C%A8%ED%84%B4%20http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2FStrategy%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fcs%2FStrategy%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2FStrategy%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fcs%2FStrategy%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2FStrategy%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
