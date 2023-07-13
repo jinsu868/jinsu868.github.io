@@ -23,7 +23,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="Jinsu's story">
 <meta property="og:title" content="프록시 패턴">
-<meta property="og:url" content="http://localhost:4000/cs/Proxy/">
+<meta property="og:url" content="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Proxy/">
 
 
   <meta property="og:description" content="">
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/cs/Proxy/">
+<link rel="canonical" href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Proxy/">
 
 
 
@@ -258,7 +258,13 @@
               
                   
                   <li>
-                      <a href="/categories/#cs" class="">CS (5)</a>
+                      <a href="/categories/#cs" class="">CS (4)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#디자인패턴" class="">디자인패턴 (1)</a>
                   </li>
                   
               
@@ -286,7 +292,7 @@
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="http://localhost:4000/cs/Proxy/" class="u-url" itemprop="url">프록시 패턴
+            <a href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Proxy/" class="u-url" itemprop="url">프록시 패턴
 </a>
           </h1>
           
@@ -325,30 +331,34 @@
 
 <p><br /></p>
 
+<p><br /></p>
+
 <h1 id="프록시-패턴의-효과"><em>프록시 패턴의 효과</em></h1>
 <ul>
-  <li>보안 : 프록시는 클라이언트가 작업을 수행할 수 있는 권한이 있는지 확인하고 권한이 있을 경우에만 대상 객체에 전달한다.</li>
-  <li>캐싱 : 프록시가 내부 캐시를 유지하며 데이터가 캐시에 존재하지 않는 경우에만 대상에서 작업이 이루어지게 한다.</li>
-  <li>데이터 유효성 검사 : 프록시가 대상으로 접근하기 전에 유효성 검사를 한다.</li>
-  <li>지연 초기화 : 대상 생성 비용이 클 경우에 실제로 대상이 필요할 때까지 생성을 미루다가 필요한 시점에 대상을 생성한다.</li>
-  <li>로깅 : 프록시가 메소드 호출등을 기록한다.</li>
-  <li>원격 객체 : 프록시가 원격에 위치한 객체를 가져와서 로컬에 있는 것처럼 보이게 할 수 있다.</li>
+  <li><code class="language-plaintext highlighter-rouge">보안</code> : 프록시는 클라이언트가 작업을 수행할 수 있는 권한이 있는지 확인하고 권한이 있을 경우에만 대상 객체에 전달한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">캐싱</code> : 프록시가 내부 캐시를 유지하며 데이터가 캐시에 존재하지 않는 경우에만 대상에서 작업이 이루어지게 한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">데이터 유효성 검사</code> : 프록시가 대상으로 접근하기 전에 유효성 검사를 한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">지연 초기화</code> : 대상 생성 비용이 클 경우에 실제로 대상이 필요할 때까지 생성을 미루다가 필요한 시점에 대상을 생성한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">로깅</code> : 프록시가 메소드 호출등을 기록한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">원격 객체</code> : 프록시가 원격에 위치한 객체를 가져와서 로컬에 있는 것처럼 보이게 할 수 있다.</li>
 </ul>
+
+<p><br /></p>
 
 <p><br /></p>
 
 <h1 id="프록시-패턴-구조"><em>프록시 패턴 구조</em></h1>
 <blockquote>
-  <p>프록시는 다른 객체에 대한 접근을 제어하는 객체이다. 아래 다이어그램에서 다른 객체는 Subject이다. 프록시와 대상은 동일한 인터페이스를 가진다.</p>
+  <p>프록시는 다른 객체에 대한 접근을 제어하는 객체이다. 아래 다이어그램에서 다른 객체는 Subject이다. 프록시 객체와 대상 객체는 동일한 인터페이스를 가진다.</p>
 </blockquote>
 
 <p><img src="/assets/images/15_1.png" alt="img1" width="60%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
 
 <ul>
-  <li>Subject : 프록시와 RealSubject를 하나로 묶은 인터페이스</li>
-  <li>RealSubject : 원본 대상 객체</li>
-  <li>Proxy : RealSubject를 중계할 대리자</li>
-  <li>Client : Subject 인터페이스를 통해서 프록시 객체를 생성 및 이용
+  <li><code class="language-plaintext highlighter-rouge">Subject</code> : 프록시와 RealSubject를 하나로 묶은 인터페이스</li>
+  <li><code class="language-plaintext highlighter-rouge">RealSubject</code> : 원본 대상 객체</li>
+  <li><code class="language-plaintext highlighter-rouge">Proxy</code> : RealSubject를 중계할 대리자</li>
+  <li><code class="language-plaintext highlighter-rouge">Client</code> : Subject 인터페이스를 통해서 프록시 객체를 생성 및 이용
     <ul>
       <li>클라이언트는 프록시를 중간에 끼고 RealSubject와 데이터를 주고 받는다.</li>
     </ul>
@@ -357,25 +367,31 @@
 
 <p><br /></p>
 
+<p><br /></p>
+
 <h1 id="프록시-패턴은-언제-사용할까"><em>프록시 패턴은 언제 사용할까?</em></h1>
 <ol>
   <li>접근을 제어하고 싶거나 기능을 추가하고 싶은 때에 사용한다.</li>
-  <li>초기화 지연, 접근 제어, 로깅, 캐싱 등 기존 객체 동작에 수정을 가하고 싶지 않은 경우에 사용한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">초기화 지연</code>, <code class="language-plaintext highlighter-rouge">접근 제어</code>, <code class="language-plaintext highlighter-rouge">로깅</code>, <code class="language-plaintext highlighter-rouge">캐싱</code> 등 기존 객체 동작에 수정을 가하고 싶지 않은 경우에 사용한다.</li>
 </ol>
+
+<p><br /></p>
 
 <h1 id="장점"><em>장점</em></h1>
 <ul>
-  <li>OCP를 준수한다.
+  <li><code class="language-plaintext highlighter-rouge">OCP</code>를 준수한다.
     <ul>
       <li>기존 대상 코드를 변경하지 않고도 기능을 확장할 수 있다.</li>
     </ul>
   </li>
-  <li>SRP를 준수한다.
+  <li><code class="language-plaintext highlighter-rouge">SRP</code>를 준수한다.
     <ul>
       <li>대상 객체는 자신의 기능에 집중하고, 그 이외의 부가 기능을 프록시에 위임함으로서 다중 책임을 회피할 수있다.</li>
     </ul>
   </li>
 </ul>
+
+<p><br /></p>
 
 <h1 id="단점"><em>단점</em></h1>
 <ul>
@@ -387,8 +403,6 @@
 
 <h1 id="프록시-패턴-구현-코드"><em>프록시 패턴 구현 코드</em></h1>
 
-<p><br /></p>
-
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// subject interface, 프록시와 realSubject가 공유하는 인터페이스</span>
 <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Subject</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">operation</span><span class="o">();</span>
@@ -396,7 +410,7 @@
 </code></pre></div></div>
 
 <ul>
-  <li>Subject 인터페이스 <br /></li>
+  <li>Subject 인터페이스</li>
   <li>실제 대상 객체와 프록시 객체를 묶는 인터페이스이다.</li>
 </ul>
 
@@ -412,7 +426,7 @@
 
 <ul>
   <li>realSubject 객체</li>
-  <li>실제 대상 객체이다. <br /></li>
+  <li>실제 대상 객체이다.</li>
 </ul>
 
 <p><br /></p>
@@ -440,7 +454,7 @@
 </code></pre></div></div>
 
 <ul>
-  <li>Proxy 객체 <br /></li>
+  <li>Proxy 객체</li>
   <li>프록시 객체에서 id, pw를 통해 유효한 회원인지 체크하고 유효할 떄에만 실제 객체를 생성하고 로직을 호출한다.</li>
 </ul>
 
@@ -469,7 +483,9 @@
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
     <span itemprop="keywords">
     
-      <a href="/tags/#design-pattern" class="page__taxonomy-item p-category" rel="tag">Design pattern</a>
+      <a href="/tags/#cs" class="page__taxonomy-item p-category" rel="tag">CS</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4" class="page__taxonomy-item p-category" rel="tag">디자인패턴</a>
     
     </span>
   </p>
@@ -486,7 +502,7 @@
     <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
     <span itemprop="keywords">
     
-      <a href="/categories/#cs" class="page__taxonomy-item p-category" rel="tag">CS</a>
+      <a href="/categories/#%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4" class="page__taxonomy-item p-category" rel="tag">디자인패턴</a>
     
     </span>
   </p>
@@ -503,11 +519,11 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%ED%94%84%EB%A1%9D%EC%8B%9C+%ED%8C%A8%ED%84%B4%20http%3A%2F%2Flocalhost%3A4000%2Fcs%2FProxy%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%ED%94%84%EB%A1%9D%EC%8B%9C+%ED%8C%A8%ED%84%B4%20http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2FProxy%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fcs%2FProxy%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2FProxy%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fcs%2FProxy%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2FProxy%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 

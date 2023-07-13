@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-13T19:32:46+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">MVC 기능</title><link href="http://localhost:4000/mvc/Spring_MVC_function/" rel="alternate" type="text/html" title="MVC 기능" /><published>2023-07-12T00:00:00+09:00</published><updated>2023-07-12T00:00:00+09:00</updated><id>http://localhost:4000/mvc/Spring_MVC_function</id><content type="html" xml:base="http://localhost:4000/mvc/Spring_MVC_function/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-13T19:42:53+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">MVC 기능</title><link href="http://localhost:4000/mvc/Spring_MVC_function/" rel="alternate" type="text/html" title="MVC 기능" /><published>2023-07-12T00:00:00+09:00</published><updated>2023-07-12T00:00:00+09:00</updated><id>http://localhost:4000/mvc/Spring_MVC_function</id><content type="html" xml:base="http://localhost:4000/mvc/Spring_MVC_function/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;요청매핑&quot;&gt;요청매핑&lt;/h1&gt;
 
@@ -547,7 +547,7 @@
 &lt;ul&gt;
   &lt;li&gt;옵저버 패턴은 한 객체의 상태 변화에 대해 그 객체에 의존하는 다른 객체들에게 자동으로 연락을 보내서 정보를 갱신시키는 디자인 패턴이다.&lt;/li&gt;
   &lt;li&gt;연결할 때, 인터페이스를 이용해서 느슨한 결합을 유지한다. subject, observer 인터페이스를 적용한다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="CS" /><category term="Design pattern" /><summary type="html"></summary></entry><entry><title type="html">프록시 패턴</title><link href="http://localhost:4000/cs/Proxy/" rel="alternate" type="text/html" title="프록시 패턴" /><published>2023-07-06T00:00:00+09:00</published><updated>2023-07-06T00:00:00+09:00</updated><id>http://localhost:4000/cs/Proxy</id><content type="html" xml:base="http://localhost:4000/cs/Proxy/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="CS" /><category term="Design pattern" /><summary type="html"></summary></entry><entry><title type="html">프록시 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Proxy/" rel="alternate" type="text/html" title="프록시 패턴" /><published>2023-07-06T00:00:00+09:00</published><updated>2023-07-06T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Proxy</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Proxy/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;proxy-pattern&quot;&gt;&lt;em&gt;Proxy Pattern&lt;/em&gt;&lt;/h1&gt;
 &lt;blockquote&gt;
@@ -557,30 +557,34 @@
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;h1 id=&quot;프록시-패턴의-효과&quot;&gt;&lt;em&gt;프록시 패턴의 효과&lt;/em&gt;&lt;/h1&gt;
 &lt;ul&gt;
-  &lt;li&gt;보안 : 프록시는 클라이언트가 작업을 수행할 수 있는 권한이 있는지 확인하고 권한이 있을 경우에만 대상 객체에 전달한다.&lt;/li&gt;
-  &lt;li&gt;캐싱 : 프록시가 내부 캐시를 유지하며 데이터가 캐시에 존재하지 않는 경우에만 대상에서 작업이 이루어지게 한다.&lt;/li&gt;
-  &lt;li&gt;데이터 유효성 검사 : 프록시가 대상으로 접근하기 전에 유효성 검사를 한다.&lt;/li&gt;
-  &lt;li&gt;지연 초기화 : 대상 생성 비용이 클 경우에 실제로 대상이 필요할 때까지 생성을 미루다가 필요한 시점에 대상을 생성한다.&lt;/li&gt;
-  &lt;li&gt;로깅 : 프록시가 메소드 호출등을 기록한다.&lt;/li&gt;
-  &lt;li&gt;원격 객체 : 프록시가 원격에 위치한 객체를 가져와서 로컬에 있는 것처럼 보이게 할 수 있다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;보안&lt;/code&gt; : 프록시는 클라이언트가 작업을 수행할 수 있는 권한이 있는지 확인하고 권한이 있을 경우에만 대상 객체에 전달한다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;캐싱&lt;/code&gt; : 프록시가 내부 캐시를 유지하며 데이터가 캐시에 존재하지 않는 경우에만 대상에서 작업이 이루어지게 한다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;데이터 유효성 검사&lt;/code&gt; : 프록시가 대상으로 접근하기 전에 유효성 검사를 한다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;지연 초기화&lt;/code&gt; : 대상 생성 비용이 클 경우에 실제로 대상이 필요할 때까지 생성을 미루다가 필요한 시점에 대상을 생성한다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;로깅&lt;/code&gt; : 프록시가 메소드 호출등을 기록한다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;원격 객체&lt;/code&gt; : 프록시가 원격에 위치한 객체를 가져와서 로컬에 있는 것처럼 보이게 할 수 있다.&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;프록시-패턴-구조&quot;&gt;&lt;em&gt;프록시 패턴 구조&lt;/em&gt;&lt;/h1&gt;
 &lt;blockquote&gt;
-  &lt;p&gt;프록시는 다른 객체에 대한 접근을 제어하는 객체이다. 아래 다이어그램에서 다른 객체는 Subject이다. 프록시와 대상은 동일한 인터페이스를 가진다.&lt;/p&gt;
+  &lt;p&gt;프록시는 다른 객체에 대한 접근을 제어하는 객체이다. 아래 다이어그램에서 다른 객체는 Subject이다. 프록시 객체와 대상 객체는 동일한 인터페이스를 가진다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/15_1.png&quot; alt=&quot;img1&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Subject : 프록시와 RealSubject를 하나로 묶은 인터페이스&lt;/li&gt;
-  &lt;li&gt;RealSubject : 원본 대상 객체&lt;/li&gt;
-  &lt;li&gt;Proxy : RealSubject를 중계할 대리자&lt;/li&gt;
-  &lt;li&gt;Client : Subject 인터페이스를 통해서 프록시 객체를 생성 및 이용
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Subject&lt;/code&gt; : 프록시와 RealSubject를 하나로 묶은 인터페이스&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RealSubject&lt;/code&gt; : 원본 대상 객체&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Proxy&lt;/code&gt; : RealSubject를 중계할 대리자&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Client&lt;/code&gt; : Subject 인터페이스를 통해서 프록시 객체를 생성 및 이용
     &lt;ul&gt;
       &lt;li&gt;클라이언트는 프록시를 중간에 끼고 RealSubject와 데이터를 주고 받는다.&lt;/li&gt;
     &lt;/ul&gt;
@@ -589,25 +593,31 @@
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;h1 id=&quot;프록시-패턴은-언제-사용할까&quot;&gt;&lt;em&gt;프록시 패턴은 언제 사용할까?&lt;/em&gt;&lt;/h1&gt;
 &lt;ol&gt;
   &lt;li&gt;접근을 제어하고 싶거나 기능을 추가하고 싶은 때에 사용한다.&lt;/li&gt;
-  &lt;li&gt;초기화 지연, 접근 제어, 로깅, 캐싱 등 기존 객체 동작에 수정을 가하고 싶지 않은 경우에 사용한다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;초기화 지연&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;접근 제어&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;로깅&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;캐싱&lt;/code&gt; 등 기존 객체 동작에 수정을 가하고 싶지 않은 경우에 사용한다.&lt;/li&gt;
 &lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;장점&quot;&gt;&lt;em&gt;장점&lt;/em&gt;&lt;/h1&gt;
 &lt;ul&gt;
-  &lt;li&gt;OCP를 준수한다.
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OCP&lt;/code&gt;를 준수한다.
     &lt;ul&gt;
       &lt;li&gt;기존 대상 코드를 변경하지 않고도 기능을 확장할 수 있다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;SRP를 준수한다.
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SRP&lt;/code&gt;를 준수한다.
     &lt;ul&gt;
       &lt;li&gt;대상 객체는 자신의 기능에 집중하고, 그 이외의 부가 기능을 프록시에 위임함으로서 다중 책임을 회피할 수있다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;단점&quot;&gt;&lt;em&gt;단점&lt;/em&gt;&lt;/h1&gt;
 &lt;ul&gt;
@@ -619,8 +629,6 @@
 
 &lt;h1 id=&quot;프록시-패턴-구현-코드&quot;&gt;&lt;em&gt;프록시 패턴 구현 코드&lt;/em&gt;&lt;/h1&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// subject interface, 프록시와 realSubject가 공유하는 인터페이스&lt;/span&gt;
 &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Subject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;operation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
@@ -628,7 +636,7 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Subject 인터페이스 &lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;Subject 인터페이스&lt;/li&gt;
   &lt;li&gt;실제 대상 객체와 프록시 객체를 묶는 인터페이스이다.&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -644,7 +652,7 @@
 
 &lt;ul&gt;
   &lt;li&gt;realSubject 객체&lt;/li&gt;
-  &lt;li&gt;실제 대상 객체이다. &lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;실제 대상 객체이다.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
@@ -672,7 +680,7 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Proxy 객체 &lt;br /&gt;&lt;/li&gt;
+  &lt;li&gt;Proxy 객체&lt;/li&gt;
   &lt;li&gt;프록시 객체에서 id, pw를 통해 유효한 회원인지 체크하고 유효할 떄에만 실제 객체를 생성하고 로직을 호출한다.&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -683,7 +691,7 @@
 &lt;h1 id=&quot;참고-사이트-출처&quot;&gt;&lt;em&gt;참고 사이트 출처&lt;/em&gt;&lt;/h1&gt;
 &lt;p&gt;https://inpa.tistory.com/entry/GOF-%F0%9F%92%A0-%ED%94%84%EB%A1%9D%EC%8B%9CProxy-%ED%8C%A8%ED%84%B4-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EB%B0%B0%EC%9B%8C%EB%B3%B4%EC%9E%90&lt;/p&gt;
 
-&lt;p&gt;https://velog.io/@mooh2jj/%EC%8A%A4%ED%94%84%EB%A7%81%EC%9D%84-%EC%9C%84%ED%95%9C-%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4-%EC%A0%95%EB%A6%AC&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="CS" /><category term="Design pattern" /><summary type="html"></summary></entry><entry><title type="html">전략 패턴</title><link href="http://localhost:4000/cs/Strategy/" rel="alternate" type="text/html" title="전략 패턴" /><published>2023-07-05T00:00:00+09:00</published><updated>2023-07-05T00:00:00+09:00</updated><id>http://localhost:4000/cs/Strategy</id><content type="html" xml:base="http://localhost:4000/cs/Strategy/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;https://velog.io/@mooh2jj/%EC%8A%A4%ED%94%84%EB%A7%81%EC%9D%84-%EC%9C%84%ED%95%9C-%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4-%EC%A0%95%EB%A6%AC&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><category term="CS" /><summary type="html"></summary></entry><entry><title type="html">전략 패턴</title><link href="http://localhost:4000/cs/Strategy/" rel="alternate" type="text/html" title="전략 패턴" /><published>2023-07-05T00:00:00+09:00</published><updated>2023-07-05T00:00:00+09:00</updated><id>http://localhost:4000/cs/Strategy</id><content type="html" xml:base="http://localhost:4000/cs/Strategy/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;h1 id=&quot;strategy-pattern&quot;&gt;Strategy pattern&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;객체의 행위를 바꾸고 싶은 경우 직접 수정하지 않고 전략이라고 부르는 캡슐화한 알고리즘을 컨텍스트 안에서 바꿔주면서 상호 교체가 가능하게 만드는 패턴이다.&lt;/li&gt;
