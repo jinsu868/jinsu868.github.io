@@ -1,4 +1,215 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-13T20:10:42+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">MVC 기능</title><link href="http://localhost:4000/mvc/Spring_MVC_function/" rel="alternate" type="text/html" title="MVC 기능" /><published>2023-07-12T00:00:00+09:00</published><updated>2023-07-12T00:00:00+09:00</updated><id>http://localhost:4000/mvc/Spring_MVC_function</id><content type="html" xml:base="http://localhost:4000/mvc/Spring_MVC_function/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-14T16:14:32+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">반복자 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Iterator/" rel="alternate" type="text/html" title="반복자 패턴" /><published>2023-07-14T00:00:00+09:00</published><updated>2023-07-14T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Iterator</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Iterator/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;iterator-pattern&quot;&gt;&lt;em&gt;Iterator Pattern&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;이터레이터 패턴은 반복자를 사용해서 컬렉션과 같은 데이터 집합의 각 요소들을 순차적으로 접근할 수 있도록 해주는 디자인패턴이다. 자료형의 종류와 구조에 상관없이 하나의 인터페이스로 순회가 가능하다는 특징이 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/18_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Aggregate&lt;/code&gt;  : ConcreateAggreate 객체를 반환하는 인터페이스를 제공&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;iterator() : ConcreateIterator 객체를 만드는 팩토리 메서드&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ConcreateAggregate&lt;/code&gt; : 데이터의 집합체&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;iterator&lt;/code&gt; : 집합체 안의 요소들을 순서대로 조회하기 위한 인터페이스 제공&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;hasNext() : 순회할 다음 요소가 있는지 확인&lt;/li&gt;
+  &lt;li&gt;next() : 요소를 반환하고 다음 요소를 반환하기 위해 커서를 이동&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ConcreateIterator&lt;/code&gt; : 반복자 객체&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ConcreateAggreate가 구현한 메서드로부터 생성, ConcreateAggreate 의 컬렉션을 참조하여 순회&lt;/li&gt;
+  &lt;li&gt;어떤 전략으로 순회할지에 대한 로직이 구현됨.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;iterator-pattern-구현&quot;&gt;&lt;em&gt;Iterator Pattern 구현&lt;/em&gt;&lt;/h1&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Aggregate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;Iterator&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;iterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;//예제를 단순화하기 위해서 내부 &lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ConcreateAggreate&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Aggreate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ConcreateAggreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;arr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  
+  &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Iterator&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;iterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ConcreateIterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Iterator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hasNext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ConcreateIterator&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Iterator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nextIdx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ConcreateIterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;arr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  
+  &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hasNext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nextIdx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  
+  &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nextIdx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++];&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;이 예제는 배열로 구현했지만 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Aggreate&lt;/code&gt; 를 인터페이스로 분리했기 때문에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ConcreateAggreate&lt;/code&gt; 의 코드를 변경하지 않고도 다른 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Iterator&lt;/code&gt; 를 적용할 수 있다. 그리고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Iterator&lt;/code&gt; 도 인터페이스화 했기 때문에 기존 코드를 바꾸지 않고도 새로운 순회 방식을 추가할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;iterator-pattern-특징&quot;&gt;&lt;em&gt;Iterator Pattern 특징&lt;/em&gt;&lt;/h1&gt;
+
+&lt;h3 id=&quot;언제-쓸까&quot;&gt;언제 쓸까?&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;컬렉션 종류에 상관없이 객체 접근 순회 방식을 통일하고 싶을 때&lt;/li&gt;
+  &lt;li&gt;컬렉션의 순회 방식을 다양하게 하고 싶을 때 ex) 깊이우선, 넓이우선&lt;/li&gt;
+  &lt;li&gt;컬렉션 내부 구조를 클라이언트에게 숨기고 싶을 때&lt;/li&gt;
+  &lt;li&gt;데이터를 저장하는 컬렉션의 종류에 변경 가능성이 존재할 때&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;장점&quot;&gt;장점&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;일관된 인터페이스를 사용해서 여러 컬렉션을 조회할 수 있다.&lt;/li&gt;
+  &lt;li&gt;컬렉션 내부 구조를 몰라도 사용이 가능하다.&lt;/li&gt;
+  &lt;li&gt;순회 알고리즘을 별도로 분리해서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SRP&lt;/code&gt;를 준수한다.&lt;/li&gt;
+  &lt;li&gt;데이터 컬렉션 종류가 변경되도 클라이언트 코드의 수정이 발생하지 않는다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OCP&lt;/code&gt; 준수&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;단점&quot;&gt;단점&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;클래스가 늘어나고 복잡도가 높아진다.&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><category term="CS" /><summary type="html"></summary></entry><entry><title type="html">MVC 구조</title><link href="http://localhost:4000/mvc/MVC_Structure/" rel="alternate" type="text/html" title="MVC 구조" /><published>2023-07-12T00:00:00+09:00</published><updated>2023-07-12T00:00:00+09:00</updated><id>http://localhost:4000/mvc/MVC_Structure</id><content type="html" xml:base="http://localhost:4000/mvc/MVC_Structure/">&lt;h2 id=&quot;스프링-mvc-구조&quot;&gt;스프링 MVC 구조&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/16_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;스프링 MVC는 FrontController 패턴으로 구현되어 있다. Dispatcher Servlet(FrontController)에서 공통되는 로직을 처리하고 요청으로 들어온 URL에 해당하는  컨트롤러를 호출한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;동작-순서&quot;&gt;동작 순서&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;핸들러 조회&lt;/code&gt; : 핸들러 매핑 map을 뒤져서 요청한 URL에 해당하는 컨트롤러가 있는지 확인한다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;핸들러 어댑터 조회&lt;/code&gt; : 해당 핸들러를 실행할 수 있는 어댑터가 존재하는 지 확인한다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;핸들러 어댑터 실행&lt;/code&gt; : 핸들러 어댑터에 컨트롤러를 넘겨서 실행시킨다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;핸들러 실행&lt;/code&gt; : 핸들러 어댑터가 넘겨받은 컨트롤러를 실행시킨다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ModelAndView 반환&lt;/code&gt; : 핸들러 어댑터는 ModelAndView를 리턴한다.
+    &lt;ul&gt;
+      &lt;li&gt;컨트롤러의 스팩은 다를 수 있다. 때문에 어댑터는 상황에 맞게 적절하게 처리해서 ModelAndView를 Dispatcher Servlet에 넘긴다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ViewResolver 호출&lt;/code&gt;  : DIspatcher Servlet은 어댑터에게 받은 ModelAndView의 View Path를 ViewResolver에 넘겨서 논리 이름을 물리 이름으로 바꾸고 화면을 랜더링하는 View 객체를 반환받는다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;View 반환&lt;/code&gt; : VIew 객체를 통해서 화면을 랜더링한다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;스프링-부트가-제공하는-핸들러-매핑-어댑터&quot;&gt;스프링 부트가 제공하는 핸들러 매핑, 어댑터&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;HandlerMapping&lt;/em&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RequestMappingHandlerMapping&lt;/code&gt; : Annotation 기반 컨트롤러인 @RequestMapping 에 사용 (실무에서 99% 이거씀)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BeanNameUrlHandlerMapping&lt;/code&gt; : 빈의 이름으로 핸들러를 찾음.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;em&gt;HandlerAdapter&lt;/em&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RequestMappingHandlerAdapter&lt;/code&gt; : Annotation 기반의 컨트롤러인 @RequestMapping에 사용 (마찬가지로 이거만 씀)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HttpRequestHandlerAdapter&lt;/code&gt; : HttpRequestHandler 에 사용&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SimpleControllerHandlerAdapter&lt;/code&gt; : Controller 인터페이스 (현재는 사용되지 않는다.)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;view-resolver&quot;&gt;View Resolver&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;스프링 부트가 자동 등록하는 Resolver&lt;/em&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BeanNameViewResolver&lt;/code&gt; : 빈 이름으로 뷰를 찾아서 반환&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;InternalResourceViewResolver&lt;/code&gt; : JSP를 처리할 수 있는 뷰를 반환
+    &lt;ul&gt;
+      &lt;li&gt;내부에서 forward()를 호출해서 JSP를 실행한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;annotation-기반의-spring-mvc&quot;&gt;Annotation 기반의 Spring MVC&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RequestMapping&lt;/code&gt; 을 사용하는 컨트롤러, 앞에서 설명한 우선순위가 높은 핸들러 매핑(RequestMappiongHandlerMapping), 어댑터(ReqeustMappingHandlerAdapter) 가 모두 이것이다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Controller&lt;/code&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;내부에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Component&lt;/code&gt; 를 가지고 있어서 컴포넌트 스캔할 때 자동으로 스프링 빈으로 등록된다.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;p&gt;스프링 MVC에서 애노테이션 기반의 컨트롤러로 인식하게 된다.&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@RequestMapping&lt;/code&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;p&gt;해당 URL이 호출되면 이 에노테이션이 붙은 메서드가 호출된다.&lt;/p&gt;
+      &lt;/li&gt;
+      &lt;li&gt;클래스 단에 적은 URL과 컨트롤러에 붙은 URL을 합쳐서 매핑한다.&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@GetMapping&lt;/code&gt; , &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@PostMapping&lt;/code&gt; 을 사용해서 URL 매칭뿐 아니라 HTTP Method도 구분할 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;다양한 리턴값이 가능하다.&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li&gt;ModelAndView를 반환해도 되고 논리 위치를 반환해도 된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;spring-mvc-구조를-이해한-후-annotation-기반의-spring-mvc를-사용하자&quot;&gt;Spring MVC 구조를 이해한 후 Annotation 기반의 Spring MVC를 사용하자.&lt;/h2&gt;</content><author><name>Moon JinSu</name></author><category term="MVC" /><category term="MVC" /><summary type="html">스프링 MVC 구조</summary></entry><entry><title type="html">MVC 기능</title><link href="http://localhost:4000/mvc/Spring_MVC_function/" rel="alternate" type="text/html" title="MVC 기능" /><published>2023-07-12T00:00:00+09:00</published><updated>2023-07-12T00:00:00+09:00</updated><id>http://localhost:4000/mvc/Spring_MVC_function</id><content type="html" xml:base="http://localhost:4000/mvc/Spring_MVC_function/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;요청매핑&quot;&gt;요청매핑&lt;/h1&gt;
 
@@ -358,95 +569,7 @@
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/17_3.png&quot; alt=&quot;img3&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;HTTP 메시지 컨버터는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ArgumentResolver&lt;/code&gt; 와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ReturnValueHandler&lt;/code&gt;  가 사용한다.&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="MVC" /><category term="MVC" /><summary type="html"></summary></entry><entry><title type="html">MVC 구조</title><link href="http://localhost:4000/mvc/MVC_Structure/" rel="alternate" type="text/html" title="MVC 구조" /><published>2023-07-12T00:00:00+09:00</published><updated>2023-07-12T00:00:00+09:00</updated><id>http://localhost:4000/mvc/MVC_Structure</id><content type="html" xml:base="http://localhost:4000/mvc/MVC_Structure/">&lt;h2 id=&quot;스프링-mvc-구조&quot;&gt;스프링 MVC 구조&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/16_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;스프링 MVC는 FrontController 패턴으로 구현되어 있다. Dispatcher Servlet(FrontController)에서 공통되는 로직을 처리하고 요청으로 들어온 URL에 해당하는  컨트롤러를 호출한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;동작-순서&quot;&gt;동작 순서&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;핸들러 조회&lt;/code&gt; : 핸들러 매핑 map을 뒤져서 요청한 URL에 해당하는 컨트롤러가 있는지 확인한다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;핸들러 어댑터 조회&lt;/code&gt; : 해당 핸들러를 실행할 수 있는 어댑터가 존재하는 지 확인한다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;핸들러 어댑터 실행&lt;/code&gt; : 핸들러 어댑터에 컨트롤러를 넘겨서 실행시킨다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;핸들러 실행&lt;/code&gt; : 핸들러 어댑터가 넘겨받은 컨트롤러를 실행시킨다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ModelAndView 반환&lt;/code&gt; : 핸들러 어댑터는 ModelAndView를 리턴한다.
-    &lt;ul&gt;
-      &lt;li&gt;컨트롤러의 스팩은 다를 수 있다. 때문에 어댑터는 상황에 맞게 적절하게 처리해서 ModelAndView를 Dispatcher Servlet에 넘긴다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ViewResolver 호출&lt;/code&gt;  : DIspatcher Servlet은 어댑터에게 받은 ModelAndView의 View Path를 ViewResolver에 넘겨서 논리 이름을 물리 이름으로 바꾸고 화면을 랜더링하는 View 객체를 반환받는다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;View 반환&lt;/code&gt; : VIew 객체를 통해서 화면을 랜더링한다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;스프링-부트가-제공하는-핸들러-매핑-어댑터&quot;&gt;스프링 부트가 제공하는 핸들러 매핑, 어댑터&lt;/h3&gt;
-
-&lt;p&gt;&lt;em&gt;HandlerMapping&lt;/em&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RequestMappingHandlerMapping&lt;/code&gt; : Annotation 기반 컨트롤러인 @RequestMapping 에 사용 (실무에서 99% 이거씀)&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BeanNameUrlHandlerMapping&lt;/code&gt; : 빈의 이름으로 핸들러를 찾음.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;em&gt;HandlerAdapter&lt;/em&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RequestMappingHandlerAdapter&lt;/code&gt; : Annotation 기반의 컨트롤러인 @RequestMapping에 사용 (마찬가지로 이거만 씀)&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HttpRequestHandlerAdapter&lt;/code&gt; : HttpRequestHandler 에 사용&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SimpleControllerHandlerAdapter&lt;/code&gt; : Controller 인터페이스 (현재는 사용되지 않는다.)&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;view-resolver&quot;&gt;View Resolver&lt;/h3&gt;
-
-&lt;p&gt;&lt;em&gt;스프링 부트가 자동 등록하는 Resolver&lt;/em&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BeanNameViewResolver&lt;/code&gt; : 빈 이름으로 뷰를 찾아서 반환&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;InternalResourceViewResolver&lt;/code&gt; : JSP를 처리할 수 있는 뷰를 반환
-    &lt;ul&gt;
-      &lt;li&gt;내부에서 forward()를 호출해서 JSP를 실행한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;annotation-기반의-spring-mvc&quot;&gt;Annotation 기반의 Spring MVC&lt;/h3&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RequestMapping&lt;/code&gt; 을 사용하는 컨트롤러, 앞에서 설명한 우선순위가 높은 핸들러 매핑(RequestMappiongHandlerMapping), 어댑터(ReqeustMappingHandlerAdapter) 가 모두 이것이다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Controller&lt;/code&gt;&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;내부에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Component&lt;/code&gt; 를 가지고 있어서 컴포넌트 스캔할 때 자동으로 스프링 빈으로 등록된다.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;
-        &lt;p&gt;스프링 MVC에서 애노테이션 기반의 컨트롤러로 인식하게 된다.&lt;/p&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@RequestMapping&lt;/code&gt;&lt;/p&gt;
-
-    &lt;ul&gt;
-      &lt;li&gt;
-        &lt;p&gt;해당 URL이 호출되면 이 에노테이션이 붙은 메서드가 호출된다.&lt;/p&gt;
-      &lt;/li&gt;
-      &lt;li&gt;클래스 단에 적은 URL과 컨트롤러에 붙은 URL을 합쳐서 매핑한다.&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@GetMapping&lt;/code&gt; , &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@PostMapping&lt;/code&gt; 을 사용해서 URL 매칭뿐 아니라 HTTP Method도 구분할 수 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;다양한 리턴값이 가능하다.&lt;/p&gt;
-    &lt;ul&gt;
-      &lt;li&gt;ModelAndView를 반환해도 되고 논리 위치를 반환해도 된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;spring-mvc-구조를-이해한-후-annotation-기반의-spring-mvc를-사용하자&quot;&gt;Spring MVC 구조를 이해한 후 Annotation 기반의 Spring MVC를 사용하자.&lt;/h2&gt;</content><author><name>Moon JinSu</name></author><category term="MVC" /><category term="MVC" /><summary type="html">스프링 MVC 구조</summary></entry><entry><title type="html">옵저버 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Observer/" rel="alternate" type="text/html" title="옵저버 패턴" /><published>2023-07-06T00:00:00+09:00</published><updated>2023-07-06T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Observer</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Observer/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;HTTP 메시지 컨버터는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ArgumentResolver&lt;/code&gt; 와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ReturnValueHandler&lt;/code&gt;  가 사용한다.&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="MVC" /><category term="MVC" /><summary type="html"></summary></entry><entry><title type="html">옵저버 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Observer/" rel="alternate" type="text/html" title="옵저버 패턴" /><published>2023-07-06T00:00:00+09:00</published><updated>2023-07-06T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Observer</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Observer/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;observer-pattern&quot;&gt;&lt;em&gt;Observer Pattern&lt;/em&gt;&lt;/h1&gt;
 &lt;blockquote&gt;
@@ -1088,76 +1211,4 @@
         &lt;span class=&quot;n&quot;&gt;cat&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;speak&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><category term="CS" /><summary type="html"></summary></entry><entry><title type="html">서블릿</title><link href="http://localhost:4000/mvc/mvc2/" rel="alternate" type="text/html" title="서블릿" /><published>2023-07-03T00:00:00+09:00</published><updated>2023-07-03T00:00:00+09:00</updated><id>http://localhost:4000/mvc/mvc2</id><content type="html" xml:base="http://localhost:4000/mvc/mvc2/">&lt;h2&gt;**&lt;/h2&gt;</content><author><name>Moon JinSu</name></author><category term="MVC" /><category term="MVC" /><summary type="html">**</summary></entry><entry><title type="html">스프링 웹 MVC</title><link href="http://localhost:4000/mvc/mvc1/" rel="alternate" type="text/html" title="스프링 웹 MVC" /><published>2023-07-03T00:00:00+09:00</published><updated>2023-07-03T00:00:00+09:00</updated><id>http://localhost:4000/mvc/mvc1</id><content type="html" xml:base="http://localhost:4000/mvc/mvc1/">&lt;h2 id=&quot;웹-서버와-웹-애플리케이션-서버-&quot;&gt;&lt;strong&gt;웹 서버와 웹 애플리케이션 서버&lt;/strong&gt; &lt;br /&gt;&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;웹 서버 (Web server)
-    &lt;ul&gt;
-      &lt;li&gt;정적 리소스 제공 (html, css, js, 이미지, 영상)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;웹 애플리케이션 서버 (WAS - Web Application Server)
-    &lt;ul&gt;
-      &lt;li&gt;웹 서버의 기능을 포함하고 프로그램 코드를 실행해서 애플리케이션 로직 수행&lt;/li&gt;
-      &lt;li&gt;동적 html, HTTP API(JSON), 서블릿, JSP, 스프링 MVC 등&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;이 둘은 경계가 모호하다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;웹 시스템의 구성 - WEB, WAS, DB &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/9_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;정적 리소스는 Web server에서 처리하고 애플리케이션 로직같은 동적인 처리를 할 때, WAS에 위임해서 처리한다.&lt;/li&gt;
-  &lt;li&gt;WAS, DB가 장애가 나면 WEB 서버에서 오류 화면을 보여준다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;서블릿-&quot;&gt;&lt;strong&gt;서블릿&lt;/strong&gt; &lt;br /&gt;&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;서블릿을 사용하면 귀찮은 HTTP 파싱, HTTP 메시지 생성 등 비즈니스 로직과 관련 없는 부분들을 자동으로 처리해준다. &lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/9_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;WAS는 HTTP 요청이 오면 Request, Response 객체를 새로 생성하여 서블릿 객체를 호출한다.&lt;/li&gt;
-  &lt;li&gt;Request를 통해서 HTTP 요청 정보를 편하게 사용할 수 있다.&lt;/li&gt;
-  &lt;li&gt;Response를 통해서 HTTP 응답 정보를 편하게 넣을 수 있다.&lt;/li&gt;
-  &lt;li&gt;WAS는 Response 의 내용으로 HTTP 응답 정보를 생성한다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;서블릿 컨테이너&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;서블릿을 지원하는 WAS를 서블릿 컨테이너라고 한다.&lt;/li&gt;
-  &lt;li&gt;서블릿 객체는 싱글톤으로 관리된다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;쓰레드-풀-&quot;&gt;&lt;strong&gt;쓰레드 풀&lt;/strong&gt; &lt;br /&gt;&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/9_3.png&quot; alt=&quot;img3&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;미리 쓰레드를 생성해두고 필요할 때마다 쓰레드 풀에서 꺼내서 사용한다.&lt;/li&gt;
-  &lt;li&gt;다 사용하면 다시 반납한다.&lt;/li&gt;
-  &lt;li&gt;쓰레드가 이미 다 생성되어 있기 때문에 쓰레드 생성, 종료 비용이 절약되고, 응답 시간도 빠르다.&lt;/li&gt;
-  &lt;li&gt;생성 가능 쓰레드 최대치가 정해져 있어서 너무 많은 요청이 들어와도 안전하게 처리할 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;튜닝-포인트&quot;&gt;&lt;strong&gt;튜닝 포인트&lt;/strong&gt;&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;WAS의 주요 튜닝 포인트는 최대 쓰레드 수이다.
-    &lt;ul&gt;
-      &lt;li&gt;너무 낮게 설정하면 트레픽이 많을 때, 서버 리소스는 남는데, 클라이언트의 응답이 계속 지연된다.&lt;/li&gt;
-      &lt;li&gt;너무 높게 설정하면 CPU 메모리 리소스 임계 초과로 서버가 다운될 수 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;일단 클라우드면 서버를 늘리고 이후에 튜닝하자.&lt;/li&gt;
-  &lt;li&gt;적정 숫자를 찾는 방법
-    &lt;ul&gt;
-      &lt;li&gt;애플리케이션 로직의 복잡도, CPU, IO 리소스 상황에 따라 다르다.&lt;/li&gt;
-      &lt;li&gt;오픈하기 전에 어떤 로직이 변하거나 기능을 넣을 때 성능 테스트를 해야 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;개발자는 설정만 잘 해주면 WAS가 멀티 쓰레드 관련 코드를 관리해준다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="MVC" /><category term="MVC" /><summary type="html">웹 서버와 웹 애플리케이션 서버 웹 서버 (Web server) 정적 리소스 제공 (html, css, js, 이미지, 영상) 웹 애플리케이션 서버 (WAS - Web Application Server) 웹 서버의 기능을 포함하고 프로그램 코드를 실행해서 애플리케이션 로직 수행 동적 html, HTTP API(JSON), 서블릿, JSP, 스프링 MVC 등 이 둘은 경계가 모호하다.</summary></entry></feed>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><category term="CS" /><summary type="html"></summary></entry><entry><title type="html">서블릿</title><link href="http://localhost:4000/mvc/mvc2/" rel="alternate" type="text/html" title="서블릿" /><published>2023-07-03T00:00:00+09:00</published><updated>2023-07-03T00:00:00+09:00</updated><id>http://localhost:4000/mvc/mvc2</id><content type="html" xml:base="http://localhost:4000/mvc/mvc2/">&lt;h2&gt;**&lt;/h2&gt;</content><author><name>Moon JinSu</name></author><category term="MVC" /><category term="MVC" /><summary type="html">**</summary></entry></feed>

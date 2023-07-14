@@ -112,4 +112,10 @@ var store = [{
         "tags": ["MVC"],
         "url": "/mvc/Spring_MVC_function/",
         "teaser": null
+      },{
+        "title": "반복자 패턴",
+        "excerpt":"Iterator Pattern 이터레이터 패턴은 반복자를 사용해서 컬렉션과 같은 데이터 집합의 각 요소들을 순차적으로 접근할 수 있도록 해주는 디자인패턴이다. 자료형의 종류와 구조에 상관없이 하나의 인터페이스로 순회가 가능하다는 특징이 있다. Aggregate : ConcreateAggreate 객체를 반환하는 인터페이스를 제공 iterator() : ConcreateIterator 객체를 만드는 팩토리 메서드 ConcreateAggregate : 데이터의 집합체 iterator : 집합체 안의...","categories": ["디자인패턴"],
+        "tags": ["디자인패턴","CS"],
+        "url": "/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Iterator/",
+        "teaser": null
       }]
