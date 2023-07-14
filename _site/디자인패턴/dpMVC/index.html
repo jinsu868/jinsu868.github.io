@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>스프링 컨테이너와 스프링 빈 - Jinsu’s story</title>
-<meta name="description" content="스프링 컨테이너 생성 과정">
+<!-- begin _includes/seo.html --><title>MVC, MVP, MVVM 패턴 - Jinsu’s story</title>
+<meta name="description" content="">
 
 
   <meta name="author" content="Moon JinSu">
@@ -22,30 +22,30 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="Jinsu's story">
-<meta property="og:title" content="스프링 컨테이너와 스프링 빈">
-<meta property="og:url" content="http://localhost:4000/spring/Spring3/">
+<meta property="og:title" content="MVC, MVP, MVVM 패턴">
+<meta property="og:url" content="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/dpMVC/">
 
 
-  <meta property="og:description" content="스프링 컨테이너 생성 과정">
-
-
-
-
-
-
-
-  <meta property="article:published_time" content="2023-06-28T00:00:00+09:00">
+  <meta property="og:description" content="">
 
 
 
 
 
-  
+
+
+  <meta property="article:published_time" content="2023-07-14T00:00:00+09:00">
+
+
+
+
 
   
 
+  
 
-<link rel="canonical" href="http://localhost:4000/spring/Spring3/">
+
+<link rel="canonical" href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/dpMVC/">
 
 
 
@@ -277,198 +277,19 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="스프링 컨테이너와 스프링 빈">
-    <meta itemprop="description" content="스프링 컨테이너 생성 과정 ">
-    <meta itemprop="datePublished" content="2023-06-28T00:00:00+09:00">
+    <meta itemprop="headline" content="MVC, MVP, MVVM 패턴">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="2023-07-14T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="http://localhost:4000/spring/Spring3/" class="u-url" itemprop="url">스프링 컨테이너와 스프링 빈
+            <a href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/dpMVC/" class="u-url" itemprop="url">MVC, MVP, MVVM 패턴
 </a>
           </h1>
           
-
-  <p class="page__meta">
-    
-
-    
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
-        
-          최대 1 분 소요
-        
-      </span>
-    
-  </p>
-
-
-        </header>
-      
-
-      <section class="page__content e-content" itemprop="text">
-        
-        <h3 id="스프링-컨테이너-생성-과정-"><strong>스프링 컨테이너 생성 과정</strong> <br /><br /></h3>
-
-<ul>
-  <li>
-    <p><strong>스프링 컨테이너 생성</strong> <br /><br />
-<img src="/assets/images/3_1.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
-  </li>
-  <li>new AnnotationConfigApplicationContext(AppConfig.class)</li>
-  <li>
-    <p>스프링 컨테이너를 생성할 때는 구성 정보를 지정해줘야 한다. (AppConfig) <br /><br /></p>
-  </li>
-  <li>
-    <p><strong>스프링 빈 등록</strong> <br /><br />
-<img src="/assets/images/3_2.png" alt="img2" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
-  </li>
-  <li>설정 정보 클래스 (AppConfig)를 통해서 스프링 빈을 등록한다.</li>
-  <li>빈 이름은 default로 메서드 이름이 사용된다. (직접 지정할 수도 있다.)</li>
-  <li>빈 이름은 항상 다른 이름이 부여되야 한다. 같은 이름이 들어오게 되면 무시되거나, 기존 빈을 덮어버리는 현상이 발생할 수 있다. <br /><br /></li>
-</ul>
-
-<p><strong>스프링 빈 의존관계 설정</strong> <br /><br /></p>
-
-<p><img src="/assets/images/3_3.png" alt="img3" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br />
-<img src="/assets/images/3_4.png" alt="img4" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
-
-<ul>
-  <li>스프링은 빈을 생성하는 단계와, 의존관계를 주입하는 단계가 나뉘어 있다. <br /><br /></li>
-</ul>
-
-<p><strong>BeanFactory와 ApplicationContext</strong> <br /><br /></p>
-
-<p><img src="/assets/images/3_5.png" alt="img5" width="20%&quot;&quot;, height=&quot;20%&quot;" /> <br /><br /></p>
-
-<ul>
-  <li>BeanFactory는 스프링 컨테이너의 최상위 인터페이스이다.</li>
-  <li>BeanFactory는 스프링 빈을 관리하고 조회하는 역할을 담당한다. getBean()함수도 BeanFactory가 제공하는 것이다. <br /><br /></li>
-</ul>
-
-<p><img src="/assets/images/3_6.png" alt="img6" width="60%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
-
-<ul>
-  <li>ApplicationContext는 이러한 BeanFactory뿐 아니라 MessageSource, EnvironmentCapable 등 여러 부가적인 인터페이스를 상속하여 더 많은 기능을 제공한다. <br /><br /></li>
-</ul>
-
-<p><img src="/assets/images/3_7.png" alt="img7" width="60%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
-
-<ul>
-  <li>스프링 컨테이너(ApplicationContext)는 자바 코드로 설정하는 방식뿐 아니라 XML 등 다른 설정정보를 바탕으로 생성할 수도 있다.</li>
-  <li>자바 코드로 설정 -&gt; AnnotationConfigApplicationContext</li>
-  <li>XML로 설정 -&gt; GenericXmlApplicationContext <br /><br /></li>
-</ul>
-
-<p><strong>BeanDefinition</strong><br /><br />
-<img src="/assets/images/3_8.png" alt="img8" width="60%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
-
-<ul>
-  <li>스프링 컨테이너는 BeanDefinition만 알면 된다. BeanDefinition이 자바코드, XML 등 어떤걸로 생성됬는지 몰라도 된다.</li>
-</ul>
-
-
-        
-      </section>
-
-      <footer class="page__meta">
-        
-        
-  
-
-
-  
-
-  <p class="page__taxonomy">
-    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
-    <span itemprop="keywords">
-    
-      <a href="/tags/#spring" class="page__taxonomy-item p-category" rel="tag">Spring</a>
-    
-    </span>
-  </p>
-
-
-
-
-  
-
-
-  
-
-  <p class="page__taxonomy">
-    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
-    <span itemprop="keywords">
-    
-      <a href="/categories/#spring" class="page__taxonomy-item p-category" rel="tag">Spring</a>
-    
-    </span>
-  </p>
-
-
-        
-
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-06-28T00:00:00+09:00">June 28, 2023</time></p>
-
-      </footer>
-
-      <section class="page__share">
-  
-    <h4 class="page__share-title">공유하기</h4>
-  
-
-  <a href="https://twitter.com/intent/tweet?text=%EC%8A%A4%ED%94%84%EB%A7%81+%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EC%99%80+%EC%8A%A4%ED%94%84%EB%A7%81+%EB%B9%88%20http%3A%2F%2Flocalhost%3A4000%2Fspring%2FSpring3%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
-
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fspring%2FSpring3%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
-
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fspring%2FSpring3%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
-</section>
-
-
-      
-  <nav class="pagination">
-    
-      <a href="/spring/Spring2/" class="pagination--pager" title="스프링 핵심 원리 이해
-">이전</a>
-    
-    
-      <a href="/spring/Spring4/" class="pagination--pager" title="싱글톤 컨테이너
-">다음</a>
-    
-  </nav>
-
-    </div>
-
-    
-  </article>
-
-  
-  
-    <div class="page__related">
-      <h2 class="page__related-title">참고</h2>
-      <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/dpMVC/" rel="permalink">MVC, MVP, MVVM 패턴
-</a>
-      
-    </h2>
-    
 
   <p class="page__meta">
     
@@ -489,11 +310,233 @@
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
+        </header>
+      
 
+      <section class="page__content e-content" itemprop="text">
+        
+        <p><br /></p>
+
+<h1 id="mvc-pattern"><em>MVC Pattern</em></h1>
+
+<p>MVC 패턴이란 Model, View, Controller 로 이루어진 디자인패턴이다. M, V, C 역할을 분리해서 코드를 관리하기 때문에 유지보수가 편해지고 개발 효율성이 높아진다.</p>
+
+<p><br /></p>
+
+<p><br /></p>
+
+<h1 id="mvc-구조"><em>MVC 구조</em></h1>
+
+<p><img src="/assets/images/19_1.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<h3 id="용어">용어</h3>
+
+<p><code class="language-plaintext highlighter-rouge">Model</code> : 애플리케이션에서 사용되는 데이터와 이 데이터를 처리하는 부분이다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">View</code> : 사용자에게 보여지는 UI 부분이다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Controller</code> : 사용자의 입력을 받고 처리하는 부분이다.</p>
+
+<h3 id="동작">동작</h3>
+
+<ol>
+  <li>사용자의 Action이 Controller로 들어온다.</li>
+  <li>Controller는 사용자의 Action을 확인하고, Model의 값을 update한다.</li>
+  <li>Controller 는 Model을 나타낼 View를 선택한다.</li>
+  <li>View는 Model을 활용해서 화면을 랜더링한다.</li>
+</ol>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">View</code> 가 update 되는 방법은 여러가지가 있다.
+    <ul>
+      <li>View가 Model을 이용해서 직접 update</li>
+      <li>Model에서 View에게 Nofity 하는 방법 (Observer Pattern)</li>
+      <li>View가 Polling으로 주기적으로 Model의 변경을 감지하는 방법</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="특징">특징</h1>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">Controller</code> 와 <code class="language-plaintext highlighter-rouge">View</code> 는 1:N 관계이다.</li>
+  <li>Controller는 View를 직접 update 하지 않고 View 도 Controller를 알지 못한다.</li>
+  <li>View와 Model 사이의 의존성이 높다. (단점)</li>
+</ol>
+
+<p><br /></p>
+
+<p><br /></p>
+
+<h1 id="mvp-pattern"><em>MVP Pattern</em></h1>
+
+<p>MVP 패턴은 Model, View, Presenter 로 이루어진 디자인패턴이다. Model, View는 MVC 패턴과 동일하지만, Controller 대신에 Presenter가 존재한다.</p>
+
+<p><br /></p>
+
+<p><br /></p>
+
+<h1 id="mvp-구조"><em>MVP 구조</em></h1>
+
+<p><img src="/assets/images/19_2.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<h3 id="용어-1">용어</h3>
+
+<p><code class="language-plaintext highlighter-rouge">View</code> : 사용자에게 보여지는 UI</p>
+
+<p><code class="language-plaintext highlighter-rouge">Model</code> : 애플리케이션에서 사용되는 데이터와 이 데이터를 처리하는 부분</p>
+
+<p><code class="language-plaintext highlighter-rouge">Presenter</code> : View에서 요청한 정보를 Model을 가공하여 View에게 전달하는 부분, View와 Model을 연결하는 역할을 한다.</p>
+
+<h3 id="동작-1">동작</h3>
+
+<ol>
+  <li>사용자의 Action이 View를 통해서 들어온다.</li>
+  <li>View는 데이터를 Presenter에게 요청</li>
+  <li>Presenter는 Model에게 데이터를 요청</li>
+  <li>Model은 Presenter에게 요청받은 데이터를 응답</li>
+  <li>Presenter가 View에게 데이터를 넘겨줌</li>
+  <li>View는 Presenter가 준 데이터를 사용해서 화면을 랜더링</li>
+</ol>
+
+<h3 id="특징-1">특징</h3>
+
+<ol>
+  <li>Presenter가 Model과 View의 인스턴스를 가지고 있고 이를 연결하는 역할을 한다.</li>
+  <li>
+    <p>Presenter와 View는 1:1 관계</p>
+  </li>
+  <li>MVC 패턴의 문제였던 View와 Model 사이의 의존성 문제는 해결되었다. 그렇지만 View와 Presenter 사이의 의존성이 높아졌다. (장단)</li>
+</ol>
+
+<p><br /></p>
+
+<p><br /></p>
+
+<h1 id="mvvm-pattern"><em>MVVM Pattern</em></h1>
+
+<p>MVVM 패턴은 Model, View, View Model 로 이루어진 디자인패턴이다. Model, View는 동일하고 ViewModel이 새로 생겼다.</p>
+
+<p><br /></p>
+
+<p><br /></p>
+
+<h1 id="mvvm-구조"><em>MVVM 구조</em></h1>
+
+<p><img src="/assets/images/19_3.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<h3 id="용어-2">용어</h3>
+
+<p><code class="language-plaintext highlighter-rouge">Model</code> : 애플리케이션에서 사용되는 데이터와 이 데이터를 처리하는 부분</p>
+
+<p><code class="language-plaintext highlighter-rouge">View</code> : 사용자에게 보이는 UI</p>
+
+<p><code class="language-plaintext highlighter-rouge">View Model</code> : View를 표현하기 위해 등장한 View를 위한 Model, View를 나타내는 Model이자 여기에 필요한 데이터 처리를 하는 부분</p>
+
+<h3 id="동작-2">동작</h3>
+
+<ol>
+  <li>사용자의 Action이 View를 통해 들어온다.</li>
+  <li>
+    <p>Command 패턴으로 View Model에 Action을 전달</p>
+  </li>
+  <li>View Model에서 Model에게 데이터를 요청</li>
+  <li>Model에서 데이터 응답</li>
+  <li>View Model에서 응답 데이터를 가공하여 저장</li>
+  <li>View는 View Model 데이터를 Binding하여 화면을 랜더링</li>
+</ol>
+
+<h3 id="특징-2">특징</h3>
+
+<ol>
+  <li>Command 패턴과 Binding 패턴이 사용되는 패턴이다.</li>
+  <li>View와 View Model 사이의 의존성을 제거했다. (장점)</li>
+  <li>
+    <p>View Model : View는 1:N 관계이다.</p>
+  </li>
+  <li>View Model의 설계가 쉽지 않다. (단점)</li>
+</ol>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#cs" class="page__taxonomy-item p-category" rel="tag">CS</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4" class="page__taxonomy-item p-category" rel="tag">디자인패턴</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4" class="page__taxonomy-item p-category" rel="tag">디자인패턴</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-07-14T00:00:00+09:00">July 14, 2023</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=MVC%2C+MVP%2C+MVVM+%ED%8C%A8%ED%84%B4%20http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2FdpMVC%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2FdpMVC%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2FdpMVC%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/RevealingModule/" class="pagination--pager" title="노출모듈 패턴
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
         
           
 
@@ -610,6 +653,46 @@
 
 
     <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/mvc/MVC_Structure/" rel="permalink">MVC 구조
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">스프링 MVC 구조
 </p>
   </article>
 </div>

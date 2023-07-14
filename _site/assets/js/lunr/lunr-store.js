@@ -124,4 +124,10 @@ var store = [{
         "tags": ["디자인패턴","CS"],
         "url": "/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/RevealingModule/",
         "teaser": null
+      },{
+        "title": "MVC, MVP, MVVM 패턴",
+        "excerpt":"MVC Pattern MVC 패턴이란 Model, View, Controller 로 이루어진 디자인패턴이다. M, V, C 역할을 분리해서 코드를 관리하기 때문에 유지보수가 편해지고 개발 효율성이 높아진다. MVC 구조 용어 Model : 애플리케이션에서 사용되는 데이터와 이 데이터를 처리하는 부분이다. View : 사용자에게 보여지는 UI 부분이다. Controller : 사용자의 입력을 받고 처리하는 부분이다. 동작 사용자의...","categories": ["디자인패턴"],
+        "tags": ["디자인패턴","CS"],
+        "url": "/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/dpMVC/",
+        "teaser": null
       }]
