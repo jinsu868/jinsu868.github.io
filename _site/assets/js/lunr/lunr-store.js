@@ -118,4 +118,10 @@ var store = [{
         "tags": ["디자인패턴","CS"],
         "url": "/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Iterator/",
         "teaser": null
+      },{
+        "title": "노출모듈 패턴",
+        "excerpt":"Revealing Module Pattern 즉시 실행 함수를 통해 private, public 과 같은 접근 제어자를 만든느 패턴이다. 자바 스크립트에서는 접근 제어자가 존재하지 않고 전역 범위에서 스크립트가 실행된다. 때문에 접근 제어자를 사용하고 싶으면 노출모듈 패턴을 통해서 public, private 접근 제어자를 만들어서 사용해야 한다. 그렇다면 즉시 실행 함수란 무엇일까? (function () { console.log(\"TEST\"); })();...","categories": ["디자인패턴"],
+        "tags": ["디자인패턴","CS"],
+        "url": "/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/RevealingModule/",
+        "teaser": null
       }]
