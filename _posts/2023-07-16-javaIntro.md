@@ -1,9 +1,9 @@
 ---
-title: "[JAVA] Intro"
+title: "[Java] Intro"
 categories: 
-    - java
+    - Java
 tags:
-    - java
+    - Java
 typora-root-url: ../
 ---
 

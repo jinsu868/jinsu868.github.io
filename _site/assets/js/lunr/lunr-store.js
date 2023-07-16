@@ -130,4 +130,16 @@ var store = [{
         "tags": ["디자인패턴","CS"],
         "url": "/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/dpMVC/",
         "teaser": null
+      },{
+        "title": "[JAVA] Intro",
+        "excerpt":"Java 정리 최근 Java를 쓰면서 내가 정말 Java라는 언어를 잘 알고 있나? 라는 의문이 들었다. 프로그래밍을 하면서 자신이 쓰는 언어에 대해서 제대로 이해하는 것은 정말 중요하다. 이참에 한 번 제대로 정리하고 넘어가자. 선택한 책 공부할 책은 Java의 정석 으로 정했다. 취업하기 전에 정리하는 느낌으로 좋다는 평이 많아서 선택했다. Java 공부...","categories": ["java"],
+        "tags": ["java"],
+        "url": "/java/javaIntro/",
+        "teaser": null
+      },{
+        "title": "[Java] JVM",
+        "excerpt":"JVM 이란? JVM(Java Virtual Machine) 은 자바와 운영체제 사이에서 중개자 역할을 수행하며 자바가 OS에 의존하지 않고 프로그램을 실행할 수 있게 도와준다. 또한 가비지 컬렉터(GC)를 사용한 메모리 관리도 자동으로 해주며, 다른 하드웨어와 다르게 레지스터 기반이 아닌 스택 기반으로 동작한다. 특징 자바 컴파일러(javac) 에 의해서 자바 소스 파일(.java)가 바이트 코드(.class) 로 컴파일된다....","categories": ["Java"],
+        "tags": ["Java","JVM"],
+        "url": "/java/java_JVM1/",
+        "teaser": null
       }]
