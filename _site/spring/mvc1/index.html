@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>서블릿 - Jinsu’s story</title>
-<meta name="description" content="Servlet    서블릿은 TCP/IP connection, Socket connection, HTTP message parsing, HTTP response message 생성 등, 핵심 비즈니스 로직을 제외한 부분을 대신 해준다.   스프링 부트에서 servlet을 직접 등록해서 사용하려면 @ServletComponentScan 을 붙이면 된다.">
+<!-- begin _includes/seo.html --><title>[Spring] 스프링 웹 MVC - Jinsu’s story</title>
+<meta name="description" content="웹 서버와 웹 애플리케이션 서버     웹 서버 (Web server)            정적 리소스 제공 (html, css, js, 이미지, 영상)           웹 애플리케이션 서버 (WAS - Web Application Server)            웹 서버의 기능을 포함하고 프로그램 코드를 실행해서 애플리케이션 로직 수행       동적 html, HTTP API(JSON), 서블릿, JSP, 스프링 MVC 등           이 둘은 경계가 모호하다.">
 
 
   <meta name="author" content="Moon JinSu">
@@ -22,30 +22,30 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="Jinsu's story">
-<meta property="og:title" content="서블릿">
-<meta property="og:url" content="http://localhost:4000/mvc/Servlet/">
+<meta property="og:title" content="[Spring] 스프링 웹 MVC">
+<meta property="og:url" content="http://localhost:4000/spring/mvc1/">
 
 
-  <meta property="og:description" content="Servlet    서블릿은 TCP/IP connection, Socket connection, HTTP message parsing, HTTP response message 생성 등, 핵심 비즈니스 로직을 제외한 부분을 대신 해준다.   스프링 부트에서 servlet을 직접 등록해서 사용하려면 @ServletComponentScan 을 붙이면 된다.">
-
-
-
-
-
-
-
-  <meta property="article:published_time" content="2023-07-05T00:00:00+09:00">
+  <meta property="og:description" content="웹 서버와 웹 애플리케이션 서버     웹 서버 (Web server)            정적 리소스 제공 (html, css, js, 이미지, 영상)           웹 애플리케이션 서버 (WAS - Web Application Server)            웹 서버의 기능을 포함하고 프로그램 코드를 실행해서 애플리케이션 로직 수행       동적 html, HTTP API(JSON), 서블릿, JSP, 스프링 MVC 등           이 둘은 경계가 모호하다.">
 
 
 
 
 
-  
+
+
+  <meta property="article:published_time" content="2023-07-03T00:00:00+09:00">
+
+
+
+
 
   
 
+  
 
-<link rel="canonical" href="http://localhost:4000/mvc/Servlet/">
+
+<link rel="canonical" href="http://localhost:4000/spring/mvc1/">
 
 
 
@@ -241,18 +241,12 @@
 <nav class="nav__list">
   <ul class="nav__items" id="category_tag_menu">
       <li>
-          <span class="nav__sub-title">📂 Total (24)</span>
+          <span class="nav__sub-title">📂 Total (22)</span>
           <ul>
               
                   
                   <li>
-                      <a href="/categories/#spring" class="">Spring (8)</a>
-                  </li>
-                  
-              
-                  
-                  <li>
-                      <a href="/categories/#mvc" class="">MVC (5)</a>
+                      <a href="/categories/#spring" class="">Spring (12)</a>
                   </li>
                   
               
@@ -264,13 +258,7 @@
               
                   
                   <li>
-                      <a href="/categories/#java" class="">java (1)</a>
-                  </li>
-                  
-              
-                  
-                  <li>
-                      <a href="/categories/#java" class="">Java (1)</a>
+                      <a href="/categories/#java" class="">Java (2)</a>
                   </li>
                   
               
@@ -289,16 +277,16 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="서블릿">
-    <meta itemprop="description" content="Servlet  서블릿은 TCP/IP connection, Socket connection, HTTP message parsing, HTTP response message 생성 등, 핵심 비즈니스 로직을 제외한 부분을 대신 해준다.  스프링 부트에서 servlet을 직접 등록해서 사용하려면 @ServletComponentScan 을 붙이면 된다. ">
-    <meta itemprop="datePublished" content="2023-07-05T00:00:00+09:00">
+    <meta itemprop="headline" content="[Spring] 스프링 웹 MVC">
+    <meta itemprop="description" content="웹 서버와 웹 애플리케이션 서버   웹 서버 (Web server)          정적 리소스 제공 (html, css, js, 이미지, 영상)        웹 애플리케이션 서버 (WAS - Web Application Server)          웹 서버의 기능을 포함하고 프로그램 코드를 실행해서 애플리케이션 로직 수행      동적 html, HTTP API(JSON), 서블릿, JSP, 스프링 MVC 등        이 둘은 경계가 모호하다. ">
+    <meta itemprop="datePublished" content="2023-07-03T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="http://localhost:4000/mvc/Servlet/" class="u-url" itemprop="url">서블릿
+            <a href="http://localhost:4000/spring/mvc1/" class="u-url" itemprop="url">[Spring] 스프링 웹 MVC
 </a>
           </h1>
           
@@ -327,61 +315,78 @@
 
       <section class="page__content e-content" itemprop="text">
         
-        <h1 id="servlet"><em>Servlet</em></h1>
+        <h2 id="웹-서버와-웹-애플리케이션-서버-"><strong>웹 서버와 웹 애플리케이션 서버</strong> <br /></h2>
 <ul>
-  <li>서블릿은 TCP/IP connection, Socket connection, HTTP message parsing, HTTP response message 생성 등, 핵심 비즈니스 로직을 제외한 부분을 대신 해준다.</li>
-  <li>스프링 부트에서 servlet을 직접 등록해서 사용하려면 @ServletComponentScan 을 붙이면 된다. <br /><br /><br /><br /></li>
-</ul>
-
-<h1 id="was의-요청-구조"><em>WAS의 요청 구조</em></h1>
-
-<p><img src="/assets/images/13_1.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
-
-<ul>
-  <li>스프링 부트가 톰켓(WAS)를 띄워준다.</li>
-  <li>톰켓은 서블릿 컨테이너에 서블릿을 등록하고 싱글톤으로 관리한다.</li>
-  <li>HTTP 요청마다 톰켓이 request, response 객체를 새로 생성하고 서블릿 객체에 넣어서 실행한다. <br /><br /><br /><br /></li>
-</ul>
-
-<h1 id="httpservletrequest"><em>HttpServletRequest</em></h1>
-<p>개발자가 HTTP 메시지를 직접 파싱해서 사용할 수도 있겠지만 굉장히 불편하고 반복적인 작업이다. 서블릿은 HTTP 메시지를 대신 파싱해서 HttpServletRequest 객체에 담아서 준다.</p>
-
-<p><strong>기능</strong> <br /></p>
-<ul>
-  <li>임시 저장소 역할을 한다. request.setAttribute(name, value)로 저장, request.getAttribute(name)으로 조회</li>
-  <li>세션 관리를 해준다. request.getSession(create: true)</li>
-  <li>이 외에도 HTTP 메시지를 다 조회할 수 있다. startline, header, body <br /><br /><br /><br /></li>
-</ul>
-
-<h1 id="http-요청-데이터">HTTP 요청 데이터</h1>
-<p>HTTP 요청 메시지를 통해 클라이언트에서 서버로 데이터를 전달하는 방식은 크게 3가지이다. <br /></p>
-<ul>
-  <li><strong>GET - 쿼리 파라미터</strong>
+  <li>웹 서버 (Web server)
     <ul>
-      <li>ex- /url?username=hello&amp;age=20</li>
-      <li>검색, 필터, 페이징 등에 많이 사용된다.</li>
-      <li>body를 사용하지 않기 때문에 content-type이 없다.</li>
+      <li>정적 리소스 제공 (html, css, js, 이미지, 영상)</li>
     </ul>
   </li>
-  <li><strong>POST - HTML Form</strong> <br /></li>
-</ul>
-
-<p><img src="/assets/images/13_2.png" alt="img2" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
-
-<ul>
-  <li>content-type: applicaiton/x-www.form-urlencoded</li>
-  <li>메시지 바디에 쿼리 파라미터 형식으로 전달</li>
-  <li>GET 쿼리 파라미터 방식이랑 동일한 폼으로 들어오기 때문에 서버측에서는 동일한 방법으로 적용해서 조회할 수 있다. -&gt; request.getParameter()</li>
-  <li>
-    <p>HTTP 메시지 바디를 사용하기 때문에 content-type을 지정해야 한다. (application/x-www-form-urlencoded)</p>
-  </li>
-  <li><strong>HTTP message body에 데이터 넣어서 요청 (JSON)</strong>
+  <li>웹 애플리케이션 서버 (WAS - Web Application Server)
     <ul>
-      <li>HTTP API에 주로 사용된다. 거의 Json</li>
-      <li>Json 형식으로 데이터를 넘길때는 content-type을 application/json으로 설정해야 한다.</li>
-      <li>ObjectMapper를 사용해서 json을 파싱할 수 있다. <br /><br /></li>
+      <li>웹 서버의 기능을 포함하고 프로그램 코드를 실행해서 애플리케이션 로직 수행</li>
+      <li>동적 html, HTTP API(JSON), 서블릿, JSP, 스프링 MVC 등</li>
     </ul>
   </li>
+  <li>이 둘은 경계가 모호하다. <br /><br /></li>
+</ul>
+
+<p>웹 시스템의 구성 - WEB, WAS, DB <br /></p>
+
+<p><img src="/assets/images/9_1.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
+
+<ul>
+  <li>정적 리소스는 Web server에서 처리하고 애플리케이션 로직같은 동적인 처리를 할 때, WAS에 위임해서 처리한다.</li>
+  <li>WAS, DB가 장애가 나면 WEB 서버에서 오류 화면을 보여준다. <br /><br /></li>
+</ul>
+
+<h2 id="서블릿-"><strong>서블릿</strong> <br /></h2>
+<ul>
+  <li>서블릿을 사용하면 귀찮은 HTTP 파싱, HTTP 메시지 생성 등 비즈니스 로직과 관련 없는 부분들을 자동으로 처리해준다. <br /></li>
+</ul>
+
+<p><img src="/assets/images/9_2.png" alt="img2" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
+
+<ul>
+  <li>WAS는 HTTP 요청이 오면 Request, Response 객체를 새로 생성하여 서블릿 객체를 호출한다.</li>
+  <li>Request를 통해서 HTTP 요청 정보를 편하게 사용할 수 있다.</li>
+  <li>Response를 통해서 HTTP 응답 정보를 편하게 넣을 수 있다.</li>
+  <li>WAS는 Response 의 내용으로 HTTP 응답 정보를 생성한다. <br /><br /></li>
+</ul>
+
+<p><strong>서블릿 컨테이너</strong> <br /></p>
+<ul>
+  <li>서블릿을 지원하는 WAS를 서블릿 컨테이너라고 한다.</li>
+  <li>서블릿 객체는 싱글톤으로 관리된다. <br /><br /></li>
+</ul>
+
+<h2 id="쓰레드-풀-"><strong>쓰레드 풀</strong> <br /></h2>
+
+<p><img src="/assets/images/9_3.png" alt="img3" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
+
+<ul>
+  <li>미리 쓰레드를 생성해두고 필요할 때마다 쓰레드 풀에서 꺼내서 사용한다.</li>
+  <li>다 사용하면 다시 반납한다.</li>
+  <li>쓰레드가 이미 다 생성되어 있기 때문에 쓰레드 생성, 종료 비용이 절약되고, 응답 시간도 빠르다.</li>
+  <li>생성 가능 쓰레드 최대치가 정해져 있어서 너무 많은 요청이 들어와도 안전하게 처리할 수 있다. <br /><br /></li>
+</ul>
+
+<h2 id="튜닝-포인트"><strong>튜닝 포인트</strong></h2>
+<ul>
+  <li>WAS의 주요 튜닝 포인트는 최대 쓰레드 수이다.
+    <ul>
+      <li>너무 낮게 설정하면 트레픽이 많을 때, 서버 리소스는 남는데, 클라이언트의 응답이 계속 지연된다.</li>
+      <li>너무 높게 설정하면 CPU 메모리 리소스 임계 초과로 서버가 다운될 수 있다.</li>
+    </ul>
+  </li>
+  <li>일단 클라우드면 서버를 늘리고 이후에 튜닝하자.</li>
+  <li>적정 숫자를 찾는 방법
+    <ul>
+      <li>애플리케이션 로직의 복잡도, CPU, IO 리소스 상황에 따라 다르다.</li>
+      <li>오픈하기 전에 어떤 로직이 변하거나 기능을 넣을 때 성능 테스트를 해야 한다.</li>
+    </ul>
+  </li>
+  <li>개발자는 설정만 잘 해주면 WAS가 멀티 쓰레드 관련 코드를 관리해준다.</li>
 </ul>
 
 
@@ -400,7 +405,9 @@
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
     <span itemprop="keywords">
     
-      <a href="/tags/#mvc" class="page__taxonomy-item p-category" rel="tag">MVC</a>
+      <a href="/tags/#mvc" class="page__taxonomy-item p-category" rel="tag">MVC</a><span class="sep">, </span>
+    
+      <a href="/tags/#spring" class="page__taxonomy-item p-category" rel="tag">Spring</a>
     
     </span>
   </p>
@@ -417,7 +424,7 @@
     <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
     <span itemprop="keywords">
     
-      <a href="/categories/#mvc" class="page__taxonomy-item p-category" rel="tag">MVC</a>
+      <a href="/categories/#spring" class="page__taxonomy-item p-category" rel="tag">Spring</a>
     
     </span>
   </p>
@@ -425,7 +432,7 @@
 
         
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-07-05T00:00:00+09:00">July 5, 2023</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-07-03T00:00:00+09:00">July 3, 2023</time></p>
 
       </footer>
 
@@ -434,22 +441,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%EC%84%9C%EB%B8%94%EB%A6%BF%20http%3A%2F%2Flocalhost%3A4000%2Fmvc%2FServlet%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BSpring%5D+%EC%8A%A4%ED%94%84%EB%A7%81+%EC%9B%B9+MVC%20http%3A%2F%2Flocalhost%3A4000%2Fspring%2Fmvc1%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fmvc%2FServlet%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fspring%2Fmvc1%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fmvc%2FServlet%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fspring%2Fmvc1%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Singleton/" class="pagination--pager" title="싱글톤 패턴
+      <a href="/spring/Spring8/" class="pagination--pager" title="[Spring] 빈 스코프
 ">이전</a>
     
     
-      <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Strategy/" class="pagination--pager" title="전략 패턴
+      <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Factory/" class="pagination--pager" title="[디자인패턴] 팩토리 패턴
 ">다음</a>
     
   </nav>
@@ -514,7 +521,7 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/java/javaIntro/" rel="permalink">[JAVA] Intro
+        <a href="/java/javaIntro/" rel="permalink">[Java] Intro
 </a>
       
     </h2>
@@ -554,7 +561,7 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/dpMVC/" rel="permalink">MVC, MVP, MVVM 패턴
+        <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/dpMVC/" rel="permalink">[디자인패턴] MVC, MVP, MVVM 패턴
 </a>
       
     </h2>
@@ -594,7 +601,7 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/RevealingModule/" rel="permalink">노출모듈 패턴
+        <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/RevealingModule/" rel="permalink">[디자인패턴] 노출모듈 패턴
 </a>
       
     </h2>

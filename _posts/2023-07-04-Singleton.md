@@ -1,5 +1,5 @@
 ---
-title: "싱글톤 패턴"
+title: "[디자인패턴] 싱글톤 패턴"
 categories: 
     - 디자인패턴
 tags:

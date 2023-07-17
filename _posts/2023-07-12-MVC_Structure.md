@@ -1,8 +1,9 @@
 ---
-title: "MVC 구조"
+title: "[Spring] MVC 구조"
 categories: 
-    - MVC
+    - Spring
 tags:
+    - Spring
     - MVC
 typora-root-url: ../
 ---

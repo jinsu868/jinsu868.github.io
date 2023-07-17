@@ -1,5 +1,5 @@
 ---
-title: "노출모듈 패턴"
+title: "[디자인패턴] 노출모듈 패턴"
 categories: 
     - 디자인패턴
 tags:
