@@ -130,4 +130,10 @@ var store = [{
         "tags": ["Java","JVM"],
         "url": "/java/java_JVM1/",
         "teaser": null
+      },{
+        "title": "[Spring] 예외 처리",
+        "excerpt":"Exception Handle 스프링 부트는 기본 설정으로 예외가 WAS에 전달되거나 Response.sendError() 가 호출되면 /error 를 호출한다. 그러면 BasicErrorController 가 제공하는 기본 정보들을 활용해서 오류 API를 생성해준다. 하지만 API 마다, 각각의 컨트롤러나 예외마다 서로 다른 응답 결과를 출력해야 할 수 있다. 때문에 API 오류 처리는 @ExceptionHandler 를 사용하는 것이 좋다. ExceptionResolver ExceptionResolver...","categories": ["Spring"],
+        "tags": ["Spring","MVC"],
+        "url": "/spring/exceptionHandle/",
+        "teaser": null
       }]

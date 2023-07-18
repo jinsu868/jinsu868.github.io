@@ -1,4 +1,112 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-18T02:57:14+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[Java] JVM</title><link href="http://localhost:4000/java/java_JVM1/" rel="alternate" type="text/html" title="[Java] JVM" /><published>2023-07-16T00:00:00+09:00</published><updated>2023-07-16T00:00:00+09:00</updated><id>http://localhost:4000/java/java_JVM1</id><content type="html" xml:base="http://localhost:4000/java/java_JVM1/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-18T23:50:03+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[Spring] 예외 처리</title><link href="http://localhost:4000/spring/exceptionHandle/" rel="alternate" type="text/html" title="[Spring] 예외 처리" /><published>2023-07-18T00:00:00+09:00</published><updated>2023-07-18T00:00:00+09:00</updated><id>http://localhost:4000/spring/exceptionHandle</id><content type="html" xml:base="http://localhost:4000/spring/exceptionHandle/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;exception-handle&quot;&gt;&lt;em&gt;Exception Handle&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;스프링 부트는 기본 설정으로 예외가 WAS에 전달되거나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Response.sendError()&lt;/code&gt; 가 호출되면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/error&lt;/code&gt; 를 호출한다. 그러면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BasicErrorController&lt;/code&gt; 가 제공하는 기본 정보들을 활용해서 오류 API를 생성해준다. 하지만 API 마다, 각각의 컨트롤러나 예외마다 서로 다른 응답 결과를 출력해야 할 수 있다. 때문에 API 오류 처리는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ExceptionHandler&lt;/code&gt; 를 사용하는 것이 좋다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;exceptionresolver&quot;&gt;&lt;em&gt;ExceptionResolver&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/22_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ExceptionResolver&lt;/code&gt; 가 없다면 예외가 발생하면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Controller&lt;/code&gt; -&amp;gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Interceptor&lt;/code&gt; -&amp;gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Servlet&lt;/code&gt; -&amp;gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Filter&lt;/code&gt; -&amp;gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WAS&lt;/code&gt; 까지 올라간다.&lt;/p&gt;
+
+&lt;p&gt;그런데 예외를 처리할 수 있는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ExceptionResolver&lt;/code&gt; 가 있으면 서블릿 컨테이너(WAS) 까지 예외가 전달되지 않고 MVC 선에서 예외 처리가 끝난다.&lt;/p&gt;
+
+&lt;p&gt;가장 우선순위가 높은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ExceptionResolver&lt;/code&gt; 는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HandlerExceptionResolver&lt;/code&gt; 이다. @ExceptionHandler를 처리하는 ExceptionResolver이며 거의 이것만 쓴다고 생각하면 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;exceptionhandler&quot;&gt;&lt;em&gt;@ExceptionHandler&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;@ExceptionHandler 애노테이션을 붙여주고, 해당 컨트롤러에서 처리하고 싶은 예외를 지정해주면 예외가 발생했을 때 이 메서드가 호출된다. 지정한 예외 뿐 아니라 예외의 자식 클래스까지 모두 처리할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;예시코드&quot;&gt;예시코드&lt;/h3&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@RestController&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ApiController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nd&quot;&gt;@ExceptionHandler&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ResponseEntity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Obj&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;handleEx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;IllegalArgumentException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ErrorResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;BAD_REQUEST&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;우선순위&quot;&gt;우선순위&lt;/h3&gt;
+
+&lt;p&gt;구체적인 것이 더 높은 우선순위를 가진다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;부모예외처리&lt;/code&gt; 와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;자식예외처리&lt;/code&gt; 가 있으면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;자식예외처리&lt;/code&gt; 가 호출된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;controlleradvice&quot;&gt;&lt;em&gt;@ControllerAdvice&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;예외처리를 컨트롤러에 다 집어넣으면 가독성이 떨어지고 지저분한다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ConrollerAdivce&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@RestControllerAdvice&lt;/code&gt; 를 사용하면 정상 코드와 예외 코드를 분리할 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;예시코드-1&quot;&gt;예시코드&lt;/h3&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//@ControllerAdvice + @ResponseBody&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@RestControllerAdvice&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyControllerAdvice&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+ 	&lt;span class=&quot;nd&quot;&gt;@ExceptionHandler&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ResponseEntity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ErrorResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;handlerEx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nc&quot;&gt;ErrorResult&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;errorResult&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ErrorResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ex&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ResponseEntity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;errorResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HttpStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;BAD_REQUEST&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;동작범위-설정&quot;&gt;동작범위 설정&lt;/h3&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@ControllerAdvice&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Advice0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@ControllerAdvice&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;annotations&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RestController&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Advice1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@ControllerAdvice&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;org.com.controllers&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Advice2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
+
+&lt;span class=&quot;nd&quot;&gt;@ControllerAdvice&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assignableTypes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ControllerInterface&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AbstractController&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Advice3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;기본적으로 범위를 설정하지 않으면 전역으로 동작하게 된다.&lt;/li&gt;
+  &lt;li&gt;특정 애노테이션이 있는 컨트롤러를 지정할 수 있다.&lt;/li&gt;
+  &lt;li&gt;특정 패키지를 직접 지정할 수도 있다.&lt;/li&gt;
+  &lt;li&gt;특정 컨트롤러를 지정할 수 있다.&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><category term="MVC" /><summary type="html"></summary></entry><entry><title type="html">[Java] Intro</title><link href="http://localhost:4000/java/javaIntro/" rel="alternate" type="text/html" title="[Java] Intro" /><published>2023-07-16T00:00:00+09:00</published><updated>2023-07-16T00:00:00+09:00</updated><id>http://localhost:4000/java/javaIntro</id><content type="html" xml:base="http://localhost:4000/java/javaIntro/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;java-정리&quot;&gt;&lt;em&gt;Java 정리&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/20_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;최근 Java를 쓰면서 내가 정말 Java라는 언어를 잘 알고 있나? 라는 의문이 들었다. 프로그래밍을 하면서 자신이 쓰는 언어에 대해서 제대로 이해하는 것은 정말 중요하다. 이참에 한 번 제대로 정리하고 넘어가자.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;선택한-책&quot;&gt;&lt;em&gt;선택한 책&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/20_2.png&quot; alt=&quot;img2&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;30%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;공부할 책은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Java의 정석&lt;/code&gt; 으로 정했다. 취업하기 전에 정리하는 느낌으로 좋다는 평이 많아서 선택했다. Java 공부 내용은 주에 최소한으로 3번은 포스팅할 예정이다 (금방 끝낼 수 있겠지?..)&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="Java" /><category term="Java" /><summary type="html"></summary></entry><entry><title type="html">[Java] JVM</title><link href="http://localhost:4000/java/java_JVM1/" rel="alternate" type="text/html" title="[Java] JVM" /><published>2023-07-16T00:00:00+09:00</published><updated>2023-07-16T00:00:00+09:00</updated><id>http://localhost:4000/java/java_JVM1</id><content type="html" xml:base="http://localhost:4000/java/java_JVM1/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;jvm-이란&quot;&gt;&lt;em&gt;JVM 이란?&lt;/em&gt;&lt;/h1&gt;
 
@@ -164,163 +272,7 @@
 
 &lt;p&gt;https://inpa.tistory.com/entry/JAVA-%E2%98%95-JVM-%EB%82%B4%EB%B6%80-%EA%B5%AC%EC%A1%B0-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%98%81%EC%97%AD-%EC%8B%AC%ED%99%94%ED%8E%B8&lt;/p&gt;
 
-&lt;p&gt;https://steady-coding.tistory.com/305&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="Java" /><category term="Java" /><category term="JVM" /><summary type="html"></summary></entry><entry><title type="html">[Java] Intro</title><link href="http://localhost:4000/java/javaIntro/" rel="alternate" type="text/html" title="[Java] Intro" /><published>2023-07-16T00:00:00+09:00</published><updated>2023-07-16T00:00:00+09:00</updated><id>http://localhost:4000/java/javaIntro</id><content type="html" xml:base="http://localhost:4000/java/javaIntro/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;java-정리&quot;&gt;&lt;em&gt;Java 정리&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/20_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;최근 Java를 쓰면서 내가 정말 Java라는 언어를 잘 알고 있나? 라는 의문이 들었다. 프로그래밍을 하면서 자신이 쓰는 언어에 대해서 제대로 이해하는 것은 정말 중요하다. 이참에 한 번 제대로 정리하고 넘어가자.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;선택한-책&quot;&gt;&lt;em&gt;선택한 책&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/20_2.png&quot; alt=&quot;img2&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;30%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;공부할 책은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Java의 정석&lt;/code&gt; 으로 정했다. 취업하기 전에 정리하는 느낌으로 좋다는 평이 많아서 선택했다. Java 공부 내용은 주에 최소한으로 3번은 포스팅할 예정이다 (금방 끝낼 수 있겠지?..)&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="Java" /><category term="Java" /><summary type="html"></summary></entry><entry><title type="html">[디자인패턴] MVC, MVP, MVVM 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/dpMVC/" rel="alternate" type="text/html" title="[디자인패턴] MVC, MVP, MVVM 패턴" /><published>2023-07-14T00:00:00+09:00</published><updated>2023-07-14T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/dpMVC</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/dpMVC/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;mvc-pattern&quot;&gt;&lt;em&gt;MVC Pattern&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;MVC 패턴이란 Model, View, Controller 로 이루어진 디자인패턴이다. M, V, C 역할을 분리해서 코드를 관리하기 때문에 유지보수가 편해지고 개발 효율성이 높아진다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;mvc-구조&quot;&gt;&lt;em&gt;MVC 구조&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/19_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;용어&quot;&gt;용어&lt;/h3&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Model&lt;/code&gt; : 애플리케이션에서 사용되는 데이터와 이 데이터를 처리하는 부분이다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;View&lt;/code&gt; : 사용자에게 보여지는 UI 부분이다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Controller&lt;/code&gt; : 사용자의 입력을 받고 처리하는 부분이다.&lt;/p&gt;
-
-&lt;h3 id=&quot;동작&quot;&gt;동작&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;사용자의 Action이 Controller로 들어온다.&lt;/li&gt;
-  &lt;li&gt;Controller는 사용자의 Action을 확인하고, Model의 값을 update한다.&lt;/li&gt;
-  &lt;li&gt;Controller 는 Model을 나타낼 View를 선택한다.&lt;/li&gt;
-  &lt;li&gt;View는 Model을 활용해서 화면을 랜더링한다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;View&lt;/code&gt; 가 update 되는 방법은 여러가지가 있다.
-    &lt;ul&gt;
-      &lt;li&gt;View가 Model을 이용해서 직접 update&lt;/li&gt;
-      &lt;li&gt;Model에서 View에게 Nofity 하는 방법 (Observer Pattern)&lt;/li&gt;
-      &lt;li&gt;View가 Polling으로 주기적으로 Model의 변경을 감지하는 방법&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&quot;특징&quot;&gt;특징&lt;/h1&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Controller&lt;/code&gt; 와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;View&lt;/code&gt; 는 1:N 관계이다.&lt;/li&gt;
-  &lt;li&gt;Controller는 View를 직접 update 하지 않고 View 도 Controller를 알지 못한다.&lt;/li&gt;
-  &lt;li&gt;View와 Model 사이의 의존성이 높다. (단점)&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;mvp-pattern&quot;&gt;&lt;em&gt;MVP Pattern&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;MVP 패턴은 Model, View, Presenter 로 이루어진 디자인패턴이다. Model, View는 MVC 패턴과 동일하지만, Controller 대신에 Presenter가 존재한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;mvp-구조&quot;&gt;&lt;em&gt;MVP 구조&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/19_2.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;용어-1&quot;&gt;용어&lt;/h3&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;View&lt;/code&gt; : 사용자에게 보여지는 UI&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Model&lt;/code&gt; : 애플리케이션에서 사용되는 데이터와 이 데이터를 처리하는 부분&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Presenter&lt;/code&gt; : View에서 요청한 정보를 Model을 가공하여 View에게 전달하는 부분, View와 Model을 연결하는 역할을 한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;동작-1&quot;&gt;동작&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;사용자의 Action이 View를 통해서 들어온다.&lt;/li&gt;
-  &lt;li&gt;View는 데이터를 Presenter에게 요청&lt;/li&gt;
-  &lt;li&gt;Presenter는 Model에게 데이터를 요청&lt;/li&gt;
-  &lt;li&gt;Model은 Presenter에게 요청받은 데이터를 응답&lt;/li&gt;
-  &lt;li&gt;Presenter가 View에게 데이터를 넘겨줌&lt;/li&gt;
-  &lt;li&gt;View는 Presenter가 준 데이터를 사용해서 화면을 랜더링&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;특징-1&quot;&gt;특징&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Presenter가 Model과 View의 인스턴스를 가지고 있고 이를 연결하는 역할을 한다.&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Presenter와 View는 1:1 관계&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;MVC 패턴의 문제였던 View와 Model 사이의 의존성 문제는 해결되었다. 그렇지만 View와 Presenter 사이의 의존성이 높아졌다. (장단)&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;mvvm-pattern&quot;&gt;&lt;em&gt;MVVM Pattern&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;MVVM 패턴은 Model, View, View Model 로 이루어진 디자인패턴이다. Model, View는 동일하고 ViewModel이 새로 생겼다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;mvvm-구조&quot;&gt;&lt;em&gt;MVVM 구조&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/19_3.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;용어-2&quot;&gt;용어&lt;/h3&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Model&lt;/code&gt; : 애플리케이션에서 사용되는 데이터와 이 데이터를 처리하는 부분&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;View&lt;/code&gt; : 사용자에게 보이는 UI&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;View Model&lt;/code&gt; : View를 표현하기 위해 등장한 View를 위한 Model, View를 나타내는 Model이자 여기에 필요한 데이터 처리를 하는 부분&lt;/p&gt;
-
-&lt;h3 id=&quot;동작-2&quot;&gt;동작&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;사용자의 Action이 View를 통해 들어온다.&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Command 패턴으로 View Model에 Action을 전달&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;View Model에서 Model에게 데이터를 요청&lt;/li&gt;
-  &lt;li&gt;Model에서 데이터 응답&lt;/li&gt;
-  &lt;li&gt;View Model에서 응답 데이터를 가공하여 저장&lt;/li&gt;
-  &lt;li&gt;View는 View Model 데이터를 Binding하여 화면을 랜더링&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;특징-2&quot;&gt;특징&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Command 패턴과 Binding 패턴이 사용되는 패턴이다.&lt;/li&gt;
-  &lt;li&gt;View와 View Model 사이의 의존성을 제거했다. (장점)&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;View Model : View는 1:N 관계이다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;View Model의 설계가 쉽지 않다. (단점)&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><category term="CS" /><summary type="html"></summary></entry><entry><title type="html">[디자인패턴] 노출모듈 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/RevealingModule/" rel="alternate" type="text/html" title="[디자인패턴] 노출모듈 패턴" /><published>2023-07-14T00:00:00+09:00</published><updated>2023-07-14T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/RevealingModule</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/RevealingModule/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;https://steady-coding.tistory.com/305&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="Java" /><category term="Java" /><category term="JVM" /><summary type="html"></summary></entry><entry><title type="html">[디자인패턴] 노출모듈 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/RevealingModule/" rel="alternate" type="text/html" title="[디자인패턴] 노출모듈 패턴" /><published>2023-07-14T00:00:00+09:00</published><updated>2023-07-14T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/RevealingModule</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/RevealingModule/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;revealing-module-pattern&quot;&gt;&lt;em&gt;Revealing Module Pattern&lt;/em&gt;&lt;/h1&gt;
 
@@ -496,6 +448,146 @@
 
 &lt;ol&gt;
   &lt;li&gt;클래스가 늘어나고 복잡도가 높아진다.&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><category term="CS" /><summary type="html"></summary></entry><entry><title type="html">[디자인패턴] MVC, MVP, MVVM 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/dpMVC/" rel="alternate" type="text/html" title="[디자인패턴] MVC, MVP, MVVM 패턴" /><published>2023-07-14T00:00:00+09:00</published><updated>2023-07-14T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/dpMVC</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/dpMVC/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;mvc-pattern&quot;&gt;&lt;em&gt;MVC Pattern&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;MVC 패턴이란 Model, View, Controller 로 이루어진 디자인패턴이다. M, V, C 역할을 분리해서 코드를 관리하기 때문에 유지보수가 편해지고 개발 효율성이 높아진다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;mvc-구조&quot;&gt;&lt;em&gt;MVC 구조&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/19_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;용어&quot;&gt;용어&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Model&lt;/code&gt; : 애플리케이션에서 사용되는 데이터와 이 데이터를 처리하는 부분이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;View&lt;/code&gt; : 사용자에게 보여지는 UI 부분이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Controller&lt;/code&gt; : 사용자의 입력을 받고 처리하는 부분이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;동작&quot;&gt;동작&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;사용자의 Action이 Controller로 들어온다.&lt;/li&gt;
+  &lt;li&gt;Controller는 사용자의 Action을 확인하고, Model의 값을 update한다.&lt;/li&gt;
+  &lt;li&gt;Controller 는 Model을 나타낼 View를 선택한다.&lt;/li&gt;
+  &lt;li&gt;View는 Model을 활용해서 화면을 랜더링한다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;View&lt;/code&gt; 가 update 되는 방법은 여러가지가 있다.
+    &lt;ul&gt;
+      &lt;li&gt;View가 Model을 이용해서 직접 update&lt;/li&gt;
+      &lt;li&gt;Model에서 View에게 Nofity 하는 방법 (Observer Pattern)&lt;/li&gt;
+      &lt;li&gt;View가 Polling으로 주기적으로 Model의 변경을 감지하는 방법&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;특징&quot;&gt;특징&lt;/h1&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Controller&lt;/code&gt; 와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;View&lt;/code&gt; 는 1:N 관계이다.&lt;/li&gt;
+  &lt;li&gt;Controller는 View를 직접 update 하지 않고 View 도 Controller를 알지 못한다.&lt;/li&gt;
+  &lt;li&gt;View와 Model 사이의 의존성이 높다. (단점)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;mvp-pattern&quot;&gt;&lt;em&gt;MVP Pattern&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;MVP 패턴은 Model, View, Presenter 로 이루어진 디자인패턴이다. Model, View는 MVC 패턴과 동일하지만, Controller 대신에 Presenter가 존재한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;mvp-구조&quot;&gt;&lt;em&gt;MVP 구조&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/19_2.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;용어-1&quot;&gt;용어&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;View&lt;/code&gt; : 사용자에게 보여지는 UI&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Model&lt;/code&gt; : 애플리케이션에서 사용되는 데이터와 이 데이터를 처리하는 부분&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Presenter&lt;/code&gt; : View에서 요청한 정보를 Model을 가공하여 View에게 전달하는 부분, View와 Model을 연결하는 역할을 한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;동작-1&quot;&gt;동작&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;사용자의 Action이 View를 통해서 들어온다.&lt;/li&gt;
+  &lt;li&gt;View는 데이터를 Presenter에게 요청&lt;/li&gt;
+  &lt;li&gt;Presenter는 Model에게 데이터를 요청&lt;/li&gt;
+  &lt;li&gt;Model은 Presenter에게 요청받은 데이터를 응답&lt;/li&gt;
+  &lt;li&gt;Presenter가 View에게 데이터를 넘겨줌&lt;/li&gt;
+  &lt;li&gt;View는 Presenter가 준 데이터를 사용해서 화면을 랜더링&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;특징-1&quot;&gt;특징&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Presenter가 Model과 View의 인스턴스를 가지고 있고 이를 연결하는 역할을 한다.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Presenter와 View는 1:1 관계&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;MVC 패턴의 문제였던 View와 Model 사이의 의존성 문제는 해결되었다. 그렇지만 View와 Presenter 사이의 의존성이 높아졌다. (장단)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;mvvm-pattern&quot;&gt;&lt;em&gt;MVVM Pattern&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;MVVM 패턴은 Model, View, View Model 로 이루어진 디자인패턴이다. Model, View는 동일하고 ViewModel이 새로 생겼다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;mvvm-구조&quot;&gt;&lt;em&gt;MVVM 구조&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/19_3.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;용어-2&quot;&gt;용어&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Model&lt;/code&gt; : 애플리케이션에서 사용되는 데이터와 이 데이터를 처리하는 부분&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;View&lt;/code&gt; : 사용자에게 보이는 UI&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;View Model&lt;/code&gt; : View를 표현하기 위해 등장한 View를 위한 Model, View를 나타내는 Model이자 여기에 필요한 데이터 처리를 하는 부분&lt;/p&gt;
+
+&lt;h3 id=&quot;동작-2&quot;&gt;동작&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;사용자의 Action이 View를 통해 들어온다.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Command 패턴으로 View Model에 Action을 전달&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;View Model에서 Model에게 데이터를 요청&lt;/li&gt;
+  &lt;li&gt;Model에서 데이터 응답&lt;/li&gt;
+  &lt;li&gt;View Model에서 응답 데이터를 가공하여 저장&lt;/li&gt;
+  &lt;li&gt;View는 View Model 데이터를 Binding하여 화면을 랜더링&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;특징-2&quot;&gt;특징&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Command 패턴과 Binding 패턴이 사용되는 패턴이다.&lt;/li&gt;
+  &lt;li&gt;View와 View Model 사이의 의존성을 제거했다. (장점)&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;View Model : View는 1:N 관계이다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;View Model의 설계가 쉽지 않다. (단점)&lt;/li&gt;
 &lt;/ol&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><category term="CS" /><summary type="html"></summary></entry><entry><title type="html">[Spring] MVC 기능</title><link href="http://localhost:4000/spring/Spring_MVC_function/" rel="alternate" type="text/html" title="[Spring] MVC 기능" /><published>2023-07-12T00:00:00+09:00</published><updated>2023-07-12T00:00:00+09:00</updated><id>http://localhost:4000/spring/Spring_MVC_function</id><content type="html" xml:base="http://localhost:4000/spring/Spring_MVC_function/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;요청매핑&quot;&gt;요청매핑&lt;/h1&gt;
@@ -944,122 +1036,7 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;spring-mvc-구조를-이해한-후-annotation-기반의-spring-mvc를-사용하자&quot;&gt;Spring MVC 구조를 이해한 후 Annotation 기반의 Spring MVC를 사용하자.&lt;/h2&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><category term="MVC" /><summary type="html">스프링 MVC 구조</summary></entry><entry><title type="html">[디자인패턴] 옵저버 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Observer/" rel="alternate" type="text/html" title="[디자인패턴] 옵저버 패턴" /><published>2023-07-06T00:00:00+09:00</published><updated>2023-07-06T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Observer</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Observer/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;observer-pattern&quot;&gt;&lt;em&gt;Observer Pattern&lt;/em&gt;&lt;/h1&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;옵저버 패턴&lt;/code&gt;이란 객체의 상태 변화를 관찰하는 옵저버들의 목록을 객체에 등록하여 객체의 상태 변화가 있을 때마다 객체에 등록된 옵저버들에게 알려주는 디자인 패턴이다.&lt;/p&gt;
-
-  &lt;p&gt;쉽게 말해서 객체의 상태 변화가 생길 때, 이와 관련된 객체들에게 알림을 보내는 것이다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;옵저버-패턴의-장단점&quot;&gt;&lt;em&gt;옵저버 패턴의 장단점&lt;/em&gt;&lt;/h1&gt;
-
-&lt;h2 id=&quot;장점&quot;&gt;장점&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;실시간으로 한 객체의 변경사항을 다른 객체에 전파할 수 이다.
-    &lt;ul&gt;
-      &lt;li&gt;옵저버 패턴을 사용하지 않으면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;polling&lt;/code&gt; 방식으로 일정 시간마다 객체의 상태 변화를 체크해야 한다.&lt;/li&gt;
-      &lt;li&gt;이 방식을 사용하면 polling 시간 내에 이벤트가 발생했다가 사라지게 된다면 체크할 수 없다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;느슨한 결합으로 시스템을 유연하게 하고 객체간의 의존성을 낮출 수 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;단점&quot;&gt;단점&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;옵저버 패턴을 너무 많이 사용하게 되면 상태 관리가 어려워진다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;옵저버-패턴의-구조&quot;&gt;&lt;em&gt;옵저버 패턴의 구조&lt;/em&gt;&lt;/h1&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;옵저버 패턴의 핵심은 옵저버의 관찰 대상이 되는 객체에 옵저버들을 등록한 후, 객체에 이벤트가 발생했을 때 옵저버들에게 전파해서 각 옵저버들이 이벤트를 잘 처리할 수 있게 하는 것이다.
-&lt;br /&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/14_1.png&quot; alt=&quot;img1&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;다이어그램을 보면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Subject&lt;/code&gt; (관찰 객체)는 옵저버들을 List로 가지고 있고 옵저버 등록, 삭제를 할 수 있다.&lt;/li&gt;
-  &lt;li&gt;그리고 이벤트가 발생했을 때, 옵저버들에게 전파할 수 있도록 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;notifyObservers()&lt;/code&gt; 메소드를 가지고 있다.&lt;/li&gt;
-  &lt;li&gt;각 옵저버들은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;notify&lt;/code&gt; 함수를 구현함으로써 subject에 이벤트가 발생했을 때 처리할 동작을 정의한다.&lt;/li&gt;
-  &lt;li&gt;주의점 : 옵저버 패턴을 사용한 시스템에서는 반드시 재귀 호출을 막는 메커니즘이 요구된다.
-    &lt;ul&gt;
-      &lt;li&gt;이벤트가 발생했을 때, 옵저버1과 옵저버2가 처리 동작 과정에서 서로를 변경한다면 무한 재귀 호출이 될 수 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;단순한-옵저버-패턴-구현&quot;&gt;&lt;em&gt;단순한 옵저버 패턴 구현&lt;/em&gt;&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;사람(주인)&lt;/code&gt; 과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;애완동물&lt;/code&gt;의 관계로 옵저버 패턴을 구현해보자.&lt;/li&gt;
-  &lt;li&gt;동물에는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dog&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Cat&lt;/code&gt;이 있다고 하고 이벤트에 대해서 각 옵저버들의 동작을 정의해보자.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// subject interface&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Owner&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  	&lt;span class=&quot;c1&quot;&gt;//Animal (observer) 를 리스트로 가지고 있음.&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Animal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;animals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Owner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;animals&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ArrayList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;();&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-  	&lt;span class=&quot;c1&quot;&gt;//Animal 추가&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Animal&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;animal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;animals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;contains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;animal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;animals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;animal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-  
-  	&lt;span class=&quot;c1&quot;&gt;//Animal 제거&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;delete&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Animal&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;animal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;animals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;animal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-  
-  	&lt;span class=&quot;c1&quot;&gt;//event 발생 -&amp;gt; Animal(observer) 들에게 알림&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;notifyAnimals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;animals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;forEach&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;animal:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;notify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// observer interface&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Animal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;notify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// observer Dog&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Dog&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Animal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;notify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;system&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;멍멍&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;// observer Cat&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Cat&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Animal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;notify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;system&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;먀먀&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;위의 예시는 굉장히 단순한 예시이다. 실제로 사용될 때는 훨씬 복잡하게 사용된다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;정리&quot;&gt;&lt;em&gt;정리&lt;/em&gt;&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;옵저버 패턴은 한 객체의 상태 변화에 대해 그 객체에 의존하는 다른 객체들에게 자동으로 연락을 보내서 정보를 갱신시키는 디자인 패턴이다.&lt;/li&gt;
-  &lt;li&gt;연결할 때, 인터페이스를 이용해서 느슨한 결합을 유지한다. subject, observer 인터페이스를 적용한다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><category term="CS" /><summary type="html"></summary></entry><entry><title type="html">[디자인패턴] 프록시 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Proxy/" rel="alternate" type="text/html" title="[디자인패턴] 프록시 패턴" /><published>2023-07-06T00:00:00+09:00</published><updated>2023-07-06T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Proxy</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Proxy/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;spring-mvc-구조를-이해한-후-annotation-기반의-spring-mvc를-사용하자&quot;&gt;Spring MVC 구조를 이해한 후 Annotation 기반의 Spring MVC를 사용하자.&lt;/h2&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><category term="MVC" /><summary type="html">스프링 MVC 구조</summary></entry><entry><title type="html">[디자인패턴] 프록시 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Proxy/" rel="alternate" type="text/html" title="[디자인패턴] 프록시 패턴" /><published>2023-07-06T00:00:00+09:00</published><updated>2023-07-06T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Proxy</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Proxy/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;proxy-pattern&quot;&gt;&lt;em&gt;Proxy Pattern&lt;/em&gt;&lt;/h1&gt;
 &lt;blockquote&gt;
@@ -1203,116 +1180,119 @@
 &lt;h1 id=&quot;참고-사이트-출처&quot;&gt;&lt;em&gt;참고 사이트 출처&lt;/em&gt;&lt;/h1&gt;
 &lt;p&gt;https://inpa.tistory.com/entry/GOF-%F0%9F%92%A0-%ED%94%84%EB%A1%9D%EC%8B%9CProxy-%ED%8C%A8%ED%84%B4-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EB%B0%B0%EC%9B%8C%EB%B3%B4%EC%9E%90&lt;/p&gt;
 
-&lt;p&gt;https://velog.io/@mooh2jj/%EC%8A%A4%ED%94%84%EB%A7%81%EC%9D%84-%EC%9C%84%ED%95%9C-%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4-%EC%A0%95%EB%A6%AC&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><category term="CS" /><summary type="html"></summary></entry><entry><title type="html">[디자인패턴] 전략 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Strategy/" rel="alternate" type="text/html" title="[디자인패턴] 전략 패턴" /><published>2023-07-05T00:00:00+09:00</published><updated>2023-07-05T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Strategy</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Strategy/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;https://velog.io/@mooh2jj/%EC%8A%A4%ED%94%84%EB%A7%81%EC%9D%84-%EC%9C%84%ED%95%9C-%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4-%EC%A0%95%EB%A6%AC&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><category term="CS" /><summary type="html"></summary></entry><entry><title type="html">[디자인패턴] 옵저버 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Observer/" rel="alternate" type="text/html" title="[디자인패턴] 옵저버 패턴" /><published>2023-07-06T00:00:00+09:00</published><updated>2023-07-06T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Observer</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Observer/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h1 id=&quot;strategy-pattern&quot;&gt;Strategy pattern&lt;/h1&gt;
+&lt;h1 id=&quot;observer-pattern&quot;&gt;&lt;em&gt;Observer Pattern&lt;/em&gt;&lt;/h1&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;옵저버 패턴&lt;/code&gt;이란 객체의 상태 변화를 관찰하는 옵저버들의 목록을 객체에 등록하여 객체의 상태 변화가 있을 때마다 객체에 등록된 옵저버들에게 알려주는 디자인 패턴이다.&lt;/p&gt;
+
+  &lt;p&gt;쉽게 말해서 객체의 상태 변화가 생길 때, 이와 관련된 객체들에게 알림을 보내는 것이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;옵저버-패턴의-장단점&quot;&gt;&lt;em&gt;옵저버 패턴의 장단점&lt;/em&gt;&lt;/h1&gt;
+
+&lt;h2 id=&quot;장점&quot;&gt;장점&lt;/h2&gt;
 &lt;ul&gt;
-  &lt;li&gt;객체의 행위를 바꾸고 싶은 경우 직접 수정하지 않고 전략이라고 부르는 캡슐화한 알고리즘을 컨텍스트 안에서 바꿔주면서 상호 교체가 가능하게 만드는 패턴이다.&lt;/li&gt;
-  &lt;li&gt;특정 컨텍스트에서 알고리즘을 별도로 분리하는 설계 방법을 의미한다.&lt;/li&gt;
-  &lt;li&gt;쉽게 말해서 특정 기능을 수행하는데 다양한 알고리즘이 적용될 수 있을 때, 알고리즘을 별도로 분리하는 설계 방법을 의미하는 것이다.&lt;/li&gt;
+  &lt;li&gt;실시간으로 한 객체의 변경사항을 다른 객체에 전파할 수 이다.
+    &lt;ul&gt;
+      &lt;li&gt;옵저버 패턴을 사용하지 않으면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;polling&lt;/code&gt; 방식으로 일정 시간마다 객체의 상태 변화를 체크해야 한다.&lt;/li&gt;
+      &lt;li&gt;이 방식을 사용하면 polling 시간 내에 이벤트가 발생했다가 사라지게 된다면 체크할 수 없다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;느슨한 결합으로 시스템을 유연하게 하고 객체간의 의존성을 낮출 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;단점&quot;&gt;단점&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;옵저버 패턴을 너무 많이 사용하게 되면 상태 관리가 어려워진다.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h1 id=&quot;옵저버-패턴의-구조&quot;&gt;&lt;em&gt;옵저버 패턴의 구조&lt;/em&gt;&lt;/h1&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;옵저버 패턴의 핵심은 옵저버의 관찰 대상이 되는 객체에 옵저버들을 등록한 후, 객체에 이벤트가 발생했을 때 옵저버들에게 전파해서 각 옵저버들이 이벤트를 잘 처리할 수 있게 하는 것이다.
+&lt;br /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
 
-&lt;h1 id=&quot;strategy-pattern의-구조&quot;&gt;Strategy pattern의 구조&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/12_1.png&quot; alt=&quot;img1&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/14_1.png&quot; alt=&quot;img1&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;전략 인터페이스&lt;/code&gt; : 모든 전략 구현체에 대한 공용 인터페이스&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;컨텍스트&lt;/code&gt; : 알고리즘을 실행할 때, 해당 알고리즘과 연결된 전략 객체의 메소드 호출&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;클라이언트&lt;/code&gt; : 특정 전략 객체를 컨텍스트에 전달 함으로써 전략을 등록하거나 변경하여 전략 알고리즘을 실행한 결과를 얻는다.&lt;/li&gt;
-  &lt;li&gt;전략패턴은 OOP의 집합체 (OCP, DIP, 다형성, 캡슐화, 추상화)&lt;/li&gt;
+  &lt;li&gt;다이어그램을 보면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Subject&lt;/code&gt; (관찰 객체)는 옵저버들을 List로 가지고 있고 옵저버 등록, 삭제를 할 수 있다.&lt;/li&gt;
+  &lt;li&gt;그리고 이벤트가 발생했을 때, 옵저버들에게 전파할 수 있도록 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;notifyObservers()&lt;/code&gt; 메소드를 가지고 있다.&lt;/li&gt;
+  &lt;li&gt;각 옵저버들은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;notify&lt;/code&gt; 함수를 구현함으로써 subject에 이벤트가 발생했을 때 처리할 동작을 정의한다.&lt;/li&gt;
+  &lt;li&gt;주의점 : 옵저버 패턴을 사용한 시스템에서는 반드시 재귀 호출을 막는 메커니즘이 요구된다.
+    &lt;ul&gt;
+      &lt;li&gt;이벤트가 발생했을 때, 옵저버1과 옵저버2가 처리 동작 과정에서 서로를 변경한다면 무한 재귀 호출이 될 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;전략-패턴-구현-코드&quot;&gt;전략 패턴 구현 코드&lt;/h1&gt;
+&lt;h1 id=&quot;단순한-옵저버-패턴-구현&quot;&gt;&lt;em&gt;단순한 옵저버 패턴 구현&lt;/em&gt;&lt;/h1&gt;
 &lt;ul&gt;
-  &lt;li&gt;블랙 프라이데이에는 50% 할인, 첫 방문 고객은 20%, 일반 방문은 할인 적용X&lt;/li&gt;
-  &lt;li&gt;할인이라는 알고리즘을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DiscountPolicy&lt;/code&gt; 라는 인터페이스를 통해 분리해서 관리&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;사람(주인)&lt;/code&gt; 과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;애완동물&lt;/code&gt;의 관계로 옵저버 패턴을 구현해보자.&lt;/li&gt;
+  &lt;li&gt;동물에는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dog&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Cat&lt;/code&gt;이 있다고 하고 이벤트에 대해서 각 옵저버들의 동작을 정의해보자.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//전략 인터페이스&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;discount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// subject interface&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Owner&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  	&lt;span class=&quot;c1&quot;&gt;//Animal (observer) 를 리스트로 가지고 있음.&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Animal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;animals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 
-&lt;span class=&quot;c1&quot;&gt;//blackFriday에 적용할 정책&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;BlackFridayDiscountPolicy&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;discount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getPrice&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;//아무 이벤트 없는 날에 적용할 정책&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;CommonDiscountPolicy&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;discount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getPrice&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;//첫 방문자에 적용할 할인 정책&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FirstDiscountPolicy&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getPrice&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.8&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;//컨텍스트&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Calculator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Calculator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;DiscountPolicy&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;discountPolicy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Owner&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;animals&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ArrayList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;();&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;calculate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kt&quot;&gt;double&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;total&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;items&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;total&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;discountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;discount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  	&lt;span class=&quot;c1&quot;&gt;//Animal 추가&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Animal&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;animal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;animals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;contains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;animal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;animals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;animal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
         &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;total&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  
+  	&lt;span class=&quot;c1&quot;&gt;//Animal 제거&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;delete&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Animal&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;animal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;animals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;animal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  
+  	&lt;span class=&quot;c1&quot;&gt;//event 발생 -&amp;gt; Animal(observer) 들에게 알림&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;notifyAnimals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;animals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;forEach&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;animal:&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;notify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
     &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-&lt;span class=&quot;c1&quot;&gt;//클라이언트&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;//사용하는 곳에서 전략을 지정&lt;/span&gt;
-    &lt;span class=&quot;nc&quot;&gt;Calculator&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Calculator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;BlackFridayDiscountPolicy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;cal&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;calculate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Arrays&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;asList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;banana&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;cellPhone&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000000&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;));&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// observer interface&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Animal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;notify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// observer Dog&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Dog&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Animal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;notify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;system&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;멍멍&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// observer Cat&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Cat&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Animal&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;notify&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;system&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;out&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;먀먀&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h1 id=&quot;장점&quot;&gt;&lt;strong&gt;장점&lt;/strong&gt;&lt;/h1&gt;
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;컨텍스트 코드의 변경 없이 새로운 전략을 추가할 수 있다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;OCP 지킴 : 새로운 요구사항이 생겼을 때, 기존 코드를 건드리지 않고 새로운 클래스를 추가하면 된다.&lt;/p&gt;
-  &lt;/li&gt;
+  &lt;li&gt;위의 예시는 굉장히 단순한 예시이다. 실제로 사용될 때는 훨씬 복잡하게 사용된다.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h1 id=&quot;단점&quot;&gt;&lt;strong&gt;단점&lt;/strong&gt;&lt;/h1&gt;
+&lt;h1 id=&quot;정리&quot;&gt;&lt;em&gt;정리&lt;/em&gt;&lt;/h1&gt;
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;전략패턴을 적용하면 코드가 길어지고 보기 힘들어진다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;컨텍스트에 적용되는 알고리즘이 적다면 분기를 타는 것이 더 좋을 수 있다.&lt;/p&gt;
-  &lt;/li&gt;
+  &lt;li&gt;옵저버 패턴은 한 객체의 상태 변화에 대해 그 객체에 의존하는 다른 객체들에게 자동으로 연락을 보내서 정보를 갱신시키는 디자인 패턴이다.&lt;/li&gt;
+  &lt;li&gt;연결할 때, 인터페이스를 이용해서 느슨한 결합을 유지한다. subject, observer 인터페이스를 적용한다.&lt;/li&gt;
 &lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><category term="CS" /><summary type="html"></summary></entry></feed>
