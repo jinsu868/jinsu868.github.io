@@ -136,4 +136,10 @@ var store = [{
         "tags": ["Spring","MVC"],
         "url": "/spring/exceptionHandle/",
         "teaser": null
+      },{
+        "title": "[알고리즘] Union find",
+        "excerpt":"오늘은 Union-Find 알고리즘에 대해서 정리해보겠다. (귀엽다..) Union find algorithm 유니온 파인드 알고리즘은 상호 배타적 집합, Disjoin-set(서로소 집합) 이라고도 부른다. 여러 노드가 존재할 때, 어떤 두 개의 노드를 같은 집합으로 묶어 주고, 어떤 두 노드가 같은 집하에 있는지 확인하는 알고리즘이다. Union 연산 서로 연결된 두 노드 A, B를 선택 A의 루트...","categories": ["Algorithm"],
+        "tags": ["알고리즘","Union find","자료구조"],
+        "url": "/algorithm/unionFind/",
+        "teaser": null
       }]
