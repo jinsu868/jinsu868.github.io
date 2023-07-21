@@ -101,6 +101,10 @@
 <lastmod>2023-07-21T00:00:00+09:00</lastmod>
 </url>
 <url>
+<loc>http://localhost:4000/jpa/JPA2/</loc>
+<lastmod>2023-07-21T00:00:00+09:00</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/categories/</loc>
 </url>
 <url>
@@ -123,5 +127,8 @@
 </url>
 <url>
 <loc>http://localhost:4000/page5/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/page6/</loc>
 </url>
 </urlset>

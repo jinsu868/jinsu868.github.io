@@ -148,4 +148,10 @@ var store = [{
         "tags": ["Spring","JPA","DB"],
         "url": "/jpa/JPA1/",
         "teaser": null
+      },{
+        "title": "[JPA] 영속성 컨텍스트",
+        "excerpt":"영속성 컨텍스트 영속성 컨텍스트란 엔티티를 영구 저장하는 환경이라는 뜻이다. 애플리케이션과 DB 사이에서 객체를 보관하는 가상의 DB역할을 수행한다. EntityManager를 통해서 엔티티를 저장하거나 조회를 하면 EntityManager는 영속성 컨텍스트에 엔티티를 저장한다. 엔티티의 생명주기 엔티티의 생명주기는 크게 비영속, 영속, 준영속, 삭제가 있다. 하나씩 알아보자 비영속(new/transient) 영속성 컨텍스트와 전혀 관계가 없는 상태이다. 영속성 컨텍스트가 관리하지...","categories": ["JPA"],
+        "tags": ["Spring","JPA","DB"],
+        "url": "/jpa/JPA2/",
+        "teaser": null
       }]

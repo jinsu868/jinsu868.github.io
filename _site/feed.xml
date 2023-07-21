@@ -1,4 +1,206 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-21T16:09:48+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[JPA] Intro</title><link href="http://localhost:4000/jpa/JPA1/" rel="alternate" type="text/html" title="[JPA] Intro" /><published>2023-07-21T00:00:00+09:00</published><updated>2023-07-21T00:00:00+09:00</updated><id>http://localhost:4000/jpa/JPA1</id><content type="html" xml:base="http://localhost:4000/jpa/JPA1/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-21T17:21:06+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[JPA] 영속성 컨텍스트</title><link href="http://localhost:4000/jpa/JPA2/" rel="alternate" type="text/html" title="[JPA] 영속성 컨텍스트" /><published>2023-07-21T00:00:00+09:00</published><updated>2023-07-21T00:00:00+09:00</updated><id>http://localhost:4000/jpa/JPA2</id><content type="html" xml:base="http://localhost:4000/jpa/JPA2/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;영속성-컨텍스트&quot;&gt;&lt;em&gt;영속성 컨텍스트&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;영속성 컨텍스트란 &lt;strong&gt;엔티티를 영구 저장하는 환경&lt;/strong&gt;이라는 뜻이다. 애플리케이션과 DB 사이에서 객체를 보관하는 가상의 DB역할을 수행한다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EntityManager&lt;/code&gt;를 통해서 엔티티를 저장하거나 조회를 하면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EntityManager&lt;/code&gt;는 영속성 컨텍스트에 엔티티를 저장한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;엔티티의-생명주기&quot;&gt;&lt;em&gt;엔티티의 생명주기&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/25_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;엔티티의 생명주기는 크게 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;비영속&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;영속&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;준영속&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;삭제&lt;/code&gt;가 있다. 하나씩 알아보자&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;비영속(new/transient)&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;영속성 컨텍스트와 전혀 관계가 없는 상태이다. 영속성 컨텍스트가 관리하지 않는 상태를 의미한다&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//비영속 상태&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setQuantity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;영속(managed)&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;영속성 컨텍스트에 저장, 관리되는 상태&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//영속 상태&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setQuantity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;nc&quot;&gt;EntityManager&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;emf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createEntityManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getTransaction&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;//영속성 컨텍스트에 집어넣는다. 이때 DB에 query가 날아가지는 않는다. transaction commit 시점에 query가 날아감.&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;persist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;준영속(detached)&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;영속성 컨텍스트에 저장되었다가 분리된 상태&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//아이템 엔티티를 영속성 컨텍스트에서 분리 -&amp;gt; 준영속 상태&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;detach&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;삭제(removed)&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;삭제된 상태&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//객체를 삭제한 상태&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;영속성-컨텍스트의-장점&quot;&gt;영속성 컨텍스트의 장점&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1차 캐시&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;영속성 컨텍스트에 데이터가 있으면 DB를 거치지 않고 바로 영속성 컨텍스트에서 데이터를 조회할 수 있다. 이를 1차 캐시라고 한다.&lt;/li&gt;
+      &lt;li&gt;애플리케이션 차원에서 1차 캐시를 통해서 반복 가능한 읽기(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;REPEATABLE READ&lt;/code&gt;) 등급의 트랜잭션 격리 수준을 제공한다.&lt;/li&gt;
+      &lt;li&gt;em.find(), em.persist()를 하면 해당 트랜잭션 안에서 영속성 컨텍스트로 관리된다. 예시를 보자&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;예제코드 1)&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//예시를 보자&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setQuantity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;//persist를 하면 영속성 컨텍스트에서 저장, 관리된다.&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;persist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;예제코드 2)&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1L&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;em.find()를 호출하면 영속성 컨텍스트에서 먼저 해당하는 엔티티 있는지 찾는다. 만약 없으면 DB에 query를 날려서 가져오고 이를 영속성 컨텍스트에 저장, 관리한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;쓰기지연&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;em.persist() 를 호출하는 시점에 DB로 query를 날리는 것이 아니라 해당 객체를 영속성 컨텍스트에서 관리하기 시작하고 쓰기 지연 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SQL 저장소&lt;/code&gt; 에 SQL을 쌓아두었다가 트랜잭션 커밋시점에 한번에 DB에 query를 날린다.&lt;/li&gt;
+      &lt;li&gt;아래 그림을 보면 이해하기 쉬울 것이다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/25_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;변경감지(Dirty checking)&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;영속성 컨텍스트에서 관리되는 객체들은 변경감지가 적용된다.&lt;/li&gt;
+      &lt;li&gt;JPA는 영속성 컨텍스트에 엔티티를 보관할 때 최초의 상태를 저장한다. 이를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;스냅샷&lt;/code&gt;이라고 한다.&lt;/li&gt;
+      &lt;li&gt;영속성 컨텍스트가 Flush 되는 시점에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;스냅샷&lt;/code&gt; 과 엔티티의 현재 상태를 비교하고 달라진 엔티티를 찾고 변경된 필드들에 대해서 쓰기 지연 SQL에 Update query를 쌓는다.&lt;/li&gt;
+      &lt;li&gt;트랜잭션 커밋시점에 쌓여있던 Update query들이 한번에 DB에 날아간다.&lt;/li&gt;
+      &lt;li&gt;개발자가 일일이 변경이 발생할 때 이에 해당하는 코드를 넣어주지 않아도 되기 때문에 굉장히 편리하다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;플러시&quot;&gt;&lt;em&gt;플러시&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;플러시는 영속성 컨텍스트를 DB와 동기화하는 작업이다. 플러시가 발생하면 변경 감지가 일어나고 수정된 엔티티의 update 내용이 쓰기 지연 SQL에 등록된다. 그리고 쓰기 지연 SQL 저장소의 query를 데이터베이스에 전송한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;플러시가-호출되는-상황&quot;&gt;플러시가 호출되는 상황&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;em.flush()&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;트랜젝션 커밋&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JPQL 쿼리 실행&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;특징&quot;&gt;특징&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;영속성 컨텍스트를 비우지 않는다.&lt;/li&gt;
+  &lt;li&gt;영속성 컨텍스트의 변경내용을 데이터베이스에 동기화한다.&lt;/li&gt;
+  &lt;li&gt;트랜잭션 커밋 직전까지만 동기화가 되면 OK&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;그렇다면-commit과-flush의-차이는-무엇일까&quot;&gt;그렇다면 Commit과 flush의 차이는 무엇일까?&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;플러시는 DB에 query를 전송한느 역할을 수행하고 커밋은 내부적으로 플러시를 호출한 후 트랜잭션을 끝내는 역할을 한다.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;플러시로 전송된 query는 rollback이 가능하지만 commit을 호출하면 트랜잭션이 끝나기 때문에 rollback이 불가능하다.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;참고-사이트-출처&quot;&gt;참고 사이트 출처&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://www.inflearn.com/course/ORM-JPA-Basic/dashboard&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://code-lab1.tistory.com/290&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://small-stap.tistory.com/74&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://velog.io/@tomato2532/JPA-JPA-Entity-2-%EC%98%81%EC%86%8D%EC%84%B1-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8Persistence-Context&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="JPA" /><category term="Spring" /><category term="JPA" /><category term="DB" /><summary type="html"></summary></entry><entry><title type="html">[JPA] Intro</title><link href="http://localhost:4000/jpa/JPA1/" rel="alternate" type="text/html" title="[JPA] Intro" /><published>2023-07-21T00:00:00+09:00</published><updated>2023-07-21T00:00:00+09:00</updated><id>http://localhost:4000/jpa/JPA1</id><content type="html" xml:base="http://localhost:4000/jpa/JPA1/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/24_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
 
@@ -258,23 +460,7 @@
   &lt;li&gt;특정 애노테이션이 있는 컨트롤러를 지정할 수 있다.&lt;/li&gt;
   &lt;li&gt;특정 패키지를 직접 지정할 수도 있다.&lt;/li&gt;
   &lt;li&gt;특정 컨트롤러를 지정할 수 있다.&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><category term="MVC" /><summary type="html"></summary></entry><entry><title type="html">[Java] Intro</title><link href="http://localhost:4000/java/javaIntro/" rel="alternate" type="text/html" title="[Java] Intro" /><published>2023-07-16T00:00:00+09:00</published><updated>2023-07-16T00:00:00+09:00</updated><id>http://localhost:4000/java/javaIntro</id><content type="html" xml:base="http://localhost:4000/java/javaIntro/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;java-정리&quot;&gt;&lt;em&gt;Java 정리&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/20_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;최근 Java를 쓰면서 내가 정말 Java라는 언어를 잘 알고 있나? 라는 의문이 들었다. 프로그래밍을 하면서 자신이 쓰는 언어에 대해서 제대로 이해하는 것은 정말 중요하다. 이참에 한 번 제대로 정리하고 넘어가자.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;선택한-책&quot;&gt;&lt;em&gt;선택한 책&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/20_2.png&quot; alt=&quot;img2&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;30%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;공부할 책은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Java의 정석&lt;/code&gt; 으로 정했다. 취업하기 전에 정리하는 느낌으로 좋다는 평이 많아서 선택했다. Java 공부 내용은 주에 최소한으로 3번은 포스팅할 예정이다 (금방 끝낼 수 있겠지?..)&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="Java" /><category term="Java" /><summary type="html"></summary></entry><entry><title type="html">[Java] JVM</title><link href="http://localhost:4000/java/java_JVM1/" rel="alternate" type="text/html" title="[Java] JVM" /><published>2023-07-16T00:00:00+09:00</published><updated>2023-07-16T00:00:00+09:00</updated><id>http://localhost:4000/java/java_JVM1</id><content type="html" xml:base="http://localhost:4000/java/java_JVM1/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;/ol&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><category term="MVC" /><summary type="html"></summary></entry><entry><title type="html">[Java] JVM</title><link href="http://localhost:4000/java/java_JVM1/" rel="alternate" type="text/html" title="[Java] JVM" /><published>2023-07-16T00:00:00+09:00</published><updated>2023-07-16T00:00:00+09:00</updated><id>http://localhost:4000/java/java_JVM1</id><content type="html" xml:base="http://localhost:4000/java/java_JVM1/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;jvm-이란&quot;&gt;&lt;em&gt;JVM 이란?&lt;/em&gt;&lt;/h1&gt;
 
@@ -440,183 +626,23 @@
 
 &lt;p&gt;https://inpa.tistory.com/entry/JAVA-%E2%98%95-JVM-%EB%82%B4%EB%B6%80-%EA%B5%AC%EC%A1%B0-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%98%81%EC%97%AD-%EC%8B%AC%ED%99%94%ED%8E%B8&lt;/p&gt;
 
-&lt;p&gt;https://steady-coding.tistory.com/305&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="Java" /><category term="Java" /><category term="JVM" /><summary type="html"></summary></entry><entry><title type="html">[디자인패턴] 노출모듈 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/RevealingModule/" rel="alternate" type="text/html" title="[디자인패턴] 노출모듈 패턴" /><published>2023-07-14T00:00:00+09:00</published><updated>2023-07-14T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/RevealingModule</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/RevealingModule/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;https://steady-coding.tistory.com/305&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="Java" /><category term="Java" /><category term="JVM" /><summary type="html"></summary></entry><entry><title type="html">[Java] Intro</title><link href="http://localhost:4000/java/javaIntro/" rel="alternate" type="text/html" title="[Java] Intro" /><published>2023-07-16T00:00:00+09:00</published><updated>2023-07-16T00:00:00+09:00</updated><id>http://localhost:4000/java/javaIntro</id><content type="html" xml:base="http://localhost:4000/java/javaIntro/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h1 id=&quot;revealing-module-pattern&quot;&gt;&lt;em&gt;Revealing Module Pattern&lt;/em&gt;&lt;/h1&gt;
+&lt;h1 id=&quot;java-정리&quot;&gt;&lt;em&gt;Java 정리&lt;/em&gt;&lt;/h1&gt;
 
-&lt;p&gt;즉시 실행 함수를 통해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;private&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public&lt;/code&gt; 과 같은 접근 제어자를 만든느 패턴이다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/20_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;자바 스크립트에서는 접근 제어자가 존재하지 않고 전역 범위에서 스크립트가 실행된다. 때문에 접근 제어자를 사용하고 싶으면 노출모듈 패턴을 통해서 public, private 접근 제어자를 만들어서 사용해야 한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;그렇다면-즉시-실행-함수란-무엇일까&quot;&gt;&lt;em&gt;그렇다면 즉시 실행 함수란 무엇일까?&lt;/em&gt;&lt;/h1&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;function &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;TEST&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;})();&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;즉시 실행함수는 선언과 동시에 바로 호출되는 함수이다. 재사용이 불가능하고 초기화, 라이브러리 전역 변수 충돌을 피하기 위해 사용한다.&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;최근 Java를 쓰면서 내가 정말 Java라는 언어를 잘 알고 있나? 라는 의문이 들었다. 프로그래밍을 하면서 자신이 쓰는 언어에 대해서 제대로 이해하는 것은 정말 중요하다. 이참에 한 번 제대로 정리하고 넘어가자.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h1 id=&quot;접근-제어자&quot;&gt;&lt;em&gt;접근 제어자&lt;/em&gt;&lt;/h1&gt;
+&lt;h1 id=&quot;선택한-책&quot;&gt;&lt;em&gt;선택한 책&lt;/em&gt;&lt;/h1&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public&lt;/code&gt; : 클래스에서 정의된 함수, 자식, 외부 클래스 모두 접근 가능&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/20_2.png&quot; alt=&quot;img2&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;30%&amp;quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;protected&lt;/code&gt; : 클래스에서 정의된 함수, 자식 클래스에서만 접근 가능&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;private&lt;/code&gt; : 클래스에 정의된 함수에서만 접근 가능&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;노출모듈-패턴-장단점&quot;&gt;&lt;em&gt;노출모듈 패턴 장단점&lt;/em&gt;&lt;/h1&gt;
-
-&lt;h3 id=&quot;장점&quot;&gt;장점&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;깔끔한 접근 제어 방법 제공&lt;/li&gt;
-  &lt;li&gt;private 데이터 제공&lt;/li&gt;
-  &lt;li&gt;전역변수를 덜 더럽힌다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;단점&quot;&gt;단점&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;private 메소드에 접근 방법이 없음&lt;/li&gt;
-  &lt;li&gt;private 메소드에 대해 함수를 확장하는 게 어려움&lt;/li&gt;
-  &lt;li&gt;private 메소드를 참조하는 public 메소드를 수정하기 어려움&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><category term="CS" /><summary type="html"></summary></entry><entry><title type="html">[디자인패턴] 반복자 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Iterator/" rel="alternate" type="text/html" title="[디자인패턴] 반복자 패턴" /><published>2023-07-14T00:00:00+09:00</published><updated>2023-07-14T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Iterator</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Iterator/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;iterator-pattern&quot;&gt;&lt;em&gt;Iterator Pattern&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;이터레이터 패턴은 반복자를 사용해서 컬렉션과 같은 데이터 집합의 각 요소들을 순차적으로 접근할 수 있도록 해주는 디자인패턴이다. 자료형의 종류와 구조에 상관없이 하나의 인터페이스로 순회가 가능하다는 특징이 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/18_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Aggregate&lt;/code&gt;  : ConcreateAggreate 객체를 반환하는 인터페이스를 제공&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;iterator() : ConcreateIterator 객체를 만드는 팩토리 메서드&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ConcreateAggregate&lt;/code&gt; : 데이터의 집합체&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;iterator&lt;/code&gt; : 집합체 안의 요소들을 순서대로 조회하기 위한 인터페이스 제공&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;hasNext() : 순회할 다음 요소가 있는지 확인&lt;/li&gt;
-  &lt;li&gt;next() : 요소를 반환하고 다음 요소를 반환하기 위해 커서를 이동&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ConcreateIterator&lt;/code&gt; : 반복자 객체&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;ConcreateAggreate가 구현한 메서드로부터 생성, ConcreateAggreate 의 컬렉션을 참조하여 순회&lt;/li&gt;
-  &lt;li&gt;어떤 전략으로 순회할지에 대한 로직이 구현됨.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;iterator-pattern-구현&quot;&gt;&lt;em&gt;Iterator Pattern 구현&lt;/em&gt;&lt;/h1&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Aggregate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;Iterator&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;iterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;//예제를 단순화하기 위해서 내부 &lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ConcreateAggreate&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Aggreate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-  
-  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ConcreateAggreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;arr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-  
-  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-      &lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-  
-  &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Iterator&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;iterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ConcreateIterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Iterator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hasNext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ConcreateIterator&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Iterator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nextIdx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-  
-  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ConcreateIterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;arr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-  
-  &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hasNext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nextIdx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-  
-  &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nextIdx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++];&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;이 예제는 배열로 구현했지만 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Aggreate&lt;/code&gt; 를 인터페이스로 분리했기 때문에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ConcreateAggreate&lt;/code&gt; 의 코드를 변경하지 않고도 다른 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Iterator&lt;/code&gt; 를 적용할 수 있다. 그리고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Iterator&lt;/code&gt; 도 인터페이스화 했기 때문에 기존 코드를 바꾸지 않고도 새로운 순회 방식을 추가할 수 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;iterator-pattern-특징&quot;&gt;&lt;em&gt;Iterator Pattern 특징&lt;/em&gt;&lt;/h1&gt;
-
-&lt;h3 id=&quot;언제-쓸까&quot;&gt;언제 쓸까?&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;컬렉션 종류에 상관없이 객체 접근 순회 방식을 통일하고 싶을 때&lt;/li&gt;
-  &lt;li&gt;컬렉션의 순회 방식을 다양하게 하고 싶을 때 ex) 깊이우선, 넓이우선&lt;/li&gt;
-  &lt;li&gt;컬렉션 내부 구조를 클라이언트에게 숨기고 싶을 때&lt;/li&gt;
-  &lt;li&gt;데이터를 저장하는 컬렉션의 종류에 변경 가능성이 존재할 때&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;장점&quot;&gt;장점&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;일관된 인터페이스를 사용해서 여러 컬렉션을 조회할 수 있다.&lt;/li&gt;
-  &lt;li&gt;컬렉션 내부 구조를 몰라도 사용이 가능하다.&lt;/li&gt;
-  &lt;li&gt;순회 알고리즘을 별도로 분리해서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SRP&lt;/code&gt;를 준수한다.&lt;/li&gt;
-  &lt;li&gt;데이터 컬렉션 종류가 변경되도 클라이언트 코드의 수정이 발생하지 않는다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OCP&lt;/code&gt; 준수&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;단점&quot;&gt;단점&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;클래스가 늘어나고 복잡도가 높아진다.&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><category term="CS" /><summary type="html"></summary></entry><entry><title type="html">[디자인패턴] MVC, MVP, MVVM 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/dpMVC/" rel="alternate" type="text/html" title="[디자인패턴] MVC, MVP, MVVM 패턴" /><published>2023-07-14T00:00:00+09:00</published><updated>2023-07-14T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/dpMVC</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/dpMVC/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;공부할 책은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Java의 정석&lt;/code&gt; 으로 정했다. 취업하기 전에 정리하는 느낌으로 좋다는 평이 많아서 선택했다. Java 공부 내용은 주에 최소한으로 3번은 포스팅할 예정이다 (금방 끝낼 수 있겠지?..)&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="Java" /><category term="Java" /><summary type="html"></summary></entry><entry><title type="html">[디자인패턴] MVC, MVP, MVVM 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/dpMVC/" rel="alternate" type="text/html" title="[디자인패턴] MVC, MVP, MVVM 패턴" /><published>2023-07-14T00:00:00+09:00</published><updated>2023-07-14T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/dpMVC</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/dpMVC/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;mvc-pattern&quot;&gt;&lt;em&gt;MVC Pattern&lt;/em&gt;&lt;/h1&gt;
 
@@ -756,117 +782,97 @@
     &lt;p&gt;View Model : View는 1:N 관계이다.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;View Model의 설계가 쉽지 않다. (단점)&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><category term="CS" /><summary type="html"></summary></entry><entry><title type="html">[Spring] MVC 기능</title><link href="http://localhost:4000/spring/Spring_MVC_function/" rel="alternate" type="text/html" title="[Spring] MVC 기능" /><published>2023-07-12T00:00:00+09:00</published><updated>2023-07-12T00:00:00+09:00</updated><id>http://localhost:4000/spring/Spring_MVC_function</id><content type="html" xml:base="http://localhost:4000/spring/Spring_MVC_function/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;/ol&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><category term="CS" /><summary type="html"></summary></entry><entry><title type="html">[디자인패턴] 반복자 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Iterator/" rel="alternate" type="text/html" title="[디자인패턴] 반복자 패턴" /><published>2023-07-14T00:00:00+09:00</published><updated>2023-07-14T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Iterator</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Iterator/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h1 id=&quot;요청매핑&quot;&gt;요청매핑&lt;/h1&gt;
+&lt;h1 id=&quot;iterator-pattern&quot;&gt;&lt;em&gt;Iterator Pattern&lt;/em&gt;&lt;/h1&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@RequestMapping&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;이터레이터 패턴은 반복자를 사용해서 컬렉션과 같은 데이터 집합의 각 요소들을 순차적으로 접근할 수 있도록 해주는 디자인패턴이다. 자료형의 종류와 구조에 상관없이 하나의 인터페이스로 순회가 가능하다는 특징이 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/18_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Aggregate&lt;/code&gt;  : ConcreateAggreate 객체를 반환하는 인터페이스를 제공&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;@RequestMapping은 파라미터로 URL을 넣을 수 있는데 해당 URL로 호출이 오면 메서드가 실행된다. 여러개의 URL을 배열 형태로 받을 수도 있다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;@RequestMapping은 HTTP 메서드를 지정하지 않으면 HTTP 메서드 종류에 상관없이 무조건 호출된다.&lt;/p&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@GetMapping&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@PostMapping&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@PatchMapping&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@DeleteMapping&lt;/code&gt; , &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@PutMapping&lt;/code&gt; 을 사용하면 HTTP 메서드에 따라 호출 여부를 결정하게 할 수 있다.&lt;/li&gt;
-      &lt;li&gt;@RequestMapping 파라미터에 Method를 직접 지정해서 전달할 수도 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+  &lt;li&gt;iterator() : ConcreateIterator 객체를 만드는 팩토리 메서드&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ConcreateAggregate&lt;/code&gt; : 데이터의 집합체&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;iterator&lt;/code&gt; : 집합체 안의 요소들을 순서대로 조회하기 위한 인터페이스 제공&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;hasNext() : 순회할 다음 요소가 있는지 확인&lt;/li&gt;
+  &lt;li&gt;next() : 요소를 반환하고 다음 요소를 반환하기 위해 커서를 이동&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ConcreateIterator&lt;/code&gt; : 반복자 객체&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ConcreateAggreate가 구현한 메서드로부터 생성, ConcreateAggreate 의 컬렉션을 참조하여 순회&lt;/li&gt;
+  &lt;li&gt;어떤 전략으로 순회할지에 대한 로직이 구현됨.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@RestController&lt;/code&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;@Controller + @ResponseBody 이다.&lt;/li&gt;
-  &lt;li&gt;원래 @Controller 는 반환값이 String이면 이것을 View 이름으로 인식하고 화면을 랜더링한다.&lt;/li&gt;
-  &lt;li&gt;@ResponseBody가 있으면 바로 HTTP 메시지 바디로 입력한다.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@PathVariable&lt;/code&gt;&lt;/p&gt;
+&lt;h1 id=&quot;iterator-pattern-구현&quot;&gt;&lt;em&gt;Iterator Pattern 구현&lt;/em&gt;&lt;/h1&gt;
 
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@GetMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/api/{userId}&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;api&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@PathVariable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;userId&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;userId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Aggregate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;Iterator&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;iterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;@PathVariable의 이름과 파마미터 이름이 같으면 생략할 수 있다.&lt;/li&gt;
-&lt;/ul&gt;
+&lt;span class=&quot;c1&quot;&gt;//예제를 단순화하기 위해서 내부 &lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ConcreateAggreate&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Aggreate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ConcreateAggreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;arr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;];&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;idx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++;&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  
+  &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Iterator&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;iterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ConcreateIterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Iterator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hasNext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 
-&lt;h1 id=&quot;http-요청---정보-조회&quot;&gt;HTTP 요청 - 정보 조회&lt;/h1&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Slf4j&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@RestController&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nd&quot;&gt;@RequestMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/headers&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;headers&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;HttpServletRequest&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HttpServletResponse&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-                       &lt;span class=&quot;nc&quot;&gt;HttpMethod&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;httpMethod&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Locale&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;locale&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-                       &lt;span class=&quot;nd&quot;&gt;@RequestHeader&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MultiValueMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;headerMap&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-                       &lt;span class=&quot;nd&quot;&gt;@RequestHeader&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;host&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@CookieValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;myCookie&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;required&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-                       &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cookie&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;){&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ConcreateIterator&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Iterator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nextIdx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ConcreateIterator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;arr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  
+  &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hasNext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nextIdx&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+  
+  &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Object&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nextIdx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;++];&lt;/span&gt;
   &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HttpMethod&lt;/code&gt; : HTTP Method 종류가 들어있다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Locale&lt;/code&gt; : Locale 정보를 조회&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@RequestHeader MultiValueMap&amp;lt;String, String&amp;gt; headerMap&lt;/code&gt; : 모든 HTTP 헤더를 MultiValueMap 형태로 조회&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@RequestHeader(&quot;host&quot;) String host&lt;/code&gt; : 특정 HTTP 헤더 조회&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Required&lt;/code&gt; : 필수값 여부&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@CookieValue(value = &quot;myCookie&quot;, required = false) String cookie&lt;/code&gt; : 특정 쿠키 조회&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;http-요청-파리미터&quot;&gt;HTTP 요청 파리미터&lt;/h1&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@RequestParam&lt;/code&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;파라미터 이름으로 간단하게 조회할 수 있음.&lt;/li&gt;
-  &lt;li&gt;request.getParameter(“parameterName”) 으로 귀찮게 조회하지 않아도 Annotation 하나면 처리된다.&lt;/li&gt;
-  &lt;li&gt;파라미터 이름과 동일하게 변수명을 지정하면 생략할 수 있다.&lt;/li&gt;
-  &lt;li&gt;단순 타입이면 생략도 가능하지만 그냥 써주는게 좋다. (생략하게 되면 required=false가 기본적으로 적용된다.)&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;required&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;필수 파라미터 여부이다.&lt;/li&gt;
-      &lt;li&gt;기본값은 true이다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;주의점
-    &lt;ul&gt;
-      &lt;li&gt;/request-param?username= 과 같이 파라미터 이름만 있고 값이 없는 경우 -&amp;gt; 빈문자로 들어온다.&lt;/li&gt;
-      &lt;li&gt;/request-param 요청, @RequestParam(required = false) int age 와 같이 들어온 경우에 null이 들어왔는데 int에 입력하는 게 불가능하기 때문에 null을 받을 수 있는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Integer&lt;/code&gt; 로 변경하거나, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;defaultValue&lt;/code&gt; 를 사용해야 한다.&lt;/li&gt;
-      &lt;li&gt;defaultValue를 설정하면 required 가 의미가 없어진다. 안들어오면 default 값으로 세팅되고 들어오면 들어온 값으로 세팅된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;동일한 이름으로 여러개의 파라미터가 들어오면 MultiValueMap을 사용하자.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ModelAttribute&lt;/code&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;요청 파라미터로 들어온 값들을 통해서 객체를 조립한다.
-    &lt;ul&gt;
-      &lt;li&gt;해당 객체의 setter를 호출해서 값을 채우는 방식이다.&lt;/li&gt;
-      &lt;li&gt;파라미터 이름이 a이면 setA()메서드를 찾아서 호출한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;@ModelAttribute 도 생략할 수 있다. 그런데 @RequestParam도 생략이 가능하다. 그러면 어떻게 될까?
-    &lt;ul&gt;
-      &lt;li&gt;String, int, Integer 값은 단순한 타입은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@RequestParam&lt;/code&gt; 으로 매핑되고 나머지는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ModelAttribute&lt;/code&gt; 로 매핑된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+  &lt;li&gt;이 예제는 배열로 구현했지만 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Aggreate&lt;/code&gt; 를 인터페이스로 분리했기 때문에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ConcreateAggreate&lt;/code&gt; 의 코드를 변경하지 않고도 다른 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Iterator&lt;/code&gt; 를 적용할 수 있다. 그리고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Iterator&lt;/code&gt; 도 인터페이스화 했기 때문에 기존 코드를 바꾸지 않고도 새로운 순회 방식을 추가할 수 있다.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
@@ -875,248 +881,84 @@
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h1 id=&quot;http-body로-요청&quot;&gt;HTTP Body로 요청&lt;/h1&gt;
+&lt;h1 id=&quot;iterator-pattern-특징&quot;&gt;&lt;em&gt;Iterator Pattern 특징&lt;/em&gt;&lt;/h1&gt;
 
-&lt;p&gt;HTTP body로 요청이 들어온 값은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@RequestParam&lt;/code&gt; 이나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ModelAttribute&lt;/code&gt; 로는 바인딩할 수 없다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HttpEntity&lt;/code&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;HTTP header, body 정보를 편리하게 조회할 수 있다.&lt;/li&gt;
-  &lt;li&gt;HTTP 응답에도 사용된다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RequestEntity&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ResponseEntity&lt;/code&gt; 는 HttpEntity를 상속받아서 기능을 제공한다.
-    &lt;ul&gt;
-      &lt;li&gt;RequestEntity 는 HttpMethod 와 url 정보를 추가할 수 있고 요청에서 사용된다.&lt;/li&gt;
-      &lt;li&gt;ResponseEntity 는 HTTP 상태 코드 설정을 할 수 있고, 응답에서 사용된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@RequestBody&lt;/code&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;@RequestBody를 사용하면 HTTP 메시지 바디 정보를 쉽게 조회할 수 있다.&lt;/li&gt;
-  &lt;li&gt;헤더 정보가 따로 필요하면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HttpEntity&lt;/code&gt; 를 사용하거나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@RequestHeader&lt;/code&gt;  를 사용하면 된다.&lt;/li&gt;
-  &lt;li&gt;@RequestBody에 직접 객체를 지정할 수 있다. (메시지 컨버터가 내부적으로 Json 데이터를 객체로 변환해서 넣어준다.)&lt;/li&gt;
-  &lt;li&gt;@RequestBody는 생략할 수 없다. 생략하면 ModelAttribute가 적용된다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;주의점&lt;/code&gt; : 요청 content-type이 application/json이어야 JSON을 처리할 수 있는 메시지 컨버터가 실행된다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ResponseBody&lt;/code&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;@ResponseBody를 사용하면 응답 결과를 HTTP body 메시지에 직접 넣을 수 있다.&lt;/li&gt;
-  &lt;li&gt;@ResponseBody가 있으면 View Resolver가 실행되지 않는다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;정리&quot;&gt;정리&lt;/h3&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@GetMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/api&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;api&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;HttpServletResponse&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;throws&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;IOException&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getWriter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ok&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;HttpServletResponse 객체를 통해서 HTTP 메시지 body에 ok라는 응답 메시지를 전달&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@GetMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/api&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ResponseEntity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;api&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ResponseEntity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ok&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HttpStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;OK&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;ResponseEntity는 HttpEntity를 상속받아서 헤더, 바디 정보를 가지고 있다. 여기서 추가로 HTTP 응답 코드를 설정할 수 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@ResponseBody&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@GetMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/api&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;api&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;ok&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;@ResponseBody가 붙으면 View Resolver가 호출되지 않고 HTTP 컨버터를 통해서 HTTP 메시지를 직접 입력할 수 있다. ResponseEntity도 동일하게 메시지 컨버터가 적용된다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@GetMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/api&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ResponseEntity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;MyObject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;api&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;MyObject&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyObject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;A&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-  
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ResponseEntity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HttpStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;OK&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;HTTP 메시지 컨버터가 동작하고 JSON 형태로 객체가 변환되서 나간다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@ResponseStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;HttpStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;OK&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@ResponseBody&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@GetMapping&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/api&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyObj&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;api&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nc&quot;&gt;MyObj&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyObj&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;A&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setB&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-  
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;obj&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;@ResponseStatus Annotation을 사용해서 응답 코드를 설정할 수 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;http-메시지-컨버터&quot;&gt;HTTP 메시지 컨버터&lt;/h1&gt;
-
-&lt;p&gt;JSON 데이터를 HTTP 메시지 바디에서 읽거나 쓰는 경우에는 HTTP 메시지 컨버터가 작동한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/17_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;스프링은 HTTP 요청, 응답에서 @RequestBody, @ResponseBody를 사용하면 HTTP 메시지 컨버터가 작동한다.&lt;/li&gt;
-  &lt;li&gt;HTTP 메시지 컨버터는 요청, 응답에 모두 사용되고 클래스와 미디어타입을 체크해서 적절하게 처리한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;스프링 부트 기본 메시지 컨버터&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;0 = ByteArrayMessageConverter&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;MediaType : * / *&lt;/li&gt;
-  &lt;li&gt;classType : byte[]&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;1 = StringHttpMessageConverter&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;MediaType : * / *&lt;/li&gt;
-  &lt;li&gt;classType : String&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;2 = MappingJackson2HttpMessageConverter&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;MediaType : application/json&lt;/li&gt;
-  &lt;li&gt;classType : 객체, HashMap&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;예제로 확인해보자&lt;/p&gt;
-
-&lt;h4 id=&quot;stringhttpmessageconverter&quot;&gt;StringHttpMessageConverter&lt;/h4&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//content-type: application/json&lt;/span&gt;
- 
-&lt;span class=&quot;nd&quot;&gt;@RequestMapping&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;api&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@RequestBody&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Media-Type 이 application/json으로 들어오고 class type 이 String인 경우&lt;/p&gt;
+&lt;h3 id=&quot;언제-쓸까&quot;&gt;언제 쓸까?&lt;/h3&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;Converter 우선순위가 가장 높은 ByteArrayMessageConverter가 먼저 실행되는데 class Type이 byte가 아니기 때문에 통과된다.&lt;/li&gt;
-  &lt;li&gt;다음으로 StringHttpMessageConverter가 실행되는데 모든 미디어 타입을 처리하고 classType이 String이기 때문에 여기서 처리된다.&lt;/li&gt;
+  &lt;li&gt;컬렉션 종류에 상관없이 객체 접근 순회 방식을 통일하고 싶을 때&lt;/li&gt;
+  &lt;li&gt;컬렉션의 순회 방식을 다양하게 하고 싶을 때 ex) 깊이우선, 넓이우선&lt;/li&gt;
+  &lt;li&gt;컬렉션 내부 구조를 클라이언트에게 숨기고 싶을 때&lt;/li&gt;
+  &lt;li&gt;데이터를 저장하는 컬렉션의 종류에 변경 가능성이 존재할 때&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;mappingjakson2httpmessageconverter&quot;&gt;MappingJakson2HttpMessageConverter&lt;/h4&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//content-type: application/json&lt;/span&gt;
-
-&lt;span class=&quot;nd&quot;&gt;@RequestMapping&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;api&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@RequestBody&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyObj&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Media-Type 이 application/json으로 들어오고 class type 이 객체인 경우&lt;/p&gt;
+&lt;h3 id=&quot;장점&quot;&gt;장점&lt;/h3&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;ByteArrayMessageConverter 가 실행되는데 class-type이 객체라서 통과&lt;/li&gt;
-  &lt;li&gt;StirngHttpMessageConverter가 실행되는데 마찬가지로 class-Type이 객체라서 통과&lt;/li&gt;
-  &lt;li&gt;MappingJakson2HttpMessageConverter가 실행된다. (Media-Type이 일치하고 객체가 들어오기 때문에)&lt;/li&gt;
+  &lt;li&gt;일관된 인터페이스를 사용해서 여러 컬렉션을 조회할 수 있다.&lt;/li&gt;
+  &lt;li&gt;컬렉션 내부 구조를 몰라도 사용이 가능하다.&lt;/li&gt;
+  &lt;li&gt;순회 알고리즘을 별도로 분리해서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SRP&lt;/code&gt;를 준수한다.&lt;/li&gt;
+  &lt;li&gt;데이터 컬렉션 종류가 변경되도 클라이언트 코드의 수정이 발생하지 않는다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OCP&lt;/code&gt; 준수&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;실패&quot;&gt;실패&lt;/h4&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//content-type: text/html&lt;/span&gt;
-
-&lt;span class=&quot;nd&quot;&gt;@RequestMapping&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hello&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@RequestBody&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyObj&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Media_Type 이 text/html으로 들어오고 class type이 객체인 경우&lt;/p&gt;
+&lt;h3 id=&quot;단점&quot;&gt;단점&lt;/h3&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;ByteArrayMessageConverter가 실행되는데 class-Type이 객체라서 패스&lt;/li&gt;
-  &lt;li&gt;StringHttpMessageConverter가 실행되는데 class-Type이 객체라서 패스&lt;/li&gt;
-  &lt;li&gt;MappingJakson2HttpMessageConverter가 실행되는데 Media-Type 불일치로 패스&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Fail&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
+  &lt;li&gt;클래스가 늘어나고 복잡도가 높아진다.&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><category term="CS" /><summary type="html"></summary></entry><entry><title type="html">[디자인패턴] 노출모듈 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/RevealingModule/" rel="alternate" type="text/html" title="[디자인패턴] 노출모듈 패턴" /><published>2023-07-14T00:00:00+09:00</published><updated>2023-07-14T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/RevealingModule</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/RevealingModule/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;revealing-module-pattern&quot;&gt;&lt;em&gt;Revealing Module Pattern&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;즉시 실행 함수를 통해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;private&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public&lt;/code&gt; 과 같은 접근 제어자를 만든느 패턴이다.&lt;/p&gt;
+
+&lt;p&gt;자바 스크립트에서는 접근 제어자가 존재하지 않고 전역 범위에서 스크립트가 실행된다. 때문에 접근 제어자를 사용하고 싶으면 노출모듈 패턴을 통해서 public, private 접근 제어자를 만들어서 사용해야 한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;그렇다면-즉시-실행-함수란-무엇일까&quot;&gt;&lt;em&gt;그렇다면 즉시 실행 함수란 무엇일까?&lt;/em&gt;&lt;/h1&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;function &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;TEST&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;})();&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;즉시 실행함수는 선언과 동시에 바로 호출되는 함수이다. 재사용이 불가능하고 초기화, 라이브러리 전역 변수 충돌을 피하기 위해 사용한다.&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h1 id=&quot;접근-제어자&quot;&gt;&lt;em&gt;접근 제어자&lt;/em&gt;&lt;/h1&gt;
 
-&lt;h1 id=&quot;requestmappinghandleradapter-구조&quot;&gt;RequestMappingHandlerAdapter 구조&lt;/h1&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public&lt;/code&gt; : 클래스에서 정의된 함수, 자식, 외부 클래스 모두 접근 가능&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/17_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;protected&lt;/code&gt; : 클래스에서 정의된 함수, 자식 클래스에서만 접근 가능&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ArgumentResolver&lt;/code&gt; 에 대해서 자세히 알아보자.&lt;/p&gt;
-
-&lt;p&gt;Annotation 기반의 컨트롤러는 다양한 파라미터를 제공한다. HttpServlet, Model, @ReqeustParam, @ModelAttribute, @RequestBody, HttpEntity 등등 정말 많은 파라미터를 제공하는데 이걸 누가 넣어줄까?&lt;/p&gt;
-
-&lt;p&gt;정답은 ArgumentResolver가 넣어준다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RequestMappingHanlderAdapter&lt;/code&gt; 는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ArgumentResolver&lt;/code&gt; 를 호출해서 컨트롤러에 필요한 파라미터 값을 채우고 나서 컨트롤러를 호출한다.&lt;/p&gt;
-
-&lt;p&gt;동작 방식은 다음과 같다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ArgumentResolver&lt;/code&gt; 에서 컨트롤러에 필요한 파라미터를 지원하는지 체크하고 지원한다면 객체를 생성해서 어댑터로 넘긴다. 어댑터는 이 파라미터를 가지고 컨트롤러를 호출한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ReturnValueHandler&lt;/code&gt; 도 거의 비슷하게 작동한다. 컨트롤러의 반환값은 정말 다양하다. @ModelAndView, @ResponseBody, HttpEnttiy, String 등 정말 많은데 이것들을 잘 체크해서 응답값을 변환하고 처리한다.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;private&lt;/code&gt; : 클래스에 정의된 함수에서만 접근 가능&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h1 id=&quot;노출모듈-패턴-장단점&quot;&gt;&lt;em&gt;노출모듈 패턴 장단점&lt;/em&gt;&lt;/h1&gt;
 
-&lt;h4 id=&quot;그렇다면-http-메시지-컨버터는-어디에-존재할까&quot;&gt;그렇다면 HTTP 메시지 컨버터는 어디에 존재할까?&lt;/h4&gt;
+&lt;h3 id=&quot;장점&quot;&gt;장점&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/17_3.png&quot; alt=&quot;img3&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;깔끔한 접근 제어 방법 제공&lt;/li&gt;
+  &lt;li&gt;private 데이터 제공&lt;/li&gt;
+  &lt;li&gt;전역변수를 덜 더럽힌다.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;HTTP 메시지 컨버터는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ArgumentResolver&lt;/code&gt; 와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ReturnValueHandler&lt;/code&gt;  가 사용한다.&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><category term="MVC" /><summary type="html"></summary></entry><entry><title type="html">[Spring] MVC 구조</title><link href="http://localhost:4000/spring/MVC_Structure/" rel="alternate" type="text/html" title="[Spring] MVC 구조" /><published>2023-07-12T00:00:00+09:00</published><updated>2023-07-12T00:00:00+09:00</updated><id>http://localhost:4000/spring/MVC_Structure</id><content type="html" xml:base="http://localhost:4000/spring/MVC_Structure/">&lt;h2 id=&quot;스프링-mvc-구조&quot;&gt;스프링 MVC 구조&lt;/h2&gt;
+&lt;h3 id=&quot;단점&quot;&gt;단점&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;private 메소드에 접근 방법이 없음&lt;/li&gt;
+  &lt;li&gt;private 메소드에 대해 함수를 확장하는 게 어려움&lt;/li&gt;
+  &lt;li&gt;private 메소드를 참조하는 public 메소드를 수정하기 어려움&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><category term="CS" /><summary type="html"></summary></entry><entry><title type="html">[Spring] MVC 구조</title><link href="http://localhost:4000/spring/MVC_Structure/" rel="alternate" type="text/html" title="[Spring] MVC 구조" /><published>2023-07-12T00:00:00+09:00</published><updated>2023-07-12T00:00:00+09:00</updated><id>http://localhost:4000/spring/MVC_Structure</id><content type="html" xml:base="http://localhost:4000/spring/MVC_Structure/">&lt;h2 id=&quot;스프링-mvc-구조&quot;&gt;스프링 MVC 구조&lt;/h2&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/16_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
 
