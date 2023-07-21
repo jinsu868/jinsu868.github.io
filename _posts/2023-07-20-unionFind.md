@@ -17,7 +17,7 @@ typora-root-url: ../
 
 
 
-오늘은 Union-Find 알고리즘에 대해서 정리해보겠다. (귀엽다..)
+오늘은 Union-Find 알고리즘에 대해서 정리해보겠다. 
 
 <br>
 
@@ -53,7 +53,7 @@ def union(x, y):
 
 <br>
 
-하지만 
+
 
 ### *Find 연산*
 
@@ -87,4 +87,8 @@ def find(parent, x):
 <br>
 
 <br>
+
+
+
+
 
