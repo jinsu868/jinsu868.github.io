@@ -142,4 +142,10 @@ var store = [{
         "tags": ["알고리즘","Union find","자료구조"],
         "url": "/algorithm/unionFind/",
         "teaser": null
+      },{
+        "title": "[JPA] Intro",
+        "excerpt":"JPA에 대해서 한번 정리해보자! 본 포스팅은 Inflearn 김영한님의 강의를 바탕으로 작성했다. (Spring 관련 포스팅은 전부 김영한님 강의를 바탕으로 작성됨.) ORM ORM (Object-relational mapping)은 객체와 DB 테이블이 매핑을 이루는 것을 말한다. 즉 객체가 테이블이 되도록 매핑 시켜주는 것 을 의미한다. 객체와 관계형 데이터베이스 사이의 패러다임의 불일치를 해소해주고 객체는 객체대로 설계하고 관계형...","categories": ["JPA"],
+        "tags": ["Spring","JPA","DB"],
+        "url": "/jpa/JPA1/",
+        "teaser": null
       }]

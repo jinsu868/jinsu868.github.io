@@ -1,4 +1,100 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-20T22:27:12+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[알고리즘] Union find</title><link href="http://localhost:4000/algorithm/unionFind/" rel="alternate" type="text/html" title="[알고리즘] Union find" /><published>2023-07-20T00:00:00+09:00</published><updated>2023-07-20T00:00:00+09:00</updated><id>http://localhost:4000/algorithm/unionFind</id><content type="html" xml:base="http://localhost:4000/algorithm/unionFind/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-21T16:09:48+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[JPA] Intro</title><link href="http://localhost:4000/jpa/JPA1/" rel="alternate" type="text/html" title="[JPA] Intro" /><published>2023-07-21T00:00:00+09:00</published><updated>2023-07-21T00:00:00+09:00</updated><id>http://localhost:4000/jpa/JPA1</id><content type="html" xml:base="http://localhost:4000/jpa/JPA1/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/24_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;JPA에 대해서 한번 정리해보자!&lt;/p&gt;
+
+&lt;p&gt;본 포스팅은 Inflearn &lt;strong&gt;김영한님&lt;/strong&gt;의 강의를 바탕으로 작성했다.&lt;/p&gt;
+
+&lt;p&gt;(Spring 관련 포스팅은 전부 김영한님 강의를 바탕으로 작성됨.)&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;orm&quot;&gt;&lt;em&gt;ORM&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ORM&lt;/code&gt; (Object-relational mapping)은 객체와 DB 테이블이 매핑을 이루는 것을 말한다. 즉 &lt;strong&gt;객체가 테이블이 되도록 매핑 시켜주는 것&lt;/strong&gt; 을 의미한다.&lt;/p&gt;
+
+&lt;p&gt;객체와 관계형 데이터베이스 사이의 패러다임의 불일치를 해소해주고 객체는 객체대로 설계하고 관계형 데이터베이스는 관계형 데이터베이스대로 설계할 수 있게 도와준다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;jpa&quot;&gt;&lt;em&gt;JPA&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;정의와-역할&quot;&gt;정의와 역할&lt;/h2&gt;
+
+&lt;p&gt;그렇다면 JPA는 무엇인가? &lt;strong&gt;JPA란 자바 ORM 기술에 대한 API 표준 명세&lt;/strong&gt;이다. JPA는 ORM을 사용하기 위한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;인터페이스&lt;/code&gt; 를 모아둔 것이고, JPA를 사용하기 위해서 구현한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Hibernate&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DataNucleus&lt;/code&gt; 같은 ORM 프레임워크를 사용해야 한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/24_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;예를 들어서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Item&lt;/code&gt;이라는 테이블의 데이터를 얻어오기 위해서는 &lt;strong&gt;SELECT * FROM Item&lt;/strong&gt; 이라는 query를 실행해야 하지만 ORM을 사용하면 &lt;strong&gt;Item.findAll()&lt;/strong&gt; 이라는 메서드를 통해서 데이터를 가져올 수 있다.&lt;/p&gt;
+
+&lt;p&gt;query를 직접 작성하지 않아도 돼서 생산성이 높아진다. 대신 복잡한 query를 ORM으로 표현하기는 한계가 있고 성능도 raw query에 비해서 떨어지는 단점이 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;jpa는-어디서-동작할까&quot;&gt;JPA는 어디서 동작할까?&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/24_3.png&quot; alt=&quot;img3&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;애플리케이션에서 CRUD를 수행하면 JPA가 해당하는 SQL을 생성해주고 JDBC API를 사용해서 객체와 DB사이의 패러다임의 불일치를 해결해준다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;jpa의-장점&quot;&gt;JPA의 장점&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;객체 중심으로 개발&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;기존에는 SQL에 종속적인 개발을 했어야 했다. 그런데 JPA를 사용하면 객체 중심으로 개발을 할 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;유지보수&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;객체의 필드를 변경하면 개발자가 하나하나 해당 SQL을 수정했어야 했다. 그런데 이런 매핑과정을 JPA가 대신 해줌으로써 유지보수가 편리해졌다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;패러다임의 불일치 해결&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;기존에는 상속관계가 있는 객체를 DB에 넣을 때 굉장히 귀찮은 작업이 많았다. 그런데 JPA를 사용하면 알아서 필요한 SQL을 다 만들어서 넣어준다&lt;/li&gt;
+      &lt;li&gt;자유로운 객체 그래프 탐색이 가능해졌다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;성능&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;같은 트랜젝션 안에서 같은 엔티티를 반환한다. 이것이 가능한 이유는 조회를 한 후에 영속성 컨텍스트에 캐싱해두기 때문이다. DB에 query를 추가로 날리지 않기 때문에 약간의 성능 향상이 있다.&lt;/li&gt;
+      &lt;li&gt;persist를 할때마다 DB에 쿼리를 날리지 않고 트랜젝션 커밋시점에 한번에 SQL을 날린다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;지연로딩&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;객체가 실제로 사용되는 시점에 로딩을 한다.&lt;/li&gt;
+      &lt;li&gt;사용되지 않는 것들은 프록시로 들고 있는다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;즉시로딩&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Join을 통해서 연관된 객체를 한번에 가져온다.&lt;/li&gt;
+      &lt;li&gt;항상 같이 사용되는 객체같은 경우는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fetch join&lt;/code&gt;을 통해서 한번에 조회하는 것이 성능상으로 좋다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;다음-포스팅부터는-jpa의-작동-원리와-사용-방법에-대해서-알아보겠다-&quot;&gt;다음 포스팅부터는 JPA의 작동 원리와 사용 방법에 대해서 알아보겠다. :)&lt;/h3&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;참고-사이트-출처&quot;&gt;참고 사이트 출처&lt;/h1&gt;
+
+&lt;p&gt;https://victorydntmd.tistory.com/195&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="JPA" /><category term="Spring" /><category term="JPA" /><category term="DB" /><summary type="html"></summary></entry><entry><title type="html">[알고리즘] Union find</title><link href="http://localhost:4000/algorithm/unionFind/" rel="alternate" type="text/html" title="[알고리즘] Union find" /><published>2023-07-20T00:00:00+09:00</published><updated>2023-07-20T00:00:00+09:00</updated><id>http://localhost:4000/algorithm/unionFind</id><content type="html" xml:base="http://localhost:4000/algorithm/unionFind/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/23_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
 
@@ -34,6 +130,8 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;하지만&lt;/p&gt;
 
 &lt;h3 id=&quot;find-연산&quot;&gt;&lt;em&gt;Find 연산&lt;/em&gt;&lt;/h3&gt;
 
@@ -160,7 +258,23 @@
   &lt;li&gt;특정 애노테이션이 있는 컨트롤러를 지정할 수 있다.&lt;/li&gt;
   &lt;li&gt;특정 패키지를 직접 지정할 수도 있다.&lt;/li&gt;
   &lt;li&gt;특정 컨트롤러를 지정할 수 있다.&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><category term="MVC" /><summary type="html"></summary></entry><entry><title type="html">[Java] JVM</title><link href="http://localhost:4000/java/java_JVM1/" rel="alternate" type="text/html" title="[Java] JVM" /><published>2023-07-16T00:00:00+09:00</published><updated>2023-07-16T00:00:00+09:00</updated><id>http://localhost:4000/java/java_JVM1</id><content type="html" xml:base="http://localhost:4000/java/java_JVM1/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;/ol&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><category term="MVC" /><summary type="html"></summary></entry><entry><title type="html">[Java] Intro</title><link href="http://localhost:4000/java/javaIntro/" rel="alternate" type="text/html" title="[Java] Intro" /><published>2023-07-16T00:00:00+09:00</published><updated>2023-07-16T00:00:00+09:00</updated><id>http://localhost:4000/java/javaIntro</id><content type="html" xml:base="http://localhost:4000/java/javaIntro/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;java-정리&quot;&gt;&lt;em&gt;Java 정리&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/20_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;최근 Java를 쓰면서 내가 정말 Java라는 언어를 잘 알고 있나? 라는 의문이 들었다. 프로그래밍을 하면서 자신이 쓰는 언어에 대해서 제대로 이해하는 것은 정말 중요하다. 이참에 한 번 제대로 정리하고 넘어가자.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;선택한-책&quot;&gt;&lt;em&gt;선택한 책&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/20_2.png&quot; alt=&quot;img2&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;30%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;공부할 책은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Java의 정석&lt;/code&gt; 으로 정했다. 취업하기 전에 정리하는 느낌으로 좋다는 평이 많아서 선택했다. Java 공부 내용은 주에 최소한으로 3번은 포스팅할 예정이다 (금방 끝낼 수 있겠지?..)&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="Java" /><category term="Java" /><summary type="html"></summary></entry><entry><title type="html">[Java] JVM</title><link href="http://localhost:4000/java/java_JVM1/" rel="alternate" type="text/html" title="[Java] JVM" /><published>2023-07-16T00:00:00+09:00</published><updated>2023-07-16T00:00:00+09:00</updated><id>http://localhost:4000/java/java_JVM1</id><content type="html" xml:base="http://localhost:4000/java/java_JVM1/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;jvm-이란&quot;&gt;&lt;em&gt;JVM 이란?&lt;/em&gt;&lt;/h1&gt;
 
@@ -326,23 +440,7 @@
 
 &lt;p&gt;https://inpa.tistory.com/entry/JAVA-%E2%98%95-JVM-%EB%82%B4%EB%B6%80-%EA%B5%AC%EC%A1%B0-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%98%81%EC%97%AD-%EC%8B%AC%ED%99%94%ED%8E%B8&lt;/p&gt;
 
-&lt;p&gt;https://steady-coding.tistory.com/305&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="Java" /><category term="Java" /><category term="JVM" /><summary type="html"></summary></entry><entry><title type="html">[Java] Intro</title><link href="http://localhost:4000/java/javaIntro/" rel="alternate" type="text/html" title="[Java] Intro" /><published>2023-07-16T00:00:00+09:00</published><updated>2023-07-16T00:00:00+09:00</updated><id>http://localhost:4000/java/javaIntro</id><content type="html" xml:base="http://localhost:4000/java/javaIntro/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;java-정리&quot;&gt;&lt;em&gt;Java 정리&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/20_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;최근 Java를 쓰면서 내가 정말 Java라는 언어를 잘 알고 있나? 라는 의문이 들었다. 프로그래밍을 하면서 자신이 쓰는 언어에 대해서 제대로 이해하는 것은 정말 중요하다. 이참에 한 번 제대로 정리하고 넘어가자.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;선택한-책&quot;&gt;&lt;em&gt;선택한 책&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/20_2.png&quot; alt=&quot;img2&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;30%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;공부할 책은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Java의 정석&lt;/code&gt; 으로 정했다. 취업하기 전에 정리하는 느낌으로 좋다는 평이 많아서 선택했다. Java 공부 내용은 주에 최소한으로 3번은 포스팅할 예정이다 (금방 끝낼 수 있겠지?..)&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="Java" /><category term="Java" /><summary type="html"></summary></entry><entry><title type="html">[디자인패턴] 노출모듈 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/RevealingModule/" rel="alternate" type="text/html" title="[디자인패턴] 노출모듈 패턴" /><published>2023-07-14T00:00:00+09:00</published><updated>2023-07-14T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/RevealingModule</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/RevealingModule/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;https://steady-coding.tistory.com/305&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="Java" /><category term="Java" /><category term="JVM" /><summary type="html"></summary></entry><entry><title type="html">[디자인패턴] 노출모듈 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/RevealingModule/" rel="alternate" type="text/html" title="[디자인패턴] 노출모듈 패턴" /><published>2023-07-14T00:00:00+09:00</published><updated>2023-07-14T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/RevealingModule</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/RevealingModule/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;revealing-module-pattern&quot;&gt;&lt;em&gt;Revealing Module Pattern&lt;/em&gt;&lt;/h1&gt;
 
@@ -1106,148 +1204,4 @@
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;spring-mvc-구조를-이해한-후-annotation-기반의-spring-mvc를-사용하자&quot;&gt;Spring MVC 구조를 이해한 후 Annotation 기반의 Spring MVC를 사용하자.&lt;/h2&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><category term="MVC" /><summary type="html">스프링 MVC 구조</summary></entry><entry><title type="html">[디자인패턴] 프록시 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Proxy/" rel="alternate" type="text/html" title="[디자인패턴] 프록시 패턴" /><published>2023-07-06T00:00:00+09:00</published><updated>2023-07-06T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Proxy</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Proxy/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;proxy-pattern&quot;&gt;&lt;em&gt;Proxy Pattern&lt;/em&gt;&lt;/h1&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;프록시 패턴은 대상 객체에 접근하기 전 그 접근에 대한 흐름을 가로채 대상 객체 앞단의 인터페이스 역할을 하는 디자인 패턴이다.
-  대상 클래스가 민감한 정보를 가지고 있거나 인스턴스화 하기에는 무겁거나, 추가 기능을 넣고 싶은데 원본 객체를 수정할 수 없는 상황일 때 사용한다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;프록시-패턴의-효과&quot;&gt;&lt;em&gt;프록시 패턴의 효과&lt;/em&gt;&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;보안&lt;/code&gt; : 프록시는 클라이언트가 작업을 수행할 수 있는 권한이 있는지 확인하고 권한이 있을 경우에만 대상 객체에 전달한다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;캐싱&lt;/code&gt; : 프록시가 내부 캐시를 유지하며 데이터가 캐시에 존재하지 않는 경우에만 대상에서 작업이 이루어지게 한다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;데이터 유효성 검사&lt;/code&gt; : 프록시가 대상으로 접근하기 전에 유효성 검사를 한다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;지연 초기화&lt;/code&gt; : 대상 생성 비용이 클 경우에 실제로 대상이 필요할 때까지 생성을 미루다가 필요한 시점에 대상을 생성한다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;로깅&lt;/code&gt; : 프록시가 메소드 호출등을 기록한다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;원격 객체&lt;/code&gt; : 프록시가 원격에 위치한 객체를 가져와서 로컬에 있는 것처럼 보이게 할 수 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;프록시-패턴-구조&quot;&gt;&lt;em&gt;프록시 패턴 구조&lt;/em&gt;&lt;/h1&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;프록시는 다른 객체에 대한 접근을 제어하는 객체이다. 아래 다이어그램에서 다른 객체는 Subject이다. 프록시 객체와 대상 객체는 동일한 인터페이스를 가진다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/15_1.png&quot; alt=&quot;img1&quot; width=&quot;60%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Subject&lt;/code&gt; : 프록시와 RealSubject를 하나로 묶은 인터페이스&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RealSubject&lt;/code&gt; : 원본 대상 객체&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Proxy&lt;/code&gt; : RealSubject를 중계할 대리자&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Client&lt;/code&gt; : Subject 인터페이스를 통해서 프록시 객체를 생성 및 이용
-    &lt;ul&gt;
-      &lt;li&gt;클라이언트는 프록시를 중간에 끼고 RealSubject와 데이터를 주고 받는다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;프록시-패턴은-언제-사용할까&quot;&gt;&lt;em&gt;프록시 패턴은 언제 사용할까?&lt;/em&gt;&lt;/h1&gt;
-&lt;ol&gt;
-  &lt;li&gt;접근을 제어하고 싶거나 기능을 추가하고 싶은 때에 사용한다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;초기화 지연&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;접근 제어&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;로깅&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;캐싱&lt;/code&gt; 등 기존 객체 동작에 수정을 가하고 싶지 않은 경우에 사용한다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;장점&quot;&gt;&lt;em&gt;장점&lt;/em&gt;&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OCP&lt;/code&gt;를 준수한다.
-    &lt;ul&gt;
-      &lt;li&gt;기존 대상 코드를 변경하지 않고도 기능을 확장할 수 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SRP&lt;/code&gt;를 준수한다.
-    &lt;ul&gt;
-      &lt;li&gt;대상 객체는 자신의 기능에 집중하고, 그 이외의 부가 기능을 프록시에 위임함으로서 다중 책임을 회피할 수있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;단점&quot;&gt;&lt;em&gt;단점&lt;/em&gt;&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;무분별하게 프록시를 사용하면 코드의 복잡도가 증가할 수 있다.&lt;/li&gt;
-  &lt;li&gt;프록시 클래스 자체에 들어가는 리소스가 많으면 서비스로부터의 응답이 늦어질 수 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;프록시-패턴-구현-코드&quot;&gt;&lt;em&gt;프록시 패턴 구현 코드&lt;/em&gt;&lt;/h1&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// subject interface, 프록시와 realSubject가 공유하는 인터페이스&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Subject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;operation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Subject 인터페이스&lt;/li&gt;
-  &lt;li&gt;실제 대상 객체와 프록시 객체를 묶는 인터페이스이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SubjectImpl&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Subject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;operation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;c1&quot;&gt;//logic~~&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;   
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;realSubject 객체&lt;/li&gt;
-  &lt;li&gt;실제 대상 객체이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SubjectProxy&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;implements&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Subject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;isAuth&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Subject&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;SubjectProxy&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;qwer&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;equals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;asdf&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;equals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pw&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;isAuth&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SubjectImpl&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
-    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;operation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isAuth&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;subject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;operation&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;~~&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Proxy 객체&lt;/li&gt;
-  &lt;li&gt;프록시 객체에서 id, pw를 통해 유효한 회원인지 체크하고 유효할 떄에만 실제 객체를 생성하고 로직을 호출한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;참고-사이트-출처&quot;&gt;&lt;em&gt;참고 사이트 출처&lt;/em&gt;&lt;/h1&gt;
-&lt;p&gt;https://inpa.tistory.com/entry/GOF-%F0%9F%92%A0-%ED%94%84%EB%A1%9D%EC%8B%9CProxy-%ED%8C%A8%ED%84%B4-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EB%B0%B0%EC%9B%8C%EB%B3%B4%EC%9E%90&lt;/p&gt;
-
-&lt;p&gt;https://velog.io/@mooh2jj/%EC%8A%A4%ED%94%84%EB%A7%81%EC%9D%84-%EC%9C%84%ED%95%9C-%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4-%EC%A0%95%EB%A6%AC&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><category term="CS" /><summary type="html"></summary></entry></feed>
+&lt;h2 id=&quot;spring-mvc-구조를-이해한-후-annotation-기반의-spring-mvc를-사용하자&quot;&gt;Spring MVC 구조를 이해한 후 Annotation 기반의 Spring MVC를 사용하자.&lt;/h2&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><category term="MVC" /><summary type="html">스프링 MVC 구조</summary></entry></feed>

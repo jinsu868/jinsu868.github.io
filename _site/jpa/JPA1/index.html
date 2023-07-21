@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[Spring] 예외 처리 - Jinsu’s story</title>
+<!-- begin _includes/seo.html --><title>[JPA] Intro - Jinsu’s story</title>
 <meta name="description" content="">
 
 
@@ -22,8 +22,8 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="Jinsu's story">
-<meta property="og:title" content="[Spring] 예외 처리">
-<meta property="og:url" content="http://localhost:4000/spring/exceptionHandle/">
+<meta property="og:title" content="[JPA] Intro">
+<meta property="og:url" content="http://localhost:4000/jpa/JPA1/">
 
 
   <meta property="og:description" content="">
@@ -34,7 +34,7 @@
 
 
 
-  <meta property="article:published_time" content="2023-07-18T00:00:00+09:00">
+  <meta property="article:published_time" content="2023-07-21T00:00:00+09:00">
 
 
 
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/spring/exceptionHandle/">
+<link rel="canonical" href="http://localhost:4000/jpa/JPA1/">
 
 
 
@@ -289,16 +289,16 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[Spring] 예외 처리">
+    <meta itemprop="headline" content="[JPA] Intro">
     <meta itemprop="description" content="">
-    <meta itemprop="datePublished" content="2023-07-18T00:00:00+09:00">
+    <meta itemprop="datePublished" content="2023-07-21T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="http://localhost:4000/spring/exceptionHandle/" class="u-url" itemprop="url">[Spring] 예외 처리
+            <a href="http://localhost:4000/jpa/JPA1/" class="u-url" itemprop="url">[JPA] Intro
 </a>
           </h1>
           
@@ -329,97 +329,101 @@
         
         <p><br /></p>
 
-<h1 id="exception-handle"><em>Exception Handle</em></h1>
+<p><img src="/assets/images/24_2.png" alt="img2" width="70%&quot;&quot;, height=&quot;40%&quot;" /></p>
 
-<p>스프링 부트는 기본 설정으로 예외가 WAS에 전달되거나 <code class="language-plaintext highlighter-rouge">Response.sendError()</code> 가 호출되면 <code class="language-plaintext highlighter-rouge">/error</code> 를 호출한다. 그러면 <code class="language-plaintext highlighter-rouge">BasicErrorController</code> 가 제공하는 기본 정보들을 활용해서 오류 API를 생성해준다. 하지만 API 마다, 각각의 컨트롤러나 예외마다 서로 다른 응답 결과를 출력해야 할 수 있다. 때문에 API 오류 처리는 <code class="language-plaintext highlighter-rouge">@ExceptionHandler</code> 를 사용하는 것이 좋다.</p>
+<p>JPA에 대해서 한번 정리해보자!</p>
 
-<p><br /></p>
+<p>본 포스팅은 Inflearn <strong>김영한님</strong>의 강의를 바탕으로 작성했다.</p>
 
-<p><br /></p>
-
-<h1 id="exceptionresolver"><em>ExceptionResolver</em></h1>
-
-<p><img src="/assets/images/22_1.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /></p>
-
-<p><code class="language-plaintext highlighter-rouge">ExceptionResolver</code> 가 없다면 예외가 발생하면 <code class="language-plaintext highlighter-rouge">Controller</code> -&gt; <code class="language-plaintext highlighter-rouge">Interceptor</code> -&gt; <code class="language-plaintext highlighter-rouge">Servlet</code> -&gt; <code class="language-plaintext highlighter-rouge">Filter</code> -&gt; <code class="language-plaintext highlighter-rouge">WAS</code> 까지 올라간다.</p>
-
-<p>그런데 예외를 처리할 수 있는 <code class="language-plaintext highlighter-rouge">ExceptionResolver</code> 가 있으면 서블릿 컨테이너(WAS) 까지 예외가 전달되지 않고 MVC 선에서 예외 처리가 끝난다.</p>
-
-<p>가장 우선순위가 높은 <code class="language-plaintext highlighter-rouge">ExceptionResolver</code> 는 <code class="language-plaintext highlighter-rouge">HandlerExceptionResolver</code> 이다. @ExceptionHandler를 처리하는 ExceptionResolver이며 거의 이것만 쓴다고 생각하면 된다.</p>
+<p>(Spring 관련 포스팅은 전부 김영한님 강의를 바탕으로 작성됨.)</p>
 
 <p><br /></p>
 
 <p><br /></p>
 
-<h1 id="exceptionhandler"><em>@ExceptionHandler</em></h1>
+<h1 id="orm"><em>ORM</em></h1>
 
-<p>@ExceptionHandler 애노테이션을 붙여주고, 해당 컨트롤러에서 처리하고 싶은 예외를 지정해주면 예외가 발생했을 때 이 메서드가 호출된다. 지정한 예외 뿐 아니라 예외의 자식 클래스까지 모두 처리할 수 있다.</p>
+<p><code class="language-plaintext highlighter-rouge">ORM</code> (Object-relational mapping)은 객체와 DB 테이블이 매핑을 이루는 것을 말한다. 즉 <strong>객체가 테이블이 되도록 매핑 시켜주는 것</strong> 을 의미한다.</p>
 
-<p><br /></p>
-
-<h3 id="예시코드">예시코드</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RestController</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ApiController</span> <span class="o">{</span>
-  <span class="nd">@ExceptionHandler</span>
-  <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">Obj</span><span class="o">&gt;</span> <span class="nf">handleEx</span><span class="o">(</span><span class="nc">IllegalArgumentException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="nf">ErrorResult</span><span class="o">(</span><span class="s">"BAD_REQUEST"</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p><br /></p>
-
-<h3 id="우선순위">우선순위</h3>
-
-<p>구체적인 것이 더 높은 우선순위를 가진다. <code class="language-plaintext highlighter-rouge">부모예외처리</code> 와 <code class="language-plaintext highlighter-rouge">자식예외처리</code> 가 있으면 <code class="language-plaintext highlighter-rouge">자식예외처리</code> 가 호출된다.</p>
+<p>객체와 관계형 데이터베이스 사이의 패러다임의 불일치를 해소해주고 객체는 객체대로 설계하고 관계형 데이터베이스는 관계형 데이터베이스대로 설계할 수 있게 도와준다.</p>
 
 <p><br /></p>
 
 <p><br /></p>
 
-<h1 id="controlleradvice"><em>@ControllerAdvice</em></h1>
-
-<p>예외처리를 컨트롤러에 다 집어넣으면 가독성이 떨어지고 지저분한다. <code class="language-plaintext highlighter-rouge">@ConrollerAdivce</code>, <code class="language-plaintext highlighter-rouge">@RestControllerAdvice</code> 를 사용하면 정상 코드와 예외 코드를 분리할 수 있다.</p>
-
-<h3 id="예시코드-1">예시코드</h3>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//@ControllerAdvice + @ResponseBody</span>
-<span class="nd">@RestControllerAdvice</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MyControllerAdvice</span> <span class="o">{</span>
- 	<span class="nd">@ExceptionHandler</span>
-  <span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">ErrorResult</span><span class="o">&gt;</span> <span class="nf">handlerEx</span><span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-    <span class="nc">ErrorResult</span> <span class="n">errorResult</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ErrorResult</span><span class="o">(</span><span class="s">"ex"</span><span class="o">,</span> <span class="n">e</span><span class="o">.</span><span class="na">getMessage</span><span class="o">());</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="nc">ResponseEntity</span><span class="o">&lt;&gt;(</span><span class="n">errorResult</span><span class="o">,</span> <span class="nc">HttpStatus</span><span class="o">.</span><span class="na">BAD_REQUEST</span><span class="o">);</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
+<h1 id="jpa"><em>JPA</em></h1>
 
 <p><br /></p>
 
-<h3 id="동작범위-설정">동작범위 설정</h3>
+<h2 id="정의와-역할">정의와 역할</h2>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ControllerAdvice</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Advice0</span> <span class="o">{}</span>
+<p>그렇다면 JPA는 무엇인가? <strong>JPA란 자바 ORM 기술에 대한 API 표준 명세</strong>이다. JPA는 ORM을 사용하기 위한 <code class="language-plaintext highlighter-rouge">인터페이스</code> 를 모아둔 것이고, JPA를 사용하기 위해서 구현한 <code class="language-plaintext highlighter-rouge">Hibernate</code>, <code class="language-plaintext highlighter-rouge">DataNucleus</code> 같은 ORM 프레임워크를 사용해야 한다.</p>
 
-<span class="nd">@ControllerAdvice</span><span class="o">(</span><span class="n">annotations</span> <span class="o">=</span> <span class="nc">RestController</span><span class="o">.</span><span class="na">class</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Advice1</span> <span class="o">{}</span>
+<p><img src="/assets/images/24_1.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /></p>
 
-<span class="nd">@ControllerAdvice</span><span class="o">(</span><span class="s">"org.com.controllers"</span><span class="o">)</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Advice2</span> <span class="o">{}</span>
+<p>예를 들어서 <code class="language-plaintext highlighter-rouge">Item</code>이라는 테이블의 데이터를 얻어오기 위해서는 <strong>SELECT * FROM Item</strong> 이라는 query를 실행해야 하지만 ORM을 사용하면 <strong>Item.findAll()</strong> 이라는 메서드를 통해서 데이터를 가져올 수 있다.</p>
 
-<span class="nd">@ControllerAdvice</span><span class="o">(</span><span class="n">assignableTypes</span> <span class="o">=</span> <span class="o">{</span><span class="nc">ControllerInterface</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="nc">AbstractController</span><span class="o">.</span><span class="na">class</span><span class="o">})</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Advice3</span> <span class="o">{}</span>
-</code></pre></div></div>
+<p>query를 직접 작성하지 않아도 돼서 생산성이 높아진다. 대신 복잡한 query를 ORM으로 표현하기는 한계가 있고 성능도 raw query에 비해서 떨어지는 단점이 있다.</p>
+
+<p><br />
+<br /></p>
+
+<h1 id="jpa는-어디서-동작할까">JPA는 어디서 동작할까?</h1>
+
+<p><img src="/assets/images/24_3.png" alt="img3" width="70%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>애플리케이션에서 CRUD를 수행하면 JPA가 해당하는 SQL을 생성해주고 JDBC API를 사용해서 객체와 DB사이의 패러다임의 불일치를 해결해준다.</p>
+
+<p><br /><br /></p>
+
+<h1 id="jpa의-장점">JPA의 장점</h1>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">객체 중심으로 개발</code>
+    <ul>
+      <li>기존에는 SQL에 종속적인 개발을 했어야 했다. 그런데 JPA를 사용하면 객체 중심으로 개발을 할 수 있다.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">유지보수</code>
+    <ul>
+      <li>객체의 필드를 변경하면 개발자가 하나하나 해당 SQL을 수정했어야 했다. 그런데 이런 매핑과정을 JPA가 대신 해줌으로써 유지보수가 편리해졌다.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">패러다임의 불일치 해결</code>
+    <ul>
+      <li>기존에는 상속관계가 있는 객체를 DB에 넣을 때 굉장히 귀찮은 작업이 많았다. 그런데 JPA를 사용하면 알아서 필요한 SQL을 다 만들어서 넣어준다</li>
+      <li>자유로운 객체 그래프 탐색이 가능해졌다.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">성능</code>
+    <ul>
+      <li>같은 트랜젝션 안에서 같은 엔티티를 반환한다. 이것이 가능한 이유는 조회를 한 후에 영속성 컨텍스트에 캐싱해두기 때문이다. DB에 query를 추가로 날리지 않기 때문에 약간의 성능 향상이 있다.</li>
+      <li>persist를 할때마다 DB에 쿼리를 날리지 않고 트랜젝션 커밋시점에 한번에 SQL을 날린다.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">지연로딩</code>
+    <ul>
+      <li>객체가 실제로 사용되는 시점에 로딩을 한다.</li>
+      <li>사용되지 않는 것들은 프록시로 들고 있는다.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">즉시로딩</code>
+    <ul>
+      <li>Join을 통해서 연관된 객체를 한번에 가져온다.</li>
+      <li>항상 같이 사용되는 객체같은 경우는 <code class="language-plaintext highlighter-rouge">fetch join</code>을 통해서 한번에 조회하는 것이 성능상으로 좋다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /><br /></p>
+
+<h3 id="다음-포스팅부터는-jpa의-작동-원리와-사용-방법에-대해서-알아보겠다-">다음 포스팅부터는 JPA의 작동 원리와 사용 방법에 대해서 알아보겠다. :)</h3>
 
 <p><br /></p>
 
-<ol>
-  <li>기본적으로 범위를 설정하지 않으면 전역으로 동작하게 된다.</li>
-  <li>특정 애노테이션이 있는 컨트롤러를 지정할 수 있다.</li>
-  <li>특정 패키지를 직접 지정할 수도 있다.</li>
-  <li>특정 컨트롤러를 지정할 수 있다.</li>
-</ol>
+<h1 id="참고-사이트-출처">참고 사이트 출처</h1>
+
+<p>https://victorydntmd.tistory.com/195</p>
 
 
         
@@ -437,7 +441,9 @@
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
     <span itemprop="keywords">
     
-      <a href="/tags/#mvc" class="page__taxonomy-item p-category" rel="tag">MVC</a><span class="sep">, </span>
+      <a href="/tags/#db" class="page__taxonomy-item p-category" rel="tag">DB</a><span class="sep">, </span>
+    
+      <a href="/tags/#jpa" class="page__taxonomy-item p-category" rel="tag">JPA</a><span class="sep">, </span>
     
       <a href="/tags/#spring" class="page__taxonomy-item p-category" rel="tag">Spring</a>
     
@@ -456,7 +462,7 @@
     <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
     <span itemprop="keywords">
     
-      <a href="/categories/#spring" class="page__taxonomy-item p-category" rel="tag">Spring</a>
+      <a href="/categories/#jpa" class="page__taxonomy-item p-category" rel="tag">JPA</a>
     
     </span>
   </p>
@@ -464,7 +470,7 @@
 
         
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-07-18T00:00:00+09:00">July 18, 2023</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-07-21T00:00:00+09:00">July 21, 2023</time></p>
 
       </footer>
 
@@ -473,23 +479,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BSpring%5D+%EC%98%88%EC%99%B8+%EC%B2%98%EB%A6%AC%20http%3A%2F%2Flocalhost%3A4000%2Fspring%2FexceptionHandle%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BJPA%5D+Intro%20http%3A%2F%2Flocalhost%3A4000%2Fjpa%2FJPA1%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fspring%2FexceptionHandle%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fjpa%2FJPA1%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fspring%2FexceptionHandle%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fjpa%2FJPA1%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/java/java_JVM1/" class="pagination--pager" title="[Java] JVM
+      <a href="/algorithm/unionFind/" class="pagination--pager" title="[알고리즘] Union find
 ">이전</a>
     
     
-      <a href="/algorithm/unionFind/" class="pagination--pager" title="[알고리즘] Union find
-">다음</a>
+      <a href="#" class="pagination--pager disabled">다음</a>
     
   </nav>
 
@@ -503,46 +508,6 @@
     <div class="page__related">
       <h2 class="page__related-title">참고</h2>
       <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/jpa/JPA1/" rel="permalink">[JPA] Intro
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-
-    
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
-        
-          1 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">
-</p>
-  </article>
-</div>
-
         
           
 
@@ -572,6 +537,46 @@
         <i class="far fa-clock" aria-hidden="true"></i>
         
           최대 1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/spring/exceptionHandle/" rel="permalink">[Spring] 예외 처리
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
         
       </span>
     
