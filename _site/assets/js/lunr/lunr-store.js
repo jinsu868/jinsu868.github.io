@@ -154,4 +154,10 @@ var store = [{
         "tags": ["Spring","JPA","DB"],
         "url": "/jpa/JPA2/",
         "teaser": null
+      },{
+        "title": "[JPA] 기본키 매핑 전략",
+        "excerpt":"기본 키 매핑 전략 IDENTITY : 데이터베이스에 위임하는 전략 MYSQL에서 사용됨. AUTO_INCREMENT는 데이터베이스에 INSERT SQL을 실행한 이후에 ID값을 알 수 있기 때문에 em.persist() 시점에 바로 INSERT SQL을 실행하고 ID를 가져온다. @Entity public class Item { @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id; } SEQUENCE : 데이터베이스 시퀀스 오브젝트 사용 오라클에서...","categories": ["JPA"],
+        "tags": ["Spring","JPA","DB"],
+        "url": "/jpa/JPA3/",
+        "teaser": null
       }]
