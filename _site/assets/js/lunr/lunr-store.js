@@ -160,4 +160,10 @@ var store = [{
         "tags": ["Spring","JPA","DB"],
         "url": "/jpa/JPA3/",
         "teaser": null
+      },{
+        "title": "[JPA] 연관관계 매핑",
+        "excerpt":"객체와 테이블의 패러다임 불일치 먼저 객체와 테이블 사이의 간극을 이해할 필요가 있다. 객체는 참조 를 사용해서 연관된 객체를 찾는다. 그런데 테이블은 외래키 조인을 통해서 연관된 테이블을 찾는다. 때문에 객체를 테이블에 맞춰서 설계를 하면 객체간의 협력 관계를 만들 수 없다. Member 와 Team 사이의 관계를 통해 이해해보자. 여기서 하나의 Member 는...","categories": ["JPA"],
+        "tags": ["Spring","JPA","DB"],
+        "url": "/jpa/JPA4/",
+        "teaser": null
       }]
