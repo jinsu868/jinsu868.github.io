@@ -1,120 +1,214 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-21T20:20:48+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[JPA] 연관관계 매핑</title><link href="http://localhost:4000/jpa/JPA4/" rel="alternate" type="text/html" title="[JPA] 연관관계 매핑" /><published>2023-07-21T00:00:00+09:00</published><updated>2023-07-21T00:00:00+09:00</updated><id>http://localhost:4000/jpa/JPA4</id><content type="html" xml:base="http://localhost:4000/jpa/JPA4/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-07-27T20:51:03+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[JPA] 연관관계 매핑(2)</title><link href="http://localhost:4000/jpa/JPA5/" rel="alternate" type="text/html" title="[JPA] 연관관계 매핑(2)" /><published>2023-07-27T00:00:00+09:00</published><updated>2023-07-27T00:00:00+09:00</updated><id>http://localhost:4000/jpa/JPA5</id><content type="html" xml:base="http://localhost:4000/jpa/JPA5/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h1 id=&quot;객체와-테이블의-패러다임-불일치&quot;&gt;&lt;em&gt;객체와 테이블의 패러다임 불일치&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;먼저 객체와 테이블 사이의 간극을 이해할 필요가 있다. 객체는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;참조&lt;/code&gt; 를 사용해서 연관된 객체를 찾는다. 그런데 테이블은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;외래키 조인&lt;/code&gt;을 통해서 연관된 테이블을 찾는다. 때문에 객체를 테이블에 맞춰서 설계를 하면 객체간의 협력 관계를 만들 수 없다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt; 와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team&lt;/code&gt; 사이의 관계를 통해 이해해보자.&lt;/p&gt;
-
-&lt;p&gt;여기서 하나의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt; 는 하나의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team&lt;/code&gt; 에만 속할 수 있다고 가정하자. (1:N)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;오늘은 JPA에서 상속관계를 매핑하는 방법에 대해서 알아보자!&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;테이블에-맞춘-객체-설계&quot;&gt;테이블에 맞춘 객체 설계&lt;/h2&gt;
+&lt;h1 id=&quot;상속관계-매핑&quot;&gt;&lt;em&gt;상속관계 매핑&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;관계형 데이터베이스는 상속 관계에 대한 매핑을 따로 지원하지 않는다. 슈퍼타입, 서브타입 관계라는 모델링 기법을 통해서 상속관계를 표현할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;슈퍼타입, 서브타입 논리 모델을 실제 물리 모델로 구현하는 방법은 크게 3가지가 있다. 이 중에서 구현 클래스마다 테이블을 만드는 전략은 실제로 사용되지 않기 때문에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;조인 전략&lt;/code&gt;과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;단일 테이블 전략&lt;/code&gt;에 대해서 알아보자.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;조인-전략&quot;&gt;&lt;em&gt;조인 전략&lt;/em&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/28_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;조인 전략은 상속관계를 매핑하는데 가장 많이 사용되는 전략이다. 공통되는 속성들을 하나의 테이블(여기서는 Item)에 넣고 공통되지 않는 고유의 속성들은 각각의 테이블(Album, Movie, Book)에 넣는다. 그리고 조인을 통해서 데이터를 가져온다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;장점&quot;&gt;장점&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@GeneratedValue&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-  
-  &lt;span class=&quot;c1&quot;&gt;//Team team 과 같이 참조를 가지는 것이 아니라 식별자를 가진다.&lt;/span&gt;
-  &lt;span class=&quot;nd&quot;&gt;@Column&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;TEAM_ID&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;teamId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clas&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@GeneratedValue&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Team 조회&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//member.getTeam()과 같이 바로 조회할 수 없고 id를 구한 후 이를 통해 한번 더 조회해야 한다.&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TeamId&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getTeamId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;team&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TeamId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;위와 같은 경우가 테이블에 맞춰서 객체를 설계한 케이스이다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt; 에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team&lt;/code&gt; 을 참조로 가지고 있는 것이 아니라 외래키를 그대로 들고 있다.&lt;/p&gt;
-
-&lt;p&gt;이렇게 되면 Member에서 Team을 조회할 때, 참조로 바로 Team을 조회할 수 없고 ID를 통해서 다시 조회해야 한다. 이는 객체 지향적인 방법이 아니다.&lt;/p&gt;
-
-&lt;p&gt;ORM을 통해서 이러한 패러다임의 불일치를 해결할 수 있다. 객체는 객체대로 모델링하면 가운데서 ORM이 알맞게 매핑해준다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;객체지향-모델링&quot;&gt;객체지향 모델링&lt;/h2&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@GeneratedValue&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-  
-	&lt;span class=&quot;nd&quot;&gt;@ManyToOne&lt;/span&gt;
-  &lt;span class=&quot;nd&quot;&gt;@JoinColumn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;TEAM_ID&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;team&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;위 코드를 보면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt;에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team&lt;/code&gt; 객체를 참조로 가지고 있다. 그런데 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt; 테이블에서는 외래키로 TEAM_ID를 가지고 있을 것이다. 이런 차이를 매핑해주는 것이 바로 &lt;strong&gt;ORM&lt;/strong&gt; 이다. 아래 그림을 보자.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/27_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;JPA는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member 객체&lt;/code&gt;에 있는 Team 참조를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member Table&lt;/code&gt; 에 TEAM_ID 라는 외래키로 매핑해준다. 이 때 외래키 이름을 지정해줘야 하는데 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@JoinColumn&lt;/code&gt; 을 통해 지정해줄 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;양방향-매핑&quot;&gt;양방향 매핑&lt;/h1&gt;
-
-&lt;p&gt;이제 양방향 매핑에 대해서 탐구해보자. 양방향 매핑일 때는 고려해야 할 점이 좀 있다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;객체&lt;/code&gt;는 양방향 매핑을 하려면 양쪽에 참조를 가져야 한다. 그런데 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;테이블&lt;/code&gt;은 외래키 하나로 조인을 통해서 양쪽을 이동할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/27_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;위 그림을 보면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member 객체&lt;/code&gt;에 있는 Team, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team 객체&lt;/code&gt;에 있는 Member 참조값을 통해서 양쪽을 왔다갔다 할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;그런데 테이블은 MEMBER 테이블에 있는 TEAM_ID라는 외래키를 통해서 양쪽을 이동한다.&lt;/p&gt;
-
-&lt;p&gt;사실 객체는 양방향을 구현하려면 단방향 두개가 있어야 하는 것이고 테이블은 외래키 하나만 있으면 되는 것이다. 때문에 &lt;strong&gt;두 객체 중 한쪽에서 외래키를 관리해야 한다.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;연관관계의-주인&quot;&gt;연관관계의 주인&lt;/h1&gt;
-
-&lt;p&gt;객체의 두 관계중 하나를 연관관계의 주인으로 설정하고 주인쪽에서 외래키를 관리해야 한다. 반대쪽(거울)에서는 오직 읽기만 가능하다.&lt;/p&gt;
-
-&lt;p&gt;규칙은 간단하다. &lt;strong&gt;외래키를 가지고 있는 곳을 주인으로 설정하면 된다.&lt;/strong&gt; 1:N관계라면 무조건 N쪽에 외래키가 존재하기 때문에 N쪽을 주인으로 설정하면 된다. 거울쪽에는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mappedBy&lt;/code&gt; 설정을 해주면 된다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;주의점 : 거울쪽에서 수정을 하더라도 udpate query가 날아가지 않는다. (단순 조회만 가능)
+  &lt;li&gt;테이블이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;정규화&lt;/code&gt;된다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;외래키 참조 무결성 제약조건&lt;/code&gt;을 활용가능하다.&lt;/li&gt;
+  &lt;li&gt;저장공간을 효율적으로 사용할 수 있다.
     &lt;ul&gt;
-      &lt;li&gt;객체 관점에서 보면 양쪽 다 변경되는 것이 맞기 때문에 다 변경해주자.&lt;/li&gt;
+      &lt;li&gt;정규화되서 관리되기 때문에 중복되지 않고 잘 관리된다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;단점&quot;&gt;단점&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;조회할 때 조인을 많이 사용하기 때문에 약간의 성능 저하가 있다.&lt;/li&gt;
+  &lt;li&gt;조인으로 쿼리가 나가기 때문에 복잡하다.&lt;/li&gt;
+  &lt;li&gt;각각의 테이블이 있기 때문에 하나를 저장할 때 INSERT SQL이 2번 호출된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;적용&quot;&gt;적용&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Inheritance(strategy = inheritanceType.JOINED) &lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;이 에노테이션을 부모 엔티티에 붙여주면 된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@DiscriminatorColumn(name=&quot;DTYPE&quot;)&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;이 에노테이션을 넣으면 슈퍼타입 테이블에 서브타입 테이블의 종류를 표현하는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DTYPE&lt;/code&gt;이라는 컬럼이 생긴다.&lt;/li&gt;
+      &lt;li&gt;JOIN 전략에서는 안넣어줘도 동작하기는 하지만 운영을 편하게 하기 위해서 넣어주는 것이 좋다.&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@DiscriminatorValue(&quot;xxx&quot;)&lt;/code&gt;
+        &lt;ul&gt;
+          &lt;li&gt;DTYPE에 저장되는 타입의 이름을 지정할 수 있는 에노테이션이다.&lt;/li&gt;
+          &lt;li&gt;자식 엔티티에 붙여줄 수 있다. 기본값은 클래스 이름이고 기본값을 사용하면 된다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;단일-테이블-전략&quot;&gt;단일 테이블 전략&lt;/h1&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/28_2.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;단일 테이블 전략은 한 테이블에 자식 엔티티 컬럼까지 다 때려박고 운영하는 방식이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;###&lt;/p&gt;
+
+&lt;h3 id=&quot;장점-1&quot;&gt;장점&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;조인이 필요 없어서 일반적으로 조회 성능이 좋다.&lt;/li&gt;
+  &lt;li&gt;조회 쿼리가 단순하다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;단점-1&quot;&gt;단점&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;자식 엔티티가 매핑한 칼럼은 모두 null 허용을 해야한다.&lt;/li&gt;
+  &lt;li&gt;한 테이블에 모든 속성을 때려박기 때문에 테이블이 커져서 상황에 따라서 조회가 느려질 수 있다.
+    &lt;ul&gt;
+      &lt;li&gt;임계점을 넘겨야 느려지는데 이런 경우는 잘 발생하지 않는다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;정리&quot;&gt;정리&lt;/h1&gt;
+
+&lt;p&gt;그래서 어떤것을 사용하면 좋을까?&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;기본적으로 조인 전략을 사용하고 진짜 단순한 경우에 단일 테이블 전략을 사용하면 된다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;참고-사이트-출처&quot;&gt;참고 사이트 출처&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;https://www.inflearn.com/course/ORM-JPA-Basic/dashboard&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="JPA" /><category term="Spring" /><category term="JPA" /><category term="DB" /><summary type="html"></summary></entry><entry><title type="html">[JPA] 기본키 매핑 전략</title><link href="http://localhost:4000/jpa/JPA3/" rel="alternate" type="text/html" title="[JPA] 기본키 매핑 전략" /><published>2023-07-21T00:00:00+09:00</published><updated>2023-07-21T00:00:00+09:00</updated><id>http://localhost:4000/jpa/JPA3</id><content type="html" xml:base="http://localhost:4000/jpa/JPA3/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;기본-키-매핑-전략&quot;&gt;기본 키 매핑 전략&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IDENTITY&lt;/code&gt; : 데이터베이스에 위임하는 전략
+    &lt;ul&gt;
+      &lt;li&gt;MYSQL에서 사용됨.&lt;/li&gt;
+      &lt;li&gt;AUTO_INCREMENT는 데이터베이스에 INSERT SQL을 실행한 이후에 ID값을 알 수 있기 때문에 em.persist() 시점에 바로 INSERT SQL을 실행하고 ID를 가져온다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt;
+  &lt;span class=&quot;nd&quot;&gt;@GeneratedValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strategy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;GenerationType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;IDENTITY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SEQUENCE&lt;/code&gt; : 데이터베이스 시퀀스 오브젝트 사용
+    &lt;ul&gt;
+      &lt;li&gt;오라클에서 사용&lt;/li&gt;
+      &lt;li&gt;데이터베이스 시퀀스란 유일한 값을 순서대로 생성하는 특별한 데이터베이스 오브젝트를 뜻한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@SequenceGenerator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;“&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ITEM_SEQ_GENERATOR&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;,
+sequenceName = “ITEM_SEQ&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;initialValue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;allocationSize&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@GeneratedValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strategy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;GenerationType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;SEQUENCE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Table&lt;/code&gt; : 키 생성용 테이블 사용, 모든 DB에 적용 가능
+    &lt;ul&gt;
+      &lt;li&gt;키 생성 전용 테이블을 하나 만들고 데이터베이스 시퀀스를 흉내내는 전략&lt;/li&gt;
+      &lt;li&gt;모든 데이터베이스에 적용이 가능하지만 성능이 좋지 않다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Object&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
+&lt;span class=&quot;nd&quot;&gt;@TableGenerator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;ITEM_SEQ_GENERATOR&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;table&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;MY_SEQUENCES&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;pkColumnValue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;“&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ITEM_SEQ&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;, allocationSize = 1)
+public class Item {
+@Id
+@GeneratedValue(strategy = GenerationType.TABLE,
+generator = &quot;&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ITEM_SEQ_GENERATOR&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Table&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-mysql&quot;&gt;create table MY_SEQUENCES (
+sequence_name varchar(255) not null,
+next_val bigint,
+primary key ( sequence_name )
+)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AUTO&lt;/code&gt; : 방언에 따라 자동 지정, 기본 값&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;실무-사용-가이드&quot;&gt;실무 사용 가이드&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;기본키는 Long Type + 대체키 + 키 생성전략을 활용하자&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
@@ -423,95 +517,123 @@
 
 &lt;h1 id=&quot;참고-사이트-출처&quot;&gt;참고 사이트 출처&lt;/h1&gt;
 
-&lt;p&gt;https://victorydntmd.tistory.com/195&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="JPA" /><category term="Spring" /><category term="JPA" /><category term="DB" /><summary type="html"></summary></entry><entry><title type="html">[JPA] 기본키 매핑 전략</title><link href="http://localhost:4000/jpa/JPA3/" rel="alternate" type="text/html" title="[JPA] 기본키 매핑 전략" /><published>2023-07-21T00:00:00+09:00</published><updated>2023-07-21T00:00:00+09:00</updated><id>http://localhost:4000/jpa/JPA3</id><content type="html" xml:base="http://localhost:4000/jpa/JPA3/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;https://victorydntmd.tistory.com/195&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="JPA" /><category term="Spring" /><category term="JPA" /><category term="DB" /><summary type="html"></summary></entry><entry><title type="html">[JPA] 연관관계 매핑(1)</title><link href="http://localhost:4000/jpa/JPA4/" rel="alternate" type="text/html" title="[JPA] 연관관계 매핑(1)" /><published>2023-07-21T00:00:00+09:00</published><updated>2023-07-21T00:00:00+09:00</updated><id>http://localhost:4000/jpa/JPA4</id><content type="html" xml:base="http://localhost:4000/jpa/JPA4/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h1 id=&quot;기본-키-매핑-전략&quot;&gt;기본 키 매핑 전략&lt;/h1&gt;
+&lt;h1 id=&quot;객체와-테이블의-패러다임-불일치&quot;&gt;&lt;em&gt;객체와 테이블의 패러다임 불일치&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;먼저 객체와 테이블 사이의 간극을 이해할 필요가 있다. 객체는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;참조&lt;/code&gt; 를 사용해서 연관된 객체를 찾는다. 그런데 테이블은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;외래키 조인&lt;/code&gt;을 통해서 연관된 테이블을 찾는다. 때문에 객체를 테이블에 맞춰서 설계를 하면 객체간의 협력 관계를 만들 수 없다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt; 와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team&lt;/code&gt; 사이의 관계를 통해 이해해보자.&lt;/p&gt;
+
+&lt;p&gt;여기서 하나의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt; 는 하나의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team&lt;/code&gt; 에만 속할 수 있다고 가정하자. (1:N)&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;테이블에-맞춘-객체-설계&quot;&gt;테이블에 맞춘 객체 설계&lt;/h2&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IDENTITY&lt;/code&gt; : 데이터베이스에 위임하는 전략
-    &lt;ul&gt;
-      &lt;li&gt;MYSQL에서 사용됨.&lt;/li&gt;
-      &lt;li&gt;AUTO_INCREMENT는 데이터베이스에 INSERT SQL을 실행한 이후에 ID값을 알 수 있기 때문에 em.persist() 시점에 바로 INSERT SQL을 실행하고 ID를 가져온다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt;
-  &lt;span class=&quot;nd&quot;&gt;@GeneratedValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strategy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;GenerationType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;IDENTITY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@GeneratedValue&lt;/span&gt;
   &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  
+  &lt;span class=&quot;c1&quot;&gt;//Team team 과 같이 참조를 가지는 것이 아니라 식별자를 가진다.&lt;/span&gt;
+  &lt;span class=&quot;nd&quot;&gt;@Column&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;TEAM_ID&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;teamId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SEQUENCE&lt;/code&gt; : 데이터베이스 시퀀스 오브젝트 사용
-    &lt;ul&gt;
-      &lt;li&gt;오라클에서 사용&lt;/li&gt;
-      &lt;li&gt;데이터베이스 시퀀스란 유일한 값을 순서대로 생성하는 특별한 데이터베이스 오브젝트를 뜻한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@SequenceGenerator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;“&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ITEM_SEQ_GENERATOR&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;,
-sequenceName = “ITEM_SEQ&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;initialValue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;allocationSize&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@GeneratedValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strategy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;GenerationType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;SEQUENCE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clas&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@GeneratedValue&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Table&lt;/code&gt; : 키 생성용 테이블 사용, 모든 DB에 적용 가능
-    &lt;ul&gt;
-      &lt;li&gt;키 생성 전용 테이블을 하나 만들고 데이터베이스 시퀀스를 흉내내는 전략&lt;/li&gt;
-      &lt;li&gt;모든 데이터베이스에 적용이 가능하지만 성능이 좋지 않다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
+  &lt;li&gt;Team 조회&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;strong&gt;Object&lt;/strong&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@TableGenerator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;ITEM_SEQ_GENERATOR&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;table&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;MY_SEQUENCES&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;pkColumnValue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;“&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ITEM_SEQ&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;, allocationSize = 1)
-public class Item {
-@Id
-@GeneratedValue(strategy = GenerationType.TABLE,
-generator = &quot;&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ITEM_SEQ_GENERATOR&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//member.getTeam()과 같이 바로 조회할 수 없고 id를 구한 후 이를 통해 한번 더 조회해야 한다.&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TeamId&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getTeamId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;team&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TeamId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;strong&gt;Table&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-mysql&quot;&gt;create table MY_SEQUENCES (
-sequence_name varchar(255) not null,
-next_val bigint,
-primary key ( sequence_name )
-)
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;위와 같은 경우가 테이블에 맞춰서 객체를 설계한 케이스이다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt; 에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team&lt;/code&gt; 을 참조로 가지고 있는 것이 아니라 외래키를 그대로 들고 있다.&lt;/p&gt;
+
+&lt;p&gt;이렇게 되면 Member에서 Team을 조회할 때, 참조로 바로 Team을 조회할 수 없고 ID를 통해서 다시 조회해야 한다. 이는 객체 지향적인 방법이 아니다.&lt;/p&gt;
+
+&lt;p&gt;ORM을 통해서 이러한 패러다임의 불일치를 해결할 수 있다. 객체는 객체대로 모델링하면 가운데서 ORM이 알맞게 매핑해준다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AUTO&lt;/code&gt; : 방언에 따라 자동 지정, 기본 값&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;객체지향-모델링&quot;&gt;객체지향 모델링&lt;/h2&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@GeneratedValue&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  
+	&lt;span class=&quot;nd&quot;&gt;@ManyToOne&lt;/span&gt;
+  &lt;span class=&quot;nd&quot;&gt;@JoinColumn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;TEAM_ID&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;team&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;실무-사용-가이드&quot;&gt;실무 사용 가이드&lt;/h3&gt;
+&lt;p&gt;위 코드를 보면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt;에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team&lt;/code&gt; 객체를 참조로 가지고 있다. 그런데 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt; 테이블에서는 외래키로 TEAM_ID를 가지고 있을 것이다. 이런 차이를 매핑해주는 것이 바로 &lt;strong&gt;ORM&lt;/strong&gt; 이다. 아래 그림을 보자.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/27_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;JPA는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member 객체&lt;/code&gt;에 있는 Team 참조를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member Table&lt;/code&gt; 에 TEAM_ID 라는 외래키로 매핑해준다. 이 때 외래키 이름을 지정해줘야 하는데 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@JoinColumn&lt;/code&gt; 을 통해 지정해줄 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;양방향-매핑&quot;&gt;양방향 매핑&lt;/h1&gt;
+
+&lt;p&gt;이제 양방향 매핑에 대해서 탐구해보자. 양방향 매핑일 때는 고려해야 할 점이 좀 있다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;객체&lt;/code&gt;는 양방향 매핑을 하려면 양쪽에 참조를 가져야 한다. 그런데 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;테이블&lt;/code&gt;은 외래키 하나로 조인을 통해서 양쪽을 이동할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/27_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;위 그림을 보면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member 객체&lt;/code&gt;에 있는 Team, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team 객체&lt;/code&gt;에 있는 Member 참조값을 통해서 양쪽을 왔다갔다 할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;그런데 테이블은 MEMBER 테이블에 있는 TEAM_ID라는 외래키를 통해서 양쪽을 이동한다.&lt;/p&gt;
+
+&lt;p&gt;사실 객체는 양방향을 구현하려면 단방향 두개가 있어야 하는 것이고 테이블은 외래키 하나만 있으면 되는 것이다. 때문에 &lt;strong&gt;두 객체 중 한쪽에서 외래키를 관리해야 한다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;연관관계의-주인&quot;&gt;연관관계의 주인&lt;/h1&gt;
+
+&lt;p&gt;객체의 두 관계중 하나를 연관관계의 주인으로 설정하고 주인쪽에서 외래키를 관리해야 한다. 반대쪽(거울)에서는 오직 읽기만 가능하다.&lt;/p&gt;
+
+&lt;p&gt;규칙은 간단하다. &lt;strong&gt;외래키를 가지고 있는 곳을 주인으로 설정하면 된다.&lt;/strong&gt; 1:N관계라면 무조건 N쪽에 외래키가 존재하기 때문에 N쪽을 주인으로 설정하면 된다. 거울쪽에는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mappedBy&lt;/code&gt; 설정을 해주면 된다.&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;기본키는 Long Type + 대체키 + 키 생성전략을 활용하자&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;주의점 : 거울쪽에서 수정을 하더라도 udpate query가 날아가지 않는다. (단순 조회만 가능)
+    &lt;ul&gt;
+      &lt;li&gt;객체 관점에서 보면 양쪽 다 변경되는 것이 맞기 때문에 다 변경해주자.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
@@ -526,7 +648,7 @@ primary key ( sequence_name )
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/23_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;오늘은 Union-Find 알고리즘에 대해서 정리해보겠다. (귀엽다..)&lt;/p&gt;
+&lt;p&gt;오늘은 Union-Find 알고리즘에 대해서 정리해보겠다.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -558,8 +680,6 @@ primary key ( sequence_name )
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;하지만&lt;/p&gt;
 
 &lt;h3 id=&quot;find-연산&quot;&gt;&lt;em&gt;Find 연산&lt;/em&gt;&lt;/h3&gt;
 
@@ -1008,57 +1128,4 @@ primary key ( sequence_name )
     &lt;p&gt;View Model : View는 1:N 관계이다.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;View Model의 설계가 쉽지 않다. (단점)&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><category term="CS" /><summary type="html"></summary></entry><entry><title type="html">[디자인패턴] 노출모듈 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/RevealingModule/" rel="alternate" type="text/html" title="[디자인패턴] 노출모듈 패턴" /><published>2023-07-14T00:00:00+09:00</published><updated>2023-07-14T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/RevealingModule</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/RevealingModule/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;revealing-module-pattern&quot;&gt;&lt;em&gt;Revealing Module Pattern&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;즉시 실행 함수를 통해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;private&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public&lt;/code&gt; 과 같은 접근 제어자를 만든느 패턴이다.&lt;/p&gt;
-
-&lt;p&gt;자바 스크립트에서는 접근 제어자가 존재하지 않고 전역 범위에서 스크립트가 실행된다. 때문에 접근 제어자를 사용하고 싶으면 노출모듈 패턴을 통해서 public, private 접근 제어자를 만들어서 사용해야 한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;그렇다면-즉시-실행-함수란-무엇일까&quot;&gt;&lt;em&gt;그렇다면 즉시 실행 함수란 무엇일까?&lt;/em&gt;&lt;/h1&gt;
-
-&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;function &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;TEST&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;})();&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;즉시 실행함수는 선언과 동시에 바로 호출되는 함수이다. 재사용이 불가능하고 초기화, 라이브러리 전역 변수 충돌을 피하기 위해 사용한다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;접근-제어자&quot;&gt;&lt;em&gt;접근 제어자&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;public&lt;/code&gt; : 클래스에서 정의된 함수, 자식, 외부 클래스 모두 접근 가능&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;protected&lt;/code&gt; : 클래스에서 정의된 함수, 자식 클래스에서만 접근 가능&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;private&lt;/code&gt; : 클래스에 정의된 함수에서만 접근 가능&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;노출모듈-패턴-장단점&quot;&gt;&lt;em&gt;노출모듈 패턴 장단점&lt;/em&gt;&lt;/h1&gt;
-
-&lt;h3 id=&quot;장점&quot;&gt;장점&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;깔끔한 접근 제어 방법 제공&lt;/li&gt;
-  &lt;li&gt;private 데이터 제공&lt;/li&gt;
-  &lt;li&gt;전역변수를 덜 더럽힌다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;단점&quot;&gt;단점&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;private 메소드에 접근 방법이 없음&lt;/li&gt;
-  &lt;li&gt;private 메소드에 대해 함수를 확장하는 게 어려움&lt;/li&gt;
-  &lt;li&gt;private 메소드를 참조하는 public 메소드를 수정하기 어려움&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><category term="CS" /><summary type="html"></summary></entry></feed>
+&lt;/ol&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><category term="CS" /><summary type="html"></summary></entry></feed>

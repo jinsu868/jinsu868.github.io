@@ -138,7 +138,7 @@ var store = [{
         "teaser": null
       },{
         "title": "[알고리즘] Union find",
-        "excerpt":"오늘은 Union-Find 알고리즘에 대해서 정리해보겠다. (귀엽다..) Union find algorithm 유니온 파인드 알고리즘은 상호 배타적 집합, Disjoin-set(서로소 집합) 이라고도 부른다. 여러 노드가 존재할 때, 어떤 두 개의 노드를 같은 집합으로 묶어 주고, 어떤 두 노드가 같은 집하에 있는지 확인하는 알고리즘이다. Union 연산 서로 연결된 두 노드 A, B를 선택 A의 루트...","categories": ["Algorithm"],
+        "excerpt":"오늘은 Union-Find 알고리즘에 대해서 정리해보겠다. Union find algorithm 유니온 파인드 알고리즘은 상호 배타적 집합, Disjoin-set(서로소 집합) 이라고도 부른다. 여러 노드가 존재할 때, 어떤 두 개의 노드를 같은 집합으로 묶어 주고, 어떤 두 노드가 같은 집하에 있는지 확인하는 알고리즘이다. Union 연산 서로 연결된 두 노드 A, B를 선택 A의 루트 노드와...","categories": ["Algorithm"],
         "tags": ["알고리즘","Union find","자료구조"],
         "url": "/algorithm/unionFind/",
         "teaser": null
@@ -161,9 +161,15 @@ var store = [{
         "url": "/jpa/JPA3/",
         "teaser": null
       },{
-        "title": "[JPA] 연관관계 매핑",
+        "title": "[JPA] 연관관계 매핑(1)",
         "excerpt":"객체와 테이블의 패러다임 불일치 먼저 객체와 테이블 사이의 간극을 이해할 필요가 있다. 객체는 참조 를 사용해서 연관된 객체를 찾는다. 그런데 테이블은 외래키 조인을 통해서 연관된 테이블을 찾는다. 때문에 객체를 테이블에 맞춰서 설계를 하면 객체간의 협력 관계를 만들 수 없다. Member 와 Team 사이의 관계를 통해 이해해보자. 여기서 하나의 Member 는...","categories": ["JPA"],
         "tags": ["Spring","JPA","DB"],
         "url": "/jpa/JPA4/",
+        "teaser": null
+      },{
+        "title": "[JPA] 연관관계 매핑(2)",
+        "excerpt":"오늘은 JPA에서 상속관계를 매핑하는 방법에 대해서 알아보자! 상속관계 매핑 관계형 데이터베이스는 상속 관계에 대한 매핑을 따로 지원하지 않는다. 슈퍼타입, 서브타입 관계라는 모델링 기법을 통해서 상속관계를 표현할 수 있다. 슈퍼타입, 서브타입 논리 모델을 실제 물리 모델로 구현하는 방법은 크게 3가지가 있다. 이 중에서 구현 클래스마다 테이블을 만드는 전략은 실제로 사용되지 않기...","categories": ["JPA"],
+        "tags": ["Spring","JPA","DB"],
+        "url": "/jpa/JPA5/",
         "teaser": null
       }]
