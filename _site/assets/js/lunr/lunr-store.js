@@ -173,9 +173,15 @@ var store = [{
         "url": "/jpa/JPA5/",
         "teaser": null
       },{
-        "title": "[JPA] 데이터 JPA",
+        "title": "[JPA] 데이터 JPA(1)",
         "excerpt":"@Repository 기능 @Repository는 2가지 기능을 제공한다. 첫번째는 이 Annotation이 붙은 클래스를 스프링 빈으로 등록한다. 두번째는 JPA 예외를 스프링 예외로 변환해준다. 데이터를 직접 접근하는 Repository 계층 구현 기술에 Service 계층이 직접 의존하는 것은 좋은 설계라고 할 수 없다. 이는 예외 처리에도 동일하게 적용된다. @Repository를 붙이면 데이터 접근 계층의 예외를 추상화해서 Service...","categories": ["JPA"],
         "tags": ["Spring","JPA","Data JPA"],
         "url": "/jpa/sj1/",
+        "teaser": null
+      },{
+        "title": "[JPA] 데이터 JPA(2)",
+        "excerpt":"Paging 이슈 JPA가 없던 시절에 Paging 처리를 하는 것은 굉장히 귀찮은 일이었다. JPA가 등장하면서 Paging을 쉽게 처리할 수 있게 되었다. Spring data JPA를 사용하면 페이지 계산과 같이 반복적이고 실수하기 쉬운 것을 추상화해서 사용하기 쉽게 제공해준다. 먼저 순수 JPA를 사용한 Paging 처리를 보고 다음으로 Spring data JPA를 사용해서 처리하는 코드를 살펴보자....","categories": ["JPA"],
+        "tags": ["Spring","JPA","Data JPA"],
+        "url": "/jpa/sj2/",
         "teaser": null
       }]
