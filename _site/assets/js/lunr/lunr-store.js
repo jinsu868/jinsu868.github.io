@@ -172,4 +172,10 @@ var store = [{
         "tags": ["Spring","JPA","DB"],
         "url": "/jpa/JPA5/",
         "teaser": null
+      },{
+        "title": "[JPA] 데이터 JPA",
+        "excerpt":"@Repository 기능 @Repository는 2가지 기능을 제공한다. 첫번째는 이 Annotation이 붙은 클래스를 스프링 빈으로 등록한다. 두번째는 JPA 예외를 스프링 예외로 변환해준다. 데이터를 직접 접근하는 Repository 계층 구현 기술에 Service 계층이 직접 의존하는 것은 좋은 설계라고 할 수 없다. 이는 예외 처리에도 동일하게 적용된다. @Repository를 붙이면 데이터 접근 계층의 예외를 추상화해서 Service...","categories": ["JPA"],
+        "tags": ["Spring","JPA","Data JPA"],
+        "url": "/jpa/sj1/",
+        "teaser": null
       }]
