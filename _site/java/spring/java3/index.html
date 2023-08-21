@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[JPA] 데이터 JPA(1) - Jinsu’s story</title>
+<!-- begin _includes/seo.html --><title>[JAVA] Concurrency Issue &amp; Thread Local - Jinsu’s story</title>
 <meta name="description" content="">
 
 
@@ -22,8 +22,8 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="Jinsu's story">
-<meta property="og:title" content="[JPA] 데이터 JPA(1)">
-<meta property="og:url" content="http://localhost:4000/jpa/sj1/">
+<meta property="og:title" content="[JAVA] Concurrency Issue &amp; Thread Local">
+<meta property="og:url" content="http://localhost:4000/java/spring/java3/">
 
 
   <meta property="og:description" content="">
@@ -34,7 +34,7 @@
 
 
 
-  <meta property="article:published_time" content="2023-08-18T00:00:00+09:00">
+  <meta property="article:published_time" content="2023-08-21T00:00:00+09:00">
 
 
 
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/jpa/sj1/">
+<link rel="canonical" href="http://localhost:4000/java/spring/java3/">
 
 
 
@@ -289,16 +289,16 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[JPA] 데이터 JPA(1)">
+    <meta itemprop="headline" content="[JAVA] Concurrency Issue &amp; Thread Local">
     <meta itemprop="description" content="">
-    <meta itemprop="datePublished" content="2023-08-18T00:00:00+09:00">
+    <meta itemprop="datePublished" content="2023-08-21T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="http://localhost:4000/jpa/sj1/" class="u-url" itemprop="url">[JPA] 데이터 JPA(1)
+            <a href="http://localhost:4000/java/spring/java3/" class="u-url" itemprop="url">[JAVA] Concurrency Issue &amp; Thread Local
 </a>
           </h1>
           
@@ -315,7 +315,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          2 분 소요
+          1 분 소요
         
       </span>
     
@@ -329,86 +329,45 @@
         
         <p><br /></p>
 
-<h1 id="repository-기능"><em>@Repository 기능</em></h1>
+<h1 id="concurrency-issue"><em>Concurrency Issue</em></h1>
 
-<p>@Repository는 2가지 기능을 제공한다. 첫번째는 이 Annotation이 붙은 클래스를 스프링 빈으로 등록한다. 두번째는 JPA 예외를 스프링 예외로 변환해준다. 데이터를 직접 접근하는 Repository 계층 구현 기술에 Service 계층이 직접 의존하는 것은 좋은 설계라고 할 수 없다. 이는 예외 처리에도 동일하게 적용된다. @Repository를 붙이면 데이터 접근 계층의 예외를 추상화해서 Service 계층에 넘김으로써 데이터 접근 계층의 예외가 바뀌더라도 코드를 변경하지 않고 동일하게 사용할 수 있다.</p>
-
-<p><br />
-<br /></p>
-
-<h1 id="공통-인터페이스"><em>공통 인터페이스</em></h1>
-
-<p><code class="language-plaintext highlighter-rouge">Spring data JPA</code>를 제대로 이해하기 위해서는 공통 인터페이스에 대해서 알 필요가 있다.</p>
-
-<p><img src="/assets/images/29_1.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br />
-<br /></p>
-
-<p>공통 인터페이스는 위와 같은 구조로 이루어져 있다. 이 인터페이스를 개발자가 직접 구현할 필요가 없다. Spring data JPA 가 구현 클래스를 우리 대신 생성해서 넣어준다. 때문에 우리는 그냥 가져다 쓰면 된다. ^.^</p>
-
-<p><br />
-<br /></p>
-
-<h1 id="메소드-이름으로-쿼리-자동생성"><em>메소드 이름으로 쿼리 자동생성</em></h1>
-
-<p>Spring data JPA는 repository에 작성한 메소드 이름을 분석해서 JPQL 쿼리를 실행해준다. 순수한 JPA를 사용했을 때의 쿼리와 Spring data JPA 를 사용했을 때 코드를 비교해보자.
-<br /></p>
-
-<p>아래 코드는 순수 JPA를 사용했을 때 코드이다.
-<br /></p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="nf">findByUsernameAndAgeGreaterThan</span><span class="o">(</span><span class="nc">String</span> <span class="n">username</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">em</span><span class="o">.</span><span class="na">createQuery</span><span class="o">(</span><span class="s">"select m from Member m where m.username = :username and m.age &gt; :age"</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">setParameter</span><span class="o">(</span><span class="s">"username"</span><span class="o">,</span> <span class="n">username</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">setParameter</span><span class="o">(</span><span class="s">"age"</span><span class="o">,</span> <span class="n">age</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">getResultList</span><span class="o">();</span>
-<span class="o">}</span>
-
-</code></pre></div></div>
-<p><br /></p>
-
-<p>아래 코드는 Spring Data JPA를 사용했을 때의 코드이다.</p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="nf">findByUsernameAndAgeGreaterThan</span><span class="o">(</span><span class="nc">String</span> <span class="n">username</span><span class="o">,</span> <span class="kt">int</span> <span class="n">age</span><span class="o">);</span>
-</code></pre></div></div>
+<blockquote>
+  <p>동시성 문제란 동일한 자원에 대해서 여러 스레드가 동시에 접근해서 값을 바꾸면서 발생하는 문제를 뜻한다. 단순히 읽기를 할때는 문제가 발생하지 않지만 값을 바꾸게 되면 문제가 발생할 수 있다.</p>
+</blockquote>
 
 <p><br /></p>
 
-<p><strong>힘의 차이가 확실히 느껴진다.</strong> <br />
- 위와 같이 단순한 쿼리에 대해서 Spring Data JPA를 사용하면 생산성이 대폭 증가한다.
-하지만 장점만 존재하지는 않는다. 쿼리 조건이 많아질수록 메서드 이름도 같이 늘어난다. 때문에 복잡한 조건의 쿼리는 다른 방법으로 해결해야 한다.
-이 방법도 뒤에서 소개하겠다. 메서드 이름 규칙은 Spring 공식 페이지에 잘 나와있다.</p>
+<p>예시를 보고 이해해보자.</p>
 
-<p><br />
-<br /></p>
+<p><img src="/assets/images/30_1.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
 
-<h1 id="spring-data-jpa의-namedquery"><em>Spring Data JPA의 NamedQuery</em></h1>
-<p>순수 JPA에서 namedQuery를 작성하려면 Entity에 직접 작성해야 하거나, XML 파일을 통해서 작성해야 했다. 첫번째는 Entity가 굉장히 지저분해진고 XML은 따로 관리해야 했기 때문에 불편했었다. Spring Data JPA는 @Query를 통해서 Repository에 직접 작성할 수 있다.
-아래 예제 코드를 보자. <br /><br /></p>
+<p>위 그림에서의 <code class="language-plaintext highlighter-rouge">FieldService</code>는 Spring bean으로 등록되어 있어서 싱글톤으로 관리되는 상태이다. 그런데 <code class="language-plaintext highlighter-rouge">Thread-A</code> 가 FieldService의 맴버 변수 nameStore에 접근해서 값을 바꾼 후 조회하는 로직을 실행하였다. 이 로직을 실행하고 있는 시점에 동시에 <code class="language-plaintext highlighter-rouge">Thread-B</code>가 동일한 로직을 실행했다고 생각해보자. 그러면 <code class="language-plaintext highlighter-rouge">Thread-A</code>가 값을 조회하기 전에 <code class="language-plaintext highlighter-rouge">Thread-B</code>가 값을 바꾸면 <code class="language-plaintext highlighter-rouge">Thread-A</code>에서 조회한 값이 <code class="language-plaintext highlighter-rouge">Thread-B</code>가 바꾼 값으로 조회될 수 있다. 원래 기대한 결과와는 다른 결과가 도출된 것이다. 이런 문제를 <strong>동시성 문제</strong>라고 한다. <br /></p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="nd">@Query</span><span class="o">(</span><span class="s">"select m from Member m where m.username = :username and m.age = :age"</span><span class="o">)</span>
-<span class="nc">List</span><span class="o">&lt;</span><span class="nc">Member</span><span class="o">&gt;</span> <span class="nf">findUser</span><span class="o">(</span><span class="nd">@Param</span><span class="o">(</span><span class="s">"username"</span><span class="o">)</span> <span class="nc">String</span> <span class="n">username</span><span class="o">,</span> <span class="nd">@Param</span><span class="o">(</span><span class="s">"age"</span><span class="o">)</span> <span class="kt">int</span> <span class="n">age</span><span class="o">);</span>
-</code></pre></div></div>
+<p>그렇다면 이러한 문제를 어떻게 해결할 수 있을까? Java에서 제공하는 <code class="language-plaintext highlighter-rouge">ThreadLocal</code>을 사용하면 된다 ^-^ <br /><br /></p>
 
-<p><br /></p>
+<h1 id="threadlocal"><em>ThreadLocal</em></h1>
 
-<p>위와 같이 작성하면 된다. namedQuery의 장점은 컴파일 시점에 쿼리를 파싱해서 체크하기 때문에 문법 오류를 발견할 수 있는 것인데 @Query로 작성한 쿼리도 namedQuery로 간주되기 때문에 굉장히 유용하다.</p>
+<p>TheadLocal은 해당하는 Thread만 접근할 수 있는 특별한 저장소라고 생각하면 된다. 다른 Thread에서 접근할 수 없다. 그림을 보고 이해해보자.</p>
 
-<p><br />
-<br /></p>
+<p><img src="/assets/images/30_2.png" alt="img2" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
 
-<h1 id="반환-타입-지정"><em>반환 타입 지정</em></h1>
+<p><code class="language-plaintext highlighter-rouge">Thread-A</code>가 ThreadLocal에 값을 넣으면 ThreadLocal은 <code class="language-plaintext highlighter-rouge">Thread-A</code>의 전용 저장소에 값을 저장한다. 그러면 다른 Thread에서는 이 저장소에 접근해서 값을 읽거나 쓸 수 없다. 오직 <code class="language-plaintext highlighter-rouge">Thread-A</code>만 접근할 수 있는 것이다. <br /><br /></p>
 
-<p>Spring Data JPA는 유연하게 반환 타입을 지원한다. 그렇기 때문에 어떻게 작동하는지 잘 이해할 필요가 있다. <br />
-조회 결과가 여러개 이거나, 없다면 어떻게 될까? 컬렉션의 경우 결과가 없으면 빈 컬렉션을 반환한다. 하지만 Entity와 같이 타입을 단건으로 찝은 경우에는 결과가 없으면 <code class="language-plaintext highlighter-rouge">null</code>이 반환된다. 이 차이를 인지하고 있어야 한다. <br />
-그리고 단건 반환 타입을 설정한 경우 내부적으로 <code class="language-plaintext highlighter-rouge">getSingleResult()</code> 를 호출하기 때문에 2개 이상의 값이 나오면 <code class="language-plaintext highlighter-rouge">NoResultException</code> 이 발생하는데 Spring Data JPA에서 예외를 catch해서 null로 반환한다. 동작방식을 잘 이해하도록 하자!!</p>
+<h2 id="사용-방법-및-주의점">사용 방법 및 주의점</h2>
+<p>ThreadLocal에서 값을 넣을땐 set()을 사용하고 꺼낼때는 get()을 사용하면 된다. <br />
+한 가지 주의점이 있는데 <strong>ThreadLocal을 다 사용하고 나면 반드시 <code class="language-plaintext highlighter-rouge">ThreadLocal.remove()</code>를 호출해서 ThreadLocal에 저장된 값을 지워줘야 한다.</strong> <br />
+이유는 그림을 통해서 설명하겠다. <br /><br /></p>
 
-<p><br />
-<br /></p>
+<p><img src="/assets/images/30_3.png" alt="img3" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
+
+<p>Tomcat 같은 WAS는 일반적으로 Thread pool 방식을 사용한다. Thread를 생성하는 비용이 비싸기 때문에 미리 Thread들을 생성해두고 요청이 오면 해당 쓰레드를 할당해주는 방식이다. 그리고 요청이 끝나면 해당 Thread를 Thread pool에 반납한다. 때문에 Thread는 애플리케이션이 종료될 때까지 사라지지 않는다. <br />
+이런 상황속에서 사용자A가 HTTP 요청을 했다고 가정해보자. 요청에 대해서 WAS가 Thread pool에서 놀고 있는 <code class="language-plaintext highlighter-rouge">Thread-A</code>를 할당해줬다고 가정하자. 그리고 이 <code class="language-plaintext highlighter-rouge">Thread-A</code>에서 ThreadLocal에 값을 저장했다고 해보자. 그러면 사용자A 요청에 의한 어떤 값이 <code class="language-plaintext highlighter-rouge">Thread-A</code> 전용 저장소에 저장될 것이다. 그리고 요청이 끝나서 나갔다. <br /><br />
+이제 다른 사용자B 가 HTTP 요청을 했다. 그런데 하필이면 WAS가 또 Thread pool에 있는 <code class="language-plaintext highlighter-rouge">Thread-A</code>를 할당했다고 해보자. 이렇게 되면 사용자A 와 전혀 관련없는 사용자B가 ThreadLocal을 통해 <code class="language-plaintext highlighter-rouge">Thread-A</code> 저장소에 저장된 사용자A의 정보를 확인할 수 있게 된다. 나와 전혀 상관없는 제3자가 내 정보를 조회하는 것이다. 이런 문제를 방지하기 위해서 반드시 ThreadLocal을 다 사용하고 나면 ThreadLocal에 저장된 값을 날려줘야 한다. <br /><br /></p>
 
 <h1 id="참고-사이트-출처">참고 사이트 출처</h1>
 
 <ul>
-  <li>https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EB%8D%B0%EC%9D%B4%ED%84%B0-JPA-%EC%8B%A4%EC%A0%84</li>
+  <li>https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B3%A0%EA%B8%89%ED%8E%B8</li>
 </ul>
 
 <p><br />
@@ -429,9 +388,7 @@
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
     <span itemprop="keywords">
     
-      <a href="/tags/#data-jpa" class="page__taxonomy-item p-category" rel="tag">Data JPA</a><span class="sep">, </span>
-    
-      <a href="/tags/#jpa" class="page__taxonomy-item p-category" rel="tag">JPA</a><span class="sep">, </span>
+      <a href="/tags/#java" class="page__taxonomy-item p-category" rel="tag">Java</a><span class="sep">, </span>
     
       <a href="/tags/#spring" class="page__taxonomy-item p-category" rel="tag">Spring</a>
     
@@ -450,7 +407,9 @@
     <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
     <span itemprop="keywords">
     
-      <a href="/categories/#jpa" class="page__taxonomy-item p-category" rel="tag">JPA</a>
+      <a href="/categories/#java" class="page__taxonomy-item p-category" rel="tag">Java</a><span class="sep">, </span>
+    
+      <a href="/categories/#spring" class="page__taxonomy-item p-category" rel="tag">Spring</a>
     
     </span>
   </p>
@@ -458,7 +417,7 @@
 
         
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-08-18T00:00:00+09:00">August 18, 2023</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-08-21T00:00:00+09:00">August 21, 2023</time></p>
 
       </footer>
 
@@ -467,23 +426,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BJPA%5D+%EB%8D%B0%EC%9D%B4%ED%84%B0+JPA%281%29%20http%3A%2F%2Flocalhost%3A4000%2Fjpa%2Fsj1%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BJAVA%5D+Concurrency+Issue+%26+Thread+Local%20http%3A%2F%2Flocalhost%3A4000%2Fjava%2Fspring%2Fjava3%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fjpa%2Fsj1%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fjava%2Fspring%2Fjava3%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fjpa%2Fsj1%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fjava%2Fspring%2Fjava3%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/jpa/JPA5/" class="pagination--pager" title="[JPA] 연관관계 매핑(2)
+      <a href="/jpa/sj2/" class="pagination--pager" title="[JPA] 데이터 JPA(2)
 ">이전</a>
     
     
-      <a href="/jpa/sj2/" class="pagination--pager" title="[JPA] 데이터 JPA(2)
-">다음</a>
+      <a href="#" class="pagination--pager disabled">다음</a>
     
   </nav>
 
@@ -507,7 +465,7 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/java/spring/java3/" rel="permalink">[JAVA] Concurrency Issue &amp; Thread Local
+        <a href="/jpa/sj2/" rel="permalink">[JPA] 데이터 JPA(2)
 </a>
       
     </h2>
@@ -547,7 +505,7 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/jpa/sj2/" rel="permalink">[JPA] 데이터 JPA(2)
+        <a href="/jpa/sj1/" rel="permalink">[JPA] 데이터 JPA(1)
 </a>
       
     </h2>
@@ -565,7 +523,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          1 분 소요
+          2 분 소요
         
       </span>
     

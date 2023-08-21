@@ -184,4 +184,10 @@ var store = [{
         "tags": ["Spring","JPA","Data JPA"],
         "url": "/jpa/sj2/",
         "teaser": null
+      },{
+        "title": "[JAVA] Concurrency Issue & Thread Local",
+        "excerpt":"Concurrency Issue 동시성 문제란 동일한 자원에 대해서 여러 스레드가 동시에 접근해서 값을 바꾸면서 발생하는 문제를 뜻한다. 단순히 읽기를 할때는 문제가 발생하지 않지만 값을 바꾸게 되면 문제가 발생할 수 있다. 예시를 보고 이해해보자. 위 그림에서의 FieldService는 Spring bean으로 등록되어 있어서 싱글톤으로 관리되는 상태이다. 그런데 Thread-A 가 FieldService의 맴버 변수 nameStore에 접근해서...","categories": ["Java","Spring"],
+        "tags": ["Java","Spring"],
+        "url": "/java/spring/java3/",
+        "teaser": null
       }]
