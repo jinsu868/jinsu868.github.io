@@ -190,4 +190,10 @@ var store = [{
         "tags": ["Java","Spring"],
         "url": "/java/spring/java3/",
         "teaser": null
+      },{
+        "title": "[알고리즘] 비트 마스킹",
+        "excerpt":"비트 마스크란? 컴퓨터는 내부적으로 모든 연산을 이진수로 표현하고 처리한다. 이런 특성을 이용해서 정수의 이진수 표현을 자료구조로 쓰는 기법을 비트 마스크 라고 한다. 비트 연산자 파이썬의 기본 비트 연산자를 먼저 살펴보자. AND, OR, XOR AND 연산 (&amp;) : 두 비트가 모두 1일 때, 1을 반환한다. OR 연산 (l) : 두 비트가...","categories": ["Algorithm"],
+        "tags": ["비트 마스킹","알고리즘","자료구조"],
+        "url": "/algorithm/33/",
+        "teaser": null
       }]

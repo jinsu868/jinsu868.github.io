@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[JAVA] Concurrency Issue &amp; Thread Local - Jinsu’s story</title>
+<!-- begin _includes/seo.html --><title>[알고리즘] 비트 마스킹 - Jinsu’s story</title>
 <meta name="description" content="">
 
 
@@ -22,8 +22,8 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="Jinsu's story">
-<meta property="og:title" content="[JAVA] Concurrency Issue &amp; Thread Local">
-<meta property="og:url" content="http://localhost:4000/java/spring/java3/">
+<meta property="og:title" content="[알고리즘] 비트 마스킹">
+<meta property="og:url" content="http://localhost:4000/algorithm/33/">
 
 
   <meta property="og:description" content="">
@@ -34,7 +34,7 @@
 
 
 
-  <meta property="article:published_time" content="2023-08-21T00:00:00+09:00">
+  <meta property="article:published_time" content="2023-08-22T00:00:00+09:00">
 
 
 
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/java/spring/java3/">
+<link rel="canonical" href="http://localhost:4000/algorithm/33/">
 
 
 
@@ -289,16 +289,16 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[JAVA] Concurrency Issue &amp; Thread Local">
+    <meta itemprop="headline" content="[알고리즘] 비트 마스킹">
     <meta itemprop="description" content="">
-    <meta itemprop="datePublished" content="2023-08-21T00:00:00+09:00">
+    <meta itemprop="datePublished" content="2023-08-22T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="http://localhost:4000/java/spring/java3/" class="u-url" itemprop="url">[JAVA] Concurrency Issue &amp; Thread Local
+            <a href="http://localhost:4000/algorithm/33/" class="u-url" itemprop="url">[알고리즘] 비트 마스킹
 </a>
           </h1>
           
@@ -329,49 +329,136 @@
         
         <p><br /></p>
 
-<h1 id="concurrency-issue"><em>Concurrency Issue</em></h1>
+<h1 id="비트-마스크란"><em>비트 마스크란?</em></h1>
 
-<blockquote>
-  <p>동시성 문제란 동일한 자원에 대해서 여러 스레드가 동시에 접근해서 값을 바꾸면서 발생하는 문제를 뜻한다. 단순히 읽기를 할때는 문제가 발생하지 않지만 값을 바꾸게 되면 문제가 발생할 수 있다.</p>
-</blockquote>
+<p>컴퓨터는 내부적으로 모든 연산을 이진수로 표현하고 처리한다. 이런 특성을 이용해서 정수의 이진수 표현을 자료구조로 쓰는 기법을 <strong>비트 마스크</strong> 라고 한다.</p>
+
+<p><br />
+<br /></p>
+
+<h1 id="비트-연산자"><em>비트 연산자</em></h1>
+
+<p>파이썬의 기본 비트 연산자를 먼저 살펴보자.</p>
+
+<h2 id="and-or-xor">AND, OR, XOR</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">AND 연산</code> (&amp;) : 두 비트가 모두 1일 때, 1을 반환한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">OR 연산</code> (l) : 두 비트가 하나라도 1이면, 1을 반환한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">XOR 연산</code> (^) : 대응하는 두 비트가 서로 다르면 1을 반환한다.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1100</span> <span class="o">&amp;</span> <span class="mi">1011</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="mi">1010</span> <span class="o">|</span> <span class="mi">1111</span> <span class="o">=</span> <span class="mi">1111</span>
+<span class="mi">1010</span> <span class="o">^</span> <span class="mi">1111</span> <span class="o">=</span> <span class="mi">0101</span>
+</code></pre></div></div>
 
 <p><br /></p>
 
-<p>예시를 보고 이해해보자.</p>
+<h2 id="not">NOT</h2>
 
-<p><img src="/assets/images/30_1.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">NOT 연산</code> (~) : 비트의 값을 뒤집어서 반환</li>
+</ul>
 
-<p>위 그림에서의 <code class="language-plaintext highlighter-rouge">FieldService</code>는 Spring bean으로 등록되어 있어서 싱글톤으로 관리되는 상태이다. 그런데 <code class="language-plaintext highlighter-rouge">Thread-A</code> 가 FieldService의 맴버 변수 nameStore에 접근해서 값을 바꾼 후 조회하는 로직을 실행하였다. 이 로직을 실행하고 있는 시점에 동시에 <code class="language-plaintext highlighter-rouge">Thread-B</code>가 동일한 로직을 실행했다고 생각해보자. 그러면 <code class="language-plaintext highlighter-rouge">Thread-A</code>가 값을 조회하기 전에 <code class="language-plaintext highlighter-rouge">Thread-B</code>가 값을 바꾸면 <code class="language-plaintext highlighter-rouge">Thread-A</code>에서 조회한 값이 <code class="language-plaintext highlighter-rouge">Thread-B</code>가 바꾼 값으로 조회될 수 있다. 원래 기대한 결과와는 다른 결과가 도출된 것이다. 이런 문제를 <strong>동시성 문제</strong>라고 한다. <br /></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">~</span><span class="mi">1010</span> <span class="o">=</span> <span class="mi">0101</span>
+</code></pre></div></div>
 
-<p>그렇다면 이러한 문제를 어떻게 해결할 수 있을까? Java에서 제공하는 <code class="language-plaintext highlighter-rouge">ThreadLocal</code>을 사용하면 된다 ^-^ <br /><br /></p>
+<p><br /></p>
 
-<h1 id="threadlocal"><em>ThreadLocal</em></h1>
+<h2 id="shift-연산">Shift 연산</h2>
 
-<p>TheadLocal은 해당하는 Thread만 접근할 수 있는 특별한 저장소라고 생각하면 된다. 다른 Thread에서 접근할 수 없다. 그림을 보고 이해해보자.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">left shift</code> («) : 왼쪽으로 비트 이동 (X * 2^Y)</li>
+  <li><code class="language-plaintext highlighter-rouge">right shift</code> (») : 오른쪽으로 비트 이동 (X / 2^B)</li>
+</ul>
 
-<p><img src="/assets/images/30_2.png" alt="img2" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">00001010</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">101000</span>
+<span class="mi">00001010</span> <span class="o">&gt;&gt;</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">000010</span>
+</code></pre></div></div>
 
-<p><code class="language-plaintext highlighter-rouge">Thread-A</code>가 ThreadLocal에 값을 넣으면 ThreadLocal은 <code class="language-plaintext highlighter-rouge">Thread-A</code>의 전용 저장소에 값을 저장한다. 그러면 다른 Thread에서는 이 저장소에 접근해서 값을 읽거나 쓸 수 없다. 오직 <code class="language-plaintext highlighter-rouge">Thread-A</code>만 접근할 수 있는 것이다. <br /><br /></p>
+<p><br /></p>
 
-<h2 id="사용-방법-및-주의점">사용 방법 및 주의점</h2>
-<p>ThreadLocal에서 값을 넣을땐 set()을 사용하고 꺼낼때는 get()을 사용하면 된다. <br />
-한 가지 주의점이 있는데 <strong>ThreadLocal을 다 사용하고 나면 반드시 <code class="language-plaintext highlighter-rouge">ThreadLocal.remove()</code>를 호출해서 ThreadLocal에 저장된 값을 지워줘야 한다.</strong> <br />
-이유는 그림을 통해서 설명하겠다. <br /><br /></p>
+<h1 id="집합과-비트마스크"><em>집합과 비트마스크</em></h1>
 
-<p><img src="/assets/images/30_3.png" alt="img3" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
+<p>비트 마스크를 사용하면 집합을 굉장히 효율적으로 표현할 수 있다. 예를 들어 10개의 방문 체크를 해야 하는 상황이라고 가정하자. <br /> 그러면  check = [False] * 10 와 같이 리스트로 표현하는 것이 일반적일 것이다.<br />
+그런데 비트 마스크를 사용하면 check = 0b0000000000 와 같이 표현할 수 있다. 메로리를 훨씬 적게 사용하고 연산도 모두 O(1) 이기 때문에 굉장히 효율적이다. <br /><br /></p>
 
-<p>Tomcat 같은 WAS는 일반적으로 Thread pool 방식을 사용한다. Thread를 생성하는 비용이 비싸기 때문에 미리 Thread들을 생성해두고 요청이 오면 해당 쓰레드를 할당해주는 방식이다. 그리고 요청이 끝나면 해당 Thread를 Thread pool에 반납한다. 때문에 Thread는 애플리케이션이 종료될 때까지 사라지지 않는다. <br />
-이런 상황속에서 사용자A가 HTTP 요청을 했다고 가정해보자. 요청에 대해서 WAS가 Thread pool에서 놀고 있는 <code class="language-plaintext highlighter-rouge">Thread-A</code>를 할당해줬다고 가정하자. 그리고 이 <code class="language-plaintext highlighter-rouge">Thread-A</code>에서 ThreadLocal에 값을 저장했다고 해보자. 그러면 사용자A 요청에 의한 어떤 값이 <code class="language-plaintext highlighter-rouge">Thread-A</code> 전용 저장소에 저장될 것이다. 그리고 요청이 끝나서 나갔다. <br /><br />
-이제 다른 사용자B 가 HTTP 요청을 했다. 그런데 하필이면 WAS가 또 Thread pool에 있는 <code class="language-plaintext highlighter-rouge">Thread-A</code>를 할당했다고 해보자. 이렇게 되면 사용자A 와 전혀 관련없는 사용자B가 ThreadLocal을 통해 <code class="language-plaintext highlighter-rouge">Thread-A</code> 저장소에 저장된 사용자A의 정보를 확인할 수 있게 된다. 나와 전혀 상관없는 제3자가 내 정보를 조회하는 것이다. 이런 문제를 방지하기 위해서 반드시 ThreadLocal을 다 사용하고 나면 ThreadLocal에 저장된 값을 날려줘야 한다. <br /><br /></p>
+<h2 id="집합의-연산과-비트-마스크">집합의 연산과 비트 마스크</h2>
+
+<p>이제 비트 마스크를 활용한 집합의 연산에 대해서 알아보자.</p>
+
+<ul>
+  <li>원소 추가</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">S</span> <span class="o">|=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">)</span>
+</code></pre></div></div>
+<p>집합 S에 x를 추가하려고 할 때, S의 x번 비트만 1로 만들어주면 된다.</p>
+
+<p><br /></p>
+
+<ul>
+  <li>원소 삭제</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">S</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">)</span>
+</code></pre></div></div>
+<p>집합 S에서 x를 삭제할 때, S의 x번 비트를 0으로 만들어주면 된다.</p>
+
+<p><br /></p>
+
+<ul>
+  <li>원소 토글</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">S</span> <span class="o">^=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">)</span>
+</code></pre></div></div>
+<p>집합 S에 x가 있다면 삭제하는 연산이다.</p>
+
+<p><br /></p>
+
+<ul>
+  <li>원소 체크</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span> <span class="k">if</span> <span class="n">S</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="nf">int</span><span class="p">(</span><span class="n">li</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
+</code></pre></div></div>
+<p>집합 S에 원소가 있으면 1을 반환, 없으면 0을 반환해주는 연산이다.</p>
+
+<p><br /></p>
+
+<ul>
+  <li>원소 비우기, 채우기</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">S</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># 비우기
+</span><span class="n">S</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">21</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>  <span class="c1">#채우기
+</span></code></pre></div></div>
+<p>원소를 비우기 위해서 S의 모든 비트를 0으로 만들어주면 된다. 채울때는 모든 비트를 1로 만들어주면 된다. 1 « 21 을 통해서 집합 수보다 1만큼 큰 비트 sequence를 만들어주고 1을 빼면 집합길이(20) 만큼의 1로 채워진 집합이 된다.</p>
+
+<p><br /></p>
+
+<h1 id="집합-연산"><em>집합 연산</em></h1>
+
+<p>당연히 집합간의 연산도 가능하다. <br /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">A</span> <span class="o">|</span> <span class="n">B</span> <span class="c1"># 합집합
+</span><span class="n">A</span> <span class="o">&amp;</span> <span class="n">B</span> <span class="c1"># 교집합
+</span><span class="n">A</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">B</span> <span class="c1"># 차집합 (A - B)
+</span><span class="n">A</span> <span class="o">^</span> <span class="n">B</span> <span class="c1"># A와 B중 하나만 속한 원소
+</span></code></pre></div></div>
+
+<p><br />
+<br /></p>
 
 <h1 id="참고-사이트-출처">참고 사이트 출처</h1>
 
 <ul>
-  <li>https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B3%A0%EA%B8%89%ED%8E%B8</li>
+  <li>https://velog.io/@1998yuki0331/Python-%EB%B9%84%ED%8A%B8-%EB%A7%88%EC%8A%A4%ED%82%B9-%EC%A0%95%EB%A6%AC
+<br /></li>
 </ul>
 
-<p><br />
-더 자세한 내용은 김영한님 강의를 참고하자!</p>
 
         
       </section>
@@ -388,9 +475,11 @@
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
     <span itemprop="keywords">
     
-      <a href="/tags/#java" class="page__taxonomy-item p-category" rel="tag">Java</a><span class="sep">, </span>
+      <a href="/tags/#%EB%B9%84%ED%8A%B8-%EB%A7%88%EC%8A%A4%ED%82%B9" class="page__taxonomy-item p-category" rel="tag">비트 마스킹</a><span class="sep">, </span>
     
-      <a href="/tags/#spring" class="page__taxonomy-item p-category" rel="tag">Spring</a>
+      <a href="/tags/#%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98" class="page__taxonomy-item p-category" rel="tag">알고리즘</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0" class="page__taxonomy-item p-category" rel="tag">자료구조</a>
     
     </span>
   </p>
@@ -407,9 +496,7 @@
     <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
     <span itemprop="keywords">
     
-      <a href="/categories/#java" class="page__taxonomy-item p-category" rel="tag">Java</a><span class="sep">, </span>
-    
-      <a href="/categories/#spring" class="page__taxonomy-item p-category" rel="tag">Spring</a>
+      <a href="/categories/#algorithm" class="page__taxonomy-item p-category" rel="tag">Algorithm</a>
     
     </span>
   </p>
@@ -417,7 +504,7 @@
 
         
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-08-21T00:00:00+09:00">August 21, 2023</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-08-22T00:00:00+09:00">August 22, 2023</time></p>
 
       </footer>
 
@@ -426,23 +513,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BJAVA%5D+Concurrency+Issue+%26+Thread+Local%20http%3A%2F%2Flocalhost%3A4000%2Fjava%2Fspring%2Fjava3%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5B%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%5D+%EB%B9%84%ED%8A%B8+%EB%A7%88%EC%8A%A4%ED%82%B9%20http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2F33%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fjava%2Fspring%2Fjava3%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2F33%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fjava%2Fspring%2Fjava3%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2F33%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/jpa/sj2/" class="pagination--pager" title="[JPA] 데이터 JPA(2)
+      <a href="/java/spring/java3/" class="pagination--pager" title="[JAVA] Concurrency Issue &amp; Thread Local
 ">이전</a>
     
     
-      <a href="/algorithm/33/" class="pagination--pager" title="[알고리즘] 비트 마스킹
-">다음</a>
+      <a href="#" class="pagination--pager disabled">다음</a>
     
   </nav>
 
@@ -466,7 +552,7 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/algorithm/33/" rel="permalink">[알고리즘] 비트 마스킹
+        <a href="/java/spring/java3/" rel="permalink">[JAVA] Concurrency Issue &amp; Thread Local
 </a>
       
     </h2>

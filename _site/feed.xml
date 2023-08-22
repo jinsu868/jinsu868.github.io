@@ -1,4 +1,134 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-08-21T17:00:16+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[JAVA] Concurrency Issue &amp;amp; Thread Local</title><link href="http://localhost:4000/java/spring/java3/" rel="alternate" type="text/html" title="[JAVA] Concurrency Issue &amp;amp; Thread Local" /><published>2023-08-21T00:00:00+09:00</published><updated>2023-08-21T00:00:00+09:00</updated><id>http://localhost:4000/java/spring/java3</id><content type="html" xml:base="http://localhost:4000/java/spring/java3/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-08-22T21:28:01+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[알고리즘] 비트 마스킹</title><link href="http://localhost:4000/algorithm/33/" rel="alternate" type="text/html" title="[알고리즘] 비트 마스킹" /><published>2023-08-22T00:00:00+09:00</published><updated>2023-08-22T00:00:00+09:00</updated><id>http://localhost:4000/algorithm/33</id><content type="html" xml:base="http://localhost:4000/algorithm/33/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;비트-마스크란&quot;&gt;&lt;em&gt;비트 마스크란?&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;컴퓨터는 내부적으로 모든 연산을 이진수로 표현하고 처리한다. 이런 특성을 이용해서 정수의 이진수 표현을 자료구조로 쓰는 기법을 &lt;strong&gt;비트 마스크&lt;/strong&gt; 라고 한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;비트-연산자&quot;&gt;&lt;em&gt;비트 연산자&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;파이썬의 기본 비트 연산자를 먼저 살펴보자.&lt;/p&gt;
+
+&lt;h2 id=&quot;and-or-xor&quot;&gt;AND, OR, XOR&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AND 연산&lt;/code&gt; (&amp;amp;) : 두 비트가 모두 1일 때, 1을 반환한다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OR 연산&lt;/code&gt; (l) : 두 비트가 하나라도 1이면, 1을 반환한다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;XOR 연산&lt;/code&gt; (^) : 대응하는 두 비트가 서로 다르면 1을 반환한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;mi&quot;&gt;1100&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1011&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;1010&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1111&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1111&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;1010&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;^&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1111&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0101&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;not&quot;&gt;NOT&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NOT 연산&lt;/code&gt; (~) : 비트의 값을 뒤집어서 반환&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1010&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0101&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;shift-연산&quot;&gt;Shift 연산&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;left shift&lt;/code&gt; («) : 왼쪽으로 비트 이동 (X * 2^Y)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;right shift&lt;/code&gt; (») : 오른쪽으로 비트 이동 (X / 2^B)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;mi&quot;&gt;00001010&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;101000&lt;/span&gt;
+&lt;span class=&quot;mi&quot;&gt;00001010&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;000010&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;집합과-비트마스크&quot;&gt;&lt;em&gt;집합과 비트마스크&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;비트 마스크를 사용하면 집합을 굉장히 효율적으로 표현할 수 있다. 예를 들어 10개의 방문 체크를 해야 하는 상황이라고 가정하자. &lt;br /&gt; 그러면  check = [False] * 10 와 같이 리스트로 표현하는 것이 일반적일 것이다.&lt;br /&gt;
+그런데 비트 마스크를 사용하면 check = 0b0000000000 와 같이 표현할 수 있다. 메로리를 훨씬 적게 사용하고 연산도 모두 O(1) 이기 때문에 굉장히 효율적이다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;집합의-연산과-비트-마스크&quot;&gt;집합의 연산과 비트 마스크&lt;/h2&gt;
+
+&lt;p&gt;이제 비트 마스크를 활용한 집합의 연산에 대해서 알아보자.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;원소 추가&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;S&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;집합 S에 x를 추가하려고 할 때, S의 x번 비트만 1로 만들어주면 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;원소 삭제&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;S&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;집합 S에서 x를 삭제할 때, S의 x번 비트를 0으로 만들어주면 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;원소 토글&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;S&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;^=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;집합 S에 x가 있다면 삭제하는 연산이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;원소 체크&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;S&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;li&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;집합 S에 원소가 있으면 1을 반환, 없으면 0을 반환해주는 연산이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;원소 비우기, 채우기&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;S&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 비우기
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;S&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;21&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;#채우기
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;원소를 비우기 위해서 S의 모든 비트를 0으로 만들어주면 된다. 채울때는 모든 비트를 1로 만들어주면 된다. 1 « 21 을 통해서 집합 수보다 1만큼 큰 비트 sequence를 만들어주고 1을 빼면 집합길이(20) 만큼의 1로 채워진 집합이 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;집합-연산&quot;&gt;&lt;em&gt;집합 연산&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;당연히 집합간의 연산도 가능하다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 합집합
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 교집합
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;B&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 차집합 (A - B)
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;^&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# A와 B중 하나만 속한 원소
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;참고-사이트-출처&quot;&gt;참고 사이트 출처&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;https://velog.io/@1998yuki0331/Python-%EB%B9%84%ED%8A%B8-%EB%A7%88%EC%8A%A4%ED%82%B9-%EC%A0%95%EB%A6%AC
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Algorithm" /><category term="비트 마스킹" /><category term="알고리즘" /><category term="자료구조" /><summary type="html"></summary></entry><entry><title type="html">[JAVA] Concurrency Issue &amp;amp; Thread Local</title><link href="http://localhost:4000/java/spring/java3/" rel="alternate" type="text/html" title="[JAVA] Concurrency Issue &amp;amp; Thread Local" /><published>2023-08-21T00:00:00+09:00</published><updated>2023-08-21T00:00:00+09:00</updated><id>http://localhost:4000/java/spring/java3</id><content type="html" xml:base="http://localhost:4000/java/spring/java3/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;concurrency-issue&quot;&gt;&lt;em&gt;Concurrency Issue&lt;/em&gt;&lt;/h1&gt;
 
@@ -327,6 +457,133 @@
 &lt;p&gt;그래서 어떤것을 사용하면 좋을까?&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;기본적으로 조인 전략을 사용하고 진짜 단순한 경우에 단일 테이블 전략을 사용하면 된다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;참고-사이트-출처&quot;&gt;참고 사이트 출처&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;https://www.inflearn.com/course/ORM-JPA-Basic/dashboard&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="JPA" /><category term="Spring" /><category term="JPA" /><category term="DB" /><summary type="html"></summary></entry><entry><title type="html">[JPA] 연관관계 매핑(1)</title><link href="http://localhost:4000/jpa/JPA4/" rel="alternate" type="text/html" title="[JPA] 연관관계 매핑(1)" /><published>2023-07-21T00:00:00+09:00</published><updated>2023-07-21T00:00:00+09:00</updated><id>http://localhost:4000/jpa/JPA4</id><content type="html" xml:base="http://localhost:4000/jpa/JPA4/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;객체와-테이블의-패러다임-불일치&quot;&gt;&lt;em&gt;객체와 테이블의 패러다임 불일치&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;먼저 객체와 테이블 사이의 간극을 이해할 필요가 있다. 객체는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;참조&lt;/code&gt; 를 사용해서 연관된 객체를 찾는다. 그런데 테이블은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;외래키 조인&lt;/code&gt;을 통해서 연관된 테이블을 찾는다. 때문에 객체를 테이블에 맞춰서 설계를 하면 객체간의 협력 관계를 만들 수 없다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt; 와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team&lt;/code&gt; 사이의 관계를 통해 이해해보자.&lt;/p&gt;
+
+&lt;p&gt;여기서 하나의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt; 는 하나의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team&lt;/code&gt; 에만 속할 수 있다고 가정하자. (1:N)&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;테이블에-맞춘-객체-설계&quot;&gt;테이블에 맞춘 객체 설계&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@GeneratedValue&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  
+  &lt;span class=&quot;c1&quot;&gt;//Team team 과 같이 참조를 가지는 것이 아니라 식별자를 가진다.&lt;/span&gt;
+  &lt;span class=&quot;nd&quot;&gt;@Column&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;TEAM_ID&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;teamId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clas&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@GeneratedValue&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Team 조회&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//member.getTeam()과 같이 바로 조회할 수 없고 id를 구한 후 이를 통해 한번 더 조회해야 한다.&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TeamId&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getTeamId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;team&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TeamId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;위와 같은 경우가 테이블에 맞춰서 객체를 설계한 케이스이다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt; 에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team&lt;/code&gt; 을 참조로 가지고 있는 것이 아니라 외래키를 그대로 들고 있다.&lt;/p&gt;
+
+&lt;p&gt;이렇게 되면 Member에서 Team을 조회할 때, 참조로 바로 Team을 조회할 수 없고 ID를 통해서 다시 조회해야 한다. 이는 객체 지향적인 방법이 아니다.&lt;/p&gt;
+
+&lt;p&gt;ORM을 통해서 이러한 패러다임의 불일치를 해결할 수 있다. 객체는 객체대로 모델링하면 가운데서 ORM이 알맞게 매핑해준다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;객체지향-모델링&quot;&gt;객체지향 모델링&lt;/h2&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@GeneratedValue&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+  
+	&lt;span class=&quot;nd&quot;&gt;@ManyToOne&lt;/span&gt;
+  &lt;span class=&quot;nd&quot;&gt;@JoinColumn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;TEAM_ID&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;team&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;위 코드를 보면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt;에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team&lt;/code&gt; 객체를 참조로 가지고 있다. 그런데 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt; 테이블에서는 외래키로 TEAM_ID를 가지고 있을 것이다. 이런 차이를 매핑해주는 것이 바로 &lt;strong&gt;ORM&lt;/strong&gt; 이다. 아래 그림을 보자.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/27_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;JPA는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member 객체&lt;/code&gt;에 있는 Team 참조를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member Table&lt;/code&gt; 에 TEAM_ID 라는 외래키로 매핑해준다. 이 때 외래키 이름을 지정해줘야 하는데 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@JoinColumn&lt;/code&gt; 을 통해 지정해줄 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;양방향-매핑&quot;&gt;양방향 매핑&lt;/h1&gt;
+
+&lt;p&gt;이제 양방향 매핑에 대해서 탐구해보자. 양방향 매핑일 때는 고려해야 할 점이 좀 있다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;객체&lt;/code&gt;는 양방향 매핑을 하려면 양쪽에 참조를 가져야 한다. 그런데 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;테이블&lt;/code&gt;은 외래키 하나로 조인을 통해서 양쪽을 이동할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/27_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;위 그림을 보면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member 객체&lt;/code&gt;에 있는 Team, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team 객체&lt;/code&gt;에 있는 Member 참조값을 통해서 양쪽을 왔다갔다 할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;그런데 테이블은 MEMBER 테이블에 있는 TEAM_ID라는 외래키를 통해서 양쪽을 이동한다.&lt;/p&gt;
+
+&lt;p&gt;사실 객체는 양방향을 구현하려면 단방향 두개가 있어야 하는 것이고 테이블은 외래키 하나만 있으면 되는 것이다. 때문에 &lt;strong&gt;두 객체 중 한쪽에서 외래키를 관리해야 한다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;연관관계의-주인&quot;&gt;연관관계의 주인&lt;/h1&gt;
+
+&lt;p&gt;객체의 두 관계중 하나를 연관관계의 주인으로 설정하고 주인쪽에서 외래키를 관리해야 한다. 반대쪽(거울)에서는 오직 읽기만 가능하다.&lt;/p&gt;
+
+&lt;p&gt;규칙은 간단하다. &lt;strong&gt;외래키를 가지고 있는 곳을 주인으로 설정하면 된다.&lt;/strong&gt; 1:N관계라면 무조건 N쪽에 외래키가 존재하기 때문에 N쪽을 주인으로 설정하면 된다. 거울쪽에는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mappedBy&lt;/code&gt; 설정을 해주면 된다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;주의점 : 거울쪽에서 수정을 하더라도 udpate query가 날아가지 않는다. (단순 조회만 가능)
+    &lt;ul&gt;
+      &lt;li&gt;객체 관점에서 보면 양쪽 다 변경되는 것이 맞기 때문에 다 변경해주자.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -733,134 +990,7 @@ primary key ( sequence_name )
 
 &lt;h1 id=&quot;참고-사이트-출처&quot;&gt;참고 사이트 출처&lt;/h1&gt;
 
-&lt;p&gt;https://victorydntmd.tistory.com/195&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="JPA" /><category term="Spring" /><category term="JPA" /><category term="DB" /><summary type="html"></summary></entry><entry><title type="html">[JPA] 연관관계 매핑(1)</title><link href="http://localhost:4000/jpa/JPA4/" rel="alternate" type="text/html" title="[JPA] 연관관계 매핑(1)" /><published>2023-07-21T00:00:00+09:00</published><updated>2023-07-21T00:00:00+09:00</updated><id>http://localhost:4000/jpa/JPA4</id><content type="html" xml:base="http://localhost:4000/jpa/JPA4/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;객체와-테이블의-패러다임-불일치&quot;&gt;&lt;em&gt;객체와 테이블의 패러다임 불일치&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;먼저 객체와 테이블 사이의 간극을 이해할 필요가 있다. 객체는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;참조&lt;/code&gt; 를 사용해서 연관된 객체를 찾는다. 그런데 테이블은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;외래키 조인&lt;/code&gt;을 통해서 연관된 테이블을 찾는다. 때문에 객체를 테이블에 맞춰서 설계를 하면 객체간의 협력 관계를 만들 수 없다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt; 와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team&lt;/code&gt; 사이의 관계를 통해 이해해보자.&lt;/p&gt;
-
-&lt;p&gt;여기서 하나의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt; 는 하나의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team&lt;/code&gt; 에만 속할 수 있다고 가정하자. (1:N)&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;테이블에-맞춘-객체-설계&quot;&gt;테이블에 맞춘 객체 설계&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@GeneratedValue&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-  
-  &lt;span class=&quot;c1&quot;&gt;//Team team 과 같이 참조를 가지는 것이 아니라 식별자를 가진다.&lt;/span&gt;
-  &lt;span class=&quot;nd&quot;&gt;@Column&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;TEAM_ID&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;teamId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clas&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@GeneratedValue&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Team 조회&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//member.getTeam()과 같이 바로 조회할 수 없고 id를 구한 후 이를 통해 한번 더 조회해야 한다.&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TeamId&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getTeamId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;team&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TeamId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;위와 같은 경우가 테이블에 맞춰서 객체를 설계한 케이스이다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt; 에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team&lt;/code&gt; 을 참조로 가지고 있는 것이 아니라 외래키를 그대로 들고 있다.&lt;/p&gt;
-
-&lt;p&gt;이렇게 되면 Member에서 Team을 조회할 때, 참조로 바로 Team을 조회할 수 없고 ID를 통해서 다시 조회해야 한다. 이는 객체 지향적인 방법이 아니다.&lt;/p&gt;
-
-&lt;p&gt;ORM을 통해서 이러한 패러다임의 불일치를 해결할 수 있다. 객체는 객체대로 모델링하면 가운데서 ORM이 알맞게 매핑해준다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;객체지향-모델링&quot;&gt;객체지향 모델링&lt;/h2&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@GeneratedValue&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-  
-	&lt;span class=&quot;nd&quot;&gt;@ManyToOne&lt;/span&gt;
-  &lt;span class=&quot;nd&quot;&gt;@JoinColumn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;TEAM_ID&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;team&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;위 코드를 보면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt;에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team&lt;/code&gt; 객체를 참조로 가지고 있다. 그런데 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt; 테이블에서는 외래키로 TEAM_ID를 가지고 있을 것이다. 이런 차이를 매핑해주는 것이 바로 &lt;strong&gt;ORM&lt;/strong&gt; 이다. 아래 그림을 보자.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/27_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;JPA는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member 객체&lt;/code&gt;에 있는 Team 참조를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member Table&lt;/code&gt; 에 TEAM_ID 라는 외래키로 매핑해준다. 이 때 외래키 이름을 지정해줘야 하는데 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@JoinColumn&lt;/code&gt; 을 통해 지정해줄 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;양방향-매핑&quot;&gt;양방향 매핑&lt;/h1&gt;
-
-&lt;p&gt;이제 양방향 매핑에 대해서 탐구해보자. 양방향 매핑일 때는 고려해야 할 점이 좀 있다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;객체&lt;/code&gt;는 양방향 매핑을 하려면 양쪽에 참조를 가져야 한다. 그런데 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;테이블&lt;/code&gt;은 외래키 하나로 조인을 통해서 양쪽을 이동할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/27_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;위 그림을 보면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member 객체&lt;/code&gt;에 있는 Team, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team 객체&lt;/code&gt;에 있는 Member 참조값을 통해서 양쪽을 왔다갔다 할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;그런데 테이블은 MEMBER 테이블에 있는 TEAM_ID라는 외래키를 통해서 양쪽을 이동한다.&lt;/p&gt;
-
-&lt;p&gt;사실 객체는 양방향을 구현하려면 단방향 두개가 있어야 하는 것이고 테이블은 외래키 하나만 있으면 되는 것이다. 때문에 &lt;strong&gt;두 객체 중 한쪽에서 외래키를 관리해야 한다.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;연관관계의-주인&quot;&gt;연관관계의 주인&lt;/h1&gt;
-
-&lt;p&gt;객체의 두 관계중 하나를 연관관계의 주인으로 설정하고 주인쪽에서 외래키를 관리해야 한다. 반대쪽(거울)에서는 오직 읽기만 가능하다.&lt;/p&gt;
-
-&lt;p&gt;규칙은 간단하다. &lt;strong&gt;외래키를 가지고 있는 곳을 주인으로 설정하면 된다.&lt;/strong&gt; 1:N관계라면 무조건 N쪽에 외래키가 존재하기 때문에 N쪽을 주인으로 설정하면 된다. 거울쪽에는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mappedBy&lt;/code&gt; 설정을 해주면 된다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;주의점 : 거울쪽에서 수정을 하더라도 udpate query가 날아가지 않는다. (단순 조회만 가능)
-    &lt;ul&gt;
-      &lt;li&gt;객체 관점에서 보면 양쪽 다 변경되는 것이 맞기 때문에 다 변경해주자.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;참고-사이트-출처&quot;&gt;참고 사이트 출처&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;https://www.inflearn.com/course/ORM-JPA-Basic/dashboard&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="JPA" /><category term="Spring" /><category term="JPA" /><category term="DB" /><summary type="html"></summary></entry><entry><title type="html">[알고리즘] Union find</title><link href="http://localhost:4000/algorithm/unionFind/" rel="alternate" type="text/html" title="[알고리즘] Union find" /><published>2023-07-20T00:00:00+09:00</published><updated>2023-07-20T00:00:00+09:00</updated><id>http://localhost:4000/algorithm/unionFind</id><content type="html" xml:base="http://localhost:4000/algorithm/unionFind/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;https://victorydntmd.tistory.com/195&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="JPA" /><category term="Spring" /><category term="JPA" /><category term="DB" /><summary type="html"></summary></entry><entry><title type="html">[알고리즘] Union find</title><link href="http://localhost:4000/algorithm/unionFind/" rel="alternate" type="text/html" title="[알고리즘] Union find" /><published>2023-07-20T00:00:00+09:00</published><updated>2023-07-20T00:00:00+09:00</updated><id>http://localhost:4000/algorithm/unionFind</id><content type="html" xml:base="http://localhost:4000/algorithm/unionFind/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/23_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
 
@@ -930,96 +1060,4 @@ primary key ( sequence_name )
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="Algorithm" /><category term="알고리즘" /><category term="Union find" /><category term="자료구조" /><summary type="html"></summary></entry><entry><title type="html">[Spring] 예외 처리</title><link href="http://localhost:4000/spring/exceptionHandle/" rel="alternate" type="text/html" title="[Spring] 예외 처리" /><published>2023-07-18T00:00:00+09:00</published><updated>2023-07-18T00:00:00+09:00</updated><id>http://localhost:4000/spring/exceptionHandle</id><content type="html" xml:base="http://localhost:4000/spring/exceptionHandle/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;exception-handle&quot;&gt;&lt;em&gt;Exception Handle&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;스프링 부트는 기본 설정으로 예외가 WAS에 전달되거나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Response.sendError()&lt;/code&gt; 가 호출되면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/error&lt;/code&gt; 를 호출한다. 그러면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BasicErrorController&lt;/code&gt; 가 제공하는 기본 정보들을 활용해서 오류 API를 생성해준다. 하지만 API 마다, 각각의 컨트롤러나 예외마다 서로 다른 응답 결과를 출력해야 할 수 있다. 때문에 API 오류 처리는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ExceptionHandler&lt;/code&gt; 를 사용하는 것이 좋다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;exceptionresolver&quot;&gt;&lt;em&gt;ExceptionResolver&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/22_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ExceptionResolver&lt;/code&gt; 가 없다면 예외가 발생하면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Controller&lt;/code&gt; -&amp;gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Interceptor&lt;/code&gt; -&amp;gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Servlet&lt;/code&gt; -&amp;gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Filter&lt;/code&gt; -&amp;gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WAS&lt;/code&gt; 까지 올라간다.&lt;/p&gt;
-
-&lt;p&gt;그런데 예외를 처리할 수 있는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ExceptionResolver&lt;/code&gt; 가 있으면 서블릿 컨테이너(WAS) 까지 예외가 전달되지 않고 MVC 선에서 예외 처리가 끝난다.&lt;/p&gt;
-
-&lt;p&gt;가장 우선순위가 높은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ExceptionResolver&lt;/code&gt; 는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HandlerExceptionResolver&lt;/code&gt; 이다. @ExceptionHandler를 처리하는 ExceptionResolver이며 거의 이것만 쓴다고 생각하면 된다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;exceptionhandler&quot;&gt;&lt;em&gt;@ExceptionHandler&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;@ExceptionHandler 애노테이션을 붙여주고, 해당 컨트롤러에서 처리하고 싶은 예외를 지정해주면 예외가 발생했을 때 이 메서드가 호출된다. 지정한 예외 뿐 아니라 예외의 자식 클래스까지 모두 처리할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;예시코드&quot;&gt;예시코드&lt;/h3&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@RestController&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ApiController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nd&quot;&gt;@ExceptionHandler&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ResponseEntity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Obj&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;handleEx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;IllegalArgumentException&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ErrorResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;BAD_REQUEST&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;우선순위&quot;&gt;우선순위&lt;/h3&gt;
-
-&lt;p&gt;구체적인 것이 더 높은 우선순위를 가진다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;부모예외처리&lt;/code&gt; 와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;자식예외처리&lt;/code&gt; 가 있으면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;자식예외처리&lt;/code&gt; 가 호출된다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;controlleradvice&quot;&gt;&lt;em&gt;@ControllerAdvice&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;예외처리를 컨트롤러에 다 집어넣으면 가독성이 떨어지고 지저분한다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ConrollerAdivce&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@RestControllerAdvice&lt;/code&gt; 를 사용하면 정상 코드와 예외 코드를 분리할 수 있다.&lt;/p&gt;
-
-&lt;h3 id=&quot;예시코드-1&quot;&gt;예시코드&lt;/h3&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//@ControllerAdvice + @ResponseBody&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@RestControllerAdvice&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MyControllerAdvice&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
- 	&lt;span class=&quot;nd&quot;&gt;@ExceptionHandler&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ResponseEntity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ErrorResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;handlerEx&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nc&quot;&gt;ErrorResult&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;errorResult&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ErrorResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ex&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getMessage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ResponseEntity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;errorResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HttpStatus&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;BAD_REQUEST&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-  &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;동작범위-설정&quot;&gt;동작범위 설정&lt;/h3&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@ControllerAdvice&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Advice0&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
-
-&lt;span class=&quot;nd&quot;&gt;@ControllerAdvice&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;annotations&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;RestController&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Advice1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
-
-&lt;span class=&quot;nd&quot;&gt;@ControllerAdvice&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;org.com.controllers&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Advice2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
-
-&lt;span class=&quot;nd&quot;&gt;@ControllerAdvice&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;assignableTypes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ControllerInterface&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;AbstractController&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;})&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Advice3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;기본적으로 범위를 설정하지 않으면 전역으로 동작하게 된다.&lt;/li&gt;
-  &lt;li&gt;특정 애노테이션이 있는 컨트롤러를 지정할 수 있다.&lt;/li&gt;
-  &lt;li&gt;특정 패키지를 직접 지정할 수도 있다.&lt;/li&gt;
-  &lt;li&gt;특정 컨트롤러를 지정할 수 있다.&lt;/li&gt;
-&lt;/ol&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><category term="MVC" /><summary type="html"></summary></entry></feed>
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="Algorithm" /><category term="알고리즘" /><category term="Union find" /><category term="자료구조" /><summary type="html"></summary></entry></feed>
