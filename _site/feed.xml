@@ -1,4 +1,344 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-08-22T21:28:01+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[알고리즘] 비트 마스킹</title><link href="http://localhost:4000/algorithm/33/" rel="alternate" type="text/html" title="[알고리즘] 비트 마스킹" /><published>2023-08-22T00:00:00+09:00</published><updated>2023-08-22T00:00:00+09:00</updated><id>http://localhost:4000/algorithm/33</id><content type="html" xml:base="http://localhost:4000/algorithm/33/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-08-29T15:39:35+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[SQLD] 데이터 모델링</title><link href="http://localhost:4000/sqld/34/" rel="alternate" type="text/html" title="[SQLD] 데이터 모델링" /><published>2023-08-29T00:00:00+09:00</published><updated>2023-08-29T00:00:00+09:00</updated><id>http://localhost:4000/sqld/34</id><content type="html" xml:base="http://localhost:4000/sqld/34/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;데이터-모델링&quot;&gt;&lt;em&gt;데이터 모델링&lt;/em&gt;&lt;/h1&gt;
+
+&lt;h2 id=&quot;데이터-모델링의-단계&quot;&gt;데이터 모델링의 단계&lt;/h2&gt;
+
+&lt;p&gt;개념적 모델링 &lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;고객의 비지니스 프로세스를 분석하고 업무 전체에 대해서 데이터 모델링을 수행&lt;/li&gt;
+  &lt;li&gt;복잡하게 표현하지 않고, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;중요한 부분을 위주&lt;/code&gt;로 모델링하는 단계&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;업무적 관점&lt;/code&gt;에서 모델링하며, 기술적 용어는 가급적 사용 X&lt;/li&gt;
+  &lt;li&gt;엔티티와 속성을 도출하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;개념적 ERD&lt;/code&gt;를 작성한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;논리적 모델링 &lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;개념적 모델링을 논리적 모델링으로 변환하는 과정&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;식별자를 도출&lt;/code&gt;하고 필요한 모든 릴레이션을 정의한다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;정규화를 수행&lt;/code&gt;해서 데이터 모델의 독립성을 확보한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;물리적 모델링 &lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;데이터베이스를 실제 구축한다.
+    &lt;ul&gt;
+      &lt;li&gt;테이블, 인덱스, 함수 등을 생성한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;성능, 보안, 가용성을 고려하여 구축한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/33_1.png&quot; alt=&quot;img1&quot; width=&quot;80%&amp;quot;&amp;quot;, height=&amp;quot;50%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;erd-entity-relationship-diagram&quot;&gt;ERD (Entity Relationship Diagram)&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;1976년 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;피터첸&lt;/code&gt;이 ERD 표기법을 만들었고, &lt;strong&gt;사실상 데이터 모델링의 표준&lt;/strong&gt;으로 사용되고 있음.&lt;/li&gt;
+  &lt;li&gt;엔티티 간의 관계를 정의하는 모델링 방법&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;작성 절차&lt;br /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;엔티티를 도출하고 그린다.&lt;/li&gt;
+  &lt;li&gt;엔티티를 배치한다.
+    &lt;ul&gt;
+      &lt;li&gt;엔티티를 도출한 후 엔티티를 베치한다.&lt;/li&gt;
+      &lt;li&gt;중요한 엔티티를 왼쪽 상단에 배치 (가시성)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;엔티티 간의 관계를 설정한다.&lt;/li&gt;
+  &lt;li&gt;관계명을 서술한다.
+    &lt;ul&gt;
+      &lt;li&gt;엔티티 간의 어떤 행위나 존재가 있는지 표현&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;관계 참여도를 표현한다.
+    &lt;ul&gt;
+      &lt;li&gt;관계 참여도 : 1개의 엔티티와 다른 엔티티 간의 참여하는 관계 수&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;관계의 필수 여부를 표현한다.
+    &lt;ul&gt;
+      &lt;li&gt;필수 : 반드시 존재해야 하는 것.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;ERD 작성 시 고려사항&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;중요한 엔티티를 가급적 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;왼쪽 상단에 배치&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;ERD는 이해하기 쉽고 복잡하지 않아야 함.
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;3중-스키마3-level-schema&quot;&gt;3중 스키마(3-Level Schema)&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/33_2.png&quot; alt=&quot;img2&quot; width=&quot;80%&amp;quot;&amp;quot;, height=&amp;quot;50%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;외부 스키마&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;사용자 관점, 업무상 관련이 있는 데이터 접근&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;응용 프로그램이 접근하는 데이터베이스&lt;/strong&gt;를 정의한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;개념 스키마&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;설계자 관점, 사용자 전체 집단의 데이터베이스 구조&lt;/li&gt;
+  &lt;li&gt;전체 데이터베이스 내의 규칙과 구조를 표현한다.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;통합 데이터베이스 구조&lt;/strong&gt;이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;내부 스키마&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;개발자 관점, &lt;strong&gt;데이터베이스의 물리적 저장 구조&lt;/strong&gt;이다.&lt;/li&gt;
+  &lt;li&gt;데이터 저장 구조, 레코드 구조, 필드 정의, 인덱스 등을 의미&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;엔티티entity&quot;&gt;엔티티(Entity)&lt;/h2&gt;
+
+&lt;p&gt;엔티티 특징&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;식별자
+    &lt;ul&gt;
+      &lt;li&gt;엔티티는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;유일한 식별자&lt;/code&gt;가 있어야 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;인스턴스 집합
+    &lt;ul&gt;
+      &lt;li&gt;2개 이상의 인스턴스를 가져야 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;속성
+    &lt;ul&gt;
+      &lt;li&gt;엔티티는 &lt;strong&gt;반드시 속성&lt;/strong&gt;을 가지고 있어야 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;관계
+    &lt;ul&gt;
+      &lt;li&gt;엔티티는 &lt;strong&gt;다른 엔티티와 최소 1개 이상의 관계&lt;/strong&gt;가 있어야 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;업무
+    &lt;ul&gt;
+      &lt;li&gt;엔티티는 &lt;strong&gt;업무에서 관리되어야 하는 집합&lt;/strong&gt;이어야 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;엔티티의 종류&lt;br /&gt;
+엔티티의 종류에 대해서는 아래 그림을 참고하자. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;물리적 형태의 존재 여부에 따른 분류&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/33_3.png&quot; alt=&quot;img3&quot; width=&quot;80%&amp;quot;&amp;quot;, height=&amp;quot;50%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;발생 시점에 따른 분류&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/33_4.png&quot; alt=&quot;img4&quot; width=&quot;80%&amp;quot;&amp;quot;, height=&amp;quot;50%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;속성attribute&quot;&gt;속성(Attribute)&lt;/h2&gt;
+
+&lt;p&gt;속성이란?&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;업무에서 필요한 정보인 엔티티가 가지는 항목&lt;/li&gt;
+  &lt;li&gt;더 이상 분리되지 않는 단위로, 업무에 필요한 데이터를 저장할 수 있다.&lt;/li&gt;
+  &lt;li&gt;인스턴스의 구성요소이고 의미적으로 더 이상 분해되지 않는다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;특징&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;속성은 &lt;strong&gt;하나의 값&lt;/strong&gt;만 가진다.&lt;/li&gt;
+  &lt;li&gt;주식별자에게 함수적으로 종속된다.
+    &lt;ul&gt;
+      &lt;li&gt;기본키가 변경되면, 속성의 값도 변경된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;분류&lt;br /&gt;
+속성의 분류는 아래 표를 참고하자.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;분해 여부에 따른 속성의 분류&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/33_5.png&quot; alt=&quot;img5&quot; width=&quot;80%&amp;quot;&amp;quot;, height=&amp;quot;50%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;특성에 따른 속성의 분류&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/33_6.png&quot; alt=&quot;img6&quot; width=&quot;80%&amp;quot;&amp;quot;, height=&amp;quot;50%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;도메인이란?&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;속성이 가질 수 있는 &lt;strong&gt;값의 범위&lt;/strong&gt;를 의미한다.&lt;/li&gt;
+  &lt;li&gt;예를 들어 성별이라는 속성의 도메인은 ‘남자’, ‘여자’ 이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;관계relationship&quot;&gt;관계(Relationship)&lt;/h2&gt;
+
+&lt;p&gt;관계란?&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;엔티티 간의 관련성을 의미를 한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;관계의 종류&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;존재 관계
+    &lt;ul&gt;
+      &lt;li&gt;엔티티 간의 상태를 의미&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;행위 관계
+    &lt;ul&gt;
+      &lt;li&gt;엔티티 간의 어떤 행위가 있는 것.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;관계 차수&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;두 개의 엔티티 간에 &lt;strong&gt;관계의 참여하는 수&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/33_7.png&quot; alt=&quot;img7&quot; width=&quot;80%&amp;quot;&amp;quot;, height=&amp;quot;50%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;필수적 관계와 선택적 관계&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;필수적 관계는 ‘l’로 표현되고, 선택적 관계는 ‘O’로 표현된다.&lt;/li&gt;
+  &lt;li&gt;필수적 관계
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;반드시 하나가 있어야&lt;/strong&gt; 하는 관계&lt;/li&gt;
+      &lt;li&gt;고객이 반드시 있어야 계좌를 개설할 수 있음.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;선택적 관계
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;없을 수도 있는&lt;/strong&gt; 관계&lt;/li&gt;
+      &lt;li&gt;고객은 있지만, 계좌가 없을 수도 있다면 선택적 관계가 됨.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;식별 관계와 비식별 관계&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;식별 관계
+    &lt;ul&gt;
+      &lt;li&gt;강한 개체의 기본키를 다른 엔티티의 기본키로 가지는 관계&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;실선&lt;/code&gt;으로 표현한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;비식별 관계
+    &lt;ul&gt;
+      &lt;li&gt;강한 개체의 기본키를 다른 엔티티의 기본키가 아닌 일반 컬럼으로 관계를 가지는 것.&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;점선&lt;/code&gt;으로 표현한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;엔티티-식별자entity-identifier&quot;&gt;엔티티 식별자(Entity Identifier)&lt;/h2&gt;
+
+&lt;p&gt;식별자란?&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;엔티티를 대표할 수 있는 &lt;strong&gt;유일성&lt;/strong&gt;을 만족하는 속성&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;주식별자 속성&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;최소성
+    &lt;ul&gt;
+      &lt;li&gt;주식별자는 최소성을 만족하는 키이다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;대표성
+    &lt;ul&gt;
+      &lt;li&gt;주식별자는 엔티티를 대표할 수 있어야 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;유일성
+    &lt;ul&gt;
+      &lt;li&gt;주식별자는 엔티티의 인스턴스를 유일하게 식별한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;불변성
+    &lt;ul&gt;
+      &lt;li&gt;주식별자는 자주 변경되지 않아야 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;키의 종류&lt;br /&gt;
+아래 표를 참고하자 &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/33_8.png&quot; alt=&quot;img8&quot; width=&quot;80%&amp;quot;&amp;quot;, height=&amp;quot;50%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;식별자의 종류&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;대표성 여부에 따라 주식별자, 보조 식별자로 나뉜다.
+    &lt;ul&gt;
+      &lt;li&gt;주식별자
+        &lt;ul&gt;
+          &lt;li&gt;유일성과 최소성을 만족하면서, &lt;strong&gt;엔티티를 대표하는 식별자&lt;/strong&gt;&lt;/li&gt;
+          &lt;li&gt;다른 엔티티의 &lt;strong&gt;참조 관계로 연결&lt;/strong&gt;될 수 있다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;보조 식별자
+        &lt;ul&gt;
+          &lt;li&gt;유일성과 최소성을 만족하지만, &lt;strong&gt;대표성을 만족하지 못하는 식별자&lt;/strong&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;생성 여부에 따른 분류
+    &lt;ul&gt;
+      &lt;li&gt;내부 식별자
+        &lt;ul&gt;
+          &lt;li&gt;엔티티 &lt;strong&gt;내부에서 스스로 생성&lt;/strong&gt;되는 식별자&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;외부 식별자
+        &lt;ul&gt;
+          &lt;li&gt;다른 엔티티와의 관계로 인하여 만들어지는 식별자&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;속성의 수에 따른 분류
+    &lt;ul&gt;
+      &lt;li&gt;단일 식별자
+        &lt;ul&gt;
+          &lt;li&gt;&lt;strong&gt;하나의 속성&lt;/strong&gt;으로 구성&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;복합 식별자
+        &lt;ul&gt;
+          &lt;li&gt;&lt;strong&gt;2개 이상&lt;/strong&gt;의 속성으로 구성&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;대체 여부
+    &lt;ul&gt;
+      &lt;li&gt;본질 식별자
+        &lt;ul&gt;
+          &lt;li&gt;&lt;strong&gt;비지니스 프로세스&lt;/strong&gt;에서 만들어지는 식별자&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;인조 식별자
+        &lt;ul&gt;
+          &lt;li&gt;&lt;strong&gt;인위적&lt;/strong&gt;으로 만들어지는 식별자&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;참고-사이트-출처&quot;&gt;&lt;em&gt;참고 사이트 출처&lt;/em&gt;&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;https://starrykss.tistory.com/1612&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="SQLD" /><category term="데이터베이스" /><category term="SQLD" /><summary type="html"></summary></entry><entry><title type="html">[알고리즘] 비트 마스킹</title><link href="http://localhost:4000/algorithm/33/" rel="alternate" type="text/html" title="[알고리즘] 비트 마스킹" /><published>2023-08-22T00:00:00+09:00</published><updated>2023-08-22T00:00:00+09:00</updated><id>http://localhost:4000/algorithm/33</id><content type="html" xml:base="http://localhost:4000/algorithm/33/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;비트-마스크란&quot;&gt;&lt;em&gt;비트 마스크란?&lt;/em&gt;&lt;/h1&gt;
 
@@ -172,92 +512,7 @@
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;
-더 자세한 내용은 김영한님 강의를 참고하자!&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="Java" /><category term="Spring" /><category term="Java" /><category term="Spring" /><summary type="html"></summary></entry><entry><title type="html">[JPA] 데이터 JPA(1)</title><link href="http://localhost:4000/jpa/sj1/" rel="alternate" type="text/html" title="[JPA] 데이터 JPA(1)" /><published>2023-08-18T00:00:00+09:00</published><updated>2023-08-18T00:00:00+09:00</updated><id>http://localhost:4000/jpa/sj1</id><content type="html" xml:base="http://localhost:4000/jpa/sj1/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;repository-기능&quot;&gt;&lt;em&gt;@Repository 기능&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;@Repository는 2가지 기능을 제공한다. 첫번째는 이 Annotation이 붙은 클래스를 스프링 빈으로 등록한다. 두번째는 JPA 예외를 스프링 예외로 변환해준다. 데이터를 직접 접근하는 Repository 계층 구현 기술에 Service 계층이 직접 의존하는 것은 좋은 설계라고 할 수 없다. 이는 예외 처리에도 동일하게 적용된다. @Repository를 붙이면 데이터 접근 계층의 예외를 추상화해서 Service 계층에 넘김으로써 데이터 접근 계층의 예외가 바뀌더라도 코드를 변경하지 않고 동일하게 사용할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;공통-인터페이스&quot;&gt;&lt;em&gt;공통 인터페이스&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Spring data JPA&lt;/code&gt;를 제대로 이해하기 위해서는 공통 인터페이스에 대해서 알 필요가 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/29_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;공통 인터페이스는 위와 같은 구조로 이루어져 있다. 이 인터페이스를 개발자가 직접 구현할 필요가 없다. Spring data JPA 가 구현 클래스를 우리 대신 생성해서 넣어준다. 때문에 우리는 그냥 가져다 쓰면 된다. ^.^&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;메소드-이름으로-쿼리-자동생성&quot;&gt;&lt;em&gt;메소드 이름으로 쿼리 자동생성&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;Spring data JPA는 repository에 작성한 메소드 이름을 분석해서 JPQL 쿼리를 실행해준다. 순수한 JPA를 사용했을 때의 쿼리와 Spring data JPA 를 사용했을 때 코드를 비교해보자.
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;아래 코드는 순수 JPA를 사용했을 때 코드이다.
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;findByUsernameAndAgeGreaterThan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createQuery&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;select m from Member m where m.username = :username and m.age &amp;gt; :age&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setParameter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;username&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setParameter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;age&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getResultList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;아래 코드는 Spring Data JPA를 사용했을 때의 코드이다.&lt;/p&gt;
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;findByUsernameAndAgeGreaterThan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;힘의 차이가 확실히 느껴진다.&lt;/strong&gt; &lt;br /&gt;
- 위와 같이 단순한 쿼리에 대해서 Spring Data JPA를 사용하면 생산성이 대폭 증가한다.
-하지만 장점만 존재하지는 않는다. 쿼리 조건이 많아질수록 메서드 이름도 같이 늘어난다. 때문에 복잡한 조건의 쿼리는 다른 방법으로 해결해야 한다.
-이 방법도 뒤에서 소개하겠다. 메서드 이름 규칙은 Spring 공식 페이지에 잘 나와있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;spring-data-jpa의-namedquery&quot;&gt;&lt;em&gt;Spring Data JPA의 NamedQuery&lt;/em&gt;&lt;/h1&gt;
-&lt;p&gt;순수 JPA에서 namedQuery를 작성하려면 Entity에 직접 작성해야 하거나, XML 파일을 통해서 작성해야 했다. 첫번째는 Entity가 굉장히 지저분해진고 XML은 따로 관리해야 했기 때문에 불편했었다. Spring Data JPA는 @Query를 통해서 Repository에 직접 작성할 수 있다.
-아래 예제 코드를 보자. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;nd&quot;&gt;@Query&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;select m from Member m where m.username = :username and m.age = :age&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;findUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@Param&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;username&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@Param&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;age&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;위와 같이 작성하면 된다. namedQuery의 장점은 컴파일 시점에 쿼리를 파싱해서 체크하기 때문에 문법 오류를 발견할 수 있는 것인데 @Query로 작성한 쿼리도 namedQuery로 간주되기 때문에 굉장히 유용하다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;반환-타입-지정&quot;&gt;&lt;em&gt;반환 타입 지정&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;Spring Data JPA는 유연하게 반환 타입을 지원한다. 그렇기 때문에 어떻게 작동하는지 잘 이해할 필요가 있다. &lt;br /&gt;
-조회 결과가 여러개 이거나, 없다면 어떻게 될까? 컬렉션의 경우 결과가 없으면 빈 컬렉션을 반환한다. 하지만 Entity와 같이 타입을 단건으로 찝은 경우에는 결과가 없으면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;null&lt;/code&gt;이 반환된다. 이 차이를 인지하고 있어야 한다. &lt;br /&gt;
-그리고 단건 반환 타입을 설정한 경우 내부적으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getSingleResult()&lt;/code&gt; 를 호출하기 때문에 2개 이상의 값이 나오면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NoResultException&lt;/code&gt; 이 발생하는데 Spring Data JPA에서 예외를 catch해서 null로 반환한다. 동작방식을 잘 이해하도록 하자!!&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;참고-사이트-출처&quot;&gt;참고 사이트 출처&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EB%8D%B0%EC%9D%B4%ED%84%B0-JPA-%EC%8B%A4%EC%A0%84&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;
-더 자세한 내용은 김영한님 강의를 참고하자!&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="JPA" /><category term="Spring" /><category term="JPA" /><category term="Data JPA" /><summary type="html"></summary></entry><entry><title type="html">[JPA] 데이터 JPA(2)</title><link href="http://localhost:4000/jpa/sj2/" rel="alternate" type="text/html" title="[JPA] 데이터 JPA(2)" /><published>2023-08-18T00:00:00+09:00</published><updated>2023-08-18T00:00:00+09:00</updated><id>http://localhost:4000/jpa/sj2</id><content type="html" xml:base="http://localhost:4000/jpa/sj2/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+더 자세한 내용은 김영한님 강의를 참고하자!&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="Java" /><category term="Spring" /><category term="Java" /><category term="Spring" /><summary type="html"></summary></entry><entry><title type="html">[JPA] 데이터 JPA(2)</title><link href="http://localhost:4000/jpa/sj2/" rel="alternate" type="text/html" title="[JPA] 데이터 JPA(2)" /><published>2023-08-18T00:00:00+09:00</published><updated>2023-08-18T00:00:00+09:00</updated><id>http://localhost:4000/jpa/sj2</id><content type="html" xml:base="http://localhost:4000/jpa/sj2/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;paging-이슈&quot;&gt;&lt;em&gt;Paging 이슈&lt;/em&gt;&lt;/h1&gt;
 &lt;p&gt;JPA가 없던 시절에 Paging 처리를 하는 것은 굉장히 귀찮은 일이었다. JPA가 등장하면서 Paging을 쉽게 처리할 수 있게 되었다. Spring data JPA를 사용하면 페이지 계산과 같이 반복적이고 실수하기 쉬운 것을 추상화해서 사용하기 쉽게 제공해준다. &lt;br /&gt;
@@ -333,6 +588,91 @@
 
 &lt;p&gt;이런 기능들을 예전에는 한땀한땀 열심히 구현해서 사용해야 했었다. 그런데 JPA에서 이미 다 제공해주기 때문에 그냥 가져다 사용하면 된다.&lt;br /&gt;
 여기서 두가지 주의해야 할 점이있다. &lt;strong&gt;JPA의 페이지는 1부터가 아니라 0부터 시작한다는 것이다.&lt;/strong&gt; 두번째는 CountQuery는 무거운 연산이라는 것이다. 때문에 복잡한 쿼리에서는 CountQuery를 분리하고 left join같은 경우는 CountQuery를 할 필요가 없다. 이를 주의하자!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;참고-사이트-출처&quot;&gt;참고 사이트 출처&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EB%8D%B0%EC%9D%B4%ED%84%B0-JPA-%EC%8B%A4%EC%A0%84&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;
+더 자세한 내용은 김영한님 강의를 참고하자!&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="JPA" /><category term="Spring" /><category term="JPA" /><category term="Data JPA" /><summary type="html"></summary></entry><entry><title type="html">[JPA] 데이터 JPA(1)</title><link href="http://localhost:4000/jpa/sj1/" rel="alternate" type="text/html" title="[JPA] 데이터 JPA(1)" /><published>2023-08-18T00:00:00+09:00</published><updated>2023-08-18T00:00:00+09:00</updated><id>http://localhost:4000/jpa/sj1</id><content type="html" xml:base="http://localhost:4000/jpa/sj1/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;repository-기능&quot;&gt;&lt;em&gt;@Repository 기능&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;@Repository는 2가지 기능을 제공한다. 첫번째는 이 Annotation이 붙은 클래스를 스프링 빈으로 등록한다. 두번째는 JPA 예외를 스프링 예외로 변환해준다. 데이터를 직접 접근하는 Repository 계층 구현 기술에 Service 계층이 직접 의존하는 것은 좋은 설계라고 할 수 없다. 이는 예외 처리에도 동일하게 적용된다. @Repository를 붙이면 데이터 접근 계층의 예외를 추상화해서 Service 계층에 넘김으로써 데이터 접근 계층의 예외가 바뀌더라도 코드를 변경하지 않고 동일하게 사용할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;공통-인터페이스&quot;&gt;&lt;em&gt;공통 인터페이스&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Spring data JPA&lt;/code&gt;를 제대로 이해하기 위해서는 공통 인터페이스에 대해서 알 필요가 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/29_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;공통 인터페이스는 위와 같은 구조로 이루어져 있다. 이 인터페이스를 개발자가 직접 구현할 필요가 없다. Spring data JPA 가 구현 클래스를 우리 대신 생성해서 넣어준다. 때문에 우리는 그냥 가져다 쓰면 된다. ^.^&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;메소드-이름으로-쿼리-자동생성&quot;&gt;&lt;em&gt;메소드 이름으로 쿼리 자동생성&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;Spring data JPA는 repository에 작성한 메소드 이름을 분석해서 JPQL 쿼리를 실행해준다. 순수한 JPA를 사용했을 때의 쿼리와 Spring data JPA 를 사용했을 때 코드를 비교해보자.
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;아래 코드는 순수 JPA를 사용했을 때 코드이다.
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;findByUsernameAndAgeGreaterThan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createQuery&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;select m from Member m where m.username = :username and m.age &amp;gt; :age&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setParameter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;username&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setParameter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;age&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getResultList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;아래 코드는 Spring Data JPA를 사용했을 때의 코드이다.&lt;/p&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;findByUsernameAndAgeGreaterThan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;힘의 차이가 확실히 느껴진다.&lt;/strong&gt; &lt;br /&gt;
+ 위와 같이 단순한 쿼리에 대해서 Spring Data JPA를 사용하면 생산성이 대폭 증가한다.
+하지만 장점만 존재하지는 않는다. 쿼리 조건이 많아질수록 메서드 이름도 같이 늘어난다. 때문에 복잡한 조건의 쿼리는 다른 방법으로 해결해야 한다.
+이 방법도 뒤에서 소개하겠다. 메서드 이름 규칙은 Spring 공식 페이지에 잘 나와있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;spring-data-jpa의-namedquery&quot;&gt;&lt;em&gt;Spring Data JPA의 NamedQuery&lt;/em&gt;&lt;/h1&gt;
+&lt;p&gt;순수 JPA에서 namedQuery를 작성하려면 Entity에 직접 작성해야 하거나, XML 파일을 통해서 작성해야 했다. 첫번째는 Entity가 굉장히 지저분해진고 XML은 따로 관리해야 했기 때문에 불편했었다. Spring Data JPA는 @Query를 통해서 Repository에 직접 작성할 수 있다.
+아래 예제 코드를 보자. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+&lt;span class=&quot;nd&quot;&gt;@Query&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;select m from Member m where m.username = :username and m.age = :age&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;findUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@Param&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;username&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@Param&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;age&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;위와 같이 작성하면 된다. namedQuery의 장점은 컴파일 시점에 쿼리를 파싱해서 체크하기 때문에 문법 오류를 발견할 수 있는 것인데 @Query로 작성한 쿼리도 namedQuery로 간주되기 때문에 굉장히 유용하다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;
+&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;반환-타입-지정&quot;&gt;&lt;em&gt;반환 타입 지정&lt;/em&gt;&lt;/h1&gt;
+
+&lt;p&gt;Spring Data JPA는 유연하게 반환 타입을 지원한다. 그렇기 때문에 어떻게 작동하는지 잘 이해할 필요가 있다. &lt;br /&gt;
+조회 결과가 여러개 이거나, 없다면 어떻게 될까? 컬렉션의 경우 결과가 없으면 빈 컬렉션을 반환한다. 하지만 Entity와 같이 타입을 단건으로 찝은 경우에는 결과가 없으면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;null&lt;/code&gt;이 반환된다. 이 차이를 인지하고 있어야 한다. &lt;br /&gt;
+그리고 단건 반환 타입을 설정한 경우 내부적으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getSingleResult()&lt;/code&gt; 를 호출하기 때문에 2개 이상의 값이 나오면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NoResultException&lt;/code&gt; 이 발생하는데 Spring Data JPA에서 예외를 catch해서 null로 반환한다. 동작방식을 잘 이해하도록 하자!!&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;
@@ -990,74 +1330,4 @@ primary key ( sequence_name )
 
 &lt;h1 id=&quot;참고-사이트-출처&quot;&gt;참고 사이트 출처&lt;/h1&gt;
 
-&lt;p&gt;https://victorydntmd.tistory.com/195&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="JPA" /><category term="Spring" /><category term="JPA" /><category term="DB" /><summary type="html"></summary></entry><entry><title type="html">[알고리즘] Union find</title><link href="http://localhost:4000/algorithm/unionFind/" rel="alternate" type="text/html" title="[알고리즘] Union find" /><published>2023-07-20T00:00:00+09:00</published><updated>2023-07-20T00:00:00+09:00</updated><id>http://localhost:4000/algorithm/unionFind</id><content type="html" xml:base="http://localhost:4000/algorithm/unionFind/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/23_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;오늘은 Union-Find 알고리즘에 대해서 정리해보겠다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;union-find-algorithm&quot;&gt;&lt;em&gt;Union find algorithm&lt;/em&gt;&lt;/h1&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;유니온 파인드&lt;/strong&gt; 알고리즘은 상호 배타적 집합, Disjoin-set(서로소 집합) 이라고도 부른다. 여러 노드가 존재할 때, 어떤 두 개의 노드를 같은 집합으로 묶어 주고, 어떤 두 노드가 같은 집하에 있는지 확인하는 알고리즘이다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;union-연산&quot;&gt;&lt;em&gt;Union 연산&lt;/em&gt;&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;서로 연결된 두 노드 A, B를 선택&lt;/li&gt;
-  &lt;li&gt;A의 루트 노드와 B의 루트 노드를 찾기 (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;find&lt;/code&gt;연산)&lt;/li&gt;
-  &lt;li&gt;B를  A의 부모 노드로 설정한다. (parent 리스트의 값 수정)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;union-코드&quot;&gt;union 코드&lt;/h3&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;union&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;find-연산&quot;&gt;&lt;em&gt;Find 연산&lt;/em&gt;&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;해당 노드의 루트 노드를 찾음&lt;/li&gt;
-  &lt;li&gt;경로 압축을 통해 시간복잡도를 줄일 수 있다.
-    &lt;ul&gt;
-      &lt;li&gt;예시를 통해 확인해보자&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/23_2.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;위와 같은 경우 5의 루트 노드를 찾기 위해서는 5 -&amp;gt; 4 -&amp;gt; 3 -&amp;gt; 2 -&amp;gt; 1을 거쳐서 총 O(V) 만큼의 시간복잡도가 걸린다. 그런데 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;경로 압축&lt;/code&gt;을 통해 부모를 루트로 설정하게 되면 아래와 같이 한번에 찾을 수 있게 된다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/23_3.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;5의 부모 -&amp;gt; 1&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;find-코드&quot;&gt;find() 코드&lt;/h3&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="Algorithm" /><category term="알고리즘" /><category term="Union find" /><category term="자료구조" /><summary type="html"></summary></entry></feed>
+&lt;p&gt;https://victorydntmd.tistory.com/195&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="JPA" /><category term="Spring" /><category term="JPA" /><category term="DB" /><summary type="html"></summary></entry></feed>

@@ -1,0 +1,980 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[SQLD] 데이터 모델링 - Jinsu’s story</title>
+<meta name="description" content="">
+
+
+  <meta name="author" content="Moon JinSu">
+  
+  <meta property="article:author" content="Moon JinSu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="Jinsu's story">
+<meta property="og:title" content="[SQLD] 데이터 모델링">
+<meta property="og:url" content="http://localhost:4000/sqld/34/">
+
+
+  <meta property="og:description" content="">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-08-29T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/sqld/34/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "문진수(Moon JinSu)",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Jinsu's story Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Jinsu's story
+          
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Moon JinSu</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>tech blog</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seoul, Korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+
+<!-- Categories -->
+<nav class="nav__list">
+  <ul class="nav__items" id="category_tag_menu">
+      <li>
+          <span class="nav__sub-title">📂 Total (34)</span>
+          <ul>
+              
+                  
+                  <li>
+                      <a href="/categories/#spring" class="">Spring (14)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#디자인패턴" class="">디자인패턴 (8)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#java" class="">Java (3)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#algorithm" class="">Algorithm (2)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#jpa" class="">JPA (7)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#sqld" class="">SQLD (1)</a>
+                  </li>
+                  
+              
+          </ul>
+      </li>
+  </ul>
+  </nav>
+
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[SQLD] 데이터 모델링">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="2023-08-29T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/sqld/34/" class="u-url" itemprop="url">[SQLD] 데이터 모델링
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+        <p><br /></p>
+
+<h1 id="데이터-모델링"><em>데이터 모델링</em></h1>
+
+<h2 id="데이터-모델링의-단계">데이터 모델링의 단계</h2>
+
+<p>개념적 모델링 <br /></p>
+<ul>
+  <li>고객의 비지니스 프로세스를 분석하고 업무 전체에 대해서 데이터 모델링을 수행</li>
+  <li>복잡하게 표현하지 않고, <code class="language-plaintext highlighter-rouge">중요한 부분을 위주</code>로 모델링하는 단계</li>
+  <li><code class="language-plaintext highlighter-rouge">업무적 관점</code>에서 모델링하며, 기술적 용어는 가급적 사용 X</li>
+  <li>엔티티와 속성을 도출하고 <code class="language-plaintext highlighter-rouge">개념적 ERD</code>를 작성한다.</li>
+</ul>
+
+<p>논리적 모델링 <br /></p>
+<ul>
+  <li>개념적 모델링을 논리적 모델링으로 변환하는 과정</li>
+  <li><code class="language-plaintext highlighter-rouge">식별자를 도출</code>하고 필요한 모든 릴레이션을 정의한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">정규화를 수행</code>해서 데이터 모델의 독립성을 확보한다.</li>
+</ul>
+
+<p>물리적 모델링 <br /></p>
+<ul>
+  <li>데이터베이스를 실제 구축한다.
+    <ul>
+      <li>테이블, 인덱스, 함수 등을 생성한다.</li>
+    </ul>
+  </li>
+  <li>성능, 보안, 가용성을 고려하여 구축한다.</li>
+</ul>
+
+<p><img src="/assets/images/33_1.png" alt="img1" width="80%&quot;&quot;, height=&quot;50%&quot;" /> <br /><br /></p>
+
+<h2 id="erd-entity-relationship-diagram">ERD (Entity Relationship Diagram)</h2>
+
+<ul>
+  <li>1976년 <code class="language-plaintext highlighter-rouge">피터첸</code>이 ERD 표기법을 만들었고, <strong>사실상 데이터 모델링의 표준</strong>으로 사용되고 있음.</li>
+  <li>엔티티 간의 관계를 정의하는 모델링 방법</li>
+</ul>
+
+<p>작성 절차<br /></p>
+
+<ol>
+  <li>엔티티를 도출하고 그린다.</li>
+  <li>엔티티를 배치한다.
+    <ul>
+      <li>엔티티를 도출한 후 엔티티를 베치한다.</li>
+      <li>중요한 엔티티를 왼쪽 상단에 배치 (가시성)</li>
+    </ul>
+  </li>
+  <li>엔티티 간의 관계를 설정한다.</li>
+  <li>관계명을 서술한다.
+    <ul>
+      <li>엔티티 간의 어떤 행위나 존재가 있는지 표현</li>
+    </ul>
+  </li>
+  <li>관계 참여도를 표현한다.
+    <ul>
+      <li>관계 참여도 : 1개의 엔티티와 다른 엔티티 간의 참여하는 관계 수</li>
+    </ul>
+  </li>
+  <li>관계의 필수 여부를 표현한다.
+    <ul>
+      <li>필수 : 반드시 존재해야 하는 것.</li>
+    </ul>
+  </li>
+</ol>
+
+<p>ERD 작성 시 고려사항<br /></p>
+
+<ul>
+  <li>중요한 엔티티를 가급적 <code class="language-plaintext highlighter-rouge">왼쪽 상단에 배치</code></li>
+  <li>ERD는 이해하기 쉽고 복잡하지 않아야 함.
+<br /></li>
+</ul>
+
+<h2 id="3중-스키마3-level-schema">3중 스키마(3-Level Schema)</h2>
+
+<p><img src="/assets/images/33_2.png" alt="img2" width="80%&quot;&quot;, height=&quot;50%&quot;" /> <br /><br /></p>
+
+<p>외부 스키마<br /></p>
+<ul>
+  <li>사용자 관점, 업무상 관련이 있는 데이터 접근</li>
+  <li><strong>응용 프로그램이 접근하는 데이터베이스</strong>를 정의한다.</li>
+</ul>
+
+<p>개념 스키마<br /></p>
+<ul>
+  <li>설계자 관점, 사용자 전체 집단의 데이터베이스 구조</li>
+  <li>전체 데이터베이스 내의 규칙과 구조를 표현한다.</li>
+  <li><strong>통합 데이터베이스 구조</strong>이다.</li>
+</ul>
+
+<p>내부 스키마<br /></p>
+<ul>
+  <li>개발자 관점, <strong>데이터베이스의 물리적 저장 구조</strong>이다.</li>
+  <li>데이터 저장 구조, 레코드 구조, 필드 정의, 인덱스 등을 의미</li>
+</ul>
+
+<h2 id="엔티티entity">엔티티(Entity)</h2>
+
+<p>엔티티 특징<br /></p>
+<ul>
+  <li>식별자
+    <ul>
+      <li>엔티티는 <code class="language-plaintext highlighter-rouge">유일한 식별자</code>가 있어야 한다.</li>
+    </ul>
+  </li>
+  <li>인스턴스 집합
+    <ul>
+      <li>2개 이상의 인스턴스를 가져야 한다.</li>
+    </ul>
+  </li>
+  <li>속성
+    <ul>
+      <li>엔티티는 <strong>반드시 속성</strong>을 가지고 있어야 한다.</li>
+    </ul>
+  </li>
+  <li>관계
+    <ul>
+      <li>엔티티는 <strong>다른 엔티티와 최소 1개 이상의 관계</strong>가 있어야 한다.</li>
+    </ul>
+  </li>
+  <li>업무
+    <ul>
+      <li>엔티티는 <strong>업무에서 관리되어야 하는 집합</strong>이어야 한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>엔티티의 종류<br />
+엔티티의 종류에 대해서는 아래 그림을 참고하자. <br /></p>
+
+<p>물리적 형태의 존재 여부에 따른 분류</p>
+
+<p><img src="/assets/images/33_3.png" alt="img3" width="80%&quot;&quot;, height=&quot;50%&quot;" /> <br /><br /></p>
+
+<p>발생 시점에 따른 분류</p>
+
+<p><img src="/assets/images/33_4.png" alt="img4" width="80%&quot;&quot;, height=&quot;50%&quot;" /> <br /><br /></p>
+
+<h2 id="속성attribute">속성(Attribute)</h2>
+
+<p>속성이란?<br /></p>
+<ul>
+  <li>업무에서 필요한 정보인 엔티티가 가지는 항목</li>
+  <li>더 이상 분리되지 않는 단위로, 업무에 필요한 데이터를 저장할 수 있다.</li>
+  <li>인스턴스의 구성요소이고 의미적으로 더 이상 분해되지 않는다.</li>
+</ul>
+
+<p>특징<br /></p>
+<ul>
+  <li>속성은 <strong>하나의 값</strong>만 가진다.</li>
+  <li>주식별자에게 함수적으로 종속된다.
+    <ul>
+      <li>기본키가 변경되면, 속성의 값도 변경된다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>분류<br />
+속성의 분류는 아래 표를 참고하자.<br /></p>
+
+<p>분해 여부에 따른 속성의 분류</p>
+
+<p><img src="/assets/images/33_5.png" alt="img5" width="80%&quot;&quot;, height=&quot;50%&quot;" /> <br /><br /></p>
+
+<p>특성에 따른 속성의 분류</p>
+
+<p><img src="/assets/images/33_6.png" alt="img6" width="80%&quot;&quot;, height=&quot;50%&quot;" /> <br /><br /></p>
+
+<p>도메인이란?</p>
+<ul>
+  <li>속성이 가질 수 있는 <strong>값의 범위</strong>를 의미한다.</li>
+  <li>예를 들어 성별이라는 속성의 도메인은 ‘남자’, ‘여자’ 이다.</li>
+</ul>
+
+<h2 id="관계relationship">관계(Relationship)</h2>
+
+<p>관계란?<br /></p>
+<ul>
+  <li>엔티티 간의 관련성을 의미를 한다.</li>
+</ul>
+
+<p>관계의 종류<br /></p>
+<ul>
+  <li>존재 관계
+    <ul>
+      <li>엔티티 간의 상태를 의미</li>
+    </ul>
+  </li>
+  <li>행위 관계
+    <ul>
+      <li>엔티티 간의 어떤 행위가 있는 것.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>관계 차수<br /></p>
+<ul>
+  <li>두 개의 엔티티 간에 <strong>관계의 참여하는 수</strong></li>
+</ul>
+
+<p><img src="/assets/images/33_7.png" alt="img7" width="80%&quot;&quot;, height=&quot;50%&quot;" /> <br /><br /></p>
+
+<p>필수적 관계와 선택적 관계<br /></p>
+<ul>
+  <li>필수적 관계는 ‘l’로 표현되고, 선택적 관계는 ‘O’로 표현된다.</li>
+  <li>필수적 관계
+    <ul>
+      <li><strong>반드시 하나가 있어야</strong> 하는 관계</li>
+      <li>고객이 반드시 있어야 계좌를 개설할 수 있음.</li>
+    </ul>
+  </li>
+  <li>선택적 관계
+    <ul>
+      <li><strong>없을 수도 있는</strong> 관계</li>
+      <li>고객은 있지만, 계좌가 없을 수도 있다면 선택적 관계가 됨.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>식별 관계와 비식별 관계<br /></p>
+<ul>
+  <li>식별 관계
+    <ul>
+      <li>강한 개체의 기본키를 다른 엔티티의 기본키로 가지는 관계</li>
+      <li><code class="language-plaintext highlighter-rouge">실선</code>으로 표현한다.</li>
+    </ul>
+  </li>
+  <li>비식별 관계
+    <ul>
+      <li>강한 개체의 기본키를 다른 엔티티의 기본키가 아닌 일반 컬럼으로 관계를 가지는 것.</li>
+      <li><code class="language-plaintext highlighter-rouge">점선</code>으로 표현한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="엔티티-식별자entity-identifier">엔티티 식별자(Entity Identifier)</h2>
+
+<p>식별자란?<br /></p>
+<ul>
+  <li>엔티티를 대표할 수 있는 <strong>유일성</strong>을 만족하는 속성</li>
+</ul>
+
+<p>주식별자 속성<br /></p>
+<ul>
+  <li>최소성
+    <ul>
+      <li>주식별자는 최소성을 만족하는 키이다.</li>
+    </ul>
+  </li>
+  <li>대표성
+    <ul>
+      <li>주식별자는 엔티티를 대표할 수 있어야 한다.</li>
+    </ul>
+  </li>
+  <li>유일성
+    <ul>
+      <li>주식별자는 엔티티의 인스턴스를 유일하게 식별한다.</li>
+    </ul>
+  </li>
+  <li>불변성
+    <ul>
+      <li>주식별자는 자주 변경되지 않아야 한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>키의 종류<br />
+아래 표를 참고하자 <br /></p>
+
+<p><img src="/assets/images/33_8.png" alt="img8" width="80%&quot;&quot;, height=&quot;50%&quot;" /> <br /><br /></p>
+
+<p>식별자의 종류<br /></p>
+<ul>
+  <li>대표성 여부에 따라 주식별자, 보조 식별자로 나뉜다.
+    <ul>
+      <li>주식별자
+        <ul>
+          <li>유일성과 최소성을 만족하면서, <strong>엔티티를 대표하는 식별자</strong></li>
+          <li>다른 엔티티의 <strong>참조 관계로 연결</strong>될 수 있다.</li>
+        </ul>
+      </li>
+      <li>보조 식별자
+        <ul>
+          <li>유일성과 최소성을 만족하지만, <strong>대표성을 만족하지 못하는 식별자</strong></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>생성 여부에 따른 분류
+    <ul>
+      <li>내부 식별자
+        <ul>
+          <li>엔티티 <strong>내부에서 스스로 생성</strong>되는 식별자</li>
+        </ul>
+      </li>
+      <li>외부 식별자
+        <ul>
+          <li>다른 엔티티와의 관계로 인하여 만들어지는 식별자</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>속성의 수에 따른 분류
+    <ul>
+      <li>단일 식별자
+        <ul>
+          <li><strong>하나의 속성</strong>으로 구성</li>
+        </ul>
+      </li>
+      <li>복합 식별자
+        <ul>
+          <li><strong>2개 이상</strong>의 속성으로 구성</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>대체 여부
+    <ul>
+      <li>본질 식별자
+        <ul>
+          <li><strong>비지니스 프로세스</strong>에서 만들어지는 식별자</li>
+        </ul>
+      </li>
+      <li>인조 식별자
+        <ul>
+          <li><strong>인위적</strong>으로 만들어지는 식별자</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h1 id="참고-사이트-출처"><em>참고 사이트 출처</em></h1>
+<ul>
+  <li>https://starrykss.tistory.com/1612</li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#sqld" class="page__taxonomy-item p-category" rel="tag">SQLD</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4" class="page__taxonomy-item p-category" rel="tag">데이터베이스</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#sqld" class="page__taxonomy-item p-category" rel="tag">SQLD</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-08-29T00:00:00+09:00">August 29, 2023</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BSQLD%5D+%EB%8D%B0%EC%9D%B4%ED%84%B0+%EB%AA%A8%EB%8D%B8%EB%A7%81%20http%3A%2F%2Flocalhost%3A4000%2Fsqld%2F34%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fsqld%2F34%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fsqld%2F34%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/algorithm/33/" class="pagination--pager" title="[알고리즘] 비트 마스킹
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/algorithm/33/" rel="permalink">[알고리즘] 비트 마스킹
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/spring/java3/" rel="permalink">[JAVA] Concurrency Issue &amp; Thread Local
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jpa/sj2/" rel="permalink">[JPA] 데이터 JPA(2)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jpa/sj1/" rel="permalink">[JPA] 데이터 JPA(1)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 문진수(Moon JinSu). Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
