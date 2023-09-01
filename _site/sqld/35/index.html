@@ -1,0 +1,755 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[SQLD] 데이터 모델 &amp; 성능 - Jinsu’s story</title>
+<meta name="description" content="">
+
+
+  <meta name="author" content="Moon JinSu">
+  
+  <meta property="article:author" content="Moon JinSu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="Jinsu's story">
+<meta property="og:title" content="[SQLD] 데이터 모델 &amp; 성능">
+<meta property="og:url" content="http://localhost:4000/sqld/35/">
+
+
+  <meta property="og:description" content="">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-09-01T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/sqld/35/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "문진수(Moon JinSu)",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Jinsu's story Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Jinsu's story
+          
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Moon JinSu</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>tech blog</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seoul, Korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+
+<!-- Categories -->
+<nav class="nav__list">
+  <ul class="nav__items" id="category_tag_menu">
+      <li>
+          <span class="nav__sub-title">📂 Total (35)</span>
+          <ul>
+              
+                  
+                  <li>
+                      <a href="/categories/#spring" class="">Spring (14)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#디자인패턴" class="">디자인패턴 (8)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#java" class="">Java (3)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#algorithm" class="">Algorithm (2)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#jpa" class="">JPA (7)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#sqld" class="">SQLD (2)</a>
+                  </li>
+                  
+              
+          </ul>
+      </li>
+  </ul>
+  </nav>
+
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[SQLD] 데이터 모델 &amp; 성능">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="2023-09-01T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/sqld/35/" class="u-url" itemprop="url">[SQLD] 데이터 모델 &amp; 성능
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+        <p><br /></p>
+
+<h1 id="데이터-모델과-성능"><em>데이터 모델과 성능</em></h1>
+
+<h2 id="이상현상">이상현상<br /></h2>
+
+<p>정규화를 살펴보기 전에 <strong>이상현상(Anomaly)</strong>에 대해서 알아보자</p>
+
+<ul>
+  <li>삽입 이상
+    <ul>
+      <li>불필요한 데이터를 추가해야지만, 삽입이 가능한 상황</li>
+    </ul>
+  </li>
+  <li>갱신 이상
+    <ul>
+      <li>일부만 변경하여, 데이터가 불일치 하는 모순이 발생하는 상황</li>
+    </ul>
+  </li>
+  <li>삭제 이상
+    <ul>
+      <li>튜플 삭제로 인해 꼭 필요한 데이터까지 함께 삭제되는 상황</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="정규화">정규화<br /></h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">데이터의 일관성</code>, <code class="language-plaintext highlighter-rouge">최소한의 중복</code>, <code class="language-plaintext highlighter-rouge">최대한의 데이터 유연성</code>을 위한 방법으로, <strong>데이터를 분해하는 과정</strong>을 말한다.</li>
+  <li>데이터 중복을 제거하고 데이터 모델의 독립성을 확보한다.</li>
+  <li>정규화를 하면 비즈니스 변화가 발생해도 <strong>데이터 모델의 변경을 최소화할 수 있다.</strong></li>
+  <li>1~5 정규화까지 있으며, 제3정규화까지만 수행한다.</li>
+</ul>
+
+<h2 id="정규화-절차-">정규화 절차 <br /></h2>
+
+<p><img src="/assets/images/35_1.png" alt="img1" width="80%&quot;&quot;, height=&quot;50%&quot;" /> <br /><br /></p>
+
+<p><em>함수의 종속성이란?</em> <br /></p>
+
+<ul>
+  <li>X, Y가 있을 때, X가 변할 때 Y도 변한다면 Y는 X에 함수적으로 종속된다고 표현한다.</li>
+  <li><strong>X-&gt;Y이면 Y는 X에 함수적으로 종속</strong></li>
+  <li>제1정규화는 함수적 종속성을 근거로 시행한다.</li>
+</ul>
+
+<h2 id="제1정규화-">제1정규화 <br /></h2>
+
+<p><img src="/assets/images/35_2.png" alt="img2" width="80%&quot;&quot;, height=&quot;50%&quot;" /> <br /><br /></p>
+
+<p>위 그림을 보면 테이블 X가 Y의 column들을 함수적으로 종속하고 있다. X의 <code class="language-plaintext highlighter-rouge">계좌번호</code> 하나로 유일성을 만족하지 못한다고 가정하고 <code class="language-plaintext highlighter-rouge">계좌번호</code>와 <code class="language-plaintext highlighter-rouge">회원ID</code>를 기본키로 설정한 모습이다. 이처럼 기본키를 잡는 것이 제1정규화이다.</p>
+
+<h2 id="제2정규화-">제2정규화 <br /></h2>
+
+<p>제2정규화는 부분 함수 종속성을 제거하는 과정이다. 부분 함수 종속성은 기본키가 2개 이상의 column으로 구성되는 경우에만 발생한다. 때문에 기본키가 1개라면 제2정규화는 넘어간다.</p>
+
+<p><img src="/assets/images/35_3.png" alt="img3" width="80%&quot;&quot;, height=&quot;50%&quot;" /> <br /><br /></p>
+
+<p>위 그림에서 기본키의 회원ID가 변경되면 이름이 변경된다. 즉 회원ID가 이름을 함수적으로 종속하고 있다. 이런 경우를 <strong>부분 함수 종속성</strong>이라고 한다. 부분 함수 종속성이 발생하면 분해를 통해 제거해야 한다. <br /></p>
+
+<p><img src="/assets/images/35_4.png" alt="img4" width="80%&quot;&quot;, height=&quot;50%&quot;" /> <br /><br /></p>
+
+<p>이처럼 테이블을 하나 도출된다.</p>
+
+<h2 id="제3정규화-">제3정규화 <br /></h2>
+
+<p>제3정규화는 <strong>이행 함수 종속성</strong>을 제거하는 과정이다. 이행 함수 종속성이란 기본키를 제외한 칼럼간의 종속성이 발생하는 것을 말한다. 제3정규화는 제1, 제2 정규화를 마치고 수행한다. <br /></p>
+
+<p><img src="/assets/images/35_5.png" alt="img5" width="80%&quot;&quot;, height=&quot;50%&quot;" /> <br /><br /></p>
+
+<p>관리점 코드가 바뀌면 관리점이 바뀐다. 다시 말해서 관리점이 관리점 코드에 함수적으로 종속된다. 때문에 관리점 테이블이 도출되고 관리점 코드가 기본키가 된다.<br /></p>
+
+<h2 id="정규화와-성능">정규화와 성능<br /></h2>
+
+<p>정규화를 수행하는 것이 항상 좋지는 않다.<br />
+정규화를 수행하면 테이블이 분해되고 데이터의 중복이 제거되기 때문에 데이터 모델의 유연성은 높아지지만 데이터를 조회할 때 조인을 유발하기 때문에 CPU와 메모리를 많이 사용하게 된다. <br />
+조인으로 인한 성능 문제는 <code class="language-plaintext highlighter-rouge">반정규화</code>를 통해서 해결할 수 있다. 하지만 반정규화는 데이터를 중복시키기 때문에 또 다른 문제가 있다. <br /></p>
+
+<p><img src="/assets/images/35_6.png" alt="img6" width="20%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
+
+<p>위 테이블을 보면 칼럼이 계속 증가할 때, 조인이 최소화되기 때문에 조회를 빠르게 할 수 있다. 하지만 column이 많아지면 1개의 행의 크기가 데이터베이스 관리 시스템의 입출력 단위인 블록의 크기를 넘어설 수 있다. 그렇게 되면 1개의 행을 읽을 때 여러 개의 블록을 읽어야 한다.<br />
+이는 디스크 입출력 횟수 증가를 유발하고 성능이 오히려 떨어진다.<br /></p>
+
+<h2 id="반정규화">반정규화<br /></h2>
+
+<ul>
+  <li>데이터베이스 성능 향상을 위해 데이터 중복을 허용하고 조인을 줄이는 데이터베이스 성능 향상 방법</li>
+  <li>조인을 줄여서 조회 성능이 좋아지지만, 데이터 모델의 유연성은 떨어진다.</li>
+  <li>반정규화를 수행하는 경우는?
+    <ul>
+      <li>다량의 범위를 자주 처리할 때</li>
+      <li>특정 범위의 데이터만 자주 처리하는 경우</li>
+      <li>요약/집계 정보가 자주 요구되는 경우</li>
+    </ul>
+  </li>
+  <li>절차</li>
+</ul>
+
+<p><img src="/assets/images/35_7.png" alt="img7" width="80%&quot;&quot;, height=&quot;50%&quot;" /> <br /><br /></p>
+
+<h2 id="분산-데이터베이스">분산 데이터베이스<br /></h2>
+
+<ul>
+  <li>중앙 집중형 데이터베이스 : 데이터베이스 시스템 구축 시, 1대의 물리적 시스템에 데이터베이스 관리 시스템을 설치하고 여러 명의 사용자가 데이터베이스 관리 시스템에 접속하여 데이터베이스를 사용하는 구조</li>
+  <li>분산 데이터베이스 : 물리적으로 떨어진 데이터베이스를 네트워크로 연결하여 단일 데이터베이스 이미지를 보여주고, 분산된 작업 처리를 수행하는 데이터베이스</li>
+</ul>
+
+<h3 id="분산-데이터베이스의-투명성-종류-">분산 데이터베이스의 투명성 종류 <br /></h3>
+
+<p><img src="/assets/images/35_8.png" alt="img8" width="80%&quot;&quot;, height=&quot;50%&quot;" /> <br /><br /></p>
+
+<h3 id="분산-데이터베이스-장단점-">분산 데이터베이스 장단점 <br /></h3>
+
+<p><img src="/assets/images/35_9.png" alt="img9" width="80%&quot;&quot;, height=&quot;50%&quot;" /> <br /><br /></p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#sqld" class="page__taxonomy-item p-category" rel="tag">SQLD</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4" class="page__taxonomy-item p-category" rel="tag">데이터베이스</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#sqld" class="page__taxonomy-item p-category" rel="tag">SQLD</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-09-01T00:00:00+09:00">September 1, 2023</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BSQLD%5D+%EB%8D%B0%EC%9D%B4%ED%84%B0+%EB%AA%A8%EB%8D%B8+%26+%EC%84%B1%EB%8A%A5%20http%3A%2F%2Flocalhost%3A4000%2Fsqld%2F35%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fsqld%2F35%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fsqld%2F35%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/sqld/34/" class="pagination--pager" title="[SQLD] 데이터 모델링
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/sqld/34/" rel="permalink">[SQLD] 데이터 모델링
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/algorithm/33/" rel="permalink">[알고리즘] 비트 마스킹
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/spring/java3/" rel="permalink">[JAVA] Concurrency Issue &amp; Thread Local
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/jpa/sj2/" rel="permalink">[JPA] 데이터 JPA(2)
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 문진수(Moon JinSu). Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

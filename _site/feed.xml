@@ -1,4 +1,118 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-08-29T15:39:35+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[SQLD] 데이터 모델링</title><link href="http://localhost:4000/sqld/34/" rel="alternate" type="text/html" title="[SQLD] 데이터 모델링" /><published>2023-08-29T00:00:00+09:00</published><updated>2023-08-29T00:00:00+09:00</updated><id>http://localhost:4000/sqld/34</id><content type="html" xml:base="http://localhost:4000/sqld/34/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-01T20:20:03+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[SQLD] 데이터 모델 &amp;amp; 성능</title><link href="http://localhost:4000/sqld/35/" rel="alternate" type="text/html" title="[SQLD] 데이터 모델 &amp;amp; 성능" /><published>2023-09-01T00:00:00+09:00</published><updated>2023-09-01T00:00:00+09:00</updated><id>http://localhost:4000/sqld/35</id><content type="html" xml:base="http://localhost:4000/sqld/35/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;데이터-모델과-성능&quot;&gt;&lt;em&gt;데이터 모델과 성능&lt;/em&gt;&lt;/h1&gt;
+
+&lt;h2 id=&quot;이상현상&quot;&gt;이상현상&lt;br /&gt;&lt;/h2&gt;
+
+&lt;p&gt;정규화를 살펴보기 전에 &lt;strong&gt;이상현상(Anomaly)&lt;/strong&gt;에 대해서 알아보자&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;삽입 이상
+    &lt;ul&gt;
+      &lt;li&gt;불필요한 데이터를 추가해야지만, 삽입이 가능한 상황&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;갱신 이상
+    &lt;ul&gt;
+      &lt;li&gt;일부만 변경하여, 데이터가 불일치 하는 모순이 발생하는 상황&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;삭제 이상
+    &lt;ul&gt;
+      &lt;li&gt;튜플 삭제로 인해 꼭 필요한 데이터까지 함께 삭제되는 상황&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;정규화&quot;&gt;정규화&lt;br /&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;데이터의 일관성&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;최소한의 중복&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;최대한의 데이터 유연성&lt;/code&gt;을 위한 방법으로, &lt;strong&gt;데이터를 분해하는 과정&lt;/strong&gt;을 말한다.&lt;/li&gt;
+  &lt;li&gt;데이터 중복을 제거하고 데이터 모델의 독립성을 확보한다.&lt;/li&gt;
+  &lt;li&gt;정규화를 하면 비즈니스 변화가 발생해도 &lt;strong&gt;데이터 모델의 변경을 최소화할 수 있다.&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;1~5 정규화까지 있으며, 제3정규화까지만 수행한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;정규화-절차-&quot;&gt;정규화 절차 &lt;br /&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/35_1.png&quot; alt=&quot;img1&quot; width=&quot;80%&amp;quot;&amp;quot;, height=&amp;quot;50%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;함수의 종속성이란?&lt;/em&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;X, Y가 있을 때, X가 변할 때 Y도 변한다면 Y는 X에 함수적으로 종속된다고 표현한다.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;X-&amp;gt;Y이면 Y는 X에 함수적으로 종속&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;제1정규화는 함수적 종속성을 근거로 시행한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;제1정규화-&quot;&gt;제1정규화 &lt;br /&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/35_2.png&quot; alt=&quot;img2&quot; width=&quot;80%&amp;quot;&amp;quot;, height=&amp;quot;50%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;위 그림을 보면 테이블 X가 Y의 column들을 함수적으로 종속하고 있다. X의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;계좌번호&lt;/code&gt; 하나로 유일성을 만족하지 못한다고 가정하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;계좌번호&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;회원ID&lt;/code&gt;를 기본키로 설정한 모습이다. 이처럼 기본키를 잡는 것이 제1정규화이다.&lt;/p&gt;
+
+&lt;h2 id=&quot;제2정규화-&quot;&gt;제2정규화 &lt;br /&gt;&lt;/h2&gt;
+
+&lt;p&gt;제2정규화는 부분 함수 종속성을 제거하는 과정이다. 부분 함수 종속성은 기본키가 2개 이상의 column으로 구성되는 경우에만 발생한다. 때문에 기본키가 1개라면 제2정규화는 넘어간다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/35_3.png&quot; alt=&quot;img3&quot; width=&quot;80%&amp;quot;&amp;quot;, height=&amp;quot;50%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;위 그림에서 기본키의 회원ID가 변경되면 이름이 변경된다. 즉 회원ID가 이름을 함수적으로 종속하고 있다. 이런 경우를 &lt;strong&gt;부분 함수 종속성&lt;/strong&gt;이라고 한다. 부분 함수 종속성이 발생하면 분해를 통해 제거해야 한다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/35_4.png&quot; alt=&quot;img4&quot; width=&quot;80%&amp;quot;&amp;quot;, height=&amp;quot;50%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이처럼 테이블을 하나 도출된다.&lt;/p&gt;
+
+&lt;h2 id=&quot;제3정규화-&quot;&gt;제3정규화 &lt;br /&gt;&lt;/h2&gt;
+
+&lt;p&gt;제3정규화는 &lt;strong&gt;이행 함수 종속성&lt;/strong&gt;을 제거하는 과정이다. 이행 함수 종속성이란 기본키를 제외한 칼럼간의 종속성이 발생하는 것을 말한다. 제3정규화는 제1, 제2 정규화를 마치고 수행한다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/35_5.png&quot; alt=&quot;img5&quot; width=&quot;80%&amp;quot;&amp;quot;, height=&amp;quot;50%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;관리점 코드가 바뀌면 관리점이 바뀐다. 다시 말해서 관리점이 관리점 코드에 함수적으로 종속된다. 때문에 관리점 테이블이 도출되고 관리점 코드가 기본키가 된다.&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;정규화와-성능&quot;&gt;정규화와 성능&lt;br /&gt;&lt;/h2&gt;
+
+&lt;p&gt;정규화를 수행하는 것이 항상 좋지는 않다.&lt;br /&gt;
+정규화를 수행하면 테이블이 분해되고 데이터의 중복이 제거되기 때문에 데이터 모델의 유연성은 높아지지만 데이터를 조회할 때 조인을 유발하기 때문에 CPU와 메모리를 많이 사용하게 된다. &lt;br /&gt;
+조인으로 인한 성능 문제는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;반정규화&lt;/code&gt;를 통해서 해결할 수 있다. 하지만 반정규화는 데이터를 중복시키기 때문에 또 다른 문제가 있다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/35_6.png&quot; alt=&quot;img6&quot; width=&quot;20%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;위 테이블을 보면 칼럼이 계속 증가할 때, 조인이 최소화되기 때문에 조회를 빠르게 할 수 있다. 하지만 column이 많아지면 1개의 행의 크기가 데이터베이스 관리 시스템의 입출력 단위인 블록의 크기를 넘어설 수 있다. 그렇게 되면 1개의 행을 읽을 때 여러 개의 블록을 읽어야 한다.&lt;br /&gt;
+이는 디스크 입출력 횟수 증가를 유발하고 성능이 오히려 떨어진다.&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;반정규화&quot;&gt;반정규화&lt;br /&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;데이터베이스 성능 향상을 위해 데이터 중복을 허용하고 조인을 줄이는 데이터베이스 성능 향상 방법&lt;/li&gt;
+  &lt;li&gt;조인을 줄여서 조회 성능이 좋아지지만, 데이터 모델의 유연성은 떨어진다.&lt;/li&gt;
+  &lt;li&gt;반정규화를 수행하는 경우는?
+    &lt;ul&gt;
+      &lt;li&gt;다량의 범위를 자주 처리할 때&lt;/li&gt;
+      &lt;li&gt;특정 범위의 데이터만 자주 처리하는 경우&lt;/li&gt;
+      &lt;li&gt;요약/집계 정보가 자주 요구되는 경우&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;절차&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/35_7.png&quot; alt=&quot;img7&quot; width=&quot;80%&amp;quot;&amp;quot;, height=&amp;quot;50%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;분산-데이터베이스&quot;&gt;분산 데이터베이스&lt;br /&gt;&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;중앙 집중형 데이터베이스 : 데이터베이스 시스템 구축 시, 1대의 물리적 시스템에 데이터베이스 관리 시스템을 설치하고 여러 명의 사용자가 데이터베이스 관리 시스템에 접속하여 데이터베이스를 사용하는 구조&lt;/li&gt;
+  &lt;li&gt;분산 데이터베이스 : 물리적으로 떨어진 데이터베이스를 네트워크로 연결하여 단일 데이터베이스 이미지를 보여주고, 분산된 작업 처리를 수행하는 데이터베이스&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;분산-데이터베이스의-투명성-종류-&quot;&gt;분산 데이터베이스의 투명성 종류 &lt;br /&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/35_8.png&quot; alt=&quot;img8&quot; width=&quot;80%&amp;quot;&amp;quot;, height=&amp;quot;50%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;분산-데이터베이스-장단점-&quot;&gt;분산 데이터베이스 장단점 &lt;br /&gt;&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/35_9.png&quot; alt=&quot;img9&quot; width=&quot;80%&amp;quot;&amp;quot;, height=&amp;quot;50%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="SQLD" /><category term="데이터베이스" /><category term="SQLD" /><summary type="html"></summary></entry><entry><title type="html">[SQLD] 데이터 모델링</title><link href="http://localhost:4000/sqld/34/" rel="alternate" type="text/html" title="[SQLD] 데이터 모델링" /><published>2023-08-29T00:00:00+09:00</published><updated>2023-08-29T00:00:00+09:00</updated><id>http://localhost:4000/sqld/34</id><content type="html" xml:base="http://localhost:4000/sqld/34/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;데이터-모델링&quot;&gt;&lt;em&gt;데이터 모델링&lt;/em&gt;&lt;/h1&gt;
 
@@ -1032,208 +1146,6 @@ primary key ( sequence_name )
 
 &lt;ul&gt;
   &lt;li&gt;https://www.inflearn.com/course/ORM-JPA-Basic/dashboard&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="JPA" /><category term="Spring" /><category term="JPA" /><category term="DB" /><summary type="html"></summary></entry><entry><title type="html">[JPA] 영속성 컨텍스트</title><link href="http://localhost:4000/jpa/JPA2/" rel="alternate" type="text/html" title="[JPA] 영속성 컨텍스트" /><published>2023-07-21T00:00:00+09:00</published><updated>2023-07-21T00:00:00+09:00</updated><id>http://localhost:4000/jpa/JPA2</id><content type="html" xml:base="http://localhost:4000/jpa/JPA2/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;영속성-컨텍스트&quot;&gt;&lt;em&gt;영속성 컨텍스트&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;영속성 컨텍스트란 &lt;strong&gt;엔티티를 영구 저장하는 환경&lt;/strong&gt;이라는 뜻이다. 애플리케이션과 DB 사이에서 객체를 보관하는 가상의 DB역할을 수행한다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EntityManager&lt;/code&gt;를 통해서 엔티티를 저장하거나 조회를 하면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EntityManager&lt;/code&gt;는 영속성 컨텍스트에 엔티티를 저장한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;엔티티의-생명주기&quot;&gt;&lt;em&gt;엔티티의 생명주기&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/25_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;엔티티의 생명주기는 크게 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;비영속&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;영속&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;준영속&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;삭제&lt;/code&gt;가 있다. 하나씩 알아보자&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;비영속(new/transient)&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;영속성 컨텍스트와 전혀 관계가 없는 상태이다. 영속성 컨텍스트가 관리하지 않는 상태를 의미한다&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//비영속 상태&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setQuantity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;영속(managed)&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;영속성 컨텍스트에 저장, 관리되는 상태&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//영속 상태&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setQuantity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;nc&quot;&gt;EntityManager&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;emf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createEntityManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getTransaction&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;//영속성 컨텍스트에 집어넣는다. 이때 DB에 query가 날아가지는 않는다. transaction commit 시점에 query가 날아감.&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;persist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;준영속(detached)&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;영속성 컨텍스트에 저장되었다가 분리된 상태&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//아이템 엔티티를 영속성 컨텍스트에서 분리 -&amp;gt; 준영속 상태&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;detach&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;삭제(removed)&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;삭제된 상태&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//객체를 삭제한 상태&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;remove&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;영속성-컨텍스트의-장점&quot;&gt;영속성 컨텍스트의 장점&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1차 캐시&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;영속성 컨텍스트에 데이터가 있으면 DB를 거치지 않고 바로 영속성 컨텍스트에서 데이터를 조회할 수 있다. 이를 1차 캐시라고 한다.&lt;/li&gt;
-      &lt;li&gt;애플리케이션 차원에서 1차 캐시를 통해서 반복 가능한 읽기(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;REPEATABLE READ&lt;/code&gt;) 등급의 트랜잭션 격리 수준을 제공한다.&lt;/li&gt;
-      &lt;li&gt;em.find(), em.persist()를 하면 해당 트랜잭션 안에서 영속성 컨텍스트로 관리된다. 예시를 보자&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;예제코드 1)&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//예시를 보자&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setQuantity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;26&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;//persist를 하면 영속성 컨텍스트에서 저장, 관리된다.&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;persist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;예제코드 2)&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1L&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;em.find()를 호출하면 영속성 컨텍스트에서 먼저 해당하는 엔티티 있는지 찾는다. 만약 없으면 DB에 query를 날려서 가져오고 이를 영속성 컨텍스트에 저장, 관리한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;쓰기지연&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;em.persist() 를 호출하는 시점에 DB로 query를 날리는 것이 아니라 해당 객체를 영속성 컨텍스트에서 관리하기 시작하고 쓰기 지연 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SQL 저장소&lt;/code&gt; 에 SQL을 쌓아두었다가 트랜잭션 커밋시점에 한번에 DB에 query를 날린다.&lt;/li&gt;
-      &lt;li&gt;아래 그림을 보면 이해하기 쉬울 것이다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/25_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;변경감지(Dirty checking)&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;영속성 컨텍스트에서 관리되는 객체들은 변경감지가 적용된다.&lt;/li&gt;
-      &lt;li&gt;JPA는 영속성 컨텍스트에 엔티티를 보관할 때 최초의 상태를 저장한다. 이를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;스냅샷&lt;/code&gt;이라고 한다.&lt;/li&gt;
-      &lt;li&gt;영속성 컨텍스트가 Flush 되는 시점에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;스냅샷&lt;/code&gt; 과 엔티티의 현재 상태를 비교하고 달라진 엔티티를 찾고 변경된 필드들에 대해서 쓰기 지연 SQL에 Update query를 쌓는다.&lt;/li&gt;
-      &lt;li&gt;트랜잭션 커밋시점에 쌓여있던 Update query들이 한번에 DB에 날아간다.&lt;/li&gt;
-      &lt;li&gt;개발자가 일일이 변경이 발생할 때 이에 해당하는 코드를 넣어주지 않아도 되기 때문에 굉장히 편리하다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;플러시&quot;&gt;&lt;em&gt;플러시&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;플러시는 영속성 컨텍스트를 DB와 동기화하는 작업이다. 플러시가 발생하면 변경 감지가 일어나고 수정된 엔티티의 update 내용이 쓰기 지연 SQL에 등록된다. 그리고 쓰기 지연 SQL 저장소의 query를 데이터베이스에 전송한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;플러시가-호출되는-상황&quot;&gt;플러시가 호출되는 상황&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;em.flush()&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;트랜젝션 커밋&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JPQL 쿼리 실행&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;특징&quot;&gt;특징&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;영속성 컨텍스트를 비우지 않는다.&lt;/li&gt;
-  &lt;li&gt;영속성 컨텍스트의 변경내용을 데이터베이스에 동기화한다.&lt;/li&gt;
-  &lt;li&gt;트랜잭션 커밋 직전까지만 동기화가 되면 OK&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;그렇다면-commit과-flush의-차이는-무엇일까&quot;&gt;그렇다면 Commit과 flush의 차이는 무엇일까?&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;플러시는 DB에 query를 전송한느 역할을 수행하고 커밋은 내부적으로 플러시를 호출한 후 트랜잭션을 끝내는 역할을 한다.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;플러시로 전송된 query는 rollback이 가능하지만 commit을 호출하면 트랜잭션이 끝나기 때문에 rollback이 불가능하다.&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;참고-사이트-출처&quot;&gt;참고 사이트 출처&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;https://www.inflearn.com/course/ORM-JPA-Basic/dashboard&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;https://code-lab1.tistory.com/290&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;https://small-stap.tistory.com/74&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;https://velog.io/@tomato2532/JPA-JPA-Entity-2-%EC%98%81%EC%86%8D%EC%84%B1-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8Persistence-Context&lt;/p&gt;
-  &lt;/li&gt;
 &lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="JPA" /><category term="Spring" /><category term="JPA" /><category term="DB" /><summary type="html"></summary></entry><entry><title type="html">[JPA] Intro</title><link href="http://localhost:4000/jpa/JPA1/" rel="alternate" type="text/html" title="[JPA] Intro" /><published>2023-07-21T00:00:00+09:00</published><updated>2023-07-21T00:00:00+09:00</updated><id>http://localhost:4000/jpa/JPA1</id><content type="html" xml:base="http://localhost:4000/jpa/JPA1/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/24_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
