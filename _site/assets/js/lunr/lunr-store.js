@@ -208,4 +208,16 @@ var store = [{
         "tags": ["데이터베이스","SQLD"],
         "url": "/sqld/35/",
         "teaser": null
+      },{
+        "title": "[Network] 컴퓨터 네트워크와 인터넷",
+        "excerpt":"Internet 이란? 인터넷은 컴퓨터로 연결하여 TCP/IP 라는 통신 프로토콜을 이용해 정보를 주고 받는 컴퓨터 네트워크를 의미한다. Date를 전달하는 장치들이 이루는 거대한 network 망이다 end system(host) 에 통신 서비스를 제공하는 존재이다. 구성 여러 형태의 sub-network로 구성된다. End system : 노트북, 휴대폰, 컴퓨터 등 네트워크를 이용하는 말단 부분 Access Network : end...","categories": ["Network"],
+        "tags": ["Network"],
+        "url": "/network/36/",
+        "teaser": null
+      },{
+        "title": "[Network] Application Layer",
+        "excerpt":"application layer의 특징 protocol stack의 가장 위에 존재한다. 사용자가 직접 접하는 protocol 이다. socket을 통해서 transport layer 와 통신한다. socket : 프로세스와 네트워크 사이의 인터페이스이다. (IP + Port로 식별) application layer가 존재하는 end system 끼리 소통한다. transport layer에서 application layer에 제공하는 서비스 신뢰적 데이터 전송 보장된 데이터 전송 서비스를 제공하는...","categories": ["Network","Layer5"],
+        "tags": ["Network","Layer5"],
+        "url": "/network/layer5/37/",
+        "teaser": null
       }]

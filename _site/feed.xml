@@ -1,4 +1,412 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-01T20:20:03+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[SQLD] 데이터 모델 &amp;amp; 성능</title><link href="http://localhost:4000/sqld/35/" rel="alternate" type="text/html" title="[SQLD] 데이터 모델 &amp;amp; 성능" /><published>2023-09-01T00:00:00+09:00</published><updated>2023-09-01T00:00:00+09:00</updated><id>http://localhost:4000/sqld/35</id><content type="html" xml:base="http://localhost:4000/sqld/35/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-10T17:35:44+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[Network] Application Layer</title><link href="http://localhost:4000/network/layer5/37/" rel="alternate" type="text/html" title="[Network] Application Layer" /><published>2023-09-10T00:00:00+09:00</published><updated>2023-09-10T00:00:00+09:00</updated><id>http://localhost:4000/network/layer5/37</id><content type="html" xml:base="http://localhost:4000/network/layer5/37/">&lt;h2 id=&quot;application-layer의-특징&quot;&gt;application layer의 특징&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;protocol stack의 가장 위에 존재한다.&lt;/li&gt;
+  &lt;li&gt;사용자가 직접 접하는 protocol 이다.&lt;/li&gt;
+  &lt;li&gt;socket을 통해서 transport layer 와 통신한다.
+    &lt;ul&gt;
+      &lt;li&gt;socket : 프로세스와 네트워크 사이의 인터페이스이다. (IP + Port로 식별)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;application layer가 존재하는 end system 끼리 소통한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;transport-layer에서-application-layer에-제공하는-서비스&quot;&gt;transport layer에서 application layer에 제공하는 서비스&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;신뢰적 데이터 전송&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;보장된 데이터 전송 서비스를 제공하는 것을 의미한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;처리율&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;어느 명시된 속도에서 보장된 가용 처리율을 제공하는 것을 의미한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;시간&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;데이터 전송에 엄격한 시간 제한 조건이 있고 이 시간안에 전송되는 것을 보장하는 것을 의미한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;보안&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;하나 이상의 보안 서비스를 제공한다.&lt;/li&gt;
+      &lt;li&gt;송신 프로세스가 보내는 모든 데이터를 암호화해서 보내고 수신 프로세스가 받기 전에 암호를 해독한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;tcp와-udp&quot;&gt;TCP와 UDP&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TCP&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;연결지향형 서비스를 제공한다.&lt;/li&gt;
+      &lt;li&gt;신뢰적인 데이터 전송 서비스를 제공한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UDP&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;비연결형 서비스이다.&lt;/li&gt;
+      &lt;li&gt;handshake 과정없이 바로 데이터를 송신한다.&lt;/li&gt;
+      &lt;li&gt;속도가 빠르다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;http-protocol&quot;&gt;HTTP protocol&lt;/h2&gt;
+
+&lt;h3 id=&quot;특징&quot;&gt;특징&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;web을 실현해주는 전송 프로토콜이다.&lt;/li&gt;
+  &lt;li&gt;Web browser, Web Server 두 개의 프로그램으로 구성된다.
+    &lt;ul&gt;
+      &lt;li&gt;Client : 필요할 때마다 필요한 것을 서버에 요구한다.&lt;/li&gt;
+      &lt;li&gt;Server : 단순히 client 의 요구에 대해 응답만 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;stateless protocol 이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;비지속-연결과-지속-연결&quot;&gt;비지속 연결과 지속 연결&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;비지속 연결&lt;/code&gt; (Non-persistent Connection)
+    &lt;ul&gt;
+      &lt;li&gt;각 요구/응답 쌍이 분리된 TCP 연결을 통해서 전송된다.&lt;/li&gt;
+      &lt;li&gt;server에서 TCP 연결 관리에 대한 부담이 상대적으로 크다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;지속 연결&lt;/code&gt; (Persistent Connection)
+    &lt;ul&gt;
+      &lt;li&gt;모든 요구와 해당하는 응답들이 같은 TCP 연결 상으로 전송된다.&lt;/li&gt;
+      &lt;li&gt;일정 시간동안 TCP 연결을 사용하지 않으면 release 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;http-메시지&quot;&gt;HTTP 메시지&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Request&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;request line : Method, URL, HTTP version&lt;/li&gt;
+      &lt;li&gt;header lines : host, persistent 여부, user-agent, 기타 옵션들&lt;/li&gt;
+      &lt;li&gt;body : 부가적으로 server에 보낼 정보&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Response&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;status line : protocl version, status code, status message&lt;/li&gt;
+      &lt;li&gt;header lines : persistent 여부, 전송날짜, 서버 프로그램, 생성날짜, 길이, 내용 등등&lt;/li&gt;
+      &lt;li&gt;body : data, object, html …&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;cookies&quot;&gt;Cookies&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;HTTP에게 state를 가지게 해준다.
+    &lt;ul&gt;
+      &lt;li&gt;backend database : Web site측에서 복잡한 state를 관리할 수 있게 해준다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;과정
+    &lt;ul&gt;
+      &lt;li&gt;Server에서 client에게 response를 줄 때, Cookie를 헤더에 포함해서 준다. 이때 Server db에 Cookie를 저장한다.&lt;/li&gt;
+      &lt;li&gt;Client는 헤더에서 Cookie를 추출해서 저장하고 다음 Request 부터 헤더에 Cookie를 포함해서 보낸다.&lt;/li&gt;
+      &lt;li&gt;Server는 Request의 Cookie를 확인하고 어떤 Client의 요청인지 식별할 수 있다. (state)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;web-caching&quot;&gt;Web Caching&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;proxy server(Web cache)
+    &lt;ul&gt;
+      &lt;li&gt;web server를 대신해서 http response msg를 전달한다.&lt;/li&gt;
+      &lt;li&gt;자신의 disk에 최근 request 받은 object를 복제해서 저장한다.&lt;/li&gt;
+      &lt;li&gt;Server이면서 동시에 Client이다.
+        &lt;ul&gt;
+          &lt;li&gt;복제본이 없으면 proxy server는 원래 server로 요청을 한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;특징
+    &lt;ul&gt;
+      &lt;li&gt;일반적으로 ISP에 설치된다.&lt;/li&gt;
+      &lt;li&gt;직접 server에 요청하는 것보다 시간이 적게 걸린다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;smtp-protocol&quot;&gt;SMTP Protocol&lt;/h2&gt;
+
+&lt;h3 id=&quot;특징-1&quot;&gt;특징&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Mail server간 mail을 주고받기 위한 protocol 이다.&lt;/li&gt;
+  &lt;li&gt;Mail server는 SMTP를 통해 TCP 연결을 하고 상대방 mail server에게 직접적으로 Mail을 전송한다.
+    &lt;ul&gt;
+      &lt;li&gt;TCP port는 25 사용&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;과정&quot;&gt;과정&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;User agent → Client Mail server → Server Mail server → User agent2&lt;/li&gt;
+  &lt;li&gt;여기서 서버는 Client, Server 둘 다 될 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;dns&quot;&gt;DNS&lt;/h2&gt;
+
+&lt;h3 id=&quot;특징-2&quot;&gt;특징&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;host name과 Internet 상에서의 숫자 상의 주소(IP address)를 mapping 해주는 시스템이다.
+    &lt;ul&gt;
+      &lt;li&gt;host name : 알파벳 기반의 Internet host 주소&lt;/li&gt;
+      &lt;li&gt;ex) cs-study.com, network.net, youtube.co.kr&lt;/li&gt;
+      &lt;li&gt;국가와 기관, 성격을 유추할 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;사람에게 더 친숙한 이름으로 Internet 주소를 사용할 수 있게 해준다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;구조&quot;&gt;구조&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;hostname - IP address에  대한 mapping data를 보관하고 있다.&lt;/li&gt;
+  &lt;li&gt;분산구조 형태로 database가 운영된다.
+    &lt;ul&gt;
+      &lt;li&gt;하나의 DNS server에 모든 mapping data를 가지는 centralized 구조에서는 문제가 많다.
+        &lt;ul&gt;
+          &lt;li&gt;single point of failure : DNS에 장애가 발생하면 전체 Internet이 다운된다.&lt;/li&gt;
+          &lt;li&gt;traffic volume : 모든 host가 DNS에 한 번에 접근하면 서버에 부담이 많이 가게된다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;이런 이유들로 DNS는 계층 구조를 가지게 됐다.&lt;/li&gt;
+  &lt;li&gt;3 Layer
+    &lt;ul&gt;
+      &lt;li&gt;Root DNS server : 전 세계 10여개 존재&lt;/li&gt;
+      &lt;li&gt;top-level domain DNS server (TLD) : com, org, uk, fr 등 유명한 것들&lt;/li&gt;
+      &lt;li&gt;authoritative DNS servers : 실제 IP 주소 회신&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Local DNS Server
+    &lt;ul&gt;
+      &lt;li&gt;각 기관별로 하나씩 보유하고 있다.&lt;/li&gt;
+      &lt;li&gt;최초의 subnet 내에서 접속하는 DNS server이다.&lt;/li&gt;
+      &lt;li&gt;우선 여기에 query를 하고 없으면 Root → TLD, Authoritative DNS server를 거쳐서 mapping 정보를 가져온 후 응답한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;cdn-contents-distribution-network&quot;&gt;CDN (Contents Distribution Network)&lt;/h2&gt;
+
+&lt;h3 id=&quot;배경&quot;&gt;배경&lt;/h3&gt;
+
+&lt;p&gt;비디오와 같은 스트리밍 서비스가 network load의 주 원인이 되고 있고 네트워크상에서 Client와 Server사이의 거리가 일반적으로 크기 때문에 여러 ISP를 거치는 경우가 많다. 그런데 ISP의 용량이 적으면 bottlenect이 발생한다. 이러한 이유로 일반적으로 스트리밍 서비스는 여러 대의 server를 분산적으로 두고 서비스를 제공한다. 이를 CDN이라고 한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;cdn-구축의-두-가지-원칙&quot;&gt;CDN 구축의 두 가지 원칙&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Enter deep : 각 ISP network 내에 설치
+    &lt;ul&gt;
+      &lt;li&gt;CDN 서버 사이의 링크 라우터 개수가 줄어들기 때문에 속도가 빠르지만 그만큼 많이 설치해야 하기 때문에 비용이 많이 발생한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Bring home : ISP 주변에 전용 회선으로 연결해서 설치
+    &lt;ul&gt;
+      &lt;li&gt;중요 지점에만 CDN을 설치함으로써 비용을 줄일 수 있다. 하지만 반대로 거리가 늘어나기 때문에 속도는 느려진다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Layer5" /><category term="Network" /><category term="Layer5" /><summary type="html">application layer의 특징</summary></entry><entry><title type="html">[Network] 컴퓨터 네트워크와 인터넷</title><link href="http://localhost:4000/network/36/" rel="alternate" type="text/html" title="[Network] 컴퓨터 네트워크와 인터넷" /><published>2023-09-10T00:00:00+09:00</published><updated>2023-09-10T00:00:00+09:00</updated><id>http://localhost:4000/network/36</id><content type="html" xml:base="http://localhost:4000/network/36/">&lt;h3 id=&quot;internet-이란&quot;&gt;Internet 이란?&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;인터넷은 컴퓨터로 연결하여 &lt;strong&gt;TCP/IP&lt;/strong&gt; 라는 통신 프로토콜을 이용해 정보를 주고 받는 &lt;strong&gt;컴퓨터 네트워크&lt;/strong&gt;를 의미한다.&lt;/li&gt;
+  &lt;li&gt;Date를 전달하는 장치들이 이루는 거대한 network 망이다&lt;/li&gt;
+  &lt;li&gt;end system(host) 에 통신 서비스를 제공하는 존재이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;구성&quot;&gt;구성&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;여러 형태의 sub-network로 구성된다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;End system&lt;/code&gt; : 노트북, 휴대폰, 컴퓨터 등 네트워크를 이용하는 말단 부분&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Access Network&lt;/code&gt; : end system에 해당하는 기기들이 인터넷에 접속하기 위해 사용하는 네트워크로 sub-network의 기반이 되는 기술&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;network&lt;/code&gt; : end system의 정보를 전달하는 역할을 하는 부분&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;end system&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;인터넷과 연결된 가장 말단의 존재&lt;/li&gt;
+  &lt;li&gt;web browser, email, client, server …&lt;/li&gt;
+  &lt;li&gt;점점 범위가 확장되고 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;access network&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;End system이 Internet의 첫 부분과 연결되는 구간, Edge router&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Home&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;FTTH, cable internet access ..&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enterprise&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;LAN : Ethernet, WIFI&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WAN&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;3G, LTE, 5G ..&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;network core&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;네트워크의 핵심 부분&lt;/li&gt;
+  &lt;li&gt;end system의 정보를 전달하는 역할&lt;/li&gt;
+  &lt;li&gt;packet 기반으로 동작
+    &lt;ul&gt;
+      &lt;li&gt;router, link-layer switch를 통해서 원하는 곳으로 패킷을 전달하는 역할을 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;store-and-forward transmission
+    &lt;ul&gt;
+      &lt;li&gt;스위치가 출력 링크로 패킷의 첫 비트를 전송하기 전에 전체 패킷을 받는 것을 의미한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;packet&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Internet에서의 정보를 전달하는 전송 기본 단위&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;packet switching network&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;packet 기반으로 전달을 하는 통신 네트워크&lt;/li&gt;
+  &lt;li&gt;모든 통신이 packet 형태로 이루어짐.&lt;/li&gt;
+  &lt;li&gt;대표적으로 Internet 이 여기에 속한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Congestion&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;여러개의 입력 node와 연결된 packet switch에서의 혼잡 현상&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Queueing&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;혼잡 현상을 해결하기 packet switching에 대기열을 만들고 대기열에 packet을 쌓는다. 어떤걸 먼저 보낼지는 Queueing에 설정된 프로토콜에 맞춰서 전달된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Packet Loss&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;너무 많은 packet 으로 인해서 Queue가 가득차게 되면서 packet을 버리게 되는 것을 의미한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Router&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;packet을 적절하게 전달하는 역할을 수행한다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Forwarding table&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;packet의 목적지를 forwarding table과 비교하고 어디로 내보낼 지 결정&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Routing protocol&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Forwarding table을 만드는 알고리즘(프로토콜)을 말한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Protocol&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Internet 내에서 각 entity들의 동작 그 자체를 정의한다.&lt;/li&gt;
+  &lt;li&gt;정보 송수신에 대한 기능적 실체&lt;/li&gt;
+  &lt;li&gt;주로 주고받는 메시지 + 관련 동작을 정의한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;계층-구조&quot;&gt;계층 구조&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;애플리케이션 계층&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;각 end system에 있는 애플리케이션끼리 정보 패킷을 교환할 때 사용한다.&lt;/li&gt;
+  &lt;li&gt;HTTP, SMPT, FTP, DNS …&lt;/li&gt;
+  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Message&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;트랜스포트 계층&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TCP&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;연결지향형 서비스 제공&lt;/li&gt;
+      &lt;li&gt;긴 메시지를 짧은 메시지로 나누고 혼잡 제어 기능을 제공한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UDP&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;비연결성 서비스 제공&lt;/li&gt;
+      &lt;li&gt;서비스 신뢰성, 흐름 제어, 혼잡 제어를 제공하지 않는다. (대신 빠르다.)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Segment&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;네트워크 계층&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;end system to end system으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;데이터그램(datagram)&lt;/code&gt; 을 라우팅하는 책임을 진다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;라우팅 프로토콜&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IP 프로토콜&lt;/code&gt;을 포함한다.&lt;/li&gt;
+  &lt;li&gt;Routing, Forwarding을 해준다.&lt;/li&gt;
+  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;packet&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;링크 계층&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;송신 노드부터 수신 노드까지 하나의 링크를 통해 신뢰적인 전송을 제공한다.&lt;/li&gt;
+  &lt;li&gt;네트워크 내에서 Packet 흐름을 결정하는 핵심 역할을 수행한다.&lt;/li&gt;
+  &lt;li&gt;L1(물리 계층)에 의존적이다.&lt;/li&gt;
+  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;frame&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;물리 계층&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;링크 계층과 서로 엮여서 동작한다.&lt;/li&gt;
+  &lt;li&gt;1:1 상황에서 직접적인 물리 신호를 주고 받아서 정보를 전달한다.&lt;/li&gt;
+  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bit&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;캡슐화&quot;&gt;캡슐화&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;layer를 통과할 때 PCI가 붙으면서 PDU의 크기가 커지고 헤더도 계속 붙는다. 이렇게 계속 감싸지는 것을 캡슐화라고 한다.&lt;/li&gt;
+  &lt;li&gt;각 layer는 자신만의 정보 header를 붙이면서, 상위 layer의 packet을 캡슐화한다.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Network" /><summary type="html">Internet 이란?</summary></entry><entry><title type="html">[SQLD] 데이터 모델 &amp;amp; 성능</title><link href="http://localhost:4000/sqld/35/" rel="alternate" type="text/html" title="[SQLD] 데이터 모델 &amp;amp; 성능" /><published>2023-09-01T00:00:00+09:00</published><updated>2023-09-01T00:00:00+09:00</updated><id>http://localhost:4000/sqld/35</id><content type="html" xml:base="http://localhost:4000/sqld/35/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;데이터-모델과-성능&quot;&gt;&lt;em&gt;데이터 모델과 성능&lt;/em&gt;&lt;/h1&gt;
 
@@ -1047,199 +1455,4 @@
 
 &lt;ul&gt;
   &lt;li&gt;https://www.inflearn.com/course/ORM-JPA-Basic/dashboard&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="JPA" /><category term="Spring" /><category term="JPA" /><category term="DB" /><summary type="html"></summary></entry><entry><title type="html">[JPA] 기본키 매핑 전략</title><link href="http://localhost:4000/jpa/JPA3/" rel="alternate" type="text/html" title="[JPA] 기본키 매핑 전략" /><published>2023-07-21T00:00:00+09:00</published><updated>2023-07-21T00:00:00+09:00</updated><id>http://localhost:4000/jpa/JPA3</id><content type="html" xml:base="http://localhost:4000/jpa/JPA3/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;기본-키-매핑-전략&quot;&gt;기본 키 매핑 전략&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IDENTITY&lt;/code&gt; : 데이터베이스에 위임하는 전략
-    &lt;ul&gt;
-      &lt;li&gt;MYSQL에서 사용됨.&lt;/li&gt;
-      &lt;li&gt;AUTO_INCREMENT는 데이터베이스에 INSERT SQL을 실행한 이후에 ID값을 알 수 있기 때문에 em.persist() 시점에 바로 INSERT SQL을 실행하고 ID를 가져온다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt;
-  &lt;span class=&quot;nd&quot;&gt;@GeneratedValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strategy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;GenerationType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;IDENTITY&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SEQUENCE&lt;/code&gt; : 데이터베이스 시퀀스 오브젝트 사용
-    &lt;ul&gt;
-      &lt;li&gt;오라클에서 사용&lt;/li&gt;
-      &lt;li&gt;데이터베이스 시퀀스란 유일한 값을 순서대로 생성하는 특별한 데이터베이스 오브젝트를 뜻한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@SequenceGenerator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;“&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ITEM_SEQ_GENERATOR&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;,
-sequenceName = “ITEM_SEQ&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;initialValue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;allocationSize&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@GeneratedValue&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strategy&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;GenerationType&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;SEQUENCE&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Table&lt;/code&gt; : 키 생성용 테이블 사용, 모든 DB에 적용 가능
-    &lt;ul&gt;
-      &lt;li&gt;키 생성 전용 테이블을 하나 만들고 데이터베이스 시퀀스를 흉내내는 전략&lt;/li&gt;
-      &lt;li&gt;모든 데이터베이스에 적용이 가능하지만 성능이 좋지 않다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Object&lt;/strong&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
-&lt;span class=&quot;nd&quot;&gt;@TableGenerator&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;ITEM_SEQ_GENERATOR&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;table&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;MY_SEQUENCES&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;pkColumnValue&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;“&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ITEM_SEQ&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;, allocationSize = 1)
-public class Item {
-@Id
-@GeneratedValue(strategy = GenerationType.TABLE,
-generator = &quot;&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;ITEM_SEQ_GENERATOR&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Table&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&quot;language-mysql&quot;&gt;create table MY_SEQUENCES (
-sequence_name varchar(255) not null,
-next_val bigint,
-primary key ( sequence_name )
-)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AUTO&lt;/code&gt; : 방언에 따라 자동 지정, 기본 값&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;실무-사용-가이드&quot;&gt;실무 사용 가이드&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;기본키는 Long Type + 대체키 + 키 생성전략을 활용하자&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;참고-사이트-출처&quot;&gt;참고 사이트 출처&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;https://www.inflearn.com/course/ORM-JPA-Basic/dashboard&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="JPA" /><category term="Spring" /><category term="JPA" /><category term="DB" /><summary type="html"></summary></entry><entry><title type="html">[JPA] Intro</title><link href="http://localhost:4000/jpa/JPA1/" rel="alternate" type="text/html" title="[JPA] Intro" /><published>2023-07-21T00:00:00+09:00</published><updated>2023-07-21T00:00:00+09:00</updated><id>http://localhost:4000/jpa/JPA1</id><content type="html" xml:base="http://localhost:4000/jpa/JPA1/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/24_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;JPA에 대해서 한번 정리해보자!&lt;/p&gt;
-
-&lt;p&gt;본 포스팅은 Inflearn &lt;strong&gt;김영한님&lt;/strong&gt;의 강의를 바탕으로 작성했다.&lt;/p&gt;
-
-&lt;p&gt;(Spring 관련 포스팅은 전부 김영한님 강의를 바탕으로 작성됨.)&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;orm&quot;&gt;&lt;em&gt;ORM&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ORM&lt;/code&gt; (Object-relational mapping)은 객체와 DB 테이블이 매핑을 이루는 것을 말한다. 즉 &lt;strong&gt;객체가 테이블이 되도록 매핑 시켜주는 것&lt;/strong&gt; 을 의미한다.&lt;/p&gt;
-
-&lt;p&gt;객체와 관계형 데이터베이스 사이의 패러다임의 불일치를 해소해주고 객체는 객체대로 설계하고 관계형 데이터베이스는 관계형 데이터베이스대로 설계할 수 있게 도와준다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;jpa&quot;&gt;&lt;em&gt;JPA&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;정의와-역할&quot;&gt;정의와 역할&lt;/h2&gt;
-
-&lt;p&gt;그렇다면 JPA는 무엇인가? &lt;strong&gt;JPA란 자바 ORM 기술에 대한 API 표준 명세&lt;/strong&gt;이다. JPA는 ORM을 사용하기 위한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;인터페이스&lt;/code&gt; 를 모아둔 것이고, JPA를 사용하기 위해서 구현한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Hibernate&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DataNucleus&lt;/code&gt; 같은 ORM 프레임워크를 사용해야 한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/24_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;예를 들어서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Item&lt;/code&gt;이라는 테이블의 데이터를 얻어오기 위해서는 &lt;strong&gt;SELECT * FROM Item&lt;/strong&gt; 이라는 query를 실행해야 하지만 ORM을 사용하면 &lt;strong&gt;Item.findAll()&lt;/strong&gt; 이라는 메서드를 통해서 데이터를 가져올 수 있다.&lt;/p&gt;
-
-&lt;p&gt;query를 직접 작성하지 않아도 돼서 생산성이 높아진다. 대신 복잡한 query를 ORM으로 표현하기는 한계가 있고 성능도 raw query에 비해서 떨어지는 단점이 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;jpa는-어디서-동작할까&quot;&gt;JPA는 어디서 동작할까?&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/24_3.png&quot; alt=&quot;img3&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;애플리케이션에서 CRUD를 수행하면 JPA가 해당하는 SQL을 생성해주고 JDBC API를 사용해서 객체와 DB사이의 패러다임의 불일치를 해결해준다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;jpa의-장점&quot;&gt;JPA의 장점&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;객체 중심으로 개발&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;기존에는 SQL에 종속적인 개발을 했어야 했다. 그런데 JPA를 사용하면 객체 중심으로 개발을 할 수 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;유지보수&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;객체의 필드를 변경하면 개발자가 하나하나 해당 SQL을 수정했어야 했다. 그런데 이런 매핑과정을 JPA가 대신 해줌으로써 유지보수가 편리해졌다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;패러다임의 불일치 해결&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;기존에는 상속관계가 있는 객체를 DB에 넣을 때 굉장히 귀찮은 작업이 많았다. 그런데 JPA를 사용하면 알아서 필요한 SQL을 다 만들어서 넣어준다&lt;/li&gt;
-      &lt;li&gt;자유로운 객체 그래프 탐색이 가능해졌다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;성능&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;같은 트랜젝션 안에서 같은 엔티티를 반환한다. 이것이 가능한 이유는 조회를 한 후에 영속성 컨텍스트에 캐싱해두기 때문이다. DB에 query를 추가로 날리지 않기 때문에 약간의 성능 향상이 있다.&lt;/li&gt;
-      &lt;li&gt;persist를 할때마다 DB에 쿼리를 날리지 않고 트랜젝션 커밋시점에 한번에 SQL을 날린다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;지연로딩&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;객체가 실제로 사용되는 시점에 로딩을 한다.&lt;/li&gt;
-      &lt;li&gt;사용되지 않는 것들은 프록시로 들고 있는다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;즉시로딩&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;Join을 통해서 연관된 객체를 한번에 가져온다.&lt;/li&gt;
-      &lt;li&gt;항상 같이 사용되는 객체같은 경우는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fetch join&lt;/code&gt;을 통해서 한번에 조회하는 것이 성능상으로 좋다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;다음-포스팅부터는-jpa의-작동-원리와-사용-방법에-대해서-알아보겠다-&quot;&gt;다음 포스팅부터는 JPA의 작동 원리와 사용 방법에 대해서 알아보겠다. :)&lt;/h3&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;참고-사이트-출처&quot;&gt;참고 사이트 출처&lt;/h1&gt;
-
-&lt;p&gt;https://victorydntmd.tistory.com/195&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="JPA" /><category term="Spring" /><category term="JPA" /><category term="DB" /><summary type="html"></summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="JPA" /><category term="Spring" /><category term="JPA" /><category term="DB" /><summary type="html"></summary></entry></feed>

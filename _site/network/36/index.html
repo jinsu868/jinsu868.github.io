@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[JAVA] Concurrency Issue &amp; Thread Local - Jinsu’s story</title>
-<meta name="description" content="">
+<!-- begin _includes/seo.html --><title>[Network] 컴퓨터 네트워크와 인터넷 - Jinsu’s story</title>
+<meta name="description" content="Internet 이란?">
 
 
   <meta name="author" content="Moon JinSu">
@@ -22,30 +22,30 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="Jinsu's story">
-<meta property="og:title" content="[JAVA] Concurrency Issue &amp; Thread Local">
-<meta property="og:url" content="http://localhost:4000/java/spring/java3/">
+<meta property="og:title" content="[Network] 컴퓨터 네트워크와 인터넷">
+<meta property="og:url" content="http://localhost:4000/network/36/">
 
 
-  <meta property="og:description" content="">
-
-
-
-
-
-
-
-  <meta property="article:published_time" content="2023-08-21T00:00:00+09:00">
+  <meta property="og:description" content="Internet 이란?">
 
 
 
 
 
-  
+
+
+  <meta property="article:published_time" content="2023-09-10T00:00:00+09:00">
+
+
+
+
 
   
 
+  
 
-<link rel="canonical" href="http://localhost:4000/java/spring/java3/">
+
+<link rel="canonical" href="http://localhost:4000/network/36/">
 
 
 
@@ -307,16 +307,16 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[JAVA] Concurrency Issue &amp; Thread Local">
-    <meta itemprop="description" content="">
-    <meta itemprop="datePublished" content="2023-08-21T00:00:00+09:00">
+    <meta itemprop="headline" content="[Network] 컴퓨터 네트워크와 인터넷">
+    <meta itemprop="description" content="Internet 이란?">
+    <meta itemprop="datePublished" content="2023-09-10T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="http://localhost:4000/java/spring/java3/" class="u-url" itemprop="url">[JAVA] Concurrency Issue &amp; Thread Local
+            <a href="http://localhost:4000/network/36/" class="u-url" itemprop="url">[Network] 컴퓨터 네트워크와 인터넷
 </a>
           </h1>
           
@@ -333,7 +333,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          1 분 소요
+          2 분 소요
         
       </span>
     
@@ -345,51 +345,183 @@
 
       <section class="page__content e-content" itemprop="text">
         
-        <p><br /></p>
-
-<h1 id="concurrency-issue"><em>Concurrency Issue</em></h1>
-
-<blockquote>
-  <p>동시성 문제란 동일한 자원에 대해서 여러 스레드가 동시에 접근해서 값을 바꾸면서 발생하는 문제를 뜻한다. 단순히 읽기를 할때는 문제가 발생하지 않지만 값을 바꾸게 되면 문제가 발생할 수 있다.</p>
-</blockquote>
-
-<p><br /></p>
-
-<p>예시를 보고 이해해보자.</p>
-
-<p><img src="/assets/images/30_1.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
-
-<p>위 그림에서의 <code class="language-plaintext highlighter-rouge">FieldService</code>는 Spring bean으로 등록되어 있어서 싱글톤으로 관리되는 상태이다. 그런데 <code class="language-plaintext highlighter-rouge">Thread-A</code> 가 FieldService의 맴버 변수 nameStore에 접근해서 값을 바꾼 후 조회하는 로직을 실행하였다. 이 로직을 실행하고 있는 시점에 동시에 <code class="language-plaintext highlighter-rouge">Thread-B</code>가 동일한 로직을 실행했다고 생각해보자. 그러면 <code class="language-plaintext highlighter-rouge">Thread-A</code>가 값을 조회하기 전에 <code class="language-plaintext highlighter-rouge">Thread-B</code>가 값을 바꾸면 <code class="language-plaintext highlighter-rouge">Thread-A</code>에서 조회한 값이 <code class="language-plaintext highlighter-rouge">Thread-B</code>가 바꾼 값으로 조회될 수 있다. 원래 기대한 결과와는 다른 결과가 도출된 것이다. 이런 문제를 <strong>동시성 문제</strong>라고 한다. <br /></p>
-
-<p>그렇다면 이러한 문제를 어떻게 해결할 수 있을까? Java에서 제공하는 <code class="language-plaintext highlighter-rouge">ThreadLocal</code>을 사용하면 된다 ^-^ <br /><br /></p>
-
-<h1 id="threadlocal"><em>ThreadLocal</em></h1>
-
-<p>TheadLocal은 해당하는 Thread만 접근할 수 있는 특별한 저장소라고 생각하면 된다. 다른 Thread에서 접근할 수 없다. 그림을 보고 이해해보자.</p>
-
-<p><img src="/assets/images/30_2.png" alt="img2" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
-
-<p><code class="language-plaintext highlighter-rouge">Thread-A</code>가 ThreadLocal에 값을 넣으면 ThreadLocal은 <code class="language-plaintext highlighter-rouge">Thread-A</code>의 전용 저장소에 값을 저장한다. 그러면 다른 Thread에서는 이 저장소에 접근해서 값을 읽거나 쓸 수 없다. 오직 <code class="language-plaintext highlighter-rouge">Thread-A</code>만 접근할 수 있는 것이다. <br /><br /></p>
-
-<h2 id="사용-방법-및-주의점">사용 방법 및 주의점</h2>
-<p>ThreadLocal에서 값을 넣을땐 set()을 사용하고 꺼낼때는 get()을 사용하면 된다. <br />
-한 가지 주의점이 있는데 <strong>ThreadLocal을 다 사용하고 나면 반드시 <code class="language-plaintext highlighter-rouge">ThreadLocal.remove()</code>를 호출해서 ThreadLocal에 저장된 값을 지워줘야 한다.</strong> <br />
-이유는 그림을 통해서 설명하겠다. <br /><br /></p>
-
-<p><img src="/assets/images/30_3.png" alt="img3" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
-
-<p>Tomcat 같은 WAS는 일반적으로 Thread pool 방식을 사용한다. Thread를 생성하는 비용이 비싸기 때문에 미리 Thread들을 생성해두고 요청이 오면 해당 쓰레드를 할당해주는 방식이다. 그리고 요청이 끝나면 해당 Thread를 Thread pool에 반납한다. 때문에 Thread는 애플리케이션이 종료될 때까지 사라지지 않는다. <br />
-이런 상황속에서 사용자A가 HTTP 요청을 했다고 가정해보자. 요청에 대해서 WAS가 Thread pool에서 놀고 있는 <code class="language-plaintext highlighter-rouge">Thread-A</code>를 할당해줬다고 가정하자. 그리고 이 <code class="language-plaintext highlighter-rouge">Thread-A</code>에서 ThreadLocal에 값을 저장했다고 해보자. 그러면 사용자A 요청에 의한 어떤 값이 <code class="language-plaintext highlighter-rouge">Thread-A</code> 전용 저장소에 저장될 것이다. 그리고 요청이 끝나서 나갔다. <br /><br />
-이제 다른 사용자B 가 HTTP 요청을 했다. 그런데 하필이면 WAS가 또 Thread pool에 있는 <code class="language-plaintext highlighter-rouge">Thread-A</code>를 할당했다고 해보자. 이렇게 되면 사용자A 와 전혀 관련없는 사용자B가 ThreadLocal을 통해 <code class="language-plaintext highlighter-rouge">Thread-A</code> 저장소에 저장된 사용자A의 정보를 확인할 수 있게 된다. 나와 전혀 상관없는 제3자가 내 정보를 조회하는 것이다. 이런 문제를 방지하기 위해서 반드시 ThreadLocal을 다 사용하고 나면 ThreadLocal에 저장된 값을 날려줘야 한다. <br /><br /></p>
-
-<h1 id="참고-사이트-출처">참고 사이트 출처</h1>
+        <h3 id="internet-이란">Internet 이란?</h3>
 
 <ul>
-  <li>https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B3%A0%EA%B8%89%ED%8E%B8</li>
+  <li>인터넷은 컴퓨터로 연결하여 <strong>TCP/IP</strong> 라는 통신 프로토콜을 이용해 정보를 주고 받는 <strong>컴퓨터 네트워크</strong>를 의미한다.</li>
+  <li>Date를 전달하는 장치들이 이루는 거대한 network 망이다</li>
+  <li>end system(host) 에 통신 서비스를 제공하는 존재이다.</li>
 </ul>
 
-<p><br />
-더 자세한 내용은 김영한님 강의를 참고하자!</p>
+<h3 id="구성">구성</h3>
+
+<ul>
+  <li>여러 형태의 sub-network로 구성된다.</li>
+  <li><code class="language-plaintext highlighter-rouge">End system</code> : 노트북, 휴대폰, 컴퓨터 등 네트워크를 이용하는 말단 부분</li>
+  <li><code class="language-plaintext highlighter-rouge">Access Network</code> : end system에 해당하는 기기들이 인터넷에 접속하기 위해 사용하는 네트워크로 sub-network의 기반이 되는 기술</li>
+  <li><code class="language-plaintext highlighter-rouge">network</code> : end system의 정보를 전달하는 역할을 하는 부분</li>
+</ul>
+
+<p><strong>end system</strong></p>
+
+<ul>
+  <li>인터넷과 연결된 가장 말단의 존재</li>
+  <li>web browser, email, client, server …</li>
+  <li>점점 범위가 확장되고 있다.</li>
+</ul>
+
+<p><strong>access network</strong></p>
+
+<ul>
+  <li>End system이 Internet의 첫 부분과 연결되는 구간, Edge router</li>
+  <li><code class="language-plaintext highlighter-rouge">Home</code>
+    <ul>
+      <li>FTTH, cable internet access ..</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Enterprise</code>
+    <ul>
+      <li>LAN : Ethernet, WIFI</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">WAN</code>
+    <ul>
+      <li>3G, LTE, 5G ..</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>network core</strong></p>
+
+<ul>
+  <li>네트워크의 핵심 부분</li>
+  <li>end system의 정보를 전달하는 역할</li>
+  <li>packet 기반으로 동작
+    <ul>
+      <li>router, link-layer switch를 통해서 원하는 곳으로 패킷을 전달하는 역할을 한다.</li>
+    </ul>
+  </li>
+  <li>store-and-forward transmission
+    <ul>
+      <li>스위치가 출력 링크로 패킷의 첫 비트를 전송하기 전에 전체 패킷을 받는 것을 의미한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>packet</strong></p>
+
+<ul>
+  <li>Internet에서의 정보를 전달하는 전송 기본 단위</li>
+</ul>
+
+<p><strong>packet switching network</strong></p>
+
+<ul>
+  <li>packet 기반으로 전달을 하는 통신 네트워크</li>
+  <li>모든 통신이 packet 형태로 이루어짐.</li>
+  <li>대표적으로 Internet 이 여기에 속한다.</li>
+</ul>
+
+<p><strong>Congestion</strong></p>
+
+<ul>
+  <li>여러개의 입력 node와 연결된 packet switch에서의 혼잡 현상</li>
+  <li><code class="language-plaintext highlighter-rouge">Queueing</code>
+    <ul>
+      <li>혼잡 현상을 해결하기 packet switching에 대기열을 만들고 대기열에 packet을 쌓는다. 어떤걸 먼저 보낼지는 Queueing에 설정된 프로토콜에 맞춰서 전달된다.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Packet Loss</code>
+    <ul>
+      <li>너무 많은 packet 으로 인해서 Queue가 가득차게 되면서 packet을 버리게 되는 것을 의미한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Router</strong></p>
+
+<ul>
+  <li>packet을 적절하게 전달하는 역할을 수행한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">Forwarding table</code>
+    <ul>
+      <li>packet의 목적지를 forwarding table과 비교하고 어디로 내보낼 지 결정</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">Routing protocol</code>
+    <ul>
+      <li>Forwarding table을 만드는 알고리즘(프로토콜)을 말한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Protocol</strong></p>
+
+<ul>
+  <li>Internet 내에서 각 entity들의 동작 그 자체를 정의한다.</li>
+  <li>정보 송수신에 대한 기능적 실체</li>
+  <li>주로 주고받는 메시지 + 관련 동작을 정의한다.</li>
+</ul>
+
+<h3 id="계층-구조">계층 구조</h3>
+
+<p><strong>애플리케이션 계층</strong></p>
+
+<ul>
+  <li>각 end system에 있는 애플리케이션끼리 정보 패킷을 교환할 때 사용한다.</li>
+  <li>HTTP, SMPT, FTP, DNS …</li>
+  <li>PDU : <code class="language-plaintext highlighter-rouge">Message</code></li>
+</ul>
+
+<p><strong>트랜스포트 계층</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">TCP</code>
+    <ul>
+      <li>연결지향형 서비스 제공</li>
+      <li>긴 메시지를 짧은 메시지로 나누고 혼잡 제어 기능을 제공한다.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">UDP</code>
+    <ul>
+      <li>비연결성 서비스 제공</li>
+      <li>서비스 신뢰성, 흐름 제어, 혼잡 제어를 제공하지 않는다. (대신 빠르다.)</li>
+    </ul>
+  </li>
+  <li>PDU : <code class="language-plaintext highlighter-rouge">Segment</code></li>
+</ul>
+
+<p><strong>네트워크 계층</strong></p>
+
+<ul>
+  <li>end system to end system으로 <code class="language-plaintext highlighter-rouge">데이터그램(datagram)</code> 을 라우팅하는 책임을 진다.</li>
+  <li><code class="language-plaintext highlighter-rouge">라우팅 프로토콜</code>, <code class="language-plaintext highlighter-rouge">IP 프로토콜</code>을 포함한다.</li>
+  <li>Routing, Forwarding을 해준다.</li>
+  <li>PDU : <code class="language-plaintext highlighter-rouge">packet</code></li>
+</ul>
+
+<p><strong>링크 계층</strong></p>
+
+<ul>
+  <li>송신 노드부터 수신 노드까지 하나의 링크를 통해 신뢰적인 전송을 제공한다.</li>
+  <li>네트워크 내에서 Packet 흐름을 결정하는 핵심 역할을 수행한다.</li>
+  <li>L1(물리 계층)에 의존적이다.</li>
+  <li>PDU : <code class="language-plaintext highlighter-rouge">frame</code></li>
+</ul>
+
+<p><strong>물리 계층</strong></p>
+
+<ul>
+  <li>링크 계층과 서로 엮여서 동작한다.</li>
+  <li>1:1 상황에서 직접적인 물리 신호를 주고 받아서 정보를 전달한다.</li>
+  <li>PDU : <code class="language-plaintext highlighter-rouge">bit</code></li>
+</ul>
+
+<h3 id="캡슐화">캡슐화</h3>
+
+<ul>
+  <li>layer를 통과할 때 PCI가 붙으면서 PDU의 크기가 커지고 헤더도 계속 붙는다. 이렇게 계속 감싸지는 것을 캡슐화라고 한다.</li>
+  <li>각 layer는 자신만의 정보 header를 붙이면서, 상위 layer의 packet을 캡슐화한다.</li>
+</ul>
 
         
       </section>
@@ -406,9 +538,7 @@
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
     <span itemprop="keywords">
     
-      <a href="/tags/#java" class="page__taxonomy-item p-category" rel="tag">Java</a><span class="sep">, </span>
-    
-      <a href="/tags/#spring" class="page__taxonomy-item p-category" rel="tag">Spring</a>
+      <a href="/tags/#network" class="page__taxonomy-item p-category" rel="tag">Network</a>
     
     </span>
   </p>
@@ -425,9 +555,7 @@
     <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
     <span itemprop="keywords">
     
-      <a href="/categories/#java" class="page__taxonomy-item p-category" rel="tag">Java</a><span class="sep">, </span>
-    
-      <a href="/categories/#spring" class="page__taxonomy-item p-category" rel="tag">Spring</a>
+      <a href="/categories/#network" class="page__taxonomy-item p-category" rel="tag">Network</a>
     
     </span>
   </p>
@@ -435,7 +563,7 @@
 
         
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-08-21T00:00:00+09:00">August 21, 2023</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-09-10T00:00:00+09:00">September 10, 2023</time></p>
 
       </footer>
 
@@ -444,22 +572,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BJAVA%5D+Concurrency+Issue+%26+Thread+Local%20http%3A%2F%2Flocalhost%3A4000%2Fjava%2Fspring%2Fjava3%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BNetwork%5D+%EC%BB%B4%ED%93%A8%ED%84%B0+%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC%EC%99%80+%EC%9D%B8%ED%84%B0%EB%84%B7%20http%3A%2F%2Flocalhost%3A4000%2Fnetwork%2F36%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fjava%2Fspring%2Fjava3%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fnetwork%2F36%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fjava%2Fspring%2Fjava3%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fnetwork%2F36%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/jpa/sj2/" class="pagination--pager" title="[JPA] 데이터 JPA(2)
+      <a href="/sqld/35/" class="pagination--pager" title="[SQLD] 데이터 모델 &amp; 성능
 ">이전</a>
     
     
-      <a href="/algorithm/33/" class="pagination--pager" title="[알고리즘] 비트 마스킹
+      <a href="/network/layer5/37/" class="pagination--pager" title="[Network] Application Layer
 ">다음</a>
     
   </nav>
@@ -510,46 +638,6 @@
 
 
     <p class="archive__item-excerpt" itemprop="description">application layer의 특징
-</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/network/36/" rel="permalink">[Network] 컴퓨터 네트워크와 인터넷
-</a>
-      
-    </h2>
-    
-
-  <p class="page__meta">
-    
-
-    
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
-        
-          2 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">Internet 이란?
 </p>
   </article>
 </div>
@@ -622,7 +710,47 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          3 분 소요
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/algorithm/33/" rel="permalink">[알고리즘] 비트 마스킹
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
         
       </span>
     

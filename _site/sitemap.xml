@@ -141,6 +141,14 @@
 <lastmod>2023-09-01T00:00:00+09:00</lastmod>
 </url>
 <url>
+<loc>http://localhost:4000/network/36/</loc>
+<lastmod>2023-09-10T00:00:00+09:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/network/layer5/37/</loc>
+<lastmod>2023-09-10T00:00:00+09:00</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/categories/</loc>
 </url>
 <url>
@@ -169,5 +177,8 @@
 </url>
 <url>
 <loc>http://localhost:4000/page7/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/page8/</loc>
 </url>
 </urlset>
