@@ -220,4 +220,10 @@ var store = [{
         "tags": ["Network","Layer5"],
         "url": "/network/layer5/37/",
         "teaser": null
+      },{
+        "title": "[Network] Layer3",
+        "excerpt":"네트워크 계층의 역할 네트워크 상에서 end-to-end로 패킷을 전달하는 역할 포워딩 (Forwarding) 입력 포트로 들어오는 패킷을 다른 출력 포트로 전송하는 동작 포워딩 테이블을 기반으로 동작한다. Data plane에서 수행된다. 라우팅 (Routing) 경로를 파악하기 위한 제어 동작 라우팅 알고리즘을 통해서 포워딩 테이블을 생성한다. Control plane 에서 수행된다. 데이터, 제어 평면 역할 데이터 평면...","categories": ["Network"],
+        "tags": ["Network"],
+        "url": "/network/38/",
+        "teaser": null
       }]

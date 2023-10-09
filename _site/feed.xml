@@ -1,4 +1,576 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-09-10T17:35:44+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[Network] Application Layer</title><link href="http://localhost:4000/network/layer5/37/" rel="alternate" type="text/html" title="[Network] Application Layer" /><published>2023-09-10T00:00:00+09:00</published><updated>2023-09-10T00:00:00+09:00</updated><id>http://localhost:4000/network/layer5/37</id><content type="html" xml:base="http://localhost:4000/network/layer5/37/">&lt;h2 id=&quot;application-layer의-특징&quot;&gt;application layer의 특징&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-10-09T14:28:55+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[Network] Layer3</title><link href="http://localhost:4000/network/38/" rel="alternate" type="text/html" title="[Network] Layer3" /><published>2023-10-09T00:00:00+09:00</published><updated>2023-10-09T00:00:00+09:00</updated><id>http://localhost:4000/network/38</id><content type="html" xml:base="http://localhost:4000/network/38/">&lt;h2 id=&quot;네트워크-계층의-역할&quot;&gt;네트워크 계층의 역할&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;네트워크 상에서 end-to-end로 패킷을 전달하는 역할&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;포워딩 (Forwarding)&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;입력 포트로 들어오는 패킷을 다른 출력 포트로 전송하는 동작
+        &lt;ul&gt;
+          &lt;li&gt;포워딩 테이블을 기반으로 동작한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Data plane에서 수행된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;라우팅 (Routing)&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;경로를 파악하기 위한 제어 동작&lt;/li&gt;
+      &lt;li&gt;라우팅 알고리즘을 통해서 포워딩 테이블을 생성한다.&lt;/li&gt;
+      &lt;li&gt;Control plane 에서 수행된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;데이터-제어-평면-역할&quot;&gt;데이터, 제어 평면 역할&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;데이터 평면 (data plane)
+    &lt;ul&gt;
+      &lt;li&gt;IP 헤더 분석 및 포워딩&lt;/li&gt;
+      &lt;li&gt;Fragmentation&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;제어 평면 (control plane)
+    &lt;ul&gt;
+      &lt;li&gt;라우팅 알고리즘&lt;/li&gt;
+      &lt;li&gt;ICMP&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;네트워크-서비스-모델&quot;&gt;네트워크 서비스 모델&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;인터넷 네트워크 계층은 최선형 서비스(best-effort-service)를 제공한다.&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;최선을 다하지만 결과는 보장하지 않는다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;라우터의-구성요소&quot;&gt;라우터의 구성요소&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;입력 포트&lt;/li&gt;
+  &lt;li&gt;출력 포트&lt;/li&gt;
+  &lt;li&gt;스위치 구조
+    &lt;ul&gt;
+      &lt;li&gt;라우터의 입력 포트와 출력 포트 연결&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;라우팅 프로세스
+    &lt;ul&gt;
+      &lt;li&gt;기존 라우터에서는 라우팅 알고리즘을 실행하여 포워딩 테이블을 만들었는데 SDN 라우터는 라우팅 프로세서가 원격 컨트롤러와 통신하여 원격 컨트롤러에서 계산된 포워딩 테이블을 가져와서 사용한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;큐잉&quot;&gt;큐잉&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;도착하는 모든 패킷을 전송하기에 스위치가 충분히 빠른 속도로 이뤄지지 않을 때 발생한다.&lt;/li&gt;
+  &lt;li&gt;입력, 출력 포트에서 발생한다.&lt;/li&gt;
+  &lt;li&gt;큐잉 버퍼가 가득찬 상태에서 패킷이 도착하면 패킷을 버리게 된다.
+    &lt;ul&gt;
+      &lt;li&gt;&lt;em&gt;버퍼를 크게하면 패킷을 버리는 경우가 줄어들어서 좋을까?&lt;/em&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;strong&gt;패킷 손실이 줄어드는 것보다 버퍼가 클수록 큐잉 지연이 길어진다고 생각하는 게 옳다.&lt;/strong&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;패킷-스케줄링&quot;&gt;패킷 스케줄링&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;FCFS, FIFO
+    &lt;ul&gt;
+      &lt;li&gt;먼저 도착한 패킷을 먼저 서비스한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;우선순위 큐잉
+    &lt;ul&gt;
+      &lt;li&gt;클래스마다 우선순위가 있고 높은 우선순위의 클래스가 먼저 서비스된다. 동일한 우선순위라면 FIFO 방식으로 서비스한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;라운드 로빈
+    &lt;ul&gt;
+      &lt;li&gt;클래스로 큐를 분리한다. 하지만 큐 사이의 우선순위가 존재하지 않고 스케줄러가 번갈아가면서 서비스한다. 동일한 큐에 있는 클래스는 FIFO 방식으로 서비스된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;WFQ&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;인터넷-프로토콜-ip&quot;&gt;인터넷 프로토콜 (IP)&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;3계층 프로토콜 중 하나이다.&lt;/li&gt;
+  &lt;li&gt;비연결형 서비스
+    &lt;ul&gt;
+      &lt;li&gt;상대방 엔티티와 연결을 맺는 개념이 없고, 그때그때 도달하는 패킷을 기준으로 동작한다.&lt;/li&gt;
+      &lt;li&gt;유연하고 동작 측면에서 오버헤드가 적다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;ipv4&quot;&gt;IPv4&lt;/h2&gt;
+
+&lt;h2 id=&quot;데이터그램&quot;&gt;데이터그램&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/38_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;주소-체계&quot;&gt;주소 체계&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;IP에서 사용하는 32bit (4 byptes) 주소&lt;/li&gt;
+  &lt;li&gt;호스트나 라우터의 인터페이스별로 존재한다.&lt;/li&gt;
+  &lt;li&gt;2^32, 약 40억개가 존재한다.&lt;/li&gt;
+  &lt;li&gt;Dotted-decimal notation
+    &lt;ul&gt;
+      &lt;li&gt;x.y.z.w 형태이며, 각 숫자는 8bit, 0 ~255 이다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;일반적으로 인터넷내에서 globally unique
+    &lt;ul&gt;
+      &lt;li&gt;NAT 영역은 locally unique&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;인터넷--주소와-서브넷&quot;&gt;인터넷  주소와 서브넷&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/38_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;빨간색으로 묶인 부분이 서브넷이다.&lt;/li&gt;
+  &lt;li&gt;물리적으로 비슷한 위치에 존재하고 L1/L2 수준에서 같은 영역에 존재한다.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;서브넷&lt;/strong&gt; : IP 주소 앞부분(prefix)로 지칭된다.
+    &lt;ul&gt;
+      &lt;li&gt;223.1.1.0/24 : 앞부분 24bit의 IP가 서브넷 주소이다.&lt;/li&gt;
+      &lt;li&gt;prefix를 제외한 나머지 IP 주소 bit가 한 서브넷 안에 포함될 수 있는 호스트의 수이다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;호스트-주소-획득&quot;&gt;호스트 주소 획득&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;기관 담당자에게 직접 신청해서 수동으로 설정&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;DHCP 프로토콜에 의한 자동 할당&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;클라이언트-서버 프로토콜이다.&lt;/li&gt;
+      &lt;li&gt;주소 할당 과정
+        &lt;ul&gt;
+          &lt;li&gt;DHCP server discover
+            &lt;ul&gt;
+              &lt;li&gt;DHCP 서버를 찾는 메시지 (UDP port 67)&lt;/li&gt;
+              &lt;li&gt;IP : 255.255.255.255 : 브로드캐스트&lt;/li&gt;
+              &lt;li&gt;브로드캐스팅을 하는 이유는 현재 호스트와 가장 가까운 곳에서 주소를 얻기 위해서&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;DHCP server offer
+            &lt;ul&gt;
+              &lt;li&gt;server가 자신의 존재를 알리는 것. (브로드캐스팅)&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li&gt;DHCP request - DHCP ACK&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/38_3.png&quot; alt=&quot;img3&quot; width=&quot;40%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;nat&quot;&gt;NAT&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/38_4.png&quot; alt=&quot;img4&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;하나의 IP로 할당 받아 내부의 서브넷의 여러 호스트에게 공통으로 서비스하는 방식을 말한다.&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;내부적으로는 IP를 따로 주면서 외부로 나갈 때 할당된 하나의 IP를 사용한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/38_5.png&quot; alt=&quot;img5&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;외부 IP + Port 번호와 내부 IP/Port 를 매핑한다.&lt;/li&gt;
+  &lt;li&gt;NAT 변환 테이블을 통해 outer → internal routing을 수행한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;nat의-역할&quot;&gt;NAT의 역할&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;외부IP 하나로 여러 호스트를 네트워킹할 수 있다.&lt;/li&gt;
+  &lt;li&gt;부족한 IP address 수에 대한 보완책이다.&lt;/li&gt;
+  &lt;li&gt;인터넷 네트워크내의 호스트를 감추는 역할을 한다.
+    &lt;ul&gt;
+      &lt;li&gt;외부에서는 하나의 IP로 밖에 보이지 않는다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;ipv6&quot;&gt;IPv6&lt;/h2&gt;
+
+&lt;h2 id=&quot;데이터그램-1&quot;&gt;데이터그램&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/38_6.png&quot; alt=&quot;img6&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;기존 IPv4에서는 IP 주소가 32bit 이었는데 IPv6에서는 128bit으로 확장됐다.&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;40bit 고정 크기의 헤더를 정의했다.
+    &lt;ul&gt;
+      &lt;li&gt;새로운 옵션 인코딩으로 유연한 옵션 처리가 가능해졌다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;흐름제어를 할 수 있는 Flow label 이 추가됐다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;sdn&quot;&gt;SDN&lt;/h3&gt;
+
+&lt;h2 id=&quot;라우팅-알고리즘&quot;&gt;라우팅 알고리즘&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;송신자부터 수신자까지 라우터의 네트워크를 통과하는 좋은 경로를 결정하는 알고리즘&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;라우팅 알고리즘을 통해 포워딩 테이블을 생성한다.
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;포워딩 테이블&lt;/code&gt; : 입력 데이터그램에 대한 출력 포트를 정의하기 위해 각 라우터가 보유한 표&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;제어 평면에서 수행된다.&lt;/li&gt;
+  &lt;li&gt;데이터 평면에서는 포워딩 테이블을 이용해서 패킷 포워딩을 수행한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;라우팅-알고리즘의-종류&quot;&gt;라우팅 알고리즘의 종류&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;중앙 집중형 라우팅 알고리즘
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;네트워크 전체에 대한 완전한 정보를 가지고 출발지와 목적지 사이의 최소 비용 경로 계산&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;모든 노드 사이의 연결 상태와 링크 비용을 사전에 알아야 한다.&lt;/li&gt;
+      &lt;li&gt;링크-상태 알고리즘 (Linked-state algorithm)
+        &lt;ul&gt;
+          &lt;li&gt;OSPF (AS 내)&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;분산 라우팅 알고리즘
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;라우터들에 의해 반복적이고 분산적으로 수행된다.&lt;/strong&gt;&lt;/li&gt;
+      &lt;li&gt;각 노드가 모든 링크에 대한 정보를 완벽하게 가지지 않고, 자신과 연결된 링크에 대한 정보만 가지고 단계적으로 동작한다.&lt;/li&gt;
+      &lt;li&gt;거리 백터 알고리즘 (Distance vector algorithm)
+        &lt;ul&gt;
+          &lt;li&gt;BGP (AS 간)&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;정적-동적-라우팅-알고리즘&quot;&gt;정적, 동적 라우팅 알고리즘&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;정적 라우팅 알고리즘
+    &lt;ul&gt;
+      &lt;li&gt;포워딩 테이블이 시간에 따라 변하지 않거나 거의 안 변한다.&lt;/li&gt;
+      &lt;li&gt;사람에 의한 조작에 의해서 변한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;동적 라우팅 알고리즘
+    &lt;ul&gt;
+      &lt;li&gt;traffic load 및 topology 변화에 의해서 자동으로 포워딩 테이블이 갱신된다.&lt;/li&gt;
+      &lt;li&gt;Routing loop 나 oscillation 문제가 발생할 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;링크-상태-알고리즘&quot;&gt;링크 상태 알고리즘&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;링크 상태 브로드캐스트 알고리즘을 먼저 수행한다.
+    &lt;ul&gt;
+      &lt;li&gt;각자의 식별자와 링크 별 비용 정보를 이웃에게 전달한다.&lt;/li&gt;
+      &lt;li&gt;→ 모든 링크에 대한 정보를 얻는다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;다익스트라(Dijkstra) 알고리즘을 사용한다. O(NlogN)&lt;/li&gt;
+  &lt;li&gt;트래픽 상태에 따라서 라우팅 경로가 안정적이지 못하고 진동할 수 있다. → oscillation&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;거리-벡터-알고리즘&quot;&gt;거리 벡터 알고리즘&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;링크 상태 알고리즘과 다르게 비동기적이고 분산적으로 동작한다.&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;이웃 노드끼리만 정보를 주고 받으면서 라우팅 알고리즘을 수행한다.&lt;/li&gt;
+  &lt;li&gt;벨만 포트 (Bellman-Ford) 알고리즘을 사용한다. O(N^3)
+    &lt;ul&gt;
+      &lt;li&gt;모든 노드에 대해서 edge relaxation 수행&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;자율-시스템-autonomous-system&quot;&gt;자율 시스템 (autonomous system)&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;한 기관이 관리하는 라우터 및 네트워크 모음
+    &lt;ul&gt;
+      &lt;li&gt;동일한 라우팅 프로토콜에 의해서 제어, 동작된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;인터넷은 서브넷과 gateway 라우터 형태로 계층적인 네트워크를 형성한다.
+    &lt;ul&gt;
+      &lt;li&gt;즉 서브넷간 패킷 라우팅은 반드시 gateway 라우터를 거친다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;ospf-as-내부&quot;&gt;OSPF (AS 내부)&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;중앙 집중형 라우팅 알고리즘 중 하나이다.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;AS 내부에서 사용되는 프로토콜이다.&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;과정
+    &lt;ul&gt;
+      &lt;li&gt;모든 링크 정보를 가진 상태에서 경로를 찾는 작업을 수행한다.
+        &lt;ul&gt;
+          &lt;li&gt;flooding을 통해서 수행된다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;Dijkstra 알고리즘을 통해 경로를 계산한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;링크 상태가 변경되거나 30분마다 한번 씩 브로드캐스팅이 수행된다. (견고성 Up)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;bgp-as-간&quot;&gt;BGP (AS 간)&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;분산 라우팅 알고리즘 중 하나이다.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;AS 간 라우팅을 위한 프로토콜이다.&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;서브넷 prefix를 향해서 전달된다.&lt;/li&gt;
+  &lt;li&gt;수행
+    &lt;ul&gt;
+      &lt;li&gt;인접 AS 간 서브넷 도달 정보를 교환한다.&lt;/li&gt;
+      &lt;li&gt;도달 정보에 대해 AS내 라우터에게 전달한다.&lt;/li&gt;
+      &lt;li&gt;서브넷에 대한 라우팅 경로를 결정한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;라우터의 종류
+    &lt;ul&gt;
+      &lt;li&gt;게이트웨이 라우터
+        &lt;ul&gt;
+          &lt;li&gt;AS의 경계에 있는 라우터로 다른 AS들에 있는 하나 또는 여러 개의 라우터와 직접 연결된다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;내부 라우터
+        &lt;ul&gt;
+          &lt;li&gt;AS내에 있는 호스트 및 라우터와만 연결된다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;포워딩 테이블을 생성할 때, AS 외부의 라우터가 포함되면 BGP, OSPF 알고리즘 둘 다 사용된다.&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;AS 내부에서 경로를 찾을 때, OSPF가 사용되고 AS간 경로를 찾을 때, BGP 가 사용됨.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;icmp-프로토콜&quot;&gt;ICMP 프로토콜&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;호스트, 라우터간  메시지를 주고받게 하는 프로토콜&lt;/li&gt;
+  &lt;li&gt;데이터 전송 목적이 아닌 네트워크 관리를 위해서 주로 사용된다.
+    &lt;ul&gt;
+      &lt;li&gt;IP연결 상태를 확인하기 위해서 사용된다.&lt;/li&gt;
+      &lt;li&gt;ICMP를 이용해서 IP 단에서 패킷이 송수신 되는 지 확인한다.
+        &lt;ul&gt;
+          &lt;li&gt;ICMP 메시지가 IP 데이터그램에 담겨 전송되므로 IP 바로 위에 존재한다.&lt;/li&gt;
+          &lt;li&gt;TCP/UDP 와 같이 ICMP 도 역다중화한다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;ex) ping&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Network" /><summary type="html">네트워크 계층의 역할</summary></entry><entry><title type="html">[Network] 컴퓨터 네트워크와 인터넷</title><link href="http://localhost:4000/network/36/" rel="alternate" type="text/html" title="[Network] 컴퓨터 네트워크와 인터넷" /><published>2023-09-10T00:00:00+09:00</published><updated>2023-09-10T00:00:00+09:00</updated><id>http://localhost:4000/network/36</id><content type="html" xml:base="http://localhost:4000/network/36/">&lt;h3 id=&quot;internet-이란&quot;&gt;Internet 이란?&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;인터넷은 컴퓨터로 연결하여 &lt;strong&gt;TCP/IP&lt;/strong&gt; 라는 통신 프로토콜을 이용해 정보를 주고 받는 &lt;strong&gt;컴퓨터 네트워크&lt;/strong&gt;를 의미한다.&lt;/li&gt;
+  &lt;li&gt;Date를 전달하는 장치들이 이루는 거대한 network 망이다&lt;/li&gt;
+  &lt;li&gt;end system(host) 에 통신 서비스를 제공하는 존재이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;구성&quot;&gt;구성&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;여러 형태의 sub-network로 구성된다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;End system&lt;/code&gt; : 노트북, 휴대폰, 컴퓨터 등 네트워크를 이용하는 말단 부분&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Access Network&lt;/code&gt; : end system에 해당하는 기기들이 인터넷에 접속하기 위해 사용하는 네트워크로 sub-network의 기반이 되는 기술&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;network&lt;/code&gt; : end system의 정보를 전달하는 역할을 하는 부분&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;end system&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;인터넷과 연결된 가장 말단의 존재&lt;/li&gt;
+  &lt;li&gt;web browser, email, client, server …&lt;/li&gt;
+  &lt;li&gt;점점 범위가 확장되고 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;access network&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;End system이 Internet의 첫 부분과 연결되는 구간, Edge router&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Home&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;FTTH, cable internet access ..&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enterprise&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;LAN : Ethernet, WIFI&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WAN&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;3G, LTE, 5G ..&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;network core&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;네트워크의 핵심 부분&lt;/li&gt;
+  &lt;li&gt;end system의 정보를 전달하는 역할&lt;/li&gt;
+  &lt;li&gt;packet 기반으로 동작
+    &lt;ul&gt;
+      &lt;li&gt;router, link-layer switch를 통해서 원하는 곳으로 패킷을 전달하는 역할을 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;store-and-forward transmission
+    &lt;ul&gt;
+      &lt;li&gt;스위치가 출력 링크로 패킷의 첫 비트를 전송하기 전에 전체 패킷을 받는 것을 의미한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;packet&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Internet에서의 정보를 전달하는 전송 기본 단위&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;packet switching network&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;packet 기반으로 전달을 하는 통신 네트워크&lt;/li&gt;
+  &lt;li&gt;모든 통신이 packet 형태로 이루어짐.&lt;/li&gt;
+  &lt;li&gt;대표적으로 Internet 이 여기에 속한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Congestion&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;여러개의 입력 node와 연결된 packet switch에서의 혼잡 현상&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Queueing&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;혼잡 현상을 해결하기 packet switching에 대기열을 만들고 대기열에 packet을 쌓는다. 어떤걸 먼저 보낼지는 Queueing에 설정된 프로토콜에 맞춰서 전달된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Packet Loss&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;너무 많은 packet 으로 인해서 Queue가 가득차게 되면서 packet을 버리게 되는 것을 의미한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Router&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;packet을 적절하게 전달하는 역할을 수행한다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Forwarding table&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;packet의 목적지를 forwarding table과 비교하고 어디로 내보낼 지 결정&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Routing protocol&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Forwarding table을 만드는 알고리즘(프로토콜)을 말한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Protocol&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Internet 내에서 각 entity들의 동작 그 자체를 정의한다.&lt;/li&gt;
+  &lt;li&gt;정보 송수신에 대한 기능적 실체&lt;/li&gt;
+  &lt;li&gt;주로 주고받는 메시지 + 관련 동작을 정의한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;계층-구조&quot;&gt;계층 구조&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;애플리케이션 계층&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;각 end system에 있는 애플리케이션끼리 정보 패킷을 교환할 때 사용한다.&lt;/li&gt;
+  &lt;li&gt;HTTP, SMPT, FTP, DNS …&lt;/li&gt;
+  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Message&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;트랜스포트 계층&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TCP&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;연결지향형 서비스 제공&lt;/li&gt;
+      &lt;li&gt;긴 메시지를 짧은 메시지로 나누고 혼잡 제어 기능을 제공한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UDP&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;비연결성 서비스 제공&lt;/li&gt;
+      &lt;li&gt;서비스 신뢰성, 흐름 제어, 혼잡 제어를 제공하지 않는다. (대신 빠르다.)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Segment&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;네트워크 계층&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;end system to end system으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;데이터그램(datagram)&lt;/code&gt; 을 라우팅하는 책임을 진다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;라우팅 프로토콜&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IP 프로토콜&lt;/code&gt;을 포함한다.&lt;/li&gt;
+  &lt;li&gt;Routing, Forwarding을 해준다.&lt;/li&gt;
+  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;packet&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;링크 계층&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;송신 노드부터 수신 노드까지 하나의 링크를 통해 신뢰적인 전송을 제공한다.&lt;/li&gt;
+  &lt;li&gt;네트워크 내에서 Packet 흐름을 결정하는 핵심 역할을 수행한다.&lt;/li&gt;
+  &lt;li&gt;L1(물리 계층)에 의존적이다.&lt;/li&gt;
+  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;frame&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;물리 계층&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;링크 계층과 서로 엮여서 동작한다.&lt;/li&gt;
+  &lt;li&gt;1:1 상황에서 직접적인 물리 신호를 주고 받아서 정보를 전달한다.&lt;/li&gt;
+  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bit&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;캡슐화&quot;&gt;캡슐화&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;layer를 통과할 때 PCI가 붙으면서 PDU의 크기가 커지고 헤더도 계속 붙는다. 이렇게 계속 감싸지는 것을 캡슐화라고 한다.&lt;/li&gt;
+  &lt;li&gt;각 layer는 자신만의 정보 header를 붙이면서, 상위 layer의 packet을 캡슐화한다.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Network" /><summary type="html">Internet 이란?</summary></entry><entry><title type="html">[Network] Application Layer</title><link href="http://localhost:4000/network/layer5/37/" rel="alternate" type="text/html" title="[Network] Application Layer" /><published>2023-09-10T00:00:00+09:00</published><updated>2023-09-10T00:00:00+09:00</updated><id>http://localhost:4000/network/layer5/37</id><content type="html" xml:base="http://localhost:4000/network/layer5/37/">&lt;h2 id=&quot;application-layer의-특징&quot;&gt;application layer의 특징&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;protocol stack의 가장 위에 존재한다.&lt;/li&gt;
@@ -230,183 +802,7 @@
       &lt;li&gt;중요 지점에만 CDN을 설치함으로써 비용을 줄일 수 있다. 하지만 반대로 거리가 늘어나기 때문에 속도는 느려진다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Layer5" /><category term="Network" /><category term="Layer5" /><summary type="html">application layer의 특징</summary></entry><entry><title type="html">[Network] 컴퓨터 네트워크와 인터넷</title><link href="http://localhost:4000/network/36/" rel="alternate" type="text/html" title="[Network] 컴퓨터 네트워크와 인터넷" /><published>2023-09-10T00:00:00+09:00</published><updated>2023-09-10T00:00:00+09:00</updated><id>http://localhost:4000/network/36</id><content type="html" xml:base="http://localhost:4000/network/36/">&lt;h3 id=&quot;internet-이란&quot;&gt;Internet 이란?&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;인터넷은 컴퓨터로 연결하여 &lt;strong&gt;TCP/IP&lt;/strong&gt; 라는 통신 프로토콜을 이용해 정보를 주고 받는 &lt;strong&gt;컴퓨터 네트워크&lt;/strong&gt;를 의미한다.&lt;/li&gt;
-  &lt;li&gt;Date를 전달하는 장치들이 이루는 거대한 network 망이다&lt;/li&gt;
-  &lt;li&gt;end system(host) 에 통신 서비스를 제공하는 존재이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;구성&quot;&gt;구성&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;여러 형태의 sub-network로 구성된다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;End system&lt;/code&gt; : 노트북, 휴대폰, 컴퓨터 등 네트워크를 이용하는 말단 부분&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Access Network&lt;/code&gt; : end system에 해당하는 기기들이 인터넷에 접속하기 위해 사용하는 네트워크로 sub-network의 기반이 되는 기술&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;network&lt;/code&gt; : end system의 정보를 전달하는 역할을 하는 부분&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;end system&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;인터넷과 연결된 가장 말단의 존재&lt;/li&gt;
-  &lt;li&gt;web browser, email, client, server …&lt;/li&gt;
-  &lt;li&gt;점점 범위가 확장되고 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;access network&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;End system이 Internet의 첫 부분과 연결되는 구간, Edge router&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Home&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;FTTH, cable internet access ..&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enterprise&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;LAN : Ethernet, WIFI&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WAN&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;3G, LTE, 5G ..&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;network core&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;네트워크의 핵심 부분&lt;/li&gt;
-  &lt;li&gt;end system의 정보를 전달하는 역할&lt;/li&gt;
-  &lt;li&gt;packet 기반으로 동작
-    &lt;ul&gt;
-      &lt;li&gt;router, link-layer switch를 통해서 원하는 곳으로 패킷을 전달하는 역할을 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;store-and-forward transmission
-    &lt;ul&gt;
-      &lt;li&gt;스위치가 출력 링크로 패킷의 첫 비트를 전송하기 전에 전체 패킷을 받는 것을 의미한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;packet&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Internet에서의 정보를 전달하는 전송 기본 단위&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;packet switching network&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;packet 기반으로 전달을 하는 통신 네트워크&lt;/li&gt;
-  &lt;li&gt;모든 통신이 packet 형태로 이루어짐.&lt;/li&gt;
-  &lt;li&gt;대표적으로 Internet 이 여기에 속한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Congestion&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;여러개의 입력 node와 연결된 packet switch에서의 혼잡 현상&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Queueing&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;혼잡 현상을 해결하기 packet switching에 대기열을 만들고 대기열에 packet을 쌓는다. 어떤걸 먼저 보낼지는 Queueing에 설정된 프로토콜에 맞춰서 전달된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Packet Loss&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;너무 많은 packet 으로 인해서 Queue가 가득차게 되면서 packet을 버리게 되는 것을 의미한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Router&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;packet을 적절하게 전달하는 역할을 수행한다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Forwarding table&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;packet의 목적지를 forwarding table과 비교하고 어디로 내보낼 지 결정&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Routing protocol&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;Forwarding table을 만드는 알고리즘(프로토콜)을 말한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Protocol&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Internet 내에서 각 entity들의 동작 그 자체를 정의한다.&lt;/li&gt;
-  &lt;li&gt;정보 송수신에 대한 기능적 실체&lt;/li&gt;
-  &lt;li&gt;주로 주고받는 메시지 + 관련 동작을 정의한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;계층-구조&quot;&gt;계층 구조&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;애플리케이션 계층&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;각 end system에 있는 애플리케이션끼리 정보 패킷을 교환할 때 사용한다.&lt;/li&gt;
-  &lt;li&gt;HTTP, SMPT, FTP, DNS …&lt;/li&gt;
-  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Message&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;트랜스포트 계층&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TCP&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;연결지향형 서비스 제공&lt;/li&gt;
-      &lt;li&gt;긴 메시지를 짧은 메시지로 나누고 혼잡 제어 기능을 제공한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UDP&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;비연결성 서비스 제공&lt;/li&gt;
-      &lt;li&gt;서비스 신뢰성, 흐름 제어, 혼잡 제어를 제공하지 않는다. (대신 빠르다.)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Segment&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;네트워크 계층&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;end system to end system으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;데이터그램(datagram)&lt;/code&gt; 을 라우팅하는 책임을 진다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;라우팅 프로토콜&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IP 프로토콜&lt;/code&gt;을 포함한다.&lt;/li&gt;
-  &lt;li&gt;Routing, Forwarding을 해준다.&lt;/li&gt;
-  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;packet&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;링크 계층&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;송신 노드부터 수신 노드까지 하나의 링크를 통해 신뢰적인 전송을 제공한다.&lt;/li&gt;
-  &lt;li&gt;네트워크 내에서 Packet 흐름을 결정하는 핵심 역할을 수행한다.&lt;/li&gt;
-  &lt;li&gt;L1(물리 계층)에 의존적이다.&lt;/li&gt;
-  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;frame&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;물리 계층&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;링크 계층과 서로 엮여서 동작한다.&lt;/li&gt;
-  &lt;li&gt;1:1 상황에서 직접적인 물리 신호를 주고 받아서 정보를 전달한다.&lt;/li&gt;
-  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bit&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;캡슐화&quot;&gt;캡슐화&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;layer를 통과할 때 PCI가 붙으면서 PDU의 크기가 커지고 헤더도 계속 붙는다. 이렇게 계속 감싸지는 것을 캡슐화라고 한다.&lt;/li&gt;
-  &lt;li&gt;각 layer는 자신만의 정보 header를 붙이면서, 상위 layer의 packet을 캡슐화한다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Network" /><summary type="html">Internet 이란?</summary></entry><entry><title type="html">[SQLD] 데이터 모델 &amp;amp; 성능</title><link href="http://localhost:4000/sqld/35/" rel="alternate" type="text/html" title="[SQLD] 데이터 모델 &amp;amp; 성능" /><published>2023-09-01T00:00:00+09:00</published><updated>2023-09-01T00:00:00+09:00</updated><id>http://localhost:4000/sqld/35</id><content type="html" xml:base="http://localhost:4000/sqld/35/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Layer5" /><category term="Network" /><category term="Layer5" /><summary type="html">application layer의 특징</summary></entry><entry><title type="html">[SQLD] 데이터 모델 &amp;amp; 성능</title><link href="http://localhost:4000/sqld/35/" rel="alternate" type="text/html" title="[SQLD] 데이터 모델 &amp;amp; 성능" /><published>2023-09-01T00:00:00+09:00</published><updated>2023-09-01T00:00:00+09:00</updated><id>http://localhost:4000/sqld/35</id><content type="html" xml:base="http://localhost:4000/sqld/35/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;데이터-모델과-성능&quot;&gt;&lt;em&gt;데이터 모델과 성능&lt;/em&gt;&lt;/h1&gt;
 
@@ -1319,133 +1715,6 @@
 &lt;p&gt;그래서 어떤것을 사용하면 좋을까?&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;기본적으로 조인 전략을 사용하고 진짜 단순한 경우에 단일 테이블 전략을 사용하면 된다.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;참고-사이트-출처&quot;&gt;참고 사이트 출처&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;https://www.inflearn.com/course/ORM-JPA-Basic/dashboard&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="JPA" /><category term="Spring" /><category term="JPA" /><category term="DB" /><summary type="html"></summary></entry><entry><title type="html">[JPA] 연관관계 매핑(1)</title><link href="http://localhost:4000/jpa/JPA4/" rel="alternate" type="text/html" title="[JPA] 연관관계 매핑(1)" /><published>2023-07-21T00:00:00+09:00</published><updated>2023-07-21T00:00:00+09:00</updated><id>http://localhost:4000/jpa/JPA4</id><content type="html" xml:base="http://localhost:4000/jpa/JPA4/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;객체와-테이블의-패러다임-불일치&quot;&gt;&lt;em&gt;객체와 테이블의 패러다임 불일치&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;먼저 객체와 테이블 사이의 간극을 이해할 필요가 있다. 객체는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;참조&lt;/code&gt; 를 사용해서 연관된 객체를 찾는다. 그런데 테이블은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;외래키 조인&lt;/code&gt;을 통해서 연관된 테이블을 찾는다. 때문에 객체를 테이블에 맞춰서 설계를 하면 객체간의 협력 관계를 만들 수 없다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt; 와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team&lt;/code&gt; 사이의 관계를 통해 이해해보자.&lt;/p&gt;
-
-&lt;p&gt;여기서 하나의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt; 는 하나의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team&lt;/code&gt; 에만 속할 수 있다고 가정하자. (1:N)&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;테이블에-맞춘-객체-설계&quot;&gt;테이블에 맞춘 객체 설계&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@GeneratedValue&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-  
-  &lt;span class=&quot;c1&quot;&gt;//Team team 과 같이 참조를 가지는 것이 아니라 식별자를 가진다.&lt;/span&gt;
-  &lt;span class=&quot;nd&quot;&gt;@Column&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;TEAM_ID&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;teamId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clas&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@GeneratedValue&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Team 조회&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;//member.getTeam()과 같이 바로 조회할 수 없고 id를 구한 후 이를 통해 한번 더 조회해야 한다.&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TeamId&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getTeamId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;team&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;TeamId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;위와 같은 경우가 테이블에 맞춰서 객체를 설계한 케이스이다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt; 에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team&lt;/code&gt; 을 참조로 가지고 있는 것이 아니라 외래키를 그대로 들고 있다.&lt;/p&gt;
-
-&lt;p&gt;이렇게 되면 Member에서 Team을 조회할 때, 참조로 바로 Team을 조회할 수 없고 ID를 통해서 다시 조회해야 한다. 이는 객체 지향적인 방법이 아니다.&lt;/p&gt;
-
-&lt;p&gt;ORM을 통해서 이러한 패러다임의 불일치를 해결할 수 있다. 객체는 객체대로 모델링하면 가운데서 ORM이 알맞게 매핑해준다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;객체지향-모델링&quot;&gt;객체지향 모델링&lt;/h2&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Entity&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;nd&quot;&gt;@Id&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@GeneratedValue&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-  
-	&lt;span class=&quot;nd&quot;&gt;@ManyToOne&lt;/span&gt;
-  &lt;span class=&quot;nd&quot;&gt;@JoinColumn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;TEAM_ID&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Team&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;team&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;위 코드를 보면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt;에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team&lt;/code&gt; 객체를 참조로 가지고 있다. 그런데 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member&lt;/code&gt; 테이블에서는 외래키로 TEAM_ID를 가지고 있을 것이다. 이런 차이를 매핑해주는 것이 바로 &lt;strong&gt;ORM&lt;/strong&gt; 이다. 아래 그림을 보자.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/27_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;JPA는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member 객체&lt;/code&gt;에 있는 Team 참조를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member Table&lt;/code&gt; 에 TEAM_ID 라는 외래키로 매핑해준다. 이 때 외래키 이름을 지정해줘야 하는데 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@JoinColumn&lt;/code&gt; 을 통해 지정해줄 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;양방향-매핑&quot;&gt;양방향 매핑&lt;/h1&gt;
-
-&lt;p&gt;이제 양방향 매핑에 대해서 탐구해보자. 양방향 매핑일 때는 고려해야 할 점이 좀 있다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;객체&lt;/code&gt;는 양방향 매핑을 하려면 양쪽에 참조를 가져야 한다. 그런데 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;테이블&lt;/code&gt;은 외래키 하나로 조인을 통해서 양쪽을 이동할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/27_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;위 그림을 보면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Member 객체&lt;/code&gt;에 있는 Team, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Team 객체&lt;/code&gt;에 있는 Member 참조값을 통해서 양쪽을 왔다갔다 할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;그런데 테이블은 MEMBER 테이블에 있는 TEAM_ID라는 외래키를 통해서 양쪽을 이동한다.&lt;/p&gt;
-
-&lt;p&gt;사실 객체는 양방향을 구현하려면 단방향 두개가 있어야 하는 것이고 테이블은 외래키 하나만 있으면 되는 것이다. 때문에 &lt;strong&gt;두 객체 중 한쪽에서 외래키를 관리해야 한다.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;연관관계의-주인&quot;&gt;연관관계의 주인&lt;/h1&gt;
-
-&lt;p&gt;객체의 두 관계중 하나를 연관관계의 주인으로 설정하고 주인쪽에서 외래키를 관리해야 한다. 반대쪽(거울)에서는 오직 읽기만 가능하다.&lt;/p&gt;
-
-&lt;p&gt;규칙은 간단하다. &lt;strong&gt;외래키를 가지고 있는 곳을 주인으로 설정하면 된다.&lt;/strong&gt; 1:N관계라면 무조건 N쪽에 외래키가 존재하기 때문에 N쪽을 주인으로 설정하면 된다. 거울쪽에는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;mappedBy&lt;/code&gt; 설정을 해주면 된다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;주의점 : 거울쪽에서 수정을 하더라도 udpate query가 날아가지 않는다. (단순 조회만 가능)
-    &lt;ul&gt;
-      &lt;li&gt;객체 관점에서 보면 양쪽 다 변경되는 것이 맞기 때문에 다 변경해주자.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
