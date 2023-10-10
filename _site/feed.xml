@@ -1,4 +1,269 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-10-09T14:28:55+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[Network] Layer3</title><link href="http://localhost:4000/network/38/" rel="alternate" type="text/html" title="[Network] Layer3" /><published>2023-10-09T00:00:00+09:00</published><updated>2023-10-09T00:00:00+09:00</updated><id>http://localhost:4000/network/38</id><content type="html" xml:base="http://localhost:4000/network/38/">&lt;h2 id=&quot;네트워크-계층의-역할&quot;&gt;네트워크 계층의 역할&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-10-10T15:59:14+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[Network] Layer4</title><link href="http://localhost:4000/network/39/" rel="alternate" type="text/html" title="[Network] Layer4" /><published>2023-10-10T00:00:00+09:00</published><updated>2023-10-10T00:00:00+09:00</updated><id>http://localhost:4000/network/39</id><content type="html" xml:base="http://localhost:4000/network/39/">&lt;h2 id=&quot;트랜스포트-계층의-역할-및-특징&quot;&gt;트랜스포트 계층의 역할 및 특징&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;각기 다른 호스트에서 동작하는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;프로세스&lt;/code&gt; 사이의 &lt;strong&gt;논리적 통신&lt;/strong&gt;을 제공한다.
+    &lt;ul&gt;
+      &lt;li&gt;↔ 네트워크 계층 프로토콜은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;호스트&lt;/code&gt; 사이의 논리적 통신을 제공한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;IP 및 Port 번호로 식별한다.
+    &lt;ul&gt;
+      &lt;li&gt;IP를 통해서 호스트를, Port를 통해서 프로세스를 찾아감.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;종단 시스템(end system, host)에 존재한다.
+    &lt;ul&gt;
+      &lt;li&gt;Network core, Access network에는 트랜스포트 프로토콜이 존재하지 않음.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;IP 계층에 대한 다양한 제어를 수행한다.
+    &lt;ul&gt;
+      &lt;li&gt;동적으로 IP주소를 관리, IP 변환, IP 패킷의 흐름제어를 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;PDU : 세그먼트(segment)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;다중화와-역다중화&quot;&gt;다중화와 역다중화&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;트랜스포트 계층&lt;/code&gt; ↔ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;애플리케이션 계층&lt;/code&gt; 간의 데이터를 주고 받게 해주는 서비스를 의미한다.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;역다중화 (demultiplexing)&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;트랜스포트 계층 세그먼트의 데이터를 올바른 소켓으로 전달하는 작업을 &lt;strong&gt;역다중화&lt;/strong&gt; 라고 한다.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;수신된 PDU를 적절한 소켓으로 전달하는 것.&lt;/strong&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;다중화 (multiplexing)&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;출발지 호스트에서 소켓으로부터 데이터를 모으고, 이에 대한 세그먼트를 생성하기 위해 각 데이터에 헤더 정보로 캡슐화하고, 그 세그먼트들을 네트워크 계층으로 전달하는 작업을 &lt;strong&gt;다중화&lt;/strong&gt; 라고 한다.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;여러 소켓을 통해서 SDU를 받아서 전송하는 것.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;포트-번호란&quot;&gt;포트 번호란?&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;트랜스포트 계층에서의 식별자 역할을 하는 것을 말한다.&lt;/li&gt;
+  &lt;li&gt;소켓에 대한 식별을 한다.&lt;/li&gt;
+  &lt;li&gt;일반적으로 source/destination 별로 port 번호가 존재한다.&lt;/li&gt;
+  &lt;li&gt;well-kown port number (0~1023)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/39_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;user-datagram-protocol-udp&quot;&gt;User Datagram Protocol (UDP)&lt;/h2&gt;
+
+&lt;h3 id=&quot;특징&quot;&gt;특징&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;간단한 multiplexing/demultiplexing 기능의 프로토콜이다.&lt;/li&gt;
+  &lt;li&gt;Port 번호와 Checksum만 헤에더 붙는다.&lt;/li&gt;
+  &lt;li&gt;사실상 IP 의 기능만 수행하며, 애플리케이션 계층에서 흐름 제어, 기타 기능을 구현한다.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;연결 과정 없이 바로 전송이 가능하다.&lt;/strong&gt; (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;비연결형&lt;/code&gt;)
+    &lt;ul&gt;
+      &lt;li&gt;연결을 하지 않고 별도의 흐름제어, 혼잡제어를 수행하지 않기 때문에 TCP 보다 속도가 빠르다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;헤더의 크기가 작다. (8byte) ↔ TCP는 20 byte&lt;/li&gt;
+  &lt;li&gt;ex) DNS&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;송수신-과정&quot;&gt;송수신 과정&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;UDP 소켓의 생성
+    &lt;ul&gt;
+      &lt;li&gt;애플리케이션 프로세스에서 소켓 생성 즉시 트랜스포트 계층의 port 번호가 부여된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;UDP segment 송수신
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;Two tuple : 목적지 IP &amp;amp; port 번호&lt;/strong&gt;
+        &lt;ul&gt;
+          &lt;li&gt;수신 port 번호가 같으면 동일한 소켓으로 들어간다. ↔ TCP는 송신 port 번호도 고려하여 소켓으로 매핑된다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li&gt;상대방 호스트의 port 가 열려있으면 항상 전송이 가능하다.&lt;/li&gt;
+      &lt;li&gt;IP, port 번호를 지정해서 보내면 바로 전달이 가능하다. (비연결형)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Source port의 존재 의의
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;return address&lt;/strong&gt; 개념이다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;udp-세그먼트-구조&quot;&gt;UDP 세그먼트 구조&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/39_2.png&quot; alt=&quot;img2&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;신뢰적인-데이터-전송의-원리&quot;&gt;신뢰적인 데이터 전송의 원리&lt;/h2&gt;
+
+&lt;h3 id=&quot;automatic-repeat-request-arq&quot;&gt;Automatic Repeat reQuest (ARQ)&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Acknowlegement + timer + reactions&lt;/li&gt;
+  &lt;li&gt;신뢰성 있는 PDU 전송을 위한 가장 보편적인 프로토콜 함수&lt;/li&gt;
+  &lt;li&gt;TX/RX 가 confimation (ACK)를 받거나 timer-out 까지 기다리는 동안 하는 일련의 동작을 포함한다.&lt;/li&gt;
+  &lt;li&gt;재전송 방법에 따라 여러 방식이 존재
+    &lt;ul&gt;
+      &lt;li&gt;stop and wait&lt;/li&gt;
+      &lt;li&gt;go back N (GBN)&lt;/li&gt;
+      &lt;li&gt;selective repeat (SR)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;gbn-go-back-n&quot;&gt;GBN (Go Back N)&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/39_3.png&quot; alt=&quot;img3&quot; width=&quot;40%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;N번째 unconfirmed PDU로 돌아가서 거기서부터 재전송을 한다.&lt;/li&gt;
+  &lt;li&gt;TX entity는 acknowledged 되기 전까지 보낸 PDU를 그대로 버퍼에 저장하고 있어야 한다.&lt;/li&gt;
+  &lt;li&gt;RX entity는 N번째 PDU가 문제가 생기면 이후에 PDU(N+1~)는 모두 버린다.&lt;/li&gt;
+  &lt;li&gt;time-out의 경우 N번째 PDU부터 재전송한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;sr-selective-repeat&quot;&gt;SR (Selective Repeat)&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/39_4.png&quot; alt=&quot;img4&quot; width=&quot;40%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;손실된 PDU에 대해서만 골라서 재전송한다.&lt;/li&gt;
+  &lt;li&gt;RX entity는 제대로 받은 PDU를 저장한다.&lt;/li&gt;
+  &lt;li&gt;transmission order대로 다 받을때 까지 저장한다.&lt;/li&gt;
+  &lt;li&gt;cumulative ACK를 통해 제대로 전달된 PDU를 TX entity에서 확인한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;gbn-vs-sr&quot;&gt;GBN VS SR&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;SR은 RX entity 측에 buffer가 요구된다.&lt;/li&gt;
+  &lt;li&gt;GBN은 TX entity 측에 buffer가 요구된다.&lt;/li&gt;
+  &lt;li&gt;GBN은 재전송 수신까지 시간이 좀 걸리는데 SR은 상대적으로 재전송 수신이 덜 걸린다.
+    &lt;ul&gt;
+      &lt;li&gt;필요한 것만 보내면 되기 때문에&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;TCP 는 SR과 GBN 의 혼합형이라고 생각하면 된다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;transmission-control-protocol-tcp&quot;&gt;Transmission Control Protocol (TCP)&lt;/h2&gt;
+
+&lt;h3 id=&quot;특징-1&quot;&gt;특징&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;연결 지향형&lt;/strong&gt;이다.
+    &lt;ul&gt;
+      &lt;li&gt;connection establishment 과정이 존재한다.&lt;/li&gt;
+      &lt;li&gt;connection이 존재 해야지만 세그먼트를 전달할 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;전이중 서비스(full-duplex service)&lt;/strong&gt; 를 제공한다.
+    &lt;ul&gt;
+      &lt;li&gt;A와 B가 연결되어 있으면 A→B, B→A 양방향으로 흐를 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;TCP 연결은 항상 단일 송신자와 단일 수신자 사이의 &lt;strong&gt;점대점(point-to-point)&lt;/strong&gt; 이다.
+    &lt;ul&gt;
+      &lt;li&gt;한 송신자가 멀티캐스팅할 수 없음.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Four tuple&lt;/strong&gt; : source IP/port number, destination IP/port number 로 구성된다.&lt;/li&gt;
+  &lt;li&gt;UDP와 다르게 source에 대한 정보까지 고려야여 소켓에 매핑된다.&lt;/li&gt;
+  &lt;li&gt;TCP 는 신뢰적 데이터 전송을 제공한다.
+    &lt;ul&gt;
+      &lt;li&gt;재전송 및 ARQ 기능을 포함한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;3-way-handshake&quot;&gt;3-way handshake&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/39_5.png&quot; alt=&quot;img5&quot; width=&quot;40%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;request / setup / complete
+    &lt;ul&gt;
+      &lt;li&gt;initiator가 confirmation 수신에 대해 responder에게 confirm을 또 해준다. (complete)&lt;/li&gt;
+      &lt;li&gt;responder는 complete 수신후에 connection이 맺어진 것으로 간주한다.&lt;/li&gt;
+      &lt;li&gt;complete가 loss가 일어나도 responser는 connection이 맺어진 상태로 가정할 수 있다.
+        &lt;ul&gt;
+          &lt;li&gt;이전에 request를 받았으므로, connection을 맺고자 하는 initiator 의 상태는 이미 확인했다.&lt;/li&gt;
+          &lt;li&gt;후속 data PDU을 수신하면 complete를 수신한 것으로 간주할 수 있다.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;흐름제어&quot;&gt;흐름제어&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;송신자가 수신자의 버퍼를 오버플로시키는 것을 방지하기 위해 속도를 조절하는 것을 의미(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;송신자의 억제&lt;/code&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;송수신 entity 사이에 교환되는 PDU 개수를 조정하는 것을 의미한다.&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;방식&quot;&gt;방식&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;credit procedure
+    &lt;ul&gt;
+      &lt;li&gt;수신 측에서 credit을 주고, sender는 허용된 credit에 따라 전송한다.&lt;/li&gt;
+      &lt;li&gt;송신 측은 허용된 범위의 PDU를 보내고 나서 credit을 새로 받을때까지 대기한다.&lt;/li&gt;
+      &lt;li&gt;Sliding window protocol
+        &lt;ul&gt;
+          &lt;li&gt;수신측이 제공한  credit 정보는 곳 window를 sliding 해주는 양&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;&lt;img src=&quot;/assets/images/39_6.png&quot; alt=&quot;img6&quot; width=&quot;40%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+    &lt;ul&gt;
+      &lt;li&gt;Rate-based flow control
+        &lt;ul&gt;
+          &lt;li&gt;end-to-end 제한 뿐 아니라 network load도 고려한 흐름 제어&lt;/li&gt;
+          &lt;li&gt;network의 overload 상황을 방지할 수 있음.&lt;/li&gt;
+          &lt;li&gt;송신 측에서 전송률에 대한 제한을 두고 전송&lt;/li&gt;
+          &lt;li&gt;허용된  burst size(특정 시간동안 보내는 data)를 제어&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/39_7.png&quot; alt=&quot;img7&quot; width=&quot;40%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/39_8.png&quot; alt=&quot;img8&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;혼잡제어&quot;&gt;혼잡제어&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/39_9.png&quot; alt=&quot;img9&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;네트워크가 혼잡해지면 라우터 버퍼의 오버플로우가 발생할 수 있고 이에 따라 패킷손실이 발생할 수 있다.
+    &lt;ul&gt;
+      &lt;li&gt;패킷 손실 → 재전송 → 시간 지연이 발생한다.
+        &lt;ul&gt;
+          &lt;li&gt;때문에 네트워크의 상태를 고려해서 데이터를 잘 전송해야 한다. (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;혼잡제어&lt;/code&gt;)&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;slow start &amp;amp; Dynamic window sizing&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;정상적으로 전송 - 피드백을 주고받는 상황에서는 서서히 윈도우 크기를 확장한다.&lt;/li&gt;
+      &lt;li&gt;혼잡 상황에서는 임의로 윈도우 사이즈를 줄인다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;tcp-세그먼트-구조&quot;&gt;TCP 세그먼트 구조&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/39_10.png&quot; alt=&quot;img10&quot; width=&quot;50%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Network" /><summary type="html">트랜스포트 계층의 역할 및 특징</summary></entry><entry><title type="html">[Network] Layer3</title><link href="http://localhost:4000/network/38/" rel="alternate" type="text/html" title="[Network] Layer3" /><published>2023-10-06T00:00:00+09:00</published><updated>2023-10-06T00:00:00+09:00</updated><id>http://localhost:4000/network/38</id><content type="html" xml:base="http://localhost:4000/network/38/">&lt;h2 id=&quot;네트워크-계층의-역할&quot;&gt;네트워크 계층의 역할&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;네트워크 상에서 end-to-end로 패킷을 전달하는 역할&lt;/li&gt;
@@ -570,7 +835,7 @@
 &lt;ul&gt;
   &lt;li&gt;layer를 통과할 때 PCI가 붙으면서 PDU의 크기가 커지고 헤더도 계속 붙는다. 이렇게 계속 감싸지는 것을 캡슐화라고 한다.&lt;/li&gt;
   &lt;li&gt;각 layer는 자신만의 정보 header를 붙이면서, 상위 layer의 packet을 캡슐화한다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Network" /><summary type="html">Internet 이란?</summary></entry><entry><title type="html">[Network] Application Layer</title><link href="http://localhost:4000/network/layer5/37/" rel="alternate" type="text/html" title="[Network] Application Layer" /><published>2023-09-10T00:00:00+09:00</published><updated>2023-09-10T00:00:00+09:00</updated><id>http://localhost:4000/network/layer5/37</id><content type="html" xml:base="http://localhost:4000/network/layer5/37/">&lt;h2 id=&quot;application-layer의-특징&quot;&gt;application layer의 특징&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Network" /><summary type="html">Internet 이란?</summary></entry><entry><title type="html">[Network] Layer5</title><link href="http://localhost:4000/network/layer5/37/" rel="alternate" type="text/html" title="[Network] Layer5" /><published>2023-09-10T00:00:00+09:00</published><updated>2023-09-10T00:00:00+09:00</updated><id>http://localhost:4000/network/layer5/37</id><content type="html" xml:base="http://localhost:4000/network/layer5/37/">&lt;h2 id=&quot;application-layer의-특징&quot;&gt;application layer의 특징&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;protocol stack의 가장 위에 존재한다.&lt;/li&gt;
@@ -1602,126 +1867,4 @@
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;
-더 자세한 내용은 김영한님 강의를 참고하자!&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="JPA" /><category term="Spring" /><category term="JPA" /><category term="Data JPA" /><summary type="html"></summary></entry><entry><title type="html">[JPA] 연관관계 매핑(2)</title><link href="http://localhost:4000/jpa/JPA5/" rel="alternate" type="text/html" title="[JPA] 연관관계 매핑(2)" /><published>2023-07-27T00:00:00+09:00</published><updated>2023-07-27T00:00:00+09:00</updated><id>http://localhost:4000/jpa/JPA5</id><content type="html" xml:base="http://localhost:4000/jpa/JPA5/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;오늘은 JPA에서 상속관계를 매핑하는 방법에 대해서 알아보자!&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;상속관계-매핑&quot;&gt;&lt;em&gt;상속관계 매핑&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;관계형 데이터베이스는 상속 관계에 대한 매핑을 따로 지원하지 않는다. 슈퍼타입, 서브타입 관계라는 모델링 기법을 통해서 상속관계를 표현할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;슈퍼타입, 서브타입 논리 모델을 실제 물리 모델로 구현하는 방법은 크게 3가지가 있다. 이 중에서 구현 클래스마다 테이블을 만드는 전략은 실제로 사용되지 않기 때문에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;조인 전략&lt;/code&gt;과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;단일 테이블 전략&lt;/code&gt;에 대해서 알아보자.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;조인-전략&quot;&gt;&lt;em&gt;조인 전략&lt;/em&gt;&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/28_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;조인 전략은 상속관계를 매핑하는데 가장 많이 사용되는 전략이다. 공통되는 속성들을 하나의 테이블(여기서는 Item)에 넣고 공통되지 않는 고유의 속성들은 각각의 테이블(Album, Movie, Book)에 넣는다. 그리고 조인을 통해서 데이터를 가져온다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;장점&quot;&gt;장점&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;테이블이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;정규화&lt;/code&gt;된다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;외래키 참조 무결성 제약조건&lt;/code&gt;을 활용가능하다.&lt;/li&gt;
-  &lt;li&gt;저장공간을 효율적으로 사용할 수 있다.
-    &lt;ul&gt;
-      &lt;li&gt;정규화되서 관리되기 때문에 중복되지 않고 잘 관리된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;단점&quot;&gt;단점&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;조회할 때 조인을 많이 사용하기 때문에 약간의 성능 저하가 있다.&lt;/li&gt;
-  &lt;li&gt;조인으로 쿼리가 나가기 때문에 복잡하다.&lt;/li&gt;
-  &lt;li&gt;각각의 테이블이 있기 때문에 하나를 저장할 때 INSERT SQL이 2번 호출된다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;적용&quot;&gt;적용&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Inheritance(strategy = inheritanceType.JOINED) &lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;이 에노테이션을 부모 엔티티에 붙여주면 된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@DiscriminatorColumn(name=&quot;DTYPE&quot;)&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;이 에노테이션을 넣으면 슈퍼타입 테이블에 서브타입 테이블의 종류를 표현하는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DTYPE&lt;/code&gt;이라는 컬럼이 생긴다.&lt;/li&gt;
-      &lt;li&gt;JOIN 전략에서는 안넣어줘도 동작하기는 하지만 운영을 편하게 하기 위해서 넣어주는 것이 좋다.&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@DiscriminatorValue(&quot;xxx&quot;)&lt;/code&gt;
-        &lt;ul&gt;
-          &lt;li&gt;DTYPE에 저장되는 타입의 이름을 지정할 수 있는 에노테이션이다.&lt;/li&gt;
-          &lt;li&gt;자식 엔티티에 붙여줄 수 있다. 기본값은 클래스 이름이고 기본값을 사용하면 된다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;단일-테이블-전략&quot;&gt;단일 테이블 전략&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/28_2.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;단일 테이블 전략은 한 테이블에 자식 엔티티 컬럼까지 다 때려박고 운영하는 방식이다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;###&lt;/p&gt;
-
-&lt;h3 id=&quot;장점-1&quot;&gt;장점&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;조인이 필요 없어서 일반적으로 조회 성능이 좋다.&lt;/li&gt;
-  &lt;li&gt;조회 쿼리가 단순하다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;단점-1&quot;&gt;단점&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;자식 엔티티가 매핑한 칼럼은 모두 null 허용을 해야한다.&lt;/li&gt;
-  &lt;li&gt;한 테이블에 모든 속성을 때려박기 때문에 테이블이 커져서 상황에 따라서 조회가 느려질 수 있다.
-    &lt;ul&gt;
-      &lt;li&gt;임계점을 넘겨야 느려지는데 이런 경우는 잘 발생하지 않는다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;정리&quot;&gt;정리&lt;/h1&gt;
-
-&lt;p&gt;그래서 어떤것을 사용하면 좋을까?&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;기본적으로 조인 전략을 사용하고 진짜 단순한 경우에 단일 테이블 전략을 사용하면 된다.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;참고-사이트-출처&quot;&gt;참고 사이트 출처&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;https://www.inflearn.com/course/ORM-JPA-Basic/dashboard&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="JPA" /><category term="Spring" /><category term="JPA" /><category term="DB" /><summary type="html"></summary></entry></feed>
+더 자세한 내용은 김영한님 강의를 참고하자!&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="JPA" /><category term="Spring" /><category term="JPA" /><category term="Data JPA" /><summary type="html"></summary></entry></feed>

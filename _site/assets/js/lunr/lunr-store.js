@@ -215,7 +215,7 @@ var store = [{
         "url": "/network/36/",
         "teaser": null
       },{
-        "title": "[Network] Application Layer",
+        "title": "[Network] Layer5",
         "excerpt":"application layer의 특징 protocol stack의 가장 위에 존재한다. 사용자가 직접 접하는 protocol 이다. socket을 통해서 transport layer 와 통신한다. socket : 프로세스와 네트워크 사이의 인터페이스이다. (IP + Port로 식별) application layer가 존재하는 end system 끼리 소통한다. transport layer에서 application layer에 제공하는 서비스 신뢰적 데이터 전송 보장된 데이터 전송 서비스를 제공하는...","categories": ["Network","Layer5"],
         "tags": ["Network","Layer5"],
         "url": "/network/layer5/37/",
@@ -225,5 +225,11 @@ var store = [{
         "excerpt":"네트워크 계층의 역할 네트워크 상에서 end-to-end로 패킷을 전달하는 역할 포워딩 (Forwarding) 입력 포트로 들어오는 패킷을 다른 출력 포트로 전송하는 동작 포워딩 테이블을 기반으로 동작한다. Data plane에서 수행된다. 라우팅 (Routing) 경로를 파악하기 위한 제어 동작 라우팅 알고리즘을 통해서 포워딩 테이블을 생성한다. Control plane 에서 수행된다. 데이터, 제어 평면 역할 데이터 평면...","categories": ["Network"],
         "tags": ["Network"],
         "url": "/network/38/",
+        "teaser": null
+      },{
+        "title": "[Network] Layer4",
+        "excerpt":"트랜스포트 계층의 역할 및 특징 각기 다른 호스트에서 동작하는 프로세스 사이의 논리적 통신을 제공한다. ↔ 네트워크 계층 프로토콜은 호스트 사이의 논리적 통신을 제공한다. IP 및 Port 번호로 식별한다. IP를 통해서 호스트를, Port를 통해서 프로세스를 찾아감. 종단 시스템(end system, host)에 존재한다. Network core, Access network에는 트랜스포트 프로토콜이 존재하지 않음. IP 계층에...","categories": ["Network"],
+        "tags": ["Network"],
+        "url": "/network/39/",
         "teaser": null
       }]

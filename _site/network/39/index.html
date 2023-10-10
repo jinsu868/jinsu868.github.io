@@ -1,0 +1,915 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Network] Layer4 - Jinsu’s story</title>
+<meta name="description" content="트랜스포트 계층의 역할 및 특징">
+
+
+  <meta name="author" content="Moon JinSu">
+  
+  <meta property="article:author" content="Moon JinSu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="Jinsu's story">
+<meta property="og:title" content="[Network] Layer4">
+<meta property="og:url" content="http://localhost:4000/network/39/">
+
+
+  <meta property="og:description" content="트랜스포트 계층의 역할 및 특징">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-10-10T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/network/39/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "문진수(Moon JinSu)",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Jinsu's story Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Jinsu's story
+          
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Moon JinSu</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>tech blog</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seoul, Korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+
+<!-- Categories -->
+<nav class="nav__list">
+  <ul class="nav__items" id="category_tag_menu">
+      <li>
+          <span class="nav__sub-title">📂 Total (39)</span>
+          <ul>
+              
+                  
+                  <li>
+                      <a href="/categories/#spring" class="">Spring (14)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#디자인패턴" class="">디자인패턴 (8)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#java" class="">Java (3)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#algorithm" class="">Algorithm (2)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#jpa" class="">JPA (7)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#sqld" class="">SQLD (2)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#network" class="">Network (4)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#layer5" class="">Layer5 (1)</a>
+                  </li>
+                  
+              
+          </ul>
+      </li>
+  </ul>
+  </nav>
+
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[Network] Layer4">
+    <meta itemprop="description" content="트랜스포트 계층의 역할 및 특징">
+    <meta itemprop="datePublished" content="2023-10-10T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/network/39/" class="u-url" itemprop="url">[Network] Layer4
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 분 소요
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+        <h2 id="트랜스포트-계층의-역할-및-특징">트랜스포트 계층의 역할 및 특징</h2>
+
+<ul>
+  <li>각기 다른 호스트에서 동작하는 <code class="language-plaintext highlighter-rouge">프로세스</code> 사이의 <strong>논리적 통신</strong>을 제공한다.
+    <ul>
+      <li>↔ 네트워크 계층 프로토콜은 <code class="language-plaintext highlighter-rouge">호스트</code> 사이의 논리적 통신을 제공한다.</li>
+    </ul>
+  </li>
+  <li>IP 및 Port 번호로 식별한다.
+    <ul>
+      <li>IP를 통해서 호스트를, Port를 통해서 프로세스를 찾아감.</li>
+    </ul>
+  </li>
+  <li>종단 시스템(end system, host)에 존재한다.
+    <ul>
+      <li>Network core, Access network에는 트랜스포트 프로토콜이 존재하지 않음.</li>
+    </ul>
+  </li>
+  <li>IP 계층에 대한 다양한 제어를 수행한다.
+    <ul>
+      <li>동적으로 IP주소를 관리, IP 변환, IP 패킷의 흐름제어를 한다.</li>
+    </ul>
+  </li>
+  <li>PDU : 세그먼트(segment)</li>
+</ul>
+
+<h2 id="다중화와-역다중화">다중화와 역다중화</h2>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">트랜스포트 계층</code> ↔ <code class="language-plaintext highlighter-rouge">애플리케이션 계층</code> 간의 데이터를 주고 받게 해주는 서비스를 의미한다.</li>
+  <li><strong>역다중화 (demultiplexing)</strong>
+    <ul>
+      <li>트랜스포트 계층 세그먼트의 데이터를 올바른 소켓으로 전달하는 작업을 <strong>역다중화</strong> 라고 한다.</li>
+      <li><strong>수신된 PDU를 적절한 소켓으로 전달하는 것.</strong></li>
+    </ul>
+  </li>
+  <li><strong>다중화 (multiplexing)</strong></li>
+  <li>출발지 호스트에서 소켓으로부터 데이터를 모으고, 이에 대한 세그먼트를 생성하기 위해 각 데이터에 헤더 정보로 캡슐화하고, 그 세그먼트들을 네트워크 계층으로 전달하는 작업을 <strong>다중화</strong> 라고 한다.</li>
+  <li><strong>여러 소켓을 통해서 SDU를 받아서 전송하는 것.</strong></li>
+</ul>
+
+<h2 id="포트-번호란">포트 번호란?</h2>
+
+<ul>
+  <li>트랜스포트 계층에서의 식별자 역할을 하는 것을 말한다.</li>
+  <li>소켓에 대한 식별을 한다.</li>
+  <li>일반적으로 source/destination 별로 port 번호가 존재한다.</li>
+  <li>well-kown port number (0~1023)</li>
+</ul>
+
+<p><img src="/assets/images/39_1.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
+
+<h2 id="user-datagram-protocol-udp">User Datagram Protocol (UDP)</h2>
+
+<h3 id="특징">특징</h3>
+
+<ul>
+  <li>간단한 multiplexing/demultiplexing 기능의 프로토콜이다.</li>
+  <li>Port 번호와 Checksum만 헤에더 붙는다.</li>
+  <li>사실상 IP 의 기능만 수행하며, 애플리케이션 계층에서 흐름 제어, 기타 기능을 구현한다.</li>
+  <li><strong>연결 과정 없이 바로 전송이 가능하다.</strong> (<code class="language-plaintext highlighter-rouge">비연결형</code>)
+    <ul>
+      <li>연결을 하지 않고 별도의 흐름제어, 혼잡제어를 수행하지 않기 때문에 TCP 보다 속도가 빠르다.</li>
+    </ul>
+  </li>
+  <li>헤더의 크기가 작다. (8byte) ↔ TCP는 20 byte</li>
+  <li>ex) DNS</li>
+</ul>
+
+<h3 id="송수신-과정">송수신 과정</h3>
+
+<ul>
+  <li>UDP 소켓의 생성
+    <ul>
+      <li>애플리케이션 프로세스에서 소켓 생성 즉시 트랜스포트 계층의 port 번호가 부여된다.</li>
+    </ul>
+  </li>
+  <li>UDP segment 송수신
+    <ul>
+      <li><strong>Two tuple : 목적지 IP &amp; port 번호</strong>
+        <ul>
+          <li>수신 port 번호가 같으면 동일한 소켓으로 들어간다. ↔ TCP는 송신 port 번호도 고려하여 소켓으로 매핑된다.</li>
+        </ul>
+      </li>
+      <li>상대방 호스트의 port 가 열려있으면 항상 전송이 가능하다.</li>
+      <li>IP, port 번호를 지정해서 보내면 바로 전달이 가능하다. (비연결형)</li>
+    </ul>
+  </li>
+  <li>Source port의 존재 의의
+    <ul>
+      <li><strong>return address</strong> 개념이다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="udp-세그먼트-구조">UDP 세그먼트 구조</h3>
+
+<p><img src="/assets/images/39_2.png" alt="img2" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
+
+<h2 id="신뢰적인-데이터-전송의-원리">신뢰적인 데이터 전송의 원리</h2>
+
+<h3 id="automatic-repeat-request-arq">Automatic Repeat reQuest (ARQ)</h3>
+
+<ul>
+  <li>Acknowlegement + timer + reactions</li>
+  <li>신뢰성 있는 PDU 전송을 위한 가장 보편적인 프로토콜 함수</li>
+  <li>TX/RX 가 confimation (ACK)를 받거나 timer-out 까지 기다리는 동안 하는 일련의 동작을 포함한다.</li>
+  <li>재전송 방법에 따라 여러 방식이 존재
+    <ul>
+      <li>stop and wait</li>
+      <li>go back N (GBN)</li>
+      <li>selective repeat (SR)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="gbn-go-back-n">GBN (Go Back N)</h3>
+
+<p><img src="/assets/images/39_3.png" alt="img3" width="40%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
+
+<ul>
+  <li>N번째 unconfirmed PDU로 돌아가서 거기서부터 재전송을 한다.</li>
+  <li>TX entity는 acknowledged 되기 전까지 보낸 PDU를 그대로 버퍼에 저장하고 있어야 한다.</li>
+  <li>RX entity는 N번째 PDU가 문제가 생기면 이후에 PDU(N+1~)는 모두 버린다.</li>
+  <li>time-out의 경우 N번째 PDU부터 재전송한다.</li>
+</ul>
+
+<h3 id="sr-selective-repeat">SR (Selective Repeat)</h3>
+
+<p><img src="/assets/images/39_4.png" alt="img4" width="40%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
+
+<ul>
+  <li>손실된 PDU에 대해서만 골라서 재전송한다.</li>
+  <li>RX entity는 제대로 받은 PDU를 저장한다.</li>
+  <li>transmission order대로 다 받을때 까지 저장한다.</li>
+  <li>cumulative ACK를 통해 제대로 전달된 PDU를 TX entity에서 확인한다.</li>
+</ul>
+
+<h3 id="gbn-vs-sr">GBN VS SR</h3>
+
+<ul>
+  <li>SR은 RX entity 측에 buffer가 요구된다.</li>
+  <li>GBN은 TX entity 측에 buffer가 요구된다.</li>
+  <li>GBN은 재전송 수신까지 시간이 좀 걸리는데 SR은 상대적으로 재전송 수신이 덜 걸린다.
+    <ul>
+      <li>필요한 것만 보내면 되기 때문에</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>TCP 는 SR과 GBN 의 혼합형이라고 생각하면 된다.</strong></p>
+
+<h2 id="transmission-control-protocol-tcp">Transmission Control Protocol (TCP)</h2>
+
+<h3 id="특징-1">특징</h3>
+
+<ul>
+  <li><strong>연결 지향형</strong>이다.
+    <ul>
+      <li>connection establishment 과정이 존재한다.</li>
+      <li>connection이 존재 해야지만 세그먼트를 전달할 수 있다.</li>
+    </ul>
+  </li>
+  <li><strong>전이중 서비스(full-duplex service)</strong> 를 제공한다.
+    <ul>
+      <li>A와 B가 연결되어 있으면 A→B, B→A 양방향으로 흐를 수 있다.</li>
+    </ul>
+  </li>
+  <li>TCP 연결은 항상 단일 송신자와 단일 수신자 사이의 <strong>점대점(point-to-point)</strong> 이다.
+    <ul>
+      <li>한 송신자가 멀티캐스팅할 수 없음.</li>
+    </ul>
+  </li>
+  <li><strong>Four tuple</strong> : source IP/port number, destination IP/port number 로 구성된다.</li>
+  <li>UDP와 다르게 source에 대한 정보까지 고려야여 소켓에 매핑된다.</li>
+  <li>TCP 는 신뢰적 데이터 전송을 제공한다.
+    <ul>
+      <li>재전송 및 ARQ 기능을 포함한다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="3-way-handshake">3-way handshake</h3>
+
+<p><img src="/assets/images/39_5.png" alt="img5" width="40%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
+
+<ul>
+  <li>request / setup / complete
+    <ul>
+      <li>initiator가 confirmation 수신에 대해 responder에게 confirm을 또 해준다. (complete)</li>
+      <li>responder는 complete 수신후에 connection이 맺어진 것으로 간주한다.</li>
+      <li>complete가 loss가 일어나도 responser는 connection이 맺어진 상태로 가정할 수 있다.
+        <ul>
+          <li>이전에 request를 받았으므로, connection을 맺고자 하는 initiator 의 상태는 이미 확인했다.</li>
+          <li>후속 data PDU을 수신하면 complete를 수신한 것으로 간주할 수 있다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="흐름제어">흐름제어</h2>
+
+<ul>
+  <li>송신자가 수신자의 버퍼를 오버플로시키는 것을 방지하기 위해 속도를 조절하는 것을 의미(<code class="language-plaintext highlighter-rouge">송신자의 억제</code>)</li>
+  <li><strong>송수신 entity 사이에 교환되는 PDU 개수를 조정하는 것을 의미한다.</strong></li>
+</ul>
+
+<h3 id="방식">방식</h3>
+
+<ul>
+  <li>credit procedure
+    <ul>
+      <li>수신 측에서 credit을 주고, sender는 허용된 credit에 따라 전송한다.</li>
+      <li>송신 측은 허용된 범위의 PDU를 보내고 나서 credit을 새로 받을때까지 대기한다.</li>
+      <li>Sliding window protocol
+        <ul>
+          <li>수신측이 제공한  credit 정보는 곳 window를 sliding 해주는 양</li>
+        </ul>
+      </li>
+    </ul>
+
+    <p><img src="/assets/images/39_6.png" alt="img6" width="40%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
+
+    <ul>
+      <li>Rate-based flow control
+        <ul>
+          <li>end-to-end 제한 뿐 아니라 network load도 고려한 흐름 제어</li>
+          <li>network의 overload 상황을 방지할 수 있음.</li>
+          <li>송신 측에서 전송률에 대한 제한을 두고 전송</li>
+          <li>허용된  burst size(특정 시간동안 보내는 data)를 제어</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/images/39_7.png" alt="img7" width="40%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
+
+<p><img src="/assets/images/39_8.png" alt="img8" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
+
+<h2 id="혼잡제어">혼잡제어</h2>
+
+<p><img src="/assets/images/39_9.png" alt="img9" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
+
+<ul>
+  <li>네트워크가 혼잡해지면 라우터 버퍼의 오버플로우가 발생할 수 있고 이에 따라 패킷손실이 발생할 수 있다.
+    <ul>
+      <li>패킷 손실 → 재전송 → 시간 지연이 발생한다.
+        <ul>
+          <li>때문에 네트워크의 상태를 고려해서 데이터를 잘 전송해야 한다. (<code class="language-plaintext highlighter-rouge">혼잡제어</code>)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><strong>slow start &amp; Dynamic window sizing</strong>
+    <ul>
+      <li>정상적으로 전송 - 피드백을 주고받는 상황에서는 서서히 윈도우 크기를 확장한다.</li>
+      <li>혼잡 상황에서는 임의로 윈도우 사이즈를 줄인다.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="tcp-세그먼트-구조">TCP 세그먼트 구조</h2>
+
+<p><img src="/assets/images/39_10.png" alt="img10" width="50%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#network" class="page__taxonomy-item p-category" rel="tag">Network</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#network" class="page__taxonomy-item p-category" rel="tag">Network</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-10-10T00:00:00+09:00">October 10, 2023</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BNetwork%5D+Layer4%20http%3A%2F%2Flocalhost%3A4000%2Fnetwork%2F39%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fnetwork%2F39%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fnetwork%2F39%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/network/38/" class="pagination--pager" title="[Network] Layer3
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/network/38/" rel="permalink">[Network] Layer3
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">네트워크 계층의 역할
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/network/layer5/37/" rel="permalink">[Network] Layer5
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">application layer의 특징
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/network/36/" rel="permalink">[Network] 컴퓨터 네트워크와 인터넷
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Internet 이란?
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/sqld/35/" rel="permalink">[SQLD] 데이터 모델 &amp; 성능
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 문진수(Moon JinSu). Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
