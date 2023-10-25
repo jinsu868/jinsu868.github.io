@@ -1,4 +1,147 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-10-10T15:59:14+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[Network] Layer4</title><link href="http://localhost:4000/network/39/" rel="alternate" type="text/html" title="[Network] Layer4" /><published>2023-10-10T00:00:00+09:00</published><updated>2023-10-10T00:00:00+09:00</updated><id>http://localhost:4000/network/39</id><content type="html" xml:base="http://localhost:4000/network/39/">&lt;h2 id=&quot;트랜스포트-계층의-역할-및-특징&quot;&gt;트랜스포트 계층의 역할 및 특징&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-10-25T15:49:42+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[클린코드] 일급 컬렉션</title><link href="http://localhost:4000/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C/40/" rel="alternate" type="text/html" title="[클린코드] 일급 컬렉션" /><published>2023-10-25T00:00:00+09:00</published><updated>2023-10-25T00:00:00+09:00</updated><id>http://localhost:4000/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C/40</id><content type="html" xml:base="http://localhost:4000/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C/40/">&lt;p&gt;우테코 1주차 과제를 리팩토링하면서 일급 컬렉션이라는 개념에 대해서 알게 됐다. 오늘은 일급 컬렉션이 무엇인지, 그리고 언제 사용하면 유용한지에 대해서 소개하겠다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;일급-컬렉션이란-무엇일까&quot;&gt;일급 컬렉션이란 무엇일까?&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;blockquote&gt;
+    &lt;p&gt;규칙 8: 일급 콜렉션 사용 &lt;br /&gt;
+콜렉션을 포함한 클래스는 반드시 다른 멤버 변수가 없어야 한다. &lt;br /&gt;
+각 콜렉션은 그 자체로 포장돼 있으므로 이제 콜렉션과 관련된 동작은 근거지가 마련된셈이다. &lt;br /&gt;
+필터가 이 새 클래스의 일부가 됨을 알 수 있다. &lt;br /&gt;
+필터는 또한 스스로 함수 객체가 될 수 있다. &lt;br /&gt;
+또한 새 클래스는 두 그룹을 같이 묶는다든가 그룹의 각 원소에 규칙을 적용하는 등의 동작을 처리할 수 있다. &lt;br /&gt;
+이는 인스턴스 변수에 대한 규칙의 확실한 확장이지만 그 자체를 위해서도 중요하다. &lt;br /&gt;
+콜렉션은 실로 매우 유용한 원시 타입이다. &lt;br /&gt;
+많은 동작이 있지만 후임 프로그래머나 유지보수 담당자에 의미적 의도나 단초는 거의 없다. - 소트웍스 앤솔로지 객체지향 생활체조편 &lt;br /&gt;&lt;/p&gt;
+  &lt;/blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이 내용은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;객체지향 생활체조&lt;/code&gt;에서 소개된 내용이다. 개념 자체는 단순하다. 컬렉션을 클래스로 감싸고 다른 맴버 변수가 없도록 하면 이 클래스가 일급 컬렉션이 된다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;컬렉션을 감싸면서 얻는 이점은 다음과 같다. &lt;br /&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;비지니스에 종속적인 자료구조가 된다.&lt;/li&gt;
+  &lt;li&gt;컬렉션의 불변성을 보장한다.&lt;/li&gt;
+  &lt;li&gt;상태와 행위를 한 곳에서 관리할 수 있다.&lt;/li&gt;
+  &lt;li&gt;컬렉션에 이름을 부여할 수 있다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;이제 각각을 하나씩 설명해보겠다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;비지니스에-종속적인-자료구조&quot;&gt;비지니스에 종속적인 자료구조&lt;/h2&gt;
+
+&lt;p&gt;아래와 같은 요구사항이 있다고 해보자. &lt;br /&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;3자리의 수&lt;/li&gt;
+  &lt;li&gt;각 수는 중복되면 X&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;
+이런 자료구조는 기본으로 제공하지 않는다. 이를 일반적인 자료구조로 구현하기 위해서는 이 요구사항을 만족시키는 값을 생성하는 모든 코드에 검증 로직을 추가해야 한다. 그리고 만약 신입이 처음 회사에 들어와서 코드를 작성하면 검증이 필요한 로직인지 알 수 있는 방법이 없다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;즉 모든 코드와 도메인을 알아야 제대로 코드를 작성할 수 있다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;이런 검증 로직과 데이터를 묶는 비지니스에 종속적인 자료구조가 바로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;일급 컬렉션&lt;/code&gt;이다. 아래 코드를 보자 &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ComputerNumber&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ComputerNumber&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;number&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ArrayList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;createComputerNumber&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;createComputerNumber&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Integer&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;randomNumber&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Randoms&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;pickNumberInRange&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;contains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;randomNumber&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;randomNumber&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;contains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;contains&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;숫자를 저장하는 List를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ComputerNumber&lt;/code&gt;라는 클래스로 감싸서 일급 컬렉션으로 만든 코드이다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ComputerNumber&lt;/code&gt;라는 일급 컬렉션을 사용하게 되면 앞으로 &lt;strong&gt;길이가 3, 중복이 없는 숫자&lt;/strong&gt;를 생성할 때 이 객체를 사용하면 된다. 비지니스에 종속적인 자료구조를 직접 만든 것이다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;불변&quot;&gt;불변&lt;/h2&gt;
+
+&lt;p&gt;일급 컬렉션은 불변을 보장한다. 이는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;final&lt;/code&gt;과는 차이가 있다. &lt;br /&gt;
+&lt;strong&gt;java의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;final&lt;/code&gt;은 불변이 아니라 재할당만 금지한다.&lt;/strong&gt; 아래 코드를 보자&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;FinalTest&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;final_test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Set&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;HashSet&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;gt;();&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;1&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;2&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;3&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;nc&quot;&gt;Assertions&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertEquals&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이 코드를 실행하면 set에 값이  추가된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/40_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;이와같이 자바의 final은 불변이 아니라 단순 재할당만 막는 기능을 한다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;최근의 소프트웨어의 규모가 계속 커짐에 따라 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;불변&lt;/code&gt;은 굉장히 중요한 키워드가 됐다. &lt;br /&gt;
+이를 java의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;final&lt;/code&gt;로는 해결할 수 없는데 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;일급 컬렉션&lt;/code&gt;을 사용하면 불변 컬렉션을 만들 수 있다 &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;위의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ComputerNumber&lt;/code&gt; 클래스는 처음 생성자에서 숫자를 생성하고 그 이후 변경할 수 있는 setter가 없기 때문에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;불변&lt;/code&gt;을 보장한다. &lt;br /&gt;
+이렇게 일급 컬렉션을 이용하면 불변 컬렉션을 만들 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;상태와-행위를-함께-관리&quot;&gt;상태와 행위를 함께 관리&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;일급 컬렉션은 값과 로직을 함께 관리한다.&lt;/strong&gt; 일급 컬렉션을 사용하지 않으면 데이터와 로직이 떨어져 있기 때문에 관리상의 어려움이 있다. &lt;br /&gt; 이는 유지보수 측면에서 좋지 못하다. 전체 도메인을 알지 못하면 해당 로직이 구현되어 있는지 알 수 없어서 똑같은 로직을 구현하는 문제가 발생할 수 있다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;이름이-있는-컬렉션&quot;&gt;이름이 있는 컬렉션&lt;/h2&gt;
+
+&lt;p&gt;일급 컬렉션을 사용하면 컬렉션에 이름을 붙일 수 있다.(클래스이기 때문에 가능) 이렇게 되면 검색도 편리하고 표현도 가능하게 된다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;이름있는_컬렉션&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;newyorkItems&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;createNewyorkItems&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Item&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;seoulItems&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;createSeoulItems&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이 코드는 오직 변수명으로만 검색해야 하고, 개발자마다 뜻을 다르게 사용할 여지가 있다. 따라서 명확한 표현이 불가능하다. &lt;br /&gt;
+아래 코드를 보자 &lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@Test&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;일급컬렉션&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;nc&quot;&gt;SeoulItems&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;seoulItems&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SeoulItems&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;createSeoulItems&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+    &lt;span class=&quot;nc&quot;&gt;BusanItems&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;busanItems&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;BusanItems&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;createBusanItems&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;());&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위 코드같은 경우 일급 컬렉션을 기반으로 검색이 가능하다. 클래스 단위로 관리되기 때문에 검색이 쉽다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;이처럼 일급 컬렉션은 다양한 장점을 가지고 있고 유지보수 측면에서 굉장히 좋다. 필수적으로 공부하자!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;참고-사이트&quot;&gt;참고 사이트&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;https://jojoldu.tistory.com/412&lt;/li&gt;
+  &lt;li&gt;https://jamie95.tistory.com/99&lt;/li&gt;
+  &lt;li&gt;https://jamie95.tistory.com/entry/%EC%9D%BC%EA%B8%89-%EC%BB%AC%EB%A0%89%EC%85%98%EC%9D%84-%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90&lt;/li&gt;
+  &lt;li&gt;https://matouslescotousles.tistory.com/11&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="클린코드" /><category term="클린코드" /><category term="TDD" /><category term="우테코" /><summary type="html">우테코 1주차 과제를 리팩토링하면서 일급 컬렉션이라는 개념에 대해서 알게 됐다. 오늘은 일급 컬렉션이 무엇인지, 그리고 언제 사용하면 유용한지에 대해서 소개하겠다.</summary></entry><entry><title type="html">[Network] Layer4</title><link href="http://localhost:4000/network/39/" rel="alternate" type="text/html" title="[Network] Layer4" /><published>2023-10-10T00:00:00+09:00</published><updated>2023-10-10T00:00:00+09:00</updated><id>http://localhost:4000/network/39</id><content type="html" xml:base="http://localhost:4000/network/39/">&lt;h2 id=&quot;트랜스포트-계층의-역할-및-특징&quot;&gt;트랜스포트 계층의 역할 및 특징&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;각기 다른 호스트에서 동작하는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;프로세스&lt;/code&gt; 사이의 &lt;strong&gt;논리적 통신&lt;/strong&gt;을 제공한다.
@@ -1771,91 +1914,6 @@
 
 &lt;p&gt;이런 기능들을 예전에는 한땀한땀 열심히 구현해서 사용해야 했었다. 그런데 JPA에서 이미 다 제공해주기 때문에 그냥 가져다 사용하면 된다.&lt;br /&gt;
 여기서 두가지 주의해야 할 점이있다. &lt;strong&gt;JPA의 페이지는 1부터가 아니라 0부터 시작한다는 것이다.&lt;/strong&gt; 두번째는 CountQuery는 무거운 연산이라는 것이다. 때문에 복잡한 쿼리에서는 CountQuery를 분리하고 left join같은 경우는 CountQuery를 할 필요가 없다. 이를 주의하자!&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;참고-사이트-출처&quot;&gt;참고 사이트 출처&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EB%8D%B0%EC%9D%B4%ED%84%B0-JPA-%EC%8B%A4%EC%A0%84&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;
-더 자세한 내용은 김영한님 강의를 참고하자!&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="JPA" /><category term="Spring" /><category term="JPA" /><category term="Data JPA" /><summary type="html"></summary></entry><entry><title type="html">[JPA] 데이터 JPA(1)</title><link href="http://localhost:4000/jpa/sj1/" rel="alternate" type="text/html" title="[JPA] 데이터 JPA(1)" /><published>2023-08-18T00:00:00+09:00</published><updated>2023-08-18T00:00:00+09:00</updated><id>http://localhost:4000/jpa/sj1</id><content type="html" xml:base="http://localhost:4000/jpa/sj1/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;repository-기능&quot;&gt;&lt;em&gt;@Repository 기능&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;@Repository는 2가지 기능을 제공한다. 첫번째는 이 Annotation이 붙은 클래스를 스프링 빈으로 등록한다. 두번째는 JPA 예외를 스프링 예외로 변환해준다. 데이터를 직접 접근하는 Repository 계층 구현 기술에 Service 계층이 직접 의존하는 것은 좋은 설계라고 할 수 없다. 이는 예외 처리에도 동일하게 적용된다. @Repository를 붙이면 데이터 접근 계층의 예외를 추상화해서 Service 계층에 넘김으로써 데이터 접근 계층의 예외가 바뀌더라도 코드를 변경하지 않고 동일하게 사용할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;공통-인터페이스&quot;&gt;&lt;em&gt;공통 인터페이스&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Spring data JPA&lt;/code&gt;를 제대로 이해하기 위해서는 공통 인터페이스에 대해서 알 필요가 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/29_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;공통 인터페이스는 위와 같은 구조로 이루어져 있다. 이 인터페이스를 개발자가 직접 구현할 필요가 없다. Spring data JPA 가 구현 클래스를 우리 대신 생성해서 넣어준다. 때문에 우리는 그냥 가져다 쓰면 된다. ^.^&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;메소드-이름으로-쿼리-자동생성&quot;&gt;&lt;em&gt;메소드 이름으로 쿼리 자동생성&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;Spring data JPA는 repository에 작성한 메소드 이름을 분석해서 JPQL 쿼리를 실행해준다. 순수한 JPA를 사용했을 때의 쿼리와 Spring data JPA 를 사용했을 때 코드를 비교해보자.
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;아래 코드는 순수 JPA를 사용했을 때 코드이다.
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;findByUsernameAndAgeGreaterThan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createQuery&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;select m from Member m where m.username = :username and m.age &amp;gt; :age&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setParameter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;username&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setParameter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;age&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getResultList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;아래 코드는 Spring Data JPA를 사용했을 때의 코드이다.&lt;/p&gt;
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;findByUsernameAndAgeGreaterThan&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;힘의 차이가 확실히 느껴진다.&lt;/strong&gt; &lt;br /&gt;
- 위와 같이 단순한 쿼리에 대해서 Spring Data JPA를 사용하면 생산성이 대폭 증가한다.
-하지만 장점만 존재하지는 않는다. 쿼리 조건이 많아질수록 메서드 이름도 같이 늘어난다. 때문에 복잡한 조건의 쿼리는 다른 방법으로 해결해야 한다.
-이 방법도 뒤에서 소개하겠다. 메서드 이름 규칙은 Spring 공식 페이지에 잘 나와있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;spring-data-jpa의-namedquery&quot;&gt;&lt;em&gt;Spring Data JPA의 NamedQuery&lt;/em&gt;&lt;/h1&gt;
-&lt;p&gt;순수 JPA에서 namedQuery를 작성하려면 Entity에 직접 작성해야 하거나, XML 파일을 통해서 작성해야 했다. 첫번째는 Entity가 굉장히 지저분해진고 XML은 따로 관리해야 했기 때문에 불편했었다. Spring Data JPA는 @Query를 통해서 Repository에 직접 작성할 수 있다.
-아래 예제 코드를 보자. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;nd&quot;&gt;@Query&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;select m from Member m where m.username = :username and m.age = :age&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;findUser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt;@Param&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;username&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;username&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nd&quot;&gt;@Param&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;age&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;위와 같이 작성하면 된다. namedQuery의 장점은 컴파일 시점에 쿼리를 파싱해서 체크하기 때문에 문법 오류를 발견할 수 있는 것인데 @Query로 작성한 쿼리도 namedQuery로 간주되기 때문에 굉장히 유용하다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;반환-타입-지정&quot;&gt;&lt;em&gt;반환 타입 지정&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;Spring Data JPA는 유연하게 반환 타입을 지원한다. 그렇기 때문에 어떻게 작동하는지 잘 이해할 필요가 있다. &lt;br /&gt;
-조회 결과가 여러개 이거나, 없다면 어떻게 될까? 컬렉션의 경우 결과가 없으면 빈 컬렉션을 반환한다. 하지만 Entity와 같이 타입을 단건으로 찝은 경우에는 결과가 없으면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;null&lt;/code&gt;이 반환된다. 이 차이를 인지하고 있어야 한다. &lt;br /&gt;
-그리고 단건 반환 타입을 설정한 경우 내부적으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getSingleResult()&lt;/code&gt; 를 호출하기 때문에 2개 이상의 값이 나오면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NoResultException&lt;/code&gt; 이 발생하는데 Spring Data JPA에서 예외를 catch해서 null로 반환한다. 동작방식을 잘 이해하도록 하자!!&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;
 &lt;br /&gt;&lt;/p&gt;

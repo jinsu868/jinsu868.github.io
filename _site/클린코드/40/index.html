@@ -1,0 +1,804 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[클린코드] 일급 컬렉션 - Jinsu’s story</title>
+<meta name="description" content="우테코 1주차 과제를 리팩토링하면서 일급 컬렉션이라는 개념에 대해서 알게 됐다. 오늘은 일급 컬렉션이 무엇인지, 그리고 언제 사용하면 유용한지에 대해서 소개하겠다.">
+
+
+  <meta name="author" content="Moon JinSu">
+  
+  <meta property="article:author" content="Moon JinSu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="Jinsu's story">
+<meta property="og:title" content="[클린코드] 일급 컬렉션">
+<meta property="og:url" content="http://localhost:4000/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C/40/">
+
+
+  <meta property="og:description" content="우테코 1주차 과제를 리팩토링하면서 일급 컬렉션이라는 개념에 대해서 알게 됐다. 오늘은 일급 컬렉션이 무엇인지, 그리고 언제 사용하면 유용한지에 대해서 소개하겠다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-10-25T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C/40/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "문진수(Moon JinSu)",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Jinsu's story Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Jinsu's story
+          
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Moon JinSu</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>tech blog</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seoul, Korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+
+<!-- Categories -->
+<nav class="nav__list">
+  <ul class="nav__items" id="category_tag_menu">
+      <li>
+          <span class="nav__sub-title">📂 Total (40)</span>
+          <ul>
+              
+                  
+                  <li>
+                      <a href="/categories/#spring" class="">Spring (14)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#디자인패턴" class="">디자인패턴 (8)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#java" class="">Java (3)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#algorithm" class="">Algorithm (2)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#jpa" class="">JPA (7)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#sqld" class="">SQLD (2)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#network" class="">Network (4)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#layer5" class="">Layer5 (1)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#클린코드" class="">클린코드 (1)</a>
+                  </li>
+                  
+              
+          </ul>
+      </li>
+  </ul>
+  </nav>
+
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[클린코드] 일급 컬렉션">
+    <meta itemprop="description" content="우테코 1주차 과제를 리팩토링하면서 일급 컬렉션이라는 개념에 대해서 알게 됐다. 오늘은 일급 컬렉션이 무엇인지, 그리고 언제 사용하면 유용한지에 대해서 소개하겠다. ">
+    <meta itemprop="datePublished" content="2023-10-25T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C/40/" class="u-url" itemprop="url">[클린코드] 일급 컬렉션
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+        <p>우테코 1주차 과제를 리팩토링하면서 일급 컬렉션이라는 개념에 대해서 알게 됐다. 오늘은 일급 컬렉션이 무엇인지, 그리고 언제 사용하면 유용한지에 대해서 소개하겠다. <br /><br /></p>
+
+<h2 id="일급-컬렉션이란-무엇일까">일급 컬렉션이란 무엇일까?</h2>
+
+<blockquote>
+  <blockquote>
+    <p>규칙 8: 일급 콜렉션 사용 <br />
+콜렉션을 포함한 클래스는 반드시 다른 멤버 변수가 없어야 한다. <br />
+각 콜렉션은 그 자체로 포장돼 있으므로 이제 콜렉션과 관련된 동작은 근거지가 마련된셈이다. <br />
+필터가 이 새 클래스의 일부가 됨을 알 수 있다. <br />
+필터는 또한 스스로 함수 객체가 될 수 있다. <br />
+또한 새 클래스는 두 그룹을 같이 묶는다든가 그룹의 각 원소에 규칙을 적용하는 등의 동작을 처리할 수 있다. <br />
+이는 인스턴스 변수에 대한 규칙의 확실한 확장이지만 그 자체를 위해서도 중요하다. <br />
+콜렉션은 실로 매우 유용한 원시 타입이다. <br />
+많은 동작이 있지만 후임 프로그래머나 유지보수 담당자에 의미적 의도나 단초는 거의 없다. - 소트웍스 앤솔로지 객체지향 생활체조편 <br /></p>
+  </blockquote>
+</blockquote>
+
+<p>이 내용은 <code class="language-plaintext highlighter-rouge">객체지향 생활체조</code>에서 소개된 내용이다. 개념 자체는 단순하다. 컬렉션을 클래스로 감싸고 다른 맴버 변수가 없도록 하면 이 클래스가 일급 컬렉션이 된다. <br /><br /></p>
+
+<p>컬렉션을 감싸면서 얻는 이점은 다음과 같다. <br /></p>
+<ol>
+  <li>비지니스에 종속적인 자료구조가 된다.</li>
+  <li>컬렉션의 불변성을 보장한다.</li>
+  <li>상태와 행위를 한 곳에서 관리할 수 있다.</li>
+  <li>컬렉션에 이름을 부여할 수 있다.</li>
+</ol>
+
+<p>이제 각각을 하나씩 설명해보겠다. <br /></p>
+
+<h2 id="비지니스에-종속적인-자료구조">비지니스에 종속적인 자료구조</h2>
+
+<p>아래와 같은 요구사항이 있다고 해보자. <br /></p>
+<ol>
+  <li>3자리의 수</li>
+  <li>각 수는 중복되면 X</li>
+</ol>
+
+<p><br />
+이런 자료구조는 기본으로 제공하지 않는다. 이를 일반적인 자료구조로 구현하기 위해서는 이 요구사항을 만족시키는 값을 생성하는 모든 코드에 검증 로직을 추가해야 한다. 그리고 만약 신입이 처음 회사에 들어와서 코드를 작성하면 검증이 필요한 로직인지 알 수 있는 방법이 없다. <br /></p>
+
+<p><strong>즉 모든 코드와 도메인을 알아야 제대로 코드를 작성할 수 있다.</strong></p>
+
+<p>이런 검증 로직과 데이터를 묶는 비지니스에 종속적인 자료구조가 바로 <code class="language-plaintext highlighter-rouge">일급 컬렉션</code>이다. 아래 코드를 보자 <br /><br /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ComputerNumber</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">number</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ComputerNumber</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">number</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;();</span>
+        <span class="n">createComputerNumber</span><span class="o">(</span><span class="n">number</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">createComputerNumber</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">number</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">number</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">randomNumber</span> <span class="o">=</span> <span class="nc">Randoms</span><span class="o">.</span><span class="na">pickNumberInRange</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">9</span><span class="o">);</span>
+            <span class="k">if</span> <span class="o">(!</span><span class="n">number</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">randomNumber</span><span class="o">))</span> <span class="o">{</span>
+                <span class="n">number</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">randomNumber</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">get</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">number</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">index</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">contains</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">number</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">value</span><span class="o">))</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>숫자를 저장하는 List를 <code class="language-plaintext highlighter-rouge">ComputerNumber</code>라는 클래스로 감싸서 일급 컬렉션으로 만든 코드이다. <code class="language-plaintext highlighter-rouge">ComputerNumber</code>라는 일급 컬렉션을 사용하게 되면 앞으로 <strong>길이가 3, 중복이 없는 숫자</strong>를 생성할 때 이 객체를 사용하면 된다. 비지니스에 종속적인 자료구조를 직접 만든 것이다. <br /><br /></p>
+
+<h2 id="불변">불변</h2>
+
+<p>일급 컬렉션은 불변을 보장한다. 이는 <code class="language-plaintext highlighter-rouge">final</code>과는 차이가 있다. <br />
+<strong>java의 <code class="language-plaintext highlighter-rouge">final</code>은 불변이 아니라 재할당만 금지한다.</strong> 아래 코드를 보자</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">FinalTest</span> <span class="o">{</span>
+    <span class="nd">@Test</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">final_test</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="nc">Set</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">set</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashSet</span><span class="o">&lt;&gt;();</span>
+        <span class="n">set</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"1"</span><span class="o">);</span>
+        <span class="n">set</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"2"</span><span class="o">);</span>
+        <span class="n">set</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"3"</span><span class="o">);</span>
+
+        <span class="nc">Assertions</span><span class="o">.</span><span class="na">assertEquals</span><span class="o">(</span><span class="n">set</span><span class="o">.</span><span class="na">size</span><span class="o">(),</span> <span class="mi">3</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이 코드를 실행하면 set에 값이  추가된다.</p>
+
+<p><img src="/assets/images/40_1.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
+
+<p><strong>이와같이 자바의 final은 불변이 아니라 단순 재할당만 막는 기능을 한다.</strong></p>
+
+<p>최근의 소프트웨어의 규모가 계속 커짐에 따라 <code class="language-plaintext highlighter-rouge">불변</code>은 굉장히 중요한 키워드가 됐다. <br />
+이를 java의 <code class="language-plaintext highlighter-rouge">final</code>로는 해결할 수 없는데 <code class="language-plaintext highlighter-rouge">일급 컬렉션</code>을 사용하면 불변 컬렉션을 만들 수 있다 <br /></p>
+
+<p>위의 <code class="language-plaintext highlighter-rouge">ComputerNumber</code> 클래스는 처음 생성자에서 숫자를 생성하고 그 이후 변경할 수 있는 setter가 없기 때문에 <code class="language-plaintext highlighter-rouge">불변</code>을 보장한다. <br />
+이렇게 일급 컬렉션을 이용하면 불변 컬렉션을 만들 수 있다. <br /><br /></p>
+
+<h2 id="상태와-행위를-함께-관리">상태와 행위를 함께 관리</h2>
+
+<p><strong>일급 컬렉션은 값과 로직을 함께 관리한다.</strong> 일급 컬렉션을 사용하지 않으면 데이터와 로직이 떨어져 있기 때문에 관리상의 어려움이 있다. <br /> 이는 유지보수 측면에서 좋지 못하다. 전체 도메인을 알지 못하면 해당 로직이 구현되어 있는지 알 수 없어서 똑같은 로직을 구현하는 문제가 발생할 수 있다. <br /></p>
+
+<h2 id="이름이-있는-컬렉션">이름이 있는 컬렉션</h2>
+
+<p>일급 컬렉션을 사용하면 컬렉션에 이름을 붙일 수 있다.(클래스이기 때문에 가능) 이렇게 되면 검색도 편리하고 표현도 가능하게 된다. <br /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="n">이름있는_컬렉션</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Item</span><span class="o">&gt;</span> <span class="n">newyorkItems</span> <span class="o">=</span> <span class="n">createNewyorkItems</span><span class="o">();</span>
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Item</span><span class="o">&gt;</span> <span class="n">seoulItems</span> <span class="o">=</span> <span class="n">createSeoulItems</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이 코드는 오직 변수명으로만 검색해야 하고, 개발자마다 뜻을 다르게 사용할 여지가 있다. 따라서 명확한 표현이 불가능하다. <br />
+아래 코드를 보자 <br /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="n">일급컬렉션</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nc">SeoulItems</span> <span class="n">seoulItems</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SeoulItems</span><span class="o">(</span><span class="n">createSeoulItems</span><span class="o">());</span>
+    <span class="nc">BusanItems</span> <span class="n">busanItems</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BusanItems</span><span class="o">(</span><span class="n">createBusanItems</span><span class="o">());</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>위 코드같은 경우 일급 컬렉션을 기반으로 검색이 가능하다. 클래스 단위로 관리되기 때문에 검색이 쉽다.</p>
+
+<p><strong>이처럼 일급 컬렉션은 다양한 장점을 가지고 있고 유지보수 측면에서 굉장히 좋다. 필수적으로 공부하자!</strong></p>
+
+<h2 id="참고-사이트">참고 사이트</h2>
+<ul>
+  <li>https://jojoldu.tistory.com/412</li>
+  <li>https://jamie95.tistory.com/99</li>
+  <li>https://jamie95.tistory.com/entry/%EC%9D%BC%EA%B8%89-%EC%BB%AC%EB%A0%89%EC%85%98%EC%9D%84-%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90</li>
+  <li>https://matouslescotousles.tistory.com/11</li>
+</ul>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#tdd" class="page__taxonomy-item p-category" rel="tag">TDD</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%9A%B0%ED%85%8C%EC%BD%94" class="page__taxonomy-item p-category" rel="tag">우테코</a><span class="sep">, </span>
+    
+      <a href="/tags/#%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C" class="page__taxonomy-item p-category" rel="tag">클린코드</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C" class="page__taxonomy-item p-category" rel="tag">클린코드</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-10-25T00:00:00+09:00">October 25, 2023</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5B%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C%5D+%EC%9D%BC%EA%B8%89+%EC%BB%AC%EB%A0%89%EC%85%98%20http%3A%2F%2Flocalhost%3A4000%2F%25ED%2581%25B4%25EB%25A6%25B0%25EC%25BD%2594%25EB%2593%259C%2F40%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25ED%2581%25B4%25EB%25A6%25B0%25EC%25BD%2594%25EB%2593%259C%2F40%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25ED%2581%25B4%25EB%25A6%25B0%25EC%25BD%2594%25EB%2593%259C%2F40%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/network/39/" class="pagination--pager" title="[Network] Layer4
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/network/39/" rel="permalink">[Network] Layer4
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">트랜스포트 계층의 역할 및 특징
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/network/38/" rel="permalink">[Network] Layer3
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">네트워크 계층의 역할
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/network/layer5/37/" rel="permalink">[Network] Layer5
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">application layer의 특징
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/network/36/" rel="permalink">[Network] 컴퓨터 네트워크와 인터넷
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Internet 이란?
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 문진수(Moon JinSu). Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
