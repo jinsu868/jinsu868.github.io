@@ -1,4 +1,136 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-10-25T15:49:42+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[클린코드] 일급 컬렉션</title><link href="http://localhost:4000/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C/40/" rel="alternate" type="text/html" title="[클린코드] 일급 컬렉션" /><published>2023-10-25T00:00:00+09:00</published><updated>2023-10-25T00:00:00+09:00</updated><id>http://localhost:4000/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C/40</id><content type="html" xml:base="http://localhost:4000/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C/40/">&lt;p&gt;우테코 1주차 과제를 리팩토링하면서 일급 컬렉션이라는 개념에 대해서 알게 됐다. 오늘은 일급 컬렉션이 무엇인지, 그리고 언제 사용하면 유용한지에 대해서 소개하겠다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-10-29T20:39:49+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[git] Merge, Rebase, Cheery-pick</title><link href="http://localhost:4000/git/41/" rel="alternate" type="text/html" title="[git] Merge, Rebase, Cheery-pick" /><published>2023-10-29T00:00:00+09:00</published><updated>2023-10-29T00:00:00+09:00</updated><id>http://localhost:4000/git/41</id><content type="html" xml:base="http://localhost:4000/git/41/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이전까지 프로젝트를 하면서 git을 계속 사용했지만 내부 동작 방식을 제대로 이해하지 못한채로 사용했었다.&lt;br /&gt;
+내부 동작 방식을 몰랐기 때문에 예측할 수 없는 상황이 많이 발생했었다. 예를들어 merge를 했는데 언제는 commit이 생기고 언제는 안생기는 등…&lt;br /&gt;
+이번 기회에 git에 대해서 정리하고자 한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;merge&quot;&gt;merge&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;merge&lt;/code&gt;란 두 브랜치를 합치는 기능을 의미한다. 일반적으로 많이 사용되는 병합 방식으로, 커밋 이력을 모두 남길 때 사용한다.&lt;br /&gt;
+ merge 방식에는 &lt;strong&gt;Fast-forward, 3-way-merge&lt;/strong&gt; 가 있다. &lt;br /&gt;
+하나씩 살펴보자 &lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;fast-forward-방식&quot;&gt;Fast-forward 방식&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/41_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hotfix&lt;/code&gt; 브랜치를 merge한다고 해보자.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/41_2.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;먼저 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;checkout&lt;/code&gt; 명령어를 사용해서 master 브랜치로 이동한다&lt;/li&gt;
+  &lt;li&gt;그리고 hotfix 브랜치를 merge한다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;결과를 보면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fast-forward&lt;/code&gt; 라는 문구가 보인다. 이게 무엇일까? &lt;br /&gt;&lt;br /&gt;
+hotfix가 가리키는 C4 커밋은 C2 커밋을 base로 하는 브랜치이다. 때문에 merge를 진행함에 있어서 새로운 커밋을 생성할 필요가 없다. 그저 단순히 브랜치 포인터만 이동시켜서 master가 c4를 가리키게 하면된다. 이 경우와 같이 두 브랜치의 base가 같을 때 단순히 브랜치 포인터를 이동시키는 merge 방식을 &lt;strong&gt;fast-forward&lt;/strong&gt; 라고 한다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;3-way-merge-방식&quot;&gt;3-way-merge 방식&lt;/h3&gt;
+
+&lt;p&gt;이번에는 협업할 때 가장 많이 사용하는 merge 방식인 3-way-merge에 대해서 알아보겠다!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/41_3.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;my-branch가 main 브랜치의 B 커밋으로부터 분기됐다. 그리고나서 main에 새로운 커밋(C, D, E)이 생성된 경우를 생각해보자.&lt;br /&gt;
+이 경우에는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fast-forward&lt;/code&gt;같이 단순히 브랜치 포인터를 이동시키는 방식으로는 merge를 제대로 수행할 수 없다. &lt;br /&gt;
+때문에 my-branch와 main을 공통 부모로 하는 새로운 커밋을 생성한다. 이 방식을 &lt;strong&gt;3-way Merge&lt;/strong&gt; 라고 한다.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;fast-forward가 가능한 경우에도 Recursive Merge 방식처럼 커밋을 새로 생성하는 방법을 제공한다. git merge 명령에 &lt;strong&gt;–no-ff&lt;/strong&gt; 옵션을 주면 강제로 commit을 생성한 merge가 진행된다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;conflict&quot;&gt;Conflict&lt;/h2&gt;
+
+&lt;p&gt;다음으로는 merge할 때 발생할 수 있는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Conflict&lt;/code&gt;에 대해서 알아보자.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/41_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git checkout master
+
+//hotfix, iss53이 동일한 파일을 수정.
+git merge hotfix
+git merge iss53
+//-&amp;gt; 충돌 발생!!
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;다시 이 상황을 놓고 생각해보자. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치에서 필요한 기능이 있어서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;iss53&lt;/code&gt; 브랜치를 생성해서 기능을 구현하고 있다.&lt;br /&gt;
+그런데 도중에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치에서 오류를 발견해서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hotfix&lt;/code&gt;브랜치를 만들어 오류를 수정하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hotfix&lt;/code&gt;브랜치를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치에 merge했다. 그런데 hotfix 브랜치에서 수정한 부분이 iss53 기능 브랜치에서 수정한 부분이 동일하다고 가정하자.&lt;br /&gt;
+그러면 merge를 수행할 때, 충돌이 발생하게 된다.&lt;br /&gt;
+이 merge를 실행하는 시점에 git은 활성화되지 않은 새로운 커밋을 하나 생성한다. 그리고 IDE를 사용하던, 직접 충돌 부분을 수정하여 commit을 하면 충돌이 해결된다.
+&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;지금까지 merge 방식과 충돌에 대해서 알아봤다. 그런데 github에서 제공하는 merge는 조금 다르다. 총 3가지 방식이 있는데 하나씩 살펴보자&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;3가지-pull-request-방식&quot;&gt;3가지 pull request 방식&lt;/h1&gt;
+
+&lt;h2 id=&quot;create-merge-commit&quot;&gt;Create merge commit&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/41_4.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;원래 기본적으로 base가 같을 때 merge를 수행하면 fast-forward 방식이 사용된다. 하지만 Create merge commit 방식은 새로운 commit을 만드는 방식을 사용한다.&lt;br /&gt;
+이렇게 함으로써 기능 구현 후 merge 기록이 남게된다. 때문에 가독성이 높아진다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;squash-and-merge&quot;&gt;Squash and merge&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/41_5.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 방식도 Create merge commit 과 마찬가지로 새로운 커밋을 생성한다.&lt;br /&gt; Create merge commit과의 차이점은 feature에서 작업한 모든 commit을 하나의 commit으로 통합해서 merge한다.&lt;br /&gt;
+-&amp;gt; pr 단위로 commit이 묶이기 때문에 가독성이 높아진다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;rebase-and-merge&quot;&gt;Rebase and merge&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/41_6.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 방식은 merge 하는 모든 commit을 단순히 복사해서 붙여넣는다.&lt;br /&gt;
+중간의 merge과정이 보이지 않고 history가 한줄로 나열되기 때문에 오히려 가독성이 떨어질 수도 있다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이번에는 merge와는 조금 다른 병합 방식인 rebase에 대해서 알아보겠다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;rebase&quot;&gt;Rebase&lt;/h1&gt;
+
+&lt;p&gt;현재 브랜치의 &lt;strong&gt;base를 재설정하여 합치는 것&lt;/strong&gt;을 말한다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/41_7.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;특징&quot;&gt;특징&lt;/h2&gt;
+
+&lt;p&gt;Merge와 동일하게 브랜치를 합치는 목적으로 사용된다.
+    - Commit History가 Merge와 다르게 선형적으로 그려진다.&lt;/p&gt;
+
+&lt;p&gt;Rebase는 현재 브랜치의 base를 바꾸는 것이다.
+    - 기존의 Commit을 복사하여 새로 생성한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;cherry-pick&quot;&gt;Cherry-pick&lt;/h1&gt;
+
+&lt;p&gt;다른 브랜치의 있는 commit을 현재 브랜치에 적용하는 것을 의미한다. &lt;br /&gt;
+일반적으로 새로운 브랜치를 하나 파서 cherry-pick을 진행하고 원격 저장소에 push하고 main으로 pr을 날리는 것이 일반적이다.&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//한개의 커밋 가져오기
+git cherry-pick 39c123
+
+//여러개의 커밋 가져오기
+git cherry-pick 39c123..bjkd12
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;cherry-pick-conflict&quot;&gt;Cherry-pick Conflict&lt;/h2&gt;
+
+&lt;p&gt;해결 방법&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Conflict 발생 파일을 수정한다.&lt;/li&gt;
+  &lt;li&gt;git add 명령어로 수정된 코드를 스테이지 상태로 변경시킨다.&lt;/li&gt;
+  &lt;li&gt;git cherry-pick –continue 명령을 실행한다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;참고-사이트&quot;&gt;참고 사이트&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;https://www.youtube.com/watch?v=b72mDco4g78&lt;/li&gt;
+  &lt;li&gt;https://www.zehye.kr/git/2019/11/22/11git_merge_conflict/&lt;/li&gt;
+  &lt;li&gt;https://hudi.blog/git-merge-squash-rebase/&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="git" /><category term="프로젝트 관리" /><category term="git" /><category term="우테코" /><summary type="html"></summary></entry><entry><title type="html">[클린코드] 일급 컬렉션</title><link href="http://localhost:4000/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C/40/" rel="alternate" type="text/html" title="[클린코드] 일급 컬렉션" /><published>2023-10-25T00:00:00+09:00</published><updated>2023-10-25T00:00:00+09:00</updated><id>http://localhost:4000/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C/40</id><content type="html" xml:base="http://localhost:4000/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C/40/">&lt;p&gt;우테코 1주차 과제를 리팩토링하면서 일급 컬렉션이라는 개념에 대해서 알게 됐다. 오늘은 일급 컬렉션이 무엇인지, 그리고 언제 사용하면 유용한지에 대해서 소개하겠다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;일급-컬렉션이란-무엇일까&quot;&gt;일급 컬렉션이란 무엇일까?&lt;/h2&gt;
 
@@ -1838,91 +1970,4 @@
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br /&gt;
-더 자세한 내용은 김영한님 강의를 참고하자!&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="Java" /><category term="Spring" /><category term="Java" /><category term="Spring" /><summary type="html"></summary></entry><entry><title type="html">[JPA] 데이터 JPA(2)</title><link href="http://localhost:4000/jpa/sj2/" rel="alternate" type="text/html" title="[JPA] 데이터 JPA(2)" /><published>2023-08-18T00:00:00+09:00</published><updated>2023-08-18T00:00:00+09:00</updated><id>http://localhost:4000/jpa/sj2</id><content type="html" xml:base="http://localhost:4000/jpa/sj2/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;paging-이슈&quot;&gt;&lt;em&gt;Paging 이슈&lt;/em&gt;&lt;/h1&gt;
-&lt;p&gt;JPA가 없던 시절에 Paging 처리를 하는 것은 굉장히 귀찮은 일이었다. JPA가 등장하면서 Paging을 쉽게 처리할 수 있게 되었다. Spring data JPA를 사용하면 페이지 계산과 같이 반복적이고 실수하기 쉬운 것을 추상화해서 사용하기 쉽게 제공해준다. &lt;br /&gt;
-먼저 순수 JPA를 사용한 Paging 처리를 보고 다음으로 Spring data JPA를 사용해서 처리하는 코드를 살펴보자.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;순수-jpa-paging&quot;&gt;순수 JPA Paging&lt;/h2&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;findByPage&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;offset&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;limit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createQuery&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;select m from Member m where m.age = :age order by m.username desc&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setParameter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;age&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setFirstResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;offset&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setMaxResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;limit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getResultList&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;totalCount&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;em&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;createQuery&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;select count(m) from Member m where m.age = :age&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Long&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setParameter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;age&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;age&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getSingleResult&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;offset과 limit을 받아서 JPQL을 짜면 된다. 결과값의 개수를 알아야 하기 때문에 별도의 CountQuery 도 날려줘야 한다.&lt;br /&gt;
-그럼 이제 Spring data JPA를 사용할 때의 Paging을 살펴보자.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nc&quot;&gt;Page&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;findByUsername&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Pageable&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pageable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;nc&quot;&gt;Slice&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;findByUsername&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Pageable&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pageable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;findByUsername&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Pageable&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pageable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-
-&lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Member&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;findByUsername&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Sort&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;먼저 반환타입에 따른 동작방식을 이해해보자.&lt;br /&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Page&lt;/code&gt;객체를 반환하는 경우 Spring data JPA 가 별도로 CountQuery를 생성해서 날려준다.&lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Slice&lt;/code&gt;객체를 반환하는 경우에는 별도의 CountQuery가 날라가지 않는다. 대신에 Pageable에서 받은 개수보다 1개 더 많이 가져와서 뒤에 페이지가 더 존재하는지 확인한다. 이제 Page 객체와 Slice 객체의 내부를 살펴보자 :) &lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;page-interface&quot;&gt;Page Interface&lt;/h2&gt;
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Page&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Slice&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getTotalPages&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getTotalElements&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;U&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Page&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;U&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Fuction&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;?&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;supter&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;U&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;converter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;h2 id=&quot;slice-interface&quot;&gt;Slice Interface&lt;/h2&gt;
-
-&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;interface&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Slice&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Streamable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
- &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getNumber&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getSize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getNumberOfElements&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getContent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hasContent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;Sort&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getSort&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;isFirst&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;isLast&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hasNext&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;kt&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;hasPrevious&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;Pageable&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getPageable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;Pageable&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;nextPageable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;nc&quot;&gt;Pageable&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;previousPageable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;U&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Slice&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;U&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Function&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;?&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;U&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;converter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt; 
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;이런 기능들을 예전에는 한땀한땀 열심히 구현해서 사용해야 했었다. 그런데 JPA에서 이미 다 제공해주기 때문에 그냥 가져다 사용하면 된다.&lt;br /&gt;
-여기서 두가지 주의해야 할 점이있다. &lt;strong&gt;JPA의 페이지는 1부터가 아니라 0부터 시작한다는 것이다.&lt;/strong&gt; 두번째는 CountQuery는 무거운 연산이라는 것이다. 때문에 복잡한 쿼리에서는 CountQuery를 분리하고 left join같은 경우는 CountQuery를 할 필요가 없다. 이를 주의하자!&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;참고-사이트-출처&quot;&gt;참고 사이트 출처&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%EB%8D%B0%EC%9D%B4%ED%84%B0-JPA-%EC%8B%A4%EC%A0%84&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;
-더 자세한 내용은 김영한님 강의를 참고하자!&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="JPA" /><category term="Spring" /><category term="JPA" /><category term="Data JPA" /><summary type="html"></summary></entry></feed>
+더 자세한 내용은 김영한님 강의를 참고하자!&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="Java" /><category term="Spring" /><category term="Java" /><category term="Spring" /><summary type="html"></summary></entry></feed>

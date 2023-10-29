@@ -238,4 +238,10 @@ var store = [{
         "tags": ["클린코드","TDD","우테코"],
         "url": "/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C/40/",
         "teaser": null
+      },{
+        "title": "[git] Merge, Rebase, Cheery-pick",
+        "excerpt":"이전까지 프로젝트를 하면서 git을 계속 사용했지만 내부 동작 방식을 제대로 이해하지 못한채로 사용했었다. 내부 동작 방식을 몰랐기 때문에 예측할 수 없는 상황이 많이 발생했었다. 예를들어 merge를 했는데 언제는 commit이 생기고 언제는 안생기는 등… 이번 기회에 git에 대해서 정리하고자 한다. merge merge란 두 브랜치를 합치는 기능을 의미한다. 일반적으로 많이 사용되는 병합...","categories": ["git"],
+        "tags": ["프로젝트 관리","git","우테코"],
+        "url": "/git/41/",
+        "teaser": null
       }]
