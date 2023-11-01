@@ -1,4 +1,173 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-10-30T17:02:56+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[프리코스] 숫자 야구 리뷰</title><link href="http://localhost:4000/%EC%9A%B0%ED%85%8C%EC%BD%94/42/" rel="alternate" type="text/html" title="[프리코스] 숫자 야구 리뷰" /><published>2023-10-30T00:00:00+09:00</published><updated>2023-10-30T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9A%B0%ED%85%8C%EC%BD%94/42</id><content type="html" xml:base="http://localhost:4000/%EC%9A%B0%ED%85%8C%EC%BD%94/42/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-11-01T17:08:08+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[테스트] 단위 테스트</title><link href="http://localhost:4000/%ED%85%8C%EC%8A%A4%ED%8A%B8/43/" rel="alternate" type="text/html" title="[테스트] 단위 테스트" /><published>2023-11-01T00:00:00+09:00</published><updated>2023-11-01T00:00:00+09:00</updated><id>http://localhost:4000/%ED%85%8C%EC%8A%A4%ED%8A%B8/43</id><content type="html" xml:base="http://localhost:4000/%ED%85%8C%EC%8A%A4%ED%8A%B8/43/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;동기&quot;&gt;동기&lt;/h2&gt;
+
+&lt;p&gt;이번 우테코 2주차 미션부터 메서드를 테스트하는 요구사항이 추가됐다. &lt;br /&gt;
+그래서 이번에 테스트에 대해서 공부하고 정리하고자 이 글을 작성하게 됐다. &lt;br /&gt;
+테스트에는 크게 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;단위 테스트&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;통합 테스트&lt;/code&gt;가 있는데 오늘은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;단위 테스트&lt;/code&gt;가 무엇인지, 그리고 어떻게 사용하는지에 중점을 맞추겠다.
+&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;단위-테스트&quot;&gt;단위 테스트&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;단위 테스트는 응용 프로그램에서 테스트 가능한 가장 작은 소프트웨어를 실행하여 예상대로 동작하는지 확인하는 테스트이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;가장 작은 단위의 테스트로 일반적으로 클래스 또는 메서드 수준으로 테스트를 진행한다. Java에서는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JUnit&lt;/code&gt;을 통해 테스트가 진행되며, 특히 &lt;em&gt;TDD&lt;/em&gt;와 함께 할 때 강력함을 발휘한다.
+&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;그러면 바로 사용 방법에 대해서 알아보자. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;사용되는-에노테이션&quot;&gt;사용되는 에노테이션&lt;/h2&gt;
+
+&lt;h3 id=&quot;test&quot;&gt;@Test&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Test&lt;/code&gt;를 붙이면 메서드를 테스트 메서드로 인식하게 되고, 단일 실행할 수 있게 설정된다.&lt;br /&gt;
+아래 코드를 보자 &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/43_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;메소드를 단독으로 실행할 수 있게 왼쪽에 녹색 커서가 생긴것을 확인할 수 있다.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;실행 결과&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/43_2.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;위와 같이 단독으로 테스트 메서드가 실행된 것을 확인할 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;displayname&quot;&gt;@DisplayName&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@DisplayName&lt;/code&gt;는 테스트 결과에 뜨는 이름을 설정할 수 있게 해준다. 테스트 결과에 같이 출력하고 싶은 내용을 추가할 수 있게 해준다. &lt;br /&gt;
+바로 예시를 보자 &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/43_3.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이렇게 해주면 아래와 같이 결과와 함께 미시지를 출력할 수 있다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/43_4.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;before-시리즈&quot;&gt;@Before~ 시리즈&lt;/h3&gt;
+
+&lt;h2 id=&quot;beforeall&quot;&gt;BeforeAll&lt;/h2&gt;
+
+&lt;p&gt;이름부터 참 직관적이다. 모든 테스트 실행되기 전에 실행되는 것이라고 생각하면 된다.&lt;br /&gt;
+&lt;strong&gt;단 한번만 실행되면 반드시 static으로 선언해야 한다.&lt;/strong&gt; &lt;br /&gt;
+바로 예시를 보자 &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/43_5.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/43_6.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;결과를 보면 알 수 있듯이 먼저 실행이 출력되고 test1, test2의 내용이 출력되는 것을 확인할 수 있다. 이 때 주의할 점은 test1, test2의 순서는 보장되지 않는다. 내부적으로 실행 순서가 있긴 하지만 이는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JUnit&lt;/code&gt;의 내부 구조에 따라 바뀔 수 있다.&lt;br /&gt;
+만약 순서를 지정하고 싶다면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@TestMethodOrder&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Order&lt;/code&gt;를 사용해서 지정할 수 있다. &lt;br /&gt;
+&lt;strong&gt;일반적으로 단위 테스트는 서로 의존적이지 않기 때문에 순서가 상관이 없다.&lt;/strong&gt; 하지만 경우에 따라 순서가 필요한 경우가 있을 수 있기 때문에 알아만 두자! &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;beforeeach&quot;&gt;@BeforeEach&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@BeforeEach&lt;/code&gt;는 각각의 테스트 메서드가 실행되기 전에 실행되는 메서드다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@BeforeAll&lt;/code&gt;은 처음에 한 번 실행되지만 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@BeforeEach&lt;/code&gt;는 각 테스트마다 실행되는 차이점이 있다. &lt;br /&gt;
+마찬가지로 예시를 보자 &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/43_7.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/43_8.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;결과를 보면 알 수 있듯이 먼저 실행이 test1, test2 실행 이전에 출력되는 것을 확인할 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;after-시리즈&quot;&gt;@After~ 시리즈&lt;/h2&gt;
+
+&lt;h3 id=&quot;afterall&quot;&gt;@AfterAll&lt;/h3&gt;
+
+&lt;p&gt;모든 테스트 메서드가 실행되고 단 한번만 실행된다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@BeforeAll&lt;/code&gt;과 정 반대라고 생각하면 된다.&lt;br /&gt;
+마찬가지로 static 메서드로 선언해야 한다.&lt;br /&gt;
+예시를 보자 &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/43_9.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/43_10.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;나중 실행&lt;/strong&gt;이 모든 테스트 메서드가 실행되고 난 후 출력된 것을 확인할 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;aftereach&quot;&gt;@AfterEach&lt;/h3&gt;
+
+&lt;p&gt;위에 설명한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@BeforeEach&lt;/code&gt;의 정 반대라고 생각하면 된다. 테스트 메서드가 끝날때마다 호출된다. &lt;br /&gt;
+마찬가지로 예시를 보자 &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/43_11.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/43_12.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이제 실제로 단위 테스트에 사용되는 메서드들을 살펴보자. &lt;br /&gt;
+일반적으로 단정(assert) 메서드를 많이 사용하는데 크게 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;junit&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;assertj&lt;/code&gt; 두 종류가 있다.&lt;br /&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;assertj&lt;/code&gt;가 등장하기 전까지는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;junit&lt;/code&gt;을 주로 사용했지만 이제는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;assertj&lt;/code&gt;를 많이 사용한다. 기능은 동일하지만 가독성이 더 좋기 때문이다. &lt;br /&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;assertj&lt;/code&gt;는 메서드 체인을 지원하기 때문에 가독성이 더 좋다. &lt;br /&gt; 때문에 오늘은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;assertj&lt;/code&gt;에 대해서 정리하고자 한다.&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;assertj&quot;&gt;assertj&lt;/h1&gt;
+
+&lt;h2 id=&quot;assertionsassertthat&quot;&gt;Assertions.assertThat()&lt;/h2&gt;
+
+&lt;h3 id=&quot;isequalto-isnotequalto&quot;&gt;isEqualTo(), isNotEqualTo()&lt;/h3&gt;
+
+&lt;p&gt;이 메서드는 &lt;strong&gt;assertThat(a).isEqualTo(b)&lt;/strong&gt;와 같이 사용된다. 대상a 와 기댓값 b의 값이 같은지 확인하는 메서드이다. &lt;br /&gt;
+isNotEqualTo()는 정확히 반대라고 생각하면 된다.&lt;br /&gt;
+예시를 보자&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/43_13.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;isEqualTo(), isNotEqualTo()는 값을 통해 검증하는 단정 메서드이다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;issameas-isnotsameas&quot;&gt;isSameAs(), isNotSameAs()&lt;/h3&gt;
+
+&lt;p&gt;이 메서드는 &lt;strong&gt;assertThat(a).isSameAs(b)&lt;/strong&gt; 와 같이 사용된다. 대상 a가 기댓값 b와 같은 대상인지 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;주소값&lt;/code&gt;을 통해 확인한다. &lt;br /&gt;
+사용법은 사실 isEqualTo()와 완전히 동일하기 때문에 생략하겠다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;여기서 가장 중요한 부분은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isEqualTo()&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isSameAs()&lt;/code&gt;의 차이점을 명확하게 아는 것이다.&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;isequalto-vs-issameas&quot;&gt;isEqualTo() VS isSameAs()&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;isEqualTo()&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;isEqualTo()는 단순히 값이 동일한지 확인한다. 객체가 비교 대상이 될 때는 Java의 equals() 메서드의 기능을 한다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;isSameAs()&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;isSameAs()는 단순 값이 아니라 참조값이 같은지를 비교한다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;아래 코드를 보고 어떤 결과가 나올지 생각해보면 더 잘 이해할 수 있을 것이다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/43_14.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;case 1, 2, 3, 4의 결과를 생각해보자. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;case1&lt;/code&gt; 의 경우는 에러가 발생할 것이다. memberA, memberB는 다른 객체를 가리키고 있기 때문이다. &lt;br /&gt;&lt;br /&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;case2&lt;/code&gt; 의 경우는 어떨까? 마찬가지로 에러가 발생할 것이다. 이름도 같고 id도 같은데 왜 에러가 발생할까? 그 이유는앞에서 말한 것처럼 isEqualTo()는 Java문법의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;equals()&lt;/code&gt;와 동일한 기능을 제공하기 때문이다. 우리는 Member를 정의할 때, Object 클래스의 equals()메서드를 오버라이딩하지 않았기 때문에 단순 객체의 참조값을 비교하게 된다. 때문에 에러가 발생하는 것이다. &lt;br /&gt;&lt;br /&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;case3&lt;/code&gt; 의 경우는 성공할 것이다. 맴버변수 name은 String 타입이다. String은 equals() 함수를 오버라이딩 해서 실제 값을 비교하도록 구현돼있다. memberA, memberB는 동일한 member라는 이름을 가지기 때문에 성공한다. &lt;br /&gt;&lt;br /&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;case4&lt;/code&gt; 의 경우도 String 타입이기 때문에 실제 값을 비교하여 성공하게 될 것이다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;isinstanceof&quot;&gt;isInstanceOf()&lt;/h2&gt;
+
+&lt;p&gt;이 메서드는 대상이 특정 클래스의 인스턴스인지 검증할 때 사용한다. 사용법은 &lt;strong&gt;assertThat(a).isInstanceOf(b.class)&lt;/strong&gt;와 같이 사용하면 된다. &lt;br /&gt; 아래 예시 코드를 보자 &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/43_15.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;isnull-isnotnull&quot;&gt;isNull(), isNotNull()&lt;/h2&gt;
+
+&lt;p&gt;이름 그대로 대상이 null인지 아닌지 확인하는 메서드이다. &lt;br /&gt;
+바로 예시를 보자 &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/43_16.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;오늘은 기본적인 단위 테스트에 대해서 정리해봤다. 혹시 잘못된 부분이 있다면 알려주세요~ &lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;참고-사이트&quot;&gt;참고 사이트&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;https://m42-orion.tistory.com/97?category=1085496&lt;/li&gt;
+  &lt;li&gt;https://tecoble.techcourse.co.kr/post/2021-05-25-unit-test-vs-integration-test-vs-acceptance-test/&lt;/li&gt;
+  &lt;li&gt;https://velog.io/@chori/JUnit-5-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4&lt;/li&gt;
+  &lt;li&gt;https://inkyu-yoon.github.io/docs/Language/Spring/IsEqualIsSame&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="테스트" /><category term="우테코" /><category term="프리코스" /><category term="테스트" /><category term="Junit5" /><summary type="html"></summary></entry><entry><title type="html">[프리코스] 숫자 야구 리뷰</title><link href="http://localhost:4000/%EC%9A%B0%ED%85%8C%EC%BD%94/42/" rel="alternate" type="text/html" title="[프리코스] 숫자 야구 리뷰" /><published>2023-10-30T00:00:00+09:00</published><updated>2023-10-30T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9A%B0%ED%85%8C%EC%BD%94/42</id><content type="html" xml:base="http://localhost:4000/%EC%9A%B0%ED%85%8C%EC%BD%94/42/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/42_2.png&quot; alt=&quot;img1&quot; width=&quot;40%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -1201,7 +1370,183 @@ git cherry-pick 39c123..bjkd12
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;ex) ping&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Network" /><summary type="html">네트워크 계층의 역할</summary></entry><entry><title type="html">[Network] Layer5</title><link href="http://localhost:4000/network/layer5/37/" rel="alternate" type="text/html" title="[Network] Layer5" /><published>2023-09-10T00:00:00+09:00</published><updated>2023-09-10T00:00:00+09:00</updated><id>http://localhost:4000/network/layer5/37</id><content type="html" xml:base="http://localhost:4000/network/layer5/37/">&lt;h2 id=&quot;application-layer의-특징&quot;&gt;application layer의 특징&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Network" /><summary type="html">네트워크 계층의 역할</summary></entry><entry><title type="html">[Network] 컴퓨터 네트워크와 인터넷</title><link href="http://localhost:4000/network/36/" rel="alternate" type="text/html" title="[Network] 컴퓨터 네트워크와 인터넷" /><published>2023-09-10T00:00:00+09:00</published><updated>2023-09-10T00:00:00+09:00</updated><id>http://localhost:4000/network/36</id><content type="html" xml:base="http://localhost:4000/network/36/">&lt;h3 id=&quot;internet-이란&quot;&gt;Internet 이란?&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;인터넷은 컴퓨터로 연결하여 &lt;strong&gt;TCP/IP&lt;/strong&gt; 라는 통신 프로토콜을 이용해 정보를 주고 받는 &lt;strong&gt;컴퓨터 네트워크&lt;/strong&gt;를 의미한다.&lt;/li&gt;
+  &lt;li&gt;Date를 전달하는 장치들이 이루는 거대한 network 망이다&lt;/li&gt;
+  &lt;li&gt;end system(host) 에 통신 서비스를 제공하는 존재이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;구성&quot;&gt;구성&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;여러 형태의 sub-network로 구성된다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;End system&lt;/code&gt; : 노트북, 휴대폰, 컴퓨터 등 네트워크를 이용하는 말단 부분&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Access Network&lt;/code&gt; : end system에 해당하는 기기들이 인터넷에 접속하기 위해 사용하는 네트워크로 sub-network의 기반이 되는 기술&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;network&lt;/code&gt; : end system의 정보를 전달하는 역할을 하는 부분&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;end system&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;인터넷과 연결된 가장 말단의 존재&lt;/li&gt;
+  &lt;li&gt;web browser, email, client, server …&lt;/li&gt;
+  &lt;li&gt;점점 범위가 확장되고 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;access network&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;End system이 Internet의 첫 부분과 연결되는 구간, Edge router&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Home&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;FTTH, cable internet access ..&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enterprise&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;LAN : Ethernet, WIFI&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WAN&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;3G, LTE, 5G ..&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;network core&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;네트워크의 핵심 부분&lt;/li&gt;
+  &lt;li&gt;end system의 정보를 전달하는 역할&lt;/li&gt;
+  &lt;li&gt;packet 기반으로 동작
+    &lt;ul&gt;
+      &lt;li&gt;router, link-layer switch를 통해서 원하는 곳으로 패킷을 전달하는 역할을 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;store-and-forward transmission
+    &lt;ul&gt;
+      &lt;li&gt;스위치가 출력 링크로 패킷의 첫 비트를 전송하기 전에 전체 패킷을 받는 것을 의미한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;packet&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Internet에서의 정보를 전달하는 전송 기본 단위&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;packet switching network&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;packet 기반으로 전달을 하는 통신 네트워크&lt;/li&gt;
+  &lt;li&gt;모든 통신이 packet 형태로 이루어짐.&lt;/li&gt;
+  &lt;li&gt;대표적으로 Internet 이 여기에 속한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Congestion&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;여러개의 입력 node와 연결된 packet switch에서의 혼잡 현상&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Queueing&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;혼잡 현상을 해결하기 packet switching에 대기열을 만들고 대기열에 packet을 쌓는다. 어떤걸 먼저 보낼지는 Queueing에 설정된 프로토콜에 맞춰서 전달된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Packet Loss&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;너무 많은 packet 으로 인해서 Queue가 가득차게 되면서 packet을 버리게 되는 것을 의미한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Router&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;packet을 적절하게 전달하는 역할을 수행한다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Forwarding table&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;packet의 목적지를 forwarding table과 비교하고 어디로 내보낼 지 결정&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Routing protocol&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Forwarding table을 만드는 알고리즘(프로토콜)을 말한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Protocol&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Internet 내에서 각 entity들의 동작 그 자체를 정의한다.&lt;/li&gt;
+  &lt;li&gt;정보 송수신에 대한 기능적 실체&lt;/li&gt;
+  &lt;li&gt;주로 주고받는 메시지 + 관련 동작을 정의한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;계층-구조&quot;&gt;계층 구조&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;애플리케이션 계층&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;각 end system에 있는 애플리케이션끼리 정보 패킷을 교환할 때 사용한다.&lt;/li&gt;
+  &lt;li&gt;HTTP, SMPT, FTP, DNS …&lt;/li&gt;
+  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Message&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;트랜스포트 계층&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TCP&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;연결지향형 서비스 제공&lt;/li&gt;
+      &lt;li&gt;긴 메시지를 짧은 메시지로 나누고 혼잡 제어 기능을 제공한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UDP&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;비연결성 서비스 제공&lt;/li&gt;
+      &lt;li&gt;서비스 신뢰성, 흐름 제어, 혼잡 제어를 제공하지 않는다. (대신 빠르다.)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Segment&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;네트워크 계층&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;end system to end system으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;데이터그램(datagram)&lt;/code&gt; 을 라우팅하는 책임을 진다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;라우팅 프로토콜&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IP 프로토콜&lt;/code&gt;을 포함한다.&lt;/li&gt;
+  &lt;li&gt;Routing, Forwarding을 해준다.&lt;/li&gt;
+  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;packet&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;링크 계층&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;송신 노드부터 수신 노드까지 하나의 링크를 통해 신뢰적인 전송을 제공한다.&lt;/li&gt;
+  &lt;li&gt;네트워크 내에서 Packet 흐름을 결정하는 핵심 역할을 수행한다.&lt;/li&gt;
+  &lt;li&gt;L1(물리 계층)에 의존적이다.&lt;/li&gt;
+  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;frame&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;물리 계층&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;링크 계층과 서로 엮여서 동작한다.&lt;/li&gt;
+  &lt;li&gt;1:1 상황에서 직접적인 물리 신호를 주고 받아서 정보를 전달한다.&lt;/li&gt;
+  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bit&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;캡슐화&quot;&gt;캡슐화&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;layer를 통과할 때 PCI가 붙으면서 PDU의 크기가 커지고 헤더도 계속 붙는다. 이렇게 계속 감싸지는 것을 캡슐화라고 한다.&lt;/li&gt;
+  &lt;li&gt;각 layer는 자신만의 정보 header를 붙이면서, 상위 layer의 packet을 캡슐화한다.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Network" /><summary type="html">Internet 이란?</summary></entry><entry><title type="html">[Network] Layer5</title><link href="http://localhost:4000/network/layer5/37/" rel="alternate" type="text/html" title="[Network] Layer5" /><published>2023-09-10T00:00:00+09:00</published><updated>2023-09-10T00:00:00+09:00</updated><id>http://localhost:4000/network/layer5/37</id><content type="html" xml:base="http://localhost:4000/network/layer5/37/">&lt;h2 id=&quot;application-layer의-특징&quot;&gt;application layer의 특징&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;protocol stack의 가장 위에 존재한다.&lt;/li&gt;
@@ -1433,183 +1778,7 @@ git cherry-pick 39c123..bjkd12
       &lt;li&gt;중요 지점에만 CDN을 설치함으로써 비용을 줄일 수 있다. 하지만 반대로 거리가 늘어나기 때문에 속도는 느려진다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Layer5" /><category term="Network" /><category term="Layer5" /><summary type="html">application layer의 특징</summary></entry><entry><title type="html">[Network] 컴퓨터 네트워크와 인터넷</title><link href="http://localhost:4000/network/36/" rel="alternate" type="text/html" title="[Network] 컴퓨터 네트워크와 인터넷" /><published>2023-09-10T00:00:00+09:00</published><updated>2023-09-10T00:00:00+09:00</updated><id>http://localhost:4000/network/36</id><content type="html" xml:base="http://localhost:4000/network/36/">&lt;h3 id=&quot;internet-이란&quot;&gt;Internet 이란?&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;인터넷은 컴퓨터로 연결하여 &lt;strong&gt;TCP/IP&lt;/strong&gt; 라는 통신 프로토콜을 이용해 정보를 주고 받는 &lt;strong&gt;컴퓨터 네트워크&lt;/strong&gt;를 의미한다.&lt;/li&gt;
-  &lt;li&gt;Date를 전달하는 장치들이 이루는 거대한 network 망이다&lt;/li&gt;
-  &lt;li&gt;end system(host) 에 통신 서비스를 제공하는 존재이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;구성&quot;&gt;구성&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;여러 형태의 sub-network로 구성된다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;End system&lt;/code&gt; : 노트북, 휴대폰, 컴퓨터 등 네트워크를 이용하는 말단 부분&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Access Network&lt;/code&gt; : end system에 해당하는 기기들이 인터넷에 접속하기 위해 사용하는 네트워크로 sub-network의 기반이 되는 기술&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;network&lt;/code&gt; : end system의 정보를 전달하는 역할을 하는 부분&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;end system&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;인터넷과 연결된 가장 말단의 존재&lt;/li&gt;
-  &lt;li&gt;web browser, email, client, server …&lt;/li&gt;
-  &lt;li&gt;점점 범위가 확장되고 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;access network&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;End system이 Internet의 첫 부분과 연결되는 구간, Edge router&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Home&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;FTTH, cable internet access ..&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enterprise&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;LAN : Ethernet, WIFI&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WAN&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;3G, LTE, 5G ..&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;network core&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;네트워크의 핵심 부분&lt;/li&gt;
-  &lt;li&gt;end system의 정보를 전달하는 역할&lt;/li&gt;
-  &lt;li&gt;packet 기반으로 동작
-    &lt;ul&gt;
-      &lt;li&gt;router, link-layer switch를 통해서 원하는 곳으로 패킷을 전달하는 역할을 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;store-and-forward transmission
-    &lt;ul&gt;
-      &lt;li&gt;스위치가 출력 링크로 패킷의 첫 비트를 전송하기 전에 전체 패킷을 받는 것을 의미한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;packet&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Internet에서의 정보를 전달하는 전송 기본 단위&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;packet switching network&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;packet 기반으로 전달을 하는 통신 네트워크&lt;/li&gt;
-  &lt;li&gt;모든 통신이 packet 형태로 이루어짐.&lt;/li&gt;
-  &lt;li&gt;대표적으로 Internet 이 여기에 속한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Congestion&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;여러개의 입력 node와 연결된 packet switch에서의 혼잡 현상&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Queueing&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;혼잡 현상을 해결하기 packet switching에 대기열을 만들고 대기열에 packet을 쌓는다. 어떤걸 먼저 보낼지는 Queueing에 설정된 프로토콜에 맞춰서 전달된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Packet Loss&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;너무 많은 packet 으로 인해서 Queue가 가득차게 되면서 packet을 버리게 되는 것을 의미한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Router&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;packet을 적절하게 전달하는 역할을 수행한다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Forwarding table&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;packet의 목적지를 forwarding table과 비교하고 어디로 내보낼 지 결정&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Routing protocol&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;Forwarding table을 만드는 알고리즘(프로토콜)을 말한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Protocol&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Internet 내에서 각 entity들의 동작 그 자체를 정의한다.&lt;/li&gt;
-  &lt;li&gt;정보 송수신에 대한 기능적 실체&lt;/li&gt;
-  &lt;li&gt;주로 주고받는 메시지 + 관련 동작을 정의한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;계층-구조&quot;&gt;계층 구조&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;애플리케이션 계층&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;각 end system에 있는 애플리케이션끼리 정보 패킷을 교환할 때 사용한다.&lt;/li&gt;
-  &lt;li&gt;HTTP, SMPT, FTP, DNS …&lt;/li&gt;
-  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Message&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;트랜스포트 계층&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TCP&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;연결지향형 서비스 제공&lt;/li&gt;
-      &lt;li&gt;긴 메시지를 짧은 메시지로 나누고 혼잡 제어 기능을 제공한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UDP&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;비연결성 서비스 제공&lt;/li&gt;
-      &lt;li&gt;서비스 신뢰성, 흐름 제어, 혼잡 제어를 제공하지 않는다. (대신 빠르다.)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Segment&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;네트워크 계층&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;end system to end system으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;데이터그램(datagram)&lt;/code&gt; 을 라우팅하는 책임을 진다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;라우팅 프로토콜&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IP 프로토콜&lt;/code&gt;을 포함한다.&lt;/li&gt;
-  &lt;li&gt;Routing, Forwarding을 해준다.&lt;/li&gt;
-  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;packet&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;링크 계층&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;송신 노드부터 수신 노드까지 하나의 링크를 통해 신뢰적인 전송을 제공한다.&lt;/li&gt;
-  &lt;li&gt;네트워크 내에서 Packet 흐름을 결정하는 핵심 역할을 수행한다.&lt;/li&gt;
-  &lt;li&gt;L1(물리 계층)에 의존적이다.&lt;/li&gt;
-  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;frame&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;물리 계층&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;링크 계층과 서로 엮여서 동작한다.&lt;/li&gt;
-  &lt;li&gt;1:1 상황에서 직접적인 물리 신호를 주고 받아서 정보를 전달한다.&lt;/li&gt;
-  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bit&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;캡슐화&quot;&gt;캡슐화&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;layer를 통과할 때 PCI가 붙으면서 PDU의 크기가 커지고 헤더도 계속 붙는다. 이렇게 계속 감싸지는 것을 캡슐화라고 한다.&lt;/li&gt;
-  &lt;li&gt;각 layer는 자신만의 정보 header를 붙이면서, 상위 layer의 packet을 캡슐화한다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Network" /><summary type="html">Internet 이란?</summary></entry><entry><title type="html">[SQLD] 데이터 모델 &amp;amp; 성능</title><link href="http://localhost:4000/sqld/35/" rel="alternate" type="text/html" title="[SQLD] 데이터 모델 &amp;amp; 성능" /><published>2023-09-01T00:00:00+09:00</published><updated>2023-09-01T00:00:00+09:00</updated><id>http://localhost:4000/sqld/35</id><content type="html" xml:base="http://localhost:4000/sqld/35/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Layer5" /><category term="Network" /><category term="Layer5" /><summary type="html">application layer의 특징</summary></entry><entry><title type="html">[SQLD] 데이터 모델 &amp;amp; 성능</title><link href="http://localhost:4000/sqld/35/" rel="alternate" type="text/html" title="[SQLD] 데이터 모델 &amp;amp; 성능" /><published>2023-09-01T00:00:00+09:00</published><updated>2023-09-01T00:00:00+09:00</updated><id>http://localhost:4000/sqld/35</id><content type="html" xml:base="http://localhost:4000/sqld/35/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;데이터-모델과-성능&quot;&gt;&lt;em&gt;데이터 모델과 성능&lt;/em&gt;&lt;/h1&gt;
 
@@ -2063,134 +2232,4 @@ git cherry-pick 39c123..bjkd12
 &lt;h1 id=&quot;참고-사이트-출처&quot;&gt;&lt;em&gt;참고 사이트 출처&lt;/em&gt;&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;https://starrykss.tistory.com/1612&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="SQLD" /><category term="데이터베이스" /><category term="SQLD" /><summary type="html"></summary></entry><entry><title type="html">[알고리즘] 비트 마스킹</title><link href="http://localhost:4000/algorithm/33/" rel="alternate" type="text/html" title="[알고리즘] 비트 마스킹" /><published>2023-08-22T00:00:00+09:00</published><updated>2023-08-22T00:00:00+09:00</updated><id>http://localhost:4000/algorithm/33</id><content type="html" xml:base="http://localhost:4000/algorithm/33/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;비트-마스크란&quot;&gt;&lt;em&gt;비트 마스크란?&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;컴퓨터는 내부적으로 모든 연산을 이진수로 표현하고 처리한다. 이런 특성을 이용해서 정수의 이진수 표현을 자료구조로 쓰는 기법을 &lt;strong&gt;비트 마스크&lt;/strong&gt; 라고 한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;비트-연산자&quot;&gt;&lt;em&gt;비트 연산자&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;파이썬의 기본 비트 연산자를 먼저 살펴보자.&lt;/p&gt;
-
-&lt;h2 id=&quot;and-or-xor&quot;&gt;AND, OR, XOR&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AND 연산&lt;/code&gt; (&amp;amp;) : 두 비트가 모두 1일 때, 1을 반환한다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OR 연산&lt;/code&gt; (l) : 두 비트가 하나라도 1이면, 1을 반환한다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;XOR 연산&lt;/code&gt; (^) : 대응하는 두 비트가 서로 다르면 1을 반환한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;mi&quot;&gt;1100&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1011&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;
-&lt;span class=&quot;mi&quot;&gt;1010&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1111&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1111&lt;/span&gt;
-&lt;span class=&quot;mi&quot;&gt;1010&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;^&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1111&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0101&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;not&quot;&gt;NOT&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NOT 연산&lt;/code&gt; (~) : 비트의 값을 뒤집어서 반환&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1010&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0101&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;shift-연산&quot;&gt;Shift 연산&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;left shift&lt;/code&gt; («) : 왼쪽으로 비트 이동 (X * 2^Y)&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;right shift&lt;/code&gt; (») : 오른쪽으로 비트 이동 (X / 2^B)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;mi&quot;&gt;00001010&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;101000&lt;/span&gt;
-&lt;span class=&quot;mi&quot;&gt;00001010&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;000010&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;집합과-비트마스크&quot;&gt;&lt;em&gt;집합과 비트마스크&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;비트 마스크를 사용하면 집합을 굉장히 효율적으로 표현할 수 있다. 예를 들어 10개의 방문 체크를 해야 하는 상황이라고 가정하자. &lt;br /&gt; 그러면  check = [False] * 10 와 같이 리스트로 표현하는 것이 일반적일 것이다.&lt;br /&gt;
-그런데 비트 마스크를 사용하면 check = 0b0000000000 와 같이 표현할 수 있다. 메로리를 훨씬 적게 사용하고 연산도 모두 O(1) 이기 때문에 굉장히 효율적이다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;집합의-연산과-비트-마스크&quot;&gt;집합의 연산과 비트 마스크&lt;/h2&gt;
-
-&lt;p&gt;이제 비트 마스크를 활용한 집합의 연산에 대해서 알아보자.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;원소 추가&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;S&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;집합 S에 x를 추가하려고 할 때, S의 x번 비트만 1로 만들어주면 된다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;원소 삭제&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;S&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;집합 S에서 x를 삭제할 때, S의 x번 비트를 0으로 만들어주면 된다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;원소 토글&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;S&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;^=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;집합 S에 x가 있다면 삭제하는 연산이다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;원소 체크&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;S&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;li&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;집합 S에 원소가 있으면 1을 반환, 없으면 0을 반환해주는 연산이다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;원소 비우기, 채우기&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;S&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 비우기
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;S&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;21&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;#채우기
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;원소를 비우기 위해서 S의 모든 비트를 0으로 만들어주면 된다. 채울때는 모든 비트를 1로 만들어주면 된다. 1 « 21 을 통해서 집합 수보다 1만큼 큰 비트 sequence를 만들어주고 1을 빼면 집합길이(20) 만큼의 1로 채워진 집합이 된다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;집합-연산&quot;&gt;&lt;em&gt;집합 연산&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;당연히 집합간의 연산도 가능하다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 합집합
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 교집합
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;B&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 차집합 (A - B)
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;A&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;^&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;B&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# A와 B중 하나만 속한 원소
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;참고-사이트-출처&quot;&gt;참고 사이트 출처&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;https://velog.io/@1998yuki0331/Python-%EB%B9%84%ED%8A%B8-%EB%A7%88%EC%8A%A4%ED%82%B9-%EC%A0%95%EB%A6%AC
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Algorithm" /><category term="비트 마스킹" /><category term="알고리즘" /><category term="자료구조" /><summary type="html"></summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="SQLD" /><category term="데이터베이스" /><category term="SQLD" /><summary type="html"></summary></entry></feed>
