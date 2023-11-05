@@ -1,4 +1,411 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-11-01T17:31:08+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[테스트] 단위 테스트</title><link href="http://localhost:4000/%ED%85%8C%EC%8A%A4%ED%8A%B8/43/" rel="alternate" type="text/html" title="[테스트] 단위 테스트" /><published>2023-11-01T00:00:00+09:00</published><updated>2023-11-01T00:00:00+09:00</updated><id>http://localhost:4000/%ED%85%8C%EC%8A%A4%ED%8A%B8/43</id><content type="html" xml:base="http://localhost:4000/%ED%85%8C%EC%8A%A4%ED%8A%B8/43/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-11-05T20:30:15+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[Network] 보안</title><link href="http://localhost:4000/network/44/" rel="alternate" type="text/html" title="[Network] 보안" /><published>2023-11-05T00:00:00+09:00</published><updated>2023-11-05T00:00:00+09:00</updated><id>http://localhost:4000/network/44</id><content type="html" xml:base="http://localhost:4000/network/44/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;안전한-통신&quot;&gt;안전한 통신&lt;/h1&gt;
+
+&lt;p&gt;기밀성&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;송신자와 지정된 수신자만이 전송되는 메시지의 내용을 이해할 수 있어야 한다.&lt;/li&gt;
+  &lt;li&gt;메시지를 어떠한 방식으로든 암호화해야 한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;메시지 무결성&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;전송중에 메시지의 내용이 변하지 않아야 한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;종단점 인증&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;송신자와 수신자는 상대방이 실제로 누구인지 신원을 확인할 수 있어야 한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;운영 보안&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;대부분의 기관은 공용 네트워크에 연결되어있기 때문에 공격에 노출될 수 있다.&lt;/li&gt;
+  &lt;li&gt;이를 막기 위해 기관 네트워크와 공공 네트워크 사이에 방화벽을 설치하고 드나드는 패킷을 제어할 수 있어야 한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&quot;암호학&quot;&gt;암호학&lt;/h1&gt;
+
+&lt;h3 id=&quot;암호화-구성요소&quot;&gt;암호화 구성요소&lt;/h3&gt;
+
+&lt;p&gt;송신자가 보내려는 원래 형태의 메시지를 &lt;strong&gt;평문&lt;/strong&gt;이라고 한다. 그리고 이를 암호화 알고리즘을 사용하여 만든 메시지를 &lt;strong&gt;암호문&lt;/strong&gt;이라고 한다.&lt;/p&gt;
+
+&lt;p&gt;이 암호화 알고리즘은 누구에게나 다 알려져 있다. 때문에 전송한 데이터를 중간에서 가로채서 복원할 수 없도록 해주는 장치가 필요한데 이것이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;키&lt;/code&gt; 이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;→ 평문을 암호문으로 바꿈으로서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;기밀성&lt;/code&gt;을 실현한다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/44_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Alice가 키(A)를 이용해서 평문을 암호화해서 밥에게 보낸다.&lt;/li&gt;
+  &lt;li&gt;Bob은 키(B)를 사용해서 암호문을 복호화하여 평문으로 복원한다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;키는 Alice와 Bob만 가지고 있고 있기 때문에 Trudy가 중간에서 메시지를 가로채도 평문으로 복원할 방법이 없다.&lt;/p&gt;
+
+&lt;h3 id=&quot;대칭키-시스템&quot;&gt;대칭키 시스템&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;위 시나리오에서 Alice와 Bob이 동일한 키(A)를 가지고 암호화, 복호화를 한다면 이것은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;대칭키&lt;/code&gt;를 이용하는 방식이다.&lt;/li&gt;
+  &lt;li&gt;키(A)는 통신하고 있는 송수신자 이외에는 알 수 없다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;공개키-시스템&quot;&gt;공개키 시스템&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/44_2.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;모두에게 공개하는 키(공개키, K+)와 자기 자신만 가지는 키(개인키, K-)를 사용하는 방식이다.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;RSA알고리즘이 공개키 암호화와 거의 동의어처럼 사용된다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;송신자는 수신자의 공개키(K+)로 암호문을 생성해서 송신한다.&lt;/li&gt;
+  &lt;li&gt;수신자는 자신의 개인키(K-)로 암호문을 복호화한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;rsa&quot;&gt;RSA&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;모듈러 연산의 성질을 이용한 알고리즘인데 자세한 내용은 생략한다.&lt;/li&gt;
+  &lt;li&gt;RSA는 종종 대칭키 암호화와 같이 사용되는데 이때 사용되는 키가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;세션키&lt;/code&gt;이다.
+    &lt;ul&gt;
+      &lt;li&gt;여기서 세션키는 대칭키 암호화에 사용되는 키이다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;흐름&quot;&gt;흐름&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;송신자가 세션키를 수신자의 공개키로 암호화한다.&lt;/li&gt;
+  &lt;li&gt;수신자는 자신의 개인키로 복호화하여 세션키를 얻는다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;→ 이를 통해 안전하게 대칭키를 상대방에게 배포할 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;블록-암호화&quot;&gt;블록 암호화&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;블록 암호화&lt;/strong&gt;는 PGP(보안 전자 메일에 사용), TLS(안전한 TCP 연결에 사용), IPsec(네트워크 계층 전송에 사용) 에 자주 사용되는 방식으로서 메시지를 K비트의 블록 단위로 쪼개서 암호화한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;문제점&quot;&gt;문제점&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;이 방식은 2^k 만큼의 테이블을 유지해야 하기 때문에 K가 크다면 사용할 수 없다.&lt;/li&gt;
+  &lt;li&gt;블록 암호화는 평문 블록이 동일하다면 동일한 암호문을 생성한다. 때문에 공격자가 이를 해독할 여지가 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;cbc-cipher-block-chaning&quot;&gt;CBC (Cipher Block Chaning)&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;블록 암호화의 문제를 해결하기 위한 방법 중 하나로 송신자가 처음에 초기화 백터라 불리는 임의의 비트열을 생성해서 수신자에게 보낸다.&lt;/li&gt;
+  &lt;li&gt;수신자는 이를 이용해서 블록 C1~Cn까지 암호화를 수행한다.
+    &lt;ul&gt;
+      &lt;li&gt;여기서 Cn을 암호화할 때, Cn-1의 값과 초기화 백터값이 사용된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;CBC를 사용하면 송신할때마다 초기화 백터가 다르기 때문에 같은 평문에 대해서 다른 암호문이 도출된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;메시지-무결성&quot;&gt;메시지 무결성&lt;/h2&gt;
+
+&lt;h3 id=&quot;메시지-인증&quot;&gt;메시지 인증&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;메시지가 정말 해당 송신자로부터 온 것인가?&lt;/li&gt;
+  &lt;li&gt;메시지가 나한테 전달되는 과정에서 변경되지 않았는가?&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;→ 이 두가지를 만족시켜야 한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;해시-함수&quot;&gt;해시 함수&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;해시 함수는 메시지 m을 입력값으로 받아서 고정된 크기의 문자열 H(m)을 도출한다.&lt;/li&gt;
+  &lt;li&gt;메시지 m을 해시값으로 넣었을 때 생성되는 해시값 H(m)과 같은 해시값을 만들어내는 H(m`)을 찾는 것이 산술적으로 불가능(시간상)해야 한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;메시지-인증-코드-mac&quot;&gt;메시지 인증 코드 (MAC)&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/44_3.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;단순히 해시 함수를 통해서 (m, H(m))을 생성해서 보내는 것은 누구나 할 수 있다.
+    &lt;ul&gt;
+      &lt;li&gt;Alice도 보낼 수 있고, Trudy가 Alice인척 보낼 수도 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;MAC 에서는 송수신자가 비밀키(s)를 공유하여 해시값을 계산할 때, 메시지에 s를 붙인다.
+    &lt;ul&gt;
+      &lt;li&gt;(m, H(m+s)) ← 송신할 때 이렇게 보낸다.&lt;/li&gt;
+      &lt;li&gt;비밀키 s는 송수신자만 공유하기 때문에 중간에 공격가 Trudy가 메시지(m)을 갈아껴서 (m&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;, H(m&lt;/code&gt;))을 보내도 수신자는 H(m&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;) ≠ H(m&lt;/code&gt;+s)이기 때문에 이상을 감지할 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;전자-서명&quot;&gt;전자 서명&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;문서의 소유자 또는 작성자를 명시하거나 어떤 사람이 문서 내용에 동의했다는 것을 표시할 때 사용한다.&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;서명자를 입증&lt;/strong&gt;할 수 있어야 하고 &lt;strong&gt;위조할 수 없어야 한다.&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;공개키 암호화 방법이 사용된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;흐름-1&quot;&gt;흐름&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;자신의 개인키로 문서나 메시지 m을 암호화한다. → K-(m)&lt;/li&gt;
+  &lt;li&gt;네트워크상에서 K-(m)을 받은 사람들은 공개키 K+를 사용해서 복호화한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;특징&quot;&gt;특징&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;송신자의 개인키(K-)를 통해서만 서명할 수 있기 때문에 위조가 불가능하고 내가 나임을 증명할 수 있다.&lt;/li&gt;
+  &lt;li&gt;공격자 Trudy가 메시지를 조작해서 m`을 만들어도 수신자는 바로 이상을 감지할 수 있다.&lt;/li&gt;
+  &lt;li&gt;메시지 m은 길어질 수 있고 m에 바로 복호화, 암호화를 하게 되면 계산량이 늘어난다.
+    &lt;ul&gt;
+      &lt;li&gt;해시 함수를 사용해서 m의 길이를 고정길이 해시값으로 변환해서 암호화한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/44_4.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;해시-함수-사용-흐름&quot;&gt;해시 함수 사용 흐름&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;메시지를 해시 함수에 넣어서 해시값 H(m)을 생성한다.&lt;/li&gt;
+  &lt;li&gt;H(m)을 개인키 K-로 암호화해서 보낸다. → (m, K-(H(m)))
+    &lt;ul&gt;
+      &lt;li&gt;수신자에게는 (m, h)로 보인다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;수신자는 h값을 k+로 복호화하고 H(m)값과 비교한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;공개키-인증&quot;&gt;공개키 인증&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/44_5.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;위와 같이 Trudy가 자신의 개인키(K-)를 사용해서 Bob이 피자를 주문한다는 메시지를 암호화한 후 (m’, K-(H(m`)))을 Alice(피자집)에 보낸 경우를 생각해보자.&lt;/p&gt;
+
+&lt;p&gt;Alice는 Trudy의 공개키를 통해서 메시지를 복호화할 것이고 메시지의 내용이 위조가 없음을 판단할 것이다.&lt;/p&gt;
+
+&lt;p&gt;그리고 주문하지 않은 Bob에게 피자를 보낼 것이다. (억울…)&lt;/p&gt;
+
+&lt;p&gt;→ 이를 막기 위해서는 서명자의 공개키라고 생각되는 것이 정말 서명자의 것인지 알 수 있어야 하고 이를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CA&lt;/code&gt;가 해준다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/44_6.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;공개키가 누구의 것인지 보증하는 일을 CA에서 담당한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;흐름-2&quot;&gt;흐름&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Bob이 자신의 공개키를 들고 CA에게 인증을 요구한다.&lt;/li&gt;
+  &lt;li&gt;CA가 적절하게 검증을 해준다.
+    &lt;ul&gt;
+      &lt;li&gt;전적으로 CA의 검증을 신뢰해야 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;CA는 공개키와 신분 확인서를 결합한 인증서를 Bob에게 준다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;→ 다음 통신부터는 인증서와 메시지를 같이 암호화하여 보냄으로서 신원을 보증할 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;종단점-인증&quot;&gt;종단점 인증&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/44_7.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;대칭키와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;넌스&lt;/code&gt;를 동시에 사용하면 종단점 인증을 할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;흐름-3&quot;&gt;흐름&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Alice는 메시지를 Bob에게 보낸다.&lt;/li&gt;
+  &lt;li&gt;Bob은 넌스 R을 생성하고 이것을 Alice에게 보낸다.&lt;/li&gt;
+  &lt;li&gt;Alice는 Bob과 공유하는 대칭키를 사용하여 넌스 R을 암호화하고 Bob에게 다시 보낸다.&lt;/li&gt;
+  &lt;li&gt;Bob은 이 값을 복호화하고 지금 통신하는 주체가 Alice임을 확인할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;layer5-에서-제공하는-보안-서비스&quot;&gt;Layer5 에서 제공하는 보안 서비스&lt;/h2&gt;
+
+&lt;h3 id=&quot;전자메일&quot;&gt;전자메일&lt;/h3&gt;
+
+&lt;p&gt;요구되는 사항들&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;기밀성&lt;/li&gt;
+  &lt;li&gt;송신자 인증&lt;/li&gt;
+  &lt;li&gt;메시지 무결성&lt;/li&gt;
+  &lt;li&gt;수신자 인증&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;기밀성&quot;&gt;기밀성&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/44_8.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Alice는 대칭 세션키(Ks)를 선택한다.&lt;/li&gt;
+  &lt;li&gt;Ks로 m을 암호화하고, Bob의 공개키 (K+B)로 Ks를 암호화한 쌍을 Bob에게 전송한다.
+    &lt;ul&gt;
+      &lt;li&gt;(K+B(Ks), Ks(m))&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Bob은 자신의 개인키로 세션키(Ks)를 얻고 Ks로 메시지를 복호화한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;→ 이를 통해서 메시지의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;기밀성&lt;/code&gt;을 충족시킬 수 있다. (Bob만이 메시지를 열람할 수 있음.)&lt;/p&gt;
+
+&lt;h3 id=&quot;송신자-인증--메시지-무결성&quot;&gt;송신자 인증 &amp;amp; 메시지 무결성&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/44_9.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Alice는 m를 해시 함수에 넣어서 해시값 H(m)을 얻는다.&lt;/li&gt;
+  &lt;li&gt;H(m)을 자신의 개인키로 암호화한다. (전자서명)&lt;/li&gt;
+  &lt;li&gt;이를 Bob에게 전송하고 Bob은 이를 수신하여 Alice의 공개키로 복호화한다.&lt;/li&gt;
+  &lt;li&gt;복호화한 결과가 메시지m과 동일하면 메시지의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;무결성&lt;/code&gt;이 확인된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;→ 전자서명을 통해서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;송신자를 인증&lt;/code&gt;할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;위의 두 가지를 합치면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;기밀성&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;무결성&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;송신자 인증&lt;/code&gt;을 만족시킬 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/44_10.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Alice는 m과 m을 자신의 개인키로 암호화한 쌍을 하나의 값으로 묶는다.&lt;/li&gt;
+  &lt;li&gt;이 값을 세션키(Ks)로 한번 더 암호화한다.&lt;/li&gt;
+  &lt;li&gt;그리고 세션키(Ks)는 수신자의 공개키로 암호화한다.&lt;/li&gt;
+  &lt;li&gt;이 두 쌍을 묶어서 전송한다.
+    &lt;ul&gt;
+      &lt;li&gt;(Ks(K-A(H(m), m), K+b(K(s))&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;→ 수신자는 Alice의 공개키를 알아야 하는데 이는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CA&lt;/code&gt;를 통해서 인증을 받는다.&lt;/p&gt;
+
+&lt;h2 id=&quot;layer4-에서-제공하는-보안-서비스&quot;&gt;Layer4 에서 제공하는 보안 서비스&lt;/h2&gt;
+
+&lt;h3 id=&quot;tls-transport-layer-security&quot;&gt;TLS (Transport Layer Security)&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;기밀성&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;무결성&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;서버인증&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;클라이언트 인증&lt;/code&gt;을 제공한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;핸드셰이크&quot;&gt;핸드셰이크&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/44_11.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;위 흐름은 약식 TLS 핸드셰이크 과정이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;흐름-4&quot;&gt;흐름&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;클라이언트(Bob)은 넌스와 함께 자신이 지원하는 암호화 알고리즘을 서버(Alice)에 보낸다.
+    &lt;ul&gt;
+      &lt;li&gt;넌스를 사용하는 이유는 메시지에 유일성이 생기기 때문에 동일한 메시지를 공격자가 서버에 보내도 구분할 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;서버(Alice)는 대칭키, 공개키, HMAC 알고리즘과 HMAC 키를 선택하고 이를 서버 넌스와 인증서와 함께 클라이언트(Bob)에게 보낸다.&lt;/li&gt;
+  &lt;li&gt;클라이언트(Bob)은 서버의 공개키를 알아내고 PMS를 생성한다. 그리고 PMS를 서버(Alice)의 공개키로 암호화하고 서버(Alice)로 보낸다.&lt;/li&gt;
+  &lt;li&gt;클라이언트, 서버는 동일한 키 유도 함수를 사용하여 PMS와 넌스로부터 MS를 계산한다.&lt;/li&gt;
+  &lt;li&gt;MS는 2개의 암호화 키와 2개의 HMAC 키를 생성하기 위해 분할된다.&lt;/li&gt;
+  &lt;li&gt;이후부터 모든 메시지는 암호화되고 인증된다. (HMAC에 의해)
+    &lt;ul&gt;
+      &lt;li&gt;클라이언트, 서버의 모든 핸드셰이크 메시지의 HMAC을 전송한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;연결-종료&quot;&gt;연결 종료&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;레코드의 타입 필드에 TLS 세션을 종료할 것인지 표시해야 한다.
+    &lt;ul&gt;
+      &lt;li&gt;이렇게 하지 않으면 공격자로부터 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;절단 공격&lt;/code&gt;을 받을 수 있다.&lt;/li&gt;
+      &lt;li&gt;공격자가 중간에서 TCP FIN을 보내는 것을 &lt;strong&gt;절단 공격&lt;/strong&gt;이라고 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;layer3-에서-제공하는-보안-서비스&quot;&gt;Layer3 에서 제공하는 보안 서비스&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;기밀성&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;메시지 무결성&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;송신자 인증&lt;/code&gt;을 제공한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;ipsec&quot;&gt;IPsec&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/44_12.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;호스트간 안전하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;기밀성&lt;/code&gt;이 보장된 통신을 제공한다.&lt;/li&gt;
+  &lt;li&gt;기존에는 사설 네트워크를 설치해서 이를 실현했는데 비용이 많이들기 때문에 요즘에는 공공 네트워크 상에 VPN을 설치한다.&lt;/li&gt;
+  &lt;li&gt;공공 인터넷에 접근하기 직전에 IPsec으로 데이터그램을 바꾸고 진입한다.
+    &lt;ul&gt;
+      &lt;li&gt;IPsec도 IPv4의 헤더를 가지기 때문에 라우터는 이 둘을 구분하지 못한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;esp-프로토콜&quot;&gt;ESP 프로토콜&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;기밀성, 데이터 무결성을 제공한다.&lt;/li&gt;
+  &lt;li&gt;AH프로토콜도 있는데 기밀성을 제공하지 못하기 때문에 ESP가 주로 사용된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;sa&quot;&gt;SA&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;송신지와 수신지는 IPsec 데이터그램을 전송하기 전에 둘 사이에 논리적 연결을 설립한다.
+    &lt;ul&gt;
+      &lt;li&gt;이를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SA(security association)&lt;/code&gt;라고 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;SA는 단방향이라서 양방향으로 데이터를 전송하기 위해서는 2개의 SA를 설립해야 한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;ipsec-데이터그램&quot;&gt;IPsec 데이터그램&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/44_13.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&quot;방화벽&quot;&gt;방화벽&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/44_14.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;전체 인터넷으로부터 기관의 내부 네트워크를 분리시킨 하드웨어와 소프트웨어의 조합으로, 어떤 패킷은 통과가 허용되나 어떤 패킷은 차단된다.&lt;/li&gt;
+  &lt;li&gt;쉽게 말하면 공공 네트워크와 기관 내부 네트워크 사이에서 패킷을 필터링하는 역할을 수행한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;역할&quot;&gt;역할&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;공공 네트워크와 기관 네트워크를 지나는 모든 트래픽은 방화벽을 거친다.&lt;/li&gt;
+  &lt;li&gt;기관 네트워크의 정책에 허용된 트래픽만 방화벽을 통과할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Netowrk" /><summary type="html"></summary></entry><entry><title type="html">[테스트] 단위 테스트</title><link href="http://localhost:4000/%ED%85%8C%EC%8A%A4%ED%8A%B8/43/" rel="alternate" type="text/html" title="[테스트] 단위 테스트" /><published>2023-11-01T00:00:00+09:00</published><updated>2023-11-01T00:00:00+09:00</updated><id>http://localhost:4000/%ED%85%8C%EC%8A%A4%ED%8A%B8/43</id><content type="html" xml:base="http://localhost:4000/%ED%85%8C%EC%8A%A4%ED%8A%B8/43/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;동기&quot;&gt;동기&lt;/h2&gt;
 
@@ -1385,183 +1792,7 @@ git cherry-pick 39c123..bjkd12
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;ex) ping&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Network" /><summary type="html">네트워크 계층의 역할</summary></entry><entry><title type="html">[Network] 컴퓨터 네트워크와 인터넷</title><link href="http://localhost:4000/network/36/" rel="alternate" type="text/html" title="[Network] 컴퓨터 네트워크와 인터넷" /><published>2023-09-10T00:00:00+09:00</published><updated>2023-09-10T00:00:00+09:00</updated><id>http://localhost:4000/network/36</id><content type="html" xml:base="http://localhost:4000/network/36/">&lt;h3 id=&quot;internet-이란&quot;&gt;Internet 이란?&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;인터넷은 컴퓨터로 연결하여 &lt;strong&gt;TCP/IP&lt;/strong&gt; 라는 통신 프로토콜을 이용해 정보를 주고 받는 &lt;strong&gt;컴퓨터 네트워크&lt;/strong&gt;를 의미한다.&lt;/li&gt;
-  &lt;li&gt;Date를 전달하는 장치들이 이루는 거대한 network 망이다&lt;/li&gt;
-  &lt;li&gt;end system(host) 에 통신 서비스를 제공하는 존재이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;구성&quot;&gt;구성&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;여러 형태의 sub-network로 구성된다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;End system&lt;/code&gt; : 노트북, 휴대폰, 컴퓨터 등 네트워크를 이용하는 말단 부분&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Access Network&lt;/code&gt; : end system에 해당하는 기기들이 인터넷에 접속하기 위해 사용하는 네트워크로 sub-network의 기반이 되는 기술&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;network&lt;/code&gt; : end system의 정보를 전달하는 역할을 하는 부분&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;end system&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;인터넷과 연결된 가장 말단의 존재&lt;/li&gt;
-  &lt;li&gt;web browser, email, client, server …&lt;/li&gt;
-  &lt;li&gt;점점 범위가 확장되고 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;access network&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;End system이 Internet의 첫 부분과 연결되는 구간, Edge router&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Home&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;FTTH, cable internet access ..&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enterprise&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;LAN : Ethernet, WIFI&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WAN&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;3G, LTE, 5G ..&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;network core&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;네트워크의 핵심 부분&lt;/li&gt;
-  &lt;li&gt;end system의 정보를 전달하는 역할&lt;/li&gt;
-  &lt;li&gt;packet 기반으로 동작
-    &lt;ul&gt;
-      &lt;li&gt;router, link-layer switch를 통해서 원하는 곳으로 패킷을 전달하는 역할을 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;store-and-forward transmission
-    &lt;ul&gt;
-      &lt;li&gt;스위치가 출력 링크로 패킷의 첫 비트를 전송하기 전에 전체 패킷을 받는 것을 의미한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;packet&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Internet에서의 정보를 전달하는 전송 기본 단위&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;packet switching network&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;packet 기반으로 전달을 하는 통신 네트워크&lt;/li&gt;
-  &lt;li&gt;모든 통신이 packet 형태로 이루어짐.&lt;/li&gt;
-  &lt;li&gt;대표적으로 Internet 이 여기에 속한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Congestion&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;여러개의 입력 node와 연결된 packet switch에서의 혼잡 현상&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Queueing&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;혼잡 현상을 해결하기 packet switching에 대기열을 만들고 대기열에 packet을 쌓는다. 어떤걸 먼저 보낼지는 Queueing에 설정된 프로토콜에 맞춰서 전달된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Packet Loss&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;너무 많은 packet 으로 인해서 Queue가 가득차게 되면서 packet을 버리게 되는 것을 의미한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Router&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;packet을 적절하게 전달하는 역할을 수행한다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Forwarding table&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;packet의 목적지를 forwarding table과 비교하고 어디로 내보낼 지 결정&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Routing protocol&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;Forwarding table을 만드는 알고리즘(프로토콜)을 말한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Protocol&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Internet 내에서 각 entity들의 동작 그 자체를 정의한다.&lt;/li&gt;
-  &lt;li&gt;정보 송수신에 대한 기능적 실체&lt;/li&gt;
-  &lt;li&gt;주로 주고받는 메시지 + 관련 동작을 정의한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;계층-구조&quot;&gt;계층 구조&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;애플리케이션 계층&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;각 end system에 있는 애플리케이션끼리 정보 패킷을 교환할 때 사용한다.&lt;/li&gt;
-  &lt;li&gt;HTTP, SMPT, FTP, DNS …&lt;/li&gt;
-  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Message&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;트랜스포트 계층&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TCP&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;연결지향형 서비스 제공&lt;/li&gt;
-      &lt;li&gt;긴 메시지를 짧은 메시지로 나누고 혼잡 제어 기능을 제공한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UDP&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;비연결성 서비스 제공&lt;/li&gt;
-      &lt;li&gt;서비스 신뢰성, 흐름 제어, 혼잡 제어를 제공하지 않는다. (대신 빠르다.)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Segment&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;네트워크 계층&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;end system to end system으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;데이터그램(datagram)&lt;/code&gt; 을 라우팅하는 책임을 진다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;라우팅 프로토콜&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IP 프로토콜&lt;/code&gt;을 포함한다.&lt;/li&gt;
-  &lt;li&gt;Routing, Forwarding을 해준다.&lt;/li&gt;
-  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;packet&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;링크 계층&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;송신 노드부터 수신 노드까지 하나의 링크를 통해 신뢰적인 전송을 제공한다.&lt;/li&gt;
-  &lt;li&gt;네트워크 내에서 Packet 흐름을 결정하는 핵심 역할을 수행한다.&lt;/li&gt;
-  &lt;li&gt;L1(물리 계층)에 의존적이다.&lt;/li&gt;
-  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;frame&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;물리 계층&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;링크 계층과 서로 엮여서 동작한다.&lt;/li&gt;
-  &lt;li&gt;1:1 상황에서 직접적인 물리 신호를 주고 받아서 정보를 전달한다.&lt;/li&gt;
-  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bit&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;캡슐화&quot;&gt;캡슐화&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;layer를 통과할 때 PCI가 붙으면서 PDU의 크기가 커지고 헤더도 계속 붙는다. 이렇게 계속 감싸지는 것을 캡슐화라고 한다.&lt;/li&gt;
-  &lt;li&gt;각 layer는 자신만의 정보 header를 붙이면서, 상위 layer의 packet을 캡슐화한다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Network" /><summary type="html">Internet 이란?</summary></entry><entry><title type="html">[Network] Layer5</title><link href="http://localhost:4000/network/layer5/37/" rel="alternate" type="text/html" title="[Network] Layer5" /><published>2023-09-10T00:00:00+09:00</published><updated>2023-09-10T00:00:00+09:00</updated><id>http://localhost:4000/network/layer5/37</id><content type="html" xml:base="http://localhost:4000/network/layer5/37/">&lt;h2 id=&quot;application-layer의-특징&quot;&gt;application layer의 특징&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Network" /><summary type="html">네트워크 계층의 역할</summary></entry><entry><title type="html">[Network] Layer5</title><link href="http://localhost:4000/network/layer5/37/" rel="alternate" type="text/html" title="[Network] Layer5" /><published>2023-09-10T00:00:00+09:00</published><updated>2023-09-10T00:00:00+09:00</updated><id>http://localhost:4000/network/layer5/37</id><content type="html" xml:base="http://localhost:4000/network/layer5/37/">&lt;h2 id=&quot;application-layer의-특징&quot;&gt;application layer의 특징&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;protocol stack의 가장 위에 존재한다.&lt;/li&gt;
@@ -1793,7 +2024,183 @@ git cherry-pick 39c123..bjkd12
       &lt;li&gt;중요 지점에만 CDN을 설치함으로써 비용을 줄일 수 있다. 하지만 반대로 거리가 늘어나기 때문에 속도는 느려진다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Layer5" /><category term="Network" /><category term="Layer5" /><summary type="html">application layer의 특징</summary></entry><entry><title type="html">[SQLD] 데이터 모델 &amp;amp; 성능</title><link href="http://localhost:4000/sqld/35/" rel="alternate" type="text/html" title="[SQLD] 데이터 모델 &amp;amp; 성능" /><published>2023-09-01T00:00:00+09:00</published><updated>2023-09-01T00:00:00+09:00</updated><id>http://localhost:4000/sqld/35</id><content type="html" xml:base="http://localhost:4000/sqld/35/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Layer5" /><category term="Network" /><category term="Layer5" /><summary type="html">application layer의 특징</summary></entry><entry><title type="html">[Network] 컴퓨터 네트워크와 인터넷</title><link href="http://localhost:4000/network/36/" rel="alternate" type="text/html" title="[Network] 컴퓨터 네트워크와 인터넷" /><published>2023-09-10T00:00:00+09:00</published><updated>2023-09-10T00:00:00+09:00</updated><id>http://localhost:4000/network/36</id><content type="html" xml:base="http://localhost:4000/network/36/">&lt;h3 id=&quot;internet-이란&quot;&gt;Internet 이란?&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;인터넷은 컴퓨터로 연결하여 &lt;strong&gt;TCP/IP&lt;/strong&gt; 라는 통신 프로토콜을 이용해 정보를 주고 받는 &lt;strong&gt;컴퓨터 네트워크&lt;/strong&gt;를 의미한다.&lt;/li&gt;
+  &lt;li&gt;Date를 전달하는 장치들이 이루는 거대한 network 망이다&lt;/li&gt;
+  &lt;li&gt;end system(host) 에 통신 서비스를 제공하는 존재이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;구성&quot;&gt;구성&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;여러 형태의 sub-network로 구성된다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;End system&lt;/code&gt; : 노트북, 휴대폰, 컴퓨터 등 네트워크를 이용하는 말단 부분&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Access Network&lt;/code&gt; : end system에 해당하는 기기들이 인터넷에 접속하기 위해 사용하는 네트워크로 sub-network의 기반이 되는 기술&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;network&lt;/code&gt; : end system의 정보를 전달하는 역할을 하는 부분&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;end system&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;인터넷과 연결된 가장 말단의 존재&lt;/li&gt;
+  &lt;li&gt;web browser, email, client, server …&lt;/li&gt;
+  &lt;li&gt;점점 범위가 확장되고 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;access network&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;End system이 Internet의 첫 부분과 연결되는 구간, Edge router&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Home&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;FTTH, cable internet access ..&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enterprise&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;LAN : Ethernet, WIFI&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WAN&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;3G, LTE, 5G ..&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;network core&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;네트워크의 핵심 부분&lt;/li&gt;
+  &lt;li&gt;end system의 정보를 전달하는 역할&lt;/li&gt;
+  &lt;li&gt;packet 기반으로 동작
+    &lt;ul&gt;
+      &lt;li&gt;router, link-layer switch를 통해서 원하는 곳으로 패킷을 전달하는 역할을 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;store-and-forward transmission
+    &lt;ul&gt;
+      &lt;li&gt;스위치가 출력 링크로 패킷의 첫 비트를 전송하기 전에 전체 패킷을 받는 것을 의미한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;packet&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Internet에서의 정보를 전달하는 전송 기본 단위&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;packet switching network&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;packet 기반으로 전달을 하는 통신 네트워크&lt;/li&gt;
+  &lt;li&gt;모든 통신이 packet 형태로 이루어짐.&lt;/li&gt;
+  &lt;li&gt;대표적으로 Internet 이 여기에 속한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Congestion&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;여러개의 입력 node와 연결된 packet switch에서의 혼잡 현상&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Queueing&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;혼잡 현상을 해결하기 packet switching에 대기열을 만들고 대기열에 packet을 쌓는다. 어떤걸 먼저 보낼지는 Queueing에 설정된 프로토콜에 맞춰서 전달된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Packet Loss&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;너무 많은 packet 으로 인해서 Queue가 가득차게 되면서 packet을 버리게 되는 것을 의미한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Router&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;packet을 적절하게 전달하는 역할을 수행한다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Forwarding table&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;packet의 목적지를 forwarding table과 비교하고 어디로 내보낼 지 결정&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Routing protocol&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Forwarding table을 만드는 알고리즘(프로토콜)을 말한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Protocol&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Internet 내에서 각 entity들의 동작 그 자체를 정의한다.&lt;/li&gt;
+  &lt;li&gt;정보 송수신에 대한 기능적 실체&lt;/li&gt;
+  &lt;li&gt;주로 주고받는 메시지 + 관련 동작을 정의한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;계층-구조&quot;&gt;계층 구조&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;애플리케이션 계층&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;각 end system에 있는 애플리케이션끼리 정보 패킷을 교환할 때 사용한다.&lt;/li&gt;
+  &lt;li&gt;HTTP, SMPT, FTP, DNS …&lt;/li&gt;
+  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Message&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;트랜스포트 계층&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TCP&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;연결지향형 서비스 제공&lt;/li&gt;
+      &lt;li&gt;긴 메시지를 짧은 메시지로 나누고 혼잡 제어 기능을 제공한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UDP&lt;/code&gt;
+    &lt;ul&gt;
+      &lt;li&gt;비연결성 서비스 제공&lt;/li&gt;
+      &lt;li&gt;서비스 신뢰성, 흐름 제어, 혼잡 제어를 제공하지 않는다. (대신 빠르다.)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Segment&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;네트워크 계층&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;end system to end system으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;데이터그램(datagram)&lt;/code&gt; 을 라우팅하는 책임을 진다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;라우팅 프로토콜&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IP 프로토콜&lt;/code&gt;을 포함한다.&lt;/li&gt;
+  &lt;li&gt;Routing, Forwarding을 해준다.&lt;/li&gt;
+  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;packet&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;링크 계층&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;송신 노드부터 수신 노드까지 하나의 링크를 통해 신뢰적인 전송을 제공한다.&lt;/li&gt;
+  &lt;li&gt;네트워크 내에서 Packet 흐름을 결정하는 핵심 역할을 수행한다.&lt;/li&gt;
+  &lt;li&gt;L1(물리 계층)에 의존적이다.&lt;/li&gt;
+  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;frame&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;물리 계층&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;링크 계층과 서로 엮여서 동작한다.&lt;/li&gt;
+  &lt;li&gt;1:1 상황에서 직접적인 물리 신호를 주고 받아서 정보를 전달한다.&lt;/li&gt;
+  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bit&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;캡슐화&quot;&gt;캡슐화&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;layer를 통과할 때 PCI가 붙으면서 PDU의 크기가 커지고 헤더도 계속 붙는다. 이렇게 계속 감싸지는 것을 캡슐화라고 한다.&lt;/li&gt;
+  &lt;li&gt;각 layer는 자신만의 정보 header를 붙이면서, 상위 layer의 packet을 캡슐화한다.&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Network" /><summary type="html">Internet 이란?</summary></entry><entry><title type="html">[SQLD] 데이터 모델 &amp;amp; 성능</title><link href="http://localhost:4000/sqld/35/" rel="alternate" type="text/html" title="[SQLD] 데이터 모델 &amp;amp; 성능" /><published>2023-09-01T00:00:00+09:00</published><updated>2023-09-01T00:00:00+09:00</updated><id>http://localhost:4000/sqld/35</id><content type="html" xml:base="http://localhost:4000/sqld/35/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;데이터-모델과-성능&quot;&gt;&lt;em&gt;데이터 모델과 성능&lt;/em&gt;&lt;/h1&gt;
 
@@ -1907,344 +2314,4 @@ git cherry-pick 39c123..bjkd12
 
 &lt;h3 id=&quot;분산-데이터베이스-장단점-&quot;&gt;분산 데이터베이스 장단점 &lt;br /&gt;&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/35_9.png&quot; alt=&quot;img9&quot; width=&quot;80%&amp;quot;&amp;quot;, height=&amp;quot;50%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="SQLD" /><category term="데이터베이스" /><category term="SQLD" /><summary type="html"></summary></entry><entry><title type="html">[SQLD] 데이터 모델링</title><link href="http://localhost:4000/sqld/34/" rel="alternate" type="text/html" title="[SQLD] 데이터 모델링" /><published>2023-08-29T00:00:00+09:00</published><updated>2023-08-29T00:00:00+09:00</updated><id>http://localhost:4000/sqld/34</id><content type="html" xml:base="http://localhost:4000/sqld/34/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;데이터-모델링&quot;&gt;&lt;em&gt;데이터 모델링&lt;/em&gt;&lt;/h1&gt;
-
-&lt;h2 id=&quot;데이터-모델링의-단계&quot;&gt;데이터 모델링의 단계&lt;/h2&gt;
-
-&lt;p&gt;개념적 모델링 &lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;고객의 비지니스 프로세스를 분석하고 업무 전체에 대해서 데이터 모델링을 수행&lt;/li&gt;
-  &lt;li&gt;복잡하게 표현하지 않고, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;중요한 부분을 위주&lt;/code&gt;로 모델링하는 단계&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;업무적 관점&lt;/code&gt;에서 모델링하며, 기술적 용어는 가급적 사용 X&lt;/li&gt;
-  &lt;li&gt;엔티티와 속성을 도출하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;개념적 ERD&lt;/code&gt;를 작성한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;논리적 모델링 &lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;개념적 모델링을 논리적 모델링으로 변환하는 과정&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;식별자를 도출&lt;/code&gt;하고 필요한 모든 릴레이션을 정의한다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;정규화를 수행&lt;/code&gt;해서 데이터 모델의 독립성을 확보한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;물리적 모델링 &lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;데이터베이스를 실제 구축한다.
-    &lt;ul&gt;
-      &lt;li&gt;테이블, 인덱스, 함수 등을 생성한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;성능, 보안, 가용성을 고려하여 구축한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/33_1.png&quot; alt=&quot;img1&quot; width=&quot;80%&amp;quot;&amp;quot;, height=&amp;quot;50%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;erd-entity-relationship-diagram&quot;&gt;ERD (Entity Relationship Diagram)&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;1976년 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;피터첸&lt;/code&gt;이 ERD 표기법을 만들었고, &lt;strong&gt;사실상 데이터 모델링의 표준&lt;/strong&gt;으로 사용되고 있음.&lt;/li&gt;
-  &lt;li&gt;엔티티 간의 관계를 정의하는 모델링 방법&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;작성 절차&lt;br /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;엔티티를 도출하고 그린다.&lt;/li&gt;
-  &lt;li&gt;엔티티를 배치한다.
-    &lt;ul&gt;
-      &lt;li&gt;엔티티를 도출한 후 엔티티를 베치한다.&lt;/li&gt;
-      &lt;li&gt;중요한 엔티티를 왼쪽 상단에 배치 (가시성)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;엔티티 간의 관계를 설정한다.&lt;/li&gt;
-  &lt;li&gt;관계명을 서술한다.
-    &lt;ul&gt;
-      &lt;li&gt;엔티티 간의 어떤 행위나 존재가 있는지 표현&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;관계 참여도를 표현한다.
-    &lt;ul&gt;
-      &lt;li&gt;관계 참여도 : 1개의 엔티티와 다른 엔티티 간의 참여하는 관계 수&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;관계의 필수 여부를 표현한다.
-    &lt;ul&gt;
-      &lt;li&gt;필수 : 반드시 존재해야 하는 것.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;ERD 작성 시 고려사항&lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;중요한 엔티티를 가급적 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;왼쪽 상단에 배치&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;ERD는 이해하기 쉽고 복잡하지 않아야 함.
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;3중-스키마3-level-schema&quot;&gt;3중 스키마(3-Level Schema)&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/33_2.png&quot; alt=&quot;img2&quot; width=&quot;80%&amp;quot;&amp;quot;, height=&amp;quot;50%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;외부 스키마&lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;사용자 관점, 업무상 관련이 있는 데이터 접근&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;응용 프로그램이 접근하는 데이터베이스&lt;/strong&gt;를 정의한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;개념 스키마&lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;설계자 관점, 사용자 전체 집단의 데이터베이스 구조&lt;/li&gt;
-  &lt;li&gt;전체 데이터베이스 내의 규칙과 구조를 표현한다.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;통합 데이터베이스 구조&lt;/strong&gt;이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;내부 스키마&lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;개발자 관점, &lt;strong&gt;데이터베이스의 물리적 저장 구조&lt;/strong&gt;이다.&lt;/li&gt;
-  &lt;li&gt;데이터 저장 구조, 레코드 구조, 필드 정의, 인덱스 등을 의미&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;엔티티entity&quot;&gt;엔티티(Entity)&lt;/h2&gt;
-
-&lt;p&gt;엔티티 특징&lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;식별자
-    &lt;ul&gt;
-      &lt;li&gt;엔티티는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;유일한 식별자&lt;/code&gt;가 있어야 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;인스턴스 집합
-    &lt;ul&gt;
-      &lt;li&gt;2개 이상의 인스턴스를 가져야 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;속성
-    &lt;ul&gt;
-      &lt;li&gt;엔티티는 &lt;strong&gt;반드시 속성&lt;/strong&gt;을 가지고 있어야 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;관계
-    &lt;ul&gt;
-      &lt;li&gt;엔티티는 &lt;strong&gt;다른 엔티티와 최소 1개 이상의 관계&lt;/strong&gt;가 있어야 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;업무
-    &lt;ul&gt;
-      &lt;li&gt;엔티티는 &lt;strong&gt;업무에서 관리되어야 하는 집합&lt;/strong&gt;이어야 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;엔티티의 종류&lt;br /&gt;
-엔티티의 종류에 대해서는 아래 그림을 참고하자. &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;물리적 형태의 존재 여부에 따른 분류&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/33_3.png&quot; alt=&quot;img3&quot; width=&quot;80%&amp;quot;&amp;quot;, height=&amp;quot;50%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;발생 시점에 따른 분류&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/33_4.png&quot; alt=&quot;img4&quot; width=&quot;80%&amp;quot;&amp;quot;, height=&amp;quot;50%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;속성attribute&quot;&gt;속성(Attribute)&lt;/h2&gt;
-
-&lt;p&gt;속성이란?&lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;업무에서 필요한 정보인 엔티티가 가지는 항목&lt;/li&gt;
-  &lt;li&gt;더 이상 분리되지 않는 단위로, 업무에 필요한 데이터를 저장할 수 있다.&lt;/li&gt;
-  &lt;li&gt;인스턴스의 구성요소이고 의미적으로 더 이상 분해되지 않는다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;특징&lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;속성은 &lt;strong&gt;하나의 값&lt;/strong&gt;만 가진다.&lt;/li&gt;
-  &lt;li&gt;주식별자에게 함수적으로 종속된다.
-    &lt;ul&gt;
-      &lt;li&gt;기본키가 변경되면, 속성의 값도 변경된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;분류&lt;br /&gt;
-속성의 분류는 아래 표를 참고하자.&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;분해 여부에 따른 속성의 분류&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/33_5.png&quot; alt=&quot;img5&quot; width=&quot;80%&amp;quot;&amp;quot;, height=&amp;quot;50%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;특성에 따른 속성의 분류&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/33_6.png&quot; alt=&quot;img6&quot; width=&quot;80%&amp;quot;&amp;quot;, height=&amp;quot;50%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;도메인이란?&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;속성이 가질 수 있는 &lt;strong&gt;값의 범위&lt;/strong&gt;를 의미한다.&lt;/li&gt;
-  &lt;li&gt;예를 들어 성별이라는 속성의 도메인은 ‘남자’, ‘여자’ 이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;관계relationship&quot;&gt;관계(Relationship)&lt;/h2&gt;
-
-&lt;p&gt;관계란?&lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;엔티티 간의 관련성을 의미를 한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;관계의 종류&lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;존재 관계
-    &lt;ul&gt;
-      &lt;li&gt;엔티티 간의 상태를 의미&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;행위 관계
-    &lt;ul&gt;
-      &lt;li&gt;엔티티 간의 어떤 행위가 있는 것.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;관계 차수&lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;두 개의 엔티티 간에 &lt;strong&gt;관계의 참여하는 수&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/33_7.png&quot; alt=&quot;img7&quot; width=&quot;80%&amp;quot;&amp;quot;, height=&amp;quot;50%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;필수적 관계와 선택적 관계&lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;필수적 관계는 ‘l’로 표현되고, 선택적 관계는 ‘O’로 표현된다.&lt;/li&gt;
-  &lt;li&gt;필수적 관계
-    &lt;ul&gt;
-      &lt;li&gt;&lt;strong&gt;반드시 하나가 있어야&lt;/strong&gt; 하는 관계&lt;/li&gt;
-      &lt;li&gt;고객이 반드시 있어야 계좌를 개설할 수 있음.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;선택적 관계
-    &lt;ul&gt;
-      &lt;li&gt;&lt;strong&gt;없을 수도 있는&lt;/strong&gt; 관계&lt;/li&gt;
-      &lt;li&gt;고객은 있지만, 계좌가 없을 수도 있다면 선택적 관계가 됨.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;식별 관계와 비식별 관계&lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;식별 관계
-    &lt;ul&gt;
-      &lt;li&gt;강한 개체의 기본키를 다른 엔티티의 기본키로 가지는 관계&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;실선&lt;/code&gt;으로 표현한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;비식별 관계
-    &lt;ul&gt;
-      &lt;li&gt;강한 개체의 기본키를 다른 엔티티의 기본키가 아닌 일반 컬럼으로 관계를 가지는 것.&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;점선&lt;/code&gt;으로 표현한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;엔티티-식별자entity-identifier&quot;&gt;엔티티 식별자(Entity Identifier)&lt;/h2&gt;
-
-&lt;p&gt;식별자란?&lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;엔티티를 대표할 수 있는 &lt;strong&gt;유일성&lt;/strong&gt;을 만족하는 속성&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;주식별자 속성&lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;최소성
-    &lt;ul&gt;
-      &lt;li&gt;주식별자는 최소성을 만족하는 키이다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;대표성
-    &lt;ul&gt;
-      &lt;li&gt;주식별자는 엔티티를 대표할 수 있어야 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;유일성
-    &lt;ul&gt;
-      &lt;li&gt;주식별자는 엔티티의 인스턴스를 유일하게 식별한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;불변성
-    &lt;ul&gt;
-      &lt;li&gt;주식별자는 자주 변경되지 않아야 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;키의 종류&lt;br /&gt;
-아래 표를 참고하자 &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/33_8.png&quot; alt=&quot;img8&quot; width=&quot;80%&amp;quot;&amp;quot;, height=&amp;quot;50%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;식별자의 종류&lt;br /&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;대표성 여부에 따라 주식별자, 보조 식별자로 나뉜다.
-    &lt;ul&gt;
-      &lt;li&gt;주식별자
-        &lt;ul&gt;
-          &lt;li&gt;유일성과 최소성을 만족하면서, &lt;strong&gt;엔티티를 대표하는 식별자&lt;/strong&gt;&lt;/li&gt;
-          &lt;li&gt;다른 엔티티의 &lt;strong&gt;참조 관계로 연결&lt;/strong&gt;될 수 있다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;보조 식별자
-        &lt;ul&gt;
-          &lt;li&gt;유일성과 최소성을 만족하지만, &lt;strong&gt;대표성을 만족하지 못하는 식별자&lt;/strong&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;생성 여부에 따른 분류
-    &lt;ul&gt;
-      &lt;li&gt;내부 식별자
-        &lt;ul&gt;
-          &lt;li&gt;엔티티 &lt;strong&gt;내부에서 스스로 생성&lt;/strong&gt;되는 식별자&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;외부 식별자
-        &lt;ul&gt;
-          &lt;li&gt;다른 엔티티와의 관계로 인하여 만들어지는 식별자&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;속성의 수에 따른 분류
-    &lt;ul&gt;
-      &lt;li&gt;단일 식별자
-        &lt;ul&gt;
-          &lt;li&gt;&lt;strong&gt;하나의 속성&lt;/strong&gt;으로 구성&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;복합 식별자
-        &lt;ul&gt;
-          &lt;li&gt;&lt;strong&gt;2개 이상&lt;/strong&gt;의 속성으로 구성&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;대체 여부
-    &lt;ul&gt;
-      &lt;li&gt;본질 식별자
-        &lt;ul&gt;
-          &lt;li&gt;&lt;strong&gt;비지니스 프로세스&lt;/strong&gt;에서 만들어지는 식별자&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;인조 식별자
-        &lt;ul&gt;
-          &lt;li&gt;&lt;strong&gt;인위적&lt;/strong&gt;으로 만들어지는 식별자&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;참고-사이트-출처&quot;&gt;&lt;em&gt;참고 사이트 출처&lt;/em&gt;&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;https://starrykss.tistory.com/1612&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="SQLD" /><category term="데이터베이스" /><category term="SQLD" /><summary type="html"></summary></entry></feed>
+&lt;p&gt;&lt;img src=&quot;/assets/images/35_9.png&quot; alt=&quot;img9&quot; width=&quot;80%&amp;quot;&amp;quot;, height=&amp;quot;50%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="SQLD" /><category term="데이터베이스" /><category term="SQLD" /><summary type="html"></summary></entry></feed>
