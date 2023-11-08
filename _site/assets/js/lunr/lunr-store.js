@@ -262,4 +262,10 @@ var store = [{
         "tags": ["Netowrk"],
         "url": "/network/44/",
         "teaser": null
+      },{
+        "title": "[테스트] 다양한 테스트 방법",
+        "excerpt":"동기 2주차 미션 피드백을 읽으면서 유용한 테스트 방법이 있어서 소개하고자 한다. 바로 ParameterizedTest이다. 바로 사용 방법을 알아보자! ParameterizedTest @ParameterizedTest를 사용하면 여러 개의 파라미터에 대한 테스트를 하나에 테스트 메소드로 처리할 수 있다. @Test만을 사용했을 때와 @ParameterizedTest를 사용했을 때의 차이점을 코드로 확인해보자! 기존의 테스트 ParameterizedTest를 사용하지 않으면 테스트하고 싶은 매개변수가 있을 때마다...","categories": ["테스트"],
+        "tags": ["Junit5","우테코"],
+        "url": "/%ED%85%8C%EC%8A%A4%ED%8A%B8/45/",
+        "teaser": null
       }]
