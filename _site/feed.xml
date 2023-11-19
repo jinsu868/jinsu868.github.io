@@ -1,4 +1,363 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-11-08T21:12:12+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[테스트] 다양한 테스트 방법</title><link href="http://localhost:4000/%ED%85%8C%EC%8A%A4%ED%8A%B8/45/" rel="alternate" type="text/html" title="[테스트] 다양한 테스트 방법" /><published>2023-11-07T00:00:00+09:00</published><updated>2023-11-07T00:00:00+09:00</updated><id>http://localhost:4000/%ED%85%8C%EC%8A%A4%ED%8A%B8/45</id><content type="html" xml:base="http://localhost:4000/%ED%85%8C%EC%8A%A4%ED%8A%B8/45/">&lt;h2 id=&quot;동기&quot;&gt;동기&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-11-19T22:33:44+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[DB] 이상현상과 정규화</title><link href="http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/46/" rel="alternate" type="text/html" title="[DB] 이상현상과 정규화" /><published>2023-11-19T00:00:00+09:00</published><updated>2023-11-19T00:00:00+09:00</updated><id>http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/46</id><content type="html" xml:base="http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/46/">&lt;h2 id=&quot;이상현상-anomaly&quot;&gt;이상현상 (Anomaly)&lt;/h2&gt;
+
+&lt;p&gt;삽입이상&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;불필요한 데이터를 추가해야지만 삽입이 가능한 상황&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;갱신이상&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;같아야 하는 정보가 복수 개의 행에 표현될 경우, 데이터를 수정할 때 일부 정보만 갱신되고 일부는 변하지 않아 데이터 오류가 발생하는 현상&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;삭제이상&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;의도하지 않은 데이터까지 삭제해야만 지우고자 하는 데이터를 지울 수 있는 현상&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;→ &lt;strong&gt;이러한 이상 현상을 없애기 위해서 정규화를 수행한다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;정규화&quot;&gt;정규화&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;데이터의 일관성&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;최소한의 중복&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;최대한의 데이터 유연성&lt;/code&gt;을 위한 방법으로, 데이터를 분해하는 과정을 말한다.&lt;/li&gt;
+  &lt;li&gt;1~5 정규화가 있으며, 제3정규화까지만 수행한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/46_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;함수-종속성&quot;&gt;함수 종속성&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;X, Y가 있고 X가 변할 때, Y도 같이 변한다면 Y는 X에 함수적으로 종속된다고 표현한다.
+    &lt;ul&gt;
+      &lt;li&gt;X→Y이면 Y는 X에 함수적으로 종속&lt;/li&gt;
+      &lt;li&gt;X : 결정자, Y : 종속자&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;완전-함수-종속&quot;&gt;완전 함수 종속&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;종속자가 기본키에만 종속되고, 기본키가 여러 속성으로 구성되어 있을 경우 기본키를 구성하는 모든 속성이 포함된 기본키의 부분집합에  종속된 경우&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;부분-함수적-종속&quot;&gt;부분 함수적 종속&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;릴레이션에서 종속자가 기본키가 아닌 다른 속성에 종속되거나, 기본키가 여러 속성으로 구성되어 있을 경우 기본키를 구성하는 속성 중 일부에만 종속된 경우&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;이행적-함수-종속&quot;&gt;이행적 함수 종속&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;릴레이션에서 X, Y, Z라는 3개의 속성이 있을 때, X→Y, Y→Z 이란 종속 관계가 있을 경우, X→Z가 성립될 때 이행적 함수 종속이라고 한다.&lt;/li&gt;
+  &lt;li&gt;X를 알면 Y를 알고, Y를 알면 Z를 알 수 있는 경우&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;제1-정규화&quot;&gt;제1 정규화&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;속성의 원자성&lt;/code&gt;을 만족시키도록 비정규형 테이블을 제1 정규형 테이블로 구조화하는 것을 말한다.&lt;/li&gt;
+  &lt;li&gt;릴레이션의 속성 값 중에서 한 개의 기본키에 대해서 두 개 이상의 값을 가지는 반복집합을 제거한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;이름&lt;/th&gt;
+      &lt;th&gt;학년&lt;/th&gt;
+      &lt;th&gt;좋아하는 음식&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;A&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;치킨, 피자&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;B&lt;/td&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;피자&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;C&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;제육&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;D&lt;/td&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;떡볶이&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;위 테이블를 보면 A가 좋아하는 음식이 2개이다.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;이름&lt;/th&gt;
+      &lt;th&gt;학년&lt;/th&gt;
+      &lt;th&gt;좋아하는 음식&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;A&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;치킨&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;A&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;피자&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;B&lt;/td&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;피자&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;C&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;제육&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;D&lt;/td&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;떡볶이&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;→ 위 테이블과 같이 반복집합이 제거된 테이블을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;제1 정규형&lt;/code&gt;이라고 한다. 그리고 이러한 정규화 과정을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;제1 정규화&lt;/code&gt; 라고 한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;제2-정규화&quot;&gt;제2 정규화&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;부분 함수 종속성&lt;/code&gt;을 제거하는 과정을 말한다.&lt;/li&gt;
+  &lt;li&gt;부분 함수 종속성은 기본키가 2개 이상의 Column 으로 구성되는 경우에만 발생한다.
+    &lt;ul&gt;
+      &lt;li&gt;기본키가 1개의 Column 으로 구성된다면 제2 정규화는 건너뛴다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;회원ID&lt;/th&gt;
+      &lt;th&gt;은행&lt;/th&gt;
+      &lt;th&gt;계좌번호&lt;/th&gt;
+      &lt;th&gt;회원 이름&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;AA&lt;/td&gt;
+      &lt;td&gt;우리&lt;/td&gt;
+      &lt;td&gt;{우리1002} + AA&lt;/td&gt;
+      &lt;td&gt;QWER&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;BB&lt;/td&gt;
+      &lt;td&gt;신한&lt;/td&gt;
+      &lt;td&gt;{신한xx} + BB&lt;/td&gt;
+      &lt;td&gt;ASDF&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;CC&lt;/td&gt;
+      &lt;td&gt;하나&lt;/td&gt;
+      &lt;td&gt;{하나xx} + CC&lt;/td&gt;
+      &lt;td&gt;ZXCV&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;DD&lt;/td&gt;
+      &lt;td&gt;국민&lt;/td&gt;
+      &lt;td&gt;{국민938} + DD&lt;/td&gt;
+      &lt;td&gt;TYUI&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;위 테이블의 기본키가 회원ID와 은행이라고 가정하자.&lt;/p&gt;
+
+&lt;p&gt;계좌번호는 회원ID와 은행에 종속된다. 하지만 회원 이름은 은행에 상관없이 회원ID에만 종속된다.&lt;/p&gt;
+
+&lt;p&gt;이렇게 기본키가 2개 이상의 Column (회원ID, 은행)으로 구성될 때 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;부분 함수 종속성&lt;/code&gt;이 발생할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;테이블 분리를 통해서 이를 해결할 수 있다.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;회원ID&lt;/th&gt;
+      &lt;th&gt;은행&lt;/th&gt;
+      &lt;th&gt;계좌명&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;AA&lt;/td&gt;
+      &lt;td&gt;우리&lt;/td&gt;
+      &lt;td&gt;{우리1002} + AA&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;BB&lt;/td&gt;
+      &lt;td&gt;신한&lt;/td&gt;
+      &lt;td&gt;{신한xx} + BB&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;CC&lt;/td&gt;
+      &lt;td&gt;하나&lt;/td&gt;
+      &lt;td&gt;{하나xx} + CC&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;DD&lt;/td&gt;
+      &lt;td&gt;국민&lt;/td&gt;
+      &lt;td&gt;{국민938} + DD&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;회원ID&lt;/th&gt;
+      &lt;th&gt;이름&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;AA&lt;/td&gt;
+      &lt;td&gt;QWER&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;BB&lt;/td&gt;
+      &lt;td&gt;ASDF&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;CC&lt;/td&gt;
+      &lt;td&gt;ZXCV&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;DD&lt;/td&gt;
+      &lt;td&gt;TYUI&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;회원ID, 이름을 속성으로 가지는 새로운 테이블을 도출했다. 이렇게 테이블 분리를 통해서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;제2 정규형&lt;/code&gt;을 구성하는 과정을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;제2 정규화&lt;/code&gt;라고 한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;제3-정규화&quot;&gt;제3 정규화&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;이행적 함수 종속&lt;/code&gt;을 제거하는 과정을 말한다.&lt;/li&gt;
+  &lt;li&gt;기본키가 아닌 Column 이 다른 Column을 결정하는 결정할 수 없도록 한다.&lt;/li&gt;
+  &lt;li&gt;제3 정규화는 제1, 2 정규화를 마친 제2 정규형에 대해서 수행한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;회원ID&lt;/th&gt;
+      &lt;th&gt;계좌번호&lt;/th&gt;
+      &lt;th&gt;계좌명&lt;/th&gt;
+      &lt;th&gt;관리점 코드&lt;/th&gt;
+      &lt;th&gt;관리점&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;AA&lt;/td&gt;
+      &lt;td&gt;AA1234&lt;/td&gt;
+      &lt;td&gt;AA계좌&lt;/td&gt;
+      &lt;td&gt;QWER&lt;/td&gt;
+      &lt;td&gt;관리점1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;BB&lt;/td&gt;
+      &lt;td&gt;BB1234&lt;/td&gt;
+      &lt;td&gt;BB계좌&lt;/td&gt;
+      &lt;td&gt;ASDF&lt;/td&gt;
+      &lt;td&gt;관리점2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;CC&lt;/td&gt;
+      &lt;td&gt;CC1234&lt;/td&gt;
+      &lt;td&gt;CC계좌&lt;/td&gt;
+      &lt;td&gt;ZXCV&lt;/td&gt;
+      &lt;td&gt;관리점3&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;위 테이블에서 회원ID와 계좌번호가 기본키라고 가정하자. 그런데 관리점 Column 을 보면 기본키에 종속되는 것이 아니라 관리점 코드에 종속되는 것을 볼 수 있다. 이를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;이행 함수 종속&lt;/code&gt;이라고 한다.&lt;/p&gt;
+
+&lt;p&gt;관리점 코드를 기본키로 하는 새로운 테이블을 도출하여 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;이행 함수 종속성&lt;/code&gt;을 제거할 수 있다.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;회원ID&lt;/th&gt;
+      &lt;th&gt;계좌번호&lt;/th&gt;
+      &lt;th&gt;계좌명&lt;/th&gt;
+      &lt;th&gt;관리점 코드&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;AA&lt;/td&gt;
+      &lt;td&gt;AA1234&lt;/td&gt;
+      &lt;td&gt;AA계좌&lt;/td&gt;
+      &lt;td&gt;QWER&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;BB&lt;/td&gt;
+      &lt;td&gt;BB1234&lt;/td&gt;
+      &lt;td&gt;BB계좌&lt;/td&gt;
+      &lt;td&gt;ASDF&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;CC&lt;/td&gt;
+      &lt;td&gt;CC1234&lt;/td&gt;
+      &lt;td&gt;CC계좌&lt;/td&gt;
+      &lt;td&gt;ASDF&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;관리점 코드&lt;/th&gt;
+      &lt;th&gt;관리점&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;QWER&lt;/td&gt;
+      &lt;td&gt;관리점1&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;ASDF&lt;/td&gt;
+      &lt;td&gt;관리점2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;ZXCV&lt;/td&gt;
+      &lt;td&gt;관리점3&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;위와 같이 2개의 테이블로 분리하여 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;이행 함수 종속&lt;/code&gt;을 제거하였다.&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="데이터베이스" /><category term="정규화" /><category term="DB" /><summary type="html">이상현상 (Anomaly)</summary></entry><entry><title type="html">[테스트] 다양한 테스트 방법</title><link href="http://localhost:4000/%ED%85%8C%EC%8A%A4%ED%8A%B8/45/" rel="alternate" type="text/html" title="[테스트] 다양한 테스트 방법" /><published>2023-11-07T00:00:00+09:00</published><updated>2023-11-07T00:00:00+09:00</updated><id>http://localhost:4000/%ED%85%8C%EC%8A%A4%ED%8A%B8/45</id><content type="html" xml:base="http://localhost:4000/%ED%85%8C%EC%8A%A4%ED%8A%B8/45/">&lt;h2 id=&quot;동기&quot;&gt;동기&lt;/h2&gt;
 
 &lt;p&gt;2주차 미션 피드백을 읽으면서 유용한 테스트 방법이 있어서 소개하고자 한다. &lt;br /&gt;
 바로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ParameterizedTest&lt;/code&gt;이다. 바로 사용 방법을 알아보자! 
@@ -2149,180 +2508,4 @@ git cherry-pick 39c123..bjkd12
       &lt;li&gt;중요 지점에만 CDN을 설치함으로써 비용을 줄일 수 있다. 하지만 반대로 거리가 늘어나기 때문에 속도는 느려진다.&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Layer5" /><category term="Network" /><category term="Layer5" /><summary type="html">application layer의 특징</summary></entry><entry><title type="html">[Network] 컴퓨터 네트워크와 인터넷</title><link href="http://localhost:4000/network/36/" rel="alternate" type="text/html" title="[Network] 컴퓨터 네트워크와 인터넷" /><published>2023-09-10T00:00:00+09:00</published><updated>2023-09-10T00:00:00+09:00</updated><id>http://localhost:4000/network/36</id><content type="html" xml:base="http://localhost:4000/network/36/">&lt;h3 id=&quot;internet-이란&quot;&gt;Internet 이란?&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;인터넷은 컴퓨터로 연결하여 &lt;strong&gt;TCP/IP&lt;/strong&gt; 라는 통신 프로토콜을 이용해 정보를 주고 받는 &lt;strong&gt;컴퓨터 네트워크&lt;/strong&gt;를 의미한다.&lt;/li&gt;
-  &lt;li&gt;Date를 전달하는 장치들이 이루는 거대한 network 망이다&lt;/li&gt;
-  &lt;li&gt;end system(host) 에 통신 서비스를 제공하는 존재이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;구성&quot;&gt;구성&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;여러 형태의 sub-network로 구성된다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;End system&lt;/code&gt; : 노트북, 휴대폰, 컴퓨터 등 네트워크를 이용하는 말단 부분&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Access Network&lt;/code&gt; : end system에 해당하는 기기들이 인터넷에 접속하기 위해 사용하는 네트워크로 sub-network의 기반이 되는 기술&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;network&lt;/code&gt; : end system의 정보를 전달하는 역할을 하는 부분&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;end system&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;인터넷과 연결된 가장 말단의 존재&lt;/li&gt;
-  &lt;li&gt;web browser, email, client, server …&lt;/li&gt;
-  &lt;li&gt;점점 범위가 확장되고 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;access network&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;End system이 Internet의 첫 부분과 연결되는 구간, Edge router&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Home&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;FTTH, cable internet access ..&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Enterprise&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;LAN : Ethernet, WIFI&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WAN&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;3G, LTE, 5G ..&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;network core&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;네트워크의 핵심 부분&lt;/li&gt;
-  &lt;li&gt;end system의 정보를 전달하는 역할&lt;/li&gt;
-  &lt;li&gt;packet 기반으로 동작
-    &lt;ul&gt;
-      &lt;li&gt;router, link-layer switch를 통해서 원하는 곳으로 패킷을 전달하는 역할을 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;store-and-forward transmission
-    &lt;ul&gt;
-      &lt;li&gt;스위치가 출력 링크로 패킷의 첫 비트를 전송하기 전에 전체 패킷을 받는 것을 의미한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;packet&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Internet에서의 정보를 전달하는 전송 기본 단위&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;packet switching network&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;packet 기반으로 전달을 하는 통신 네트워크&lt;/li&gt;
-  &lt;li&gt;모든 통신이 packet 형태로 이루어짐.&lt;/li&gt;
-  &lt;li&gt;대표적으로 Internet 이 여기에 속한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Congestion&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;여러개의 입력 node와 연결된 packet switch에서의 혼잡 현상&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Queueing&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;혼잡 현상을 해결하기 packet switching에 대기열을 만들고 대기열에 packet을 쌓는다. 어떤걸 먼저 보낼지는 Queueing에 설정된 프로토콜에 맞춰서 전달된다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Packet Loss&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;너무 많은 packet 으로 인해서 Queue가 가득차게 되면서 packet을 버리게 되는 것을 의미한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Router&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;packet을 적절하게 전달하는 역할을 수행한다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Forwarding table&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;packet의 목적지를 forwarding table과 비교하고 어디로 내보낼 지 결정&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Routing protocol&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;Forwarding table을 만드는 알고리즘(프로토콜)을 말한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;Protocol&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Internet 내에서 각 entity들의 동작 그 자체를 정의한다.&lt;/li&gt;
-  &lt;li&gt;정보 송수신에 대한 기능적 실체&lt;/li&gt;
-  &lt;li&gt;주로 주고받는 메시지 + 관련 동작을 정의한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;계층-구조&quot;&gt;계층 구조&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;애플리케이션 계층&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;각 end system에 있는 애플리케이션끼리 정보 패킷을 교환할 때 사용한다.&lt;/li&gt;
-  &lt;li&gt;HTTP, SMPT, FTP, DNS …&lt;/li&gt;
-  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Message&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;트랜스포트 계층&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TCP&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;연결지향형 서비스 제공&lt;/li&gt;
-      &lt;li&gt;긴 메시지를 짧은 메시지로 나누고 혼잡 제어 기능을 제공한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UDP&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;비연결성 서비스 제공&lt;/li&gt;
-      &lt;li&gt;서비스 신뢰성, 흐름 제어, 혼잡 제어를 제공하지 않는다. (대신 빠르다.)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Segment&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;네트워크 계층&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;end system to end system으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;데이터그램(datagram)&lt;/code&gt; 을 라우팅하는 책임을 진다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;라우팅 프로토콜&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IP 프로토콜&lt;/code&gt;을 포함한다.&lt;/li&gt;
-  &lt;li&gt;Routing, Forwarding을 해준다.&lt;/li&gt;
-  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;packet&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;링크 계층&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;송신 노드부터 수신 노드까지 하나의 링크를 통해 신뢰적인 전송을 제공한다.&lt;/li&gt;
-  &lt;li&gt;네트워크 내에서 Packet 흐름을 결정하는 핵심 역할을 수행한다.&lt;/li&gt;
-  &lt;li&gt;L1(물리 계층)에 의존적이다.&lt;/li&gt;
-  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;frame&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;물리 계층&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;링크 계층과 서로 엮여서 동작한다.&lt;/li&gt;
-  &lt;li&gt;1:1 상황에서 직접적인 물리 신호를 주고 받아서 정보를 전달한다.&lt;/li&gt;
-  &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bit&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;캡슐화&quot;&gt;캡슐화&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;layer를 통과할 때 PCI가 붙으면서 PDU의 크기가 커지고 헤더도 계속 붙는다. 이렇게 계속 감싸지는 것을 캡슐화라고 한다.&lt;/li&gt;
-  &lt;li&gt;각 layer는 자신만의 정보 header를 붙이면서, 상위 layer의 packet을 캡슐화한다.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Network" /><summary type="html">Internet 이란?</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Layer5" /><category term="Network" /><category term="Layer5" /><summary type="html">application layer의 특징</summary></entry></feed>
