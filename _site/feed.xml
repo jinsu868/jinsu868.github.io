@@ -1,4 +1,118 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-11-19T22:33:44+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[DB] 이상현상과 정규화</title><link href="http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/46/" rel="alternate" type="text/html" title="[DB] 이상현상과 정규화" /><published>2023-11-19T00:00:00+09:00</published><updated>2023-11-19T00:00:00+09:00</updated><id>http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/46</id><content type="html" xml:base="http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/46/">&lt;h2 id=&quot;이상현상-anomaly&quot;&gt;이상현상 (Anomaly)&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-11-20T18:18:49+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[DB] 트랜잭션</title><link href="http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/47/" rel="alternate" type="text/html" title="[DB] 트랜잭션" /><published>2023-11-20T00:00:00+09:00</published><updated>2023-11-20T00:00:00+09:00</updated><id>http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/47</id><content type="html" xml:base="http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/47/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;트랜잭션&quot;&gt;트랜잭션&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;데이터베이스에서 하나의 논리적 기능을 수행하기 위한 작업의 단위를 의미한다.&lt;/li&gt;
+  &lt;li&gt;여러 쿼리를 하나로 묶는 단위를 말한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;원자성atomicity&quot;&gt;원자성(Atomicity)&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;원자성은 트랜잭션과 관련된 일이 모두 수행되었거나 되지 않았거나를 보장하는 특징이다.
+    &lt;ul&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;all or nothing&lt;/code&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;중간에 취소된 경우에 완전히 처음 상태로 돌아가는 것을 보장한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;commit-rollback&quot;&gt;Commit, Rollback&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Commit&lt;/code&gt; 은 트랜잭션 단위로 수행되며 변경된 모든 내용이 영구적으로 저장되는 것을 의미한다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Rollback&lt;/code&gt;은 트랜젝션으로 처리한 하나의 과정을 일어나기 전의 상태로 돌리는 것을 의미한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;일관성consistency&quot;&gt;일관성(Consistency)&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;허용된 방식으로만 데이터를 변경할 수 있어야 한다.&lt;/li&gt;
+  &lt;li&gt;내가 500원이 있는데 1000원을 전송할 수 있으면 X&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;격리성isolation&quot;&gt;격리성(Isolation)&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;격리성이란 트랜잭션 수행 시에 서로 끼어들지 못하는 정도를 말한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/47_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;read-uncommited&quot;&gt;READ UNCOMMITED&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;트랜잭션에서 처리중이거나, 아직 Commit 되지 않은 데이터를 다른 트랜잭션이 읽는 것을 허용한다.&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;가장 낮은 수준의 격리성을 보장하지만 성능이 좋다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;팬텀 리드&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;반복 가능하지 않은 조회&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;더티 리드&lt;/code&gt;가 발생할 수 있다.&lt;/li&gt;
+  &lt;li&gt;데이터베이스의 일관성을 유지할 수 없다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;read_commited&quot;&gt;READ_COMMITED&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;다른 트랜잭션이 커밋하지 않은 정보는 읽을 수 없다.&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;커밋이 완료된 데이터에 대해서만 조회가 가능하다.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;팬텀 리드&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;반복 가능하지 않은 조회&lt;/code&gt;가 발생할 수 있다.&lt;/li&gt;
+  &lt;li&gt;대부분의 SQL 서버가 기본으로 사용하는 Isolation Level 이다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;repeatable_read&quot;&gt;REPEATABLE_READ&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;트랜잭션 범위 내에서 조회한 데이터 내용이 항상 동일함을 보장한다.&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;하나의 트랜잭션이 수정한 행을 다른 트랜잭션이 수정하지 못하도록 한다.&lt;/li&gt;
+  &lt;li&gt;새로운 행을 추가하는 것은 막지 않기 때문에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;팬텀 리드&lt;/code&gt;가 발생할 수 있다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;serializable&quot;&gt;SERIALIZABLE&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;트랜잭션을 순차적으로 진행시키는 것을 말한다.&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;교착상태가 발생할 확률이 높고 가장 성능이 떨어진다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;가장 높은 수준의 격리성을 보장한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;낮은-isolation-level-을-활용할-때-발생하는-문제들&quot;&gt;낮은 Isolation Level 을 활용할 때 발생하는 문제들&lt;/h2&gt;
+
+&lt;h3 id=&quot;팬텀-리드&quot;&gt;팬텀 리드&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;한 트랜잭션 내에서 동일한 쿼리를 했을 때, 해당 조회 결과가 다른 경우&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;반복-가능하지-않은-조회&quot;&gt;반복 가능하지 않은 조회&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;한 트랜잭션 내의 같은 행에 대해서 두 번 이상의 조회가 발생할 때, 그 값이 다른 경우&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;→ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;팬텀 리드&lt;/code&gt;의 경우 조회 결과 다른 행이 선택될 수 있는 것이고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;반복 가능하지 않은 조회&lt;/code&gt;는 동일한 행을 조회할 때 다른 값으로 조회될 수 있는 것을 말한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;더티-리드&quot;&gt;더티 리드&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;한 트랜잭션이 실행중일 때 다른 트랜잭션에 의해 값이 수정됐는데 아직 커밋되지 않은 행의 데이터를 읽을 수 있을 때 발생한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;영구성durability&quot;&gt;영구성(Durability)&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;성공적으로 수행된 트랜잭션은 영원히 반영돼야 한다.&lt;/li&gt;
+  &lt;li&gt;데이터베이스 시스템에 장애가 발생해도 원래 상태로 복구가 가능해야 함을 뜻하며 체크섬, 저널링, 롤백 등의 기능을 제공한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;참고&quot;&gt;참고&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;면접을 위한 CS 전공지식 노트&lt;/li&gt;
+  &lt;li&gt;https://gyoogle.dev/blog/computer-science/data-base/Transaction.html&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="데이터베이스" /><category term="트랜잭션" /><category term="DB" /><summary type="html"></summary></entry><entry><title type="html">[DB] 이상현상과 정규화</title><link href="http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/46/" rel="alternate" type="text/html" title="[DB] 이상현상과 정규화" /><published>2023-11-19T00:00:00+09:00</published><updated>2023-11-19T00:00:00+09:00</updated><id>http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/46</id><content type="html" xml:base="http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/46/">&lt;h2 id=&quot;이상현상-anomaly&quot;&gt;이상현상 (Anomaly)&lt;/h2&gt;
 
 &lt;p&gt;삽입이상&lt;/p&gt;
 
@@ -2276,236 +2390,4 @@ git cherry-pick 39c123..bjkd12
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;ex) ping&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Network" /><summary type="html">네트워크 계층의 역할</summary></entry><entry><title type="html">[Network] Layer5</title><link href="http://localhost:4000/network/layer5/37/" rel="alternate" type="text/html" title="[Network] Layer5" /><published>2023-09-10T00:00:00+09:00</published><updated>2023-09-10T00:00:00+09:00</updated><id>http://localhost:4000/network/layer5/37</id><content type="html" xml:base="http://localhost:4000/network/layer5/37/">&lt;h2 id=&quot;application-layer의-특징&quot;&gt;application layer의 특징&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;protocol stack의 가장 위에 존재한다.&lt;/li&gt;
-  &lt;li&gt;사용자가 직접 접하는 protocol 이다.&lt;/li&gt;
-  &lt;li&gt;socket을 통해서 transport layer 와 통신한다.
-    &lt;ul&gt;
-      &lt;li&gt;socket : 프로세스와 네트워크 사이의 인터페이스이다. (IP + Port로 식별)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;application layer가 존재하는 end system 끼리 소통한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;transport-layer에서-application-layer에-제공하는-서비스&quot;&gt;transport layer에서 application layer에 제공하는 서비스&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;신뢰적 데이터 전송&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;보장된 데이터 전송 서비스를 제공하는 것을 의미한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;처리율&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;어느 명시된 속도에서 보장된 가용 처리율을 제공하는 것을 의미한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;시간&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;데이터 전송에 엄격한 시간 제한 조건이 있고 이 시간안에 전송되는 것을 보장하는 것을 의미한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;보안&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;하나 이상의 보안 서비스를 제공한다.&lt;/li&gt;
-      &lt;li&gt;송신 프로세스가 보내는 모든 데이터를 암호화해서 보내고 수신 프로세스가 받기 전에 암호를 해독한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;tcp와-udp&quot;&gt;TCP와 UDP&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TCP&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;연결지향형 서비스를 제공한다.&lt;/li&gt;
-      &lt;li&gt;신뢰적인 데이터 전송 서비스를 제공한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UDP&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;비연결형 서비스이다.&lt;/li&gt;
-      &lt;li&gt;handshake 과정없이 바로 데이터를 송신한다.&lt;/li&gt;
-      &lt;li&gt;속도가 빠르다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;http-protocol&quot;&gt;HTTP protocol&lt;/h2&gt;
-
-&lt;h3 id=&quot;특징&quot;&gt;특징&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;web을 실현해주는 전송 프로토콜이다.&lt;/li&gt;
-  &lt;li&gt;Web browser, Web Server 두 개의 프로그램으로 구성된다.
-    &lt;ul&gt;
-      &lt;li&gt;Client : 필요할 때마다 필요한 것을 서버에 요구한다.&lt;/li&gt;
-      &lt;li&gt;Server : 단순히 client 의 요구에 대해 응답만 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;stateless protocol 이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;비지속-연결과-지속-연결&quot;&gt;비지속 연결과 지속 연결&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;비지속 연결&lt;/code&gt; (Non-persistent Connection)
-    &lt;ul&gt;
-      &lt;li&gt;각 요구/응답 쌍이 분리된 TCP 연결을 통해서 전송된다.&lt;/li&gt;
-      &lt;li&gt;server에서 TCP 연결 관리에 대한 부담이 상대적으로 크다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;지속 연결&lt;/code&gt; (Persistent Connection)
-    &lt;ul&gt;
-      &lt;li&gt;모든 요구와 해당하는 응답들이 같은 TCP 연결 상으로 전송된다.&lt;/li&gt;
-      &lt;li&gt;일정 시간동안 TCP 연결을 사용하지 않으면 release 한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;http-메시지&quot;&gt;HTTP 메시지&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Request&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;request line : Method, URL, HTTP version&lt;/li&gt;
-      &lt;li&gt;header lines : host, persistent 여부, user-agent, 기타 옵션들&lt;/li&gt;
-      &lt;li&gt;body : 부가적으로 server에 보낼 정보&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Response&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;status line : protocl version, status code, status message&lt;/li&gt;
-      &lt;li&gt;header lines : persistent 여부, 전송날짜, 서버 프로그램, 생성날짜, 길이, 내용 등등&lt;/li&gt;
-      &lt;li&gt;body : data, object, html …&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;cookies&quot;&gt;Cookies&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;HTTP에게 state를 가지게 해준다.
-    &lt;ul&gt;
-      &lt;li&gt;backend database : Web site측에서 복잡한 state를 관리할 수 있게 해준다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;과정
-    &lt;ul&gt;
-      &lt;li&gt;Server에서 client에게 response를 줄 때, Cookie를 헤더에 포함해서 준다. 이때 Server db에 Cookie를 저장한다.&lt;/li&gt;
-      &lt;li&gt;Client는 헤더에서 Cookie를 추출해서 저장하고 다음 Request 부터 헤더에 Cookie를 포함해서 보낸다.&lt;/li&gt;
-      &lt;li&gt;Server는 Request의 Cookie를 확인하고 어떤 Client의 요청인지 식별할 수 있다. (state)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;web-caching&quot;&gt;Web Caching&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;proxy server(Web cache)
-    &lt;ul&gt;
-      &lt;li&gt;web server를 대신해서 http response msg를 전달한다.&lt;/li&gt;
-      &lt;li&gt;자신의 disk에 최근 request 받은 object를 복제해서 저장한다.&lt;/li&gt;
-      &lt;li&gt;Server이면서 동시에 Client이다.
-        &lt;ul&gt;
-          &lt;li&gt;복제본이 없으면 proxy server는 원래 server로 요청을 한다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;특징
-    &lt;ul&gt;
-      &lt;li&gt;일반적으로 ISP에 설치된다.&lt;/li&gt;
-      &lt;li&gt;직접 server에 요청하는 것보다 시간이 적게 걸린다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;smtp-protocol&quot;&gt;SMTP Protocol&lt;/h2&gt;
-
-&lt;h3 id=&quot;특징-1&quot;&gt;특징&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Mail server간 mail을 주고받기 위한 protocol 이다.&lt;/li&gt;
-  &lt;li&gt;Mail server는 SMTP를 통해 TCP 연결을 하고 상대방 mail server에게 직접적으로 Mail을 전송한다.
-    &lt;ul&gt;
-      &lt;li&gt;TCP port는 25 사용&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;과정&quot;&gt;과정&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;User agent → Client Mail server → Server Mail server → User agent2&lt;/li&gt;
-  &lt;li&gt;여기서 서버는 Client, Server 둘 다 될 수 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;dns&quot;&gt;DNS&lt;/h2&gt;
-
-&lt;h3 id=&quot;특징-2&quot;&gt;특징&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;host name과 Internet 상에서의 숫자 상의 주소(IP address)를 mapping 해주는 시스템이다.
-    &lt;ul&gt;
-      &lt;li&gt;host name : 알파벳 기반의 Internet host 주소&lt;/li&gt;
-      &lt;li&gt;ex) cs-study.com, network.net, youtube.co.kr&lt;/li&gt;
-      &lt;li&gt;국가와 기관, 성격을 유추할 수 있다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;사람에게 더 친숙한 이름으로 Internet 주소를 사용할 수 있게 해준다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;구조&quot;&gt;구조&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;hostname - IP address에  대한 mapping data를 보관하고 있다.&lt;/li&gt;
-  &lt;li&gt;분산구조 형태로 database가 운영된다.
-    &lt;ul&gt;
-      &lt;li&gt;하나의 DNS server에 모든 mapping data를 가지는 centralized 구조에서는 문제가 많다.
-        &lt;ul&gt;
-          &lt;li&gt;single point of failure : DNS에 장애가 발생하면 전체 Internet이 다운된다.&lt;/li&gt;
-          &lt;li&gt;traffic volume : 모든 host가 DNS에 한 번에 접근하면 서버에 부담이 많이 가게된다.&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;이런 이유들로 DNS는 계층 구조를 가지게 됐다.&lt;/li&gt;
-  &lt;li&gt;3 Layer
-    &lt;ul&gt;
-      &lt;li&gt;Root DNS server : 전 세계 10여개 존재&lt;/li&gt;
-      &lt;li&gt;top-level domain DNS server (TLD) : com, org, uk, fr 등 유명한 것들&lt;/li&gt;
-      &lt;li&gt;authoritative DNS servers : 실제 IP 주소 회신&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Local DNS Server
-    &lt;ul&gt;
-      &lt;li&gt;각 기관별로 하나씩 보유하고 있다.&lt;/li&gt;
-      &lt;li&gt;최초의 subnet 내에서 접속하는 DNS server이다.&lt;/li&gt;
-      &lt;li&gt;우선 여기에 query를 하고 없으면 Root → TLD, Authoritative DNS server를 거쳐서 mapping 정보를 가져온 후 응답한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;cdn-contents-distribution-network&quot;&gt;CDN (Contents Distribution Network)&lt;/h2&gt;
-
-&lt;h3 id=&quot;배경&quot;&gt;배경&lt;/h3&gt;
-
-&lt;p&gt;비디오와 같은 스트리밍 서비스가 network load의 주 원인이 되고 있고 네트워크상에서 Client와 Server사이의 거리가 일반적으로 크기 때문에 여러 ISP를 거치는 경우가 많다. 그런데 ISP의 용량이 적으면 bottlenect이 발생한다. 이러한 이유로 일반적으로 스트리밍 서비스는 여러 대의 server를 분산적으로 두고 서비스를 제공한다. 이를 CDN이라고 한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;cdn-구축의-두-가지-원칙&quot;&gt;CDN 구축의 두 가지 원칙&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Enter deep : 각 ISP network 내에 설치
-    &lt;ul&gt;
-      &lt;li&gt;CDN 서버 사이의 링크 라우터 개수가 줄어들기 때문에 속도가 빠르지만 그만큼 많이 설치해야 하기 때문에 비용이 많이 발생한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Bring home : ISP 주변에 전용 회선으로 연결해서 설치
-    &lt;ul&gt;
-      &lt;li&gt;중요 지점에만 CDN을 설치함으로써 비용을 줄일 수 있다. 하지만 반대로 거리가 늘어나기 때문에 속도는 느려진다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Layer5" /><category term="Network" /><category term="Layer5" /><summary type="html">application layer의 특징</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Network" /><summary type="html">네트워크 계층의 역할</summary></entry></feed>

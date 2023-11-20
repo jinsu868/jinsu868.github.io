@@ -274,4 +274,10 @@ var store = [{
         "tags": ["정규화","DB"],
         "url": "/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/46/",
         "teaser": null
+      },{
+        "title": "[DB] 트랜잭션",
+        "excerpt":"트랜잭션 데이터베이스에서 하나의 논리적 기능을 수행하기 위한 작업의 단위를 의미한다. 여러 쿼리를 하나로 묶는 단위를 말한다. 원자성(Atomicity) 원자성은 트랜잭션과 관련된 일이 모두 수행되었거나 되지 않았거나를 보장하는 특징이다. all or nothing 중간에 취소된 경우에 완전히 처음 상태로 돌아가는 것을 보장한다. Commit, Rollback Commit 은 트랜잭션 단위로 수행되며 변경된 모든 내용이 영구적으로...","categories": ["데이터베이스"],
+        "tags": ["트랜잭션","DB"],
+        "url": "/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/47/",
+        "teaser": null
       }]
