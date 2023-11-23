@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-11-20T18:18:49+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[DB] 트랜잭션</title><link href="http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/47/" rel="alternate" type="text/html" title="[DB] 트랜잭션" /><published>2023-11-20T00:00:00+09:00</published><updated>2023-11-20T00:00:00+09:00</updated><id>http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/47</id><content type="html" xml:base="http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/47/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-11-23T19:29:39+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[DB] 트랜잭션</title><link href="http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/47/" rel="alternate" type="text/html" title="[DB] 트랜잭션" /><published>2023-11-20T00:00:00+09:00</published><updated>2023-11-20T00:00:00+09:00</updated><id>http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/47</id><content type="html" xml:base="http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/47/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;트랜잭션&quot;&gt;트랜잭션&lt;/h2&gt;
 
@@ -471,7 +471,29 @@
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;p&gt;위와 같이 2개의 테이블로 분리하여 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;이행 함수 종속&lt;/code&gt;을 제거하였다.&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="데이터베이스" /><category term="정규화" /><category term="DB" /><summary type="html">이상현상 (Anomaly)</summary></entry><entry><title type="html">[테스트] 다양한 테스트 방법</title><link href="http://localhost:4000/%ED%85%8C%EC%8A%A4%ED%8A%B8/45/" rel="alternate" type="text/html" title="[테스트] 다양한 테스트 방법" /><published>2023-11-07T00:00:00+09:00</published><updated>2023-11-07T00:00:00+09:00</updated><id>http://localhost:4000/%ED%85%8C%EC%8A%A4%ED%8A%B8/45</id><content type="html" xml:base="http://localhost:4000/%ED%85%8C%EC%8A%A4%ED%8A%B8/45/">&lt;h2 id=&quot;동기&quot;&gt;동기&lt;/h2&gt;
+&lt;p&gt;위와 같이 2개의 테이블로 분리하여 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;이행 함수 종속&lt;/code&gt;을 제거하였다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;반정규화&quot;&gt;반정규화&lt;/h2&gt;
+
+&lt;p&gt;성능 향상을 위해서 데이터의 중복을 허용하고, 조인 연산을 줄여 데이터베이스 성능 향상을 하는 방법&lt;/p&gt;
+
+&lt;h3 id=&quot;정규화의-단점&quot;&gt;정규화의 단점&lt;/h3&gt;
+
+&lt;p&gt;정규화된 데이터를 조회할 때, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;join&lt;/code&gt;이 많이 발생하기 때문에 CPU와 메모리를 많이 사용하고 성능도 떨어진다. 이러한 성능 문제를 해결하기 위해서 반정규화를 수행할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;정규화↔반정규화 사이에는 trade off가 있다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;정규화를 수행하면 데이터의 중복이 줄고 데이터 모델의 유연성이 높아지지만 반대로 성능이 내려간다.&lt;/li&gt;
+  &lt;li&gt;반정규화를 수행하면 성능은 좋아지지만 유연성이 떨어지고 데이터의 중복이 많아져서 관리하기 어렵다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;반정규화를-수행하는-경우&quot;&gt;반정규화를 수행하는 경우&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;특정 범위의 데이터만 자주 조회하는 경우&lt;/li&gt;
+  &lt;li&gt;요약/집계 정보가 자주 요구되는 경우&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="데이터베이스" /><category term="정규화" /><category term="DB" /><summary type="html">이상현상 (Anomaly)</summary></entry><entry><title type="html">[테스트] 다양한 테스트 방법</title><link href="http://localhost:4000/%ED%85%8C%EC%8A%A4%ED%8A%B8/45/" rel="alternate" type="text/html" title="[테스트] 다양한 테스트 방법" /><published>2023-11-07T00:00:00+09:00</published><updated>2023-11-07T00:00:00+09:00</updated><id>http://localhost:4000/%ED%85%8C%EC%8A%A4%ED%8A%B8/45</id><content type="html" xml:base="http://localhost:4000/%ED%85%8C%EC%8A%A4%ED%8A%B8/45/">&lt;h2 id=&quot;동기&quot;&gt;동기&lt;/h2&gt;
 
 &lt;p&gt;2주차 미션 피드백을 읽으면서 유용한 테스트 방법이 있어서 소개하고자 한다. &lt;br /&gt;
 바로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ParameterizedTest&lt;/code&gt;이다. 바로 사용 방법을 알아보자! 
