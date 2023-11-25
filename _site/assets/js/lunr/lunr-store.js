@@ -280,4 +280,10 @@ var store = [{
         "tags": ["트랜잭션","DB"],
         "url": "/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/47/",
         "teaser": null
+      },{
+        "title": "[DevOps] CI/CD & 무중단 배포",
+        "excerpt":"DevOps Development + Operation 개발과 운영을 결합시켜 만든 개발 방법론을 의미한다. 소프트웨어 개발과 운영을 통합하여 효율성, 협력, 속도, 안정성을 개선하는 개발 및 운영 방법론이다. 장점 속도 애플리케이션 개발 단계를 자동화하여 애플리케이션을 더 짧은 주기로 고객에게 제공할 수 있다. 신속한 제공 릴리스 빈도와 속도를 개선하여 제품을 더 빠르게 개선할 수 있다....","categories": ["DevOps"],
+        "tags": ["DevOps","CI/CD","로드밸런싱","리버스 프록시","무중단 배포"],
+        "url": "/devops/48/",
+        "teaser": null
       }]
