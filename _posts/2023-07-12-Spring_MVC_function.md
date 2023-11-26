@@ -1,5 +1,7 @@
 ---
 title: "[Spring] MVC 기능"
+toc: true
+toc_sticky: true
 categories: 
     - Spring
 tags:

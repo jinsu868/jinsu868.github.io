@@ -1,5 +1,7 @@
 ---
 title: "[알고리즘] Union find"
+toc: true
+toc_sticky: true
 categories: 
     - Algorithm
 tags:

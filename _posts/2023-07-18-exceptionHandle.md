@@ -1,5 +1,7 @@
 ---
 title: "[Spring] 예외 처리"
+toc: true
+toc_sticky: true
 categories: 
     - Spring
 tags:

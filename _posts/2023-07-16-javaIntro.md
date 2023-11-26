@@ -1,5 +1,7 @@
 ---
 title: "[Java] Intro"
+toc: true
+toc_sticky: true
 categories: 
     - Java
 tags:

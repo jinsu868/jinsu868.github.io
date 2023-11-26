@@ -1,5 +1,7 @@
 ---
 title: "[Spring] MVC 구조"
+toc: true
+toc_sticky: true
 categories: 
     - Spring
 tags:
