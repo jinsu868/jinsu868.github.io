@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[알고리즘] 비트 마스킹 - Jinsu’s story</title>
+<!-- begin _includes/seo.html --><title>[알고리즘] Union find - Jinsu’s story</title>
 <meta name="description" content="">
 
 
@@ -22,8 +22,8 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="Jinsu's story">
-<meta property="og:title" content="[알고리즘] 비트 마스킹">
-<meta property="og:url" content="http://localhost:4000/algorithm/33/">
+<meta property="og:title" content="[알고리즘] Union find">
+<meta property="og:url" content="http://localhost:4000/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/unionFind/">
 
 
   <meta property="og:description" content="">
@@ -34,7 +34,7 @@
 
 
 
-  <meta property="article:published_time" content="2023-08-22T00:00:00+09:00">
+  <meta property="article:published_time" content="2023-07-20T00:00:00+09:00">
 
 
 
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/algorithm/33/">
+<link rel="canonical" href="http://localhost:4000/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/unionFind/">
 
 
 
@@ -262,7 +262,7 @@
               
                   
                   <li>
-                      <a href="/categories/#algorithm" class="">Algorithm (2)</a>
+                      <a href="/categories/#알고리즘" class="">알고리즘 (2)</a>
                   </li>
                   
               
@@ -274,19 +274,13 @@
               
                   
                   <li>
-                      <a href="/categories/#sqld" class="">SQLD (2)</a>
+                      <a href="/categories/#데이터베이스" class="">데이터베이스 (4)</a>
                   </li>
                   
               
                   
                   <li>
                       <a href="/categories/#network" class="">Network (5)</a>
-                  </li>
-                  
-              
-                  
-                  <li>
-                      <a href="/categories/#layer5" class="">Layer5 (1)</a>
                   </li>
                   
               
@@ -316,12 +310,6 @@
               
                   
                   <li>
-                      <a href="/categories/#데이터베이스" class="">데이터베이스 (2)</a>
-                  </li>
-                  
-              
-                  
-                  <li>
                       <a href="/categories/#devops" class="">DevOps (1)</a>
                   </li>
                   
@@ -341,16 +329,16 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[알고리즘] 비트 마스킹">
+    <meta itemprop="headline" content="[알고리즘] Union find">
     <meta itemprop="description" content="">
-    <meta itemprop="datePublished" content="2023-08-22T00:00:00+09:00">
+    <meta itemprop="datePublished" content="2023-07-20T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="http://localhost:4000/algorithm/33/" class="u-url" itemprop="url">[알고리즘] 비트 마스킹
+            <a href="http://localhost:4000/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/unionFind/" class="u-url" itemprop="url">[알고리즘] Union find
 </a>
           </h1>
           
@@ -367,7 +355,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          1 분 소요
+          최대 1 분 소요
         
       </span>
     
@@ -382,142 +370,82 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu"><li><a href="#비트-마스크란">비트 마스크란?</a></li><li><a href="#비트-연산자">비트 연산자</a><ul><li><a href="#and-or-xor">AND, OR, XOR</a></li><li><a href="#not">NOT</a></li><li><a href="#shift-연산">Shift 연산</a></li></ul></li><li><a href="#집합과-비트마스크">집합과 비트마스크</a><ul><li><a href="#집합의-연산과-비트-마스크">집합의 연산과 비트 마스크</a></li></ul></li><li><a href="#집합-연산">집합 연산</a></li><li><a href="#참고-사이트-출처">참고 사이트 출처</a></li></ul>
+              <ul class="toc__menu"><li><a href="#union-find-algorithm">Union find algorithm</a><ul><li><a href="#union-연산">Union 연산</a></li><li><a href="#union-코드">union 코드</a></li><li><a href="#find-연산">Find 연산</a></li><li><a href="#find-코드">find() 코드</a></li></ul></li></ul></li></ul>
 
             </nav>
           </aside>
         
         <p><br /></p>
 
-<h1 id="비트-마스크란"><em>비트 마스크란?</em></h1>
+<p><img src="/assets/images/23_1.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /></p>
 
-<p>컴퓨터는 내부적으로 모든 연산을 이진수로 표현하고 처리한다. 이런 특성을 이용해서 정수의 이진수 표현을 자료구조로 쓰는 기법을 <strong>비트 마스크</strong> 라고 한다.</p>
+<p>오늘은 Union-Find 알고리즘에 대해서 정리해보겠다.</p>
 
-<p><br />
-<br /></p>
+<p><br /></p>
 
-<h1 id="비트-연산자"><em>비트 연산자</em></h1>
+<h1 id="union-find-algorithm"><em>Union find algorithm</em></h1>
 
-<p>파이썬의 기본 비트 연산자를 먼저 살펴보자.</p>
+<blockquote>
+  <p><strong>유니온 파인드</strong> 알고리즘은 상호 배타적 집합, Disjoin-set(서로소 집합) 이라고도 부른다. 여러 노드가 존재할 때, 어떤 두 개의 노드를 같은 집합으로 묶어 주고, 어떤 두 노드가 같은 집하에 있는지 확인하는 알고리즘이다.</p>
+</blockquote>
 
-<h2 id="and-or-xor">AND, OR, XOR</h2>
+<p><br /></p>
+
+<h3 id="union-연산"><em>Union 연산</em></h3>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">AND 연산</code> (&amp;) : 두 비트가 모두 1일 때, 1을 반환한다.</li>
-  <li><code class="language-plaintext highlighter-rouge">OR 연산</code> (l) : 두 비트가 하나라도 1이면, 1을 반환한다.</li>
-  <li><code class="language-plaintext highlighter-rouge">XOR 연산</code> (^) : 대응하는 두 비트가 서로 다르면 1을 반환한다.</li>
+  <li>서로 연결된 두 노드 A, B를 선택</li>
+  <li>A의 루트 노드와 B의 루트 노드를 찾기 (<code class="language-plaintext highlighter-rouge">find</code>연산)</li>
+  <li>B를  A의 부모 노드로 설정한다. (parent 리스트의 값 수정)</li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1100</span> <span class="o">&amp;</span> <span class="mi">1011</span> <span class="o">=</span> <span class="mi">1000</span>
-<span class="mi">1010</span> <span class="o">|</span> <span class="mi">1111</span> <span class="o">=</span> <span class="mi">1111</span>
-<span class="mi">1010</span> <span class="o">^</span> <span class="mi">1111</span> <span class="o">=</span> <span class="mi">0101</span>
+<h3 id="union-코드">union 코드</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">union</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+  <span class="n">x</span> <span class="o">=</span> <span class="nf">find</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="nf">find</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">y</span><span class="p">:</span>
+    <span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span>
+  <span class="k">else</span><span class="p">:</span>
+    <span class="n">parent</span><span class="p">[</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
 </code></pre></div></div>
 
 <p><br /></p>
 
-<h2 id="not">NOT</h2>
+<h3 id="find-연산"><em>Find 연산</em></h3>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">NOT 연산</code> (~) : 비트의 값을 뒤집어서 반환</li>
+  <li>해당 노드의 루트 노드를 찾음</li>
+  <li>경로 압축을 통해 시간복잡도를 줄일 수 있다.
+    <ul>
+      <li>예시를 통해 확인해보자</li>
+    </ul>
+  </li>
 </ul>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">~</span><span class="mi">1010</span> <span class="o">=</span> <span class="mi">0101</span>
+<p><img src="/assets/images/23_2.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>위와 같은 경우 5의 루트 노드를 찾기 위해서는 5 -&gt; 4 -&gt; 3 -&gt; 2 -&gt; 1을 거쳐서 총 O(V) 만큼의 시간복잡도가 걸린다. 그런데 <code class="language-plaintext highlighter-rouge">경로 압축</code>을 통해 부모를 루트로 설정하게 되면 아래와 같이 한번에 찾을 수 있게 된다.</p>
+
+<p><br /></p>
+
+<p><img src="/assets/images/23_3.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>5의 부모 -&gt; 1</p>
+
+<p><br /></p>
+
+<h3 id="find-코드">find() 코드</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+	<span class="k">if</span> <span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">!=</span> <span class="n">x</span><span class="p">:</span>
+    <span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="nf">find</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+  <span class="k">return</span> <span class="n">parent</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
 </code></pre></div></div>
 
 <p><br /></p>
 
-<h2 id="shift-연산">Shift 연산</h2>
-
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">left shift</code> («) : 왼쪽으로 비트 이동 (X * 2^Y)</li>
-  <li><code class="language-plaintext highlighter-rouge">right shift</code> (») : 오른쪽으로 비트 이동 (X / 2^B)</li>
-</ul>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">00001010</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">101000</span>
-<span class="mi">00001010</span> <span class="o">&gt;&gt;</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">000010</span>
-</code></pre></div></div>
-
 <p><br /></p>
-
-<h1 id="집합과-비트마스크"><em>집합과 비트마스크</em></h1>
-
-<p>비트 마스크를 사용하면 집합을 굉장히 효율적으로 표현할 수 있다. 예를 들어 10개의 방문 체크를 해야 하는 상황이라고 가정하자. <br /> 그러면  check = [False] * 10 와 같이 리스트로 표현하는 것이 일반적일 것이다.<br />
-그런데 비트 마스크를 사용하면 check = 0b0000000000 와 같이 표현할 수 있다. 메로리를 훨씬 적게 사용하고 연산도 모두 O(1) 이기 때문에 굉장히 효율적이다. <br /><br /></p>
-
-<h2 id="집합의-연산과-비트-마스크">집합의 연산과 비트 마스크</h2>
-
-<p>이제 비트 마스크를 활용한 집합의 연산에 대해서 알아보자.</p>
-
-<ul>
-  <li>원소 추가</li>
-</ul>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">S</span> <span class="o">|=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">)</span>
-</code></pre></div></div>
-<p>집합 S에 x를 추가하려고 할 때, S의 x번 비트만 1로 만들어주면 된다.</p>
-
-<p><br /></p>
-
-<ul>
-  <li>원소 삭제</li>
-</ul>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">S</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">)</span>
-</code></pre></div></div>
-<p>집합 S에서 x를 삭제할 때, S의 x번 비트를 0으로 만들어주면 된다.</p>
-
-<p><br /></p>
-
-<ul>
-  <li>원소 토글</li>
-</ul>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">S</span> <span class="o">^=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">)</span>
-</code></pre></div></div>
-<p>집합 S에 x가 있다면 삭제하는 연산이다.</p>
-
-<p><br /></p>
-
-<ul>
-  <li>원소 체크</li>
-</ul>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="mi">1</span> <span class="k">if</span> <span class="n">S</span> <span class="o">&amp;</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="nf">int</span><span class="p">(</span><span class="n">li</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span> <span class="o">!=</span> <span class="mi">0</span> <span class="k">else</span> <span class="mi">0</span>
-</code></pre></div></div>
-<p>집합 S에 원소가 있으면 1을 반환, 없으면 0을 반환해주는 연산이다.</p>
-
-<p><br /></p>
-
-<ul>
-  <li>원소 비우기, 채우기</li>
-</ul>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">S</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># 비우기
-</span><span class="n">S</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">21</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>  <span class="c1">#채우기
-</span></code></pre></div></div>
-<p>원소를 비우기 위해서 S의 모든 비트를 0으로 만들어주면 된다. 채울때는 모든 비트를 1로 만들어주면 된다. 1 « 21 을 통해서 집합 수보다 1만큼 큰 비트 sequence를 만들어주고 1을 빼면 집합길이(20) 만큼의 1로 채워진 집합이 된다.</p>
-
-<p><br /></p>
-
-<h1 id="집합-연산"><em>집합 연산</em></h1>
-
-<p>당연히 집합간의 연산도 가능하다. <br /></p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">A</span> <span class="o">|</span> <span class="n">B</span> <span class="c1"># 합집합
-</span><span class="n">A</span> <span class="o">&amp;</span> <span class="n">B</span> <span class="c1"># 교집합
-</span><span class="n">A</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">B</span> <span class="c1"># 차집합 (A - B)
-</span><span class="n">A</span> <span class="o">^</span> <span class="n">B</span> <span class="c1"># A와 B중 하나만 속한 원소
-</span></code></pre></div></div>
-
-<p><br />
-<br /></p>
-
-<h1 id="참고-사이트-출처">참고 사이트 출처</h1>
-
-<ul>
-  <li>https://velog.io/@1998yuki0331/Python-%EB%B9%84%ED%8A%B8-%EB%A7%88%EC%8A%A4%ED%82%B9-%EC%A0%95%EB%A6%AC
-<br /></li>
-</ul>
 
 
         
@@ -535,7 +463,7 @@
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
     <span itemprop="keywords">
     
-      <a href="/tags/#%EB%B9%84%ED%8A%B8-%EB%A7%88%EC%8A%A4%ED%82%B9" class="page__taxonomy-item p-category" rel="tag">비트 마스킹</a><span class="sep">, </span>
+      <a href="/tags/#union-find" class="page__taxonomy-item p-category" rel="tag">Union find</a><span class="sep">, </span>
     
       <a href="/tags/#%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98" class="page__taxonomy-item p-category" rel="tag">알고리즘</a><span class="sep">, </span>
     
@@ -556,7 +484,7 @@
     <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
     <span itemprop="keywords">
     
-      <a href="/categories/#algorithm" class="page__taxonomy-item p-category" rel="tag">Algorithm</a>
+      <a href="/categories/#%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98" class="page__taxonomy-item p-category" rel="tag">알고리즘</a>
     
     </span>
   </p>
@@ -564,7 +492,7 @@
 
         
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-08-22T00:00:00+09:00">August 22, 2023</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-07-20T00:00:00+09:00">July 20, 2023</time></p>
 
       </footer>
 
@@ -573,22 +501,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5B%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%5D+%EB%B9%84%ED%8A%B8+%EB%A7%88%EC%8A%A4%ED%82%B9%20http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2F33%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5B%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%5D+Union+find%20http%3A%2F%2Flocalhost%3A4000%2F%25EC%2595%258C%25EA%25B3%25A0%25EB%25A6%25AC%25EC%25A6%2598%2FunionFind%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2F33%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25EC%2595%258C%25EA%25B3%25A0%25EB%25A6%25AC%25EC%25A6%2598%2FunionFind%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Falgorithm%2F33%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25EC%2595%258C%25EA%25B3%25A0%25EB%25A6%25AC%25EC%25A6%2598%2FunionFind%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/java/spring/java3/" class="pagination--pager" title="[JAVA] Concurrency Issue &amp; Thread Local
+      <a href="/spring/exceptionHandle/" class="pagination--pager" title="[Spring] 예외 처리
 ">이전</a>
     
     
-      <a href="/sqld/34/" class="pagination--pager" title="[SQLD] 데이터 모델링
+      <a href="/jpa/JPA1/" class="pagination--pager" title="[JPA] Intro
 ">다음</a>
     
   </nav>

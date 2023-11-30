@@ -138,9 +138,9 @@ var store = [{
         "teaser": null
       },{
         "title": "[알고리즘] Union find",
-        "excerpt":"오늘은 Union-Find 알고리즘에 대해서 정리해보겠다. Union find algorithm 유니온 파인드 알고리즘은 상호 배타적 집합, Disjoin-set(서로소 집합) 이라고도 부른다. 여러 노드가 존재할 때, 어떤 두 개의 노드를 같은 집합으로 묶어 주고, 어떤 두 노드가 같은 집하에 있는지 확인하는 알고리즘이다. Union 연산 서로 연결된 두 노드 A, B를 선택 A의 루트 노드와...","categories": ["Algorithm"],
+        "excerpt":"오늘은 Union-Find 알고리즘에 대해서 정리해보겠다. Union find algorithm 유니온 파인드 알고리즘은 상호 배타적 집합, Disjoin-set(서로소 집합) 이라고도 부른다. 여러 노드가 존재할 때, 어떤 두 개의 노드를 같은 집합으로 묶어 주고, 어떤 두 노드가 같은 집하에 있는지 확인하는 알고리즘이다. Union 연산 서로 연결된 두 노드 A, B를 선택 A의 루트 노드와...","categories": ["알고리즘"],
         "tags": ["알고리즘","Union find","자료구조"],
-        "url": "/algorithm/unionFind/",
+        "url": "/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/unionFind/",
         "teaser": null
       },{
         "title": "[JPA] Intro",
@@ -192,21 +192,21 @@ var store = [{
         "teaser": null
       },{
         "title": "[알고리즘] 비트 마스킹",
-        "excerpt":"비트 마스크란? 컴퓨터는 내부적으로 모든 연산을 이진수로 표현하고 처리한다. 이런 특성을 이용해서 정수의 이진수 표현을 자료구조로 쓰는 기법을 비트 마스크 라고 한다. 비트 연산자 파이썬의 기본 비트 연산자를 먼저 살펴보자. AND, OR, XOR AND 연산 (&amp;) : 두 비트가 모두 1일 때, 1을 반환한다. OR 연산 (l) : 두 비트가...","categories": ["Algorithm"],
+        "excerpt":"비트 마스크란? 컴퓨터는 내부적으로 모든 연산을 이진수로 표현하고 처리한다. 이런 특성을 이용해서 정수의 이진수 표현을 자료구조로 쓰는 기법을 비트 마스크 라고 한다. 비트 연산자 파이썬의 기본 비트 연산자를 먼저 살펴보자. AND, OR, XOR AND 연산 (&amp;) : 두 비트가 모두 1일 때, 1을 반환한다. OR 연산 (l) : 두 비트가...","categories": ["알고리즘"],
         "tags": ["비트 마스킹","알고리즘","자료구조"],
-        "url": "/algorithm/33/",
+        "url": "/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/33/",
         "teaser": null
       },{
-        "title": "[SQLD] 데이터 모델링",
-        "excerpt":"데이터 모델링 데이터 모델링의 단계 개념적 모델링 고객의 비지니스 프로세스를 분석하고 업무 전체에 대해서 데이터 모델링을 수행 복잡하게 표현하지 않고, 중요한 부분을 위주로 모델링하는 단계 업무적 관점에서 모델링하며, 기술적 용어는 가급적 사용 X 엔티티와 속성을 도출하고 개념적 ERD를 작성한다. 논리적 모델링 개념적 모델링을 논리적 모델링으로 변환하는 과정 식별자를 도출하고 필요한...","categories": ["SQLD"],
+        "title": "[DB] 데이터 모델링",
+        "excerpt":"데이터 모델링 데이터 모델링의 단계 개념적 모델링 고객의 비지니스 프로세스를 분석하고 업무 전체에 대해서 데이터 모델링을 수행 복잡하게 표현하지 않고, 중요한 부분을 위주로 모델링하는 단계 업무적 관점에서 모델링하며, 기술적 용어는 가급적 사용 X 엔티티와 속성을 도출하고 개념적 ERD를 작성한다. 논리적 모델링 개념적 모델링을 논리적 모델링으로 변환하는 과정 식별자를 도출하고 필요한...","categories": ["데이터베이스"],
         "tags": ["데이터베이스","SQLD"],
-        "url": "/sqld/34/",
+        "url": "/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/34/",
         "teaser": null
       },{
-        "title": "[SQLD] 데이터 모델 & 성능",
-        "excerpt":"데이터 모델과 성능 이상현상 정규화를 살펴보기 전에 이상현상(Anomaly)에 대해서 알아보자 삽입 이상 불필요한 데이터를 추가해야지만, 삽입이 가능한 상황 갱신 이상 일부만 변경하여, 데이터가 불일치 하는 모순이 발생하는 상황 삭제 이상 튜플 삭제로 인해 꼭 필요한 데이터까지 함께 삭제되는 상황 정규화 데이터의 일관성, 최소한의 중복, 최대한의 데이터 유연성을 위한 방법으로, 데이터를...","categories": ["SQLD"],
+        "title": "[DB] 데이터 모델 & 성능",
+        "excerpt":"데이터 모델과 성능 이상현상 정규화를 살펴보기 전에 이상현상(Anomaly)에 대해서 알아보자 삽입 이상 불필요한 데이터를 추가해야지만, 삽입이 가능한 상황 갱신 이상 일부만 변경하여, 데이터가 불일치 하는 모순이 발생하는 상황 삭제 이상 튜플 삭제로 인해 꼭 필요한 데이터까지 함께 삭제되는 상황 정규화 데이터의 일관성, 최소한의 중복, 최대한의 데이터 유연성을 위한 방법으로, 데이터를...","categories": ["데이터베이스"],
         "tags": ["데이터베이스","SQLD"],
-        "url": "/sqld/35/",
+        "url": "/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/35/",
         "teaser": null
       },{
         "title": "[Network] 컴퓨터 네트워크와 인터넷",
@@ -216,9 +216,9 @@ var store = [{
         "teaser": null
       },{
         "title": "[Network] Layer5",
-        "excerpt":"application layer의 특징 protocol stack의 가장 위에 존재한다. 사용자가 직접 접하는 protocol 이다. socket을 통해서 transport layer 와 통신한다. socket : 프로세스와 네트워크 사이의 인터페이스이다. (IP + Port로 식별) application layer가 존재하는 end system 끼리 소통한다. transport layer에서 application layer에 제공하는 서비스 신뢰적 데이터 전송 보장된 데이터 전송 서비스를 제공하는...","categories": ["Network","Layer5"],
-        "tags": ["Network","Layer5"],
-        "url": "/network/layer5/37/",
+        "excerpt":"application layer의 특징 protocol stack의 가장 위에 존재한다. 사용자가 직접 접하는 protocol 이다. socket을 통해서 transport layer 와 통신한다. socket : 프로세스와 네트워크 사이의 인터페이스이다. (IP + Port로 식별) application layer가 존재하는 end system 끼리 소통한다. transport layer에서 application layer에 제공하는 서비스 신뢰적 데이터 전송 보장된 데이터 전송 서비스를 제공하는...","categories": ["Network"],
+        "tags": ["Network"],
+        "url": "/network/37/",
         "teaser": null
       },{
         "title": "[Network] Layer3",
@@ -228,7 +228,7 @@ var store = [{
         "teaser": null
       },{
         "title": "[Network] Layer4",
-        "excerpt":"트랜스포트 계층의 역할 및 특징 각기 다른 호스트에서 동작하는 프로세스 사이의 논리적 통신을 제공한다. ↔ 네트워크 계층 프로토콜은 호스트 사이의 논리적 통신을 제공한다. IP 및 Port 번호로 식별한다. IP를 통해서 호스트를, Port를 통해서 프로세스를 찾아감. 종단 시스템(end system, host)에 존재한다. Network core, Access network에는 트랜스포트 프로토콜이 존재하지 않음. IP 계층에...","categories": ["Network"],
+        "excerpt":"트랜스포트 계층 역할 각기 다른 호스트에서 동작하는 프로세스 사이의 논리적 통신을 제공한다. 네트워크 계층 프로토콜은 호스트 사이의 논리적 통신을 제공한다. 특징 IP 및 Port 번호로 식별한다. IP를 통해서 호스트를, Port를 통해서 프로세스를 찾아간다. 종단 시스템(end system, host)에 존재한다. Network core, Access network에는 트랜스포트 프로토콜이 존재하지 않는다. IP 계층에 대한 다양한...","categories": ["Network"],
         "tags": ["Network"],
         "url": "/network/39/",
         "teaser": null

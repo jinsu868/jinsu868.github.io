@@ -3,7 +3,7 @@ title: "[알고리즘] Union find"
 toc: true
 toc_sticky: true
 categories: 
-    - Algorithm
+    - 알고리즘
 tags:
     - 알고리즘
     - Union find
