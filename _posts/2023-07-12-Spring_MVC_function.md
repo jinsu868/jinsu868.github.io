@@ -11,7 +11,7 @@ typora-root-url: ../
 ---
 
 
-
+본 포스트는 `Inflearn`의 김영한님 강의를 바탕으로 작성했습니다.
 <br>
 
 
@@ -386,7 +386,8 @@ Annotation 기반의 컨트롤러는 다양한 파라미터를 제공한다. Htt
 
 HTTP 메시지 컨버터는 `ArgumentResolver` 와 `ReturnValueHandler`  가 사용한다.
 
-
+# 출처
+* https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1
 
 
 

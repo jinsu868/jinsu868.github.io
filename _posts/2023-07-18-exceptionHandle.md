@@ -10,6 +10,8 @@ tags:
 typora-root-url: ../
 ---
 
+본 포스트는 `Inflearn`의 김영한님 강의를 바탕으로 작성했습니다.
+
 <br>
 
 # *Exception Handle*
@@ -120,7 +122,8 @@ public class Advice3 {}
 4. 특정 컨트롤러를 지정할 수 있다.
 
 
-
+# 출처
+* https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1
 
 
 
