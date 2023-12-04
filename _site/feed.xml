@@ -1,4 +1,85 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-01T21:56:07+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[DevOps] CI/CD &amp;amp; 무중단 배포</title><link href="http://localhost:4000/devops/48/" rel="alternate" type="text/html" title="[DevOps] CI/CD &amp;amp; 무중단 배포" /><published>2023-11-25T00:00:00+09:00</published><updated>2023-11-25T00:00:00+09:00</updated><id>http://localhost:4000/devops/48</id><content type="html" xml:base="http://localhost:4000/devops/48/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-04T18:17:27+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[디자인패턴] 템플릿 메소드 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49/" rel="alternate" type="text/html" title="[디자인패턴] 템플릿 메소드 패턴" /><published>2023-12-04T00:00:00+09:00</published><updated>2023-12-04T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;템플릿-메소드-패턴&quot;&gt;템플릿 메소드 패턴&lt;/h1&gt;
+
+&lt;p&gt;오늘은 디자인패턴 중 하나인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;템플릿 메소드 패턴&lt;/code&gt;에 대해서 알아보자.&lt;/p&gt;
+
+&lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm’s structure.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;템플릿 메소드 패턴&lt;/code&gt;은 알고리즘의 뼈대를 정의하고 서브 클래스마다 세부 동작 사항을 다르게 구현하는 패턴을 말한다.
+변하지 않는 템플릿은 상위 클래스에 만들어두고 자주 변경되거나 확장되는 기능은 하위 클래스에서 만들도록 하여, 템플릿 메소드의 동작 순서는 고정하고 세부 실행 내용을 다양화할 때 사용한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;구조&quot;&gt;구조&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/49_1.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;abstract-class&quot;&gt;Abstract Class&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;템플릿 메소드&lt;/code&gt;를 구현하고, 템플릿 메소드에 사용되는 추상 메소드를 선언한다.
+이 추상 메소드는 하위 클래스인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Concreate Class&lt;/code&gt;에서 구현된다.&lt;/p&gt;
+
+&lt;h3 id=&quot;concreate-class&quot;&gt;Concreate Class&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Abstract Class&lt;/code&gt;를 상속하고 추상 메소드를 구현한다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Concreate Class&lt;/code&gt;에서 구현한 메소드는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Abstract Class&lt;/code&gt;의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;템플릿 메소드&lt;/code&gt;에서 호출된다.&lt;/p&gt;
+
+&lt;h2 id=&quot;특징&quot;&gt;특징&lt;/h2&gt;
+
+&lt;h3 id=&quot;장점&quot;&gt;장점&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;공통되는 부분을  묶어서 관리하기 때문에 코드의 중복을 줄일 수 있고 관리하기도 편하다.&lt;/li&gt;
+  &lt;li&gt;알고리즘의 특정 부분만 재정의하여 변경 사항에 대한 영향을 줄일 수 있다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;단점&quot;&gt;단점&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;템플릿 메소드에 정의한 골격은 고정돼있기 때문에 유연성이 제한될 수 있다.&lt;/li&gt;
+  &lt;li&gt;알고리즘이 복잡하다면 템플릿 메소드를 만들거나 유지하기 어려울 수 있다.&lt;/li&gt;
+  &lt;li&gt;추상 메소드가 많아지면 새로운 서브 클래스를 추가하거나 관리하기가 어려울 수 있다.&lt;/li&gt;
+  &lt;li&gt;템플릿 메소드의 실행 흐름을 이해해야지만 서브 클래스에서 추상 메소드를 재정의할 수 있다.&lt;/li&gt;
+  &lt;li&gt;만약 템플릿 메소드의 알고리즘이 변경된다면 서브 클래스에서 재정의한 추상 메소드를 수정해야 할 수도 있다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;지금까지 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;템플릿 메소드 패턴&lt;/code&gt;의 구조와 특징에 대해서 알아봤다.
+이제 실제로 어떤식으로 활용될 수 있는지 코드를 통해서 확인하자!&lt;/p&gt;
+
+&lt;h2 id=&quot;예제-코드&quot;&gt;예제 코드&lt;/h2&gt;
+
+&lt;h3 id=&quot;beverage-클래스-abstract-class&quot;&gt;Beverage 클래스 (Abstract Class)&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/49_2.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;여기서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;prepareRecipe()&lt;/code&gt;메소드는 템플릿 메소드이다. 
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;boilWater()&lt;/code&gt;,  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pour()&lt;/code&gt;는 모든 음료가 공통으로 처리해야 하는 로직이라고 생각하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;addCondiments()&lt;/code&gt;는 각 음료마다 재료가 다르기 때문에 달라져야 하는 부분이라고 생각해보자.
+그러면 공통되는 부분은 나두고 각 음료마다 바뀌는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;addCondiments()&lt;/code&gt;를 추상 메소드로 선언하여 서브 클래스에서 구현하게 하면 변경을 최소화하면서 각 서브 클래스로 구현을 미루면서 유연한 확장을 할 수 있게 된다.&lt;/p&gt;
+
+&lt;h3 id=&quot;americano-chocolatelatee-클래스-concreate-class&quot;&gt;Americano, ChocolateLatee 클래스 (Concreate Class)&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/49_3.png&quot; alt=&quot;img3&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Americano&lt;/code&gt;와  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ChocolateLatte&lt;/code&gt;는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Beverage&lt;/code&gt;를 상속받아서 각자 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;addCondiments()&lt;/code&gt;메소드를 구현하게 된다. 그리고 템플릿 메소드인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;prepareRecipe()&lt;/code&gt;를 호출하게 되면 전체적인 알고리즘 흐름은 동일하지만 세부 실행 내용을 변경할 수 있게 된다.&lt;/p&gt;
+
+&lt;h2 id=&quot;hook-메소드&quot;&gt;hook 메소드&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hook 메소드&lt;/code&gt; 는 서브 클래스에서 좀 더 유연하게 템플릿 메소드의 알고리즘 로직을 다양화할 수 있게 도와주는 역할을 수행한다.
+일반적으로 추상 메소드가 아닌 일반 메소드로 구현을 하게 된다.
+그냥 나두게 되면 원래 설정한 기본 흐름대로 실행되고 서브 클래스에서 오버라이딩하게 되면 상황에 맞게 제어할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;간단한 예시 코드를 보면서 이해해보자.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/49_4.png&quot; alt=&quot;img4&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;템플릿 메소드인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;prepareRecipe()&lt;/code&gt; 안에 있는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isCustomerWantsTopping()&lt;/code&gt;가 앞에서 말한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hook 메서드&lt;/code&gt;이다.
+기본적인 요구사항이 토핑을 추가하여 음료를 제공한다고 생각하고 로직을 작성한 것이다. 그런데 어떤 음료에는 토핑이 들어가지 않아야 할 수 있다. 이런 경우에는 서브 클래스에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hook 메서드&lt;/code&gt;를 선택적으로 오버라이딩하여 템플릿 메소드의 흐름을 제어할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/49_5.png&quot; alt=&quot;img5&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Americano&lt;/code&gt;에 기본적으로 토핑이 들어가면 안된다고 할 때, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hook 메서드&lt;/code&gt;인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isCustomerWantsTopping()&lt;/code&gt;을 제정의하여 템플릿 메소드 안에있는 로직의 실행 흐름을 제어할 수 있다.&lt;/p&gt;
+
+&lt;h1 id=&quot;출처&quot;&gt;출처&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;https://url.kr/tw2s8o&lt;/li&gt;
+  &lt;li&gt;헤드 퍼스트 디자인 패턴&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><summary type="html"></summary></entry><entry><title type="html">[DevOps] CI/CD &amp;amp; 무중단 배포</title><link href="http://localhost:4000/devops/48/" rel="alternate" type="text/html" title="[DevOps] CI/CD &amp;amp; 무중단 배포" /><published>2023-11-25T00:00:00+09:00</published><updated>2023-11-25T00:00:00+09:00</updated><id>http://localhost:4000/devops/48</id><content type="html" xml:base="http://localhost:4000/devops/48/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;devops&quot;&gt;&lt;em&gt;DevOps&lt;/em&gt;&lt;/h1&gt;
 
@@ -317,16 +398,36 @@ HTTP, SMTP, FTP 등을 바탕으로 로드를 분산 처리할 수 있다.&lt;/p
 &lt;h1 id=&quot;참고-사이트&quot;&gt;참고 사이트&lt;/h1&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;https://aws.amazon.com/ko/devops/what-is-devops/&lt;/li&gt;
-  &lt;li&gt;https://www.redhat.com/ko/topics/devops&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://velog.io/@lee2302/Deploy-CICD%EC%9E%90%EB%8F%99%ED%99%94-%EB%B0%B0%ED%8F%AC&quot;&gt;https://velog.io/@lee2302/Deploy-CICD자동화-배포&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;https://seosh817.tistory.com/104&lt;/li&gt;
-  &lt;li&gt;https://hudi.blog/zero-downtime-deployment/&lt;/li&gt;
-  &lt;li&gt;https://www.youtube.com/watch?v=sIPU_VkrguI&lt;/li&gt;
-  &lt;li&gt;https://narup.tistory.com/238&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://aday7.tistory.com/entry/%EB%A6%AC%EB%B2%84%EC%8A%A4-%ED%94%84%EB%A1%9D%EC%8B%9CReverse-Proxy-%EC%89%BD%EA%B2%8C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-%EA%B0%9C%EB%85%90%EB%B6%80%ED%84%B0-%ED%95%84%EC%9A%94%EC%84%B1-%EC%98%A4%ED%94%88-%EC%86%8C%EC%8A%A4-%EC%86%94%EB%A3%A8%EC%85%98%EA%B9%8C%EC%A7%80&quot;&gt;https://aday7.tistory.com/entry/리버스-프록시Reverse-Proxy-쉽게-이해하기-개념부터-필요성-오픈-소스-솔루션까지&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://velog.io/@yanghl98/OS%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EB%A1%9C%EB%93%9C%EB%B0%B8%EB%9F%B0%EC%8B%B1-Load-Balancing-%EC%A0%95%EC%9D%98-%EC%A2%85%EB%A5%98-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98&quot;&gt;https://velog.io/@yanghl98/OS운영체제-로드밸런싱-Load-Balancing-정의-종류-알고리즘&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;https://bruno-jang.tistory.com/34&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://aws.amazon.com/ko/devops/what-is-devops/&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://www.redhat.com/ko/topics/devops&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://velog.io/@lee2302/Deploy-CICD%EC%9E%90%EB%8F%99%ED%99%94-%EB%B0%B0%ED%8F%AC&quot;&gt;https://velog.io/@lee2302/Deploy-CICD자동화-배포&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://seosh817.tistory.com/104&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://hudi.blog/zero-downtime-deployment/&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://www.youtube.com/watch?v=sIPU_VkrguI&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://narup.tistory.com/238&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://aday7.tistory.com/entry/%EB%A6%AC%EB%B2%84%EC%8A%A4-%ED%94%84%EB%A1%9D%EC%8B%9CReverse-Proxy-%EC%89%BD%EA%B2%8C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-%EA%B0%9C%EB%85%90%EB%B6%80%ED%84%B0-%ED%95%84%EC%9A%94%EC%84%B1-%EC%98%A4%ED%94%88-%EC%86%8C%EC%8A%A4-%EC%86%94%EB%A3%A8%EC%85%98%EA%B9%8C%EC%A7%80&quot;&gt;https://aday7.tistory.com/entry/리버스-프록시Reverse-Proxy-쉽게-이해하기-개념부터-필요성-오픈-소스-솔루션까지&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://velog.io/@yanghl98/OS%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EB%A1%9C%EB%93%9C%EB%B0%B8%EB%9F%B0%EC%8B%B1-Load-Balancing-%EC%A0%95%EC%9D%98-%EC%A2%85%EB%A5%98-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98&quot;&gt;https://velog.io/@yanghl98/OS운영체제-로드밸런싱-Load-Balancing-정의-종류-알고리즘&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://bruno-jang.tistory.com/34&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="DevOps" /><category term="DevOps" /><category term="CI/CD" /><category term="리버스 프록시" /><category term="무중단 배포" /><summary type="html"></summary></entry><entry><title type="html">[DB] 트랜잭션</title><link href="http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/47/" rel="alternate" type="text/html" title="[DB] 트랜잭션" /><published>2023-11-20T00:00:00+09:00</published><updated>2023-11-20T00:00:00+09:00</updated><id>http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/47</id><content type="html" xml:base="http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/47/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;트랜잭션&quot;&gt;트랜잭션&lt;/h1&gt;
@@ -434,8 +535,12 @@ HTTP, SMTP, FTP 등을 바탕으로 로드를 분산 처리할 수 있다.&lt;/p
 
 &lt;h1 id=&quot;참고&quot;&gt;참고&lt;/h1&gt;
 &lt;ul&gt;
-  &lt;li&gt;면접을 위한 CS 전공지식 노트&lt;/li&gt;
-  &lt;li&gt;https://velog.io/@yu-jin-song/DB-%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98-%EA%B2%A9%EB%A6%AC-%EC%88%98%EC%A4%80Transaction-Isolation-Level&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;면접을 위한 CS 전공지식 노트&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://velog.io/@yu-jin-song/DB-%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98-%EA%B2%A9%EB%A6%AC-%EC%88%98%EC%A4%80Transaction-Isolation-Level&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="데이터베이스" /><category term="트랜잭션" /><category term="DB" /><summary type="html"></summary></entry><entry><title type="html">[DB] 이상현상과 정규화</title><link href="http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/46/" rel="alternate" type="text/html" title="[DB] 이상현상과 정규화" /><published>2023-11-19T00:00:00+09:00</published><updated>2023-11-19T00:00:00+09:00</updated><id>http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/46</id><content type="html" xml:base="http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/46/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;이상현상-anomaly&quot;&gt;이상현상 (Anomaly)&lt;/h1&gt;
@@ -700,9 +805,15 @@ HTTP, SMTP, FTP 등을 바탕으로 로드를 분산 처리할 수 있다.&lt;/p
 &lt;h3 id=&quot;참고-사이트&quot;&gt;참고 사이트&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;https://ebabby.tistory.com/21&lt;/li&gt;
-  &lt;li&gt;https://www.baeldung.com/parameterized-tests-junit-5&lt;/li&gt;
-  &lt;li&gt;https://velog.io/@ohzzi/junit5-parameterizedtest&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://ebabby.tistory.com/21&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://www.baeldung.com/parameterized-tests-junit-5&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://velog.io/@ohzzi/junit5-parameterizedtest&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="테스트" /><category term="Junit5" /><category term="우테코" /><summary type="html">동기</summary></entry><entry><title type="html">[Network] 보안</title><link href="http://localhost:4000/network/44/" rel="alternate" type="text/html" title="[Network] 보안" /><published>2023-11-05T00:00:00+09:00</published><updated>2023-11-05T00:00:00+09:00</updated><id>http://localhost:4000/network/44</id><content type="html" xml:base="http://localhost:4000/network/44/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/44_15.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
@@ -1269,11 +1380,21 @@ containsExactly()는 contains()와 달리 원소의 순서, 개수까지 정확�
 
 &lt;h2 id=&quot;참고-사이트&quot;&gt;참고 사이트&lt;/h2&gt;
 &lt;ul&gt;
-  &lt;li&gt;https://m42-orion.tistory.com/97?category=1085496&lt;/li&gt;
-  &lt;li&gt;https://tecoble.techcourse.co.kr/post/2021-05-25-unit-test-vs-integration-test-vs-acceptance-test/&lt;/li&gt;
-  &lt;li&gt;https://velog.io/@chori/JUnit-5-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4&lt;/li&gt;
-  &lt;li&gt;https://inkyu-yoon.github.io/docs/Language/Spring/IsEqualIsSame&lt;/li&gt;
-  &lt;li&gt;https://bcp0109.tistory.com/317&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://m42-orion.tistory.com/97?category=1085496&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://tecoble.techcourse.co.kr/post/2021-05-25-unit-test-vs-integration-test-vs-acceptance-test/&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://velog.io/@chori/JUnit-5-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://inkyu-yoon.github.io/docs/Language/Spring/IsEqualIsSame&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://bcp0109.tistory.com/317&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="테스트" /><category term="우테코" /><category term="프리코스" /><category term="테스트" /><category term="Junit5" /><summary type="html"></summary></entry><entry><title type="html">[프리코스] 숫자 야구 리뷰</title><link href="http://localhost:4000/%EC%9A%B0%ED%85%8C%EC%BD%94/42/" rel="alternate" type="text/html" title="[프리코스] 숫자 야구 리뷰" /><published>2023-10-30T00:00:00+09:00</published><updated>2023-10-30T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9A%B0%ED%85%8C%EC%BD%94/42</id><content type="html" xml:base="http://localhost:4000/%EC%9A%B0%ED%85%8C%EC%BD%94/42/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/42_2.png&quot; alt=&quot;img1&quot; width=&quot;40%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
@@ -1670,9 +1791,15 @@ git cherry-pick 39c123..bjkd12
 
 &lt;h2 id=&quot;참고-사이트&quot;&gt;참고 사이트&lt;/h2&gt;
 &lt;ul&gt;
-  &lt;li&gt;https://www.youtube.com/watch?v=b72mDco4g78&lt;/li&gt;
-  &lt;li&gt;https://www.zehye.kr/git/2019/11/22/11git_merge_conflict/&lt;/li&gt;
-  &lt;li&gt;https://hudi.blog/git-merge-squash-rebase/&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://www.youtube.com/watch?v=b72mDco4g78&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://www.zehye.kr/git/2019/11/22/11git_merge_conflict/&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;https://hudi.blog/git-merge-squash-rebase/&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="git" /><category term="프로젝트 관리" /><category term="git" /><category term="우테코" /><summary type="html"></summary></entry><entry><title type="html">[클린코드] 일급 컬렉션</title><link href="http://localhost:4000/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C/40/" rel="alternate" type="text/html" title="[클린코드] 일급 컬렉션" /><published>2023-10-25T00:00:00+09:00</published><updated>2023-10-25T00:00:00+09:00</updated><id>http://localhost:4000/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C/40</id><content type="html" xml:base="http://localhost:4000/%ED%81%B4%EB%A6%B0%EC%BD%94%EB%93%9C/40/">&lt;p&gt;우테코 1주차 과제를 리팩토링하면서 일급 컬렉션이라는 개념에 대해서 알게 됐다. 오늘은 일급 컬렉션이 무엇인지, 그리고 언제 사용하면 유용한지에 대해서 소개하겠다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;일급-컬렉션이란-무엇일까&quot;&gt;일급 컬렉션이란 무엇일까?&lt;/h2&gt;
@@ -1812,313 +1939,16 @@ git cherry-pick 39c123..bjkd12
 
 &lt;h2 id=&quot;참고-사이트&quot;&gt;참고 사이트&lt;/h2&gt;
 &lt;ul&gt;
-  &lt;li&gt;https://jojoldu.tistory.com/412&lt;/li&gt;
-  &lt;li&gt;https://jamie95.tistory.com/99&lt;/li&gt;
-  &lt;li&gt;https://jamie95.tistory.com/entry/%EC%9D%BC%EA%B8%89-%EC%BB%AC%EB%A0%89%EC%85%98%EC%9D%84-%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90&lt;/li&gt;
-  &lt;li&gt;https://matouslescotousles.tistory.com/11&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="클린코드" /><category term="클린코드" /><category term="TDD" /><category term="우테코" /><summary type="html">우테코 1주차 과제를 리팩토링하면서 일급 컬렉션이라는 개념에 대해서 알게 됐다. 오늘은 일급 컬렉션이 무엇인지, 그리고 언제 사용하면 유용한지에 대해서 소개하겠다.</summary></entry><entry><title type="html">[Network] Layer4</title><link href="http://localhost:4000/network/39/" rel="alternate" type="text/html" title="[Network] Layer4" /><published>2023-10-10T00:00:00+09:00</published><updated>2023-10-10T00:00:00+09:00</updated><id>http://localhost:4000/network/39</id><content type="html" xml:base="http://localhost:4000/network/39/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;트랜스포트-계층&quot;&gt;트랜스포트 계층&lt;/h1&gt;
-
-&lt;h2 id=&quot;역할&quot;&gt;역할&lt;/h2&gt;
-
-&lt;p&gt;각기 다른 호스트에서 동작하는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;프로세스&lt;/code&gt; 사이의 &lt;strong&gt;논리적 통신&lt;/strong&gt;을 제공한다.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;네트워크 계층 프로토콜은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;호스트&lt;/code&gt; 사이의 &lt;strong&gt;논리적 통신&lt;/strong&gt;을 제공한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;특징&quot;&gt;특징&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IP&lt;/code&gt; 및 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Port&lt;/code&gt; 번호로 식별한다.
-    &lt;ul&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IP&lt;/code&gt;를 통해서 호스트를, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Port&lt;/code&gt;를 통해서 프로세스를 찾아간다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;종단 시스템(end system, host)에 존재한다.
-    &lt;ul&gt;
-      &lt;li&gt;Network core, Access network에는 트랜스포트 프로토콜이 존재하지 않는다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;IP 계층에 대한 다양한 제어를 수행한다.
-    &lt;ul&gt;
-      &lt;li&gt;동적으로 IP주소를 관리, IP 변환, IP 패킷의 흐름제어를 한다.&lt;/li&gt;
-      &lt;li&gt;PDU : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;세그먼트(segment)&lt;/code&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;다중화와-역다중화&quot;&gt;다중화와 역다중화&lt;/h2&gt;
-
-&lt;h3 id=&quot;정의&quot;&gt;정의&lt;/h3&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;트랜스포트 계층&lt;/code&gt; ↔ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;애플리케이션 계층&lt;/code&gt; 간의 데이터를 주고 받게 해주는 서비스를 의미한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;역다중화-demultiplexing&quot;&gt;역다중화 (demultiplexing)&lt;/h3&gt;
-
-&lt;h4 id=&quot;정의-1&quot;&gt;정의&lt;/h4&gt;
-
-&lt;p&gt;트랜스포트 계층 세그먼트의 데이터를 올바른 소켓으로 전달하는 작업을 &lt;strong&gt;역다중화&lt;/strong&gt; 라고 한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;다중화-multiplexing&quot;&gt;다중화 (multiplexing)&lt;/h3&gt;
-
-&lt;h4 id=&quot;정의-2&quot;&gt;정의&lt;/h4&gt;
-
-&lt;p&gt;출발지 호스트에서 소켓으로부터 데이터를 모으고, 이에 대한 세그먼트를 생성하기 위해 각 데이터에 헤더 정보로 캡슐화하고, 그 세그먼트들을 네트워크 계층으로 전달하는 작업을 &lt;strong&gt;다중화&lt;/strong&gt; 라고 한다.&lt;/p&gt;
-
-&lt;h2 id=&quot;포트-번호란&quot;&gt;포트 번호란?&lt;/h2&gt;
-
-&lt;h3 id=&quot;정의-3&quot;&gt;정의&lt;/h3&gt;
-
-&lt;p&gt;트랜스포트 계층에서의 식별자 역할을 하는 것을 말한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;특징-1&quot;&gt;특징&lt;/h3&gt;
-
-&lt;ol&gt;
   &lt;li&gt;
-    &lt;p&gt;소켓에 대한 식별을 한다.&lt;/p&gt;
+    &lt;p&gt;https://jojoldu.tistory.com/412&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;일반적으로 source/destination 별로 port 번호가 존재한다.&lt;/p&gt;
+    &lt;p&gt;https://jamie95.tistory.com/99&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;well-kown port number (0~1023)&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/39_1.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;user-datagram-protocol-udp&quot;&gt;User Datagram Protocol (UDP)&lt;/h2&gt;
-
-&lt;h3 id=&quot;특징-2&quot;&gt;특징&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;간단한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;multiplexing&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;demultiplexing&lt;/code&gt; 기능의 프로토콜이다.&lt;/p&gt;
+    &lt;p&gt;https://jamie95.tistory.com/entry/%EC%9D%BC%EA%B8%89-%EC%BB%AC%EB%A0%89%EC%85%98%EC%9D%84-%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Port 번호와 Checksum만 헤에더 붙는다.&lt;/p&gt;
+    &lt;p&gt;https://matouslescotousles.tistory.com/11&lt;/p&gt;
   &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;사실상 IP 의 기능만 수행하며, 애플리케이션 계층에서 흐름 제어, 기타 기능을 구현한다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;연결 과정 없이 바로 전송이 가능하다. (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;비연결형&lt;/code&gt;)
-    &lt;ul&gt;
-      &lt;li&gt;연결을 하지 않고 별도의 흐름제어, 혼잡제어를 수행하지 않기 때문에 TCP 보다 속도가 빠르다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;헤더의 크기가 작다. (8byte)
-    &lt;ul&gt;
-      &lt;li&gt;TCP는 20 byte&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;송수신-과정&quot;&gt;송수신 과정&lt;/h3&gt;
-
-&lt;h4 id=&quot;udp-소켓의-생성&quot;&gt;UDP 소켓의 생성&lt;/h4&gt;
-
-&lt;p&gt;애플리케이션 프로세스에서 소켓 생성 즉시 트랜스포트 계층의 port 번호가 부여된다.&lt;/p&gt;
-
-&lt;h4 id=&quot;udp-segment-송수신&quot;&gt;UDP segment 송수신&lt;/h4&gt;
-
-&lt;p&gt;Two tuple : 목적지 IP &amp;amp; port 번호&lt;/p&gt;
-
-&lt;p&gt;수신 port 번호가 같으면 동일한 소켓으로 들어간다. ↔ TCP는 송신 port 번호도 고려하여 소켓으로 매핑된다.&lt;/p&gt;
-
-&lt;p&gt;상대방 호스트의 port 가 열려있으면 항상 전송이 가능하다.&lt;/p&gt;
-
-&lt;p&gt;IP, port 번호를 지정해서 보내면 바로 전달이 가능하다. (비연결형)&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Source port의 존재 의의&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;return address&lt;/strong&gt; 개념이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;udp-세그먼트-구조&quot;&gt;UDP 세그먼트 구조&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/39_2.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;신뢰적인-데이터-전송의-원리&quot;&gt;신뢰적인 데이터 전송의 원리&lt;/h2&gt;
-
-&lt;h3 id=&quot;automatic-repeat-request-arq&quot;&gt;Automatic Repeat reQuest (ARQ)&lt;/h3&gt;
-
-&lt;h4 id=&quot;정의-4&quot;&gt;정의&lt;/h4&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Acknowlegement&lt;/code&gt; + &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;timer&lt;/code&gt; + &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;reactions&lt;/code&gt;로 구성된다.&lt;/p&gt;
-
-&lt;p&gt;신뢰성 있는 PDU 전송을 위한 가장 보편적인 프로토콜 함수이다.&lt;/p&gt;
-
-&lt;p&gt;TX/RX 가 confimation (ACK)를 받거나 timer-out 까지 기다리는 동안 하는 일련의 동작을 포함한다.&lt;/p&gt;
-
-&lt;h4 id=&quot;방식&quot;&gt;방식&lt;/h4&gt;
-
-&lt;p&gt;재전송 방법에 따라 여러 방식이 존재한다.&lt;/p&gt;
-
-&lt;h5 id=&quot;gbn-go-back-n&quot;&gt;GBN (Go Back N)&lt;/h5&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/39_3.png&quot; alt=&quot;img3&quot; width=&quot;40%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;N번째 unconfirmed PDU로 돌아가서 거기서부터 재전송을 한다.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TX entity&lt;/code&gt;는 acknowledged 되기 전까지 보낸 PDU를 그대로 버퍼에 저장하고 있어야 한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RX entity&lt;/code&gt;는 N번째 PDU가 문제가 생기면 이후에 PDU(N+1~)는 모두 버린다.&lt;/p&gt;
-
-&lt;p&gt;time-out의 경우 N번째 PDU부터 재전송한다.&lt;/p&gt;
-
-&lt;h5 id=&quot;sr-selective-repeat&quot;&gt;SR (Selective Repeat)&lt;/h5&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/39_4.png&quot; alt=&quot;img4&quot; width=&quot;40%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;손실된 PDU에 대해서만 골라서 재전송한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RX entity&lt;/code&gt;는 제대로 받은 PDU를 저장한다.&lt;/p&gt;
-
-&lt;p&gt;transmission order대로 다 받을때 까지 저장한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;cumulative ACK&lt;/code&gt;를 통해 제대로 전달된 PDU를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TX entity&lt;/code&gt;에서 확인한다.&lt;/p&gt;
-
-&lt;h5 id=&quot;gbn-vs-sr&quot;&gt;GBN VS SR&lt;/h5&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SR&lt;/code&gt;은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RX entity&lt;/code&gt;측에 buffer가 요구된다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GBN&lt;/code&gt;은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TX entity&lt;/code&gt;측에 buffer가 요구된다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GBN&lt;/code&gt;은 재전송 수신까지 시간이 좀 걸리는데 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SR&lt;/code&gt;은 상대적으로 재전송 수신이 덜 걸린다.&lt;/p&gt;
-
-&lt;p&gt;-&amp;gt; &lt;strong&gt;TCP 는 SR과 GBN 의 혼합형이라고 생각하면 된다.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;transmission-control-protocol-tcp&quot;&gt;Transmission Control Protocol (TCP)&lt;/h2&gt;
-
-&lt;h3 id=&quot;특징-3&quot;&gt;특징&lt;/h3&gt;
-
-&lt;h4 id=&quot;tcp는-연결-지향형이다&quot;&gt;TCP는 연결 지향형이다.&lt;/h4&gt;
-
-&lt;p&gt;connection establishment 과정이 존재한다.&lt;/p&gt;
-
-&lt;p&gt;connection이 존재 해야지만 세그먼트를 전달할 수 있다.&lt;/p&gt;
-
-&lt;h4 id=&quot;전이중-서비스full-duplex-service를-제공한다&quot;&gt;전이중 서비스(full-duplex service)를 제공한다.&lt;/h4&gt;
-
-&lt;p&gt;A와 B가 연결되어 있으면 A→B, B→A 양방향으로 흐를 수 있다.&lt;/p&gt;
-
-&lt;p&gt;TCP 연결은 항상 단일 송신자와 단일 수신자 사이의 &lt;strong&gt;점대점(point-to-point)&lt;/strong&gt; 이다.&lt;/p&gt;
-
-&lt;p&gt;한 송신자가 멀티캐스팅할 수 없다.&lt;/p&gt;
-
-&lt;h4 id=&quot;four-tuple&quot;&gt;Four tuple&lt;/h4&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;source IP/port number&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;destination IP/port number&lt;/code&gt; 로 구성된다.&lt;/p&gt;
-
-&lt;p&gt;UDP와 다르게 source에 대한 정보까지 고려야여 소켓에 매핑된다.&lt;/p&gt;
-
-&lt;h4 id=&quot;tcp-는-신뢰적-데이터-전송을-제공한다&quot;&gt;TCP 는 신뢰적 데이터 전송을 제공한다.&lt;/h4&gt;
-
-&lt;p&gt;재전송 및 ARQ 기능을 포함한다.&lt;/p&gt;
-
-&lt;h2 id=&quot;tcp-세그먼트-구조&quot;&gt;TCP 세그먼트 구조&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/39_10.png&quot; alt=&quot;img10&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;3-way-handshake&quot;&gt;3-way handshake&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/39_5.png&quot; alt=&quot;img5&quot; width=&quot;40%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;request--setup--complete&quot;&gt;request / setup / complete&lt;/h4&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;initiator&lt;/code&gt;가 confirmation 수신에 대해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;responder&lt;/code&gt;에게 confirm을 또 해준다. (complete)&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;responder&lt;/code&gt;는 complete 수신후에 connection이 맺어진 것으로 간주한다.&lt;/p&gt;
-
-&lt;p&gt;complete가 loss가 일어나도 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;responser&lt;/code&gt;는 connection이 맺어진 상태로 가정할 수 있다.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;이전에 request를 받았으므로, connection을 맺고자 하는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;initiator&lt;/code&gt; 의 상태는 이미 확인했다.&lt;/li&gt;
-  &lt;li&gt;후속 data PDU을 수신하면 complete를 수신한 것으로 간주할 수 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;흐름제어&quot;&gt;흐름제어&lt;/h2&gt;
-
-&lt;h3 id=&quot;정의-5&quot;&gt;정의&lt;/h3&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;송신자&lt;/code&gt; 가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;수신자&lt;/code&gt; 의 버퍼를 오버플로시키는 것을 방지하기 위해 속도를 조절하는 것을 의미한다.(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;송신자의 억제&lt;/code&gt;)&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;송수신 entity&lt;/code&gt; 사이에 교환되는 PDU 개수를 조정하는 것을 의미한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;필요성&quot;&gt;필요성&lt;/h3&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;수신측&lt;/code&gt;이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;송신측&lt;/code&gt;보다 데이터 처리 속도가 느리다면 저장 용량을 초과한 이후에 오는 PDU는 손실될 수 있다.&lt;/p&gt;
-
-&lt;p&gt;만일 손실이 발생한다면 송/수신 측 간에 불필요한 요청이 추가로 발생하게 된다.&lt;/p&gt;
-
-&lt;p&gt;이를 막기 위해서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;수신측&lt;/code&gt;의 데이터 처리 속도에 맞춰서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;송신측&lt;/code&gt;에서 PDU를 보내도록 할 수 있는 방법이 요구된다.&lt;/p&gt;
-
-&lt;h3 id=&quot;방식-1&quot;&gt;방식&lt;/h3&gt;
-
-&lt;h4 id=&quot;stop-and-wait&quot;&gt;Stop and Wait&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/39_6.png&quot; alt=&quot;img6&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;이전에 전송한 패킷에 대한 응답을 받아야만 요청을 할 수 있도록 하는 방법이다.&lt;/p&gt;
-
-&lt;p&gt;당연히 성능이 좋지 않기 때문에 사용하지 않는다.&lt;/p&gt;
-
-&lt;h4 id=&quot;sliding-window-protocol&quot;&gt;Sliding window protocol&lt;/h4&gt;
-
-&lt;p&gt;수신측이 제공한 윈도우 크기만큼 송신측에서 확인응답 없이 세그먼트를 전송하게 하여 데이터 흐름을 동적으로 제어하는 방식이다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/39_7.png&quot; alt=&quot;img7&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;먼저 윈도우에 포함되는 모든 패킷을 전송한 후, 패킷드의 전달이 확인되는 순간 이 윈도우를 옆으로 옮기면서 다음 패킷을 전송한다.&lt;/p&gt;
-
-&lt;h2 id=&quot;혼잡제어&quot;&gt;혼잡제어&lt;/h2&gt;
-
-&lt;h3 id=&quot;정의-6&quot;&gt;정의&lt;/h3&gt;
-
-&lt;p&gt;네트워크 혼잡을 피하기 위해서 송신측에서 보내는 데이터의 전송 속도를 제어하는 것을 &lt;strong&gt;혼잡제어&lt;/strong&gt;라고 한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;필요성-1&quot;&gt;필요성&lt;/h3&gt;
-
-&lt;p&gt;송신측에서 전송하는 모든 데이터는 인터넷으로 연결된 네트워크를 통해서 전송된다.&lt;/p&gt;
-
-&lt;p&gt;만약 한 라우터에 많은 패킷이 몰리게 되면 라우터의 큐가 꽉 차게되고 패킷을 버리게 된다.&lt;/p&gt;
-
-&lt;p&gt;이렇게 되면 송신 호스트는 결국 다시 재전송을 하게 될 것이고 네트워크 혼잡도만 높아지게 된다.&lt;/p&gt;
-
-&lt;p&gt;때문에 네트워크가 혼잡할 때는 송신측의 전송 속도를 제어할 필요가 있다.&lt;/p&gt;
-
-&lt;h3 id=&quot;방식-2&quot;&gt;방식&lt;/h3&gt;
-
-&lt;h4 id=&quot;aimdadditive-increase--multiplicative-decrease&quot;&gt;AIMD(Additive Increase / Multiplicative Decrease)&lt;/h4&gt;
-
-&lt;p&gt;패킷을 보내고 문제없이 도착하면 window 크기를 1씩 증가시키는 방식이다.&lt;/p&gt;
-
-&lt;p&gt;패킷 전송이 실패하거나 일정 시간이 지나게 되면 보내는 속도를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;절반&lt;/code&gt;으로 줄인다.&lt;/p&gt;
-
-&lt;p&gt;초기의 네트워크 대역폭을 높게 사용하지 못하고 네트워크가 혼잡해지는 것을 미리 감지할 수 없다.&lt;/p&gt;
-
-&lt;h4 id=&quot;slow-start&quot;&gt;Slow start&lt;/h4&gt;
-
-&lt;p&gt;AIMD와 달리 패킷이 성공적으로 전송되면 ACK 패킷마다 window 크기를 1씩 증가시켜준다.&lt;/p&gt;
-
-&lt;p&gt;즉 한 주기마다 window 크기가 두배로 커진다.&lt;/p&gt;
-
-&lt;p&gt;패킷 전송에 실패하게 되면 window 크기를 1로 줄이고 혼잡이 발생했던 window 크기까지 지수함수 크기로 증가시킨다.&lt;/p&gt;
-
-&lt;p&gt;혼잡 발생 크기를 넘기면 1씩 증가시킨다.&lt;/p&gt;
-
-&lt;h4 id=&quot;fast-recovery&quot;&gt;Fast Recovery&lt;/h4&gt;
-
-&lt;p&gt;혼잡 상태가 발생하면 window 크기를 반으로 줄이고 선형 증가시키는 방식이다.&lt;/p&gt;
-
-&lt;p&gt;혼잡 상황을 한번 겪고 나면 AIMD 방식으로 동작한다.&lt;/p&gt;
-
-&lt;h1 id=&quot;참고&quot;&gt;참고&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;https://gyoogle.dev/blog/computer-science/network/%ED%9D%90%EB%A6%84%EC%A0%9C%EC%96%B4%20&amp;amp;%20%ED%98%BC%EC%9E%A1%EC%A0%9C%EC%96%B4.html&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;컴퓨터네트워크 하향식 접근&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Network" /><summary type="html"></summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="클린코드" /><category term="클린코드" /><category term="TDD" /><category term="우테코" /><summary type="html">우테코 1주차 과제를 리팩토링하면서 일급 컬렉션이라는 개념에 대해서 알게 됐다. 오늘은 일급 컬렉션이 무엇인지, 그리고 언제 사용하면 유용한지에 대해서 소개하겠다.</summary></entry></feed>
