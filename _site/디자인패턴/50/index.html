@@ -1,0 +1,783 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[디자인패턴] 컴포짓 패턴 - Jinsu’s story</title>
+<meta name="description" content="">
+
+
+  <meta name="author" content="Moon JinSu">
+  
+  <meta property="article:author" content="Moon JinSu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="Jinsu's story">
+<meta property="og:title" content="[디자인패턴] 컴포짓 패턴">
+<meta property="og:url" content="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50/">
+
+
+  <meta property="og:description" content="">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-12-04T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "문진수(Moon JinSu)",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Jinsu's story Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Jinsu's story
+          
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Moon JinSu</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>tech blog</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seoul, Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:mjinsu098@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/jinsu868" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+
+<!-- Categories -->
+<nav class="nav__list">
+  <ul class="nav__items" id="category_tag_menu">
+      <li>
+          <span class="nav__sub-title">📂 Total (50)</span>
+          <ul>
+              
+                  
+                  <li>
+                      <a href="/categories/#spring" class="">Spring (14)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#디자인패턴" class="">디자인패턴 (10)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#java" class="">Java (3)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#알고리즘" class="">알고리즘 (2)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#jpa" class="">JPA (7)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#데이터베이스" class="">데이터베이스 (4)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#network" class="">Network (5)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#클린코드" class="">클린코드 (1)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#git" class="">git (1)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#우테코" class="">우테코 (1)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#테스트" class="">테스트 (2)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#devops" class="">DevOps (1)</a>
+                  </li>
+                  
+              
+          </ul>
+      </li>
+  </ul>
+  </nav>
+
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[디자인패턴] 컴포짓 패턴">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="2023-12-04T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50/" class="u-url" itemprop="url">[디자인패턴] 컴포짓 패턴
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#컴포짓-패턴">컴포짓 패턴</a><ul><li><a href="#정의">정의</a></li><li><a href="#구조">구조</a><ul><li><a href="#component">Component</a></li><li><a href="#composite">Composite</a></li><li><a href="#leaf">Leaf</a></li></ul></li><li><a href="#예제">예제</a><ul><li><a href="#예제-코드">예제 코드</a><ul><li><a href="#menucomponent-component">MenuComponent (Component)</a></li><li><a href="#menu-leaf">Menu (Leaf)</a></li><li><a href="#menus-composite">Menus (Composite)</a></li></ul></li></ul></li></ul></li><li><a href="#정리">정리</a></li><li><a href="#참고">참고</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p><br /></p>
+
+<h1 id="컴포짓-패턴">컴포짓 패턴</h1>
+
+<p>오늘은 디자인패턴 중 하나인 <code class="language-plaintext highlighter-rouge">컴포짓 패턴</code>에 대해서 알아보자.</p>
+
+<h2 id="정의">정의</h2>
+<blockquote>
+  <p>Composite design pattern comes under <strong>Structural Patterns</strong> is one of the most important and usable part of design pattern. Developers, in his daily life uses this pattern in somehow but he doesn’t know that its really a <strong>Composite Design Pattern.</strong></p>
+</blockquote>
+
+<p><code class="language-plaintext highlighter-rouge">컴포짓 패턴</code>은 클라이언트로 하여금 각 객체와 객체의 묶음을 동일하게 다룰 수 있게 해준다. 복합 객체와 단일 객체를 동일하게 취급하고 싶을 때 사용한다.</p>
+
+<h2 id="구조">구조</h2>
+<p><img src="/assets/images/50_1.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
+
+<h3 id="component">Component</h3>
+<p><code class="language-plaintext highlighter-rouge">Leaf</code>와 <code class="language-plaintext highlighter-rouge">Composite</code>을 묶는 상위 인터페이스이다. 여기서 <code class="language-plaintext highlighter-rouge">Leaf</code>는 단일 객체, <code class="language-plaintext highlighter-rouge">Composite</code>은 복합 객체라고 생각하면 된다.</p>
+
+<h3 id="composite">Composite</h3>
+<p>다른 <code class="language-plaintext highlighter-rouge">Component</code> 를 포함할 수 있는 <code class="language-plaintext highlighter-rouge">Component</code>로서 개별 객체 또는 다른 복합 객체를 포함시키 수 있다.<br />
+<code class="language-plaintext highlighter-rouge">Component</code> 구현체들을 내부에 리스트로 가지고 있다.<br />
+<code class="language-plaintext highlighter-rouge">add()</code>, <code class="language-plaintext highlighter-rouge">remove()</code>, <code class="language-plaintext highlighter-rouge">getChild()</code> 메소드는 내부 리스트에 단일, 복합 객체를 저장, 삭제, 조회한다.<br />
+<code class="language-plaintext highlighter-rouge">operation()</code>를 복합 객체에서 호출하게 되면 <strong>재귀적</strong>으로 추가 단일 객체를 저장한 하위 복합 객체를 순회한다.</p>
+
+<h3 id="leaf">Leaf</h3>
+<p>단일 객체로서, 다른 <code class="language-plaintext highlighter-rouge">Component</code>를 포함할 수 없다.</p>
+
+<p>-&gt; 결국 Composite 패턴의 핵심은 <code class="language-plaintext highlighter-rouge">단일 객체</code>와 <code class="language-plaintext highlighter-rouge">복합 객체</code>를 Client 입장에서 동일한 인터페이스를 통해서 다룰 수 있게 해준다는 것이다.
+예시 코드를 보면서 이해해보자!</p>
+
+<h2 id="예제">예제</h2>
+<p>저녁에 너무 배고파서 식당에 왔다. 식당 메뉴를 보니 정말 다양하다. 
+펜케이크 메뉴, 디저트 메뉴, 카페 메뉴, …<br />
+그리고 한 메뉴 안에서도 또 메뉴가 있다.</p>
+
+<p><img src="/assets/images/50_2.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
+
+<p>이런 경우에 중첩되어 있는 <code class="language-plaintext highlighter-rouge">메뉴(Menu)</code>와 <code class="language-plaintext highlighter-rouge">메뉴 항목(Menus)</code>을 동일한 구조로 처리할 수 있다.</p>
+
+<h3 id="예제-코드">예제 코드</h3>
+
+<h4 id="menucomponent-component">MenuComponent (Component)</h4>
+
+<p><img src="/assets/images/50_4.png" alt="img4" width="90%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
+
+<p>우선 <code class="language-plaintext highlighter-rouge">Component</code>부터 살펴보자. <code class="language-plaintext highlighter-rouge">Menu</code>와 <code class="language-plaintext highlighter-rouge">Menus</code>를 묶는 역할을 한다.
+공통으로 사용하는 <code class="language-plaintext highlighter-rouge">operation</code>으로는 <code class="language-plaintext highlighter-rouge">getName()</code>, <code class="language-plaintext highlighter-rouge">getDescription()</code>, <code class="language-plaintext highlighter-rouge">getPrice()</code>가 있다.
+이제 이를 구현한 <code class="language-plaintext highlighter-rouge">Leaf</code>와 <code class="language-plaintext highlighter-rouge">Composite</code>을 살펴보자.</p>
+
+<h4 id="menu-leaf">Menu (Leaf)</h4>
+
+<p><img src="/assets/images/50_5.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
+
+<p>단일 객체인 <code class="language-plaintext highlighter-rouge">Menu</code>를 살펴보자. <code class="language-plaintext highlighter-rouge">Component</code>에서 정의된 <code class="language-plaintext highlighter-rouge">operation</code>들을 구현한 것을 확인할 수 있다.
+여기서는 <code class="language-plaintext highlighter-rouge">getPrice()</code> 함수가 단순히 자신의 맴버 변수인 price를 리턴한다는 것을 보고 넘어가자. 자세한 것은 아래서 설명하겠다.</p>
+
+<h4 id="menus-composite">Menus (Composite)</h4>
+
+<p><img src="/assets/images/50_6.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
+
+<p>클래스가 길어서 두번에 나눠서 설명하겠다.<br />
+이 부분을 보면 <code class="language-plaintext highlighter-rouge">Component</code> 리스트를 저장하고 있는 것을 볼 수 있다. <br />
+위에서 설명한 것처럼 복합 객체는 단일 객체, 복합 객체를 모두 가지고 있을 수 있다.<br />
+그것들이 리스트 형태로 저장된 것이라고 생각하면 된다.<br />
+리스트에 <code class="language-plaintext highlighter-rouge">추가(add)</code>, <code class="language-plaintext highlighter-rouge">삭제(remove)</code>, <code class="language-plaintext highlighter-rouge">조회(getChild)</code>하는 기능이 들어가 있는 것도 확인할 수 있다.</p>
+
+<p><img src="/assets/images/50_7.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
+
+<p>이제 가장 주요하게 살펴봐야 하는 <code class="language-plaintext highlighter-rouge">getPrice()</code> 메소드를 보자.<br />
+이 부분에 어떻게 복합 객체와 단일 객체를 동일하게 사용할 수 있는지에 대한 실마리가 있다. -&gt; 바로 <strong>재귀</strong>이다.<br />
+<code class="language-plaintext highlighter-rouge">getPrice()</code> 메소드는 <code class="language-plaintext highlighter-rouge">Component 리스트</code>를 순회하면서 각 <code class="language-plaintext highlighter-rouge">Component</code>의 <code class="language-plaintext highlighter-rouge">getPrice()</code> 메소드를 호출하게 된다. <br />
+만약 <code class="language-plaintext highlighter-rouge">Component</code> 안의 객체가 단일 객체라면 Menu 클래스에 있는 <code class="language-plaintext highlighter-rouge">getPrice()</code> 메소드처럼 단순하게 맴버 변수인 price를 리턴할 것이다.<br />
+그런데 복합 객체라면 Menus의 <code class="language-plaintext highlighter-rouge">getPrice()</code> 메소드가 호출되며 제귀적으로 자신의 <code class="language-plaintext highlighter-rouge">Component 리스트</code>를 순회하면서 또<code class="language-plaintext highlighter-rouge">getPrice()</code>를 호출할 것이다.</p>
+
+<p>-&gt; <strong>재귀 동작</strong>을 통해서 하위 객체에게 작업을 위임하게 함으로써 복합 객체와 단일 객체에 동일한 작업을 적용할 수 있게 돼서 이 둘을 구분할 필요가 없어지게 된다.</p>
+
+<h1 id="정리">정리</h1>
+<p>다시 한번 말하지만 컴포짓 패턴은 단일 객체, 복합 객체를 동일한 인터페이스로 처리하고 싶을 때 사용하면 좋다는 것을 기억하면 좋겠다.</p>
+
+<p><br /></p>
+
+<h1 id="참고">참고</h1>
+<ul>
+  <li>https://url.kr/eu6sr9</li>
+  <li>헤드 퍼스트 디자인 패턴</li>
+</ul>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4" class="page__taxonomy-item p-category" rel="tag">디자인패턴</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4" class="page__taxonomy-item p-category" rel="tag">디자인패턴</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-12-04T00:00:00+09:00">December 4, 2023</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5B%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4%5D+%EC%BB%B4%ED%8F%AC%EC%A7%93+%ED%8C%A8%ED%84%B4%20http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2F50%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2F50%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2F50%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49/" class="pagination--pager" title="[디자인패턴] 템플릿 메소드 패턴
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49/" rel="permalink">[디자인패턴] 템플릿 메소드 패턴
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> December 04 2023</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p> -->
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/devops/48/" rel="permalink">[DevOps] CI/CD &amp; 무중단 배포
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> November 25 2023</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p> -->
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/47/" rel="permalink">[DB] 트랜잭션
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> November 20 2023</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p> -->
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/46/" rel="permalink">[DB] 이상현상과 정규화
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> November 19 2023</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p> -->
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="mailto:mjinsu098@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+        
+      
+        
+          <li><a href="https://github.com/jinsu868" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 문진수(Moon JinSu). Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

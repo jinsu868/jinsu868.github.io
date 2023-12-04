@@ -292,4 +292,10 @@ var store = [{
         "tags": ["디자인패턴"],
         "url": "/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49/",
         "teaser": null
+      },{
+        "title": "[디자인패턴] 컴포짓 패턴",
+        "excerpt":"컴포짓 패턴 오늘은 디자인패턴 중 하나인 컴포짓 패턴에 대해서 알아보자. 정의 Composite design pattern comes under Structural Patterns is one of the most important and usable part of design pattern. Developers, in his daily life uses this pattern in somehow but he doesn’t know that its really a Composite Design Pattern. 컴포짓 패턴은...","categories": ["디자인패턴"],
+        "tags": ["디자인패턴"],
+        "url": "/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50/",
+        "teaser": null
       }]
