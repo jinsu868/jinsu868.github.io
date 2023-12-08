@@ -1,4 +1,197 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-04T20:38:27+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[디자인패턴] 컴포짓 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50/" rel="alternate" type="text/html" title="[디자인패턴] 컴포짓 패턴" /><published>2023-12-04T00:00:00+09:00</published><updated>2023-12-04T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-09T01:59:55+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[디자인패턴] 어댑터 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51/" rel="alternate" type="text/html" title="[디자인패턴] 어댑터 패턴" /><published>2023-12-09T00:00:00+09:00</published><updated>2023-12-09T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51/">&lt;h1 id=&quot;어댑터-패턴&quot;&gt;어댑터 패턴&lt;/h1&gt;
+
+&lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Convert the interface of a class into another interface clients expect. 
+Adapter lets classes work together that couldn’t otherwise because of incompatible interfaces.&lt;/p&gt;
+
+  &lt;p&gt;-GoF design pattern&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;어댑터 패턴(Adapter Pattern)은 클래스의 인터페이스를 클라이언트가 원하는 형태의 또 다른 인터페이스로 변환해준다.&lt;/p&gt;
+
+&lt;h2 id=&quot;구조&quot;&gt;구조&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/51_1.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;client&quot;&gt;Client&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;클라이언트&lt;/code&gt; 입장에서는 새로운 기능을 사용하기 위해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptee&lt;/code&gt;의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;specificRequest()&lt;/code&gt; 써야 되는데 기존에 사용하던 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;request()&lt;/code&gt;로 접근하고 싶다.&lt;/p&gt;
+
+&lt;h3 id=&quot;target&quot;&gt;Target&lt;/h3&gt;
+
+&lt;p&gt;기존에 사용하던 인터페이스라고 생각하면 된다. 새로운 인터페이스(Adaptee)를 어댑터를 사용해서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Target&lt;/code&gt;인터페이스를 사용하듯이 하는 것이 목표이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;adapter&quot;&gt;Adapter&lt;/h3&gt;
+
+&lt;p&gt;새로운 인터페이스인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptee&lt;/code&gt;를 기존에 사용하던 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Target&lt;/code&gt;인터페이스처럼 사용할 수 있도록 변환해주는 역할을 수행한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;adaptee&quot;&gt;Adaptee&lt;/h3&gt;
+
+&lt;p&gt;새로운 인터페이스로 기존에 사용하던 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Target&lt;/code&gt;인터페이스와 다르다.&lt;/p&gt;
+
+&lt;h2 id=&quot;특징&quot;&gt;특징&lt;/h2&gt;
+
+&lt;h3 id=&quot;장점&quot;&gt;장점&lt;/h3&gt;
+
+&lt;p&gt;어댑터 패턴을 사용함으로써 기존 클래스를 수정하지 않고도 클라이언트에서 새로운 인터페이스를 사용할 수 있게 된다.&lt;/p&gt;
+
+&lt;h3 id=&quot;단점&quot;&gt;단점&lt;/h3&gt;
+
+&lt;p&gt;어댑터 클래스를 새로 작성해야 하기 때문에 소스 코드가 늘어나고 코드의 복잡도가 늘어난다.&lt;/p&gt;
+
+&lt;p&gt;어댑터가 중간에 데이터를 변환하는 과정에서 추가적인 처리 시간과 오버헤드가 발생할 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;필요성&quot;&gt;필요성&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/51_2.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;어떤 회사의 시스템이 있다고 해보자. 그런데 새로운 기능을 구현하기 위해 다른 업체에서 제공하는 클래스 라이브러리를 사용해야 하는 상황이 생겼다.&lt;/p&gt;
+
+&lt;p&gt;이 상황에서 만약 기존 시스템의 인터페이스와 새로운 업체에서 사용하는 인터페이스가 다르면 호환성 문제가 발생한다.&lt;/p&gt;
+
+&lt;p&gt;이때 어댑터 패턴을 사용하면 이를 해결할 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;예시&quot;&gt;예시&lt;/h2&gt;
+
+&lt;p&gt;우리는 핸드폰을 사용하고 있다. 이 핸드폰은 두 가지 기능이 있는데 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;화면을 보여주는 기능&lt;/code&gt;과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;전원을 종료하는 기능&lt;/code&gt;이다.&lt;/p&gt;
+
+&lt;p&gt;이를 코드로 나타내보면 아래와 같다.&lt;/p&gt;
+
+&lt;h4 id=&quot;phone-class-target&quot;&gt;Phone Class (Target)&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/51_3.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;galaxy-phone의-구현-객체&quot;&gt;Galaxy (Phone의 구현 객체)&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/51_4.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;화면 보여주는 기능 : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;display()&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;전원을 종료하는 기능 : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;shutDown()&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 상황에서 태블릿 기기를 선물 받았다고 해보자.&lt;/p&gt;
+
+&lt;p&gt;태블릿 클래스 코드는 아래와 같다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;tablet-adaptee&quot;&gt;Tablet (Adaptee)&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/51_5.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;그런데 우리는 태블릿 기기를 사용하려면 여러가지 기능을 새로 배워야 한다. (귀찮다)&lt;/p&gt;
+
+&lt;p&gt;그래서 우리는 태블릿을 기존에 사용하던 핸드폰과 동일한 인터페이스로 사용할 수 있도록 어댑터를 장착하기로 결정했다!&lt;/p&gt;
+
+&lt;h3 id=&quot;phoneadapter-adapter&quot;&gt;PhoneAdapter (Adapter)&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/51_6.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PhoneAdapter&lt;/code&gt;클래스는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Phone&lt;/code&gt;을 구현하고 내부적으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Tablet&lt;/code&gt;을 맴버 변수로 가지고 있다.&lt;/p&gt;
+
+&lt;p&gt;기존에 사용하던 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Phone&lt;/code&gt;인터페이스를 구현하는 것은 같은데 내부적으로는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Tablet&lt;/code&gt;의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;show()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exit()&lt;/code&gt;메소드를 호출하게 된다.&lt;/p&gt;
+
+&lt;p&gt;이렇게 하면 우리(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Client&lt;/code&gt;)는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Tablet&lt;/code&gt;클래스를 사용할 때 기존에 사용하던 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;display()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;shutDown()&lt;/code&gt;을 통하여 접근할 수 있게 된다.&lt;/p&gt;
+
+&lt;h2 id=&quot;정리&quot;&gt;정리&lt;/h2&gt;
+
+&lt;p&gt;어댑터 패턴은 인터페이스 사이에 유연성이 필요한 상황에 효율적으로 사용될 수 있는 디자인 패턴이다.&lt;/p&gt;
+
+&lt;p&gt;하지만 코드의 복잡도가 발생할 수 있고 추가적인 오버헤드가 생길 수 있기 때문에 적절한 상황에만 사용하는 것이 좋다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;참고&quot;&gt;참고&lt;/h2&gt;
+
+&lt;p&gt;헤드 퍼스트 디자인 패턴&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://yozm.wishket.com/magazine/detail/2077/&quot;&gt;요즘IT&lt;/a&gt;&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><summary type="html">어댑터 패턴</summary></entry><entry><title type="html">[디자인패턴] 템플릿 메소드 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49/" rel="alternate" type="text/html" title="[디자인패턴] 템플릿 메소드 패턴" /><published>2023-12-04T00:00:00+09:00</published><updated>2023-12-04T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;템플릿-메소드-패턴&quot;&gt;템플릿 메소드 패턴&lt;/h1&gt;
+
+&lt;p&gt;오늘은 디자인패턴 중 하나인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;템플릿 메소드 패턴&lt;/code&gt;에 대해서 알아보자.&lt;/p&gt;
+
+&lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm’s structure.&lt;/p&gt;
+
+  &lt;p&gt;-GoF design pattern&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;템플릿 메소드 패턴&lt;/code&gt;은 알고리즘의 뼈대를 정의하고 서브 클래스마다 세부 동작 사항을 다르게 구현하는 패턴을 말한다.
+변하지 않는 템플릿은 상위 클래스에 만들어두고 자주 변경되거나 확장되는 기능은 하위 클래스에서 만들도록 하여, 템플릿 메소드의 동작 순서는 고정하고 세부 실행 내용을 다양화할 때 사용한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;구조&quot;&gt;구조&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/49_1.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;abstract-class&quot;&gt;Abstract Class&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;템플릿 메소드&lt;/code&gt;를 구현하고, 템플릿 메소드에 사용되는 추상 메소드를 선언한다.
+이 추상 메소드는 하위 클래스인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Concreate Class&lt;/code&gt;에서 구현된다.&lt;/p&gt;
+
+&lt;h3 id=&quot;concreate-class&quot;&gt;Concreate Class&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Abstract Class&lt;/code&gt;를 상속하고 추상 메소드를 구현한다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Concreate Class&lt;/code&gt;에서 구현한 메소드는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Abstract Class&lt;/code&gt;의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;템플릿 메소드&lt;/code&gt;에서 호출된다.&lt;/p&gt;
+
+&lt;h2 id=&quot;특징&quot;&gt;특징&lt;/h2&gt;
+
+&lt;h3 id=&quot;장점&quot;&gt;장점&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;공통되는 부분을  묶어서 관리하기 때문에 코드의 중복을 줄일 수 있고 관리하기도 편하다.&lt;/li&gt;
+  &lt;li&gt;알고리즘의 특정 부분만 재정의하여 변경 사항에 대한 영향을 줄일 수 있다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;단점&quot;&gt;단점&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;템플릿 메소드에 정의한 골격은 고정돼있기 때문에 유연성이 제한될 수 있다.&lt;/li&gt;
+  &lt;li&gt;알고리즘이 복잡하다면 템플릿 메소드를 만들거나 유지하기 어려울 수 있다.&lt;/li&gt;
+  &lt;li&gt;추상 메소드가 많아지면 새로운 서브 클래스를 추가하거나 관리하기가 어려울 수 있다.&lt;/li&gt;
+  &lt;li&gt;템플릿 메소드의 실행 흐름을 이해해야지만 서브 클래스에서 추상 메소드를 재정의할 수 있다.&lt;/li&gt;
+  &lt;li&gt;만약 템플릿 메소드의 알고리즘이 변경된다면 서브 클래스에서 재정의한 추상 메소드를 수정해야 할 수도 있다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;지금까지 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;템플릿 메소드 패턴&lt;/code&gt;의 구조와 특징에 대해서 알아봤다.
+이제 실제로 어떤식으로 활용될 수 있는지 코드를 통해서 확인하자!&lt;/p&gt;
+
+&lt;h2 id=&quot;예제-코드&quot;&gt;예제 코드&lt;/h2&gt;
+
+&lt;h3 id=&quot;beverage-클래스-abstract-class&quot;&gt;Beverage 클래스 (Abstract Class)&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/49_2.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;여기서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;prepareRecipe()&lt;/code&gt;메소드는 템플릿 메소드이다. 
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;boilWater()&lt;/code&gt;,  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pour()&lt;/code&gt;는 모든 음료가 공통으로 처리해야 하는 로직이라고 생각하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;addCondiments()&lt;/code&gt;는 각 음료마다 재료가 다르기 때문에 달라져야 하는 부분이라고 생각해보자.
+그러면 공통되는 부분은 나두고 각 음료마다 바뀌는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;addCondiments()&lt;/code&gt;를 추상 메소드로 선언하여 서브 클래스에서 구현하게 하면 변경을 최소화하면서 각 서브 클래스로 구현을 미루면서 유연한 확장을 할 수 있게 된다.&lt;/p&gt;
+
+&lt;h3 id=&quot;americano-chocolatelatee-클래스-concreate-class&quot;&gt;Americano, ChocolateLatee 클래스 (Concreate Class)&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/49_3.png&quot; alt=&quot;img3&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Americano&lt;/code&gt;와  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ChocolateLatte&lt;/code&gt;는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Beverage&lt;/code&gt;를 상속받아서 각자 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;addCondiments()&lt;/code&gt;메소드를 구현하게 된다. 그리고 템플릿 메소드인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;prepareRecipe()&lt;/code&gt;를 호출하게 되면 전체적인 알고리즘 흐름은 동일하지만 세부 실행 내용을 변경할 수 있게 된다.&lt;/p&gt;
+
+&lt;h2 id=&quot;hook-메소드&quot;&gt;hook 메소드&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hook 메소드&lt;/code&gt; 는 서브 클래스에서 좀 더 유연하게 템플릿 메소드의 알고리즘 로직을 다양화할 수 있게 도와주는 역할을 수행한다.
+일반적으로 추상 메소드가 아닌 일반 메소드로 구현을 하게 된다.
+그냥 나두게 되면 원래 설정한 기본 흐름대로 실행되고 서브 클래스에서 오버라이딩하게 되면 상황에 맞게 제어할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;간단한 예시 코드를 보면서 이해해보자.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/49_4.png&quot; alt=&quot;img4&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;템플릿 메소드인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;prepareRecipe()&lt;/code&gt; 안에 있는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isCustomerWantsTopping()&lt;/code&gt;가 앞에서 말한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hook 메서드&lt;/code&gt;이다.
+기본적인 요구사항이 토핑을 추가하여 음료를 제공한다고 생각하고 로직을 작성한 것이다. 그런데 어떤 음료에는 토핑이 들어가지 않아야 할 수 있다. 이런 경우에는 서브 클래스에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hook 메서드&lt;/code&gt;를 선택적으로 오버라이딩하여 템플릿 메소드의 흐름을 제어할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/49_5.png&quot; alt=&quot;img5&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Americano&lt;/code&gt;에 기본적으로 토핑이 들어가면 안된다고 할 때, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hook 메서드&lt;/code&gt;인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isCustomerWantsTopping()&lt;/code&gt;을 제정의하여 템플릿 메소드 안에있는 로직의 실행 흐름을 제어할 수 있다.&lt;/p&gt;
+
+&lt;h1 id=&quot;참고&quot;&gt;참고&lt;/h1&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://url.kr/tw2s8o&quot;&gt;인파님 블로그&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;헤드 퍼스트 디자인 패턴&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><summary type="html"></summary></entry><entry><title type="html">[디자인패턴] 컴포짓 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50/" rel="alternate" type="text/html" title="[디자인패턴] 컴포짓 패턴" /><published>2023-12-04T00:00:00+09:00</published><updated>2023-12-04T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;컴포짓-패턴&quot;&gt;컴포짓 패턴&lt;/h1&gt;
 
@@ -7,6 +200,8 @@
 &lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
 &lt;blockquote&gt;
   &lt;p&gt;Composite design pattern comes under &lt;strong&gt;Structural Patterns&lt;/strong&gt; is one of the most important and usable part of design pattern. Developers, in his daily life uses this pattern in somehow but he doesn’t know that its really a &lt;strong&gt;Composite Design Pattern.&lt;/strong&gt;&lt;/p&gt;
+
+  &lt;p&gt;-GoF design pattern&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;컴포짓 패턴&lt;/code&gt;은 클라이언트로 하여금 각 객체와 객체의 묶음을 동일하게 다룰 수 있게 해준다. 복합 객체와 단일 객체를 동일하게 취급하고 싶을 때 사용한다.&lt;/p&gt;
@@ -80,90 +275,12 @@
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h1 id=&quot;참고&quot;&gt;참고&lt;/h1&gt;
+&lt;p&gt;##&lt;/p&gt;
+
+&lt;h2 id=&quot;참고&quot;&gt;참고&lt;/h2&gt;
+
 &lt;ul&gt;
-  &lt;li&gt;https://url.kr/eu6sr9&lt;/li&gt;
-  &lt;li&gt;헤드 퍼스트 디자인 패턴&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><summary type="html"></summary></entry><entry><title type="html">[디자인패턴] 템플릿 메소드 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49/" rel="alternate" type="text/html" title="[디자인패턴] 템플릿 메소드 패턴" /><published>2023-12-04T00:00:00+09:00</published><updated>2023-12-04T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;템플릿-메소드-패턴&quot;&gt;템플릿 메소드 패턴&lt;/h1&gt;
-
-&lt;p&gt;오늘은 디자인패턴 중 하나인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;템플릿 메소드 패턴&lt;/code&gt;에 대해서 알아보자.&lt;/p&gt;
-
-&lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm’s structure.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;템플릿 메소드 패턴&lt;/code&gt;은 알고리즘의 뼈대를 정의하고 서브 클래스마다 세부 동작 사항을 다르게 구현하는 패턴을 말한다.
-변하지 않는 템플릿은 상위 클래스에 만들어두고 자주 변경되거나 확장되는 기능은 하위 클래스에서 만들도록 하여, 템플릿 메소드의 동작 순서는 고정하고 세부 실행 내용을 다양화할 때 사용한다.&lt;/p&gt;
-
-&lt;h2 id=&quot;구조&quot;&gt;구조&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/49_1.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;abstract-class&quot;&gt;Abstract Class&lt;/h3&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;템플릿 메소드&lt;/code&gt;를 구현하고, 템플릿 메소드에 사용되는 추상 메소드를 선언한다.
-이 추상 메소드는 하위 클래스인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Concreate Class&lt;/code&gt;에서 구현된다.&lt;/p&gt;
-
-&lt;h3 id=&quot;concreate-class&quot;&gt;Concreate Class&lt;/h3&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Abstract Class&lt;/code&gt;를 상속하고 추상 메소드를 구현한다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Concreate Class&lt;/code&gt;에서 구현한 메소드는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Abstract Class&lt;/code&gt;의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;템플릿 메소드&lt;/code&gt;에서 호출된다.&lt;/p&gt;
-
-&lt;h2 id=&quot;특징&quot;&gt;특징&lt;/h2&gt;
-
-&lt;h3 id=&quot;장점&quot;&gt;장점&lt;/h3&gt;
-&lt;ol&gt;
-  &lt;li&gt;공통되는 부분을  묶어서 관리하기 때문에 코드의 중복을 줄일 수 있고 관리하기도 편하다.&lt;/li&gt;
-  &lt;li&gt;알고리즘의 특정 부분만 재정의하여 변경 사항에 대한 영향을 줄일 수 있다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;단점&quot;&gt;단점&lt;/h3&gt;
-&lt;ol&gt;
-  &lt;li&gt;템플릿 메소드에 정의한 골격은 고정돼있기 때문에 유연성이 제한될 수 있다.&lt;/li&gt;
-  &lt;li&gt;알고리즘이 복잡하다면 템플릿 메소드를 만들거나 유지하기 어려울 수 있다.&lt;/li&gt;
-  &lt;li&gt;추상 메소드가 많아지면 새로운 서브 클래스를 추가하거나 관리하기가 어려울 수 있다.&lt;/li&gt;
-  &lt;li&gt;템플릿 메소드의 실행 흐름을 이해해야지만 서브 클래스에서 추상 메소드를 재정의할 수 있다.&lt;/li&gt;
-  &lt;li&gt;만약 템플릿 메소드의 알고리즘이 변경된다면 서브 클래스에서 재정의한 추상 메소드를 수정해야 할 수도 있다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;지금까지 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;템플릿 메소드 패턴&lt;/code&gt;의 구조와 특징에 대해서 알아봤다.
-이제 실제로 어떤식으로 활용될 수 있는지 코드를 통해서 확인하자!&lt;/p&gt;
-
-&lt;h2 id=&quot;예제-코드&quot;&gt;예제 코드&lt;/h2&gt;
-
-&lt;h3 id=&quot;beverage-클래스-abstract-class&quot;&gt;Beverage 클래스 (Abstract Class)&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/49_2.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;여기서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;prepareRecipe()&lt;/code&gt;메소드는 템플릿 메소드이다. 
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;boilWater()&lt;/code&gt;,  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pour()&lt;/code&gt;는 모든 음료가 공통으로 처리해야 하는 로직이라고 생각하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;addCondiments()&lt;/code&gt;는 각 음료마다 재료가 다르기 때문에 달라져야 하는 부분이라고 생각해보자.
-그러면 공통되는 부분은 나두고 각 음료마다 바뀌는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;addCondiments()&lt;/code&gt;를 추상 메소드로 선언하여 서브 클래스에서 구현하게 하면 변경을 최소화하면서 각 서브 클래스로 구현을 미루면서 유연한 확장을 할 수 있게 된다.&lt;/p&gt;
-
-&lt;h3 id=&quot;americano-chocolatelatee-클래스-concreate-class&quot;&gt;Americano, ChocolateLatee 클래스 (Concreate Class)&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/49_3.png&quot; alt=&quot;img3&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Americano&lt;/code&gt;와  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ChocolateLatte&lt;/code&gt;는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Beverage&lt;/code&gt;를 상속받아서 각자 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;addCondiments()&lt;/code&gt;메소드를 구현하게 된다. 그리고 템플릿 메소드인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;prepareRecipe()&lt;/code&gt;를 호출하게 되면 전체적인 알고리즘 흐름은 동일하지만 세부 실행 내용을 변경할 수 있게 된다.&lt;/p&gt;
-
-&lt;h2 id=&quot;hook-메소드&quot;&gt;hook 메소드&lt;/h2&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hook 메소드&lt;/code&gt; 는 서브 클래스에서 좀 더 유연하게 템플릿 메소드의 알고리즘 로직을 다양화할 수 있게 도와주는 역할을 수행한다.
-일반적으로 추상 메소드가 아닌 일반 메소드로 구현을 하게 된다.
-그냥 나두게 되면 원래 설정한 기본 흐름대로 실행되고 서브 클래스에서 오버라이딩하게 되면 상황에 맞게 제어할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;간단한 예시 코드를 보면서 이해해보자.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/49_4.png&quot; alt=&quot;img4&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;템플릿 메소드인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;prepareRecipe()&lt;/code&gt; 안에 있는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isCustomerWantsTopping()&lt;/code&gt;가 앞에서 말한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hook 메서드&lt;/code&gt;이다.
-기본적인 요구사항이 토핑을 추가하여 음료를 제공한다고 생각하고 로직을 작성한 것이다. 그런데 어떤 음료에는 토핑이 들어가지 않아야 할 수 있다. 이런 경우에는 서브 클래스에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hook 메서드&lt;/code&gt;를 선택적으로 오버라이딩하여 템플릿 메소드의 흐름을 제어할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/49_5.png&quot; alt=&quot;img5&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Americano&lt;/code&gt;에 기본적으로 토핑이 들어가면 안된다고 할 때, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hook 메서드&lt;/code&gt;인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isCustomerWantsTopping()&lt;/code&gt;을 제정의하여 템플릿 메소드 안에있는 로직의 실행 흐름을 제어할 수 있다.&lt;/p&gt;
-
-&lt;h1 id=&quot;참고&quot;&gt;참고&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;https://url.kr/tw2s8o&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://url.kr/eu6sr9&quot;&gt;인파님 블로그&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;헤드 퍼스트 디자인 패턴&lt;/li&gt;
 &lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><summary type="html"></summary></entry><entry><title type="html">[DevOps] CI/CD &amp;amp; 무중단 배포</title><link href="http://localhost:4000/devops/48/" rel="alternate" type="text/html" title="[DevOps] CI/CD &amp;amp; 무중단 배포" /><published>2023-11-25T00:00:00+09:00</published><updated>2023-11-25T00:00:00+09:00</updated><id>http://localhost:4000/devops/48</id><content type="html" xml:base="http://localhost:4000/devops/48/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -1748,142 +1865,4 @@ private 메서드를 test할 수 없었다.. 그래서 어떻게 하면 테스�
 &lt;p&gt;이번 미션에서는 기능 명세서를 제대로 활용하지 못한 것 같다. 다음 미션부터는 기능 명세서를 확실하게 먼저 작성하고 설계를 제대로 한 다음에 코드를 작성하도록 노력하겠다:)&lt;/p&gt;
 
 &lt;p&gt;전체 코드는 아래 링크에서 확인할 수 있다. &lt;br /&gt;
-https://github.com/woowacourse-precourse/java-baseball-6/pull/408/files#diff-c71c95b782b88469a2947a817aa6945baf76f4e52c732f226e056fbfae0dcd52&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="우테코" /><category term="우테코" /><category term="프리코스" /><summary type="html"></summary></entry><entry><title type="html">[git] Merge, Rebase, Cheery-pick</title><link href="http://localhost:4000/git/41/" rel="alternate" type="text/html" title="[git] Merge, Rebase, Cheery-pick" /><published>2023-10-29T00:00:00+09:00</published><updated>2023-10-29T00:00:00+09:00</updated><id>http://localhost:4000/git/41</id><content type="html" xml:base="http://localhost:4000/git/41/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;이전까지 프로젝트를 하면서 git을 계속 사용했지만 내부 동작 방식을 제대로 이해하지 못한채로 사용했었다.&lt;br /&gt;
-내부 동작 방식을 몰랐기 때문에 예측할 수 없는 상황이 많이 발생했었다. 예를들어 merge를 했는데 언제는 commit이 생기고 언제는 안생기는 등…&lt;br /&gt;
-이번 기회에 git에 대해서 정리하고자 한다.&lt;/p&gt;
-
-&lt;h2 id=&quot;merge&quot;&gt;merge&lt;/h2&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;merge&lt;/code&gt;란 두 브랜치를 합치는 기능을 의미한다. 일반적으로 많이 사용되는 병합 방식으로, 커밋 이력을 모두 남길 때 사용한다.&lt;br /&gt;
- merge 방식에는 &lt;strong&gt;Fast-forward, 3-way-merge&lt;/strong&gt; 가 있다. &lt;br /&gt;
-하나씩 살펴보자 &lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;fast-forward-방식&quot;&gt;Fast-forward 방식&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/41_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hotfix&lt;/code&gt; 브랜치를 merge한다고 해보자.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/41_2.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;먼저 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;checkout&lt;/code&gt; 명령어를 사용해서 master 브랜치로 이동한다&lt;/li&gt;
-  &lt;li&gt;그리고 hotfix 브랜치를 merge한다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;결과를 보면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fast-forward&lt;/code&gt; 라는 문구가 보인다. 이게 무엇일까? &lt;br /&gt;&lt;br /&gt;
-hotfix가 가리키는 C4 커밋은 C2 커밋을 base로 하는 브랜치이다. 때문에 merge를 진행함에 있어서 새로운 커밋을 생성할 필요가 없다. 그저 단순히 브랜치 포인터만 이동시켜서 master가 c4를 가리키게 하면된다. 이 경우와 같이 두 브랜치의 base가 같을 때 단순히 브랜치 포인터를 이동시키는 merge 방식을 &lt;strong&gt;fast-forward&lt;/strong&gt; 라고 한다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;3-way-merge-방식&quot;&gt;3-way-merge 방식&lt;/h3&gt;
-
-&lt;p&gt;이번에는 협업할 때 가장 많이 사용하는 merge 방식인 3-way-merge에 대해서 알아보겠다!&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/41_3.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;my-branch가 main 브랜치의 B 커밋으로부터 분기됐다. 그리고나서 main에 새로운 커밋(C, D, E)이 생성된 경우를 생각해보자.&lt;br /&gt;
-이 경우에는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fast-forward&lt;/code&gt;같이 단순히 브랜치 포인터를 이동시키는 방식으로는 merge를 제대로 수행할 수 없다. &lt;br /&gt;
-때문에 my-branch와 main을 공통 부모로 하는 새로운 커밋을 생성한다. 이 방식을 &lt;strong&gt;3-way Merge&lt;/strong&gt; 라고 한다.&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;fast-forward가 가능한 경우에도 Recursive Merge 방식처럼 커밋을 새로 생성하는 방법을 제공한다. git merge 명령에 &lt;strong&gt;–no-ff&lt;/strong&gt; 옵션을 주면 강제로 commit을 생성한 merge가 진행된다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;conflict&quot;&gt;Conflict&lt;/h2&gt;
-
-&lt;p&gt;다음으로는 merge할 때 발생할 수 있는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Conflict&lt;/code&gt;에 대해서 알아보자.&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/41_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git checkout master
-
-//hotfix, iss53이 동일한 파일을 수정.
-git merge hotfix
-git merge iss53
-//-&amp;gt; 충돌 발생!!
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;다시 이 상황을 놓고 생각해보자. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치에서 필요한 기능이 있어서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;iss53&lt;/code&gt; 브랜치를 생성해서 기능을 구현하고 있다.&lt;br /&gt;
-그런데 도중에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치에서 오류를 발견해서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hotfix&lt;/code&gt;브랜치를 만들어 오류를 수정하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hotfix&lt;/code&gt;브랜치를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;master&lt;/code&gt; 브랜치에 merge했다. 그런데 hotfix 브랜치에서 수정한 부분이 iss53 기능 브랜치에서 수정한 부분이 동일하다고 가정하자.&lt;br /&gt;
-그러면 merge를 수행할 때, 충돌이 발생하게 된다.&lt;br /&gt;
-이 merge를 실행하는 시점에 git은 활성화되지 않은 새로운 커밋을 하나 생성한다. 그리고 IDE를 사용하던, 직접 충돌 부분을 수정하여 commit을 하면 충돌이 해결된다.
-&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;지금까지 merge 방식과 충돌에 대해서 알아봤다. 그런데 github에서 제공하는 merge는 조금 다르다. 총 3가지 방식이 있는데 하나씩 살펴보자&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;3가지-pull-request-방식&quot;&gt;3가지 pull request 방식&lt;/h1&gt;
-
-&lt;h2 id=&quot;create-merge-commit&quot;&gt;Create merge commit&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/41_4.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;원래 기본적으로 base가 같을 때 merge를 수행하면 fast-forward 방식이 사용된다. 하지만 Create merge commit 방식은 새로운 commit을 만드는 방식을 사용한다.&lt;br /&gt;
-이렇게 함으로써 기능 구현 후 merge 기록이 남게된다. 때문에 가독성이 높아진다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;squash-and-merge&quot;&gt;Squash and merge&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/41_5.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;이 방식도 Create merge commit 과 마찬가지로 새로운 커밋을 생성한다.&lt;br /&gt; Create merge commit과의 차이점은 feature에서 작업한 모든 commit을 하나의 commit으로 통합해서 merge한다.&lt;br /&gt;
--&amp;gt; pr 단위로 commit이 묶이기 때문에 가독성이 높아진다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;rebase-and-merge&quot;&gt;Rebase and merge&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/41_6.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;이 방식은 merge 하는 모든 commit을 단순히 복사해서 붙여넣는다.&lt;br /&gt;
-중간의 merge과정이 보이지 않고 history가 한줄로 나열되기 때문에 오히려 가독성이 떨어질 수도 있다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;이번에는 merge와는 조금 다른 병합 방식인 rebase에 대해서 알아보겠다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;rebase&quot;&gt;Rebase&lt;/h1&gt;
-
-&lt;p&gt;현재 브랜치의 &lt;strong&gt;base를 재설정하여 합치는 것&lt;/strong&gt;을 말한다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/41_7.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;특징&quot;&gt;특징&lt;/h2&gt;
-
-&lt;p&gt;Merge와 동일하게 브랜치를 합치는 목적으로 사용된다.
-    - Commit History가 Merge와 다르게 선형적으로 그려진다.&lt;/p&gt;
-
-&lt;p&gt;Rebase는 현재 브랜치의 base를 바꾸는 것이다.
-    - 기존의 Commit을 복사하여 새로 생성한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;cherry-pick&quot;&gt;Cherry-pick&lt;/h1&gt;
-
-&lt;p&gt;다른 브랜치의 있는 commit을 현재 브랜치에 적용하는 것을 의미한다. &lt;br /&gt;
-일반적으로 새로운 브랜치를 하나 파서 cherry-pick을 진행하고 원격 저장소에 push하고 main으로 pr을 날리는 것이 일반적이다.&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//한개의 커밋 가져오기
-git cherry-pick 39c123
-
-//여러개의 커밋 가져오기
-git cherry-pick 39c123..bjkd12
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;cherry-pick-conflict&quot;&gt;Cherry-pick Conflict&lt;/h2&gt;
-
-&lt;p&gt;해결 방법&lt;/p&gt;
-&lt;ol&gt;
-  &lt;li&gt;Conflict 발생 파일을 수정한다.&lt;/li&gt;
-  &lt;li&gt;git add 명령어로 수정된 코드를 스테이지 상태로 변경시킨다.&lt;/li&gt;
-  &lt;li&gt;git cherry-pick –continue 명령을 실행한다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;참고-사이트&quot;&gt;참고 사이트&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;https://www.youtube.com/watch?v=b72mDco4g78&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;https://www.zehye.kr/git/2019/11/22/11git_merge_conflict/&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;https://hudi.blog/git-merge-squash-rebase/&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="git" /><category term="프로젝트 관리" /><category term="git" /><category term="우테코" /><summary type="html"></summary></entry></feed>
+https://github.com/woowacourse-precourse/java-baseball-6/pull/408/files#diff-c71c95b782b88469a2947a817aa6945baf76f4e52c732f226e056fbfae0dcd52&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="우테코" /><category term="우테코" /><category term="프리코스" /><summary type="html"></summary></entry></feed>

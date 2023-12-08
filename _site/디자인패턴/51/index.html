@@ -1,0 +1,806 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[디자인패턴] 어댑터 패턴 - Jinsu’s story</title>
+<meta name="description" content="어댑터 패턴">
+
+
+  <meta name="author" content="Moon JinSu">
+  
+  <meta property="article:author" content="Moon JinSu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="Jinsu's story">
+<meta property="og:title" content="[디자인패턴] 어댑터 패턴">
+<meta property="og:url" content="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51/">
+
+
+  <meta property="og:description" content="어댑터 패턴">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-12-09T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "문진수(Moon JinSu)",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Jinsu's story Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Jinsu's story
+          
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Moon JinSu</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>tech blog</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seoul, Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:mjinsu098@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/jinsu868" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+
+<!-- Categories -->
+<nav class="nav__list">
+  <ul class="nav__items" id="category_tag_menu">
+      <li>
+          <span class="nav__sub-title">📂 Total (51)</span>
+          <ul>
+              
+                  
+                  <li>
+                      <a href="/categories/#spring" class="">Spring (14)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#디자인패턴" class="">디자인패턴 (11)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#java" class="">Java (3)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#알고리즘" class="">알고리즘 (2)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#jpa" class="">JPA (7)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#데이터베이스" class="">데이터베이스 (4)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#network" class="">Network (5)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#클린코드" class="">클린코드 (1)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#git" class="">git (1)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#우테코" class="">우테코 (1)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#테스트" class="">테스트 (2)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#devops" class="">DevOps (1)</a>
+                  </li>
+                  
+              
+          </ul>
+      </li>
+  </ul>
+  </nav>
+
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[디자인패턴] 어댑터 패턴">
+    <meta itemprop="description" content="어댑터 패턴">
+    <meta itemprop="datePublished" content="2023-12-09T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51/" class="u-url" itemprop="url">[디자인패턴] 어댑터 패턴
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#어댑터-패턴">어댑터 패턴</a><ul><li><a href="#정의">정의</a></li><li><a href="#구조">구조</a><ul><li><a href="#client">Client</a></li><li><a href="#target">Target</a></li><li><a href="#adapter">Adapter</a></li><li><a href="#adaptee">Adaptee</a></li></ul></li><li><a href="#특징">특징</a><ul><li><a href="#장점">장점</a></li><li><a href="#단점">단점</a></li></ul></li><li><a href="#필요성">필요성</a></li><li><a href="#예시">예시</a><ul><li><a href="#phone-class-target">Phone Class (Target)</a></li><li><a href="#galaxy-phone의-구현-객체">Galaxy (Phone의 구현 객체)</a></li></ul></li><li><a href="#tablet-adaptee">Tablet (Adaptee)</a></li><li><a href="#phoneadapter-adapter">PhoneAdapter (Adapter)</a></li></ul></li><li><a href="#정리">정리</a></li><li><a href="#참고">참고</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="어댑터-패턴">어댑터 패턴</h1>
+
+<h2 id="정의">정의</h2>
+
+<blockquote>
+  <p>Convert the interface of a class into another interface clients expect. 
+Adapter lets classes work together that couldn’t otherwise because of incompatible interfaces.</p>
+
+  <p>-GoF design pattern</p>
+</blockquote>
+
+<p>어댑터 패턴(Adapter Pattern)은 클래스의 인터페이스를 클라이언트가 원하는 형태의 또 다른 인터페이스로 변환해준다.</p>
+
+<h2 id="구조">구조</h2>
+
+<p><img src="/assets/images/51_1.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<h3 id="client">Client</h3>
+
+<p><code class="language-plaintext highlighter-rouge">클라이언트</code> 입장에서는 새로운 기능을 사용하기 위해 <code class="language-plaintext highlighter-rouge">Adaptee</code>의 <code class="language-plaintext highlighter-rouge">specificRequest()</code> 써야 되는데 기존에 사용하던 <code class="language-plaintext highlighter-rouge">request()</code>로 접근하고 싶다.</p>
+
+<h3 id="target">Target</h3>
+
+<p>기존에 사용하던 인터페이스라고 생각하면 된다. 새로운 인터페이스(Adaptee)를 어댑터를 사용해서 <code class="language-plaintext highlighter-rouge">Target</code>인터페이스를 사용하듯이 하는 것이 목표이다.</p>
+
+<h3 id="adapter">Adapter</h3>
+
+<p>새로운 인터페이스인 <code class="language-plaintext highlighter-rouge">Adaptee</code>를 기존에 사용하던 <code class="language-plaintext highlighter-rouge">Target</code>인터페이스처럼 사용할 수 있도록 변환해주는 역할을 수행한다.</p>
+
+<h3 id="adaptee">Adaptee</h3>
+
+<p>새로운 인터페이스로 기존에 사용하던 <code class="language-plaintext highlighter-rouge">Target</code>인터페이스와 다르다.</p>
+
+<h2 id="특징">특징</h2>
+
+<h3 id="장점">장점</h3>
+
+<p>어댑터 패턴을 사용함으로써 기존 클래스를 수정하지 않고도 클라이언트에서 새로운 인터페이스를 사용할 수 있게 된다.</p>
+
+<h3 id="단점">단점</h3>
+
+<p>어댑터 클래스를 새로 작성해야 하기 때문에 소스 코드가 늘어나고 코드의 복잡도가 늘어난다.</p>
+
+<p>어댑터가 중간에 데이터를 변환하는 과정에서 추가적인 처리 시간과 오버헤드가 발생할 수 있다.</p>
+
+<h2 id="필요성">필요성</h2>
+
+<p><img src="/assets/images/51_2.png" alt="img2" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>어떤 회사의 시스템이 있다고 해보자. 그런데 새로운 기능을 구현하기 위해 다른 업체에서 제공하는 클래스 라이브러리를 사용해야 하는 상황이 생겼다.</p>
+
+<p>이 상황에서 만약 기존 시스템의 인터페이스와 새로운 업체에서 사용하는 인터페이스가 다르면 호환성 문제가 발생한다.</p>
+
+<p>이때 어댑터 패턴을 사용하면 이를 해결할 수 있다.</p>
+
+<h2 id="예시">예시</h2>
+
+<p>우리는 핸드폰을 사용하고 있다. 이 핸드폰은 두 가지 기능이 있는데 <code class="language-plaintext highlighter-rouge">화면을 보여주는 기능</code>과 <code class="language-plaintext highlighter-rouge">전원을 종료하는 기능</code>이다.</p>
+
+<p>이를 코드로 나타내보면 아래와 같다.</p>
+
+<h4 id="phone-class-target">Phone Class (Target)</h4>
+
+<p><img src="/assets/images/51_3.png" alt="img2" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<h4 id="galaxy-phone의-구현-객체">Galaxy (Phone의 구현 객체)</h4>
+
+<p><img src="/assets/images/51_4.png" alt="img2" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<ol>
+  <li>화면 보여주는 기능 : <code class="language-plaintext highlighter-rouge">display()</code></li>
+  <li>전원을 종료하는 기능 : <code class="language-plaintext highlighter-rouge">shutDown()</code></li>
+</ol>
+
+<p><br /></p>
+
+<p>이 상황에서 태블릿 기기를 선물 받았다고 해보자.</p>
+
+<p>태블릿 클래스 코드는 아래와 같다. <br /></p>
+
+<h3 id="tablet-adaptee">Tablet (Adaptee)</h3>
+
+<p><img src="/assets/images/51_5.png" alt="img2" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>그런데 우리는 태블릿 기기를 사용하려면 여러가지 기능을 새로 배워야 한다. (귀찮다)</p>
+
+<p>그래서 우리는 태블릿을 기존에 사용하던 핸드폰과 동일한 인터페이스로 사용할 수 있도록 어댑터를 장착하기로 결정했다!</p>
+
+<h3 id="phoneadapter-adapter">PhoneAdapter (Adapter)</h3>
+
+<p><img src="/assets/images/51_6.png" alt="img2" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">PhoneAdapter</code>클래스는 <code class="language-plaintext highlighter-rouge">Phone</code>을 구현하고 내부적으로 <code class="language-plaintext highlighter-rouge">Tablet</code>을 맴버 변수로 가지고 있다.</p>
+
+<p>기존에 사용하던 <code class="language-plaintext highlighter-rouge">Phone</code>인터페이스를 구현하는 것은 같은데 내부적으로는 <code class="language-plaintext highlighter-rouge">Tablet</code>의 <code class="language-plaintext highlighter-rouge">show()</code>, <code class="language-plaintext highlighter-rouge">exit()</code>메소드를 호출하게 된다.</p>
+
+<p>이렇게 하면 우리(<code class="language-plaintext highlighter-rouge">Client</code>)는 <code class="language-plaintext highlighter-rouge">Tablet</code>클래스를 사용할 때 기존에 사용하던 <code class="language-plaintext highlighter-rouge">display()</code>, <code class="language-plaintext highlighter-rouge">shutDown()</code>을 통하여 접근할 수 있게 된다.</p>
+
+<h2 id="정리">정리</h2>
+
+<p>어댑터 패턴은 인터페이스 사이에 유연성이 필요한 상황에 효율적으로 사용될 수 있는 디자인 패턴이다.</p>
+
+<p>하지만 코드의 복잡도가 발생할 수 있고 추가적인 오버헤드가 생길 수 있기 때문에 적절한 상황에만 사용하는 것이 좋다.</p>
+
+<p><br /></p>
+
+<h2 id="참고">참고</h2>
+
+<p>헤드 퍼스트 디자인 패턴</p>
+
+<p><a href="https://yozm.wishket.com/magazine/detail/2077/">요즘IT</a></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4" class="page__taxonomy-item p-category" rel="tag">디자인패턴</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4" class="page__taxonomy-item p-category" rel="tag">디자인패턴</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-12-09T00:00:00+09:00">December 9, 2023</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5B%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4%5D+%EC%96%B4%EB%8C%91%ED%84%B0+%ED%8C%A8%ED%84%B4%20http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2F51%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2F51%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2F51%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50/" class="pagination--pager" title="[디자인패턴] 컴포짓 패턴
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50/" rel="permalink">[디자인패턴] 컴포짓 패턴
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> December 04 2023</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p> -->
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49/" rel="permalink">[디자인패턴] 템플릿 메소드 패턴
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> December 04 2023</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p> -->
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/devops/48/" rel="permalink">[DevOps] CI/CD &amp; 무중단 배포
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> November 25 2023</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          5 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p> -->
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/47/" rel="permalink">[DB] 트랜잭션
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> November 20 2023</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p> -->
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="mailto:mjinsu098@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+        
+      
+        
+          <li><a href="https://github.com/jinsu868" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 문진수(Moon JinSu). Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
