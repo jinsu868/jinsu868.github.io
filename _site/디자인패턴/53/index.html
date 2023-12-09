@@ -1,0 +1,885 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[디자인패턴] 상태 패턴 - Jinsu’s story</title>
+<meta name="description" content="상태 패턴">
+
+
+  <meta name="author" content="Moon JinSu">
+  
+  <meta property="article:author" content="Moon JinSu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="Jinsu's story">
+<meta property="og:title" content="[디자인패턴] 상태 패턴">
+<meta property="og:url" content="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/53/">
+
+
+  <meta property="og:description" content="상태 패턴">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-12-09T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/53/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "문진수(Moon JinSu)",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Jinsu's story Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Jinsu's story
+          
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Moon JinSu</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>tech blog</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seoul, Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:mjinsu098@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/jinsu868" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+
+<!-- Categories -->
+<nav class="nav__list">
+  <ul class="nav__items" id="category_tag_menu">
+      <li>
+          <span class="nav__sub-title">📂 Total (53)</span>
+          <ul>
+              
+                  
+                  <li>
+                      <a href="/categories/#spring" class="">Spring (14)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#디자인패턴" class="">디자인패턴 (13)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#java" class="">Java (3)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#알고리즘" class="">알고리즘 (2)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#jpa" class="">JPA (7)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#데이터베이스" class="">데이터베이스 (4)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#network" class="">Network (5)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#클린코드" class="">클린코드 (1)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#git" class="">git (1)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#우테코" class="">우테코 (1)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#테스트" class="">테스트 (2)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#devops" class="">DevOps (1)</a>
+                  </li>
+                  
+              
+          </ul>
+      </li>
+  </ul>
+  </nav>
+
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[디자인패턴] 상태 패턴">
+    <meta itemprop="description" content="상태 패턴">
+    <meta itemprop="datePublished" content="2023-12-09T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/53/" class="u-url" itemprop="url">[디자인패턴] 상태 패턴
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#상태-패턴">상태 패턴</a><ul><li><a href="#정의">정의</a></li><li><a href="#구조">구조</a><ul><li><a href="#context">Context</a></li><li><a href="#state">State</a></li><li><a href="#concretestatus">ConcreteStatus</a></li></ul></li><li><a href="#필요성">필요성</a></li><li><a href="#특징">특징</a><ul><li><a href="#장점">장점</a></li><li><a href="#단점">단점</a></li></ul></li><li><a href="#예제">예제</a><ul><li><a href="#sold_out">SOLD_OUT</a></li><li><a href="#no_coin">NO_COIN</a></li><li><a href="#has_coin">HAS_COIN</a></li><li><a href="#sold">SOLD</a></li></ul></li><li><a href="#machine-class">Machine Class</a></li><li><a href="#상태-패턴--싱글톤-패턴-적용">상태 패턴 + 싱글톤 패턴 적용</a><ul><li><a href="#machine-context">Machine (Context)</a></li><li><a href="#state-state">State (State)</a></li><li><a href="#nocoinstate-concretestate">NoCoinState (ConcreteState)</a></li><li><a href="#hascoinstate-concretestate">HasCoinState (ConcreteState)</a></li><li><a href="#soldoutstate-concretestate">SoldOutState (ConcreteState)</a></li><li><a href="#soldstate-concretestate">SoldState (ConcreteState)</a></li></ul></li></ul></li><li><a href="#정리">정리</a></li><li><a href="#참고">참고</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="상태-패턴">상태 패턴</h1>
+
+<h2 id="정의">정의</h2>
+
+<blockquote>
+  <p>Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.</p>
+
+  <p>-GoF design pattern</p>
+</blockquote>
+
+<p>객체 내부의 상태가 바뀔 때, 객체의 동작을 변경할 수 있도록 한다.</p>
+
+<h2 id="구조">구조</h2>
+
+<p><img src="/assets/images/53_1.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<h3 id="context">Context</h3>
+
+<p>여러 상태가 존재하는 <code class="language-plaintext highlighter-rouge">시스템</code>을 말한다. 시스템은 상태를 나타내는 <code class="language-plaintext highlighter-rouge">State</code>를 가지고 있으며 <code class="language-plaintext highlighter-rouge">클라이언트</code>로부터 요청을 받으면  <code class="language-plaintext highlighter-rouge">State</code>에 실행을 위임한다.</p>
+
+<h3 id="state">State</h3>
+
+<p>상태를 추상화한 인터페이스이다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">ConcreteStatus</code>는 이를 구현하여 구체적인 상태를 나타내게 된다.</p>
+
+<h3 id="concretestatus">ConcreteStatus</h3>
+
+<p><code class="language-plaintext highlighter-rouge">구체적인 상태</code>를 나타내는 클래스이다.</p>
+
+<p>맴버 변수로 <code class="language-plaintext highlighter-rouge">Context</code>를 가지고 있으며 연산에 따라 <code class="language-plaintext highlighter-rouge">Context</code>의 상태를 변경한다.</p>
+
+<h2 id="필요성">필요성</h2>
+
+<p>아래와 같은 상태가 존재하는 <strong>뽑기 기계</strong>를 생각해보자.</p>
+
+<p><img src="/assets/images/53_2.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>뽑기 기계는 상태( <code class="language-plaintext highlighter-rouge">동전 투입 여부</code>, <code class="language-plaintext highlighter-rouge">알맹이 개수</code>)에 따라 동작 방식이 달라진다.</p>
+
+<p>이를 구현하기 위해서는 <strong>분기 처리</strong>를 해줘야 한다.</p>
+
+<p>만약 여기서 새로운 요구사항이 생기면 어떻게 될까?</p>
+
+<p>예를 들어서 5번에 한 번마다 알맹이가 2개가 나오게 변경한다고 생각해보자.</p>
+
+<p>그러면 우리는 5번째인지 확인하기 위해 조건문을 모든 메소드에 추가해야 한다.</p>
+
+<p>매번 요구사항이 추가될 때마다 기존 코드를 변경해야 하는 것은 유지보수 측면에서 좋지 않다. 이를 해결하는 방법 중 하나가 <code class="language-plaintext highlighter-rouge">상태 패턴</code>이다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">상태 패턴</code>을 사용하게 되면 상태에 따른 동작을 클래스로 관리할 수 있게 되고 코드의 복잡도도 줄일 수 있게 된다.</p>
+
+<p>-&gt; 상태 패턴의 필요성에 대해서 봤으니 이제 상태 패턴의 장단점에 대해서 알아보자.</p>
+
+<h2 id="특징">특징</h2>
+
+<h3 id="장점">장점</h3>
+
+<ol>
+  <li>상태에 따른 객체의 동작을 클래스로 관리할 수 있게 된다.</li>
+  <li>상태에 관련된 동작을 각 클래스로 분산시켜 코드의 복잡도를 줄일 수 있다.</li>
+  <li>새로운 요구사항이 생겨서 변경이 발생하더라도 기존의 코드를 그대로 유지할 수 있다. (<code class="language-plaintext highlighter-rouge">OCP</code>)</li>
+</ol>
+
+<h3 id="단점">단점</h3>
+
+<ol>
+  <li>상태별로 클래스로 관리해야 하기 때문에 클래스의 수가 증가한다.</li>
+  <li>객체의 상태가 몇 개 없거나 상태가 거의 변경되지 않는 경우에 상태 패턴을 적용하는 것은 <strong>오버엔지니어링</strong>일 수 있다.</li>
+</ol>
+
+<h2 id="예제">예제</h2>
+
+<p>위에 필요성에서 설명했던 예제인 <strong>뽑기 기계</strong>를 가지고 상태 패턴을 이해해보자.</p>
+
+<p>먼저 뽑기 기계의 상태에 대해서 생각해보자. 아래와 같이 4가지 상태가 존재할 것이다.</p>
+
+<h4 id="sold_out">SOLD_OUT</h4>
+
+<p>머신의 알맹이가 다 떨어진 상태를 의미한다.</p>
+
+<h4 id="no_coin">NO_COIN</h4>
+
+<p>동전이 투입되지 않은 상태를 의미한다.</p>
+
+<h4 id="has_coin">HAS_COIN</h4>
+
+<p>동전이 투입된 상태를 의미한다.</p>
+
+<h4 id="sold">SOLD</h4>
+
+<p>손잡이를 돌려서 알맹이가 나오고 있는 상태를 의미한다.</p>
+
+<p>그리고 이런 상태에 4가지 행위가 있다.</p>
+
+<ol>
+  <li>뽑기 기계에 코인을 넣는 행위</li>
+  <li>뽑기 기계에서 알맹이를 뽑는 행위</li>
+  <li>뽑기 기계에서 동전을 반환하는 행위</li>
+</ol>
+
+<p>-&gt; 이제 이를 상태 패턴 없이 코드로 작성해보겠다.</p>
+
+<h3 id="machine-class">Machine Class</h3>
+
+<p><img src="/assets/images/53_3.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /><img src="/assets/images/53_4.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /><img src="/assets/images/53_5.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>상태에 따른 동작을 <code class="language-plaintext highlighter-rouge">분기 처리</code>를 통해서 구현했다.</p>
+
+<p>그리고 각 상태(<code class="language-plaintext highlighter-rouge">SOLD_OUT</code>, <code class="language-plaintext highlighter-rouge">SOLD</code>, <code class="language-plaintext highlighter-rouge">HAS_COIN</code>, <code class="language-plaintext highlighter-rouge">NO_COIN</code>)를 상태 변수로 처리했다.</p>
+
+<p>하지만 이 코드에는 여러 단점이 존재한다.</p>
+
+<ol>
+  <li>상태 전환을 하기 위해 <code class="language-plaintext highlighter-rouge">조건 분기</code>를 해야 한다. 이는 가독성에 좋지 않다.</li>
+  <li>상태에 따른 추가 요구사항이 생기면 메소드를 다 수정해야 한다. <code class="language-plaintext highlighter-rouge">OCP</code>를 위반하게 된다.</li>
+</ol>
+
+<p>그렇다면 이제 상태 패턴을 적용하여 이러한 단점을 보안해보자.</p>
+
+<p>여기서는 상태 패턴 + 싱글톤 패턴을 같이 적용한 코드를 볼 것이다.</p>
+
+<p>싱글톤 패턴을 적용한 이유는 상태를 변경할 때마다 새로운 객체를 생성하게 되면 <strong>메모리 낭비</strong>가 발생하기 때문이다.</p>
+
+<h3 id="상태-패턴--싱글톤-패턴-적용">상태 패턴 + 싱글톤 패턴 적용</h3>
+
+<h4 id="machine-context">Machine (Context)</h4>
+
+<p><img src="/assets/images/53_6.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /><img src="/assets/images/53_7.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">Machine</code> 클래스는 맴버 변수로 상태를 가지고 있다. 그리고 <code class="language-plaintext highlighter-rouge">동전 넣기</code>, <code class="language-plaintext highlighter-rouge">동전 반환</code>, <code class="language-plaintext highlighter-rouge">손잡이 돌리기</code>, <code class="language-plaintext highlighter-rouge">뽑기</code>라는 4가지 행위를 가진다.</p>
+
+<p>각각의 행위는 <code class="language-plaintext highlighter-rouge">State</code>에 위임되며 현재 <code class="language-plaintext highlighter-rouge">Machine</code>의 상태에 따라 다르게 동작하게 된다.</p>
+
+<p>그리고 동작이 일어나고 상황에 맞게 <code class="language-plaintext highlighter-rouge">State</code>가 변경될 수도 있다.</p>
+
+<h4 id="state-state">State (State)</h4>
+
+<h4><img src="/assets/images/53_8.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /></h4>
+
+<p>상태를 추상화한 인터페이스이다.</p>
+
+<h4 id="nocoinstate-concretestate">NoCoinState (ConcreteState)</h4>
+
+<p><img src="/assets/images/53_9.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /><img src="/assets/images/53_10.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>동전이 없는 상태를 나타내는 <code class="language-plaintext highlighter-rouge">ConcreteState</code>이다.</p>
+
+<p>싱글톤 패턴을 적용하였는데 만약 싱글톤 패턴을 적용하지 않았다면 <code class="language-plaintext highlighter-rouge">insertCoin(Machine machine)</code> 에서 머신의 상태를 변경할 때, 새로운 객체를 생성해서 넘겼어야 했을 것이다.</p>
+
+<p>이렇게 되면 상태가 변할때마다 객체가 생성되기 때문에 효율적이지 않다.</p>
+
+<p>물론  <code class="language-plaintext highlighter-rouge">GC</code>가 주기적으로 정리해주긴 하지만 이러한 쓰레기가 늘어나게 되면 제거 과정에서 <code class="language-plaintext highlighter-rouge">Stop-the-world</code>가 발생하여 프로그램이 느려질 수 있다.</p>
+
+<h4 id="hascoinstate-concretestate">HasCoinState (ConcreteState)</h4>
+
+<p><img src="/assets/images/53_11.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /><img src="/assets/images/53_12.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>동전이 들어있는 상태를 나타내는 <code class="language-plaintext highlighter-rouge">ConcreteState</code>이다.</p>
+
+<p>동전이 들어있을 때는 <code class="language-plaintext highlighter-rouge">동전 반환</code>, <code class="language-plaintext highlighter-rouge">손잡이 돌리기</code>를 수행하면 상태가 변하게 된다.</p>
+
+<h4 id="soldoutstate-concretestate">SoldOutState (ConcreteState)</h4>
+
+<p><img src="/assets/images/53_13.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /><img src="/assets/images/53_14.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>알맹이가 떨어진 상태를 나타내는 <code class="language-plaintext highlighter-rouge">ConcreteState</code>이다.</p>
+
+<h4 id="soldstate-concretestate">SoldState (ConcreteState)</h4>
+
+<p><img src="/assets/images/53_15.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /><img src="/assets/images/53_16.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>알맹이가 나가고 있는 상태를 나타내는 <code class="language-plaintext highlighter-rouge">ConcreteState</code>이다.</p>
+
+<h2 id="정리">정리</h2>
+
+<p>상태 패턴은 상태를 객체화하여 객체의 행동을 상태에 특화된 행위들로 분리할 수 있다.</p>
+
+<p>상태에 따라 행위가 달라진다면 상태 패턴을 고려해보면 좋을 것 같다.</p>
+
+<h2 id="참고">참고</h2>
+
+<ul>
+  <li>
+    <p><a href="https://inpa.tistory.com/entry/GOF-%F0%9F%92%A0-%EC%83%81%ED%83%9CState-%ED%8C%A8%ED%84%B4-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EB%B0%B0%EC%9B%8C%EB%B3%B4%EC%9E%90">인파님 블로그</a></p>
+  </li>
+  <li>
+    <p>헤드 퍼스트 디자인 패턴</p>
+  </li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4" class="page__taxonomy-item p-category" rel="tag">디자인패턴</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4" class="page__taxonomy-item p-category" rel="tag">디자인패턴</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-12-09T00:00:00+09:00">December 9, 2023</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5B%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4%5D+%EC%83%81%ED%83%9C+%ED%8C%A8%ED%84%B4%20http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2F53%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2F53%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2F53%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/52/" class="pagination--pager" title="[디자인패턴] 퍼사드 패턴
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/52/" rel="permalink">[디자인패턴] 퍼사드 패턴
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> December 09 2023</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">퍼사드 패턴
+</p> -->
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51/" rel="permalink">[디자인패턴] 어댑터 패턴
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> December 09 2023</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">어댑터 패턴
+</p> -->
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50/" rel="permalink">[디자인패턴] 컴포짓 패턴
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> December 04 2023</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p> -->
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49/" rel="permalink">[디자인패턴] 템플릿 메소드 패턴
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> December 04 2023</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p> -->
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="mailto:mjinsu098@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+        
+      
+        
+          <li><a href="https://github.com/jinsu868" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 문진수(Moon JinSu). Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

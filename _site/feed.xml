@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-09T18:32:19+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[디자인패턴] 퍼사드 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/52/" rel="alternate" type="text/html" title="[디자인패턴] 퍼사드 패턴" /><published>2023-12-09T00:00:00+09:00</published><updated>2023-12-09T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/52</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/52/">&lt;h1 id=&quot;퍼사드-패턴&quot;&gt;퍼사드 패턴&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-09T22:45:10+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[디자인패턴] 퍼사드 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/52/" rel="alternate" type="text/html" title="[디자인패턴] 퍼사드 패턴" /><published>2023-12-09T00:00:00+09:00</published><updated>2023-12-09T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/52</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/52/">&lt;h1 id=&quot;퍼사드-패턴&quot;&gt;퍼사드 패턴&lt;/h1&gt;
 
 &lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
 
@@ -88,7 +88,7 @@
 
 &lt;h3 id=&quot;main-client&quot;&gt;Main (Client)&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/52_3.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/52_3.png&quot; alt=&quot;img3&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;클라이언트(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Main&lt;/code&gt;)과 서브 시스템의 의존성이 강한 것을 확인할 수 있다. 그리고 각각의 서브 시스템을 클라이언트에서 호출해야 한다.&lt;/p&gt;
 
@@ -98,7 +98,7 @@
 
 &lt;h3 id=&quot;moviefacade-facade&quot;&gt;MovieFacade (Facade)&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/52_4.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/52_4.png&quot; alt=&quot;img4&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;여러 서브 시스템을 묶어서 하나의 인터페이스(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setMovieEnv()&lt;/code&gt;)를 제공하는 것을 볼 수 있다.&lt;/p&gt;
 
@@ -106,7 +106,7 @@
 
 &lt;h3 id=&quot;main-client-1&quot;&gt;Main (Client)&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/images/52_5.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/images/52_5.png&quot; alt=&quot;img5&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;클라이언트에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MovieFacade&lt;/code&gt;의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setMovieEnv()&lt;/code&gt;를 통해서 서브 시스템에 접근하는 것을 볼 수 있다.&lt;/p&gt;
 
@@ -127,7 +127,196 @@
   &lt;li&gt;
     &lt;p&gt;헤드 퍼스트 디자인 패턴&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><summary type="html">퍼사드 패턴</summary></entry><entry><title type="html">[디자인패턴] 어댑터 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51/" rel="alternate" type="text/html" title="[디자인패턴] 어댑터 패턴" /><published>2023-12-09T00:00:00+09:00</published><updated>2023-12-09T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51/">&lt;h1 id=&quot;어댑터-패턴&quot;&gt;어댑터 패턴&lt;/h1&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><summary type="html">퍼사드 패턴</summary></entry><entry><title type="html">[디자인패턴] 상태 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/53/" rel="alternate" type="text/html" title="[디자인패턴] 상태 패턴" /><published>2023-12-09T00:00:00+09:00</published><updated>2023-12-09T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/53</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/53/">&lt;h1 id=&quot;상태-패턴&quot;&gt;상태 패턴&lt;/h1&gt;
+
+&lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.&lt;/p&gt;
+
+  &lt;p&gt;-GoF design pattern&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;객체 내부의 상태가 바뀔 때, 객체의 동작을 변경할 수 있도록 한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;구조&quot;&gt;구조&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/53_1.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;context&quot;&gt;Context&lt;/h3&gt;
+
+&lt;p&gt;여러 상태가 존재하는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;시스템&lt;/code&gt;을 말한다. 시스템은 상태를 나타내는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;State&lt;/code&gt;를 가지고 있으며 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;클라이언트&lt;/code&gt;로부터 요청을 받으면  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;State&lt;/code&gt;에 실행을 위임한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;state&quot;&gt;State&lt;/h3&gt;
+
+&lt;p&gt;상태를 추상화한 인터페이스이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ConcreteStatus&lt;/code&gt;는 이를 구현하여 구체적인 상태를 나타내게 된다.&lt;/p&gt;
+
+&lt;h3 id=&quot;concretestatus&quot;&gt;ConcreteStatus&lt;/h3&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;구체적인 상태&lt;/code&gt;를 나타내는 클래스이다.&lt;/p&gt;
+
+&lt;p&gt;맴버 변수로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Context&lt;/code&gt;를 가지고 있으며 연산에 따라 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Context&lt;/code&gt;의 상태를 변경한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;필요성&quot;&gt;필요성&lt;/h2&gt;
+
+&lt;p&gt;아래와 같은 상태가 존재하는 &lt;strong&gt;뽑기 기계&lt;/strong&gt;를 생각해보자.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/53_2.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;뽑기 기계는 상태( &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;동전 투입 여부&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;알맹이 개수&lt;/code&gt;)에 따라 동작 방식이 달라진다.&lt;/p&gt;
+
+&lt;p&gt;이를 구현하기 위해서는 &lt;strong&gt;분기 처리&lt;/strong&gt;를 해줘야 한다.&lt;/p&gt;
+
+&lt;p&gt;만약 여기서 새로운 요구사항이 생기면 어떻게 될까?&lt;/p&gt;
+
+&lt;p&gt;예를 들어서 5번에 한 번마다 알맹이가 2개가 나오게 변경한다고 생각해보자.&lt;/p&gt;
+
+&lt;p&gt;그러면 우리는 5번째인지 확인하기 위해 조건문을 모든 메소드에 추가해야 한다.&lt;/p&gt;
+
+&lt;p&gt;매번 요구사항이 추가될 때마다 기존 코드를 변경해야 하는 것은 유지보수 측면에서 좋지 않다. 이를 해결하는 방법 중 하나가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;상태 패턴&lt;/code&gt;이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;상태 패턴&lt;/code&gt;을 사용하게 되면 상태에 따른 동작을 클래스로 관리할 수 있게 되고 코드의 복잡도도 줄일 수 있게 된다.&lt;/p&gt;
+
+&lt;p&gt;-&amp;gt; 상태 패턴의 필요성에 대해서 봤으니 이제 상태 패턴의 장단점에 대해서 알아보자.&lt;/p&gt;
+
+&lt;h2 id=&quot;특징&quot;&gt;특징&lt;/h2&gt;
+
+&lt;h3 id=&quot;장점&quot;&gt;장점&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;상태에 따른 객체의 동작을 클래스로 관리할 수 있게 된다.&lt;/li&gt;
+  &lt;li&gt;상태에 관련된 동작을 각 클래스로 분산시켜 코드의 복잡도를 줄일 수 있다.&lt;/li&gt;
+  &lt;li&gt;새로운 요구사항이 생겨서 변경이 발생하더라도 기존의 코드를 그대로 유지할 수 있다. (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OCP&lt;/code&gt;)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;단점&quot;&gt;단점&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;상태별로 클래스로 관리해야 하기 때문에 클래스의 수가 증가한다.&lt;/li&gt;
+  &lt;li&gt;객체의 상태가 몇 개 없거나 상태가 거의 변경되지 않는 경우에 상태 패턴을 적용하는 것은 &lt;strong&gt;오버엔지니어링&lt;/strong&gt;일 수 있다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;예제&quot;&gt;예제&lt;/h2&gt;
+
+&lt;p&gt;위에 필요성에서 설명했던 예제인 &lt;strong&gt;뽑기 기계&lt;/strong&gt;를 가지고 상태 패턴을 이해해보자.&lt;/p&gt;
+
+&lt;p&gt;먼저 뽑기 기계의 상태에 대해서 생각해보자. 아래와 같이 4가지 상태가 존재할 것이다.&lt;/p&gt;
+
+&lt;h4 id=&quot;sold_out&quot;&gt;SOLD_OUT&lt;/h4&gt;
+
+&lt;p&gt;머신의 알맹이가 다 떨어진 상태를 의미한다.&lt;/p&gt;
+
+&lt;h4 id=&quot;no_coin&quot;&gt;NO_COIN&lt;/h4&gt;
+
+&lt;p&gt;동전이 투입되지 않은 상태를 의미한다.&lt;/p&gt;
+
+&lt;h4 id=&quot;has_coin&quot;&gt;HAS_COIN&lt;/h4&gt;
+
+&lt;p&gt;동전이 투입된 상태를 의미한다.&lt;/p&gt;
+
+&lt;h4 id=&quot;sold&quot;&gt;SOLD&lt;/h4&gt;
+
+&lt;p&gt;손잡이를 돌려서 알맹이가 나오고 있는 상태를 의미한다.&lt;/p&gt;
+
+&lt;p&gt;그리고 이런 상태에 4가지 행위가 있다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;뽑기 기계에 코인을 넣는 행위&lt;/li&gt;
+  &lt;li&gt;뽑기 기계에서 알맹이를 뽑는 행위&lt;/li&gt;
+  &lt;li&gt;뽑기 기계에서 동전을 반환하는 행위&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;-&amp;gt; 이제 이를 상태 패턴 없이 코드로 작성해보겠다.&lt;/p&gt;
+
+&lt;h3 id=&quot;machine-class&quot;&gt;Machine Class&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/53_3.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;img src=&quot;/assets/images/53_4.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;img src=&quot;/assets/images/53_5.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;상태에 따른 동작을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;분기 처리&lt;/code&gt;를 통해서 구현했다.&lt;/p&gt;
+
+&lt;p&gt;그리고 각 상태(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SOLD_OUT&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SOLD&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HAS_COIN&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NO_COIN&lt;/code&gt;)를 상태 변수로 처리했다.&lt;/p&gt;
+
+&lt;p&gt;하지만 이 코드에는 여러 단점이 존재한다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;상태 전환을 하기 위해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;조건 분기&lt;/code&gt;를 해야 한다. 이는 가독성에 좋지 않다.&lt;/li&gt;
+  &lt;li&gt;상태에 따른 추가 요구사항이 생기면 메소드를 다 수정해야 한다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OCP&lt;/code&gt;를 위반하게 된다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;그렇다면 이제 상태 패턴을 적용하여 이러한 단점을 보안해보자.&lt;/p&gt;
+
+&lt;p&gt;여기서는 상태 패턴 + 싱글톤 패턴을 같이 적용한 코드를 볼 것이다.&lt;/p&gt;
+
+&lt;p&gt;싱글톤 패턴을 적용한 이유는 상태를 변경할 때마다 새로운 객체를 생성하게 되면 &lt;strong&gt;메모리 낭비&lt;/strong&gt;가 발생하기 때문이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;상태-패턴--싱글톤-패턴-적용&quot;&gt;상태 패턴 + 싱글톤 패턴 적용&lt;/h3&gt;
+
+&lt;h4 id=&quot;machine-context&quot;&gt;Machine (Context)&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/53_6.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;img src=&quot;/assets/images/53_7.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Machine&lt;/code&gt; 클래스는 맴버 변수로 상태를 가지고 있다. 그리고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;동전 넣기&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;동전 반환&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;손잡이 돌리기&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;뽑기&lt;/code&gt;라는 4가지 행위를 가진다.&lt;/p&gt;
+
+&lt;p&gt;각각의 행위는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;State&lt;/code&gt;에 위임되며 현재 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Machine&lt;/code&gt;의 상태에 따라 다르게 동작하게 된다.&lt;/p&gt;
+
+&lt;p&gt;그리고 동작이 일어나고 상황에 맞게 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;State&lt;/code&gt;가 변경될 수도 있다.&lt;/p&gt;
+
+&lt;h4 id=&quot;state-state&quot;&gt;State (State)&lt;/h4&gt;
+
+&lt;h4&gt;&lt;img src=&quot;/assets/images/53_8.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/h4&gt;
+
+&lt;p&gt;상태를 추상화한 인터페이스이다.&lt;/p&gt;
+
+&lt;h4 id=&quot;nocoinstate-concretestate&quot;&gt;NoCoinState (ConcreteState)&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/53_9.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;img src=&quot;/assets/images/53_10.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;동전이 없는 상태를 나타내는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ConcreteState&lt;/code&gt;이다.&lt;/p&gt;
+
+&lt;p&gt;싱글톤 패턴을 적용하였는데 만약 싱글톤 패턴을 적용하지 않았다면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;insertCoin(Machine machine)&lt;/code&gt; 에서 머신의 상태를 변경할 때, 새로운 객체를 생성해서 넘겼어야 했을 것이다.&lt;/p&gt;
+
+&lt;p&gt;이렇게 되면 상태가 변할때마다 객체가 생성되기 때문에 효율적이지 않다.&lt;/p&gt;
+
+&lt;p&gt;물론  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GC&lt;/code&gt;가 주기적으로 정리해주긴 하지만 이러한 쓰레기가 늘어나게 되면 제거 과정에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Stop-the-world&lt;/code&gt;가 발생하여 프로그램이 느려질 수 있다.&lt;/p&gt;
+
+&lt;h4 id=&quot;hascoinstate-concretestate&quot;&gt;HasCoinState (ConcreteState)&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/53_11.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;img src=&quot;/assets/images/53_12.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;동전이 들어있는 상태를 나타내는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ConcreteState&lt;/code&gt;이다.&lt;/p&gt;
+
+&lt;p&gt;동전이 들어있을 때는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;동전 반환&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;손잡이 돌리기&lt;/code&gt;를 수행하면 상태가 변하게 된다.&lt;/p&gt;
+
+&lt;h4 id=&quot;soldoutstate-concretestate&quot;&gt;SoldOutState (ConcreteState)&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/53_13.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;img src=&quot;/assets/images/53_14.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;알맹이가 떨어진 상태를 나타내는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ConcreteState&lt;/code&gt;이다.&lt;/p&gt;
+
+&lt;h4 id=&quot;soldstate-concretestate&quot;&gt;SoldState (ConcreteState)&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/53_15.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;img src=&quot;/assets/images/53_16.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;알맹이가 나가고 있는 상태를 나타내는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ConcreteState&lt;/code&gt;이다.&lt;/p&gt;
+
+&lt;h2 id=&quot;정리&quot;&gt;정리&lt;/h2&gt;
+
+&lt;p&gt;상태 패턴은 상태를 객체화하여 객체의 행동을 상태에 특화된 행위들로 분리할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;상태에 따라 행위가 달라진다면 상태 패턴을 고려해보면 좋을 것 같다.&lt;/p&gt;
+
+&lt;h2 id=&quot;참고&quot;&gt;참고&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://inpa.tistory.com/entry/GOF-%F0%9F%92%A0-%EC%83%81%ED%83%9CState-%ED%8C%A8%ED%84%B4-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EB%B0%B0%EC%9B%8C%EB%B3%B4%EC%9E%90&quot;&gt;인파님 블로그&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;헤드 퍼스트 디자인 패턴&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><summary type="html">상태 패턴</summary></entry><entry><title type="html">[디자인패턴] 어댑터 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51/" rel="alternate" type="text/html" title="[디자인패턴] 어댑터 패턴" /><published>2023-12-09T00:00:00+09:00</published><updated>2023-12-09T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51/">&lt;h1 id=&quot;어댑터-패턴&quot;&gt;어댑터 패턴&lt;/h1&gt;
 
 &lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
 
@@ -235,13 +424,16 @@ Adapter lets classes work together that couldn’t otherwise because of incompat
 
 &lt;h2 id=&quot;참고&quot;&gt;참고&lt;/h2&gt;
 
-&lt;p&gt;헤드 퍼스트 디자인 패턴&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://yozm.wishket.com/magazine/detail/2077/&quot;&gt;요즘IT&lt;/a&gt;&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><summary type="html">어댑터 패턴</summary></entry><entry><title type="html">[디자인패턴] 컴포짓 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50/" rel="alternate" type="text/html" title="[디자인패턴] 컴포짓 패턴" /><published>2023-12-04T00:00:00+09:00</published><updated>2023-12-04T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;헤드 퍼스트 디자인 패턴&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://yozm.wishket.com/magazine/detail/2077/&quot;&gt;요즘IT&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><summary type="html">어댑터 패턴</summary></entry><entry><title type="html">[디자인패턴] 컴포짓 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50/" rel="alternate" type="text/html" title="[디자인패턴] 컴포짓 패턴" /><published>2023-12-04T00:00:00+09:00</published><updated>2023-12-04T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;컴포짓-패턴&quot;&gt;컴포짓 패턴&lt;/h1&gt;
-
-&lt;p&gt;오늘은 디자인패턴 중 하나인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;컴포짓 패턴&lt;/code&gt;에 대해서 알아보자.&lt;/p&gt;
 
 &lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
 &lt;blockquote&gt;
@@ -321,8 +513,6 @@ Adapter lets classes work together that couldn’t otherwise because of incompat
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;##&lt;/p&gt;
-
 &lt;h2 id=&quot;참고&quot;&gt;참고&lt;/h2&gt;
 
 &lt;ul&gt;
@@ -331,8 +521,6 @@ Adapter lets classes work together that couldn’t otherwise because of incompat
 &lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><summary type="html"></summary></entry><entry><title type="html">[디자인패턴] 템플릿 메소드 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49/" rel="alternate" type="text/html" title="[디자인패턴] 템플릿 메소드 패턴" /><published>2023-12-04T00:00:00+09:00</published><updated>2023-12-04T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;템플릿-메소드-패턴&quot;&gt;템플릿 메소드 패턴&lt;/h1&gt;
-
-&lt;p&gt;오늘은 디자인패턴 중 하나인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;템플릿 메소드 패턴&lt;/code&gt;에 대해서 알아보자.&lt;/p&gt;
 
 &lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
 &lt;blockquote&gt;
@@ -407,7 +595,8 @@ Adapter lets classes work together that couldn’t otherwise because of incompat
 
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Americano&lt;/code&gt;에 기본적으로 토핑이 들어가면 안된다고 할 때, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hook 메서드&lt;/code&gt;인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isCustomerWantsTopping()&lt;/code&gt;을 제정의하여 템플릿 메소드 안에있는 로직의 실행 흐름을 제어할 수 있다.&lt;/p&gt;
 
-&lt;h1 id=&quot;참고&quot;&gt;참고&lt;/h1&gt;
+&lt;h2 id=&quot;참고&quot;&gt;참고&lt;/h2&gt;
+
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://url.kr/tw2s8o&quot;&gt;인파님 블로그&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;헤드 퍼스트 디자인 패턴&lt;/li&gt;
@@ -1533,198 +1722,4 @@ MAC 에서는 송수신자가 비밀키(s)를 공유하여 해시값을 계산�
 &lt;h1 id=&quot;참고&quot;&gt;참고&lt;/h1&gt;
 &lt;ul&gt;
   &lt;li&gt;컴퓨터 네트워킹 하향식 접근 (제8판)&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Netowrk" /><summary type="html"></summary></entry><entry><title type="html">[테스트] 단위 테스트</title><link href="http://localhost:4000/%ED%85%8C%EC%8A%A4%ED%8A%B8/43/" rel="alternate" type="text/html" title="[테스트] 단위 테스트" /><published>2023-11-01T00:00:00+09:00</published><updated>2023-11-01T00:00:00+09:00</updated><id>http://localhost:4000/%ED%85%8C%EC%8A%A4%ED%8A%B8/43</id><content type="html" xml:base="http://localhost:4000/%ED%85%8C%EC%8A%A4%ED%8A%B8/43/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;동기&quot;&gt;동기&lt;/h2&gt;
-
-&lt;p&gt;이번 우테코 2주차 미션부터 메서드를 테스트하는 요구사항이 추가됐다. &lt;br /&gt;
-그래서 이번에 테스트에 대해서 공부하고 정리하고자 이 글을 작성하게 됐다. &lt;br /&gt;
-테스트에는 크게 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;단위 테스트&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;통합 테스트&lt;/code&gt;가 있는데 오늘은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;단위 테스트&lt;/code&gt;가 무엇인지, 그리고 어떻게 사용하는지에 중점을 맞추겠다.
-&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;단위-테스트&quot;&gt;단위 테스트&lt;/h3&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;단위 테스트는 응용 프로그램에서 테스트 가능한 가장 작은 소프트웨어를 실행하여 예상대로 동작하는지 확인하는 테스트이다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;가장 작은 단위의 테스트로 일반적으로 클래스 또는 메서드 수준으로 테스트를 진행한다. Java에서는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JUnit&lt;/code&gt;을 통해 테스트가 진행되며, 특히 &lt;em&gt;TDD&lt;/em&gt;와 함께 할 때 강력함을 발휘한다.
-&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;그러면 바로 사용 방법에 대해서 알아보자. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;사용되는-에노테이션&quot;&gt;사용되는 에노테이션&lt;/h2&gt;
-
-&lt;h3 id=&quot;test&quot;&gt;@Test&lt;/h3&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Test&lt;/code&gt;를 붙이면 메서드를 테스트 메서드로 인식하게 되고, 단일 실행할 수 있게 설정된다.&lt;br /&gt;
-아래 코드를 보자 &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/43_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;메소드를 단독으로 실행할 수 있게 왼쪽에 녹색 커서가 생긴것을 확인할 수 있다.&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;실행 결과&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/43_2.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;위와 같이 단독으로 테스트 메서드가 실행된 것을 확인할 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;displayname&quot;&gt;@DisplayName&lt;/h3&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@DisplayName&lt;/code&gt;는 테스트 결과에 뜨는 이름을 설정할 수 있게 해준다. 테스트 결과에 같이 출력하고 싶은 내용을 추가할 수 있게 해준다. &lt;br /&gt;
-바로 예시를 보자 &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/43_3.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;이렇게 해주면 아래와 같이 결과와 함께 미시지를 출력할 수 있다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/43_4.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;before-시리즈&quot;&gt;@Before~ 시리즈&lt;/h3&gt;
-
-&lt;h2 id=&quot;beforeall&quot;&gt;BeforeAll&lt;/h2&gt;
-
-&lt;p&gt;이름부터 참 직관적이다. 모든 테스트 실행되기 전에 실행되는 것이라고 생각하면 된다.&lt;br /&gt;
-&lt;strong&gt;단 한번만 실행되면 반드시 static으로 선언해야 한다.&lt;/strong&gt; &lt;br /&gt;
-바로 예시를 보자 &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/43_5.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/43_6.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;결과를 보면 알 수 있듯이 먼저 실행이 출력되고 test1, test2의 내용이 출력되는 것을 확인할 수 있다. 이 때 주의할 점은 test1, test2의 순서는 보장되지 않는다. 내부적으로 실행 순서가 있긴 하지만 이는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JUnit&lt;/code&gt;의 내부 구조에 따라 바뀔 수 있다.&lt;br /&gt;
-만약 순서를 지정하고 싶다면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@TestMethodOrder&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Order&lt;/code&gt;를 사용해서 지정할 수 있다. &lt;br /&gt;
-&lt;strong&gt;일반적으로 단위 테스트는 서로 의존적이지 않기 때문에 순서가 상관이 없다.&lt;/strong&gt; 하지만 경우에 따라 순서가 필요한 경우가 있을 수 있기 때문에 알아만 두자! &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;beforeeach&quot;&gt;@BeforeEach&lt;/h3&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@BeforeEach&lt;/code&gt;는 각각의 테스트 메서드가 실행되기 전에 실행되는 메서드다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@BeforeAll&lt;/code&gt;은 처음에 한 번 실행되지만 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@BeforeEach&lt;/code&gt;는 각 테스트마다 실행되는 차이점이 있다. &lt;br /&gt;
-마찬가지로 예시를 보자 &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/43_7.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/43_8.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;결과를 보면 알 수 있듯이 먼저 실행이 test1, test2 실행 이전에 출력되는 것을 확인할 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;after-시리즈&quot;&gt;@After~ 시리즈&lt;/h2&gt;
-
-&lt;h3 id=&quot;afterall&quot;&gt;@AfterAll&lt;/h3&gt;
-
-&lt;p&gt;모든 테스트 메서드가 실행되고 단 한번만 실행된다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@BeforeAll&lt;/code&gt;과 정 반대라고 생각하면 된다.&lt;br /&gt;
-마찬가지로 static 메서드로 선언해야 한다.&lt;br /&gt;
-예시를 보자 &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/43_9.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/43_10.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;나중 실행&lt;/strong&gt;이 모든 테스트 메서드가 실행되고 난 후 출력된 것을 확인할 수 있다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;aftereach&quot;&gt;@AfterEach&lt;/h3&gt;
-
-&lt;p&gt;위에 설명한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@BeforeEach&lt;/code&gt;의 정 반대라고 생각하면 된다. 테스트 메서드가 끝날때마다 호출된다. &lt;br /&gt;
-마찬가지로 예시를 보자 &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/43_11.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/43_12.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;이제 실제로 단위 테스트에 사용되는 메서드들을 살펴보자. &lt;br /&gt;
-일반적으로 단정(assert) 메서드를 많이 사용하는데 크게 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;junit&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;assertj&lt;/code&gt; 두 종류가 있다.&lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;assertj&lt;/code&gt;가 등장하기 전까지는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;junit&lt;/code&gt;을 주로 사용했지만 이제는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;assertj&lt;/code&gt;를 많이 사용한다. 기능은 동일하지만 가독성이 더 좋기 때문이다. &lt;br /&gt; &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;assertj&lt;/code&gt;는 메서드 체인을 지원하기 때문에 가독성이 더 좋다. &lt;br /&gt; 때문에 오늘은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;assertj&lt;/code&gt;에 대해서 정리하고자 한다.&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;assertj&quot;&gt;assertj&lt;/h1&gt;
-
-&lt;h2 id=&quot;assertionsassertthat&quot;&gt;Assertions.assertThat()&lt;/h2&gt;
-
-&lt;h3 id=&quot;isequalto-isnotequalto&quot;&gt;isEqualTo(), isNotEqualTo()&lt;/h3&gt;
-
-&lt;p&gt;이 메서드는 &lt;strong&gt;assertThat(a).isEqualTo(b)&lt;/strong&gt;와 같이 사용된다. 대상a 와 기댓값 b의 값이 같은지 확인하는 메서드이다. &lt;br /&gt;
-isNotEqualTo()는 정확히 반대라고 생각하면 된다.&lt;br /&gt;
-예시를 보자&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/43_13.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;isEqualTo(), isNotEqualTo()는 값을 통해 검증하는 단정 메서드이다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;issameas-isnotsameas&quot;&gt;isSameAs(), isNotSameAs()&lt;/h3&gt;
-
-&lt;p&gt;이 메서드는 &lt;strong&gt;assertThat(a).isSameAs(b)&lt;/strong&gt; 와 같이 사용된다. 대상 a가 기댓값 b와 같은 대상인지 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;주소값&lt;/code&gt;을 통해 확인한다. &lt;br /&gt;
-사용법은 사실 isEqualTo()와 완전히 동일하기 때문에 생략하겠다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;여기서 가장 중요한 부분은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isEqualTo()&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isSameAs()&lt;/code&gt;의 차이점을 명확하게 아는 것이다.&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;isequalto-vs-issameas&quot;&gt;isEqualTo() VS isSameAs()&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;isEqualTo()&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;isEqualTo()는 단순히 값이 동일한지 확인한다. 객체가 비교 대상이 될 때는 Java의 equals() 메서드의 기능을 한다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;isSameAs()&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;isSameAs()는 단순 값이 아니라 참조값이 같은지를 비교한다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;아래 코드를 보고 어떤 결과가 나올지 생각해보면 더 잘 이해할 수 있을 것이다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/43_14.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;case 1, 2, 3, 4의 결과를 생각해보자. &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;case1&lt;/code&gt; 의 경우는 에러가 발생할 것이다. memberA, memberB는 다른 객체를 가리키고 있기 때문이다. &lt;br /&gt;&lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;case2&lt;/code&gt; 의 경우는 어떨까? 마찬가지로 에러가 발생할 것이다. 이름도 같고 id도 같은데 왜 에러가 발생할까? 그 이유는앞에서 말한 것처럼 isEqualTo()는 Java문법의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;equals()&lt;/code&gt;와 동일한 기능을 제공하기 때문이다. 우리는 Member를 정의할 때, Object 클래스의 equals()메서드를 오버라이딩하지 않았기 때문에 단순 객체의 참조값을 비교하게 된다. 때문에 에러가 발생하는 것이다. &lt;br /&gt;&lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;case3&lt;/code&gt; 의 경우는 성공할 것이다. 맴버변수 name은 String 타입이다. String은 equals() 함수를 오버라이딩 해서 실제 값을 비교하도록 구현돼있다. memberA, memberB는 동일한 member라는 이름을 가지기 때문에 성공한다. &lt;br /&gt;&lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;case4&lt;/code&gt; 의 경우도 String 타입이기 때문에 실제 값을 비교하여 성공하게 될 것이다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;isinstanceof&quot;&gt;isInstanceOf()&lt;/h2&gt;
-
-&lt;p&gt;이 메서드는 대상이 특정 클래스의 인스턴스인지 검증할 때 사용한다. 사용법은 &lt;strong&gt;assertThat(a).isInstanceOf(b.class)&lt;/strong&gt;와 같이 사용하면 된다. &lt;br /&gt; 아래 예시 코드를 보자 &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/43_15.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;isnull-isnotnull&quot;&gt;isNull(), isNotNull()&lt;/h2&gt;
-
-&lt;p&gt;이름 그대로 대상이 null인지 아닌지 확인하는 메서드이다. &lt;br /&gt;
-바로 예시를 보자 &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/43_16.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;contains-containsexactly&quot;&gt;contains(), containsExactly()&lt;/h2&gt;
-
-&lt;p&gt;contains()는 리스트에 특정 원소가 포함됐는지 확인할 때 사용한다. 순서를 따지지 않고 값만 존재한다면 통과한다. &lt;br /&gt;
-사용방법은 &lt;strong&gt;Assertions.assertThat(list).contains(1, 2)&lt;/strong&gt;와 같다. &lt;br /&gt;&lt;br /&gt;
-containsExactly()는 contains()와 달리 원소의 순서, 개수까지 정확하게 동일해야 통과를 한다. &lt;br /&gt;
-아래 코드를 보고 어떤 결과가 나올지 생각해보자.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/43_17.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;case1&lt;/code&gt;의 경우는 실패할 것이다. containsExactly()는 정확하게 값이 일치하고 순서도 같아야 하기 때문이다. &lt;br /&gt;&lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;case2&lt;/code&gt;는 성공할 것이다. 순서와 값이 일치한다. &lt;br /&gt;&lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;case3&lt;/code&gt;은 성공할 것이다. contains는 값의 일부만 일치해도 통과가 된다. 그리고 순서도 신경쓰지 않기 때문이다. &lt;br /&gt;&lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;case4&lt;/code&gt;는 실패할 것이다. 값은 모두 일치하지만 순서가 다르기 때문이다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;오늘은 기본적인 단위 테스트에 대해서 정리해봤다. 혹시 잘못된 부분이 있다면 알려주세요~ &lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;참고-사이트&quot;&gt;참고 사이트&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;https://m42-orion.tistory.com/97?category=1085496&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;https://tecoble.techcourse.co.kr/post/2021-05-25-unit-test-vs-integration-test-vs-acceptance-test/&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;https://velog.io/@chori/JUnit-5-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;https://inkyu-yoon.github.io/docs/Language/Spring/IsEqualIsSame&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;https://bcp0109.tistory.com/317&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="테스트" /><category term="우테코" /><category term="프리코스" /><category term="테스트" /><category term="Junit5" /><summary type="html"></summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="Network" /><category term="Netowrk" /><summary type="html"></summary></entry></feed>

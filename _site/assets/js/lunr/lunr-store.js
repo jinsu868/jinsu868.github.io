@@ -288,13 +288,13 @@ var store = [{
         "teaser": null
       },{
         "title": "[디자인패턴] 템플릿 메소드 패턴",
-        "excerpt":"템플릿 메소드 패턴 오늘은 디자인패턴 중 하나인 템플릿 메소드 패턴에 대해서 알아보자. 정의 Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm’s structure. -GoF design pattern 템플릿 메소드 패턴은 알고리즘의 뼈대를...","categories": ["디자인패턴"],
+        "excerpt":"템플릿 메소드 패턴 정의 Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm’s structure. -GoF design pattern 템플릿 메소드 패턴은 알고리즘의 뼈대를 정의하고 서브 클래스마다 세부 동작 사항을 다르게 구현하는 패턴을...","categories": ["디자인패턴"],
         "tags": ["디자인패턴"],
         "url": "/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49/",
         "teaser": null
       },{
         "title": "[디자인패턴] 컴포짓 패턴",
-        "excerpt":"컴포짓 패턴 오늘은 디자인패턴 중 하나인 컴포짓 패턴에 대해서 알아보자. 정의 Composite design pattern comes under Structural Patterns is one of the most important and usable part of design pattern. Developers, in his daily life uses this pattern in somehow but he doesn’t know that its really a Composite Design Pattern. -GoF design...","categories": ["디자인패턴"],
+        "excerpt":"컴포짓 패턴 정의 Composite design pattern comes under Structural Patterns is one of the most important and usable part of design pattern. Developers, in his daily life uses this pattern in somehow but he doesn’t know that its really a Composite Design Pattern. -GoF design pattern 컴포짓 패턴은 클라이언트로 하여금 각 객체와 객체의...","categories": ["디자인패턴"],
         "tags": ["디자인패턴"],
         "url": "/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50/",
         "teaser": null
@@ -309,5 +309,11 @@ var store = [{
         "excerpt":"퍼사드 패턴 정의 Provide a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use. Wrap a complicated subsystem with a simpler interface. -GoF design pattern 퍼사드 패턴은 서브 시스템에 있는 여러 개의 인터페이스를 통합하여 하나의 인터페이스를 제공한다....","categories": ["디자인패턴"],
         "tags": ["디자인패턴"],
         "url": "/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/52/",
+        "teaser": null
+      },{
+        "title": "[디자인패턴] 상태 패턴",
+        "excerpt":"상태 패턴 정의 Allow an object to alter its behavior when its internal state changes. The object will appear to change its class. -GoF design pattern 객체 내부의 상태가 바뀔 때, 객체의 동작을 변경할 수 있도록 한다. 구조 Context 여러 상태가 존재하는 시스템을 말한다. 시스템은 상태를 나타내는 State를 가지고 있으며...","categories": ["디자인패턴"],
+        "tags": ["디자인패턴"],
+        "url": "/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/53/",
         "teaser": null
       }]
