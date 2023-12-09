@@ -304,4 +304,10 @@ var store = [{
         "tags": ["디자인패턴"],
         "url": "/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51/",
         "teaser": null
+      },{
+        "title": "[디자인패턴] 퍼사드 패턴",
+        "excerpt":"퍼사드 패턴 정의 Provide a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use. Wrap a complicated subsystem with a simpler interface. -GoF design pattern 퍼사드 패턴은 서브 시스템에 있는 여러 개의 인터페이스를 통합하여 하나의 인터페이스를 제공한다....","categories": ["디자인패턴"],
+        "tags": ["디자인패턴"],
+        "url": "/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/52/",
+        "teaser": null
       }]

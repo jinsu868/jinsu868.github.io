@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[디자인패턴] 템플릿 메소드 패턴 - Jinsu’s story</title>
-<meta name="description" content="">
+<!-- begin _includes/seo.html --><title>[디자인패턴] 퍼사드 패턴 - Jinsu’s story</title>
+<meta name="description" content="퍼사드 패턴">
 
 
   <meta name="author" content="Moon JinSu">
@@ -22,30 +22,30 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="Jinsu's story">
-<meta property="og:title" content="[디자인패턴] 템플릿 메소드 패턴">
-<meta property="og:url" content="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49/">
+<meta property="og:title" content="[디자인패턴] 퍼사드 패턴">
+<meta property="og:url" content="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/52/">
 
 
-  <meta property="og:description" content="">
-
-
-
-
-
-
-
-  <meta property="article:published_time" content="2023-12-04T00:00:00+09:00">
+  <meta property="og:description" content="퍼사드 패턴">
 
 
 
 
 
-  
+
+
+  <meta property="article:published_time" content="2023-12-09T00:00:00+09:00">
+
+
+
+
 
   
 
+  
 
-<link rel="canonical" href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49/">
+
+<link rel="canonical" href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/52/">
 
 
 
@@ -329,16 +329,16 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[디자인패턴] 템플릿 메소드 패턴">
-    <meta itemprop="description" content="">
-    <meta itemprop="datePublished" content="2023-12-04T00:00:00+09:00">
+    <meta itemprop="headline" content="[디자인패턴] 퍼사드 패턴">
+    <meta itemprop="description" content="퍼사드 패턴">
+    <meta itemprop="datePublished" content="2023-12-09T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49/" class="u-url" itemprop="url">[디자인패턴] 템플릿 메소드 패턴
+            <a href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/52/" class="u-url" itemprop="url">[디자인패턴] 퍼사드 패턴
 </a>
           </h1>
           
@@ -370,95 +370,142 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu"><li><a href="#템플릿-메소드-패턴">템플릿 메소드 패턴</a><ul><li><a href="#정의">정의</a></li><li><a href="#구조">구조</a><ul><li><a href="#abstract-class">Abstract Class</a></li><li><a href="#concreate-class">Concreate Class</a></li></ul></li><li><a href="#특징">특징</a><ul><li><a href="#장점">장점</a></li><li><a href="#단점">단점</a></li></ul></li><li><a href="#예제-코드">예제 코드</a><ul><li><a href="#beverage-클래스-abstract-class">Beverage 클래스 (Abstract Class)</a></li><li><a href="#americano-chocolatelatee-클래스-concreate-class">Americano, ChocolateLatee 클래스 (Concreate Class)</a></li></ul></li><li><a href="#hook-메소드">hook 메소드</a></li></ul></li><li><a href="#참고">참고</a></li></ul>
+              <ul class="toc__menu"><li><a href="#퍼사드-패턴">퍼사드 패턴</a><ul><li><a href="#정의">정의</a></li><li><a href="#구조">구조</a><ul><li><a href="#client">Client</a></li><li><a href="#facade">Facade</a></li><li><a href="#additional-facade">Additional Facade</a></li><li><a href="#subsystem">SubSystem</a></li></ul></li><li><a href="#특징">특징</a><ul><li><a href="#장점">장점</a><ul><li><a href="#1-시스템이-복잡할-때">1. 시스템이 복잡할 때</a></li><li><a href="#2-의존성을-낮추고-싶을-때">2. 의존성을 낮추고 싶을 때</a></li></ul></li><li><a href="#단점">단점</a><ul><li><a href="#1-퍼사드-패턴과-서브-시스템-사이의-의존성">1. 퍼사드 패턴과 서브 시스템 사이의 의존성</a></li><li><a href="#2-추가적인-코드">2. 추가적인 코드</a></li></ul></li></ul></li><li><a href="#예시">예시</a><ul><li><a href="#screen-speaker-lighter-projector-subsystem">Screen, Speaker, Lighter, Projector (SubSystem)</a></li><li><a href="#main-client">Main (Client)</a></li><li><a href="#moviefacade-facade">MovieFacade (Facade)</a></li><li><a href="#main-client-1">Main (Client)</a></li></ul></li><li><a href="#정리">정리</a></li><li><a href="#참고">참고</a></li></ul></li></ul>
 
             </nav>
           </aside>
         
-        <p><br /></p>
-
-<h1 id="템플릿-메소드-패턴">템플릿 메소드 패턴</h1>
-
-<p>오늘은 디자인패턴 중 하나인 <code class="language-plaintext highlighter-rouge">템플릿 메소드 패턴</code>에 대해서 알아보자.</p>
+        <h1 id="퍼사드-패턴">퍼사드 패턴</h1>
 
 <h2 id="정의">정의</h2>
+
 <blockquote>
-  <p>Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm’s structure.</p>
+  <p>Provide a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use.</p>
+
+  <p>Wrap a complicated subsystem with a simpler interface.</p>
 
   <p>-GoF design pattern</p>
 </blockquote>
 
-<p><code class="language-plaintext highlighter-rouge">템플릿 메소드 패턴</code>은 알고리즘의 뼈대를 정의하고 서브 클래스마다 세부 동작 사항을 다르게 구현하는 패턴을 말한다.
-변하지 않는 템플릿은 상위 클래스에 만들어두고 자주 변경되거나 확장되는 기능은 하위 클래스에서 만들도록 하여, 템플릿 메소드의 동작 순서는 고정하고 세부 실행 내용을 다양화할 때 사용한다.</p>
+<p>퍼사드 패턴은 서브 시스템에 있는 여러 개의 인터페이스를 통합하여 하나의 인터페이스를 제공한다.</p>
+
+<p>복잡한 서브 시스템을 사용하기 쉽게 고수준의 인터페이스를 정의하는 패턴이다.</p>
 
 <h2 id="구조">구조</h2>
 
-<p><img src="/assets/images/49_1.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
+<p><img src="/assets/images/52_1.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
 
-<h3 id="abstract-class">Abstract Class</h3>
-<p><code class="language-plaintext highlighter-rouge">템플릿 메소드</code>를 구현하고, 템플릿 메소드에 사용되는 추상 메소드를 선언한다.
-이 추상 메소드는 하위 클래스인 <code class="language-plaintext highlighter-rouge">Concreate Class</code>에서 구현된다.</p>
+<h3 id="client">Client</h3>
 
-<h3 id="concreate-class">Concreate Class</h3>
-<p><code class="language-plaintext highlighter-rouge">Abstract Class</code>를 상속하고 추상 메소드를 구현한다. <code class="language-plaintext highlighter-rouge">Concreate Class</code>에서 구현한 메소드는 <code class="language-plaintext highlighter-rouge">Abstract Class</code>의 <code class="language-plaintext highlighter-rouge">템플릿 메소드</code>에서 호출된다.</p>
+<p><code class="language-plaintext highlighter-rouge">클라이언트</code>는 <code class="language-plaintext highlighter-rouge">서브 시스템</code>에 바로 접근할 수도 있고 <code class="language-plaintext highlighter-rouge">Facade</code>를 통해서 <code class="language-plaintext highlighter-rouge">서브 시스템</code>의 기능을 사용할 수 있다.</p>
+
+<h3 id="facade">Facade</h3>
+
+<p><code class="language-plaintext highlighter-rouge">서브 시스템</code> 기능을 묶은 고수준의 인터페이스이다. 이를 통해서 <code class="language-plaintext highlighter-rouge">클라이언트</code>와 <code class="language-plaintext highlighter-rouge">서브 시스템</code>간의 의존성을 낮출 수 있다.</p>
+
+<h3 id="additional-facade">Additional Facade</h3>
+
+<p><code class="language-plaintext highlighter-rouge">Facade</code>가 하나라는 규칙은 존재하지 않는다. 다양한 <code class="language-plaintext highlighter-rouge">서브 시스템</code>을 묶어서 새로운 <code class="language-plaintext highlighter-rouge">Facade</code>를 만들수도 있다.</p>
+
+<p>이렇게 묶인 <code class="language-plaintext highlighter-rouge">Facade</code>는 다른 <code class="language-plaintext highlighter-rouge">Facade</code>에 포함될 수도 있고 <code class="language-plaintext highlighter-rouge">클라이언트</code>에서 바로 사용될 수도 있다.</p>
+
+<h3 id="subsystem">SubSystem</h3>
+
+<p>여러개의 <code class="language-plaintext highlighter-rouge">서브 클래스</code>를 나타낸다.</p>
 
 <h2 id="특징">특징</h2>
 
 <h3 id="장점">장점</h3>
-<ol>
-  <li>공통되는 부분을  묶어서 관리하기 때문에 코드의 중복을 줄일 수 있고 관리하기도 편하다.</li>
-  <li>알고리즘의 특정 부분만 재정의하여 변경 사항에 대한 영향을 줄일 수 있다.</li>
-</ol>
+
+<p>그렇다면 퍼사드 패턴은 언제 사용하면 좋을까?</p>
+
+<h4 id="1-시스템이-복잡할-때">1. 시스템이 복잡할 때</h4>
+
+<p>시스템이 굉장히 복잡한 경우를 생각해보자. 이런 경우 서브 시스템의 인터페이스를 하나씩 사용하여 로직을 구성해야 하는데 굉장히 복잡할 수 있다.</p>
+
+<p>이때 퍼사드 패턴을 사용하면 복잡한 서브 시스템 호출을 내부에 감추면서 <code class="language-plaintext highlighter-rouge">고수준의 인터페이스</code> 하나로 사용할 수 있게 된다.</p>
+
+<h4 id="2-의존성을-낮추고-싶을-때">2. 의존성을 낮추고 싶을 때</h4>
+
+<p>시스템을 사용하는 클라이언트와 서브 시스템간의 의존성이 높을 때 퍼사드 패턴이 유용하다.</p>
+
+<p>퍼사드 패턴을 통해 서브 시스템의 기능을 사용하게 되면 <strong>클라이언트와 서브 시스템간의 의존성을 낮출 수 있다.</strong></p>
 
 <h3 id="단점">단점</h3>
-<ol>
-  <li>템플릿 메소드에 정의한 골격은 고정돼있기 때문에 유연성이 제한될 수 있다.</li>
-  <li>알고리즘이 복잡하다면 템플릿 메소드를 만들거나 유지하기 어려울 수 있다.</li>
-  <li>추상 메소드가 많아지면 새로운 서브 클래스를 추가하거나 관리하기가 어려울 수 있다.</li>
-  <li>템플릿 메소드의 실행 흐름을 이해해야지만 서브 클래스에서 추상 메소드를 재정의할 수 있다.</li>
-  <li>만약 템플릿 메소드의 알고리즘이 변경된다면 서브 클래스에서 재정의한 추상 메소드를 수정해야 할 수도 있다.</li>
-</ol>
 
-<p>지금까지 <code class="language-plaintext highlighter-rouge">템플릿 메소드 패턴</code>의 구조와 특징에 대해서 알아봤다.
-이제 실제로 어떤식으로 활용될 수 있는지 코드를 통해서 확인하자!</p>
+<p>그렇다면 퍼사드 패턴을 사용하는 것이 무조건 좋을까?</p>
 
-<h2 id="예제-코드">예제 코드</h2>
+<h4 id="1-퍼사드-패턴과-서브-시스템-사이의-의존성">1. 퍼사드 패턴과 서브 시스템 사이의 의존성</h4>
 
-<h3 id="beverage-클래스-abstract-class">Beverage 클래스 (Abstract Class)</h3>
+<p>퍼사드 패턴을 사용하게 되더라도 퍼사드 객체와 서브 시스템 사이의 의존성은 피할 수 없다.</p>
 
-<p><img src="/assets/images/49_2.png" alt="img2" width="90%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
+<h4 id="2-추가적인-코드">2. 추가적인 코드</h4>
 
-<p>여기서 <code class="language-plaintext highlighter-rouge">prepareRecipe()</code>메소드는 템플릿 메소드이다. 
-<code class="language-plaintext highlighter-rouge">boilWater()</code>,  <code class="language-plaintext highlighter-rouge">pour()</code>는 모든 음료가 공통으로 처리해야 하는 로직이라고 생각하고 <code class="language-plaintext highlighter-rouge">addCondiments()</code>는 각 음료마다 재료가 다르기 때문에 달라져야 하는 부분이라고 생각해보자.
-그러면 공통되는 부분은 나두고 각 음료마다 바뀌는 <code class="language-plaintext highlighter-rouge">addCondiments()</code>를 추상 메소드로 선언하여 서브 클래스에서 구현하게 하면 변경을 최소화하면서 각 서브 클래스로 구현을 미루면서 유연한 확장을 할 수 있게 된다.</p>
+<p>퍼사드 패턴을 사용하기 위해서는 퍼사드 객체를 만들어야 한다. 이는 코드의 증가를 유발하고 유지보수 관점에서 비용이 발생한다.</p>
 
-<h3 id="americano-chocolatelatee-클래스-concreate-class">Americano, ChocolateLatee 클래스 (Concreate Class)</h3>
+<p>-&gt; <strong>퍼사드 패턴을 사용하면서 얻을 수 있는 이점과 추가적인 유지보수 비용을 잘 비교하여 사용 여부를 결정하는 것이 중요하다!</strong></p>
 
-<p><img src="/assets/images/49_3.png" alt="img3" width="90%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
+<h2 id="예시">예시</h2>
 
-<p><code class="language-plaintext highlighter-rouge">Americano</code>와  <code class="language-plaintext highlighter-rouge">ChocolateLatte</code>는 <code class="language-plaintext highlighter-rouge">Beverage</code>를 상속받아서 각자 <code class="language-plaintext highlighter-rouge">addCondiments()</code>메소드를 구현하게 된다. 그리고 템플릿 메소드인 <code class="language-plaintext highlighter-rouge">prepareRecipe()</code>를 호출하게 되면 전체적인 알고리즘 흐름은 동일하지만 세부 실행 내용을 변경할 수 있게 된다.</p>
+<p>집에서 스크린을 통해서 영화를 보는 상황을 생각해보자.</p>
 
-<h2 id="hook-메소드">hook 메소드</h2>
-<p><code class="language-plaintext highlighter-rouge">hook 메소드</code> 는 서브 클래스에서 좀 더 유연하게 템플릿 메소드의 알고리즘 로직을 다양화할 수 있게 도와주는 역할을 수행한다.
-일반적으로 추상 메소드가 아닌 일반 메소드로 구현을 하게 된다.
-그냥 나두게 되면 원래 설정한 기본 흐름대로 실행되고 서브 클래스에서 오버라이딩하게 되면 상황에 맞게 제어할 수 있다.</p>
+<p>방에서 스크린으로 영화를 보기 위해서는 스크린을 내리고 화면도 나오게 세팅해야 한다. 그리고 음향도 적절하게 조절하고 방의 불도 꺼야 한다.</p>
 
-<p>간단한 예시 코드를 보면서 이해해보자.</p>
+<p>리모컨 버튼 하나로 이 모든 것이 된다면 얼마나 좋을까??</p>
 
-<p><img src="/assets/images/49_4.png" alt="img4" width="90%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
+<p>이를 실현해주는 것이 <code class="language-plaintext highlighter-rouge">퍼사드 패턴</code>이다!</p>
 
-<p>템플릿 메소드인 <code class="language-plaintext highlighter-rouge">prepareRecipe()</code> 안에 있는 <code class="language-plaintext highlighter-rouge">isCustomerWantsTopping()</code>가 앞에서 말한 <code class="language-plaintext highlighter-rouge">hook 메서드</code>이다.
-기본적인 요구사항이 토핑을 추가하여 음료를 제공한다고 생각하고 로직을 작성한 것이다. 그런데 어떤 음료에는 토핑이 들어가지 않아야 할 수 있다. 이런 경우에는 서브 클래스에서 <code class="language-plaintext highlighter-rouge">hook 메서드</code>를 선택적으로 오버라이딩하여 템플릿 메소드의 흐름을 제어할 수 있다.</p>
+<p>아래 코드를 보며 이해해보자.</p>
 
-<p><img src="/assets/images/49_5.png" alt="img5" width="90%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
+<h3 id="screen-speaker-lighter-projector-subsystem">Screen, Speaker, Lighter, Projector (SubSystem)</h3>
 
-<p><code class="language-plaintext highlighter-rouge">Americano</code>에 기본적으로 토핑이 들어가면 안된다고 할 때, <code class="language-plaintext highlighter-rouge">hook 메서드</code>인 <code class="language-plaintext highlighter-rouge">isCustomerWantsTopping()</code>을 제정의하여 템플릿 메소드 안에있는 로직의 실행 흐름을 제어할 수 있다.</p>
+<p><img src="/assets/images/52_2.png" alt="img2" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
 
-<h1 id="참고">참고</h1>
+<p><code class="language-plaintext highlighter-rouge">스크린</code>, <code class="language-plaintext highlighter-rouge">스피커</code>, <code class="language-plaintext highlighter-rouge">라이터</code>, <code class="language-plaintext highlighter-rouge">프로젝터</code>는 위에서 말한 <code class="language-plaintext highlighter-rouge">서브 시스템</code>이다. 퍼사드 패턴을 사용하지 않고 영화를 보는 환경을 세팅하기 위해서는 아래와 같이 클라이언트에서 서브 시스템 각각을 호출해야 한다.</p>
+
+<h3 id="main-client">Main (Client)</h3>
+
+<p><img src="/assets/images/52_3.png" alt="img2" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>클라이언트(<code class="language-plaintext highlighter-rouge">Main</code>)과 서브 시스템의 의존성이 강한 것을 확인할 수 있다. 그리고 각각의 서브 시스템을 클라이언트에서 호출해야 한다.</p>
+
+<p>퍼사드 패턴을 사용하면 좀 더 간단한 인터페이스를 사용하여 서브 클래스의 동작을 제어할 수 있다.</p>
+
+<p>아래 코드를 보자.</p>
+
+<h3 id="moviefacade-facade">MovieFacade (Facade)</h3>
+
+<p><img src="/assets/images/52_4.png" alt="img2" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>여러 서브 시스템을 묶어서 하나의 인터페이스(<code class="language-plaintext highlighter-rouge">setMovieEnv()</code>)를 제공하는 것을 볼 수 있다.</p>
+
+<p>이제 <code class="language-plaintext highlighter-rouge">MovieFacade</code>를 통해서 클라이언트에서 서브 시스템에 접근하는 코드를 보자.</p>
+
+<h3 id="main-client-1">Main (Client)</h3>
+
+<p><img src="/assets/images/52_5.png" alt="img2" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>클라이언트에서 <code class="language-plaintext highlighter-rouge">MovieFacade</code>의 <code class="language-plaintext highlighter-rouge">setMovieEnv()</code>를 통해서 서브 시스템에 접근하는 것을 볼 수 있다.</p>
+
+<p><strong>물론 여전히 클라이언트는 각 서브 시스템에도 직접 접근할 수 있다.</strong></p>
+
+<h2 id="정리">정리</h2>
+
+<p>지금까지 퍼사드 패턴에 대해서 알아봤다. 퍼사드 패턴은 복잡한 서브 시스템을 묶어서 클라이언트와 서브 시스템의 의존성을 낮추고 좀 더 간단한 인터페이스로 접근할 수 있게 도와준다.</p>
+
+<p>이렇게 좋은 점도 있지만 추가적인 유지보수 비용도 있기 때문에 득실을 잘 따져서 적절하게 사용하는 것이 중요하다.</p>
+
+<h2 id="참고">참고</h2>
+
 <ul>
-  <li><a href="https://url.kr/tw2s8o">인파님 블로그</a></li>
-  <li>헤드 퍼스트 디자인 패턴</li>
+  <li>
+    <p><a href="https://inpa.tistory.com/entry/GOF-%F0%9F%92%A0-%ED%8D%BC%EC%82%AC%EB%93%9CFacade-%ED%8C%A8%ED%84%B4-%EC%A0%9C%EB%8C%80%EB%A1%9C-%EB%B0%B0%EC%9B%8C%EB%B3%B4%EC%9E%90">인파님 블로그</a></p>
+  </li>
+  <li>
+    <p>헤드 퍼스트 디자인 패턴</p>
+  </li>
 </ul>
+
 
         
       </section>
@@ -500,7 +547,7 @@
 
         
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-12-04T00:00:00+09:00">December 4, 2023</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-12-09T00:00:00+09:00">December 9, 2023</time></p>
 
       </footer>
 
@@ -509,23 +556,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5B%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4%5D+%ED%85%9C%ED%94%8C%EB%A6%BF+%EB%A9%94%EC%86%8C%EB%93%9C+%ED%8C%A8%ED%84%B4%20http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2F49%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5B%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4%5D+%ED%8D%BC%EC%82%AC%EB%93%9C+%ED%8C%A8%ED%84%B4%20http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2F52%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2F49%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2F52%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2F49%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2F52%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/devops/48/" class="pagination--pager" title="[DevOps] CI/CD &amp; 무중단 배포
+      <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51/" class="pagination--pager" title="[디자인패턴] 어댑터 패턴
 ">이전</a>
     
     
-      <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50/" class="pagination--pager" title="[디자인패턴] 컴포짓 패턴
-">다음</a>
+      <a href="#" class="pagination--pager disabled">다음</a>
     
   </nav>
 
@@ -539,51 +585,6 @@
     <div class="page__related">
       <h2 class="page__related-title">참고</h2>
       <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/52/" rel="permalink">[디자인패턴] 퍼사드 패턴
-</a>
-      
-    </h2>
-
-    
-      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> December 09 2023</p>
-    
-
-    <!-- 
-
-  <p class="page__meta">
-    
-
-    
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
-        
-          2 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">퍼사드 패턴
-</p> -->
-  </article>
-</div>
-
         
           
 
@@ -640,6 +641,51 @@
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50/" rel="permalink">[디자인패턴] 컴포짓 패턴
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> December 04 2023</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p> -->
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49/" rel="permalink">[디자인패턴] 템플릿 메소드 패턴
 </a>
       
     </h2>
