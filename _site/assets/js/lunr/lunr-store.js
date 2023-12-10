@@ -54,13 +54,13 @@ var store = [{
         "teaser": null
       },{
         "title": "[디자인패턴] 팩토리 패턴",
-        "excerpt":"본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다. Factory Method Pattern이란? 팩토리 메서드 패턴에서는 객체를 생성하기 위한 인터페이스를 정의하고, 어떤 클래스의 인스턴스를 만들지는 서브 클래스에서 결정하게 하는 패턴이다. 팩토리 메서드는 객체를 생성, 반환하는 메서드이다. 팩토리 클래스는 하위 클래스에서 팩토리 메서드를 오버라이딩해서 객체를 반환하게 하여 상위 클래스와 하위 클래스가 분리되게 함으로써 결합을...","categories": ["디자인패턴"],
+        "excerpt":"Factory Method Pattern이란? 팩토리 메서드 패턴에서는 객체를 생성하기 위한 인터페이스를 정의하고, 어떤 클래스의 인스턴스를 만들지는 서브 클래스에서 결정하게 하는 패턴이다. 팩토리 메서드는 객체를 생성, 반환하는 메서드이다. 팩토리 클래스는 하위 클래스에서 팩토리 메서드를 오버라이딩해서 객체를 반환하게 하여 상위 클래스와 하위 클래스가 분리되게 함으로써 결합을 느슨하게 한다. DIP를 활용한다. 팩토리 패턴은 왜...","categories": ["디자인패턴"],
         "tags": ["디자인패턴","CS"],
         "url": "/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Factory/",
         "teaser": null
       },{
         "title": "[디자인패턴] 싱글톤 패턴",
-        "excerpt":"본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다. 디자인패턴 디자인 패턴이란 프로그램을 설계할 때 발생했던 문제점들을 객체 간의 상호 관계 등을 이용해서 해결할 수 있도록 하나의 규약 형태로 만들어 놓은 것을 뜻한다. 싱글톤 패턴이란? 싱글톤 패턴이란 하나의 클래스에 대해 오직 하나의 인스턴스만 가지고 이를 공유하는 패턴이다. 데이터베이스 연결 모듈에 많이 사용된다....","categories": ["디자인패턴"],
+        "excerpt":"디자인패턴 디자인 패턴이란 프로그램을 설계할 때 발생했던 문제점들을 객체 간의 상호 관계 등을 이용해서 해결할 수 있도록 하나의 규약 형태로 만들어 놓은 것을 뜻한다. 싱글톤 패턴이란? 싱글톤 패턴이란 하나의 클래스에 대해 오직 하나의 인스턴스만 가지고 이를 공유하는 패턴이다. 데이터베이스 연결 모듈에 많이 사용된다. 장점 인스턴스를 한 번 생성하면 더 이상...","categories": ["디자인패턴"],
         "tags": ["디자인패턴","CS"],
         "url": "/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Singleton/",
         "teaser": null
@@ -315,5 +315,11 @@ var store = [{
         "excerpt":"상태 패턴 정의 Allow an object to alter its behavior when its internal state changes. The object will appear to change its class. -GoF design pattern 객체 내부의 상태가 바뀔 때, 객체의 동작을 변경할 수 있도록 한다. 구조 Context 여러 상태가 존재하는 시스템을 말한다. 시스템은 상태를 나타내는 State를 가지고 있으며...","categories": ["디자인패턴"],
         "tags": ["디자인패턴"],
         "url": "/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/53/",
+        "teaser": null
+      },{
+        "title": "[디자인패턴] 커맨드 패턴",
+        "excerpt":"커맨드 패턴 정의 Encapsulate a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable operations. -GoF design pattern 요구사항(요청, 명령)을 객체로 캡슐화하여 서로 다른 요구사항을 가진 클라이언트를 매개변수화시킬 수 있고 요구사항을 큐에 넣어 로그를 남기거나 작업을 취소할 수 있는 기능을...","categories": ["디자인패턴"],
+        "tags": ["디자인패턴"],
+        "url": "/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/54/",
         "teaser": null
       }]

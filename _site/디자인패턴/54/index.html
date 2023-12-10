@@ -1,0 +1,841 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[디자인패턴] 커맨드 패턴 - Jinsu’s story</title>
+<meta name="description" content="커맨드 패턴">
+
+
+  <meta name="author" content="Moon JinSu">
+  
+  <meta property="article:author" content="Moon JinSu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="Jinsu's story">
+<meta property="og:title" content="[디자인패턴] 커맨드 패턴">
+<meta property="og:url" content="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/54/">
+
+
+  <meta property="og:description" content="커맨드 패턴">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-12-10T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/54/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "문진수(Moon JinSu)",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Jinsu's story Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Jinsu's story
+          
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Moon JinSu</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>tech blog</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seoul, Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:mjinsu098@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/jinsu868" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+
+<!-- Categories -->
+<nav class="nav__list">
+  <ul class="nav__items" id="category_tag_menu">
+      <li>
+          <span class="nav__sub-title">📂 Total (54)</span>
+          <ul>
+              
+                  
+                  <li>
+                      <a href="/categories/#spring" class="">Spring (14)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#디자인패턴" class="">디자인패턴 (14)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#java" class="">Java (3)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#알고리즘" class="">알고리즘 (2)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#jpa" class="">JPA (7)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#데이터베이스" class="">데이터베이스 (4)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#network" class="">Network (5)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#클린코드" class="">클린코드 (1)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#git" class="">git (1)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#우테코" class="">우테코 (1)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#테스트" class="">테스트 (2)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#devops" class="">DevOps (1)</a>
+                  </li>
+                  
+              
+          </ul>
+      </li>
+  </ul>
+  </nav>
+
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[디자인패턴] 커맨드 패턴">
+    <meta itemprop="description" content="커맨드 패턴">
+    <meta itemprop="datePublished" content="2023-12-10T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/54/" class="u-url" itemprop="url">[디자인패턴] 커맨드 패턴
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#커맨드-패턴">커맨드 패턴</a><ul><li><a href="#정의">정의</a></li><li><a href="#구조">구조</a><ul><li><a href="#invoker">Invoker</a></li><li><a href="#command">Command</a></li><li><a href="#concretecommand">ConcreteCommand</a></li><li><a href="#receiver">Receiver</a></li></ul></li><li><a href="#특징">특징</a><ul><li><a href="#장점">장점</a><ul><li><a href="#1-실제로-실행하는-객체receiver와-실행을-요청하는-객체invoker를-분리하여-결합도를-낮춘다">1. 실제로 실행하는 객체(Receiver)와 실행을 요청하는 객체(Invoker)를 분리하여 결합도를 낮춘다.</a></li><li><a href="#2-기존의-코드를-수정하지-않고도-새로운-명령을-추가할-수-있다-ocp-원칙">2. 기존의 코드를 수정하지 않고도 새로운 명령을 추가할 수 있다. (OCP 원칙)</a></li></ul></li><li><a href="#단점">단점</a><ul><li><a href="#1-새로운-명령이-생길때마다-클래스가-추가되기-때문에-코드-복잡성이-증가할-수-있다">1. 새로운 명령이 생길때마다 클래스가 추가되기 때문에 코드 복잡성이 증가할 수 있다.</a></li></ul></li></ul></li><li><a href="#예제">예제</a><ul><li><a href="#리모컨-기능">리모컨 기능</a></li><li><a href="#remote-class">Remote Class</a></li><li><a href="#light--tv-class">Light &amp; Tv Class</a><ul><li><a href="#추가된-요구사항">추가된 요구사항</a></li></ul></li><li><a href="#커맨드-패턴을-적용한-코드">커맨드 패턴을 적용한 코드</a></li><li><a href="#command-1">Command</a></li><li><a href="#project-receiver">Project (Receiver)</a></li><li><a href="#lightoncommandlightoffcommand-concrete-command">LightOnCommand/LightOffCommand (Concrete Command)</a></li><li><a href="#tvoncommandtvoffcommand-concrete-command">TvOnCommand/TvOffCommand (Concrete Command)</a></li><li><a href="#projectoncommandprojectoffcommand-concrete-command">ProjectOnCommand/ProjectOffCommand (Concrete Command)</a></li><li><a href="#remote-invoker">Remote (Invoker)</a></li></ul></li><li><a href="#정리">정리</a></li><li><a href="#참고">참고</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <h1 id="커맨드-패턴">커맨드 패턴</h1>
+
+<h2 id="정의">정의</h2>
+
+<blockquote>
+  <p>Encapsulate a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable operations.</p>
+
+  <p>-GoF design pattern</p>
+</blockquote>
+
+<p>요구사항(요청, 명령)을 객체로 캡슐화하여 서로 다른 요구사항을 가진 클라이언트를 매개변수화시킬 수 있고 요구사항을 큐에 넣어 로그를 남기거나 작업을 취소할 수 있는 기능을 가능하게 한다.</p>
+
+<h2 id="구조">구조</h2>
+
+<p><img src="/assets/images/54_1.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<h3 id="invoker">Invoker</h3>
+
+<p>요청을 받고 이를 실행시키는 역할을 수행한다. Command 인터페이스만 알고 있으며 실제로 Command가 어떻게 실행되는지는 알지 못한다.</p>
+
+<h3 id="command">Command</h3>
+
+<p><code class="language-plaintext highlighter-rouge">execute()</code> 메소드를 선언한다.</p>
+
+<h3 id="concretecommand">ConcreteCommand</h3>
+
+<p>Command 인터페이스를 구현하며 맴버 변수로 Receiver를 가지고 있다.  <code class="language-plaintext highlighter-rouge">execute()</code>메소드 안에서 Receiver 메소드를 호출하여 로직이 실행된다.</p>
+
+<h3 id="receiver">Receiver</h3>
+
+<p>실제 명령이 실행되는 부분이다.</p>
+
+<h2 id="특징">특징</h2>
+
+<h3 id="장점">장점</h3>
+
+<h4 id="1-실제로-실행하는-객체receiver와-실행을-요청하는-객체invoker를-분리하여-결합도를-낮춘다">1. 실제로 실행하는 객체(Receiver)와 실행을 요청하는 객체(Invoker)를 분리하여 결합도를 낮춘다.</h4>
+
+<p>Invoker는 Reciver를 알지 못한 채로 Command의 <code class="language-plaintext highlighter-rouge">execute()</code>메소드를 통해 실행을 하게 된다.</p>
+
+<h4 id="2-기존의-코드를-수정하지-않고도-새로운-명령을-추가할-수-있다-ocp-원칙">2. 기존의 코드를 수정하지 않고도 새로운 명령을 추가할 수 있다. (OCP 원칙)</h4>
+
+<p>새로운 명령이 추가되도 Invoker를 수정하지 않고 Revicer와  Command만 구현하면 된다.</p>
+
+<h3 id="단점">단점</h3>
+
+<h4 id="1-새로운-명령이-생길때마다-클래스가-추가되기-때문에-코드-복잡성이-증가할-수-있다">1. 새로운 명령이 생길때마다 클래스가 추가되기 때문에 코드 복잡성이 증가할 수 있다.</h4>
+
+<p>-&gt; 이제 예제를 보면서 이해해보자!</p>
+
+<h2 id="예제">예제</h2>
+
+<p>다음과 같은 기능을 가진 리모컨을 생각해보자.</p>
+
+<h3 id="리모컨-기능">리모컨 기능</h3>
+
+<ol>
+  <li>전등  ON/OFF</li>
+  <li>TV ON/OFF</li>
+</ol>
+
+<p>이를 표현하기 위해서는 리모컨, 전등, TV 클래스가 필요할 것이다. 아래 코드를 보자.</p>
+
+<h3 id="remote-class">Remote Class</h3>
+
+<p><img src="/assets/images/54_2.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>리모컨 클래스이다. 불끄기, 불켜기, Tv켜기, Tv끄기 메소드를 가진다.</p>
+
+<h3 id="light--tv-class">Light &amp; Tv Class</h3>
+
+<p><img src="/assets/images/54_3.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>만약 이 상황에서 새로운 요구사항이 생겼다고 가정해보자.</p>
+
+<h4 id="추가된-요구사항">추가된 요구사항</h4>
+
+<ul>
+  <li>리모컨을 통해 프로젝트를 켜고 끄는 기능을 추가해주세요.</li>
+</ul>
+
+<p>이를 만족시키기 위해서는 Remote 클래스에 맴버 변수로 Project를 추가하고 Project를 켜고 끄는 메소드를 추가해야 한다. 이는 기존 코드인 Remote를 수정하는 것이기 때문에 OCP를 위반하게 된다. 커맨드 패턴을 적용하면 요청을 호출하는 Remote 클래스와 실제 실행이 되는 Tv, Light 클래스 사이의 결합도를 낮추고 새로운 요구사항(프로젝트 Up/Down)이 생겼을 때 기존 코드(Remote 클래스)를 손보지 않고 기능을 추가할 수 있게 된다.</p>
+
+<p>코드를 통해서 확인해보자!</p>
+
+<h3 id="커맨드-패턴을-적용한-코드">커맨드 패턴을 적용한 코드</h3>
+
+<h3 id="command-1">Command</h3>
+
+<p><img src="/assets/images/54_5.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>명령을 추상화한 Command 인터페이스이다.</p>
+
+<h3 id="project-receiver">Project (Receiver)</h3>
+
+<p><img src="/assets/images/54_4.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>새로 추가된 명령을 수행하는 Project 클래스이다. 위의 클래스 다이어그램에서 설명했던 Receiver 역할을 수행하는 클래스이다.</p>
+
+<p>앞서 봤던 Light, Tv도 모두 Receiver이다. (Light, Tv는 코드가 동일하니 위의 코드를 참고하자.)</p>
+
+<h3 id="lightoncommandlightoffcommand-concrete-command">LightOnCommand/LightOffCommand (Concrete Command)</h3>
+
+<p><img src="/assets/images/54_6.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>Command 인터페이스를 구현하고 <code class="language-plaintext highlighter-rouge">execute()</code>메소드 안에서 Light(Receiver)의 메소드를 호출한다.</p>
+
+<p>이를 통해 Remote 클래스(Invoker)와 Light 클래스(Receiver) 사이의 결합도를 낮추게 된다.</p>
+
+<h3 id="tvoncommandtvoffcommand-concrete-command">TvOnCommand/TvOffCommand (Concrete Command)</h3>
+
+<p><img src="/assets/images/54_7.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>위에 설명한 Light의 경우와 완전히 동일하다.</p>
+
+<h3 id="projectoncommandprojectoffcommand-concrete-command">ProjectOnCommand/ProjectOffCommand (Concrete Command)</h3>
+
+<p><img src="/assets/images/54_8.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>마찬가지로 Light, Tv와 완전히 동일하니 설명은 생략한다.</p>
+
+<h3 id="remote-invoker">Remote (Invoker)</h3>
+
+<p><img src="/assets/images/54_9.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>Remote 클래스는 Command 인터페이스에만 의존한다. 때문에 실제로 각 ConcreteCommand가 어떤 Recevier를 호출하는지 알지 못한다.</p>
+
+<p>커맨드를 추가하는 <code class="language-plaintext highlighter-rouge">setCommand()</code>, On/Off 버튼을 누르는 <code class="language-plaintext highlighter-rouge">onButtonPush()</code>, <code class="language-plaintext highlighter-rouge">offButtonPush()</code>메소드를 가지고 있다.</p>
+
+<p>이 함수 내부에서는 Command의 <code class="language-plaintext highlighter-rouge">execute()</code>를 호출하게 된다.</p>
+
+<p>코드를 보면 알 수 있듯이 새로운 기능을 추가함에 있어서 기존 코드를 수정할 필요가 없다 (OCP원칙). 그저 새로운 Receiver (여기서는 Project)와 ConcreteCommand(ProjectOnCommand, ProjectOffComand)만 새로 만들면 된다.</p>
+
+<h2 id="정리">정리</h2>
+
+<p>커맨드 패턴을 사용하면 실행을 요청하는 객체와 실제 실행하는 객체 사이의 결합도를 낮출 수 있다.</p>
+
+<p>때문에 새로운 요구사항이 발생해도 유연하게 대처할 수 있다. 하지만 관리해야 하는 객체의 수가 늘어나기 때문에 무분별한 사용은 코드의 복잡도를 증가시킬 수 있다.</p>
+
+<p>무작정 적용하기보다는 꼭 필요한 곳에만 사용하도록 하자.</p>
+
+<h2 id="참고">참고</h2>
+
+<ul>
+  <li>헤드 퍼스트 디자인 패턴</li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4" class="page__taxonomy-item p-category" rel="tag">디자인패턴</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4" class="page__taxonomy-item p-category" rel="tag">디자인패턴</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-12-10T00:00:00+09:00">December 10, 2023</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5B%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4%5D+%EC%BB%A4%EB%A7%A8%EB%93%9C+%ED%8C%A8%ED%84%B4%20http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2F54%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2F54%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2F54%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/53/" class="pagination--pager" title="[디자인패턴] 상태 패턴
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/53/" rel="permalink">[디자인패턴] 상태 패턴
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> December 09 2023</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">상태 패턴
+</p> -->
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/52/" rel="permalink">[디자인패턴] 퍼사드 패턴
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> December 09 2023</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">퍼사드 패턴
+</p> -->
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51/" rel="permalink">[디자인패턴] 어댑터 패턴
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> December 09 2023</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">어댑터 패턴
+</p> -->
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50/" rel="permalink">[디자인패턴] 컴포짓 패턴
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> December 04 2023</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">
+</p> -->
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="mailto:mjinsu098@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+        
+      
+        
+          <li><a href="https://github.com/jinsu868" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 문진수(Moon JinSu). Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

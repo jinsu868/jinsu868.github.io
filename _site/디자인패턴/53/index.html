@@ -239,7 +239,7 @@
 <nav class="nav__list">
   <ul class="nav__items" id="category_tag_menu">
       <li>
-          <span class="nav__sub-title">📂 Total (53)</span>
+          <span class="nav__sub-title">📂 Total (54)</span>
           <ul>
               
                   
@@ -250,7 +250,7 @@
               
                   
                   <li>
-                      <a href="/categories/#디자인패턴" class="">디자인패턴 (13)</a>
+                      <a href="/categories/#디자인패턴" class="">디자인패턴 (14)</a>
                   </li>
                   
               
@@ -393,19 +393,19 @@
 
 <h3 id="context">Context</h3>
 
-<p>여러 상태가 존재하는 <code class="language-plaintext highlighter-rouge">시스템</code>을 말한다. 시스템은 상태를 나타내는 <code class="language-plaintext highlighter-rouge">State</code>를 가지고 있으며 <code class="language-plaintext highlighter-rouge">클라이언트</code>로부터 요청을 받으면  <code class="language-plaintext highlighter-rouge">State</code>에 실행을 위임한다.</p>
+<p>여러 상태가 존재하는 시스템을 말한다. 시스템은 상태를 나타내는 State를 가지고 있으며 클라이언`로부터 요청을 받으면  State에 실행을 위임한다.</p>
 
 <h3 id="state">State</h3>
 
 <p>상태를 추상화한 인터페이스이다.</p>
 
-<p><code class="language-plaintext highlighter-rouge">ConcreteStatus</code>는 이를 구현하여 구체적인 상태를 나타내게 된다.</p>
+<p>ConcreteStatus는 이를 구현하여 구체적인 상태를 나타내게 된다.</p>
 
 <h3 id="concretestatus">ConcreteStatus</h3>
 
-<p><code class="language-plaintext highlighter-rouge">구체적인 상태</code>를 나타내는 클래스이다.</p>
+<p>구체적인 상태를 나타내는 클래스이다.</p>
 
-<p>맴버 변수로 <code class="language-plaintext highlighter-rouge">Context</code>를 가지고 있으며 연산에 따라 <code class="language-plaintext highlighter-rouge">Context</code>의 상태를 변경한다.</p>
+<p>맴버 변수로 Context를 가지고 있으며 연산에 따라 Context의 상태를 변경한다.</p>
 
 <h2 id="필요성">필요성</h2>
 
@@ -413,7 +413,7 @@
 
 <p><img src="/assets/images/53_2.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
 
-<p>뽑기 기계는 상태( <code class="language-plaintext highlighter-rouge">동전 투입 여부</code>, <code class="language-plaintext highlighter-rouge">알맹이 개수</code>)에 따라 동작 방식이 달라진다.</p>
+<p>뽑기 기계는 상태( 동전 투입 여부, 알맹이 개수)에 따라 동작 방식이 달라진다.</p>
 
 <p>이를 구현하기 위해서는 <strong>분기 처리</strong>를 해줘야 한다.</p>
 
@@ -423,9 +423,9 @@
 
 <p>그러면 우리는 5번째인지 확인하기 위해 조건문을 모든 메소드에 추가해야 한다.</p>
 
-<p>매번 요구사항이 추가될 때마다 기존 코드를 변경해야 하는 것은 유지보수 측면에서 좋지 않다. 이를 해결하는 방법 중 하나가 <code class="language-plaintext highlighter-rouge">상태 패턴</code>이다.</p>
+<p>매번 요구사항이 추가될 때마다 기존 코드를 변경해야 하는 것은 유지보수 측면에서 좋지 않다. 이를 해결하는 방법 중 하나가 <strong>상태 패턴</strong>이다.</p>
 
-<p><code class="language-plaintext highlighter-rouge">상태 패턴</code>을 사용하게 되면 상태에 따른 동작을 클래스로 관리할 수 있게 되고 코드의 복잡도도 줄일 수 있게 된다.</p>
+<p>상태 패턴을 사용하게 되면 상태에 따른 동작을 클래스로 관리할 수 있게 되고 코드의 복잡도도 줄일 수 있게 된다.</p>
 
 <p>-&gt; 상태 패턴의 필요성에 대해서 봤으니 이제 상태 패턴의 장단점에 대해서 알아보자.</p>
 
@@ -436,7 +436,7 @@
 <ol>
   <li>상태에 따른 객체의 동작을 클래스로 관리할 수 있게 된다.</li>
   <li>상태에 관련된 동작을 각 클래스로 분산시켜 코드의 복잡도를 줄일 수 있다.</li>
-  <li>새로운 요구사항이 생겨서 변경이 발생하더라도 기존의 코드를 그대로 유지할 수 있다. (<code class="language-plaintext highlighter-rouge">OCP</code>)</li>
+  <li>새로운 요구사항이 생겨서 변경이 발생하더라도 기존의 코드를 그대로 유지할 수 있다. (OCP원칙)</li>
 </ol>
 
 <h3 id="단점">단점</h3>
@@ -482,15 +482,15 @@
 
 <p><img src="/assets/images/53_3.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /><img src="/assets/images/53_4.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /><img src="/assets/images/53_5.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
 
-<p>상태에 따른 동작을 <code class="language-plaintext highlighter-rouge">분기 처리</code>를 통해서 구현했다.</p>
+<p>상태에 따른 동작을 <strong>분기 처리</strong>를 통해서 구현했다.</p>
 
-<p>그리고 각 상태(<code class="language-plaintext highlighter-rouge">SOLD_OUT</code>, <code class="language-plaintext highlighter-rouge">SOLD</code>, <code class="language-plaintext highlighter-rouge">HAS_COIN</code>, <code class="language-plaintext highlighter-rouge">NO_COIN</code>)를 상태 변수로 처리했다.</p>
+<p>그리고 각 상태(SOLD_OUT, SOLD, HAS_COIN, NO_COIN)를 상태 변수로 처리했다.</p>
 
 <p>하지만 이 코드에는 여러 단점이 존재한다.</p>
 
 <ol>
-  <li>상태 전환을 하기 위해 <code class="language-plaintext highlighter-rouge">조건 분기</code>를 해야 한다. 이는 가독성에 좋지 않다.</li>
-  <li>상태에 따른 추가 요구사항이 생기면 메소드를 다 수정해야 한다. <code class="language-plaintext highlighter-rouge">OCP</code>를 위반하게 된다.</li>
+  <li>상태 전환을 하기 위해 조건 분기를 해야 한다. 이는 가독성에 좋지 않다.</li>
+  <li>상태에 따른 추가 요구사항이 생기면 메소드를 다 수정해야 한다. <strong>OCP</strong>를 위반하게 된다.</li>
 </ol>
 
 <p>그렇다면 이제 상태 패턴을 적용하여 이러한 단점을 보안해보자.</p>
@@ -505,11 +505,11 @@
 
 <p><img src="/assets/images/53_6.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /><img src="/assets/images/53_7.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
 
-<p><code class="language-plaintext highlighter-rouge">Machine</code> 클래스는 맴버 변수로 상태를 가지고 있다. 그리고 <code class="language-plaintext highlighter-rouge">동전 넣기</code>, <code class="language-plaintext highlighter-rouge">동전 반환</code>, <code class="language-plaintext highlighter-rouge">손잡이 돌리기</code>, <code class="language-plaintext highlighter-rouge">뽑기</code>라는 4가지 행위를 가진다.</p>
+<p>Machine 클래스는 맴버 변수로 상태를 가지고 있다. 그리고 동전 넣기, 동전 반환, 손잡이 돌리기, 뽑기라는 4가지 행위를 가진다.</p>
 
-<p>각각의 행위는 <code class="language-plaintext highlighter-rouge">State</code>에 위임되며 현재 <code class="language-plaintext highlighter-rouge">Machine</code>의 상태에 따라 다르게 동작하게 된다.</p>
+<p>각각의 행위는 State에 위임되며 현재 Machine의 상태에 따라 다르게 동작하게 된다.</p>
 
-<p>그리고 동작이 일어나고 상황에 맞게 <code class="language-plaintext highlighter-rouge">State</code>가 변경될 수도 있다.</p>
+<p>그리고 동작이 일어나고 상황에 맞게 State가 변경될 수도 있다.</p>
 
 <h4 id="state-state">State (State)</h4>
 
@@ -521,33 +521,33 @@
 
 <p><img src="/assets/images/53_9.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /><img src="/assets/images/53_10.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
 
-<p>동전이 없는 상태를 나타내는 <code class="language-plaintext highlighter-rouge">ConcreteState</code>이다.</p>
+<p>동전이 없는 상태를 나타내는 ConcreteState이다.</p>
 
 <p>싱글톤 패턴을 적용하였는데 만약 싱글톤 패턴을 적용하지 않았다면 <code class="language-plaintext highlighter-rouge">insertCoin(Machine machine)</code> 에서 머신의 상태를 변경할 때, 새로운 객체를 생성해서 넘겼어야 했을 것이다.</p>
 
 <p>이렇게 되면 상태가 변할때마다 객체가 생성되기 때문에 효율적이지 않다.</p>
 
-<p>물론  <code class="language-plaintext highlighter-rouge">GC</code>가 주기적으로 정리해주긴 하지만 이러한 쓰레기가 늘어나게 되면 제거 과정에서 <code class="language-plaintext highlighter-rouge">Stop-the-world</code>가 발생하여 프로그램이 느려질 수 있다.</p>
+<p>물론  <strong>GC</strong>가 주기적으로 정리해주긴 하지만 이러한 쓰레기가 늘어나게 되면 제거 과정에서 <strong>Stop-the-world</strong>가 발생하여 프로그램이 느려질 수 있다.</p>
 
 <h4 id="hascoinstate-concretestate">HasCoinState (ConcreteState)</h4>
 
 <p><img src="/assets/images/53_11.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /><img src="/assets/images/53_12.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
 
-<p>동전이 들어있는 상태를 나타내는 <code class="language-plaintext highlighter-rouge">ConcreteState</code>이다.</p>
+<p>동전이 들어있는 상태를 나타내는 ConcreteState이다.</p>
 
-<p>동전이 들어있을 때는 <code class="language-plaintext highlighter-rouge">동전 반환</code>, <code class="language-plaintext highlighter-rouge">손잡이 돌리기</code>를 수행하면 상태가 변하게 된다.</p>
+<p>동전이 들어있을 때는 동전 반환, 손잡이 돌리기를 수행하면 상태가 변하게 된다.</p>
 
 <h4 id="soldoutstate-concretestate">SoldOutState (ConcreteState)</h4>
 
 <p><img src="/assets/images/53_13.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /><img src="/assets/images/53_14.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
 
-<p>알맹이가 떨어진 상태를 나타내는 <code class="language-plaintext highlighter-rouge">ConcreteState</code>이다.</p>
+<p>알맹이가 떨어진 상태를 나타내는 ConcreteState이다.</p>
 
 <h4 id="soldstate-concretestate">SoldState (ConcreteState)</h4>
 
 <p><img src="/assets/images/53_15.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /><img src="/assets/images/53_16.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
 
-<p>알맹이가 나가고 있는 상태를 나타내는 <code class="language-plaintext highlighter-rouge">ConcreteState</code>이다.</p>
+<p>알맹이가 나가고 있는 상태를 나타내는 ConcreteState이다.</p>
 
 <h2 id="정리">정리</h2>
 
@@ -630,7 +630,8 @@
 ">이전</a>
     
     
-      <a href="#" class="pagination--pager disabled">다음</a>
+      <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/54/" class="pagination--pager" title="[디자인패턴] 커맨드 패턴
+">다음</a>
     
   </nav>
 
@@ -644,6 +645,51 @@
     <div class="page__related">
       <h2 class="page__related-title">참고</h2>
       <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/54/" rel="permalink">[디자인패턴] 커맨드 패턴
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> December 10 2023</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">커맨드 패턴
+</p> -->
+  </article>
+</div>
+
         
           
 
@@ -745,51 +791,6 @@
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
         <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50/" rel="permalink">[디자인패턴] 컴포짓 패턴
-</a>
-      
-    </h2>
-
-    
-      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> December 04 2023</p>
-    
-
-    <!-- 
-
-  <p class="page__meta">
-    
-
-    
-
-    
-      
-      
-
-      <span class="page__meta-readtime">
-        <i class="far fa-clock" aria-hidden="true"></i>
-        
-          2 분 소요
-        
-      </span>
-    
-  </p>
-
-
-    <p class="archive__item-excerpt" itemprop="description">
-</p> -->
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49/" rel="permalink">[디자인패턴] 템플릿 메소드 패턴
 </a>
       
     </h2>
