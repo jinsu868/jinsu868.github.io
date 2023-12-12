@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[Spring] 컴포넌트 스캔 - Jinsu’s story</title>
-<meta name="description" content="본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다.">
+<!-- begin _includes/seo.html --><title>[Spring] 객체지향 프로그래밍 - Jinsu’s story</title>
+<meta name="description" content="객체지향 프로그래밍">
 
 
   <meta name="author" content="Moon JinSu">
@@ -22,30 +22,30 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="Jinsu's story">
-<meta property="og:title" content="[Spring] 컴포넌트 스캔">
-<meta property="og:url" content="http://localhost:4000/spring/Spring5/">
+<meta property="og:title" content="[Spring] 객체지향 프로그래밍">
+<meta property="og:url" content="http://localhost:4000/spring/1/">
 
 
-  <meta property="og:description" content="본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다.">
-
-
-
-
-
-
-
-  <meta property="article:published_time" content="2023-06-28T00:00:00+09:00">
+  <meta property="og:description" content="객체지향 프로그래밍">
 
 
 
 
 
-  
+
+
+  <meta property="article:published_time" content="2023-06-27T00:00:00+09:00">
+
+
+
+
 
   
 
+  
 
-<link rel="canonical" href="http://localhost:4000/spring/Spring5/">
+
+<link rel="canonical" href="http://localhost:4000/spring/1/">
 
 
 
@@ -329,16 +329,16 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[Spring] 컴포넌트 스캔">
-    <meta itemprop="description" content="본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다.">
-    <meta itemprop="datePublished" content="2023-06-28T00:00:00+09:00">
+    <meta itemprop="headline" content="[Spring] 객체지향 프로그래밍">
+    <meta itemprop="description" content="객체지향 프로그래밍">
+    <meta itemprop="datePublished" content="2023-06-27T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="http://localhost:4000/spring/Spring5/" class="u-url" itemprop="url">[Spring] 컴포넌트 스캔
+            <a href="http://localhost:4000/spring/1/" class="u-url" itemprop="url">[Spring] 객체지향 프로그래밍
 </a>
           </h1>
           
@@ -355,7 +355,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          1 분 소요
+          2 분 소요
         
       </span>
     
@@ -370,97 +370,98 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu"><li><a href="#컴포넌트-스캔">컴포넌트 스캔</a></li></ul>
+              <ul class="toc__menu"><li><a href="#객체지향-프로그래밍">객체지향 프로그래밍</a><ul><li><a href="#정의">정의</a></li><li><a href="#특성">특성</a><ul><li><a href="#추상화-abstraction">추상화 (Abstraction)</a></li><li><a href="#캡슐화-encapsulation">캡슐화 (Encapsulation)</a></li><li><a href="#상속-inheritance">상속 (Inheritance)</a><ul><li><a href="#다형성-polymorphism">다형성 (Polymorphism)</a></li></ul></li></ul></li><li><a href="#solid">SOLID</a><ul><li><a href="#단일-책임-원칙-srp">단일 책임 원칙 (SRP)</a></li><li><a href="#개방-폐쇄-원칙-ocp">개방-폐쇄 원칙 (OCP)</a></li><li><a href="#리스코프-치환-원칙-lsp">리스코프 치환 원칙 (LSP)</a></li><li><a href="#인터페이스-분리-원칙-isp">인터페이스 분리 원칙 (ISP)</a></li><li><a href="#의존-역전-원칙-dip">의존 역전 원칙 (DIP)</a></li></ul></li><li><a href="#스프링의-역할">스프링의 역할</a></li><li><a href="#참고">참고</a></li></ul></li></ul>
 
             </nav>
           </aside>
         
-        <p>본 포스트는 <code class="language-plaintext highlighter-rouge">Inflearn</code>의 김영한님 강의를 바탕으로 작성했습니다.</p>
+        <h1 id="객체지향-프로그래밍">객체지향 프로그래밍</h1>
 
-<h2 id="컴포넌트-스캔"><strong>컴포넌트 스캔</strong></h2>
+<h2 id="정의">정의</h2>
+
+<blockquote>
+  <p>Object-oriented programming (OOP) is a computer programming model that organizes software design around data, or objects, rather than functions and logic. An object can be defined as a data field that has unique attributes and behavior.</p>
+</blockquote>
+
+<p>객체지향 프로그래밍은 기능과 로직보다는 데이터, 객체를 중심으로 소프트웨어를 설계하는 컴퓨터 프로그래밍 모델을 말한다. 여기서 말하는 객체는 고유한 속성(필드)과 동작(메소드)을 가진다.</p>
+
+<h2 id="특성">특성</h2>
+
+<h3 id="추상화-abstraction">추상화 (Abstraction)</h3>
+
+<p><strong>여러 가지 사물이나 개념에서 핵심적인 속성, 기능들을 추출하는 작업을 말한다.</strong></p>
+
+<p>스마트폰을 생각해보자. 현재 우리가 사용하는 스마트폰의 종류는 굉장히 많다. (아이폰 시리즈, 갤럭시 .. etc)</p>
+
+<p>각각을 모두 클래스로 만들고 맴버 변수, 메소드를 각각 만드는 것은 효율적이지 않다. 때문에 공통되는 것을 추출하고 추상화하는 것이 좋다.</p>
+
+<p>스마트폰의 기종이 다르더라도 전원, 메시지, 전화 기능과 같은 것은 동일할 것이다. 이들을 추출하여 클래스로 묶는 것을 추상화라고 생각하면 된다.</p>
+
+<h3 id="캡슐화-encapsulation">캡슐화 (Encapsulation)</h3>
+
+<p><strong>데이터, 함수를 클래스 안에 담고 사용자가 사용할 수 있는 부분만 외부에 노출하고 나머지는 내부에 감추는 것을 말한다.</strong></p>
+
+<p>우리가 컴퓨터 게임을 하는데 컴퓨터 내부 동작을 알아야 한다면 어떨까? 듣기만 해도 어지럽다. 우리는 컴퓨터 내부 동작을 몰라도 게임을 하고 싶을 것이다. 캡슐화는 이런 외부에 노출될 필요가 없는 데이터(여기서는 내부 동작)를 감추고 필요한 정보(게임 화면)만 외부로 노출하는 기법을 의미한다.</p>
+
+<h3 id="상속-inheritance">상속 (Inheritance)</h3>
+
+<p><strong>대상을 객체로 추상화할 때, 기존에 구현한 클래스를 재활용하는 것을 말한다.</strong></p>
+
+<p>학생이라는 클래스를 생각해보자. 학생은 이름과 나이, 취미라는 맴버 변수가 있다. 우리는 여기에 대학생이라는 클래스를 추가하려 한다.</p>
+
+<p>그리고 대학생은 이름, 나이, 취미, 학과라는 필드를 가진다고 가정하자. 여기서 대학생을 학생을 상속하여 만들게 되면 학생의 속성을 물려받고 학과라는 기능만 추가하여 손쉽게 확장할 수 있다. 이와 같이 기존의 코드를 재사용하여 손쉽게 확장할 수 있게 하는 개념이 상속이다.</p>
+
+<h4 id="다형성-polymorphism">다형성 (Polymorphism)</h4>
+
+<p><strong>객체의 속성이나 기능이 상황에 따라 다양한 형태로 변할 수 있는 것을 말한다.</strong></p>
+
+<p>다형성은 오버로딩과 오버라이딩으로 실현한다.</p>
+
+<p><strong>오버로딩</strong>은 메소드 이름은 같지만 다른 동작을 하게 하는 것을 의미한다. 오버로딩은 매개변수, 리턴타입을 통해 구분된다.</p>
+
+<p><strong>오버라이딩</strong>은 부모 클래스의 메소드를 자식 클래스에서 재정의 함으로써 적용할 수 있다.</p>
+
+<h2 id="solid">SOLID</h2>
+
+<p>이제 SOLID 설계 원칙에 대해서 알아보자.</p>
+
+<p>SOLID는 이해하기 쉽고, 유연하며, 유지 보수가 쉬운 소프트웨어 개발을 위한 설계 원칙이다.</p>
+
+<h3 id="단일-책임-원칙-srp">단일 책임 원칙 (SRP)</h3>
+
+<p>SRP는 각 객체는 하나의 책임만 가져야 한다는 원칙이다. 클래스의 역할을 한 가지로 구성함으로써 변경파급을 낮춘다.</p>
+
+<h3 id="개방-폐쇄-원칙-ocp">개방-폐쇄 원칙 (OCP)</h3>
+
+<p>OCP는 기존의 코드를 수정하지 않고 시스템을 확장할 수 있어야 한다는 원칙이다. 변경되지 않는 부분(Closed)와 변경될 부분(Open)을 잘 분리해서 설계하는 것이 중요하다.</p>
+
+<h3 id="리스코프-치환-원칙-lsp">리스코프 치환 원칙 (LSP)</h3>
+
+<p>자식 클래스는 부모 클래스를 대체할 수 있어야 한다는 원칙이다. 부모 클래스 객체 대신에 자식 클래스 또는 후손 클래스 객체를 사용했을 때 문제없이 프로그램이 동작해야 한다.</p>
+
+<h3 id="인터페이스-분리-원칙-isp">인터페이스 분리 원칙 (ISP)</h3>
+
+<p>여러 클라이언트에 필요한 기능을 가지고 있는 일반화된 인터페이스보다는 각 클라이언트에 특화된 인터페이스를 사용하라는 원칙이다.</p>
+
+<h3 id="의존-역전-원칙-dip">의존 역전 원칙 (DIP)</h3>
+
+<p>기능을 직접 구현한 구체 클래스 또는 함수 보다는 추상 클래스나 인터페이스를 사용해야 한다.</p>
+
+<p>구체 클래스(A)가 구체 클래스(B)를 의존하게 되면 B가 변경되면 A를 변경해야 한다. 하지만 구체 클래스(A)가 인터페이스(C)에 의존하게 되면 C의 구현체가 변경되도 A를 변경할 필요가 없다.</p>
+
+<h2 id="스프링의-역할">스프링의 역할</h2>
+
+<p>스프링은 위에서 설명한 객체지향 특성과 SOLID 원칙을 통해 좋은 객체 지향 애플리케이션을 만들 수 있게 도와주는 프레임워크이다.</p>
+
+<h2 id="참고">참고</h2>
+
 <ul>
-  <li>스프링은 설정 정보가 없어도 자동으로 스프링 빈을 등록하는 컴포넌트 스캔이라는 기능을 제공한다.</li>
-  <li>컴포넌트 스캔을 사용하면 @Component가 붙은 클래스를 찾아서 다 빈으로 등록한다.</li>
-  <li>@Repository, @Service, @Configuration, @Controller를 까보면 안에 @Component를 가지고 있다. -&gt; 다 빈으로 등록된다.(Spring이 제공하는 기능)</li>
-  <li>컴포넌트 스캔을 사용하려면 @ComponentScan을 설정 정보에 붙여줘야 한다. (@SpringBootApplication 안에 @ComponentScan이 있어서 default로 쓰면 최상위 패키지부터 훑는다.)<br /><br /></li>
-</ul>
-
-<p><strong>컴포넌트 스캔과 자동 의존관계 주입 과정</strong> <br /><br />
-<img src="/assets/images/5_1.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
-
-<p>@ComponentScan 과정</p>
-<ol>
-  <li>@Component가 붙은 모든 클래스를 스프링 빈으로 등록한다.</li>
-  <li>스프링 빈의 기본 이름은 클래스명을 사용하는데 맨 앞글자는 소문자로 바뀐다.</li>
-  <li>이름을 직접 지정할 수도 있는데 @Component(“지정할 이름”) &lt;- 이런 식으로 부여하면 된다. <br /><br /></li>
-</ol>
-
-<p><img src="/assets/images/5_2.png" alt="img2" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
-
-<p>@Autowired 의존관계 주입 과정</p>
-<ol>
-  <li>생성자에 @Autowired를 지정하면 스프링 컨테이너가 자동으로 해당 스프링 빈을 찾아서 의존관계를 주입한다.</li>
-  <li>기본 전략은 같은 타입의 빈을 찾는 것이다. -&gt; getBean(MemberRepository.class) 와 동일하다고 생각하면 된다.</li>
-  <li>생성자에 파라미터가 많아도 알아서 다 찾아서 의존관계를 주입한다. <br /><br /></li>
-</ol>
-
-<p><strong>컴포넌트 스캔 위치</strong></p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ComponentScan</span><span class="o">(</span>
-          <span class="n">basePackages</span> <span class="o">=</span> <span class="s">"hello.core"</span><span class="o">,</span>
-<span class="o">)</span>
-</code></pre></div></div>
-
-<ul>
-  <li>basePackages 값을 설정해서 시작 위치를 지정할 수 있다.</li>
-  <li>그냥 프로젝트 시작 루트 위치에 두고 쓰는게 좋다. (default값) <br /><br /></li>
-</ul>
-
-<p><strong>컴포넌트 스캔 대상</strong></p>
-<ul>
-  <li>@Component가 붙은 모든 것이다.</li>
-  <li>위에 설명한 것처럼 @Repository, @Configuration, @Service, @Controller 도 스캔 대상이다.(아래 코드 참고, @Component를 가지고 있다.) <br /><br /></li>
-</ul>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
-  <span class="kd">public</span> <span class="nd">@interface</span> <span class="nc">Controller</span> <span class="o">{</span>
-  <span class="o">}</span>
-  <span class="nd">@Component</span>
-  <span class="kd">public</span> <span class="nd">@interface</span> <span class="nc">Service</span> <span class="o">{</span>
-  <span class="o">}</span>
-  <span class="nd">@Component</span>
-  <span class="kd">public</span> <span class="nd">@interface</span> <span class="nc">Configuration</span> <span class="o">{</span>
-  <span class="o">}</span>
-</code></pre></div></div>
-<p><br />
-<strong>필터</strong></p>
-<ul>
-  <li>includeFilters : 컴포넌트 스캔 대상 추가 지정</li>
-  <li>excludeFilters : 컴포넌트 스캔에서 제외할 대상 지정</li>
-  <li>최근 Spring은 컴포넌트 스캔을 기본으로 제공한다. 그리고 옵션을 변경하면서 쓰기보다는 기본 설정대로 사용하는 게 좋다. <br /><br /></li>
-</ul>
-
-<p><strong>중복 등록과 충돌</strong> <br /></p>
-<ul>
-  <li>컴포넌트 스캔에 같은 빈 이름을 등록하면 충돌이 발생한다.
-    <ol>
-      <li>자동 빈 등록 vs 자동 빈 등록
-        <ul>
-          <li>ConflictingBeanDefinitionException 에러 발생</li>
-        </ul>
-      </li>
-      <li>수동 빈 등록 vs 자동 빈 등록
-        <ul>
-          <li>일반적으로 수동으로 등록한게 우선권을 가진다.</li>
-          <li>스프링은 최근 수동 빈 등록과 자동 빈 등록이 충돌하면 오류가 발생하도록 설정이 변경되었다.</li>
-        </ul>
-      </li>
-    </ol>
+  <li>
+    <p><a href="https://www.techtarget.com/searchapparchitecture/definition/object-oriented-programming-OOP">techtarget</a></p>
   </li>
-</ul>
-
-<h1 id="출처">출처</h1>
-<ul>
-  <li>https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8</li>
+  <li>
+    <p><a href="https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8">스프링 핵심 원리</a></p>
+  </li>
 </ul>
 
 
@@ -504,7 +505,7 @@
 
         
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-06-28T00:00:00+09:00">June 28, 2023</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-06-27T00:00:00+09:00">June 27, 2023</time></p>
 
       </footer>
 
@@ -513,22 +514,21 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BSpring%5D+%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8+%EC%8A%A4%EC%BA%94%20http%3A%2F%2Flocalhost%3A4000%2Fspring%2FSpring5%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BSpring%5D+%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5+%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%20http%3A%2F%2Flocalhost%3A4000%2Fspring%2F1%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fspring%2FSpring5%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fspring%2F1%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fspring%2FSpring5%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fspring%2F1%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/spring/Spring4/" class="pagination--pager" title="[Spring] 싱글톤 컨테이너
-">이전</a>
+      <a href="#" class="pagination--pager disabled">이전</a>
     
     
-      <a href="/spring/Spring6/" class="pagination--pager" title="[Spring] 의존관계 자동 주입
+      <a href="/spring/2/" class="pagination--pager" title="[Spring] IoC, DI 컨테이너
 ">다음</a>
     
   </nav>

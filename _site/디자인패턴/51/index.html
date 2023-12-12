@@ -394,19 +394,19 @@ Adapter lets classes work together that couldn’t otherwise because of incompat
 
 <h3 id="client">Client</h3>
 
-<p><code class="language-plaintext highlighter-rouge">클라이언트</code> 입장에서는 새로운 기능을 사용하기 위해 <code class="language-plaintext highlighter-rouge">Adaptee</code>의 <code class="language-plaintext highlighter-rouge">specificRequest()</code> 써야 되는데 기존에 사용하던 <code class="language-plaintext highlighter-rouge">request()</code>로 접근하고 싶다.</p>
+<p>클라이언트 입장에서는 새로운 기능을 사용하기 위해 Adaptee의 <code class="language-plaintext highlighter-rouge">specificRequest()</code> 써야 되는데 기존에 사용하던 <code class="language-plaintext highlighter-rouge">request()</code>로 접근하고 싶다.</p>
 
 <h3 id="target">Target</h3>
 
-<p>기존에 사용하던 인터페이스라고 생각하면 된다. 새로운 인터페이스(Adaptee)를 어댑터를 사용해서 <code class="language-plaintext highlighter-rouge">Target</code>인터페이스를 사용하듯이 하는 것이 목표이다.</p>
+<p>기존에 사용하던 인터페이스라고 생각하면 된다. 새로운 인터페이스(Adaptee)를 어댑터를 사용해서 Target인터페이스를 사용하듯이 하는 것이 목표이다.</p>
 
 <h3 id="adapter">Adapter</h3>
 
-<p>새로운 인터페이스인 <code class="language-plaintext highlighter-rouge">Adaptee</code>를 기존에 사용하던 <code class="language-plaintext highlighter-rouge">Target</code>인터페이스처럼 사용할 수 있도록 변환해주는 역할을 수행한다.</p>
+<p>새로운 인터페이스인 Adaptee를 기존에 사용하던 Target인터페이스처럼 사용할 수 있도록 변환해주는 역할을 수행한다.</p>
 
 <h3 id="adaptee">Adaptee</h3>
 
-<p>새로운 인터페이스로 기존에 사용하던 <code class="language-plaintext highlighter-rouge">Target</code>인터페이스와 다르다.</p>
+<p>새로운 인터페이스로 기존에 사용하던 Target인터페이스와 다르다.</p>
 
 <h2 id="특징">특징</h2>
 
@@ -432,7 +432,7 @@ Adapter lets classes work together that couldn’t otherwise because of incompat
 
 <h2 id="예시">예시</h2>
 
-<p>우리는 핸드폰을 사용하고 있다. 이 핸드폰은 두 가지 기능이 있는데 <code class="language-plaintext highlighter-rouge">화면을 보여주는 기능</code>과 <code class="language-plaintext highlighter-rouge">전원을 종료하는 기능</code>이다.</p>
+<p>우리는 핸드폰을 사용하고 있다. 이 핸드폰은 두 가지 기능이 있는데 화면을 보여주는 기능과 전원을 종료하는 기능이다.</p>
 
 <p>이를 코드로 나타내보면 아래와 같다.</p>
 
@@ -459,7 +459,7 @@ Adapter lets classes work together that couldn’t otherwise because of incompat
 
 <p><img src="/assets/images/51_5.png" alt="img2" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
 
-<p>그런데 우리는 태블릿 기기를 사용하려면 여러가지 기능을 새로 배워야 한다. (귀찮다)</p>
+<p>그런데 우리는 태블릿 기기를 사용하려면 여러가지 기능을 새로 배워야 한다.</p>
 
 <p>그래서 우리는 태블릿을 기존에 사용하던 핸드폰과 동일한 인터페이스로 사용할 수 있도록 어댑터를 장착하기로 결정했다!</p>
 
@@ -467,11 +467,11 @@ Adapter lets classes work together that couldn’t otherwise because of incompat
 
 <p><img src="/assets/images/51_6.png" alt="img2" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
 
-<p><code class="language-plaintext highlighter-rouge">PhoneAdapter</code>클래스는 <code class="language-plaintext highlighter-rouge">Phone</code>을 구현하고 내부적으로 <code class="language-plaintext highlighter-rouge">Tablet</code>을 맴버 변수로 가지고 있다.</p>
+<p>PhoneAdapter클래스는 Phone을 구현하고 내부적으로 Tablet을 맴버 변수로 가지고 있다.</p>
 
-<p>기존에 사용하던 <code class="language-plaintext highlighter-rouge">Phone</code>인터페이스를 구현하는 것은 같은데 내부적으로는 <code class="language-plaintext highlighter-rouge">Tablet</code>의 <code class="language-plaintext highlighter-rouge">show()</code>, <code class="language-plaintext highlighter-rouge">exit()</code>메소드를 호출하게 된다.</p>
+<p>기존에 사용하던 Phone인터페이스를 구현하는 것은 같은데 내부적으로는 Tablet의 <code class="language-plaintext highlighter-rouge">show()</code>, <code class="language-plaintext highlighter-rouge">exit()</code>메소드를 호출하게 된다.</p>
 
-<p>이렇게 하면 우리(<code class="language-plaintext highlighter-rouge">Client</code>)는 <code class="language-plaintext highlighter-rouge">Tablet</code>클래스를 사용할 때 기존에 사용하던 <code class="language-plaintext highlighter-rouge">display()</code>, <code class="language-plaintext highlighter-rouge">shutDown()</code>을 통하여 접근할 수 있게 된다.</p>
+<p>이렇게 하면 우리(Client)는 Tablet클래스를 사용할 때 기존에 사용하던 <code class="language-plaintext highlighter-rouge">display()</code>, <code class="language-plaintext highlighter-rouge">shutDown()</code>을 통하여 접근할 수 있게 된다.</p>
 
 <h2 id="정리">정리</h2>
 

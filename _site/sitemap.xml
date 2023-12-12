@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://localhost:4000/spring/Spring1/</loc>
+<loc>http://localhost:4000/spring/1/</loc>
 <lastmod>2023-06-27T00:00:00+09:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/spring/Spring2/</loc>
+<loc>http://localhost:4000/spring/2/</loc>
 <lastmod>2023-06-28T00:00:00+09:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/spring/Spring3/</loc>
+<loc>http://localhost:4000/spring/3/</loc>
 <lastmod>2023-06-28T00:00:00+09:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/spring/Spring4/</loc>
+<loc>http://localhost:4000/spring/4/</loc>
 <lastmod>2023-06-28T00:00:00+09:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/spring/Spring5/</loc>
+<loc>http://localhost:4000/spring/5/</loc>
 <lastmod>2023-06-28T00:00:00+09:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:4000/spring/Spring6/</loc>
+<loc>http://localhost:4000/spring/6/</loc>
 <lastmod>2023-06-28T00:00:00+09:00</lastmod>
 </url>
 <url>

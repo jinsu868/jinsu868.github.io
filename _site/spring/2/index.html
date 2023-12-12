@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[Spring] 스프링 컨테이너와 스프링 빈 - Jinsu’s story</title>
-<meta name="description" content="본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다.">
+<!-- begin _includes/seo.html --><title>[Spring] IoC, DI 컨테이너 - Jinsu’s story</title>
+<meta name="description" content="IoC (Inversion of Control)">
 
 
   <meta name="author" content="Moon JinSu">
@@ -22,11 +22,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="Jinsu's story">
-<meta property="og:title" content="[Spring] 스프링 컨테이너와 스프링 빈">
-<meta property="og:url" content="http://localhost:4000/spring/Spring3/">
+<meta property="og:title" content="[Spring] IoC, DI 컨테이너">
+<meta property="og:url" content="http://localhost:4000/spring/2/">
 
 
-  <meta property="og:description" content="본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다.">
+  <meta property="og:description" content="IoC (Inversion of Control)">
 
 
 
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/spring/Spring3/">
+<link rel="canonical" href="http://localhost:4000/spring/2/">
 
 
 
@@ -329,8 +329,8 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[Spring] 스프링 컨테이너와 스프링 빈">
-    <meta itemprop="description" content="본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다.">
+    <meta itemprop="headline" content="[Spring] IoC, DI 컨테이너">
+    <meta itemprop="description" content="IoC (Inversion of Control)">
     <meta itemprop="datePublished" content="2023-06-28T00:00:00+09:00">
     
 
@@ -338,7 +338,7 @@
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="http://localhost:4000/spring/Spring3/" class="u-url" itemprop="url">[Spring] 스프링 컨테이너와 스프링 빈
+            <a href="http://localhost:4000/spring/2/" class="u-url" itemprop="url">[Spring] IoC, DI 컨테이너
 </a>
           </h1>
           
@@ -355,7 +355,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          최대 1 분 소요
+          1 분 소요
         
       </span>
     
@@ -370,75 +370,78 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu"><li><a href="#스프링-컨테이너-생성-과정-">스프링 컨테이너 생성 과정 </a></li></ul>
+              <ul class="toc__menu"><li><a href="#ioc-inversion-of-control">IoC (Inversion of Control)</a><ul><li><a href="#정의">정의</a></li><li><a href="#정리">정리</a></li><li><a href="#참고">참고</a></li></ul></li></ul>
 
             </nav>
           </aside>
         
-        <p>본 포스트는 <code class="language-plaintext highlighter-rouge">Inflearn</code>의 김영한님 강의를 바탕으로 작성했습니다.</p>
+        <h1 id="ioc-inversion-of-control">IoC (Inversion of Control)</h1>
 
-<h3 id="스프링-컨테이너-생성-과정-"><strong>스프링 컨테이너 생성 과정</strong> <br /><br /></h3>
+<h2 id="정의">정의</h2>
+
+<blockquote>
+  <p>IoC란 객체의 생성, 생명주기의 관리까지 모든 객체에 대한 제어권이 바뀌었다는 것을 의미한다.</p>
+</blockquote>
+
+<p>위 정의만 읽고 IoC가 무엇인지 와닿지 않을 수 있다. 아래 예시를 보고 이해해보자.</p>
+
+<p>우리는 기존에 코드를 작성할 때, 각 객체에서 자신이 필요한 객체를 생성하고 실행하도록 했었다.</p>
+
+<p><img src="/assets/images/2_1.png" alt="img3" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>ManagerController 클래스가 파일 입출력에 관련된 객체(FileInputView, FileOutputVIew)를 직접 생성하고 <code class="language-plaintext highlighter-rouge">run()</code>메서드 안에서 사용하는 것을 볼 수 있다.</p>
+
+<p>이 코드의 문제점은 무엇일까?</p>
+
+<p>만약 우리가 파일로부터 입출력 하는 것이 아니라 콘솔로부터 입출력을 받아야 하는 상황이 생겼다고 해보자. 이를 위해서는 ManagerController의 코드를 아래와 같이 변경해야 한다.</p>
+
+<p><img src="/assets/images/2_2.png" alt="img3" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>위와 같이 요구사항이 변경됐을 때, 클라이언트인 ManagerController에 변경이 발생한다. (OCP 위반)</p>
+
+<p>이는 ManagerConroller가 인터페이스가 아닌 구현체에 직접 의존하고 있기 때문에 발생하는 것이다. (DIP 위반)</p>
+
+<p>그렇다면 요구사항이 추가되거나 변경되더라도 기존 코드를 유지할 수 있는 방법이 있을까?</p>
+
+<p>-&gt; <strong>ManagerController에서 구현체(ConsoleInputView, ..)에 의존하지 않고 인터페이스(InputView, OutputView)에만 의존하게 하면 된다.</strong></p>
+
+<p><img src="/assets/images/2_4.png" alt="img3" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>ManagerController를 구현체가 아닌 인터페이스에만 의존하도록 변경했다. 그런데 당연히 이렇게 하면 안된다.</p>
+
+<p>위 코드는 final을 넣었기 때문 빨간줄이 나왔지만 final이 없더라도 <code class="language-plaintext highlighter-rouge">run()</code>메소드 안에서 inputView와 outputView를 사용할 때 구현체가 없기 때문에 문제가 발생할 것이다. 이를 해결하기 위해서는 외부로부터 객체를 주입(DI)받아야 한다.</p>
+
+<p><img src="/assets/images/2_3.png" alt="img3" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>외부로부터 구현 객체를 주입 받도록 코드를 수정했다. 이제 ManagerController는 어떤  InputView, OutputView가 들어오는 지 알지 못한 채로 자신의 로직(<code class="language-plaintext highlighter-rouge">run()</code>)을 실행하게 된다.</p>
+
+<p>위 코드가 정상적으로 돌기 위해서는 외부에서 InputView, OutputVIew 객체를 생성하고 ManagerController에 주입해줘야 한다.</p>
+
+<p><img src="/assets/images/2_5.png" alt="img3" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>AppConfig라는 클래스에서 InputView, OutputView의 실제 객체를 생성하고 ManagerController에 주입해주는 모습을 볼 수 있다.</p>
 
 <ul>
   <li>
-    <p><strong>스프링 컨테이너 생성</strong> <br /><br />
-<img src="/assets/images/3_1.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
-  </li>
-  <li>new AnnotationConfigApplicationContext(AppConfig.class)</li>
-  <li>
-    <p>스프링 컨테이너를 생성할 때는 구성 정보를 지정해줘야 한다. (AppConfig) <br /><br /></p>
+    <p>이처럼 외부에서 의존성을 주입해 주는 것을 DI라고 한다. DI는 의존적인 객체를 직접 생성하거나 제어하는 것이 아니라 단순히 특정 객체에 필요한 객체를 외부에서 연결해주는 것을 의미한다.</p>
   </li>
   <li>
-    <p><strong>스프링 빈 등록</strong> <br /><br />
-<img src="/assets/images/3_2.png" alt="img2" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
+    <p>참고 : 코드를 보면 알 수 있듯이 FileInputView, FileOutputView가 중복해서 생성된다. Spring DI 컨테이너를 사용하면 싱글톤으로 이들을 관리할 수 있다.</p>
   </li>
-  <li>설정 정보 클래스 (AppConfig)를 통해서 스프링 빈을 등록한다.</li>
-  <li>빈 이름은 default로 메서드 이름이 사용된다. (직접 지정할 수도 있다.)</li>
-  <li>빈 이름은 항상 다른 이름이 부여되야 한다. 같은 이름이 들어오게 되면 무시되거나, 기존 빈을 덮어버리는 현상이 발생할 수 있다. <br /><br /></li>
 </ul>
 
-<p><strong>스프링 빈 의존관계 설정</strong> <br /><br /></p>
+<p>AppConfig는 실제 실행 흐름과는 전혀 관련이 없는 객체이다. 이와 같이 외부에서 실제 프로그램의 대한 제어 흐름을 관리하는 것을 제어가 역전되었다고 해서 IoC라고 한다. 그리고 여기서 실제로 객체를 생성하고 생명 주기를 관리해주는 친구(ex-AppConfig)를 IoC 컨테이너(DI 컨테이너)라고 한다.</p>
 
-<p><img src="/assets/images/3_3.png" alt="img3" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br />
-<img src="/assets/images/3_4.png" alt="img4" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
+<h2 id="정리">정리</h2>
 
-<ul>
-  <li>스프링은 빈을 생성하는 단계와, 의존관계를 주입하는 단계가 나뉘어 있다. <br /><br /></li>
-</ul>
+<p>오늘은 IoC, DI에 대해서 알아봤다. 기존에는 각 객체가 자신이 필요한 객체를 직접 생성하고 실행시켰다. 때문에 요구사항이 변경된다면 클라이언트 코드의 변경이 불가피했다. IoC 컨테이너를 사용하게 되면 실행 흐름과 관련없는 외부에서 객체를 생성하고 주입해주기 때문에 이런 문제가 해결된다.</p>
 
-<p><strong>BeanFactory와 ApplicationContext</strong> <br /><br /></p>
+<p>Spring도 여기서 설명한 개념을 그대로 사용한다. 그리고 각 빈(객체)들을 싱글톤으로 관리해준다. 이에 대해서는 다음에 알아보자.</p>
 
-<p><img src="/assets/images/3_5.png" alt="img5" width="20%&quot;&quot;, height=&quot;20%&quot;" /> <br /><br /></p>
+<h2 id="참고">참고</h2>
 
 <ul>
-  <li>BeanFactory는 스프링 컨테이너의 최상위 인터페이스이다.</li>
-  <li>BeanFactory는 스프링 빈을 관리하고 조회하는 역할을 담당한다. getBean()함수도 BeanFactory가 제공하는 것이다. <br /><br /></li>
-</ul>
-
-<p><img src="/assets/images/3_6.png" alt="img6" width="60%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
-
-<ul>
-  <li>ApplicationContext는 이러한 BeanFactory뿐 아니라 MessageSource, EnvironmentCapable 등 여러 부가적인 인터페이스를 상속하여 더 많은 기능을 제공한다. <br /><br /></li>
-</ul>
-
-<p><img src="/assets/images/3_7.png" alt="img7" width="60%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
-
-<ul>
-  <li>스프링 컨테이너(ApplicationContext)는 자바 코드로 설정하는 방식뿐 아니라 XML 등 다른 설정정보를 바탕으로 생성할 수도 있다.</li>
-  <li>자바 코드로 설정 -&gt; AnnotationConfigApplicationContext</li>
-  <li>XML로 설정 -&gt; GenericXmlApplicationContext <br /><br /></li>
-</ul>
-
-<p><strong>BeanDefinition</strong><br /><br />
-<img src="/assets/images/3_8.png" alt="img8" width="60%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
-
-<ul>
-  <li>스프링 컨테이너는 BeanDefinition만 알면 된다. BeanDefinition이 자바코드, XML 등 어떤걸로 생성됬는지 몰라도 된다.</li>
-</ul>
-
-<h1 id="출처">출처</h1>
-<ul>
-  <li>https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8</li>
+  <li><a href="https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8/dashboard">스프링 핵심 원리</a></li>
 </ul>
 
         
@@ -490,22 +493,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BSpring%5D+%EC%8A%A4%ED%94%84%EB%A7%81+%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EC%99%80+%EC%8A%A4%ED%94%84%EB%A7%81+%EB%B9%88%20http%3A%2F%2Flocalhost%3A4000%2Fspring%2FSpring3%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BSpring%5D+IoC%2C+DI+%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%20http%3A%2F%2Flocalhost%3A4000%2Fspring%2F2%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fspring%2FSpring3%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fspring%2F2%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fspring%2FSpring3%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fspring%2F2%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/spring/Spring2/" class="pagination--pager" title="[Spring] 스프링 핵심 원리 이해
+      <a href="/spring/1/" class="pagination--pager" title="[Spring] 객체지향 프로그래밍
 ">이전</a>
     
     
-      <a href="/spring/Spring4/" class="pagination--pager" title="[Spring] 싱글톤 컨테이너
+      <a href="/spring/3/" class="pagination--pager" title="[Spring] 스프링 컨테이너
 ">다음</a>
     
   </nav>

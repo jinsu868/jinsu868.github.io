@@ -386,24 +386,24 @@
   <p>-GoF design pattern</p>
 </blockquote>
 
-<p><code class="language-plaintext highlighter-rouge">컴포짓 패턴</code>은 클라이언트로 하여금 각 객체와 객체의 묶음을 동일하게 다룰 수 있게 해준다. 복합 객체와 단일 객체를 동일하게 취급하고 싶을 때 사용한다.</p>
+<p>컴포짓 패턴은 클라이언트로 하여금 각 객체와 객체의 묶음을 동일하게 다룰 수 있게 해준다. 복합 객체와 단일 객체를 동일하게 취급하고 싶을 때 사용한다.</p>
 
 <h2 id="구조">구조</h2>
 <p><img src="/assets/images/50_1.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
 
 <h3 id="component">Component</h3>
-<p><code class="language-plaintext highlighter-rouge">Leaf</code>와 <code class="language-plaintext highlighter-rouge">Composite</code>을 묶는 상위 인터페이스이다. 여기서 <code class="language-plaintext highlighter-rouge">Leaf</code>는 단일 객체, <code class="language-plaintext highlighter-rouge">Composite</code>은 복합 객체라고 생각하면 된다.</p>
+<p>Leaf와 Composite을 묶는 상위 인터페이스이다. 여기서 Leaf는 단일 객체, Composite은 복합 객체라고 생각하면 된다.</p>
 
 <h3 id="composite">Composite</h3>
-<p>다른 <code class="language-plaintext highlighter-rouge">Component</code> 를 포함할 수 있는 <code class="language-plaintext highlighter-rouge">Component</code>로서 개별 객체 또는 다른 복합 객체를 포함시키 수 있다.<br />
-<code class="language-plaintext highlighter-rouge">Component</code> 구현체들을 내부에 리스트로 가지고 있다.<br />
+<p>다른 Component 를 포함할 수 있는 Component로서 개별 객체 또는 다른 복합 객체를 포함시키 수 있다.<br />
+Component 구현체들을 내부에 리스트로 가지고 있다.<br />
 <code class="language-plaintext highlighter-rouge">add()</code>, <code class="language-plaintext highlighter-rouge">remove()</code>, <code class="language-plaintext highlighter-rouge">getChild()</code> 메소드는 내부 리스트에 단일, 복합 객체를 저장, 삭제, 조회한다.<br />
 <code class="language-plaintext highlighter-rouge">operation()</code>를 복합 객체에서 호출하게 되면 <strong>재귀적</strong>으로 추가 단일 객체를 저장한 하위 복합 객체를 순회한다.</p>
 
 <h3 id="leaf">Leaf</h3>
-<p>단일 객체로서, 다른 <code class="language-plaintext highlighter-rouge">Component</code>를 포함할 수 없다.</p>
+<p>단일 객체로서, 다른 Component를 포함할 수 없다.</p>
 
-<p>-&gt; 결국 Composite 패턴의 핵심은 <code class="language-plaintext highlighter-rouge">단일 객체</code>와 <code class="language-plaintext highlighter-rouge">복합 객체</code>를 Client 입장에서 동일한 인터페이스를 통해서 다룰 수 있게 해준다는 것이다.
+<p>-&gt; 결국 Composite 패턴의 핵심은 단일 객체와 복합 객체를 Client 입장에서 동일한 인터페이스를 통해서 다룰 수 있게 해준다는 것이다.
 예시 코드를 보면서 이해해보자!</p>
 
 <h2 id="예제">예제</h2>
@@ -413,7 +413,7 @@
 
 <p><img src="/assets/images/50_2.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
 
-<p>이런 경우에 중첩되어 있는 <code class="language-plaintext highlighter-rouge">메뉴(Menu)</code>와 <code class="language-plaintext highlighter-rouge">메뉴 항목(Menus)</code>을 동일한 구조로 처리할 수 있다.</p>
+<p>이런 경우에 중첩되어 있는 메뉴(Menu)와 메뉴 항목(Menus)을 동일한 구조로 처리할 수 있다.</p>
 
 <h3 id="예제-코드">예제 코드</h3>
 
@@ -421,15 +421,15 @@
 
 <p><img src="/assets/images/50_4.png" alt="img4" width="90%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
 
-<p>우선 <code class="language-plaintext highlighter-rouge">Component</code>부터 살펴보자. <code class="language-plaintext highlighter-rouge">Menu</code>와 <code class="language-plaintext highlighter-rouge">Menus</code>를 묶는 역할을 한다.
-공통으로 사용하는 <code class="language-plaintext highlighter-rouge">operation</code>으로는 <code class="language-plaintext highlighter-rouge">getName()</code>, <code class="language-plaintext highlighter-rouge">getDescription()</code>, <code class="language-plaintext highlighter-rouge">getPrice()</code>가 있다.
-이제 이를 구현한 <code class="language-plaintext highlighter-rouge">Leaf</code>와 <code class="language-plaintext highlighter-rouge">Composite</code>을 살펴보자.</p>
+<p>우선 Component부터 살펴보자. Menu와 Menus를 묶는 역할을 한다.
+공통으로 사용하는 operation으로는 <code class="language-plaintext highlighter-rouge">getName()</code>, <code class="language-plaintext highlighter-rouge">getDescription()</code>, <code class="language-plaintext highlighter-rouge">getPrice()</code>가 있다.
+이제 이를 구현한 Leaf와 Composite을 살펴보자.</p>
 
 <h4 id="menu-leaf">Menu (Leaf)</h4>
 
 <p><img src="/assets/images/50_5.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
 
-<p>단일 객체인 <code class="language-plaintext highlighter-rouge">Menu</code>를 살펴보자. <code class="language-plaintext highlighter-rouge">Component</code>에서 정의된 <code class="language-plaintext highlighter-rouge">operation</code>들을 구현한 것을 확인할 수 있다.
+<p>단일 객체인 Menu를 살펴보자. Component에서 정의된 operation들을 구현한 것을 확인할 수 있다.
 여기서는 <code class="language-plaintext highlighter-rouge">getPrice()</code> 함수가 단순히 자신의 맴버 변수인 price를 리턴한다는 것을 보고 넘어가자. 자세한 것은 아래서 설명하겠다.</p>
 
 <h4 id="menus-composite">Menus (Composite)</h4>
@@ -437,18 +437,18 @@
 <p><img src="/assets/images/50_6.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
 
 <p>클래스가 길어서 두번에 나눠서 설명하겠다.<br />
-이 부분을 보면 <code class="language-plaintext highlighter-rouge">Component</code> 리스트를 저장하고 있는 것을 볼 수 있다. <br />
+이 부분을 보면 Component 리스트를 저장하고 있는 것을 볼 수 있다. <br />
 위에서 설명한 것처럼 복합 객체는 단일 객체, 복합 객체를 모두 가지고 있을 수 있다.<br />
 그것들이 리스트 형태로 저장된 것이라고 생각하면 된다.<br />
-리스트에 <code class="language-plaintext highlighter-rouge">추가(add)</code>, <code class="language-plaintext highlighter-rouge">삭제(remove)</code>, <code class="language-plaintext highlighter-rouge">조회(getChild)</code>하는 기능이 들어가 있는 것도 확인할 수 있다.</p>
+리스트에 추가(add), 삭제(remove), 조회(getChild)하는 기능이 들어가 있는 것도 확인할 수 있다.</p>
 
 <p><img src="/assets/images/50_7.png" alt="img1" width="90%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
 
 <p>이제 가장 주요하게 살펴봐야 하는 <code class="language-plaintext highlighter-rouge">getPrice()</code> 메소드를 보자.<br />
 이 부분에 어떻게 복합 객체와 단일 객체를 동일하게 사용할 수 있는지에 대한 실마리가 있다. -&gt; 바로 <strong>재귀</strong>이다.<br />
-<code class="language-plaintext highlighter-rouge">getPrice()</code> 메소드는 <code class="language-plaintext highlighter-rouge">Component 리스트</code>를 순회하면서 각 <code class="language-plaintext highlighter-rouge">Component</code>의 <code class="language-plaintext highlighter-rouge">getPrice()</code> 메소드를 호출하게 된다. <br />
-만약 <code class="language-plaintext highlighter-rouge">Component</code> 안의 객체가 단일 객체라면 Menu 클래스에 있는 <code class="language-plaintext highlighter-rouge">getPrice()</code> 메소드처럼 단순하게 맴버 변수인 price를 리턴할 것이다.<br />
-그런데 복합 객체라면 Menus의 <code class="language-plaintext highlighter-rouge">getPrice()</code> 메소드가 호출되며 제귀적으로 자신의 <code class="language-plaintext highlighter-rouge">Component 리스트</code>를 순회하면서 또<code class="language-plaintext highlighter-rouge">getPrice()</code>를 호출할 것이다.</p>
+<code class="language-plaintext highlighter-rouge">getPrice()</code> 메소드는 Component 리스트를 순회하면서 각 Component의 <code class="language-plaintext highlighter-rouge">getPrice()</code> 메소드를 호출하게 된다. <br />
+만약 Component 안의 객체가 단일 객체라면 Menu 클래스에 있는 <code class="language-plaintext highlighter-rouge">getPrice()</code> 메소드처럼 단순하게 맴버 변수인 price를 리턴할 것이다.<br />
+그런데 복합 객체라면 Menus의 <code class="language-plaintext highlighter-rouge">getPrice()</code> 메소드가 호출되며 제귀적으로 자신의 Component 리스트를 순회하면서 또<code class="language-plaintext highlighter-rouge">getPrice()</code>를 호출할 것이다.</p>
 
 <p>-&gt; <strong>재귀 동작</strong>을 통해서 하위 객체에게 작업을 위임하게 함으로써 복합 객체와 단일 객체에 동일한 작업을 적용할 수 있게 돼서 이 둘을 구분할 필요가 없어지게 된다.</p>
 

@@ -386,7 +386,7 @@
   <p>-GoF design pattern</p>
 </blockquote>
 
-<p><code class="language-plaintext highlighter-rouge">템플릿 메소드 패턴</code>은 알고리즘의 뼈대를 정의하고 서브 클래스마다 세부 동작 사항을 다르게 구현하는 패턴을 말한다.
+<p>템플릿 메소드 패턴은 알고리즘의 뼈대를 정의하고 서브 클래스마다 세부 동작 사항을 다르게 구현하는 패턴을 말한다.
 변하지 않는 템플릿은 상위 클래스에 만들어두고 자주 변경되거나 확장되는 기능은 하위 클래스에서 만들도록 하여, 템플릿 메소드의 동작 순서는 고정하고 세부 실행 내용을 다양화할 때 사용한다.</p>
 
 <h2 id="구조">구조</h2>
@@ -395,10 +395,10 @@
 
 <h3 id="abstract-class">Abstract Class</h3>
 <p><code class="language-plaintext highlighter-rouge">템플릿 메소드</code>를 구현하고, 템플릿 메소드에 사용되는 추상 메소드를 선언한다.
-이 추상 메소드는 하위 클래스인 <code class="language-plaintext highlighter-rouge">Concreate Class</code>에서 구현된다.</p>
+이 추상 메소드는 하위 클래스인 Concreate Class에서 구현된다.</p>
 
 <h3 id="concreate-class">Concreate Class</h3>
-<p><code class="language-plaintext highlighter-rouge">Abstract Class</code>를 상속하고 추상 메소드를 구현한다. <code class="language-plaintext highlighter-rouge">Concreate Class</code>에서 구현한 메소드는 <code class="language-plaintext highlighter-rouge">Abstract Class</code>의 <code class="language-plaintext highlighter-rouge">템플릿 메소드</code>에서 호출된다.</p>
+<p>Abstract Class를 상속하고 추상 메소드를 구현한다. Concreate Class에서 구현한 메소드는 Abstract Class의 템플릿 메소드에서 호출된다.</p>
 
 <h2 id="특징">특징</h2>
 
@@ -434,10 +434,10 @@
 
 <p><img src="/assets/images/49_3.png" alt="img3" width="90%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
 
-<p><code class="language-plaintext highlighter-rouge">Americano</code>와  <code class="language-plaintext highlighter-rouge">ChocolateLatte</code>는 <code class="language-plaintext highlighter-rouge">Beverage</code>를 상속받아서 각자 <code class="language-plaintext highlighter-rouge">addCondiments()</code>메소드를 구현하게 된다. 그리고 템플릿 메소드인 <code class="language-plaintext highlighter-rouge">prepareRecipe()</code>를 호출하게 되면 전체적인 알고리즘 흐름은 동일하지만 세부 실행 내용을 변경할 수 있게 된다.</p>
+<p>Americano와  ChocolateLatte는 Beverage를 상속받아서 각자 <code class="language-plaintext highlighter-rouge">addCondiments()</code>메소드를 구현하게 된다. 그리고 템플릿 메소드인 <code class="language-plaintext highlighter-rouge">prepareRecipe()</code>를 호출하게 되면 전체적인 알고리즘 흐름은 동일하지만 세부 실행 내용을 변경할 수 있게 된다.</p>
 
 <h2 id="hook-메소드">hook 메소드</h2>
-<p><code class="language-plaintext highlighter-rouge">hook 메소드</code> 는 서브 클래스에서 좀 더 유연하게 템플릿 메소드의 알고리즘 로직을 다양화할 수 있게 도와주는 역할을 수행한다.
+<p><strong>hook 메소드</strong>는 서브 클래스에서 좀 더 유연하게 템플릿 메소드의 알고리즘 로직을 다양화할 수 있게 도와주는 역할을 수행한다.
 일반적으로 추상 메소드가 아닌 일반 메소드로 구현을 하게 된다.
 그냥 나두게 되면 원래 설정한 기본 흐름대로 실행되고 서브 클래스에서 오버라이딩하게 되면 상황에 맞게 제어할 수 있다.</p>
 
@@ -445,12 +445,12 @@
 
 <p><img src="/assets/images/49_4.png" alt="img4" width="90%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
 
-<p>템플릿 메소드인 <code class="language-plaintext highlighter-rouge">prepareRecipe()</code> 안에 있는 <code class="language-plaintext highlighter-rouge">isCustomerWantsTopping()</code>가 앞에서 말한 <code class="language-plaintext highlighter-rouge">hook 메서드</code>이다.
-기본적인 요구사항이 토핑을 추가하여 음료를 제공한다고 생각하고 로직을 작성한 것이다. 그런데 어떤 음료에는 토핑이 들어가지 않아야 할 수 있다. 이런 경우에는 서브 클래스에서 <code class="language-plaintext highlighter-rouge">hook 메서드</code>를 선택적으로 오버라이딩하여 템플릿 메소드의 흐름을 제어할 수 있다.</p>
+<p>템플릿 메소드인 <code class="language-plaintext highlighter-rouge">prepareRecipe()</code> 안에 있는 <code class="language-plaintext highlighter-rouge">isCustomerWantsTopping()</code>가 앞에서 말한 hook 메서드이다.
+기본적인 요구사항이 토핑을 추가하여 음료를 제공한다고 생각하고 로직을 작성한 것이다. 그런데 어떤 음료에는 토핑이 들어가지 않아야 할 수 있다. 이런 경우에는 서브 클래스에서 hook 메서드를 선택적으로 오버라이딩하여 템플릿 메소드의 흐름을 제어할 수 있다.</p>
 
 <p><img src="/assets/images/49_5.png" alt="img5" width="90%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
 
-<p><code class="language-plaintext highlighter-rouge">Americano</code>에 기본적으로 토핑이 들어가면 안된다고 할 때, <code class="language-plaintext highlighter-rouge">hook 메서드</code>인 <code class="language-plaintext highlighter-rouge">isCustomerWantsTopping()</code>을 제정의하여 템플릿 메소드 안에있는 로직의 실행 흐름을 제어할 수 있다.</p>
+<p>Americano에 기본적으로 토핑이 들어가면 안된다고 할 때, hook 메서드인 <code class="language-plaintext highlighter-rouge">isCustomerWantsTopping()</code>을 제정의하여 템플릿 메소드 안에있는 로직의 실행 흐름을 제어할 수 있다.</p>
 
 <h2 id="참고">참고</h2>
 

@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[Spring] 스프링 핵심 원리 이해 - Jinsu’s story</title>
+<!-- begin _includes/seo.html --><title>[Spring] 싱글톤 컨테이너 - Jinsu’s story</title>
 <meta name="description" content="본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다.">
 
 
@@ -22,8 +22,8 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="Jinsu's story">
-<meta property="og:title" content="[Spring] 스프링 핵심 원리 이해">
-<meta property="og:url" content="http://localhost:4000/spring/Spring2/">
+<meta property="og:title" content="[Spring] 싱글톤 컨테이너">
+<meta property="og:url" content="http://localhost:4000/spring/4/">
 
 
   <meta property="og:description" content="본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다.">
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/spring/Spring2/">
+<link rel="canonical" href="http://localhost:4000/spring/4/">
 
 
 
@@ -329,7 +329,7 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[Spring] 스프링 핵심 원리 이해">
+    <meta itemprop="headline" content="[Spring] 싱글톤 컨테이너">
     <meta itemprop="description" content="본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다.">
     <meta itemprop="datePublished" content="2023-06-28T00:00:00+09:00">
     
@@ -338,7 +338,7 @@
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="http://localhost:4000/spring/Spring2/" class="u-url" itemprop="url">[Spring] 스프링 핵심 원리 이해
+            <a href="http://localhost:4000/spring/4/" class="u-url" itemprop="url">[Spring] 싱글톤 컨테이너
 </a>
           </h1>
           
@@ -355,7 +355,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          1 분 소요
+          최대 1 분 소요
         
       </span>
     
@@ -370,118 +370,68 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu"><li><a href="#스프링의-핵심-원리-">스프링의 핵심 원리 </a></li></ul>
+              <ul class="toc__menu"><li><a href="#싱글톤-패턴을-사용하는-이유-">싱글톤 패턴을 사용하는 이유 </a></li></ul>
 
             </nav>
           </aside>
         
         <p>본 포스트는 <code class="language-plaintext highlighter-rouge">Inflearn</code>의 김영한님 강의를 바탕으로 작성했습니다.</p>
 
-<h3 id="스프링의-핵심-원리-">스프링의 핵심 원리 <br /><br /></h3>
+<h2 id="싱글톤-패턴을-사용하는-이유-"><strong>싱글톤 패턴을 사용하는 이유</strong> <br /><br /></h2>
+<p><img src="/assets/images/4_1.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
 
-<p><strong>아래 코드의 문제점은 무엇일까?</strong><br /></p>
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">OrderServiceImpl</span> <span class="kd">implements</span> <span class="nc">OrderService</span> <span class="o">{</span>
-      <span class="kd">private</span> <span class="kd">final</span> <span class="nc">MemberRepository</span> <span class="n">memberRepository</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MemoryMemberRepository</span><span class="o">();</span>
-      <span class="kd">private</span> <span class="kd">final</span> <span class="nc">DiscountPolicy</span> <span class="n">discountPolicy</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">FixDiscountPolicy</span><span class="o">();</span>
+<ul>
+  <li>여러 클라이언트가 요청할 때마다 새로운 객체를 생성하는 것은 메모리 낭비가 심하다.</li>
+  <li>객체를 하나만 생성하고 이를 공유하도록 설계하자. -&gt; <strong>싱글톤 패턴</strong> <br /><br /></li>
+</ul>
+
+<p><strong>싱글톤 패턴</strong></p>
+<ul>
+  <li>클래스의 인스턴스를 딱 1개만 생성되도록 보장하는 디자인 패턴이다. <br /><br /></li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SingletonService</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">SingletonService</span> <span class="n">instance</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SingletonService</span><span class="o">();</span>
+      <span class="kd">public</span> <span class="kd">static</span> <span class="nc">SingletonService</span> <span class="nf">getInstance</span><span class="o">()</span> <span class="o">{</span>
+          <span class="k">return</span> <span class="n">instance</span><span class="o">;</span>
+      <span class="o">}</span>
+
+      <span class="kd">private</span> <span class="nf">SingletonService</span><span class="o">()</span> <span class="o">{</span>
+      <span class="o">}</span>
+      
+      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">logic</span><span class="o">()</span> <span class="o">{</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"싱글톤 객체 로직 호출"</span><span class="o">);</span>
+      <span class="o">}</span> 
 <span class="o">}</span>
 </code></pre></div></div>
 
 <ul>
-  <li>클라이언트인 OrderServiceImpl이 구현체를 직접 의존하고 있다. (DIP 위반)</li>
-  <li>만약 저장소를 DB로 바꾸려고 하거나, 할인 정책을 바꾸려고 한다면 클라이언트 코드를 수정해야 한다. (OCP 위반)
-<br /><br /></li>
+  <li>객체를 미리 생성해두고 생성자를 private으로 막아서 getInstance()를 통해서만 객체에 접근할 수 있게 한다.</li>
+  <li>유연성이 떨어지고 코드 길이도 길어지고 구체 클래스를 의존해야 되서 DIP, OCP를 위반할 가능성이 높다.</li>
+  <li>싱글톤 패턴 자체에 여러 문제가 있지만 이러한 것들은 Spring 이 다 해결해준다. <br /><br /></li>
 </ul>
 
-<p><img src="/assets/images/2_3.png" alt="img3" width="60%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
+<p><img src="/assets/images/4_2.png" alt="img2" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
 
 <ul>
-  <li>위 그림과 같이 클라이언트 OrderServiceImpl이 interface에 의존하도록 설계해야 한다.</li>
-  <li>하지만 이렇게 변경하게 되면 구현체가 없으니 NullPointException이 발생한다.</li>
-  <li>이 문제를 해결하려면 외부의 다른 무언가가 클라이언트인 OrderServiceImpl에 DiscountPolicy의 구현체를 직접 생성하고 의존성을 주입해줘야 한다. <br /><br /></li>
+  <li>스프링 컨테이너는 요청이 올 때마다 객체를 생성하는 것이 아니라 미리 만들어둔 instance를 공유하는 방식으로 돌아간다.</li>
+  <li>객체 하나를 공유하는 방식이기 때문에 빈을 구현할 때 반드시 <strong>stateless</strong>로 설계해야 한다. <br /><br /></li>
 </ul>
 
-<p><strong>관심사의 분리</strong></p>
-<ul>
-  <li>실제 실행되는 부분과 구현 객체를 생성하고 연결하는 부분을 분리하자! (ISP 적용)</li>
-  <li>AppConfig <br /><br /></li>
-</ul>
+<p><strong>Configuration과 바이트 조작</strong> <br /></p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AppConfig</span> <span class="o">{</span>
-      <span class="kd">public</span> <span class="nc">MemberService</span> <span class="nf">memberService</span><span class="o">()</span> <span class="o">{</span>
-          <span class="k">return</span> <span class="k">new</span> <span class="nf">MemberServiceImpl</span><span class="o">(</span><span class="n">memberRepository</span><span class="o">());</span>
-      <span class="o">}</span>
-
-      <span class="kd">public</span> <span class="nc">OrderService</span> <span class="nf">orderService</span><span class="o">()</span> <span class="o">{</span>
-          <span class="k">return</span> <span class="k">new</span> <span class="nf">OrderServiceImpl</span><span class="o">(</span>
-                  <span class="n">memberRepository</span><span class="o">(),</span>
-                  <span class="n">discountPolicy</span><span class="o">());</span>
-      <span class="o">}</span>
-
-      <span class="kd">public</span> <span class="nc">MemberRepository</span> <span class="nf">memberRepository</span><span class="o">()</span> <span class="o">{</span>
-          <span class="k">return</span> <span class="k">new</span> <span class="nf">MemoryMemberRepository</span><span class="o">();</span>
-      <span class="o">}</span>
-
-      <span class="kd">public</span> <span class="nc">DiscountPolicy</span> <span class="nf">discountPolicy</span><span class="o">()</span> <span class="o">{</span>
-          <span class="k">return</span> <span class="k">new</span> <span class="nf">FixDiscountPolicy</span><span class="o">();</span>
-      <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
+<p><img src="/assets/images/4_3.png" alt="img3" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
 
 <ul>
-  <li>AppConfig는 애플리케이션의 실제 동작에 필요한 <strong>구현 객체를 생성한다.</strong></li>
-  <li>AppConfig는 객체 인스턴스 참조를 <strong>생성자를 통해서 주입(연결)해준다.</strong>
-    <ul>
-      <li>MemberServiceImpl -&gt; MemoryMemberRepository</li>
-      <li>OrderServiceImpl -&gt; MemoryMemberRepository, FixDiscountPolicy
-  <br /><br /></li>
-    </ul>
-  </li>
-</ul>
-
-<p><img src="/assets/images/2_4.png" alt="img4" width="60%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
-
-<ul>
-  <li>할인정책을 바꾸고 싶을 때, AppConfig의 설정 정보만 변경해주면 클라이언트 코드의 변경 없이 바꿀 수 있다. <br /></li>
-</ul>
-
-<p><strong>IoC, DI 컨테이너</strong></p>
-<ul>
-  <li>AppConfig처럼 객체를 생성하고 관리하면서 의존관계를 연결해주는 것을 IoC 컨테이너, DI 컨테이너 라고 한다. <br /><br /></li>
-</ul>
-
-<p><strong>IoC(Inversion of Control), 제어의 역전</strong></p>
-<ul>
-  <li>프로그램의 제어 흐름을 직접 제어하는 것이 아니라 외부에서 관리하는 것을 제어의 역전(IoC)라고 한다.</li>
-  <li>위 예시에서는 AppConfig가 외부에서 제어의 흐름을 관리한다. <br /><br /></li>
-</ul>
-
-<p><strong>DI(Dependency Injection), 의존관계 주입</strong></p>
-<ul>
-  <li>의존관계는 정적인 클래스 의존관계, 실행시점에 결정되는 동적인 객체 의존관계가 있고 이 둘은 구분되어야 한다.</li>
-  <li>애플리케이션을 실행하지 않고 코드만 봐도 정적인 의존관계는 파악할 수 있다.</li>
-  <li>하지만 클래스 의존관계만으로는 실제 어떤 객체가 주입되는지는 알 수 없다.</li>
-</ul>
-
-<p><img src="/assets/images/2_5.png" alt="img5" width="60%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
-
-<ul>
-  <li>위 그림에서 OrderServiceImpl이 MemberRepository, DiscountPolicy에 의존하는 것은 알 수 있지만 실제로 어떤 객체가 주입될지는 알 수 없다.</li>
-  <li>의존관계 주입 (DI) 을 사용하면 클라이언트(OrderServiceImpl)을 변경하지 않고, 클라이언트가 호출하는 대상의 type instance(MemoryMemberRepository or DbMemberRepository)를 변경할 수 있다.</li>
-  <li>의존관계 주입을 사용하면 정적인 클래스 의존관계를 변경하지 않고, 동적인 객체 인스턴스 의존관계를 쉽게 변경 가능하다. <br /><br /></li>
-</ul>
-
-<p><strong>스프링 컨테이너</strong></p>
-<ul>
-  <li><strong>ApplicationContext</strong>를 스프링 컨테이너라고 한다.</li>
-  <li>스프링은 @Configuration이 붙은 설정 정보를 활용해서 @Bean이 붙은 메서드를 모두 호출해서 반환 객체를 스프링 컨테이너에 등록한다. 이렇게 등록된 객체를 <strong>스프링 빈</strong>이라고 한다.</li>
-  <li>스프링 빈은 getBean()함수를 통해서 가져올 수 있다.</li>
+  <li>스프링 설정 정보로 넘긴 AppConfig도 빈으로 등록되는데 바이트조작된 AppConfig를 상속하는 객체가 빈으로 등록된다. (CGLIB 기술) &lt;- @Configuration이 붙으면 해줌.</li>
+  <li>@Configuration을 안 넣으면 @Bean이 붙은 method가 빈으로 등록되긴 하지만 싱글톤으로 관리되지 않는다.</li>
 </ul>
 
 <h1 id="출처">출처</h1>
-
 <ul>
   <li>https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8</li>
 </ul>
+
 
         
       </section>
@@ -532,22 +482,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BSpring%5D+%EC%8A%A4%ED%94%84%EB%A7%81+%ED%95%B5%EC%8B%AC+%EC%9B%90%EB%A6%AC+%EC%9D%B4%ED%95%B4%20http%3A%2F%2Flocalhost%3A4000%2Fspring%2FSpring2%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BSpring%5D+%EC%8B%B1%EA%B8%80%ED%86%A4+%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%20http%3A%2F%2Flocalhost%3A4000%2Fspring%2F4%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fspring%2FSpring2%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fspring%2F4%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fspring%2FSpring2%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fspring%2F4%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/spring/Spring1/" class="pagination--pager" title="[Spring] 객체 지향 설계와 스프링
+      <a href="/spring/3/" class="pagination--pager" title="[Spring] 스프링 컨테이너
 ">이전</a>
     
     
-      <a href="/spring/Spring3/" class="pagination--pager" title="[Spring] 스프링 컨테이너와 스프링 빈
+      <a href="/spring/5/" class="pagination--pager" title="[Spring] 컴포넌트 스캔
 ">다음</a>
     
   </nav>

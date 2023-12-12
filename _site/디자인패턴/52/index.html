@@ -397,21 +397,21 @@
 
 <h3 id="client">Client</h3>
 
-<p><code class="language-plaintext highlighter-rouge">클라이언트</code>는 <code class="language-plaintext highlighter-rouge">서브 시스템</code>에 바로 접근할 수도 있고 <code class="language-plaintext highlighter-rouge">Facade</code>를 통해서 <code class="language-plaintext highlighter-rouge">서브 시스템</code>의 기능을 사용할 수 있다.</p>
+<p>클라이언트는 서브 시스템에 바로 접근할 수도 있고 Facade를 통해서 서브 시스템의 기능을 사용할 수 있다.</p>
 
 <h3 id="facade">Facade</h3>
 
-<p><code class="language-plaintext highlighter-rouge">서브 시스템</code> 기능을 묶은 고수준의 인터페이스이다. 이를 통해서 <code class="language-plaintext highlighter-rouge">클라이언트</code>와 <code class="language-plaintext highlighter-rouge">서브 시스템</code>간의 의존성을 낮출 수 있다.</p>
+<p>서브 시스템 기능을 묶은 고수준의 인터페이스이다. 이를 통해서 클라이언트와 서브 시스템간의 의존성을 낮출 수 있다.</p>
 
 <h3 id="additional-facade">Additional Facade</h3>
 
-<p><code class="language-plaintext highlighter-rouge">Facade</code>가 하나라는 규칙은 존재하지 않는다. 다양한 <code class="language-plaintext highlighter-rouge">서브 시스템</code>을 묶어서 새로운 <code class="language-plaintext highlighter-rouge">Facade</code>를 만들수도 있다.</p>
+<p>Facade가 하나라는 규칙은 존재하지 않는다. 다양한 서브 시스템을 묶어서 새로운 Facade를 만들수도 있다.</p>
 
-<p>이렇게 묶인 <code class="language-plaintext highlighter-rouge">Facade</code>는 다른 <code class="language-plaintext highlighter-rouge">Facade</code>에 포함될 수도 있고 <code class="language-plaintext highlighter-rouge">클라이언트</code>에서 바로 사용될 수도 있다.</p>
+<p>이렇게 묶인 Facade는 다른 Facade에 포함될 수도 있고 클라이언트에서 바로 사용될 수도 있다.</p>
 
 <h3 id="subsystem">SubSystem</h3>
 
-<p>여러개의 <code class="language-plaintext highlighter-rouge">서브 클래스</code>를 나타낸다.</p>
+<p>여러개의 서브 클래스를 나타낸다.</p>
 
 <h2 id="특징">특징</h2>
 
@@ -423,7 +423,7 @@
 
 <p>시스템이 굉장히 복잡한 경우를 생각해보자. 이런 경우 서브 시스템의 인터페이스를 하나씩 사용하여 로직을 구성해야 하는데 굉장히 복잡할 수 있다.</p>
 
-<p>이때 퍼사드 패턴을 사용하면 복잡한 서브 시스템 호출을 내부에 감추면서 <code class="language-plaintext highlighter-rouge">고수준의 인터페이스</code> 하나로 사용할 수 있게 된다.</p>
+<p>이때 퍼사드 패턴을 사용하면 복잡한 서브 시스템 호출을 내부에 감추면서 고수준의 인터페이스 하나로 사용할 수 있게 된다.</p>
 
 <h4 id="2-의존성을-낮추고-싶을-때">2. 의존성을 낮추고 싶을 때</h4>
 
@@ -453,7 +453,7 @@
 
 <p>리모컨 버튼 하나로 이 모든 것이 된다면 얼마나 좋을까??</p>
 
-<p>이를 실현해주는 것이 <code class="language-plaintext highlighter-rouge">퍼사드 패턴</code>이다!</p>
+<p>이를 실현해주는 것이 퍼사드 패턴이다!</p>
 
 <p>아래 코드를 보며 이해해보자.</p>
 
@@ -461,13 +461,13 @@
 
 <p><img src="/assets/images/52_2.png" alt="img2" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
 
-<p><code class="language-plaintext highlighter-rouge">스크린</code>, <code class="language-plaintext highlighter-rouge">스피커</code>, <code class="language-plaintext highlighter-rouge">라이터</code>, <code class="language-plaintext highlighter-rouge">프로젝터</code>는 위에서 말한 <code class="language-plaintext highlighter-rouge">서브 시스템</code>이다. 퍼사드 패턴을 사용하지 않고 영화를 보는 환경을 세팅하기 위해서는 아래와 같이 클라이언트에서 서브 시스템 각각을 호출해야 한다.</p>
+<p>스크린, 스피커, 라이터, 프로젝터는 위에서 말한 서브 시스템이다. 퍼사드 패턴을 사용하지 않고 영화를 보는 환경을 세팅하기 위해서는 아래와 같이 클라이언트에서 서브 시스템 각각을 호출해야 한다.</p>
 
 <h3 id="main-client">Main (Client)</h3>
 
 <p><img src="/assets/images/52_3.png" alt="img3" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
 
-<p>클라이언트(<code class="language-plaintext highlighter-rouge">Main</code>)과 서브 시스템의 의존성이 강한 것을 확인할 수 있다. 그리고 각각의 서브 시스템을 클라이언트에서 호출해야 한다.</p>
+<p>클라이언트(Main)과 서브 시스템의 의존성이 강한 것을 확인할 수 있다. 그리고 각각의 서브 시스템을 클라이언트에서 호출해야 한다.</p>
 
 <p>퍼사드 패턴을 사용하면 좀 더 간단한 인터페이스를 사용하여 서브 클래스의 동작을 제어할 수 있다.</p>
 
@@ -479,13 +479,13 @@
 
 <p>여러 서브 시스템을 묶어서 하나의 인터페이스(<code class="language-plaintext highlighter-rouge">setMovieEnv()</code>)를 제공하는 것을 볼 수 있다.</p>
 
-<p>이제 <code class="language-plaintext highlighter-rouge">MovieFacade</code>를 통해서 클라이언트에서 서브 시스템에 접근하는 코드를 보자.</p>
+<p>이제 MovieFacade를 통해서 클라이언트에서 서브 시스템에 접근하는 코드를 보자.</p>
 
 <h3 id="main-client-1">Main (Client)</h3>
 
 <p><img src="/assets/images/52_5.png" alt="img5" width="90%&quot;&quot;, height=&quot;40%&quot;" /></p>
 
-<p>클라이언트에서 <code class="language-plaintext highlighter-rouge">MovieFacade</code>의 <code class="language-plaintext highlighter-rouge">setMovieEnv()</code>를 통해서 서브 시스템에 접근하는 것을 볼 수 있다.</p>
+<p>클라이언트에서 MovieFacade의 <code class="language-plaintext highlighter-rouge">setMovieEnv()</code>를 통해서 서브 시스템에 접근하는 것을 볼 수 있다.</p>
 
 <p><strong>물론 여전히 클라이언트는 각 서브 시스템에도 직접 접근할 수 있다.</strong></p>
 

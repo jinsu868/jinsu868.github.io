@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-10T18:36:39+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[디자인패턴] 커맨드 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/54/" rel="alternate" type="text/html" title="[디자인패턴] 커맨드 패턴" /><published>2023-12-10T00:00:00+09:00</published><updated>2023-12-10T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/54</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/54/">&lt;h1 id=&quot;커맨드-패턴&quot;&gt;커맨드 패턴&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-12T22:02:46+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[디자인패턴] 커맨드 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/54/" rel="alternate" type="text/html" title="[디자인패턴] 커맨드 패턴" /><published>2023-12-10T00:00:00+09:00</published><updated>2023-12-10T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/54</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/54/">&lt;h1 id=&quot;커맨드-패턴&quot;&gt;커맨드 패턴&lt;/h1&gt;
 
 &lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
 
@@ -162,19 +162,19 @@ Adapter lets classes work together that couldn’t otherwise because of incompat
 
 &lt;h3 id=&quot;client&quot;&gt;Client&lt;/h3&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;클라이언트&lt;/code&gt; 입장에서는 새로운 기능을 사용하기 위해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptee&lt;/code&gt;의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;specificRequest()&lt;/code&gt; 써야 되는데 기존에 사용하던 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;request()&lt;/code&gt;로 접근하고 싶다.&lt;/p&gt;
+&lt;p&gt;클라이언트 입장에서는 새로운 기능을 사용하기 위해 Adaptee의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;specificRequest()&lt;/code&gt; 써야 되는데 기존에 사용하던 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;request()&lt;/code&gt;로 접근하고 싶다.&lt;/p&gt;
 
 &lt;h3 id=&quot;target&quot;&gt;Target&lt;/h3&gt;
 
-&lt;p&gt;기존에 사용하던 인터페이스라고 생각하면 된다. 새로운 인터페이스(Adaptee)를 어댑터를 사용해서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Target&lt;/code&gt;인터페이스를 사용하듯이 하는 것이 목표이다.&lt;/p&gt;
+&lt;p&gt;기존에 사용하던 인터페이스라고 생각하면 된다. 새로운 인터페이스(Adaptee)를 어댑터를 사용해서 Target인터페이스를 사용하듯이 하는 것이 목표이다.&lt;/p&gt;
 
 &lt;h3 id=&quot;adapter&quot;&gt;Adapter&lt;/h3&gt;
 
-&lt;p&gt;새로운 인터페이스인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adaptee&lt;/code&gt;를 기존에 사용하던 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Target&lt;/code&gt;인터페이스처럼 사용할 수 있도록 변환해주는 역할을 수행한다.&lt;/p&gt;
+&lt;p&gt;새로운 인터페이스인 Adaptee를 기존에 사용하던 Target인터페이스처럼 사용할 수 있도록 변환해주는 역할을 수행한다.&lt;/p&gt;
 
 &lt;h3 id=&quot;adaptee&quot;&gt;Adaptee&lt;/h3&gt;
 
-&lt;p&gt;새로운 인터페이스로 기존에 사용하던 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Target&lt;/code&gt;인터페이스와 다르다.&lt;/p&gt;
+&lt;p&gt;새로운 인터페이스로 기존에 사용하던 Target인터페이스와 다르다.&lt;/p&gt;
 
 &lt;h2 id=&quot;특징&quot;&gt;특징&lt;/h2&gt;
 
@@ -200,7 +200,7 @@ Adapter lets classes work together that couldn’t otherwise because of incompat
 
 &lt;h2 id=&quot;예시&quot;&gt;예시&lt;/h2&gt;
 
-&lt;p&gt;우리는 핸드폰을 사용하고 있다. 이 핸드폰은 두 가지 기능이 있는데 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;화면을 보여주는 기능&lt;/code&gt;과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;전원을 종료하는 기능&lt;/code&gt;이다.&lt;/p&gt;
+&lt;p&gt;우리는 핸드폰을 사용하고 있다. 이 핸드폰은 두 가지 기능이 있는데 화면을 보여주는 기능과 전원을 종료하는 기능이다.&lt;/p&gt;
 
 &lt;p&gt;이를 코드로 나타내보면 아래와 같다.&lt;/p&gt;
 
@@ -227,7 +227,7 @@ Adapter lets classes work together that couldn’t otherwise because of incompat
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/51_5.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;그런데 우리는 태블릿 기기를 사용하려면 여러가지 기능을 새로 배워야 한다. (귀찮다)&lt;/p&gt;
+&lt;p&gt;그런데 우리는 태블릿 기기를 사용하려면 여러가지 기능을 새로 배워야 한다.&lt;/p&gt;
 
 &lt;p&gt;그래서 우리는 태블릿을 기존에 사용하던 핸드폰과 동일한 인터페이스로 사용할 수 있도록 어댑터를 장착하기로 결정했다!&lt;/p&gt;
 
@@ -235,11 +235,11 @@ Adapter lets classes work together that couldn’t otherwise because of incompat
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/51_6.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PhoneAdapter&lt;/code&gt;클래스는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Phone&lt;/code&gt;을 구현하고 내부적으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Tablet&lt;/code&gt;을 맴버 변수로 가지고 있다.&lt;/p&gt;
+&lt;p&gt;PhoneAdapter클래스는 Phone을 구현하고 내부적으로 Tablet을 맴버 변수로 가지고 있다.&lt;/p&gt;
 
-&lt;p&gt;기존에 사용하던 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Phone&lt;/code&gt;인터페이스를 구현하는 것은 같은데 내부적으로는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Tablet&lt;/code&gt;의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;show()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exit()&lt;/code&gt;메소드를 호출하게 된다.&lt;/p&gt;
+&lt;p&gt;기존에 사용하던 Phone인터페이스를 구현하는 것은 같은데 내부적으로는 Tablet의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;show()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exit()&lt;/code&gt;메소드를 호출하게 된다.&lt;/p&gt;
 
-&lt;p&gt;이렇게 하면 우리(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Client&lt;/code&gt;)는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Tablet&lt;/code&gt;클래스를 사용할 때 기존에 사용하던 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;display()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;shutDown()&lt;/code&gt;을 통하여 접근할 수 있게 된다.&lt;/p&gt;
+&lt;p&gt;이렇게 하면 우리(Client)는 Tablet클래스를 사용할 때 기존에 사용하던 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;display()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;shutDown()&lt;/code&gt;을 통하여 접근할 수 있게 된다.&lt;/p&gt;
 
 &lt;h2 id=&quot;정리&quot;&gt;정리&lt;/h2&gt;
 
@@ -469,21 +469,21 @@ Adapter lets classes work together that couldn’t otherwise because of incompat
 
 &lt;h3 id=&quot;client&quot;&gt;Client&lt;/h3&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;클라이언트&lt;/code&gt;는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;서브 시스템&lt;/code&gt;에 바로 접근할 수도 있고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Facade&lt;/code&gt;를 통해서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;서브 시스템&lt;/code&gt;의 기능을 사용할 수 있다.&lt;/p&gt;
+&lt;p&gt;클라이언트는 서브 시스템에 바로 접근할 수도 있고 Facade를 통해서 서브 시스템의 기능을 사용할 수 있다.&lt;/p&gt;
 
 &lt;h3 id=&quot;facade&quot;&gt;Facade&lt;/h3&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;서브 시스템&lt;/code&gt; 기능을 묶은 고수준의 인터페이스이다. 이를 통해서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;클라이언트&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;서브 시스템&lt;/code&gt;간의 의존성을 낮출 수 있다.&lt;/p&gt;
+&lt;p&gt;서브 시스템 기능을 묶은 고수준의 인터페이스이다. 이를 통해서 클라이언트와 서브 시스템간의 의존성을 낮출 수 있다.&lt;/p&gt;
 
 &lt;h3 id=&quot;additional-facade&quot;&gt;Additional Facade&lt;/h3&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Facade&lt;/code&gt;가 하나라는 규칙은 존재하지 않는다. 다양한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;서브 시스템&lt;/code&gt;을 묶어서 새로운 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Facade&lt;/code&gt;를 만들수도 있다.&lt;/p&gt;
+&lt;p&gt;Facade가 하나라는 규칙은 존재하지 않는다. 다양한 서브 시스템을 묶어서 새로운 Facade를 만들수도 있다.&lt;/p&gt;
 
-&lt;p&gt;이렇게 묶인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Facade&lt;/code&gt;는 다른 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Facade&lt;/code&gt;에 포함될 수도 있고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;클라이언트&lt;/code&gt;에서 바로 사용될 수도 있다.&lt;/p&gt;
+&lt;p&gt;이렇게 묶인 Facade는 다른 Facade에 포함될 수도 있고 클라이언트에서 바로 사용될 수도 있다.&lt;/p&gt;
 
 &lt;h3 id=&quot;subsystem&quot;&gt;SubSystem&lt;/h3&gt;
 
-&lt;p&gt;여러개의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;서브 클래스&lt;/code&gt;를 나타낸다.&lt;/p&gt;
+&lt;p&gt;여러개의 서브 클래스를 나타낸다.&lt;/p&gt;
 
 &lt;h2 id=&quot;특징&quot;&gt;특징&lt;/h2&gt;
 
@@ -495,7 +495,7 @@ Adapter lets classes work together that couldn’t otherwise because of incompat
 
 &lt;p&gt;시스템이 굉장히 복잡한 경우를 생각해보자. 이런 경우 서브 시스템의 인터페이스를 하나씩 사용하여 로직을 구성해야 하는데 굉장히 복잡할 수 있다.&lt;/p&gt;
 
-&lt;p&gt;이때 퍼사드 패턴을 사용하면 복잡한 서브 시스템 호출을 내부에 감추면서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;고수준의 인터페이스&lt;/code&gt; 하나로 사용할 수 있게 된다.&lt;/p&gt;
+&lt;p&gt;이때 퍼사드 패턴을 사용하면 복잡한 서브 시스템 호출을 내부에 감추면서 고수준의 인터페이스 하나로 사용할 수 있게 된다.&lt;/p&gt;
 
 &lt;h4 id=&quot;2-의존성을-낮추고-싶을-때&quot;&gt;2. 의존성을 낮추고 싶을 때&lt;/h4&gt;
 
@@ -525,7 +525,7 @@ Adapter lets classes work together that couldn’t otherwise because of incompat
 
 &lt;p&gt;리모컨 버튼 하나로 이 모든 것이 된다면 얼마나 좋을까??&lt;/p&gt;
 
-&lt;p&gt;이를 실현해주는 것이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;퍼사드 패턴&lt;/code&gt;이다!&lt;/p&gt;
+&lt;p&gt;이를 실현해주는 것이 퍼사드 패턴이다!&lt;/p&gt;
 
 &lt;p&gt;아래 코드를 보며 이해해보자.&lt;/p&gt;
 
@@ -533,13 +533,13 @@ Adapter lets classes work together that couldn’t otherwise because of incompat
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/52_2.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;스크린&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;스피커&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;라이터&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;프로젝터&lt;/code&gt;는 위에서 말한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;서브 시스템&lt;/code&gt;이다. 퍼사드 패턴을 사용하지 않고 영화를 보는 환경을 세팅하기 위해서는 아래와 같이 클라이언트에서 서브 시스템 각각을 호출해야 한다.&lt;/p&gt;
+&lt;p&gt;스크린, 스피커, 라이터, 프로젝터는 위에서 말한 서브 시스템이다. 퍼사드 패턴을 사용하지 않고 영화를 보는 환경을 세팅하기 위해서는 아래와 같이 클라이언트에서 서브 시스템 각각을 호출해야 한다.&lt;/p&gt;
 
 &lt;h3 id=&quot;main-client&quot;&gt;Main (Client)&lt;/h3&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/52_3.png&quot; alt=&quot;img3&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;클라이언트(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Main&lt;/code&gt;)과 서브 시스템의 의존성이 강한 것을 확인할 수 있다. 그리고 각각의 서브 시스템을 클라이언트에서 호출해야 한다.&lt;/p&gt;
+&lt;p&gt;클라이언트(Main)과 서브 시스템의 의존성이 강한 것을 확인할 수 있다. 그리고 각각의 서브 시스템을 클라이언트에서 호출해야 한다.&lt;/p&gt;
 
 &lt;p&gt;퍼사드 패턴을 사용하면 좀 더 간단한 인터페이스를 사용하여 서브 클래스의 동작을 제어할 수 있다.&lt;/p&gt;
 
@@ -551,13 +551,13 @@ Adapter lets classes work together that couldn’t otherwise because of incompat
 
 &lt;p&gt;여러 서브 시스템을 묶어서 하나의 인터페이스(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setMovieEnv()&lt;/code&gt;)를 제공하는 것을 볼 수 있다.&lt;/p&gt;
 
-&lt;p&gt;이제 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MovieFacade&lt;/code&gt;를 통해서 클라이언트에서 서브 시스템에 접근하는 코드를 보자.&lt;/p&gt;
+&lt;p&gt;이제 MovieFacade를 통해서 클라이언트에서 서브 시스템에 접근하는 코드를 보자.&lt;/p&gt;
 
 &lt;h3 id=&quot;main-client-1&quot;&gt;Main (Client)&lt;/h3&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/52_5.png&quot; alt=&quot;img5&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;클라이언트에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MovieFacade&lt;/code&gt;의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setMovieEnv()&lt;/code&gt;를 통해서 서브 시스템에 접근하는 것을 볼 수 있다.&lt;/p&gt;
+&lt;p&gt;클라이언트에서 MovieFacade의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setMovieEnv()&lt;/code&gt;를 통해서 서브 시스템에 접근하는 것을 볼 수 있다.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;물론 여전히 클라이언트는 각 서브 시스템에도 직접 접근할 수 있다.&lt;/strong&gt;&lt;/p&gt;
 
@@ -587,24 +587,24 @@ Adapter lets classes work together that couldn’t otherwise because of incompat
   &lt;p&gt;-GoF design pattern&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;컴포짓 패턴&lt;/code&gt;은 클라이언트로 하여금 각 객체와 객체의 묶음을 동일하게 다룰 수 있게 해준다. 복합 객체와 단일 객체를 동일하게 취급하고 싶을 때 사용한다.&lt;/p&gt;
+&lt;p&gt;컴포짓 패턴은 클라이언트로 하여금 각 객체와 객체의 묶음을 동일하게 다룰 수 있게 해준다. 복합 객체와 단일 객체를 동일하게 취급하고 싶을 때 사용한다.&lt;/p&gt;
 
 &lt;h2 id=&quot;구조&quot;&gt;구조&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&quot;/assets/images/50_1.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;component&quot;&gt;Component&lt;/h3&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Leaf&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Composite&lt;/code&gt;을 묶는 상위 인터페이스이다. 여기서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Leaf&lt;/code&gt;는 단일 객체, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Composite&lt;/code&gt;은 복합 객체라고 생각하면 된다.&lt;/p&gt;
+&lt;p&gt;Leaf와 Composite을 묶는 상위 인터페이스이다. 여기서 Leaf는 단일 객체, Composite은 복합 객체라고 생각하면 된다.&lt;/p&gt;
 
 &lt;h3 id=&quot;composite&quot;&gt;Composite&lt;/h3&gt;
-&lt;p&gt;다른 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Component&lt;/code&gt; 를 포함할 수 있는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Component&lt;/code&gt;로서 개별 객체 또는 다른 복합 객체를 포함시키 수 있다.&lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Component&lt;/code&gt; 구현체들을 내부에 리스트로 가지고 있다.&lt;br /&gt;
+&lt;p&gt;다른 Component 를 포함할 수 있는 Component로서 개별 객체 또는 다른 복합 객체를 포함시키 수 있다.&lt;br /&gt;
+Component 구현체들을 내부에 리스트로 가지고 있다.&lt;br /&gt;
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;add()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;remove()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getChild()&lt;/code&gt; 메소드는 내부 리스트에 단일, 복합 객체를 저장, 삭제, 조회한다.&lt;br /&gt;
 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;operation()&lt;/code&gt;를 복합 객체에서 호출하게 되면 &lt;strong&gt;재귀적&lt;/strong&gt;으로 추가 단일 객체를 저장한 하위 복합 객체를 순회한다.&lt;/p&gt;
 
 &lt;h3 id=&quot;leaf&quot;&gt;Leaf&lt;/h3&gt;
-&lt;p&gt;단일 객체로서, 다른 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Component&lt;/code&gt;를 포함할 수 없다.&lt;/p&gt;
+&lt;p&gt;단일 객체로서, 다른 Component를 포함할 수 없다.&lt;/p&gt;
 
-&lt;p&gt;-&amp;gt; 결국 Composite 패턴의 핵심은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;단일 객체&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;복합 객체&lt;/code&gt;를 Client 입장에서 동일한 인터페이스를 통해서 다룰 수 있게 해준다는 것이다.
+&lt;p&gt;-&amp;gt; 결국 Composite 패턴의 핵심은 단일 객체와 복합 객체를 Client 입장에서 동일한 인터페이스를 통해서 다룰 수 있게 해준다는 것이다.
 예시 코드를 보면서 이해해보자!&lt;/p&gt;
 
 &lt;h2 id=&quot;예제&quot;&gt;예제&lt;/h2&gt;
@@ -614,7 +614,7 @@ Adapter lets classes work together that couldn’t otherwise because of incompat
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/50_2.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;이런 경우에 중첩되어 있는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;메뉴(Menu)&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;메뉴 항목(Menus)&lt;/code&gt;을 동일한 구조로 처리할 수 있다.&lt;/p&gt;
+&lt;p&gt;이런 경우에 중첩되어 있는 메뉴(Menu)와 메뉴 항목(Menus)을 동일한 구조로 처리할 수 있다.&lt;/p&gt;
 
 &lt;h3 id=&quot;예제-코드&quot;&gt;예제 코드&lt;/h3&gt;
 
@@ -622,15 +622,15 @@ Adapter lets classes work together that couldn’t otherwise because of incompat
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/50_4.png&quot; alt=&quot;img4&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;우선 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Component&lt;/code&gt;부터 살펴보자. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Menu&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Menus&lt;/code&gt;를 묶는 역할을 한다.
-공통으로 사용하는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;operation&lt;/code&gt;으로는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getName()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getDescription()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getPrice()&lt;/code&gt;가 있다.
-이제 이를 구현한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Leaf&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Composite&lt;/code&gt;을 살펴보자.&lt;/p&gt;
+&lt;p&gt;우선 Component부터 살펴보자. Menu와 Menus를 묶는 역할을 한다.
+공통으로 사용하는 operation으로는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getName()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getDescription()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getPrice()&lt;/code&gt;가 있다.
+이제 이를 구현한 Leaf와 Composite을 살펴보자.&lt;/p&gt;
 
 &lt;h4 id=&quot;menu-leaf&quot;&gt;Menu (Leaf)&lt;/h4&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/50_5.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;단일 객체인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Menu&lt;/code&gt;를 살펴보자. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Component&lt;/code&gt;에서 정의된 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;operation&lt;/code&gt;들을 구현한 것을 확인할 수 있다.
+&lt;p&gt;단일 객체인 Menu를 살펴보자. Component에서 정의된 operation들을 구현한 것을 확인할 수 있다.
 여기서는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getPrice()&lt;/code&gt; 함수가 단순히 자신의 맴버 변수인 price를 리턴한다는 것을 보고 넘어가자. 자세한 것은 아래서 설명하겠다.&lt;/p&gt;
 
 &lt;h4 id=&quot;menus-composite&quot;&gt;Menus (Composite)&lt;/h4&gt;
@@ -638,18 +638,18 @@ Adapter lets classes work together that couldn’t otherwise because of incompat
 &lt;p&gt;&lt;img src=&quot;/assets/images/50_6.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;클래스가 길어서 두번에 나눠서 설명하겠다.&lt;br /&gt;
-이 부분을 보면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Component&lt;/code&gt; 리스트를 저장하고 있는 것을 볼 수 있다. &lt;br /&gt;
+이 부분을 보면 Component 리스트를 저장하고 있는 것을 볼 수 있다. &lt;br /&gt;
 위에서 설명한 것처럼 복합 객체는 단일 객체, 복합 객체를 모두 가지고 있을 수 있다.&lt;br /&gt;
 그것들이 리스트 형태로 저장된 것이라고 생각하면 된다.&lt;br /&gt;
-리스트에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;추가(add)&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;삭제(remove)&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;조회(getChild)&lt;/code&gt;하는 기능이 들어가 있는 것도 확인할 수 있다.&lt;/p&gt;
+리스트에 추가(add), 삭제(remove), 조회(getChild)하는 기능이 들어가 있는 것도 확인할 수 있다.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/50_7.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;이제 가장 주요하게 살펴봐야 하는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getPrice()&lt;/code&gt; 메소드를 보자.&lt;br /&gt;
 이 부분에 어떻게 복합 객체와 단일 객체를 동일하게 사용할 수 있는지에 대한 실마리가 있다. -&amp;gt; 바로 &lt;strong&gt;재귀&lt;/strong&gt;이다.&lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getPrice()&lt;/code&gt; 메소드는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Component 리스트&lt;/code&gt;를 순회하면서 각 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Component&lt;/code&gt;의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getPrice()&lt;/code&gt; 메소드를 호출하게 된다. &lt;br /&gt;
-만약 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Component&lt;/code&gt; 안의 객체가 단일 객체라면 Menu 클래스에 있는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getPrice()&lt;/code&gt; 메소드처럼 단순하게 맴버 변수인 price를 리턴할 것이다.&lt;br /&gt;
-그런데 복합 객체라면 Menus의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getPrice()&lt;/code&gt; 메소드가 호출되며 제귀적으로 자신의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Component 리스트&lt;/code&gt;를 순회하면서 또&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getPrice()&lt;/code&gt;를 호출할 것이다.&lt;/p&gt;
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getPrice()&lt;/code&gt; 메소드는 Component 리스트를 순회하면서 각 Component의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getPrice()&lt;/code&gt; 메소드를 호출하게 된다. &lt;br /&gt;
+만약 Component 안의 객체가 단일 객체라면 Menu 클래스에 있는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getPrice()&lt;/code&gt; 메소드처럼 단순하게 맴버 변수인 price를 리턴할 것이다.&lt;br /&gt;
+그런데 복합 객체라면 Menus의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getPrice()&lt;/code&gt; 메소드가 호출되며 제귀적으로 자신의 Component 리스트를 순회하면서 또&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getPrice()&lt;/code&gt;를 호출할 것이다.&lt;/p&gt;
 
 &lt;p&gt;-&amp;gt; &lt;strong&gt;재귀 동작&lt;/strong&gt;을 통해서 하위 객체에게 작업을 위임하게 함으로써 복합 객체와 단일 객체에 동일한 작업을 적용할 수 있게 돼서 이 둘을 구분할 필요가 없어지게 된다.&lt;/p&gt;
 
@@ -674,7 +674,7 @@ Adapter lets classes work together that couldn’t otherwise because of incompat
   &lt;p&gt;-GoF design pattern&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;템플릿 메소드 패턴&lt;/code&gt;은 알고리즘의 뼈대를 정의하고 서브 클래스마다 세부 동작 사항을 다르게 구현하는 패턴을 말한다.
+&lt;p&gt;템플릿 메소드 패턴은 알고리즘의 뼈대를 정의하고 서브 클래스마다 세부 동작 사항을 다르게 구현하는 패턴을 말한다.
 변하지 않는 템플릿은 상위 클래스에 만들어두고 자주 변경되거나 확장되는 기능은 하위 클래스에서 만들도록 하여, 템플릿 메소드의 동작 순서는 고정하고 세부 실행 내용을 다양화할 때 사용한다.&lt;/p&gt;
 
 &lt;h2 id=&quot;구조&quot;&gt;구조&lt;/h2&gt;
@@ -683,10 +683,10 @@ Adapter lets classes work together that couldn’t otherwise because of incompat
 
 &lt;h3 id=&quot;abstract-class&quot;&gt;Abstract Class&lt;/h3&gt;
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;템플릿 메소드&lt;/code&gt;를 구현하고, 템플릿 메소드에 사용되는 추상 메소드를 선언한다.
-이 추상 메소드는 하위 클래스인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Concreate Class&lt;/code&gt;에서 구현된다.&lt;/p&gt;
+이 추상 메소드는 하위 클래스인 Concreate Class에서 구현된다.&lt;/p&gt;
 
 &lt;h3 id=&quot;concreate-class&quot;&gt;Concreate Class&lt;/h3&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Abstract Class&lt;/code&gt;를 상속하고 추상 메소드를 구현한다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Concreate Class&lt;/code&gt;에서 구현한 메소드는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Abstract Class&lt;/code&gt;의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;템플릿 메소드&lt;/code&gt;에서 호출된다.&lt;/p&gt;
+&lt;p&gt;Abstract Class를 상속하고 추상 메소드를 구현한다. Concreate Class에서 구현한 메소드는 Abstract Class의 템플릿 메소드에서 호출된다.&lt;/p&gt;
 
 &lt;h2 id=&quot;특징&quot;&gt;특징&lt;/h2&gt;
 
@@ -722,10 +722,10 @@ Adapter lets classes work together that couldn’t otherwise because of incompat
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/49_3.png&quot; alt=&quot;img3&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Americano&lt;/code&gt;와  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ChocolateLatte&lt;/code&gt;는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Beverage&lt;/code&gt;를 상속받아서 각자 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;addCondiments()&lt;/code&gt;메소드를 구현하게 된다. 그리고 템플릿 메소드인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;prepareRecipe()&lt;/code&gt;를 호출하게 되면 전체적인 알고리즘 흐름은 동일하지만 세부 실행 내용을 변경할 수 있게 된다.&lt;/p&gt;
+&lt;p&gt;Americano와  ChocolateLatte는 Beverage를 상속받아서 각자 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;addCondiments()&lt;/code&gt;메소드를 구현하게 된다. 그리고 템플릿 메소드인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;prepareRecipe()&lt;/code&gt;를 호출하게 되면 전체적인 알고리즘 흐름은 동일하지만 세부 실행 내용을 변경할 수 있게 된다.&lt;/p&gt;
 
 &lt;h2 id=&quot;hook-메소드&quot;&gt;hook 메소드&lt;/h2&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hook 메소드&lt;/code&gt; 는 서브 클래스에서 좀 더 유연하게 템플릿 메소드의 알고리즘 로직을 다양화할 수 있게 도와주는 역할을 수행한다.
+&lt;p&gt;&lt;strong&gt;hook 메소드&lt;/strong&gt;는 서브 클래스에서 좀 더 유연하게 템플릿 메소드의 알고리즘 로직을 다양화할 수 있게 도와주는 역할을 수행한다.
 일반적으로 추상 메소드가 아닌 일반 메소드로 구현을 하게 된다.
 그냥 나두게 되면 원래 설정한 기본 흐름대로 실행되고 서브 클래스에서 오버라이딩하게 되면 상황에 맞게 제어할 수 있다.&lt;/p&gt;
 
@@ -733,12 +733,12 @@ Adapter lets classes work together that couldn’t otherwise because of incompat
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/49_4.png&quot; alt=&quot;img4&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;템플릿 메소드인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;prepareRecipe()&lt;/code&gt; 안에 있는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isCustomerWantsTopping()&lt;/code&gt;가 앞에서 말한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hook 메서드&lt;/code&gt;이다.
-기본적인 요구사항이 토핑을 추가하여 음료를 제공한다고 생각하고 로직을 작성한 것이다. 그런데 어떤 음료에는 토핑이 들어가지 않아야 할 수 있다. 이런 경우에는 서브 클래스에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hook 메서드&lt;/code&gt;를 선택적으로 오버라이딩하여 템플릿 메소드의 흐름을 제어할 수 있다.&lt;/p&gt;
+&lt;p&gt;템플릿 메소드인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;prepareRecipe()&lt;/code&gt; 안에 있는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isCustomerWantsTopping()&lt;/code&gt;가 앞에서 말한 hook 메서드이다.
+기본적인 요구사항이 토핑을 추가하여 음료를 제공한다고 생각하고 로직을 작성한 것이다. 그런데 어떤 음료에는 토핑이 들어가지 않아야 할 수 있다. 이런 경우에는 서브 클래스에서 hook 메서드를 선택적으로 오버라이딩하여 템플릿 메소드의 흐름을 제어할 수 있다.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/49_5.png&quot; alt=&quot;img5&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Americano&lt;/code&gt;에 기본적으로 토핑이 들어가면 안된다고 할 때, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;hook 메서드&lt;/code&gt;인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isCustomerWantsTopping()&lt;/code&gt;을 제정의하여 템플릿 메소드 안에있는 로직의 실행 흐름을 제어할 수 있다.&lt;/p&gt;
+&lt;p&gt;Americano에 기본적으로 토핑이 들어가면 안된다고 할 때, hook 메서드인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;isCustomerWantsTopping()&lt;/code&gt;을 제정의하여 템플릿 메소드 안에있는 로직의 실행 흐름을 제어할 수 있다.&lt;/p&gt;
 
 &lt;h2 id=&quot;참고&quot;&gt;참고&lt;/h2&gt;
 

@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[Spring] 싱글톤 컨테이너 - Jinsu’s story</title>
+<!-- begin _includes/seo.html --><title>[Spring] 컴포넌트 스캔 - Jinsu’s story</title>
 <meta name="description" content="본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다.">
 
 
@@ -22,8 +22,8 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="Jinsu's story">
-<meta property="og:title" content="[Spring] 싱글톤 컨테이너">
-<meta property="og:url" content="http://localhost:4000/spring/Spring4/">
+<meta property="og:title" content="[Spring] 컴포넌트 스캔">
+<meta property="og:url" content="http://localhost:4000/spring/5/">
 
 
   <meta property="og:description" content="본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다.">
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/spring/Spring4/">
+<link rel="canonical" href="http://localhost:4000/spring/5/">
 
 
 
@@ -329,7 +329,7 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[Spring] 싱글톤 컨테이너">
+    <meta itemprop="headline" content="[Spring] 컴포넌트 스캔">
     <meta itemprop="description" content="본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다.">
     <meta itemprop="datePublished" content="2023-06-28T00:00:00+09:00">
     
@@ -338,7 +338,7 @@
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="http://localhost:4000/spring/Spring4/" class="u-url" itemprop="url">[Spring] 싱글톤 컨테이너
+            <a href="http://localhost:4000/spring/5/" class="u-url" itemprop="url">[Spring] 컴포넌트 스캔
 </a>
           </h1>
           
@@ -355,7 +355,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          최대 1 분 소요
+          1 분 소요
         
       </span>
     
@@ -370,61 +370,92 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu"><li><a href="#싱글톤-패턴을-사용하는-이유-">싱글톤 패턴을 사용하는 이유 </a></li></ul>
+              <ul class="toc__menu"><li><a href="#컴포넌트-스캔">컴포넌트 스캔</a></li></ul>
 
             </nav>
           </aside>
         
         <p>본 포스트는 <code class="language-plaintext highlighter-rouge">Inflearn</code>의 김영한님 강의를 바탕으로 작성했습니다.</p>
 
-<h2 id="싱글톤-패턴을-사용하는-이유-"><strong>싱글톤 패턴을 사용하는 이유</strong> <br /><br /></h2>
-<p><img src="/assets/images/4_1.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
-
+<h2 id="컴포넌트-스캔"><strong>컴포넌트 스캔</strong></h2>
 <ul>
-  <li>여러 클라이언트가 요청할 때마다 새로운 객체를 생성하는 것은 메모리 낭비가 심하다.</li>
-  <li>객체를 하나만 생성하고 이를 공유하도록 설계하자. -&gt; <strong>싱글톤 패턴</strong> <br /><br /></li>
+  <li>스프링은 설정 정보가 없어도 자동으로 스프링 빈을 등록하는 컴포넌트 스캔이라는 기능을 제공한다.</li>
+  <li>컴포넌트 스캔을 사용하면 @Component가 붙은 클래스를 찾아서 다 빈으로 등록한다.</li>
+  <li>@Repository, @Service, @Configuration, @Controller를 까보면 안에 @Component를 가지고 있다. -&gt; 다 빈으로 등록된다.(Spring이 제공하는 기능)</li>
+  <li>컴포넌트 스캔을 사용하려면 @ComponentScan을 설정 정보에 붙여줘야 한다. (@SpringBootApplication 안에 @ComponentScan이 있어서 default로 쓰면 최상위 패키지부터 훑는다.)<br /><br /></li>
 </ul>
 
-<p><strong>싱글톤 패턴</strong></p>
-<ul>
-  <li>클래스의 인스턴스를 딱 1개만 생성되도록 보장하는 디자인 패턴이다. <br /><br /></li>
-</ul>
+<p><strong>컴포넌트 스캔과 자동 의존관계 주입 과정</strong> <br /><br />
+<img src="/assets/images/5_1.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SingletonService</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">SingletonService</span> <span class="n">instance</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SingletonService</span><span class="o">();</span>
-      <span class="kd">public</span> <span class="kd">static</span> <span class="nc">SingletonService</span> <span class="nf">getInstance</span><span class="o">()</span> <span class="o">{</span>
-          <span class="k">return</span> <span class="n">instance</span><span class="o">;</span>
-      <span class="o">}</span>
+<p>@ComponentScan 과정</p>
+<ol>
+  <li>@Component가 붙은 모든 클래스를 스프링 빈으로 등록한다.</li>
+  <li>스프링 빈의 기본 이름은 클래스명을 사용하는데 맨 앞글자는 소문자로 바뀐다.</li>
+  <li>이름을 직접 지정할 수도 있는데 @Component(“지정할 이름”) &lt;- 이런 식으로 부여하면 된다. <br /><br /></li>
+</ol>
 
-      <span class="kd">private</span> <span class="nf">SingletonService</span><span class="o">()</span> <span class="o">{</span>
-      <span class="o">}</span>
-      
-      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">logic</span><span class="o">()</span> <span class="o">{</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"싱글톤 객체 로직 호출"</span><span class="o">);</span>
-      <span class="o">}</span> 
-<span class="o">}</span>
+<p><img src="/assets/images/5_2.png" alt="img2" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
+
+<p>@Autowired 의존관계 주입 과정</p>
+<ol>
+  <li>생성자에 @Autowired를 지정하면 스프링 컨테이너가 자동으로 해당 스프링 빈을 찾아서 의존관계를 주입한다.</li>
+  <li>기본 전략은 같은 타입의 빈을 찾는 것이다. -&gt; getBean(MemberRepository.class) 와 동일하다고 생각하면 된다.</li>
+  <li>생성자에 파라미터가 많아도 알아서 다 찾아서 의존관계를 주입한다. <br /><br /></li>
+</ol>
+
+<p><strong>컴포넌트 스캔 위치</strong></p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@ComponentScan</span><span class="o">(</span>
+          <span class="n">basePackages</span> <span class="o">=</span> <span class="s">"hello.core"</span><span class="o">,</span>
+<span class="o">)</span>
 </code></pre></div></div>
 
 <ul>
-  <li>객체를 미리 생성해두고 생성자를 private으로 막아서 getInstance()를 통해서만 객체에 접근할 수 있게 한다.</li>
-  <li>유연성이 떨어지고 코드 길이도 길어지고 구체 클래스를 의존해야 되서 DIP, OCP를 위반할 가능성이 높다.</li>
-  <li>싱글톤 패턴 자체에 여러 문제가 있지만 이러한 것들은 Spring 이 다 해결해준다. <br /><br /></li>
+  <li>basePackages 값을 설정해서 시작 위치를 지정할 수 있다.</li>
+  <li>그냥 프로젝트 시작 루트 위치에 두고 쓰는게 좋다. (default값) <br /><br /></li>
 </ul>
 
-<p><img src="/assets/images/4_2.png" alt="img2" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
-
+<p><strong>컴포넌트 스캔 대상</strong></p>
 <ul>
-  <li>스프링 컨테이너는 요청이 올 때마다 객체를 생성하는 것이 아니라 미리 만들어둔 instance를 공유하는 방식으로 돌아간다.</li>
-  <li>객체 하나를 공유하는 방식이기 때문에 빈을 구현할 때 반드시 <strong>stateless</strong>로 설계해야 한다. <br /><br /></li>
+  <li>@Component가 붙은 모든 것이다.</li>
+  <li>위에 설명한 것처럼 @Repository, @Configuration, @Service, @Controller 도 스캔 대상이다.(아래 코드 참고, @Component를 가지고 있다.) <br /><br /></li>
 </ul>
 
-<p><strong>Configuration과 바이트 조작</strong> <br /></p>
-
-<p><img src="/assets/images/4_3.png" alt="img3" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
-
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+  <span class="kd">public</span> <span class="nd">@interface</span> <span class="nc">Controller</span> <span class="o">{</span>
+  <span class="o">}</span>
+  <span class="nd">@Component</span>
+  <span class="kd">public</span> <span class="nd">@interface</span> <span class="nc">Service</span> <span class="o">{</span>
+  <span class="o">}</span>
+  <span class="nd">@Component</span>
+  <span class="kd">public</span> <span class="nd">@interface</span> <span class="nc">Configuration</span> <span class="o">{</span>
+  <span class="o">}</span>
+</code></pre></div></div>
+<p><br />
+<strong>필터</strong></p>
 <ul>
-  <li>스프링 설정 정보로 넘긴 AppConfig도 빈으로 등록되는데 바이트조작된 AppConfig를 상속하는 객체가 빈으로 등록된다. (CGLIB 기술) &lt;- @Configuration이 붙으면 해줌.</li>
-  <li>@Configuration을 안 넣으면 @Bean이 붙은 method가 빈으로 등록되긴 하지만 싱글톤으로 관리되지 않는다.</li>
+  <li>includeFilters : 컴포넌트 스캔 대상 추가 지정</li>
+  <li>excludeFilters : 컴포넌트 스캔에서 제외할 대상 지정</li>
+  <li>최근 Spring은 컴포넌트 스캔을 기본으로 제공한다. 그리고 옵션을 변경하면서 쓰기보다는 기본 설정대로 사용하는 게 좋다. <br /><br /></li>
+</ul>
+
+<p><strong>중복 등록과 충돌</strong> <br /></p>
+<ul>
+  <li>컴포넌트 스캔에 같은 빈 이름을 등록하면 충돌이 발생한다.
+    <ol>
+      <li>자동 빈 등록 vs 자동 빈 등록
+        <ul>
+          <li>ConflictingBeanDefinitionException 에러 발생</li>
+        </ul>
+      </li>
+      <li>수동 빈 등록 vs 자동 빈 등록
+        <ul>
+          <li>일반적으로 수동으로 등록한게 우선권을 가진다.</li>
+          <li>스프링은 최근 수동 빈 등록과 자동 빈 등록이 충돌하면 오류가 발생하도록 설정이 변경되었다.</li>
+        </ul>
+      </li>
+    </ol>
+  </li>
 </ul>
 
 <h1 id="출처">출처</h1>
@@ -482,22 +513,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BSpring%5D+%EC%8B%B1%EA%B8%80%ED%86%A4+%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%20http%3A%2F%2Flocalhost%3A4000%2Fspring%2FSpring4%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BSpring%5D+%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8+%EC%8A%A4%EC%BA%94%20http%3A%2F%2Flocalhost%3A4000%2Fspring%2F5%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fspring%2FSpring4%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fspring%2F5%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fspring%2FSpring4%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fspring%2F5%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/spring/Spring3/" class="pagination--pager" title="[Spring] 스프링 컨테이너와 스프링 빈
+      <a href="/spring/4/" class="pagination--pager" title="[Spring] 싱글톤 컨테이너
 ">이전</a>
     
     
-      <a href="/spring/Spring5/" class="pagination--pager" title="[Spring] 컴포넌트 스캔
+      <a href="/spring/6/" class="pagination--pager" title="[Spring] 의존관계 자동 주입
 ">다음</a>
     
   </nav>
