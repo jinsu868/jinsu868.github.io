@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[Spring] 싱글톤 컨테이너 - Jinsu’s story</title>
-<meta name="description" content="본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다.">
+<!-- begin _includes/seo.html --><title>[Spring] 스프링 컨테이너(2) - Jinsu’s story</title>
+<meta name="description" content="싱글톤 컨테이너">
 
 
   <meta name="author" content="Moon JinSu">
@@ -22,11 +22,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="Jinsu's story">
-<meta property="og:title" content="[Spring] 싱글톤 컨테이너">
+<meta property="og:title" content="[Spring] 스프링 컨테이너(2)">
 <meta property="og:url" content="http://localhost:4000/spring/4/">
 
 
-  <meta property="og:description" content="본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다.">
+  <meta property="og:description" content="싱글톤 컨테이너">
 
 
 
@@ -329,8 +329,8 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[Spring] 싱글톤 컨테이너">
-    <meta itemprop="description" content="본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다.">
+    <meta itemprop="headline" content="[Spring] 스프링 컨테이너(2)">
+    <meta itemprop="description" content="싱글톤 컨테이너">
     <meta itemprop="datePublished" content="2023-06-28T00:00:00+09:00">
     
 
@@ -338,7 +338,7 @@
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="http://localhost:4000/spring/4/" class="u-url" itemprop="url">[Spring] 싱글톤 컨테이너
+            <a href="http://localhost:4000/spring/4/" class="u-url" itemprop="url">[Spring] 스프링 컨테이너(2)
 </a>
           </h1>
           
@@ -355,7 +355,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          최대 1 분 소요
+          1 분 소요
         
       </span>
     
@@ -370,67 +370,68 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu"><li><a href="#싱글톤-패턴을-사용하는-이유-">싱글톤 패턴을 사용하는 이유 </a></li></ul>
+              <ul class="toc__menu"><li><a href="#싱글톤-컨테이너">싱글톤 컨테이너</a><ul><li><a href="#요청-흐름">요청 흐름</a></li><li><a href="#주의점">주의점</a></li><li><a href="#정리">정리</a></li><li><a href="#참고">참고</a></li></ul></li></ul>
 
             </nav>
           </aside>
         
-        <p>본 포스트는 <code class="language-plaintext highlighter-rouge">Inflearn</code>의 김영한님 강의를 바탕으로 작성했습니다.</p>
+        <h1 id="싱글톤-컨테이너">싱글톤 컨테이너</h1>
 
-<h2 id="싱글톤-패턴을-사용하는-이유-"><strong>싱글톤 패턴을 사용하는 이유</strong> <br /><br /></h2>
-<p><img src="/assets/images/4_1.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /><br /></p>
+<p>스프링이 가장 많이 사용되는 분야는 웹, 앱 애플리케이션이다. 웹과 앱같은 경우 일반적으로 다수의 클라이언트가 동시에 서버에 요청을 하게 된다.</p>
 
-<ul>
-  <li>여러 클라이언트가 요청할 때마다 새로운 객체를 생성하는 것은 메모리 낭비가 심하다.</li>
-  <li>객체를 하나만 생성하고 이를 공유하도록 설계하자. -&gt; <strong>싱글톤 패턴</strong> <br /><br /></li>
-</ul>
+<p>그런데 모든 요청마다 객체가 생성된다면 어떨까? 트래픽이 많아질수록 서버의 부담은 커지고 메모리 낭비가 심할 것이다. 때문에 스프링 컨테이너는 기본적으로 빈을 싱글톤으로 관리한다. (싱글톤에 대해 잘 모른다면 <a href="https://jinsu868.github.io/디자인패턴/11">싱글톤 패턴</a>을 참고하자)</p>
 
-<p><strong>싱글톤 패턴</strong></p>
-<ul>
-  <li>클래스의 인스턴스를 딱 1개만 생성되도록 보장하는 디자인 패턴이다. <br /><br /></li>
-</ul>
+<h2 id="요청-흐름">요청 흐름</h2>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SingletonService</span> <span class="o">{</span>
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">SingletonService</span> <span class="n">instance</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SingletonService</span><span class="o">();</span>
-      <span class="kd">public</span> <span class="kd">static</span> <span class="nc">SingletonService</span> <span class="nf">getInstance</span><span class="o">()</span> <span class="o">{</span>
-          <span class="k">return</span> <span class="n">instance</span><span class="o">;</span>
-      <span class="o">}</span>
+<p><img src="/assets/images/4_1.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
 
-      <span class="kd">private</span> <span class="nf">SingletonService</span><span class="o">()</span> <span class="o">{</span>
-      <span class="o">}</span>
-      
-      <span class="kd">public</span> <span class="kt">void</span> <span class="nf">logic</span><span class="o">()</span> <span class="o">{</span> <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"싱글톤 객체 로직 호출"</span><span class="o">);</span>
-      <span class="o">}</span> 
-<span class="o">}</span>
-</code></pre></div></div>
+<p>클라이언트A, B, C가 동시에 memberService객체에 요청을 한다고 해보자. 싱글톤 패턴을 사용하지 않는다면 모든 요청마다 memberService객체를 생성해야 한다.</p>
 
-<ul>
-  <li>객체를 미리 생성해두고 생성자를 private으로 막아서 getInstance()를 통해서만 객체에 접근할 수 있게 한다.</li>
-  <li>유연성이 떨어지고 코드 길이도 길어지고 구체 클래스를 의존해야 되서 DIP, OCP를 위반할 가능성이 높다.</li>
-  <li>싱글톤 패턴 자체에 여러 문제가 있지만 이러한 것들은 Spring 이 다 해결해준다. <br /><br /></li>
-</ul>
+<p>만약 클라이언트의 수가 1억이라면 어떨까? 1억번의 메모리 할당이 생길 것이다. 심지어 이 객체는 1회용으로 쓰이고 버려질 것이다. 이는 굉장히 비효율적이다.</p>
 
-<p><img src="/assets/images/4_2.png" alt="img2" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
+<p>스프링은 싱글톤으로 객체를 관리하기 때문에 클라이언트의 요청이 얼마나 들어오던 동일한 객체가 작업을 수행하게 된다. 때문에 추가적인 메모리 할당이 발생하지 않는다. 위 그림과 같이 말이다.</p>
 
-<ul>
-  <li>스프링 컨테이너는 요청이 올 때마다 객체를 생성하는 것이 아니라 미리 만들어둔 instance를 공유하는 방식으로 돌아간다.</li>
-  <li>객체 하나를 공유하는 방식이기 때문에 빈을 구현할 때 반드시 <strong>stateless</strong>로 설계해야 한다. <br /><br /></li>
-</ul>
+<h2 id="주의점">주의점</h2>
 
-<p><strong>Configuration과 바이트 조작</strong> <br /></p>
+<p>스프링 컨테이너가 빈을 싱글톤으로 관리하기 때문에 신경써야 할 점이 있다. <strong>빈들을 반드시 무상태로 설계해야 한다는 것이다.</strong></p>
 
-<p><img src="/assets/images/4_3.png" alt="img3" width="70%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
+<p>그렇다면 왜 무상태로 설계해야 할까?</p>
+
+<p>예를 들어 설명하겠다. 만약 스프링 빈이 상태를 가지고 있는 상황을 가정해보겠다.</p>
+
+<p><img src="/assets/images/4_2.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>ReviewService라는 빈이 있다. 그리고 comment라는 상태를 가지고 있는 상황이다.</p>
+
+<p>멀티 스레드 환경에서 다수의 클라이언트가 ReviewService에 접근해서  <code class="language-plaintext highlighter-rouge">review()</code>메소드를 호출하게 되면 어떤 일이 발생할 수 있을까?</p>
+
+<p>스레드A가 <code class="language-plaintext highlighter-rouge">review()</code>메소드를 호출하는 상황에서 다른 스레드B에서 <code class="language-plaintext highlighter-rouge">review()</code>를 호출하는 상황을 가정하자. (여기서 스레드A는 reviewServiceA, 스레드 B는 reviewServiceB이다.)</p>
+
+<p><img src="/assets/images/4_3.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>스레드A에서는 comment로 “하이”이라는 값을, 스레드B에서는 comment로 “바이”라는 값을 넘겼다.</p>
+
+<p>이 메소드의 실행이 끝나면 스레드 A, B는 comment에 각자 자신이 넘긴 스트링(“하이”, “바이”)이 저장됐다고 생각할 것이다.</p>
+
+<p><img src="/assets/images/4_4.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>그런데 스레드A에서 <code class="language-plaintext highlighter-rouge">getComment()</code>를 호출하여 comment를 조회했더니 “하이”가 아니라 “바이”가 나온다. 스레드A는 자신이 설정한 값(“하이”)이 아닌 다른 값(“바이”)이 나와서 당황하게 된다.</p>
+
+<p>단순한 예시를 들었지만 위 코드가 멀티 스레드 환경에서 문제가 있을 수 있다는 것은 이해했을 것이다. 기본적으로 스프링 빈 내의 맴버 변수는  Thread safe하지 않다. 때문에 race condition문제가 발생할 수 있다. 이를 피하기 위해 스프링 컨테이너에 등록하는 빈들은 반드시 무상태로 설계해야 한다.</p>
 
 <ul>
-  <li>스프링 설정 정보로 넘긴 AppConfig도 빈으로 등록되는데 바이트조작된 AppConfig를 상속하는 객체가 빈으로 등록된다. (CGLIB 기술) &lt;- @Configuration이 붙으면 해줌.</li>
-  <li>@Configuration을 안 넣으면 @Bean이 붙은 method가 빈으로 등록되긴 하지만 싱글톤으로 관리되지 않는다.</li>
+  <li>race condition : 두 개 이상의 프로세스가 공통 자원을 병행적으로 읽거나 쓸 때, 공용 데이터에 대한 접근이 어떤 순서에 따라 이루어졌는지에 따라 그 실행 결과가 달라지는 상황</li>
 </ul>
 
-<h1 id="출처">출처</h1>
-<ul>
-  <li>https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8</li>
-</ul>
+<h2 id="정리">정리</h2>
+
+<p>오늘은 스프링 컨테이너가 빈들을 어떻게 관리하는지, 그리고 우리가 빈을 설계할 때 무엇을 주의해야 하는지 알아봤다.</p>
+
+<p>위에서 설명한 멀티 스레드 환경에서 발생할 수 있는 race condition 문제는 실무에서도 자주 발생한다고 하니 꼭 숙지하도록 하자.</p>
+
+<h2 id="참고">참고</h2>
+
+<p><a href="https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8/dashboard">스프링 핵심 원리</a></p>
 
 
         
@@ -482,7 +483,7 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BSpring%5D+%EC%8B%B1%EA%B8%80%ED%86%A4+%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%20http%3A%2F%2Flocalhost%3A4000%2Fspring%2F4%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BSpring%5D+%EC%8A%A4%ED%94%84%EB%A7%81+%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%282%29%20http%3A%2F%2Flocalhost%3A4000%2Fspring%2F4%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
   <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fspring%2F4%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
@@ -493,7 +494,7 @@
       
   <nav class="pagination">
     
-      <a href="/spring/3/" class="pagination--pager" title="[Spring] 스프링 컨테이너
+      <a href="/spring/3/" class="pagination--pager" title="[Spring] 스프링 컨테이너(1)
 ">이전</a>
     
     

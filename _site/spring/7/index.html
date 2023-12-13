@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[디자인패턴] 팩토리 패턴 - Jinsu’s story</title>
-<meta name="description" content="">
+<!-- begin _includes/seo.html --><title>[Spring] 빈 생명주기 콜백 - Jinsu’s story</title>
+<meta name="description" content="본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다.">
 
 
   <meta name="author" content="Moon JinSu">
@@ -22,30 +22,30 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="Jinsu's story">
-<meta property="og:title" content="[디자인패턴] 팩토리 패턴">
-<meta property="og:url" content="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Factory/">
+<meta property="og:title" content="[Spring] 빈 생명주기 콜백">
+<meta property="og:url" content="http://localhost:4000/spring/7/">
 
 
-  <meta property="og:description" content="">
-
-
-
-
-
-
-
-  <meta property="article:published_time" content="2023-07-04T00:00:00+09:00">
+  <meta property="og:description" content="본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다.">
 
 
 
 
 
-  
+
+
+  <meta property="article:published_time" content="2023-06-29T00:00:00+09:00">
+
+
+
+
 
   
 
+  
 
-<link rel="canonical" href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Factory/">
+
+<link rel="canonical" href="http://localhost:4000/spring/7/">
 
 
 
@@ -329,16 +329,16 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[디자인패턴] 팩토리 패턴">
-    <meta itemprop="description" content="">
-    <meta itemprop="datePublished" content="2023-07-04T00:00:00+09:00">
+    <meta itemprop="headline" content="[Spring] 빈 생명주기 콜백">
+    <meta itemprop="description" content="본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다.">
+    <meta itemprop="datePublished" content="2023-06-29T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Factory/" class="u-url" itemprop="url">[디자인패턴] 팩토리 패턴
+            <a href="http://localhost:4000/spring/7/" class="u-url" itemprop="url">[Spring] 빈 생명주기 콜백
 </a>
           </h1>
           
@@ -370,152 +370,139 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu"><li><a href="#factory-method-pattern이란">Factory Method Pattern이란?</a></li><li><a href="#팩토리-패턴은-왜-나왔는가">팩토리 패턴은 왜 나왔는가?</a></li><li><a href="#장점">장점</a></li><li><a href="#단점">단점</a></li><li><a href="#팩토리-패턴-구현-예시-simple-factory-pattern">팩토리 패턴 구현 예시 (simple Factory pattern)</a></li></ul>
+              <ul class="toc__menu"><li><a href="#빈-생명주기-콜백-">빈 생명주기 콜백 </a><ul><li><a href="#initializingbean-disposablebean-인터페이스-사용-이제-거의-사용되지-않는다-">InitializingBean, DisposableBean 인터페이스 사용 (이제 거의 사용되지 않는다.) </a></li><li><a href="#초기화-소멸-메서드-직접-지정-">초기화, 소멸 메서드 직접 지정 </a></li><li><a href="#postconstruct-predestroy-사용-">@PostConstruct, @PreDestroy 사용 </a></li></ul></li></ul></li></ul>
 
             </nav>
           </aside>
         
-        <p><br /></p>
+        <p>본 포스트는 <code class="language-plaintext highlighter-rouge">Inflearn</code>의 김영한님 강의를 바탕으로 작성했습니다.</p>
 
-<p><img src="/assets/images/11_1.png" alt="img1" width="60%&quot;&quot;, height=&quot;40%&quot;" /> <br /></p>
+<h2 id="빈-생명주기-콜백-"><strong>빈 생명주기 콜백</strong> <br /></h2>
 
-<h1 id="factory-method-pattern이란"><strong>Factory Method Pattern이란?</strong></h1>
+<p><strong>콜백의 필요성</strong> <br /></p>
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">팩토리 메서드 패턴</code>에서는 객체를 생성하기 위한 인터페이스를 정의하고, 어떤 클래스의 인스턴스를 만들지는 서브 클래스에서 결정하게 하는 패턴이다.</li>
-  <li>팩토리 메서드는 객체를 생성, 반환하는 메서드이다.</li>
-  <li>팩토리 클래스는 하위 클래스에서 팩토리 메서드를 오버라이딩해서 객체를 반환하게 하여 상위 클래스와 하위 클래스가 분리되게 함으로써 결합을 느슨하게 한다.</li>
-  <li>DIP를 활용한다.</li>
+  <li>DB, network 커넥션들을 애플리케이션 시작 시점에 미리 연결해둬야 빠르게 사용할 수 있다.</li>
+  <li>이를 위해서는 객체의 초기화와 종료 작업이 필요하다. <br /><br /></li>
 </ul>
 
-<p><br /></p>
+<p><strong>스프링 빈의 라이프사이클</strong> <br /></p>
+<ol>
+  <li>객체 생성</li>
+  <li>의존관계 주입</li>
+</ol>
 
-<p><br /></p>
-
-<h1 id="팩토리-패턴은-왜-나왔는가">팩토리 패턴은 왜 나왔는가?</h1>
-<p>객체 지향 디자인 패턴의 기본 원칙 중 하나인 OCP를 생각해보자. <strong>OCP는 확장에는 열려있고, 수정에는 닫혀 있어야 한다는 의미이다.</strong></p>
-
-<p>코드를 수정하지 않고 모듈의 기능을 확장할 수 있다는 것인데, 이를 위해서는 수정이 일어날 부분과 그렇지 않은 부분을 분리하는 것이 바람직하다.</p>
-
-<p>객체를 생성하는 부분은 변경될 가능성이 높기 때문에 따로 떼어내서 관리하는게 좋다. 이를 위해 팩토리 패턴이 등장했다.</p>
-
-<p><br /></p>
-
-<p><br /></p>
-
-<h1 id="장점"><strong>장점</strong></h1>
 <ul>
-  <li>코드를 리펙토링할 때 한 곳만 고치면 되서 유지 보수성이 증가된다.</li>
-  <li>객체간의 결합도를 낮출 수 있다.</li>
-  <li><code class="language-plaintext highlighter-rouge">SRP</code>를 따른다. 실행 코드에서 생성자 코드를 분리함으로써 코드를 더욱 간결하게 만든다.</li>
-  <li><code class="language-plaintext highlighter-rouge">OCP</code>를 따른다. 기존 클라이언트의 코드를 바꾸지 않고도 새로운 타입으로 바꿀 수 있다.</li>
+  <li>스프링 빈은 객체가 생성되고, 의존관계 주입이 다 끝나야 사용할 수 있다.</li>
+  <li>스프링은 의존관계 주입이 완료되면 스프링 빈에게 콜백 메서드를 통해서 초기화 시점을 알려주는 다양한 기능을 제공한다.</li>
+  <li>뿐만 아니라 스프링 컨테이너가 종료되기 직전에 소멸 콜백도 해준다. <br /><br /></li>
 </ul>
 
-<p><br /></p>
+<p><strong>스프링 빈의 이벤트 라이프사이클</strong> <br /></p>
+<ol>
+  <li>스프링 컨테이너 생성</li>
+  <li>스프링 빈 생성</li>
+  <li>의존관계 주입</li>
+  <li><strong>초기화 콜백</strong></li>
+  <li>사용</li>
+  <li><strong>소멸전 콜백</strong></li>
+  <li>스프링 종료 <br /><br /></li>
+</ol>
 
-<h1 id="단점"><strong>단점</strong></h1>
+<p><strong>스프링이 빈 생명주기 콜백을 해주는 방식</strong><br /></p>
+<h4 id="initializingbean-disposablebean-인터페이스-사용-이제-거의-사용되지-않는다-">InitializingBean, DisposableBean 인터페이스 사용 (이제 거의 사용되지 않는다.) <br /></h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">NetworkClient</span> <span class="kd">implements</span> <span class="nc">InitializingBean</span><span class="o">,</span> <span class="nc">DisposableBean</span> <span class="o">{</span>
+    <span class="o">...</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">afterPropertiesSet</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="n">connect</span><span class="o">();</span>
+        <span class="n">call</span><span class="o">(</span><span class="s">"초기화 연결 메시지"</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">destroy</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="n">disConnect</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
 <ul>
-  <li>패턴 구현을 위해 많은 서브 클래스가 도입되어야 하기 때문에 코드가 복잡해진다.</li>
+  <li>빈으로 등록할 클래스에서 afterPropertiesSet(), destroy() 메서드를 구현하면 된다.</li>
+  <li>단점
+    <ul>
+      <li>스프링 전용 인터페이스이기 때문에 해당 코드가 스프링 전용 인터페이스에 의존하게 된다.</li>
+      <li>초기화, 소멸 메서드의 이름을 변경하지 못한다.</li>
+      <li>내가 코드를 손볼 수 없는 외부 라이브러리에 적용할 수 없다. <br /><br /><br /></li>
+    </ul>
+  </li>
 </ul>
 
-<p><br /></p>
+<h4 id="초기화-소멸-메서드-직접-지정-">초기화, 소멸 메서드 직접 지정 <br /></h4>
 
-<p><br /></p>
-
-<h1 id="팩토리-패턴-구현-예시-simple-factory-pattern"><strong>팩토리 패턴 구현 예시</strong> (simple Factory pattern)</h1>
-
-<ol>
-  <li>interface 생성</li>
-</ol>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Animal</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">speak</span><span class="o">();</span>
-    <span class="c1">//type은 String보다는 Enum으로 해주면 더 좋다.</span>
-    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">getType</span><span class="o">();</span> 
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="kd">static</span> <span class="kd">class</span> <span class="nc">LifeCycleConfig</span> <span class="o">{</span>
+    <span class="nd">@Bean</span><span class="o">(</span><span class="n">initMethod</span> <span class="o">=</span> <span class="s">"init"</span><span class="o">,</span> <span class="n">destroyMethod</span> <span class="o">=</span> <span class="s">"close"</span><span class="o">)</span>
+      <span class="kd">public</span> <span class="nc">NetworkClient</span> <span class="nf">networkClient</span><span class="o">()</span> <span class="o">{</span>
+          <span class="nc">NetworkClient</span> <span class="n">networkClient</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">NetworkClient</span><span class="o">();</span>
+          <span class="n">networkClient</span><span class="o">.</span><span class="na">setUrl</span><span class="o">(</span><span class="s">"http://hello-spring.dev"</span><span class="o">);</span>
+          <span class="k">return</span> <span class="n">networkClient</span><span class="o">;</span>
+      <span class="o">}</span> 
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p><br /></p>
+<ul>
+  <li>빈으로 등록할 때, initMethod와 destroyMethod를 직접 등록할 수 있다.</li>
+  <li>그리고 아래 코드와 같이 빈으로 등록할 객체 클래스 안에 함수를 초기화, 소멸 함수를 구현하면 된다. <br /></li>
+</ul>
 
-<ol>
-  <li>하위 클래스를 구분해 주는 클래스 생성 (Enum 이 더 좋음)</li>
-</ol>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">NetworkClient</span> <span class="o">{</span>
+    <span class="o">...</span>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Type</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">DOG</span> <span class="o">=</span> <span class="err">'</span><span class="n">dog</span><span class="err">'</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">CAT</span> <span class="o">=</span> <span class="err">'</span><span class="n">cat</span><span class="err">'</span><span class="o">;</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<p><br /></p>
-
-<ol>
-  <li>interface를 상속 받아 구현할 하위 클래스</li>
-</ol>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Cat</span> <span class="kd">implements</span> <span class="nc">Animal</span> <span class="o">{</span>
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">speak</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"먀먀"</span><span class="o">);</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">()</span> <span class="o">{</span> 
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"NetworkClient.init"</span><span class="o">);</span> <span class="n">connect</span><span class="o">();</span>
+        <span class="n">call</span><span class="o">(</span><span class="s">"초기화 연결 메시지"</span><span class="o">);</span>
     <span class="o">}</span>
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">getType</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="nc">Type</span><span class="o">.</span><span class="na">CAT</span><span class="o">;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Dog</span> <span class="kd">implements</span> <span class="nc">Animal</span> <span class="o">{</span>
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">speak</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"멍멍"</span><span class="o">);</span>
-    <span class="o">}</span>
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">getType</span><span class="o">()</span> <span class="o">{</span>
-        <span class="k">return</span> <span class="nc">Type</span><span class="o">.</span><span class="na">DOG</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">close</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"NetworkClient.close"</span><span class="o">);</span>
+        <span class="n">disConnect</span><span class="o">();</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p><br /></p>
+<ul>
+  <li>메서드 이름을 자유롭게 지을 수 있다.</li>
+  <li>스프링 빈이 스프링 코드에 의존하지 않는다.</li>
+  <li>설정 정보를 사용하는 것이기 때문에 코드를 고칠 수 없는 외부 라이브러리에도 초기화, 종료 메서드를 적용할 수 있다.</li>
+  <li>destroyMethod는 기본값이 있다.(close, shutdown) -&gt; 따로 종료 메서드를 적어주지 않아도 잘 작동한다.<br /><br /></li>
+</ul>
 
-<ol>
-  <li>타입에 따라 객체를 생성해 줄 Factory 클래스 생성</li>
-</ol>
+<h4 id="postconstruct-predestroy-사용-">@PostConstruct, @PreDestroy 사용 <br /></h4>
 
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AnimalFactory</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="nc">Animal</span> <span class="nf">getAnimal</span><span class="o">(</span><span class="nc">String</span> <span class="n">animalType</span><span class="o">)</span> <span class="o">{</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">animalType</span><span class="o">.</span><span class="na">equal</span><span class="o">(</span><span class="nc">Type</span><span class="o">.</span><span class="na">CAT</span><span class="o">)){</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nf">Cat</span><span class="o">();</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">animalType</span><span class="o">.</span><span class="na">eqaul</span><span class="o">(</span><span class="nc">Type</span><span class="o">.</span><span class="na">DOG</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="k">new</span> <span class="nf">Dog</span><span class="o">();</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
-        <span class="o">}</span>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">NetworkClient</span> <span class="o">{</span>
+    <span class="nd">@PostConstruct</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"NetworkClient.init"</span><span class="o">);</span> <span class="n">connect</span><span class="o">();</span>
+        <span class="n">call</span><span class="o">(</span><span class="s">"초기화 연결 메시지"</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="nd">@PreDestroy</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">close</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"NetworkClient.close"</span><span class="o">);</span>
+        <span class="n">disConnect</span><span class="o">();</span>
     <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p><br /></p>
+<ul>
+  <li>에노테이션만 붙이면 되기 때문에 사용하기 굉장히 편하다. (스프링이 밀고 있는 방식)</li>
+  <li>스프링 종속 기술이 아니라 자바 표준이기 때문에 스프링이 아닌 다른 컨테이너에서도 잘 작동한다.</li>
+  <li>외부 라이브러리에는 적용하지 못하기 때문에 외부 라이브러리에 적용하고 싶으면 @Bean에 초기화, 소멸 메서드를 지정하는 방식을 사용하면 된다. <br /><br /></li>
+</ul>
 
-<ol>
-  <li>Factory 클래스를 사용하는 Client</li>
-</ol>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Client</span> <span class="o">{</span>
-    <span class="nd">@Autowired</span>
-    <span class="kd">private</span> <span class="nc">AnimalFactory</span> <span class="n">factory</span><span class="o">;</span>
-
-    <span class="nd">@Override</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">use</span><span class="o">()</span> <span class="o">{</span>
-        <span class="nc">Aniaml</span> <span class="n">dog</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="na">getAnimal</span><span class="o">(</span><span class="nc">Type</span><span class="o">.</span><span class="na">DOG</span><span class="o">);</span>
-        <span class="nc">Aniaml</span> <span class="n">cat</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="na">getAnimal</span><span class="o">(</span><span class="nc">Type</span><span class="o">.</span><span class="na">CAT</span><span class="o">);</span>
-
-        <span class="n">dog</span><span class="o">.</span><span class="na">speak</span><span class="o">();</span>
-        <span class="n">cat</span><span class="o">.</span><span class="na">speak</span><span class="o">();</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
+<h1 id="출처">출처</h1>
+<ul>
+  <li>https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8</li>
+</ul>
 
 
         
@@ -533,9 +520,7 @@
     <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
     <span itemprop="keywords">
     
-      <a href="/tags/#cs" class="page__taxonomy-item p-category" rel="tag">CS</a><span class="sep">, </span>
-    
-      <a href="/tags/#%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4" class="page__taxonomy-item p-category" rel="tag">디자인패턴</a>
+      <a href="/tags/#spring" class="page__taxonomy-item p-category" rel="tag">Spring</a>
     
     </span>
   </p>
@@ -552,7 +537,7 @@
     <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
     <span itemprop="keywords">
     
-      <a href="/categories/#%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4" class="page__taxonomy-item p-category" rel="tag">디자인패턴</a>
+      <a href="/categories/#spring" class="page__taxonomy-item p-category" rel="tag">Spring</a>
     
     </span>
   </p>
@@ -560,7 +545,7 @@
 
         
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-07-04T00:00:00+09:00">July 4, 2023</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2023-06-29T00:00:00+09:00">June 29, 2023</time></p>
 
       </footer>
 
@@ -569,22 +554,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5B%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4%5D+%ED%8C%A9%ED%86%A0%EB%A6%AC+%ED%8C%A8%ED%84%B4%20http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2FFactory%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BSpring%5D+%EB%B9%88+%EC%83%9D%EB%AA%85%EC%A3%BC%EA%B8%B0+%EC%BD%9C%EB%B0%B1%20http%3A%2F%2Flocalhost%3A4000%2Fspring%2F7%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2FFactory%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fspring%2F7%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2FFactory%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fspring%2F7%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/spring/mvc1/" class="pagination--pager" title="[Spring] 스프링 웹 MVC
+      <a href="/spring/6/" class="pagination--pager" title="[Spring] 의존관계 자동 주입
 ">이전</a>
     
     
-      <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Singleton/" class="pagination--pager" title="[디자인패턴] 싱글톤 패턴
+      <a href="/spring/8/" class="pagination--pager" title="[Spring] 빈 스코프
 ">다음</a>
     
   </nav>

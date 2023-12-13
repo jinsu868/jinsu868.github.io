@@ -11,14 +11,14 @@ var store = [{
         "url": "/spring/2/",
         "teaser": null
       },{
-        "title": "[Spring] 스프링 컨테이너",
+        "title": "[Spring] 스프링 컨테이너(1)",
         "excerpt":"스프링 컨테이너 스프링 컨테이너란? 스프링 컨테이너는 IoC 컨테이너이다. IoC 컨테이너에 대해 잘 모른다면 이전 포스트를 참고하자. 스프링 컨테이너를 지칭할 때, ApplicationContext, BeanFactory로 나누는데 일반적으로 BeanFactory를 직접 사용할 일이 없기 때문에 ApplicationContext를 스프링 컨테이너라고 생각하면 된다. 생성 과정 스프링 컨테이너 생성 스프링 빈들을 저장할 컨테이너를 먼저 생성한다. 빈은 이름과 실제 객체를...","categories": ["Spring"],
         "tags": ["Spring"],
         "url": "/spring/3/",
         "teaser": null
       },{
-        "title": "[Spring] 싱글톤 컨테이너",
-        "excerpt":"본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다. 싱글톤 패턴을 사용하는 이유 여러 클라이언트가 요청할 때마다 새로운 객체를 생성하는 것은 메모리 낭비가 심하다. 객체를 하나만 생성하고 이를 공유하도록 설계하자. -&gt; 싱글톤 패턴 싱글톤 패턴 클래스의 인스턴스를 딱 1개만 생성되도록 보장하는 디자인 패턴이다. public class SingletonService { private static final SingletonService instance...","categories": ["Spring"],
+        "title": "[Spring] 스프링 컨테이너(2)",
+        "excerpt":"싱글톤 컨테이너 스프링이 가장 많이 사용되는 분야는 웹, 앱 애플리케이션이다. 웹과 앱같은 경우 일반적으로 다수의 클라이언트가 동시에 서버에 요청을 하게 된다. 그런데 모든 요청마다 객체가 생성된다면 어떨까? 트래픽이 많아질수록 서버의 부담은 커지고 메모리 낭비가 심할 것이다. 때문에 스프링 컨테이너는 기본적으로 빈을 싱글톤으로 관리한다. (싱글톤에 대해 잘 모른다면 싱글톤 패턴을 참고하자)...","categories": ["Spring"],
         "tags": ["Spring"],
         "url": "/spring/4/",
         "teaser": null
@@ -38,31 +38,31 @@ var store = [{
         "title": "[Spring] 빈 생명주기 콜백",
         "excerpt":"본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다. 빈 생명주기 콜백 콜백의 필요성 DB, network 커넥션들을 애플리케이션 시작 시점에 미리 연결해둬야 빠르게 사용할 수 있다. 이를 위해서는 객체의 초기화와 종료 작업이 필요하다. 스프링 빈의 라이프사이클 객체 생성 의존관계 주입 스프링 빈은 객체가 생성되고, 의존관계 주입이 다 끝나야 사용할 수 있다. 스프링은...","categories": ["Spring"],
         "tags": ["Spring"],
-        "url": "/spring/Spring7/",
+        "url": "/spring/7/",
         "teaser": null
       },{
         "title": "[Spring] 빈 스코프",
         "excerpt":"본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다. Bean Scope 스프링은 default로 빈을 싱글톤 스코프로 생성한다. 싱글톤 스코프로 생성된 빈은 스프링 컨테이너 시작 시점에 생성되어 스프링 컨테이너 종료까지 유지된다. 스프링은 싱글톤 스코프 말고도 프로토타입 스코프, 웹 스코프(request, session, application)를 지원한다. 하나씩 살펴보자 프로토타입 스코프 프로토타입 스코프를 잘 이해하기 위해 싱글톤 스코프부터...","categories": ["Spring"],
         "tags": ["Spring"],
-        "url": "/spring/Spring8/",
+        "url": "/spring/8/",
         "teaser": null
       },{
         "title": "[Spring] 스프링 웹 MVC",
         "excerpt":"본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다. 웹 서버와 웹 애플리케이션 서버 웹 서버 (Web server) 정적 리소스 제공 (html, css, js, 이미지, 영상) 웹 애플리케이션 서버 (WAS - Web Application Server) 웹 서버의 기능을 포함하고 프로그램 코드를 실행해서 애플리케이션 로직 수행 동적 html, HTTP API(JSON), 서블릿, JSP, 스프링 MVC...","categories": ["Spring"],
         "tags": ["Spring","MVC"],
-        "url": "/spring/mvc1/",
+        "url": "/spring/9/",
         "teaser": null
       },{
         "title": "[디자인패턴] 팩토리 패턴",
         "excerpt":"Factory Method Pattern이란? 팩토리 메서드 패턴에서는 객체를 생성하기 위한 인터페이스를 정의하고, 어떤 클래스의 인스턴스를 만들지는 서브 클래스에서 결정하게 하는 패턴이다. 팩토리 메서드는 객체를 생성, 반환하는 메서드이다. 팩토리 클래스는 하위 클래스에서 팩토리 메서드를 오버라이딩해서 객체를 반환하게 하여 상위 클래스와 하위 클래스가 분리되게 함으로써 결합을 느슨하게 한다. DIP를 활용한다. 팩토리 패턴은 왜...","categories": ["디자인패턴"],
         "tags": ["디자인패턴","CS"],
-        "url": "/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Factory/",
+        "url": "/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/10/",
         "teaser": null
       },{
         "title": "[디자인패턴] 싱글톤 패턴",
         "excerpt":"디자인패턴 디자인 패턴이란 프로그램을 설계할 때 발생했던 문제점들을 객체 간의 상호 관계 등을 이용해서 해결할 수 있도록 하나의 규약 형태로 만들어 놓은 것을 뜻한다. 싱글톤 패턴이란? 싱글톤 패턴이란 하나의 클래스에 대해 오직 하나의 인스턴스만 가지고 이를 공유하는 패턴이다. 데이터베이스 연결 모듈에 많이 사용된다. 장점 인스턴스를 한 번 생성하면 더 이상...","categories": ["디자인패턴"],
         "tags": ["디자인패턴","CS"],
-        "url": "/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Singleton/",
+        "url": "/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/11/",
         "teaser": null
       },{
         "title": "[Spring] 서블릿",
