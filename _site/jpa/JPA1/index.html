@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[JPA] Intro - Jinsu’s story</title>
-<meta name="description" content="본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다.">
+<!-- begin _includes/seo.html --><title>[JPA] ORM 이란? - Jinsu’s story</title>
+<meta name="description" content="ORM">
 
 
   <meta name="author" content="Moon JinSu">
@@ -22,11 +22,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="Jinsu's story">
-<meta property="og:title" content="[JPA] Intro">
+<meta property="og:title" content="[JPA] ORM 이란?">
 <meta property="og:url" content="http://localhost:4000/jpa/JPA1/">
 
 
-  <meta property="og:description" content="본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다.">
+  <meta property="og:description" content="ORM">
 
 
 
@@ -329,8 +329,8 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[JPA] Intro">
-    <meta itemprop="description" content="본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다.">
+    <meta itemprop="headline" content="[JPA] ORM 이란?">
+    <meta itemprop="description" content="ORM">
     <meta itemprop="datePublished" content="2023-07-21T00:00:00+09:00">
     
 
@@ -338,7 +338,7 @@
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="http://localhost:4000/jpa/JPA1/" class="u-url" itemprop="url">[JPA] Intro
+            <a href="http://localhost:4000/jpa/JPA1/" class="u-url" itemprop="url">[JPA] ORM 이란?
 </a>
           </h1>
           
@@ -370,118 +370,66 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu"><li><a href="#orm">ORM</a></li><li><a href="#jpa">JPA</a><ul><li><a href="#정의와-역할">정의와 역할</a></li></ul></li><li><a href="#jpa는-어디서-동작할까">JPA는 어디서 동작할까?</a></li><li><a href="#jpa의-장점">JPA의 장점</a><ul><li><a href="#다음-포스팅부터는-jpa의-작동-원리와-사용-방법에-대해서-알아보겠다-">다음 포스팅부터는 JPA의 작동 원리와 사용 방법에 대해서 알아보겠다. :)</a></li></ul></li></ul></li><li><a href="#참고">참고</a></li></ul>
+              <ul class="toc__menu"><li><a href="#orm">ORM</a><ul><li><a href="#정의">정의</a></li><li><a href="#필요성">필요성</a></li><li><a href="#장점">장점</a><ul><li><a href="#1-코드의-가독성이-좋아진다">1. 코드의 가독성이 좋아진다.</a></li><li><a href="#2-유지-보수가-용이하다">2. 유지 보수가 용이하다.</a></li></ul></li><li><a href="#단점">단점</a><ul><li><a href="#1-성능이-조금-떨어진다">1. 성능이 조금 떨어진다.</a></li></ul></li><li><a href="#정리">정리</a></li><li><a href="#참고">참고</a></li></ul></li></ul>
 
             </nav>
           </aside>
         
-        <p>본 포스트는 <code class="language-plaintext highlighter-rouge">Inflearn</code>의 김영한님 강의를 바탕으로 작성했습니다.</p>
+        <h1 id="orm">ORM</h1>
 
-<p><br /></p>
+<h2 id="정의">정의</h2>
 
-<p><img src="/assets/images/24_2.png" alt="img2" width="70%&quot;&quot;, height=&quot;40%&quot;" /></p>
+<blockquote>
+  <p>ORM (Object-relational mapping)은 객체와 데이터베이스의 관계를 매핑해 주는 도구이다.</p>
 
-<p>JPA에 대해서 한번 정리해보자!</p>
+  <p>객체와 관계형 데이터베이스 사이의 패러다임의 불일치를 해소해주고 객체는 객체대로 설계하고 관계형 데이터베이스는 관계형 데이터베이스대로 설계할 수 있게 도와준다.</p>
+</blockquote>
 
-<p>본 포스팅은 Inflearn <strong>김영한님</strong>의 강의를 바탕으로 작성했다.</p>
+<p>ORM은 객체, 데이터베이스 기술 중간에서 이들을 매핑하는 역할을 수행한다.</p>
 
-<p>(Spring 관련 포스팅은 전부 김영한님 강의를 바탕으로 작성됨.)</p>
+<h2 id="필요성">필요성</h2>
 
-<p><br /></p>
+<p>많은 애플리케이션은 객체 지향 언어를 사용해서 작성된다.그리고 애플리케이션에 필요한 데이터를 저장하는 기술로 데이터베이스가 주로 사용된다. 그런데 이 두 기술 사이에는 큰 간극이 존재한다. 때문에 이 둘 사이를 매핑해주는 작업이 요구된다.</p>
 
-<p><br /></p>
+<p><img src="/assets/images/24_1.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
 
-<h1 id="orm"><em>ORM</em></h1>
+<p>각 맴버 변수를 SQL에 직접 매핑해주는 작업이 요구되는 것이다. 그런데 만약 여기서 Member에 새로운 맴버 변수가 생기면 어떻게 될까?</p>
 
-<p><code class="language-plaintext highlighter-rouge">ORM</code> (Object-relational mapping)은 객체와 DB 테이블이 매핑을 이루는 것을 말한다. 즉 <strong>객체가 테이블이 되도록 매핑 시켜주는 것</strong> 을 의미한다.</p>
+<p>당연히 연관된 SQL도 전부 수정해야 된다…</p>
 
-<p>객체와 관계형 데이터베이스 사이의 패러다임의 불일치를 해소해주고 객체는 객체대로 설계하고 관계형 데이터베이스는 관계형 데이터베이스대로 설계할 수 있게 도와준다.</p>
+<p>이뿐만 아니라 기본적인 패러다임의 차이도 존재한다. 객체는 자연스럽게 다른 객체를 참조할 수 있고 자유롭게 객체 그래프를 탐색할 수 있다. 하지만 SQL은 처음 실행되는 결과에 따라 탐색 범위가 제한되게 된다.</p>
 
-<p><br /></p>
+<p><img src="/assets/images/24_2.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
 
-<p><br /></p>
+<p>위 코드를 보면 알 수 있듯이 처음에 <code class="language-plaintext highlighter-rouge">SELECT</code>를 실행할 때 ORDER를 가져오지 않았기 때문에 Member에서 Order을 가져오면 null이 들어오게 된다. 실제로는 Member가 Order를 가지고 있다고 해도 말이다.</p>
 
-<h1 id="jpa"><em>JPA</em></h1>
+<p>위 예시만 봐도 매핑 작업이 얼마나 귀찮을지 예상이 될 것이다. 이러한 단순 노동을 자동화해주는 친구가 바로 <strong>ORM 기술</strong>이다.</p>
 
-<p><br /></p>
+<h2 id="장점">장점</h2>
 
-<h2 id="정의와-역할">정의와 역할</h2>
+<h3 id="1-코드의-가독성이-좋아진다">1. 코드의 가독성이 좋아진다.</h3>
 
-<p>그렇다면 JPA는 무엇인가? <strong>JPA란 자바 ORM 기술에 대한 API 표준 명세</strong>이다. JPA는 ORM을 사용하기 위한 <code class="language-plaintext highlighter-rouge">인터페이스</code> 를 모아둔 것이고, JPA를 사용하기 위해서 구현한 <code class="language-plaintext highlighter-rouge">Hibernate</code>, <code class="language-plaintext highlighter-rouge">DataNucleus</code> 같은 ORM 프레임워크를 사용해야 한다.</p>
+<p>ORM은 객체지향 언어의 문법과 메소드를 그대로 사용하기 때문에 코드의 가독성이 높다. 당연히 SQL 쿼리를 직접 작성하는 것보다 메소드를 활용하는 것이 더 직관적이다.</p>
 
-<p><img src="/assets/images/24_1.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /></p>
+<h3 id="2-유지-보수가-용이하다">2. 유지 보수가 용이하다.</h3>
 
-<p>예를 들어서 <code class="language-plaintext highlighter-rouge">Item</code>이라는 테이블의 데이터를 얻어오기 위해서는 <strong>SELECT * FROM Item</strong> 이라는 query를 실행해야 하지만 ORM을 사용하면 <strong>Item.findAll()</strong> 이라는 메서드를 통해서 데이터를 가져올 수 있다.</p>
+<p>ORM을 사용하게 되면 데이터베이스의 스키마가 변경됐을 때, 소스 코드의 변경을 최소화할 수 있다. 이러한 변경 사항에 대한 매핑을 ORM이 자동으로 해주기 때문이다.</p>
 
-<p>query를 직접 작성하지 않아도 돼서 생산성이 높아진다. 대신 복잡한 query를 ORM으로 표현하기는 한계가 있고 성능도 raw query에 비해서 떨어지는 단점이 있다.</p>
+<h2 id="단점">단점</h2>
 
-<p><br />
-<br /></p>
+<h3 id="1-성능이-조금-떨어진다">1. 성능이 조금 떨어진다.</h3>
 
-<h1 id="jpa는-어디서-동작할까">JPA는 어디서 동작할까?</h1>
+<p>적은 양의 데이터를 처리할 때는 상관없지만 대용량을 처리한다면 성능이 떨어질 수 있다.</p>
 
-<p><img src="/assets/images/24_3.png" alt="img3" width="70%&quot;&quot;, height=&quot;40%&quot;" /></p>
+<h2 id="정리">정리</h2>
 
-<p>애플리케이션에서 CRUD를 수행하면 JPA가 해당하는 SQL을 생성해주고 JDBC API를 사용해서 객체와 DB사이의 패러다임의 불일치를 해결해준다.</p>
+<p>이번 포스트에서는 ORM에 대해서 알아봤다. ORM은 객체와 데이터베이스를 자동으로 매핑해주기 때문에 개발자는 비즈니스 로직에 집중하여 코드를 작성할 수 있다. 자바 진영의 ORM 표준은 JPA이다. 다음 시간부터는 JPA에 대해서 정리해보겠다.</p>
 
-<p><br /><br /></p>
+<h2 id="참고">참고</h2>
 
-<h1 id="jpa의-장점">JPA의 장점</h1>
+<p><a href="https://www.inflearn.com/course/ORM-JPA-Basic">자바 ORM 표준 JPA 프로그래밍 - 기본편</a></p>
 
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">객체 중심으로 개발</code>
-    <ul>
-      <li>기존에는 SQL에 종속적인 개발을 했어야 했다. 그런데 JPA를 사용하면 객체 중심으로 개발을 할 수 있다.</li>
-    </ul>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">유지보수</code>
-    <ul>
-      <li>객체의 필드를 변경하면 개발자가 하나하나 해당 SQL을 수정했어야 했다. 그런데 이런 매핑과정을 JPA가 대신 해줌으로써 유지보수가 편리해졌다.</li>
-    </ul>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">패러다임의 불일치 해결</code>
-    <ul>
-      <li>기존에는 상속관계가 있는 객체를 DB에 넣을 때 굉장히 귀찮은 작업이 많았다. 그런데 JPA를 사용하면 알아서 필요한 SQL을 다 만들어서 넣어준다</li>
-      <li>자유로운 객체 그래프 탐색이 가능해졌다.</li>
-    </ul>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">성능</code>
-    <ul>
-      <li>같은 트랜젝션 안에서 같은 엔티티를 반환한다. 이것이 가능한 이유는 조회를 한 후에 영속성 컨텍스트에 캐싱해두기 때문이다. DB에 query를 추가로 날리지 않기 때문에 약간의 성능 향상이 있다.</li>
-      <li>persist를 할때마다 DB에 쿼리를 날리지 않고 트랜젝션 커밋시점에 한번에 SQL을 날린다.</li>
-    </ul>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">지연로딩</code>
-    <ul>
-      <li>객체가 실제로 사용되는 시점에 로딩을 한다.</li>
-      <li>사용되지 않는 것들은 프록시로 들고 있는다.</li>
-    </ul>
-  </li>
-  <li><code class="language-plaintext highlighter-rouge">즉시로딩</code>
-    <ul>
-      <li>Join을 통해서 연관된 객체를 한번에 가져온다.</li>
-      <li>항상 같이 사용되는 객체같은 경우는 <code class="language-plaintext highlighter-rouge">fetch join</code>을 통해서 한번에 조회하는 것이 성능상으로 좋다.</li>
-    </ul>
-  </li>
-</ul>
-
-<p><br /><br /></p>
-
-<h3 id="다음-포스팅부터는-jpa의-작동-원리와-사용-방법에-대해서-알아보겠다-">다음 포스팅부터는 JPA의 작동 원리와 사용 방법에 대해서 알아보겠다. :)</h3>
-
-<p><br /></p>
-
-<h1 id="참고">참고</h1>
-
-<ul>
-  <li>
-    <p>https://www.inflearn.com/course/ORM-JPA-Basic</p>
-  </li>
-  <li>
-    <p>https://victorydntmd.tistory.com/195</p>
-  </li>
-</ul>
-
+<p><a href="https://jongtachi.tistory.com/63">[DB] ORM의 특징과 장단점</a></p>
 
         
       </section>
@@ -502,7 +450,7 @@
     
       <a href="/tags/#jpa" class="page__taxonomy-item p-category" rel="tag">JPA</a><span class="sep">, </span>
     
-      <a href="/tags/#spring" class="page__taxonomy-item p-category" rel="tag">Spring</a>
+      <a href="/tags/#orm" class="page__taxonomy-item p-category" rel="tag">ORM</a>
     
     </span>
   </p>
@@ -536,7 +484,7 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5BJPA%5D+Intro%20http%3A%2F%2Flocalhost%3A4000%2Fjpa%2FJPA1%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5BJPA%5D+ORM+%EC%9D%B4%EB%9E%80%3F%20http%3A%2F%2Flocalhost%3A4000%2Fjpa%2FJPA1%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
   <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fjpa%2FJPA1%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 

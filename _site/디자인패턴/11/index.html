@@ -10,7 +10,7 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>[디자인패턴] 싱글톤 패턴 - Jinsu’s story</title>
-<meta name="description" content="">
+<meta name="description" content="싱글톤 패턴">
 
 
   <meta name="author" content="Moon JinSu">
@@ -26,7 +26,7 @@
 <meta property="og:url" content="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/11/">
 
 
-  <meta property="og:description" content="">
+  <meta property="og:description" content="싱글톤 패턴">
 
 
 
@@ -330,7 +330,7 @@
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="[디자인패턴] 싱글톤 패턴">
-    <meta itemprop="description" content="">
+    <meta itemprop="description" content="싱글톤 패턴">
     <meta itemprop="datePublished" content="2023-07-04T00:00:00+09:00">
     
 
@@ -370,27 +370,20 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu"><li><a href="#디자인패턴">디자인패턴</a></li><li><a href="#싱글톤-패턴이란">싱글톤 패턴이란?</a></li><li><a href="#장점">장점</a></li><li><a href="#단점">단점</a></li><li><a href="#의존성-주입">의존성 주입</a></li><li><a href="#의존성-주입의-장점">의존성 주입의 장점</a></li><li><a href="#의존성-주입의-단점">의존성 주입의 단점</a></li><li><a href="#의존성-주입-원칙">의존성 주입 원칙</a></li></ul>
+              <ul class="toc__menu"><li><a href="#싱글톤-패턴">싱글톤 패턴</a></li><li><a href="#장점">장점</a></li><li><a href="#단점">단점</a></li><li><a href="#의존성-주입">의존성 주입</a></li><li><a href="#의존성-주입의-장점">의존성 주입의 장점</a></li><li><a href="#의존성-주입의-단점">의존성 주입의 단점</a></li><li><a href="#의존성-주입-원칙">의존성 주입 원칙</a></li></ul>
 
             </nav>
           </aside>
         
-        <p><br /></p>
+        <h1 id="싱글톤-패턴">싱글톤 패턴</h1>
 
-<h1 id="디자인패턴"><strong>디자인패턴</strong></h1>
+<blockquote>
+  <p>The <em>Singleton Design Pattern</em> is used when there should only be one instance of a given class. It uses static, class methods and private <em>constructors</em> to strictly control creation of new instances of the class.</p>
 
-<ul>
-  <li><code class="language-plaintext highlighter-rouge">디자인 패턴</code>이란 프로그램을 설계할 때 발생했던 문제점들을 객체 간의 상호 관계 등을 이용해서 해결할 수 있도록 하나의 규약 형태로 만들어 놓은 것을 뜻한다.</li>
-</ul>
+  <p>-GoF design pattern</p>
+</blockquote>
 
-<p><br /></p>
-
-<p><br /></p>
-
-<h1 id="싱글톤-패턴이란"><strong>싱글톤 패턴이란?</strong></h1>
-<p><strong>싱글톤 패턴이란 하나의 클래스에 대해 오직 하나의 인스턴스만 가지고 이를 공유하는 패턴이다. 데이터베이스 연결 모듈에 많이 사용된다.</strong></p>
-
-<p><br /></p>
+<p>하나의 클래스가 오직 하나의 인스턴스만 생성하고 이를 공유하여 사용하는 패턴이다.</p>
 
 <h1 id="장점"><strong>장점</strong></h1>
 
