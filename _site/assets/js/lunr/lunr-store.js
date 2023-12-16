@@ -143,16 +143,16 @@ var store = [{
         "url": "/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/unionFind/",
         "teaser": null
       },{
+        "title": "[JPA] 영속성 컨텍스트",
+        "excerpt":"영속성 컨텍스트 정의 An EntityManager instance is associated with a persistence context. A persistence context is a set of entity instances in which for any persistent entity identity there is a unique entity instance. Within the persistence context, the entity instances and their lifecycle are managed. The EntityManager API is...","categories": ["JPA"],
+        "tags": ["Spring","JPA","데이터베이스"],
+        "url": "/jpa/26/",
+        "teaser": null
+      },{
         "title": "[JPA] ORM 이란?",
         "excerpt":"ORM 정의 ORM (Object-relational mapping)은 객체와 데이터베이스의 관계를 매핑해 주는 도구이다. 객체와 관계형 데이터베이스 사이의 패러다임의 불일치를 해소해주고 객체는 객체대로 설계하고 관계형 데이터베이스는 관계형 데이터베이스대로 설계할 수 있게 도와준다. ORM은 객체, 데이터베이스 기술 중간에서 이들을 매핑하는 역할을 수행한다. 필요성 많은 애플리케이션은 객체 지향 언어를 사용해서 작성된다.그리고 애플리케이션에 필요한 데이터를 저장하는...","categories": ["JPA"],
         "tags": ["ORM","JPA","DB"],
         "url": "/jpa/JPA1/",
-        "teaser": null
-      },{
-        "title": "[JPA] 영속성 컨텍스트",
-        "excerpt":"본 포스트는 Inflearn의 김영한님 강의를 바탕으로 작성했습니다. 영속성 컨텍스트 영속성 컨텍스트란 엔티티를 영구 저장하는 환경이라는 뜻이다. 애플리케이션과 DB 사이에서 객체를 보관하는 가상의 DB역할을 수행한다. EntityManager를 통해서 엔티티를 저장하거나 조회를 하면 EntityManager는 영속성 컨텍스트에 엔티티를 저장한다. 엔티티의 생명주기 엔티티의 생명주기는 크게 비영속, 영속, 준영속, 삭제가 있다. 하나씩 알아보자 비영속(new/transient) 영속성 컨텍스트와...","categories": ["JPA"],
-        "tags": ["Spring","JPA","DB"],
-        "url": "/jpa/JPA2/",
         "teaser": null
       },{
         "title": "[JPA] 기본키 매핑 전략",
