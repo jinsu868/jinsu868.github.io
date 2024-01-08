@@ -1,4 +1,275 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-12-16T20:02:51+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[디자인패턴] 커맨드 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/54/" rel="alternate" type="text/html" title="[디자인패턴] 커맨드 패턴" /><published>2023-12-10T00:00:00+09:00</published><updated>2023-12-10T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/54</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/54/">&lt;h1 id=&quot;커맨드-패턴&quot;&gt;커맨드 패턴&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-08T15:40:16+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[운영체제] 좀비 프로세스 vs 고아 프로세스</title><link href="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/57/" rel="alternate" type="text/html" title="[운영체제] 좀비 프로세스 vs 고아 프로세스" /><published>2024-01-08T00:00:00+09:00</published><updated>2024-01-08T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/57</id><content type="html" xml:base="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/57/">&lt;p&gt;좀비 프로세스와 고아 프로세스를 이해하기 위해서 먼저 프로세스를 생성하는 과정을 좀 더 자세하게 알아보자.&lt;/p&gt;
+
+&lt;h1 id=&quot;프로세스-생성&quot;&gt;프로세스 생성&lt;/h1&gt;
+
+&lt;p&gt;부모 프로세스는 시스템 콜 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fork()&lt;/code&gt;를 통해서 자식 프로세스를 생성한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fork()&lt;/code&gt;는 부모 프로세스의 주소 공간을 그대로 복사한다. 이 상태에서 시스템 콜 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exec()&lt;/code&gt;을 호출하게 되면 생성된 자식 프로세스의 메모리 공간을 새로운 프로그램으로 대체할 수 있다. 이러한 과정을 통해 부모와 다른 실행 흐름을 가진 자식 프로세스를 생성할 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;자식-프로세스-트리&quot;&gt;자식 프로세스 트리&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/57_1.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;리눅스에서는 커널이 자체적으로 생성한 init 프로세스가 있고 이후에 생성된 모든 프로세스는 init의 자손이 되며 트리구조를 이룬다.&lt;/p&gt;
+
+&lt;p&gt;일단 모든 프로세스의 조상 프로세스는 커널이 생성한 init이라는 것만 기억하고 넘어가자. (아래에 설명하겠다.)&lt;/p&gt;
+
+&lt;h2 id=&quot;실행-흐름&quot;&gt;실행 흐름&lt;/h2&gt;
+
+&lt;p&gt;위에서 자식 프로세스를 생성하는 방법을 설명했다. 그렇다면 이렇게 생성된 자식 프로세스와 부모 프로세스는 어떤 방식으로 실행될 수 있을까?&lt;/p&gt;
+
+&lt;p&gt;결론부터 말하자면 2가지 흐름이 있을 수 있다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;부모 프로세스가 자식 프로세스의 종료까지 기다리고 이후에 실행한다.&lt;/li&gt;
+  &lt;li&gt;부모 프로세스와 자식 프로세스를 동시에 실행한다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;1번-케이스&quot;&gt;1번 케이스&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/57_2.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 경우는 부모 프로세스가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wait()&lt;/code&gt;을 호출하여 자식 프로세스의 종료를 기다린다. 그리고 자식 프로세스가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exit()&lt;/code&gt;을 호출하면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wait()&lt;/code&gt;의 파라미터로 자식 프로세스의 상태가 들어오게 되는데 이를 통해서 자식 프로세스가 사용하던 자원을 모두 반납한다.&lt;/p&gt;
+
+&lt;p&gt;이 경우는 별다른 문제가 없는 것을 확인할 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;2번-케이스&quot;&gt;2번 케이스&lt;/h3&gt;
+
+&lt;p&gt;이 케이스는 부모 프로세스에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wait()&lt;/code&gt;을 호출하지 않는다. 부모 프로세스가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wait()&lt;/code&gt;을 호출하지 않는다면 어떤 일이 생길까?&lt;/p&gt;
+
+&lt;p&gt;이제 좀비 프로세스와 고아 프로세스가 등장한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;좀비-프로세스&quot;&gt;좀비 프로세스&lt;/h2&gt;
+
+&lt;h3 id=&quot;정의&quot;&gt;정의&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;좀비 프로세스는 자식 프로세스가 부모 프로세스보다 먼저 종료된 프로세스를 말한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;정의만 보면 무슨말인지 잘 이해가 안될 것이다. 자식 프로세스가 종료되면 종료된 것 아닌가?&lt;/p&gt;
+
+&lt;p&gt;여기서 주목해야 하는 점은 부모 프로세스에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wait()&lt;/code&gt; 을 호출하지 않았다는 것이다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wait()&lt;/code&gt;을 호출하지 않았기 때문에 자식 프로세스가 종료되더라도 종료에 대한 정보가 부모 프로세스에 전달되지 못하고 사용하던 리소스를 반납할 방법이 없어진다.&lt;/p&gt;
+
+&lt;p&gt;종료되도 리소스가 계속 남아있기 때문에 &lt;strong&gt;좀비 프로세스&lt;/strong&gt;라고 부른다.&lt;/p&gt;
+
+&lt;p&gt;커널은 이런 상황을 대비하여 프로세스에 대한 최소한의 정보를 저장하고 있다. 이후에 부모 프로세스에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wait()&lt;/code&gt;을 호출하여 남아있는 리소스를 제거할 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;고아-프로세스&quot;&gt;고아 프로세스&lt;/h2&gt;
+
+&lt;h3 id=&quot;정의-1&quot;&gt;정의&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;고아 프로세스는 부모 프로세스가 자식 프로세스보다 먼저 종료된 프로세스를 말한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이 경우도 좀비 프로세스 경우와 마찬가지로 부모 프로세스에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wait()&lt;/code&gt;을 호출하지 않은 경우에 발생한다.&lt;/p&gt;
+
+&lt;p&gt;부모 프로세스가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wait()&lt;/code&gt;을 호출하지 않고 자신의 로직을 수행하다 자식 프로세스보다 먼저 종료되면 자식 프로세스는 종료됐을 때 리소스를 반납해줄 주체가 없어진다. 이렇게 부모가 없이 남겨진 프로세스를 &lt;strong&gt;고아 프로세스&lt;/strong&gt;라고 한다.&lt;/p&gt;
+
+&lt;p&gt;이렇게 부모가 사라진 경우 고아 프로세스는 위에서 설명한 init 프로세스의 자식 프로세스가 된다. init 프로세스는 이 프로세스가 종료되면 리소스를 회수하고 정상적으로 프로세스를 제거한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;정리&quot;&gt;정리&lt;/h2&gt;
+
+&lt;p&gt;좀비 프로세스 : 부모가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wait()&lt;/code&gt;을 호출하지 않은 상태에서 자식 프로세스가 종료되어 리소스를 반납하지 못하는 프로세스&lt;/p&gt;
+
+&lt;p&gt;고아 프로세스 : 부모가 먼저 종료되서 남겨진 프로세스&lt;/p&gt;
+
+&lt;h2 id=&quot;참고&quot;&gt;참고&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;면접을 위한 CS 전공지식 노트&lt;/li&gt;
+  &lt;li&gt;Operating System Concepts&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://itstory1592.tistory.com/89&quot;&gt;https://itstory1592.tistory.com/89&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="운영체제" /><category term="운영체제" /><category term="CS" /><summary type="html">좀비 프로세스와 고아 프로세스를 이해하기 위해서 먼저 프로세스를 생성하는 과정을 좀 더 자세하게 알아보자.</summary></entry><entry><title type="html">[운영체제] 프로세스</title><link href="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/56/" rel="alternate" type="text/html" title="[운영체제] 프로세스" /><published>2023-12-27T00:00:00+09:00</published><updated>2023-12-27T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/56</id><content type="html" xml:base="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/56/">&lt;h1 id=&quot;프로세스&quot;&gt;프로세스&lt;/h1&gt;
+
+&lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;프로세스는 컴퓨터에서 실행 중인 프로그램을 말한다. 프로그램이 메모리에 올라가면 프로세스가 되고 CPU에 의해서 프로세스가 실행된다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;특징&quot;&gt;특징&lt;/h2&gt;
+
+&lt;p&gt;각 프로세스는 서로 완전히 독립적이기 때문에 메모리 영역을 다른 프로세스와 공유하지 않는다. 때문에 한 프로세스에서 오류가 발생하더라도 다른 프로세스에 영향을 주지 않는다.&lt;/p&gt;
+
+&lt;h2 id=&quot;상태&quot;&gt;상태&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/56_1.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;new&quot;&gt;new&lt;/h3&gt;
+
+&lt;p&gt;프로세스가 생성된 상태&lt;/p&gt;
+
+&lt;h3 id=&quot;ready&quot;&gt;ready&lt;/h3&gt;
+
+&lt;p&gt;프로세스가 CPU 할당을 기다리고 있는 상태&lt;/p&gt;
+
+&lt;p&gt;CPU만 받으면 바로 실행할 수 있는 상태이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;running&quot;&gt;running&lt;/h3&gt;
+
+&lt;p&gt;프로세스가 CPU를 할당 받아서 명령어를 실행하고 있는 상태이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;waiting&quot;&gt;waiting&lt;/h3&gt;
+
+&lt;p&gt;프로세스가 이벤트가 발생할 때까지 대기하고 있는 상태&lt;/p&gt;
+
+&lt;h3 id=&quot;terminated&quot;&gt;terminated&lt;/h3&gt;
+
+&lt;p&gt;프로세스가 종료된 상태&lt;/p&gt;
+
+&lt;p&gt;프로세스가 소유한 모든 자원을 반납하게 된다.&lt;/p&gt;
+
+&lt;h2 id=&quot;메모리-구조&quot;&gt;메모리 구조&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/56_2.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;코드-영역-code&quot;&gt;코드 영역 (code)&lt;/h3&gt;
+
+&lt;p&gt;실행할 프로그램의 코드가 저장되는 영역이다. CPU는 코드 영역에 저장된 명령어를 하나씩 가져가서(fetch) 실행(execution)한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;데이터-영역-data&quot;&gt;데이터 영역 (data)&lt;/h3&gt;
+
+&lt;p&gt;전역변수, 정적변수가 저장되는 영역으로 프로그램이 시작될 때 할당되며 프로그램이 종료할 때 소멸한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;힙-영역-heap&quot;&gt;힙 영역 (heap)&lt;/h3&gt;
+
+&lt;p&gt;메모리 공간이 동적으로 할당되고 헤제되는 영역이다.&lt;/p&gt;
+
+&lt;p&gt;낮은 주소에서 높은 주소로 채워진다.&lt;/p&gt;
+
+&lt;h3 id=&quot;스택-영역-stack&quot;&gt;스택 영역 (stack)&lt;/h3&gt;
+
+&lt;p&gt;함수 호출에 따른 지역변수와 매개변수가 저장되는 영역이다. 함수가 호출될 때마다 호출될 떄의 환경 등 특정 정보가 스택에 계속 저장된다.&lt;/p&gt;
+
+&lt;p&gt;높은 주소에서 낮은 주소로 채워진다.&lt;/p&gt;
+
+&lt;h4 id=&quot;힙과-스택의-차이&quot;&gt;힙과 스택의 차이&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/56_3.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;pcb&quot;&gt;PCB&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;PCB는 프로세스 제어 블록으로 프로세스를 관리하기 위한 정보를 포함하는 운영체제 커널의 자료구조이다. 프로세스의 중요한 정보를 저장하고 있기 때문에 보호된 메모리에 저장된다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;구조&quot;&gt;구조&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;프로세스 식별자&lt;/strong&gt; :  프로세스 식별변호&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;프로세스 상태&lt;/strong&gt; : new, ready, running, wating, terminated 등의 상태를 저장&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;프로그램 카운터 (PC)&lt;/strong&gt; : 프로세스가 다음에 실행할 명령어의 주소를 저장&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;CPU 레지스터&lt;/strong&gt; : 프로세스를 실행하기 위해 저장해야 할 레지스터 정보&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;CPU 스케줄링 정보&lt;/strong&gt; : 프로세스의 우선순위, 스케줄 큐에 대한 포인터 등&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;계정 정보&lt;/strong&gt; : 프로세스 실행에 사용된 CPU 사용량, 실행 유저 정보&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;메모리 관리 정보&lt;/strong&gt; : 페이지, 세그먼트 테이블 등과 같은 정보를 저장&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;I/O 상태 정보&lt;/strong&gt; : 프로세스에 할당된 I/O 디바이스 목록&lt;/p&gt;
+
+&lt;h2 id=&quot;멀티-프로세싱&quot;&gt;멀티 프로세싱&lt;/h2&gt;
+
+&lt;h3 id=&quot;정의-1&quot;&gt;정의&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;여러 개의 프로세스를 통해서 병렬적으로 작업을 수행하는 것을 말한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;특징-1&quot;&gt;특징&lt;/h3&gt;
+
+&lt;p&gt;프로세스끼리는 메모리를 공유하지 않기 때문에 하나의 프로세스에 문제가 발생하더라도 다른 프로세스에 영향을 끼치지 않는다.&lt;/p&gt;
+
+&lt;p&gt;하지만 멀티 스레드 방식보다 많은 양의 메모리 공간과 CPU를 차지한다는 단점이 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;참고&quot;&gt;참고&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Operating System Concepts&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;면접을 위한 CS 전공지식 노트&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="운영체제" /><category term="운영체제" /><category term="CS" /><summary type="html">프로세스</summary></entry><entry><title type="html">[Spring] Spring Security (진행중)</title><link href="http://localhost:4000/spring/55/" rel="alternate" type="text/html" title="[Spring] Spring Security (진행중)" /><published>2023-12-21T00:00:00+09:00</published><updated>2023-12-21T00:00:00+09:00</updated><id>http://localhost:4000/spring/55</id><content type="html" xml:base="http://localhost:4000/spring/55/">&lt;h1 id=&quot;스프링-시큐리티&quot;&gt;스프링 시큐리티&lt;/h1&gt;
+
+&lt;h2 id=&quot;필요성&quot;&gt;필요성&lt;/h2&gt;
+
+&lt;p&gt;애플리케이션을 개발함에 있어서 보안은 굉장히 중요한 이슈이다. 보안이 뚫리게 되면 단순히 데이터, 돈을 잃는 것을 넘어서 수년간 쌓아온 브랜드 평판과 유저로부터의 신뢰를 한번에 잃을 수 있다. 그렇다고 애플리케이션을 만들때마다 자체 보안 시스템을 만드는 것은 매우 비효율적이다. 기능적으로 문제가 발생할 위험도 있고 많은 시간과 돈이 들어간다. 스프링은 이런 문제를 해결해주기 위해 스프링 시큐리티라는 스프링 하부 프레임워크를 제공한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;흐름&quot;&gt;흐름&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/55_1.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;위 그림은 가장 기본적인 Security의 흐름을 보여준다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;클라이언트로부터 HTTP 요청이 들어오면 Spring Security의 필터가 이를 가로챈다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;요청에 들어있는 유저의 아이디, 패스워드를 추출하여 Authentication을 구현한 UsernamePasswordAuthenticationToken을 생성하고 AuthenticationManager를 구현한 ProviderManager의 authenticate()메서드를 호출하며 이를 넘겨준다.&lt;/li&gt;
+  &lt;li&gt;ProviderManager는 모든 AuthenticationProvider를 순차적으로 호출하여 인증을 수행한다.&lt;/li&gt;
+  &lt;li&gt;AuthenticationProvider에서는 UserDetailService/UserDetailManager와 PasswordEncoder의 도움을 받아 인증을 수행하며 Authentication 객체를 반환한다.&lt;/li&gt;
+  &lt;li&gt;인증에 성공하게 되면 AuthenticationManager는 Authentication 객체를 반환하고 필터에서 이를 받아 SecurityContextHolder 내부의 Context에 인증 객체를 저장하게 된다.&lt;/li&gt;
+  &lt;li&gt;만약 실패하게 되면 AuthenticationManager는 또 다른 AuthenticationProvider를 호출하여 위 과정을 계속 반복하게 된다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;이제 각각의 역할에 대해서 더 자세하게 알아보자&lt;/p&gt;
+
+&lt;h2 id=&quot;spring-security-filter&quot;&gt;Spring Security Filter&lt;/h2&gt;
+
+&lt;h3 id=&quot;defaultloginpagegeneratorfilter&quot;&gt;DefaultLoginPageGeneratorFilter&lt;/h3&gt;
+
+&lt;p&gt;스프링 시큐리티 의존성을 추가하고 우리의 서비스에 접근하려고 하면 아래와 같은 로그인 페이지로 넘어가지는 경험을 해봤을 것이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/55_4.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;이러한 로그인 기능을 구현한 필터가 바로 DefaultLoginPageGeneratorFilter이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/55_3.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;요청으로부터 로그인 정보를 확인하여 로그인을 하지 않은 상태라면 위와 같은 로그인 페이지를 만든다. 실질적으로 로그인 페이지를 만드는 로직은 generateLoginPageHtml()메서드 안에 존재한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/55_5.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;한땀한땀 html 코드가 작성되어 있는 것을 볼 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;usernamepasswordauthenticationfilter&quot;&gt;UsernamePasswordAuthenticationFilter&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/55_2.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;다음으로는 UsernamePasswordAuthenticationFilter이다. 코드를 보면 request로부터 유저의 아이디, 패스워드를 추출하고 Authentication을 구현한 UsernamePasswordAuthenticationToken을 생성하는 것을 볼 수 있다. 그리고 AuthenticationManager의 authenticate() 메서드를 호출하며 이를 넘기는 것을 볼 수 있다. 그렇다면 이 UsernamePasswordAuthenToken의 정체는 무엇일까?&lt;/p&gt;
+
+&lt;p&gt;아래 코드를 보자.&lt;/p&gt;
+
+&lt;h3 id=&quot;authentication&quot;&gt;Authentication&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/55_9.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;img src=&quot;/assets/images/55_10.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Authentication 객체는 현재 요청하고 있는 주체의 정보가 들어있다. 이 객체는 SecurityContextHolder 안의 ContextHolder에 실질적으로 저장되는 유저의 정보이기도 하다. 뜬금없이 Authentication에 대해서 설명한 이유는 UsernamePasswordAuthenticationToken이 authentication을 구현한 클래스이기 때문이다. (실제로는 AbstractAuthenticationToken을 상속받는데 이 추상 클래스가 Authentication을 구현하고 있다.)&lt;/p&gt;
+
+&lt;h3 id=&quot;usernamepasswordauthenticationtoken&quot;&gt;UsernamePasswordAuthenticationToken&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/55_7.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;UsernamePasswordAuthenticationToken을 보면 두 개의 생성자가 있는 것을 볼 수 있다. 위 생성자는 내부에서 setAuthenticated(false)로 인증 실패 상태를 넣는 것을 볼 수 있고 아래는 true를 넣어 성공 상태를 넣는다. 우리가 위에서 설명한 UsernamePasswordAuthenticationFilter 내부에서는 첫번째 생성자를 이용하여 객체를 생성한다.&lt;/p&gt;
+
+&lt;p&gt;그렇다면 두번째 생성자는 언제 사용될까? AuthenticationProvider에서 실질적인 인증을 수행한 후 인증에 성공하면 Authentication 객체를 반환하는데 이 때 두번째 생성자를 사용하게 된다.&lt;/p&gt;
+
+&lt;p&gt;다음으로 AuthenticationManager에 대해서 알아보자.&lt;/p&gt;
+
+&lt;h2 id=&quot;authenticationmanager&quot;&gt;AuthenticationManager&lt;/h2&gt;
+
+&lt;p&gt;AuthenticationManager는 인터페이스이고 단 하나의 메소드 authenticate()를 정의하고 있다. AuthenticationManager를 구현한 ProviderManager내부의 authenticate() 메서드 내부를 보자.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/55_8.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;코드를 보면 알 수 있듯이 반복문을 활용하여 가지고 있는 모든 Provider를 활용하여 인증을 시도한다. 모든 Provider에 대해서 인증이 실패하면 실패 Authentication 객체를 반환하고 성공하&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><category term="Security" /><summary type="html">스프링 시큐리티</summary></entry><entry><title type="html">[디자인패턴] 커맨드 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/54/" rel="alternate" type="text/html" title="[디자인패턴] 커맨드 패턴" /><published>2023-12-10T00:00:00+09:00</published><updated>2023-12-10T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/54</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/54/">&lt;h1 id=&quot;커맨드-패턴&quot;&gt;커맨드 패턴&lt;/h1&gt;
 
 &lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
 
@@ -1094,390 +1365,4 @@ HTTP, SMTP, FTP 등을 바탕으로 로드를 분산 처리할 수 있다.&lt;/p
   &lt;li&gt;
     &lt;p&gt;https://bruno-jang.tistory.com/34&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="DevOps" /><category term="DevOps" /><category term="CI/CD" /><category term="리버스 프록시" /><category term="무중단 배포" /><summary type="html"></summary></entry><entry><title type="html">[DB] 트랜잭션</title><link href="http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/47/" rel="alternate" type="text/html" title="[DB] 트랜잭션" /><published>2023-11-20T00:00:00+09:00</published><updated>2023-11-20T00:00:00+09:00</updated><id>http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/47</id><content type="html" xml:base="http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/47/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;트랜잭션&quot;&gt;트랜잭션&lt;/h1&gt;
-
-&lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
-&lt;p&gt;데이터베이스에서 하나의 논리적 기능을 수행하기 위한 작업의 단위를 의미한다.&lt;/p&gt;
-
-&lt;p&gt;여러 쿼리를 하나로 묶는 단위를 말한다.&lt;/p&gt;
-
-&lt;h2 id=&quot;속성&quot;&gt;속성&lt;/h2&gt;
-
-&lt;h3 id=&quot;원자성atomicity&quot;&gt;원자성(Atomicity)&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;원자성은 트랜잭션과 관련된 일이 모두 수행되었거나 되지 않았거나를 보장하는 특징이다.&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;All or Nothing&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;중간에 취소된 경우에 완전히 처음 상태로 돌아가는 것을 보장한다.&lt;/p&gt;
-
-&lt;h4 id=&quot;commit-rollback&quot;&gt;Commit, Rollback&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Commit&lt;/code&gt; : 트랜잭션 단위로 수행되며 변경된 모든 내용이 영구적으로 저장되는 것을 의미한다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Rollback&lt;/code&gt; : 트랜젝션으로 처리한 하나의 과정을 일어나기 전의 상태로 돌리는 것을 의미한다.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;일관성consistency&quot;&gt;일관성(Consistency)&lt;/h3&gt;
-
-&lt;p&gt;허용된 방식으로만 데이터를 변경할 수 있어야 한다.&lt;/p&gt;
-
-&lt;p&gt;내가 500원이 있는데 1000원을 전송할 수 있으면 X&lt;/p&gt;
-
-&lt;h3 id=&quot;격리성isolation&quot;&gt;격리성(Isolation)&lt;/h3&gt;
-
-&lt;p&gt;격리성이란 트랜잭션 수행 시에 서로 끼어들지 못하는 정도를 말한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/47_1.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;격리-수준-isolation-level&quot;&gt;격리 수준 (Isolation Level)&lt;/h4&gt;
-
-&lt;h5 id=&quot;read-uncommited&quot;&gt;READ UNCOMMITED&lt;/h5&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;트랜잭션에서 처리중이거나, 아직 Commit 되지 않은 데이터를 다른 트랜잭션이 읽는 것을 허용한다.&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;가장 낮은 수준의 격리성을 보장하지만 성능이 좋다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;팬텀 리드&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;반복 가능하지 않은 조회&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;더티 리드&lt;/code&gt;가 발생할 수 있다.&lt;/li&gt;
-  &lt;li&gt;데이터베이스의 일관성을 유지할 수 없다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h5 id=&quot;read_commited&quot;&gt;READ_COMMITED&lt;/h5&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;다른 트랜잭션이 커밋하지 않은 정보는 읽을 수 없다.&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;커밋이 완료된 데이터에 대해서만 조회가 가능하다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;팬텀 리드&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;반복 가능하지 않은 조회&lt;/code&gt;가 발생할 수 있다.&lt;/li&gt;
-  &lt;li&gt;대부분의 SQL 서버가 기본으로 사용하는 Isolation Level 이다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h5 id=&quot;repeatable_read&quot;&gt;REPEATABLE_READ&lt;/h5&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;트랜잭션 범위 내에서 조회한 데이터 내용이 항상 동일함을 보장한다.&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;하나의 트랜잭션이 수정한 행을 다른 트랜잭션이 수정하지 못하도록 한다.&lt;/li&gt;
-  &lt;li&gt;새로운 행을 추가하는 것은 막지 않기 때문에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;팬텀 리드&lt;/code&gt;가 발생할 수 있다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h5 id=&quot;serializable&quot;&gt;SERIALIZABLE&lt;/h5&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;트랜잭션을 순차적으로 진행시키는 것을 말한다.&lt;/strong&gt;
-    &lt;ul&gt;
-      &lt;li&gt;교착상태가 발생할 확률이 높고 가장 성능이 떨어진다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;가장 높은 수준의 격리성을 보장한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;격리성으로-인해-발생할-수-있는-문제&quot;&gt;격리성으로 인해 발생할 수 있는 문제&lt;/h4&gt;
-
-&lt;h5 id=&quot;팬텀-리드-phantom-read&quot;&gt;팬텀 리드 (Phantom Read)&lt;/h5&gt;
-
-&lt;p&gt;한 트랜잭션 내에서 동일한 쿼리를 했을 때, 해당 조회 결과가 다른 경우&lt;/p&gt;
-
-&lt;h5 id=&quot;반복-가능하지-않은-조회-non-repeatable-read&quot;&gt;반복 가능하지 않은 조회 (Non-Repeatable Read)&lt;/h5&gt;
-
-&lt;p&gt;한 트랜잭션 내의 같은 행에 대해서 두 번 이상의 조회가 발생할 때, 그 값이 다른 경우&lt;/p&gt;
-
-&lt;p&gt;→ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;팬텀 리드&lt;/code&gt;의 경우 조회 결과 다른 행이 선택될 수 있는 것이고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;반복 가능하지 않은 조회&lt;/code&gt;는 동일한 행을 조회할 때 다른 값으로 조회될 수 있는 것을 말한다.&lt;/p&gt;
-
-&lt;h5 id=&quot;더티-리드-dirty-read&quot;&gt;더티 리드 (Dirty Read)&lt;/h5&gt;
-
-&lt;p&gt;한 트랜잭션이 실행중일 때 다른 트랜잭션에 의해 값이 수정됐는데 아직 커밋되지 않은 행의 데이터를 읽을 수 있을 때 발생한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;영구성durability&quot;&gt;영구성(Durability)&lt;/h3&gt;
-
-&lt;p&gt;성공적으로 수행된 트랜잭션은 영원히 반영돼야 한다.&lt;br /&gt;
-데이터베이스 시스템에 장애가 발생해도 원래 상태로 복구가 가능해야 함을 뜻하며 체크섬, 저널링, 롤백 등의 기능을 제공한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;참고&quot;&gt;참고&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;면접을 위한 CS 전공지식 노트&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;https://velog.io/@yu-jin-song/DB-%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98-%EA%B2%A9%EB%A6%AC-%EC%88%98%EC%A4%80Transaction-Isolation-Level&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="데이터베이스" /><category term="트랜잭션" /><category term="DB" /><summary type="html"></summary></entry><entry><title type="html">[DB] 이상현상과 정규화</title><link href="http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/46/" rel="alternate" type="text/html" title="[DB] 이상현상과 정규화" /><published>2023-11-19T00:00:00+09:00</published><updated>2023-11-19T00:00:00+09:00</updated><id>http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/46</id><content type="html" xml:base="http://localhost:4000/%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%B2%A0%EC%9D%B4%EC%8A%A4/46/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;이상현상-anomaly&quot;&gt;이상현상 (Anomaly)&lt;/h1&gt;
-
-&lt;h2 id=&quot;삽입이상&quot;&gt;삽입이상&lt;/h2&gt;
-
-&lt;p&gt;불필요한 데이터를 추가해야지만 삽입이 가능한 상황&lt;/p&gt;
-
-&lt;h2 id=&quot;갱신이상&quot;&gt;갱신이상&lt;/h2&gt;
-
-&lt;p&gt;같아야 하는 정보가 복수 개의 행에 표현될 경우, 데이터를 수정할 때 일부 정보만 갱신되고 일부는 변하지 않아 데이터 오류가 발생하는 현상&lt;/p&gt;
-
-&lt;h2 id=&quot;삭제이상&quot;&gt;삭제이상&lt;/h2&gt;
-
-&lt;p&gt;의도하지 않은 데이터까지 삭제해야만 지우고자 하는 데이터를 지울 수 있는 현상&lt;/p&gt;
-
-&lt;p&gt;→ &lt;strong&gt;이러한 이상 현상들을 없애기 위해서 정규화를 수행한다.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;정규화&quot;&gt;정규화&lt;/h1&gt;
-
-&lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;데이터의 일관성&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;최소한의 중복&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;최대한의 데이터 유연성&lt;/code&gt;을 위한 방법으로, 데이터를 분해하는 과정을 말한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/46_1.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;-&amp;gt; 1~5 정규화가 있으며, 제3정규화까지만 수행한다.&lt;/p&gt;
-
-&lt;h2 id=&quot;함수-종속성&quot;&gt;함수 종속성&lt;/h2&gt;
-
-&lt;p&gt;X, Y가 있고 X가 변할 때, Y도 같이 변한다면 Y는 X에 함수적으로 종속된다고 표현한다.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;X→Y이면 Y는 X에 함수적으로 종속&lt;/li&gt;
-  &lt;li&gt;X : 결정자, Y : 종속자&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;종류&quot;&gt;종류&lt;/h3&gt;
-
-&lt;h4 id=&quot;완전-함수-종속&quot;&gt;완전 함수 종속&lt;/h4&gt;
-
-&lt;p&gt;종속자가 기본키에만 종속되고, 기본키가 여러 속성으로 구성되어 있을 경우 기본키를 구성하는 모든 속성이 포함된 기본키의 부분집합에  종속된 경우&lt;/p&gt;
-
-&lt;h4 id=&quot;부분-함수적-종속&quot;&gt;부분 함수적 종속&lt;/h4&gt;
-
-&lt;p&gt;릴레이션에서 종속자가 기본키가 아닌 다른 속성에 종속되거나, 기본키가 여러 속성으로 구성되어 있을 경우 기본키를 구성하는 속성 중 일부에만 종속된 경우&lt;/p&gt;
-
-&lt;h4 id=&quot;이행적-함수-종속&quot;&gt;이행적 함수 종속&lt;/h4&gt;
-
-&lt;p&gt;릴레이션에서 X, Y, Z라는 3개의 속성이 있을 때, X→Y, Y→Z 이란 종속 관계가 있을 경우, X→Z가 성립될 때 이행적 함수 종속이라고 한다.&lt;/p&gt;
-
-&lt;p&gt;X를 알면 Y를 알고, Y를 알면 Z를 알 수 있는 경우&lt;/p&gt;
-
-&lt;h3 id=&quot;정규화-종류&quot;&gt;정규화 종류&lt;/h3&gt;
-
-&lt;h4 id=&quot;제1-정규화&quot;&gt;제1 정규화&lt;/h4&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;속성의 원자성&lt;/code&gt;을 만족시키도록 비정규형 테이블을 제1 정규형 테이블로 구조화하는 것을 말한다.&lt;/p&gt;
-
-&lt;p&gt;릴레이션의 속성 값 중에서 한 개의 기본키에 대해서 두 개 이상의 값을 가지는 반복집합을 제거한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/46_2.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;위 테이블를 보면 A가 좋아하는 음식이 2개이다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/46_3.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;→ 위 테이블과 같이 반복집합이 제거된 테이블을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;제1 정규형&lt;/code&gt;이라고 한다. 그리고 이러한 정규화 과정을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;제1 정규화&lt;/code&gt; 라고 한다.&lt;/p&gt;
-
-&lt;h4 id=&quot;제2-정규화&quot;&gt;제2 정규화&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;부분 함수 종속성&lt;/code&gt;을 제거하는 과정을 말한다.&lt;/li&gt;
-  &lt;li&gt;부분 함수 종속성은 기본키가 2개 이상의 Column 으로 구성되는 경우에만 발생한다.
-    &lt;ul&gt;
-      &lt;li&gt;기본키가 1개의 Column 으로 구성된다면 제2 정규화는 건너뛴다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/46_4.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;위 테이블의 기본키가 회원ID와 은행이라고 가정하자.&lt;/p&gt;
-
-&lt;p&gt;계좌번호는 회원ID와 은행에 종속된다. 하지만 회원 이름은 은행에 상관없이 회원ID에만 종속된다.&lt;/p&gt;
-
-&lt;p&gt;이렇게 기본키가 2개 이상의 Column (회원ID, 은행)으로 구성될 때 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;부분 함수 종속성&lt;/code&gt;이 발생할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;테이블 분리를 통해서 이를 해결할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/46_5.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/46_6.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;회원ID, 이름을 속성으로 가지는 새로운 테이블을 도출했다. 이렇게 테이블 분리를 통해서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;제2 정규형&lt;/code&gt;을 구성하는 과정을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;제2 정규화&lt;/code&gt;라고 한다.&lt;/p&gt;
-
-&lt;h4 id=&quot;제3-정규화&quot;&gt;제3 정규화&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;이행적 함수 종속&lt;/code&gt;을 제거하는 과정을 말한다.&lt;/li&gt;
-  &lt;li&gt;기본키가 아닌 Column 이 다른 Column을 결정하는 결정할 수 없도록 한다.&lt;/li&gt;
-  &lt;li&gt;제3 정규화는 제1, 2 정규화를 마친 제2 정규형에 대해서 수행한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/46_7.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;위 테이블에서 회원ID와 계좌번호가 기본키라고 가정하자. 그런데 관리점 Column 을 보면 기본키에 종속되는 것이 아니라 관리점 코드에 종속되는 것을 볼 수 있다. 이를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;이행 함수 종속&lt;/code&gt;이라고 한다.&lt;/p&gt;
-
-&lt;p&gt;관리점 코드를 기본키로 하는 새로운 테이블을 도출하여 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;이행 함수 종속성&lt;/code&gt;을 제거할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/46_8.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/46_9.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;위와 같이 2개의 테이블로 분리하여 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;이행 함수 종속&lt;/code&gt;을 제거하였다. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;반정규화&quot;&gt;반정규화&lt;/h1&gt;
-
-&lt;p&gt;성능 향상을 위해서 데이터의 중복을 허용하고, 조인 연산을 줄여 데이터베이스 성능 향상을 하는 방법&lt;/p&gt;
-
-&lt;h2 id=&quot;정규화의-단점&quot;&gt;정규화의 단점&lt;/h2&gt;
-
-&lt;p&gt;정규화된 데이터를 조회할 때, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;join&lt;/code&gt;이 많이 발생하기 때문에 CPU와 메모리를 많이 사용하고 성능도 떨어진다. 이러한 성능 문제를 해결하기 위해서 반정규화를 수행할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;정규화↔반정규화 사이에는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;trade off&lt;/code&gt;가 있다.&lt;/p&gt;
-
-&lt;p&gt;정규화를 수행하면 데이터의 중복이 줄고 데이터 모델의 유연성이 높아지지만 반대로 성능이 내려간다.&lt;/p&gt;
-
-&lt;p&gt;반정규화를 수행하면 성능은 좋아지지만 유연성이 떨어지고 데이터의 중복이 많아져서 관리하기 어렵다.&lt;/p&gt;
-
-&lt;h2 id=&quot;반정규화를-수행하는-경우&quot;&gt;반정규화를 수행하는 경우&lt;/h2&gt;
-
-&lt;p&gt;특정 범위의 데이터만 자주 조회하는 경우&lt;/p&gt;
-
-&lt;p&gt;요약/집계 정보가 자주 요구되는 경우&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;참고-자료&quot;&gt;참고 자료&lt;/h1&gt;
-&lt;ul&gt;
-  &lt;li&gt;면접을 위한 CS 전공지식 노트&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="데이터베이스" /><category term="정규화" /><category term="DB" /><summary type="html"></summary></entry><entry><title type="html">[테스트] 다양한 테스트 방법</title><link href="http://localhost:4000/%ED%85%8C%EC%8A%A4%ED%8A%B8/45/" rel="alternate" type="text/html" title="[테스트] 다양한 테스트 방법" /><published>2023-11-07T00:00:00+09:00</published><updated>2023-11-07T00:00:00+09:00</updated><id>http://localhost:4000/%ED%85%8C%EC%8A%A4%ED%8A%B8/45</id><content type="html" xml:base="http://localhost:4000/%ED%85%8C%EC%8A%A4%ED%8A%B8/45/">&lt;h2 id=&quot;동기&quot;&gt;동기&lt;/h2&gt;
-
-&lt;p&gt;2주차 미션 피드백을 읽으면서 유용한 테스트 방법이 있어서 소개하고자 한다. &lt;br /&gt;
-바로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ParameterizedTest&lt;/code&gt;이다. 바로 사용 방법을 알아보자! 
-&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;parameterizedtest&quot;&gt;ParameterizedTest&lt;/h2&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ParameterizedTest&lt;/code&gt;를 사용하면 여러 개의 파라미터에 대한 테스트를 하나에 테스트 메소드로 처리할 수 있다.&lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Test&lt;/code&gt;만을 사용했을 때와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ParameterizedTest&lt;/code&gt;를 사용했을 때의 차이점을 코드로 확인해보자! &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;기존의-테스트&quot;&gt;기존의 테스트&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/45_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ParameterizedTest&lt;/code&gt;를 사용하지 않으면 테스트하고 싶은 매개변수가 있을 때마다 테스트 메소드를 작성해야 한다. &lt;br /&gt;
-코드를 보면 알 수 있다싶이 중복되는 부분이 많고 테스트 케이스마다 메소드를 작성해야 하기 때문에 관리하기 어렵다. &lt;br /&gt;
-그렇다면 이제 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ParameterizedTest&lt;/code&gt;를 사용한 코드를 보자 &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;parameterizedtest를-사용한-테스트&quot;&gt;ParameterizedTest를 사용한 테스트&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/45_2.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;위 코드를 실행하게 되면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;test3&lt;/code&gt;가 총 5번 호출되며 실행할 때, 5, 4, 3, 2, 1이 순서대로 들어간다. &lt;br /&gt;
-여러 경우에 대한 테스트를 단 하나의 메소드로 처리할 수 있는 것이다! &lt;br /&gt;
-아마 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ValueSoource&lt;/code&gt;가 무엇인지 궁금할 것이다! 이는 파라미터에 값을 넣는 에노테이션으로 이제부터 설명하겠다.
-&lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;argument-sources&quot;&gt;Argument sources&lt;/h2&gt;
-
-&lt;p&gt;앞서 봤듯이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ParameterizedTest&lt;/code&gt;는 서로 다른 인수를 사용하여 동일한 테스트를 여러 번 실행시킨다. &lt;br /&gt;
-그런데 단순한 인수만 넣을 수 있다면 조금만 복잡한 값이 들어오더라도 테스트할 수 없을 것이다.&lt;br /&gt;
-이제부터 여러가지 인수를 넣는 방법에 대해서 살펴보자!&lt;/p&gt;
-
-&lt;h3 id=&quot;valuesource&quot;&gt;@ValueSource&lt;/h3&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ValueSource&lt;/code&gt;를 사용하면 단순한 리터럴 값 배열을 테스트 메서드에 전달할 수 있게된다.&lt;br /&gt; 
-사용법은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@ValueSource&lt;/code&gt;안에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;shorts&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;strings&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ints&lt;/code&gt;와 같이 타입을 적어주고 뒤에 값을 넣어주면 된다.&lt;br /&gt;
-코드 예시를 보자! &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/45_4.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;test3은 총 3번 실행되며 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;str&lt;/code&gt;에 순서대로 “aaa”, “bbb”, “ccc” 값이 들어간다. &lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@Test&lt;/code&gt;만 사용한다면 총 3번개의 테스트 메소드를 작성해야 하는데 하나의 메소드로 처리한 것을 볼 수 있다.&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;넘겨줄-수-있는-자료형은-다음과-같다&quot;&gt;넘겨줄 수 있는 자료형은 다음과 같다!&lt;br /&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;img src=&quot;/assets/images/45_3.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;nullsource&quot;&gt;@NullSource&lt;/h3&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@NullSource&lt;/code&gt;는 파라미터 값으로 null을 넣어준다. &lt;br /&gt;
-바로 예시를 보자! &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/45_5.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/45_6.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;실행 결과를 보면 알 수 있듯이 data에 null이 들어간 것을 확인할 수 있다 &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;emptysource&quot;&gt;@EmptySource&lt;/h3&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@EmptySource&lt;/code&gt;도 이름 그대로 빈 값을 파라미터에 주입해준다. &lt;br /&gt;
-코드로 바로 확인해보자! &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/45_7.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/45_8.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;data에 empty값이 들어간 것을 확인할 수 있다! &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;enumsource&quot;&gt;@EnumSource&lt;/h3&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@EnumSource&lt;/code&gt;도 느낌이 오지 않는가? 그냥 Enum을 넣어준다 ㅎㅎ.. &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/45_9.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/45_10.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;마찬가지로 잘 통과하는 것을 확인할 수 있다 &lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;methodsource&quot;&gt;@MethodSource&lt;/h3&gt;
-
-&lt;p&gt;지금까지 살펴본 테스트들은 단순하고 하나의 파라미터밖에 넘기지 못한다.&lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@MethodSource&lt;/code&gt;는 좀 더 복잡한 인수를 가지고 테스트를 제공한다. &lt;br /&gt;
-바로 예시를 보자! &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/45_11.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;차례대로 input, expected에 `provideStringForBlank에서 생성한 값들이 들어가는 것을 확인할 수 있다.&lt;br /&gt;
-이렇게 여러 복잡한 인자를 넘겨서 테스트가 가능하다! &lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;이-방식을-사용하려면-몇-가지-규칙이-있다&quot;&gt;이 방식을 사용하려면 몇 가지 규칙이 있다.&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@MethodSource&lt;/code&gt;로 지정한 메소드는 반드시 &lt;strong&gt;static&lt;/strong&gt;이어야 한다.&lt;/li&gt;
-  &lt;li&gt;그리고 메소드 이름과 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@MethodSource&lt;/code&gt;에 들어가는 메서드 이름이 일치해야 한다.
-    &lt;ul&gt;
-      &lt;li&gt;단, TestInstance를 사용하여 클래스 단위의 생성주기를 가지는 경우에 인스턴스 메소드가 가능하다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@MethodSource&lt;/code&gt;에 메소드 이름을 작성하지 않으면 JUnit이 테스트 메소드 네임과 같은 메소드를 찾아서 인수로 제공한다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;이 방식을 사용하면 복잡한 인수를 자동으로 주입해서 테스트할 수 있다!! &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;csvsource&quot;&gt;@CsvSource&lt;/h3&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@CsvSource&lt;/code&gt;를 사용하면 인자와 테스트 값을 동시에 주입할 수 있다 &lt;br /&gt;
-바로 코드로 확인해보자 &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/45_12.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/45_13.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@CsvSource&lt;/code&gt;에 값을 넣을때는 기본적으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;쉼표(,)&lt;/code&gt;로 구분된다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;delimeter&lt;/code&gt;를 따로 설정할 수도 있다! &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;오늘은 다양한 테스트 방법에 대해서 알아봤다.&lt;br /&gt;
-테스트 코드를 작성하는 것도 서비스 로직을 작성하는 것만큼 중요하다. &lt;br /&gt;
-다양한 테스트 방법에 대해서 숙지해두자! &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;참고-사이트&quot;&gt;참고 사이트&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;https://ebabby.tistory.com/21&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;https://www.baeldung.com/parameterized-tests-junit-5&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;https://velog.io/@ohzzi/junit5-parameterizedtest&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="테스트" /><category term="Junit5" /><category term="우테코" /><summary type="html">동기</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="DevOps" /><category term="DevOps" /><category term="CI/CD" /><category term="리버스 프록시" /><category term="무중단 배포" /><summary type="html"></summary></entry></feed>
