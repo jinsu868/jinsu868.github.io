@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[운영체제] 스레드 - Jinsu’s story</title>
-<meta name="description" content="스레드">
+<!-- begin _includes/seo.html --><title>[운영체제] 프로세스 동기화 (진행중) - Jinsu’s story</title>
+<meta name="description" content="프로세스 동기화에 대해서 이해하기 위해서는 우선 임계 영역과 경쟁 상태에 대해서 이해해야 한다. 차례대로 살펴보며 이해해보자.">
 
 
   <meta name="author" content="Moon JinSu">
@@ -22,11 +22,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="Jinsu's story">
-<meta property="og:title" content="[운영체제] 스레드">
-<meta property="og:url" content="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/58/">
+<meta property="og:title" content="[운영체제] 프로세스 동기화 (진행중)">
+<meta property="og:url" content="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/59/">
 
 
-  <meta property="og:description" content="스레드">
+  <meta property="og:description" content="프로세스 동기화에 대해서 이해하기 위해서는 우선 임계 영역과 경쟁 상태에 대해서 이해해야 한다. 차례대로 살펴보며 이해해보자.">
 
 
 
@@ -45,7 +45,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/58/">
+<link rel="canonical" href="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/59/">
 
 
 
@@ -335,8 +335,8 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[운영체제] 스레드">
-    <meta itemprop="description" content="스레드">
+    <meta itemprop="headline" content="[운영체제] 프로세스 동기화 (진행중)">
+    <meta itemprop="description" content="프로세스 동기화에 대해서 이해하기 위해서는 우선 임계 영역과 경쟁 상태에 대해서 이해해야 한다. 차례대로 살펴보며 이해해보자.">
     <meta itemprop="datePublished" content="2024-01-09T00:00:00+09:00">
     
 
@@ -344,7 +344,7 @@
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/58/" class="u-url" itemprop="url">[운영체제] 스레드
+            <a href="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/59/" class="u-url" itemprop="url">[운영체제] 프로세스 동기화 (진행중)
 </a>
           </h1>
           
@@ -376,87 +376,158 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu"><li><a href="#스레드">스레드</a><ul><li><a href="#정의">정의</a></li><li><a href="#특징">특징</a><ul><li><a href="#독립적으로-할당되는-자원">독립적으로 할당되는 자원</a></li><li><a href="#문맥교환-context-switching">문맥교환 (Context Switching)</a><ul><li><a href="#발생-상황">발생 상황</a></li></ul></li></ul></li><li><a href="#멀티-스레드">멀티 스레드</a><ul><li><a href="#특징-1">특징</a></li></ul></li><li><a href="#멀티-스레드-vs-멀티-프로세스">멀티 스레드 vs 멀티 프로세스</a></li><li><a href="#정리">정리</a></li><li><a href="#참고">참고</a></li></ul></li></ul>
+              <ul class="toc__menu"><li><a href="#임계-영역-critical-section">임계 영역 (Critical Section)</a><ul><li><a href="#정의">정의</a></li><li><a href="#특징">특징</a></li></ul></li><li><a href="#경쟁-상태-race-condition">경쟁 상태 (Race Condition)</a><ul><li><a href="#정의-1">정의</a></li><li><a href="#발생할-수-있는-상황">발생할 수 있는 상황</a><ul><li><a href="#커널-작업-수행-중에-인터럽트가-발생하는-경우">커널 작업 수행 중에 인터럽트가 발생하는 경우</a></li><li><a href="#프로세스가-시스템콜을-호출하여-커널-모드로-진입하여-작업을-수행하는-도중에-문맥교환이-발생한-경우">프로세스가 시스템콜을 호출하여 커널 모드로 진입하여 작업을 수행하는 도중에 문맥교환이 발생한 경우</a></li><li><a href="#멀티-프로세스-환경에서-공유-메모리-내의-커널-데이터에-접근할-경우">멀티 프로세스 환경에서 공유 메모리 내의 커널 데이터에 접근할 경우</a></li></ul></li></ul></li><li><a href="#예시">예시</a><ul><li><a href="#코드">코드</a></li></ul></li><li><a href="#뮤텍스-mutex">뮤텍스 (Mutex)</a><ul><li><a href="#정의-2">정의</a></li><li><a href="#연산">연산</a></li><li><a href="#특징-1">특징</a></li></ul></li><li><a href="#세마포어-semaphore">세마포어 (Semaphore)</a><ul><li><a href="#흐름">흐름</a></li><li><a href="#특징-2">특징</a></li><li><a href="#종류">종류</a></li></ul></li><li><a href="#뮤텍스와-세마포어의-차이점">뮤텍스와 세마포어의 차이점</a></li><li><a href="#참고">참고</a></li></ul></li></ul>
 
             </nav>
           </aside>
         
-        <h1 id="스레드">스레드</h1>
+        <p>프로세스 동기화에 대해서 이해하기 위해서는 우선 임계 영역과 경쟁 상태에 대해서 이해해야 한다. 차례대로 살펴보며 이해해보자.</p>
+
+<p><br /></p>
+
+<h1 id="임계-영역-critical-section">임계 영역 (Critical Section)</h1>
 
 <h2 id="정의">정의</h2>
 
 <blockquote>
-  <p>스레드는 프로세스 내의 여러 실행 흐름의 단위이다.</p>
+  <p>임계 영역(Critical Section)이란 프로세스간에 공유자원을 접근함에 있어서 문제가 발생하지 않도록 한번에 하나의 프로세스만 공유자원에 접근하도록 보장해줘야 하는 영역을 말한다.</p>
 </blockquote>
 
 <h2 id="특징">특징</h2>
 
-<p>프로세스내의 스레드끼리는 Stack을 제외한 메모리 공간 (Code, Data, Heap)을 공유한다. 메모리 공간을 공유하기 때문에 하나의 스레드에서 오류가 발생한다면 다른 스레드에서 영향을 받을 수도 있다.</p>
+<p><strong>상호 배제 (Mutual Exclusion)</strong> : 하나의 프로세스가 임계 영역에 들어가 있으면 다른 프로세스는 들어갈 수 없어야 한다.</p>
 
-<h3 id="독립적으로-할당되는-자원">독립적으로 할당되는 자원</h3>
+<p><strong>진행 (Progress)</strong> : 임계 영역에 들어간 프로세스가 없는 상태에서 임계 영역에 들어가려는 프로세스가 여러 개라면 어느 프로세스가 먼저 들어갈 지 결정할 수 있어야 한다.</p>
 
-<p>그렇다면 스레드마다 별도로 할당되는 자원에는 어떤게 있을까? <strong>Stack</strong>과 <strong>Reigster</strong>가 있다.</p>
+<p><strong>한정 대기 (Bounded Waiting)</strong> : 다른 프로세스의 기아를 방지하기 위해, 한번 임계 영역에 들어간 프로세스는 다음 임계 영역에 들어갈 때 제한을 두어야 한다.</p>
 
-<p>각 스레드가 독립적인 Stack을 가지는 이유는 함수의 실행과 연관된다. 독립적으로 Stack을 가진다는 말은 곧 독립적인 함수 호출이 가능하다는 뜻이다. 즉 프로세스 내에서 독립적인 실행 흐름을 만들 수 있다는 것이다. 때문에 Stack은 각 스레드마다 별도로 가지고 있어야 한다.</p>
+<p><br /></p>
 
-<p>그리고 스레드는 별도의 Register를 가지는데 여기서 의문이 있을 것이다. Register는 프로세서에 있는 친구아닌가?</p>
+<h1 id="경쟁-상태-race-condition">경쟁 상태 (Race Condition)</h1>
 
-<p>여기서 말하는 Register란 현재 스레드의 실행 정보가 저장된 상태값이다. 시분할 시스템에서는 문맥교환이 발생하게 되는데 문맥교환이 발생하면 스레드의 경우는 Code, Data, Heap은 공유하기 때문에 자신의 Stack 상태와 어디까지 실행했는지에 대한 정보(PC)만 저장하면 된다. 이 때, 현재 상태가 저장되기 때문에 Register 값이 저장되게 되는 것이다.</p>
-
-<p>이러한 이유로 각 스레드는 Register를 별도로 가진다고 하는 것이다.</p>
-
-<h3 id="문맥교환-context-switching">문맥교환 (Context Switching)</h3>
+<h2 id="정의-1">정의</h2>
 
 <blockquote>
-  <p>문맥교환이란 하나의 프로세스가 CPU를 사용 중인 상태에서 다른 프로세스가 CPU를 사용하도록 하기 위해, 이전의 프로세스의 상태를 보관하고 새로운 프로세스의 상태를 적재하는 작업을 말한다. 한 프로세스의 문맥은 그 프로세스의 PCB에 저장되어 있다.</p>
+  <p>경쟁 상태 (Race Condition)이란 공유 자원에 대해 여러 프로세스가 동시에 접근할 때, 결과값이 접근 순서나 접근 시점에 따라 달라질 수 있는 것을 말한다.</p>
+
 </blockquote>
 
-<h4 id="발생-상황">발생 상황</h4>
+<h2 id="발생할-수-있는-상황">발생할 수 있는 상황</h2>
 
-<p>문맥교환은 인터럽트 발생, 실행중인 프로세스의 CPU 허용 시간 초과, 입출력 대기시에 발생하게 된다.</p>
+<h4 id="커널-작업-수행-중에-인터럽트가-발생하는-경우">커널 작업 수행 중에 인터럽트가 발생하는 경우</h4>
 
-<p>문맥교환을 하는 동안에 CPU는 아무것도 하지 않게 된다. 그럼에도 불구하고 문맥교환을 하는 이유는 I/O와 같은 작업이 발생하여 CPU가 블록되는 시간이 문맥교환 시간보다 길기 때문에 문맥교환을 하여 다른 프로세스를 실행하는 것이 CPU 사용률을 높일 수 있기 때문이다.</p>
+<p>해결 방법 : 커널 모드에서 작업을 수행하는 동안 인터럽트를 disable 시켜서 해결할 수 있다.</p>
 
-<h2 id="멀티-스레드">멀티 스레드</h2>
+<h4 id="프로세스가-시스템콜을-호출하여-커널-모드로-진입하여-작업을-수행하는-도중에-문맥교환이-발생한-경우">프로세스가 시스템콜을 호출하여 커널 모드로 진입하여 작업을 수행하는 도중에 문맥교환이 발생한 경우</h4>
+
+<p>프로세스가 커널 모드에서 작업하는 경우에는 CPU 허용 시간이 초과되더라도 CPU 제어권을 다른 프로세스로 넘기지 않게 함으로써 해결할 수 있다.</p>
+
+<h4 id="멀티-프로세스-환경에서-공유-메모리-내의-커널-데이터에-접근할-경우">멀티 프로세스 환경에서 공유 메모리 내의 커널 데이터에 접근할 경우</h4>
+
+<p>커널 내부의 공유 메모리에 접근할 때마다 Lock/UnLock을 하여 해결할 수 있다.</p>
+
+<p><br /></p>
+
+<h2 id="예시">예시</h2>
+
+<p>간단한 예를 살펴보며 이해해 보자.</p>
+
+<h3 id="코드">코드</h3>
+
+<p><img src="/assets/images/58_2.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>이 코드에서 counter는 공급자와 소비자가 공유하는 부분이다. 만약 공급자에서 <code class="language-plaintext highlighter-rouge">counter++</code>을 하는 시점에 소비자에서 <code class="language-plaintext highlighter-rouge">counter--</code>를 동시에 실행하게 되면 어떻게 될까? (여기서의 counter 연산은 원자적이지 않다.)</p>
+
+<p><img src="/assets/images/59_1.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">counter++</code>이라는 연산은 원자적인 연산처럼 보이지만 사실 어셈블러로 내려가면 그렇지 않다. 위의 코드를 보면 알 수 있듯이 3개의 연산으로 쪼개진다.  공급자가 <code class="language-plaintext highlighter-rouge">counter++</code>을 호출한 시점에 소비자가 <code class="language-plaintext highlighter-rouge">counter--</code>를 호출한 상황을 살펴보자.</p>
+
+<p><img src="/assets/images/59_2.png" alt="img1" width="70%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>register1에는 6이 저장되고 counter에 옮기는 작업을 하는 중간에 <code class="language-plaintext highlighter-rouge">counter--</code>가 끼어들어서 counter의 값이 6이 되자마자 register2(4)의 값으로 덮어써서 공급자 입장에서 counter값 6을 기대했지만 4가 나오는 결과가 도출된다.</p>
+
+<p>그렇다면 어떻게 이러한 문제들을 해결할 수 있을까? 이제부터 이에 대해서 알아보자.</p>
+
+<p><br /></p>
+
+<h2 id="뮤텍스-mutex">뮤텍스 (Mutex)</h2>
+
+<h3 id="정의-2">정의</h3>
 
 <blockquote>
-  <p>멀티 스레드란 하나의 프로세스를 여러 개의 스레드로 구성하여 자원을 공유하며 작업을 수행하는 것을 의미한다.</p>
+  <p>뮤텍스란 여러 스레드를 실행하는 환경에서 자원에 대한 접근에 제한을 강제하기 위한 동기화 매커니즘이다.</p>
 </blockquote>
+
+<p><img src="/assets/images/59_3.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<h3 id="연산">연산</h3>
+
+<p><strong>Acquire</strong> : 현재의 임계 구역에 들어갈 권한을 가져온다. 만약 다른 프로세스가 임계 구역에 있다면 나올때까지 대기한다.</p>
+
+<p><strong>Release</strong> : 현재의 임계 구역을 모두 사용했음을 알린다. Release후에 다른 프로세스가 임계 구역에 접근할 수 있게 된다.</p>
 
 <h3 id="특징-1">특징</h3>
 
-<p>멀티 스레드는 하나의 프로세스의 자원을 공유하기 때문에 멀티 프로세스보다 더 적은 메모리를 차지한다.그리고 메모리(Code, Data, Heap)를 공유하기 때문에 문맥교환 속도가 더 빠르다.</p>
-
-<p>하지만 오류로 인해서 하나의 스레드에 문제가 발생하게 된다면 전체 스레드에 영향을 줄 수도 있다. 그리고 메모리를 공유하기 때문에 동기화에 신경써서 프로그래밍해야 한다.</p>
-
-<h2 id="멀티-스레드-vs-멀티-프로세스">멀티 스레드 vs 멀티 프로세스</h2>
-
-<p>일반적으로 멀티 스레드 방식을 더 많이 사용한다. 왜 그럴까?</p>
-
-<p>멀티 스레드 방식의 경우 문맥 교환을 할 때, 스택 영역만 초기화하면 되기 때문에 속도가 빠르다. 그리고 프로세스의 경우 생성할 때 <strong>시스템콜</strong>을 호출하게 되기 때문에 멀티 스레드 방식에 비해서 비효율적이다.</p>
+<p>boolean 타입의 lock 변수를 통해 잠금 여부를 확인할 수 있고 한 개의 프로세스/스레드만 공유자원을 소유하고 해제할 수 있다. 그리고 대기중인 프로세스/스레드가 busy waiting 방식으로 대기하지 않고 대기 큐에 잠들어서 기다린다.(CPU 자원 소비 X)</p>
 
 <ul>
-  <li>시스템콜 : 사용자나 응용프로그램이 커널에서 제공하는 기능을 사용하기 위한 인터페이스를 의미한다.
-    <ul>
-      <li>커널이 제공하는 서비스를 시스템콜을 통해서만 접근하게 제한함으로써 컴퓨터 자원을 보호하면서 사용자나 응용프로그램에게 서비스를 제공할 수 있게 된다.</li>
-    </ul>
-  </li>
+  <li><strong>busy waiting</strong> : CPU의 자원을 지속적으로 사용하며 특정 조건이 만족할 때까지 대기하는 방식 (while 문을 계속 돌고있다고 생각하면 된다.)</li>
 </ul>
 
-<h2 id="정리">정리</h2>
+<p><br /></p>
 
-<p>스레드는 프로세스 내의 여러 실행 흐름 단위로서 프로세스의 자원을 사용하게 된다.</p>
+<h2 id="세마포어-semaphore">세마포어 (Semaphore)</h2>
 
-<p>프로세스 내에 여러 스레드가 있을 때, 스레드끼리 메모리(Code, Date, Heap)을 공유하며 Stack, Register는 별도로 가진다.</p>
+<blockquote>
+  <p>세마포어는 교착 상태에 대한 해법으로 두 개의 원자적 함수로 제어되는 정수 변수로 멀티프로그래밍 환경에서 공유자원에 대한 접근 제어를 하는 방법으로 사용되며, 1개의 공유되는 자원에 제한된 개수의 프로세스, 또는 스레드만 접근할 수 있도록 한다.</p>
+</blockquote>
 
-<p>일반적으로 멀티 프로세스 방식보다는 멀티 스레드 방식을 많이 사용한다.</p>
+<p><img src="/assets/images/59_4.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<h3 id="흐름">흐름</h3>
+
+<ol>
+  <li>
+    <p>허용되는 공유 자원에 접근할 수 있는 수로 세마포어 값을 초기화한다.</p>
+  </li>
+  <li>
+    <p>프로세스/스레드가 공유 자원에 접근할 때마다 세마포어 변수의 값을 1감소 시킨다. (세마포어 변수가 0이 되면 꽉찬 것이다.)</p>
+  </li>
+  <li>
+    <p>세마포어 변수값이 0이하면 더 이상 접근할 수 없다는 의미이고 세마포어 변수에 절대값을 씌운 값이 현재 대기큐에서 잠들고 있는 프로세스/스레드의 수이다</p>
+  </li>
+</ol>
+
+<h3 id="특징-2">특징</h3>
+
+<p>뮤텍스와 다르게 한 개 이상의 프로세스/스레드가 공유 자원에 접근할 수 있다. Wait(P) 연산을 통해 공유자원을 획득하고 Signal(V) 연산을 통해 해제한다. 세마포어도 뮤텍스와 마찬가지로 busy waiting 방식이 아닌 대기 큐에서 잠들다가 깨어나는 방식을 사용한다.</p>
+
+<h3 id="종류">종류</h3>
+
+<p><strong>이진 세마포어</strong> : 세마포어 변수값이 0, 1만 될 수 있으며 최대 한개의 프로세스/스레드가 공유 자원에 접근 가능한 세마포어이다.</p>
+
+<p><strong>카운팅 세마포어</strong> : 최대 n개의 프로세스/스레드가 공유 자원에 접근 가능한 세마포어이다.</p>
+
+<p><br /></p>
+
+<h2 id="뮤텍스와-세마포어의-차이점">뮤텍스와 세마포어의 차이점</h2>
+
+<ol>
+  <li>뮤텍스는 소유한 프로세스/스레드만 뮤텍스 락을 변경할 수 있다. 반면 세마포어는 여러 프로세스/스레드가 세마포어 변수값을 변경할 수 있다.</li>
+  <li>뮤텍스는 세마포어로 사용될 수 없지만 세마포어는 뮤텍스로서 사용될 수 있다.</li>
+  <li>세마포어는 실행순서의 동기화를 할 수 있다.</li>
+</ol>
+
+<p><br /></p>
 
 <h2 id="참고">참고</h2>
 
 <ul>
-  <li>면접을 위한 CS 전공지식 노트</li>
   <li>Operating System Concepts</li>
+  <li><a href="https://www.youtube.com/watch?v=NL9JQh5bbZ8">https://www.youtube.com/watch?v=NL9JQh5bbZ8</a></li>
 </ul>
+
+<p>##</p>
 
 
         
@@ -510,23 +581,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5B%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C%5D+%EC%8A%A4%EB%A0%88%EB%93%9C%20http%3A%2F%2Flocalhost%3A4000%2F%25EC%259A%25B4%25EC%2598%2581%25EC%25B2%25B4%25EC%25A0%259C%2F58%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5B%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C%5D+%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4+%EB%8F%99%EA%B8%B0%ED%99%94+%28%EC%A7%84%ED%96%89%EC%A4%91%29%20http%3A%2F%2Flocalhost%3A4000%2F%25EC%259A%25B4%25EC%2598%2581%25EC%25B2%25B4%25EC%25A0%259C%2F59%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25EC%259A%25B4%25EC%2598%2581%25EC%25B2%25B4%25EC%25A0%259C%2F58%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25EC%259A%25B4%25EC%2598%2581%25EC%25B2%25B4%25EC%25A0%259C%2F59%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25EC%259A%25B4%25EC%2598%2581%25EC%25B2%25B4%25EC%25A0%259C%2F58%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25EC%259A%25B4%25EC%2598%2581%25EC%25B2%25B4%25EC%25A0%259C%2F59%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/57/" class="pagination--pager" title="[운영체제] 좀비 프로세스 vs 고아 프로세스
+      <a href="/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/58/" class="pagination--pager" title="[운영체제] 스레드
 ">이전</a>
     
     
-      <a href="/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/59/" class="pagination--pager" title="[운영체제] 프로세스 동기화 (진행중)
-">다음</a>
+      <a href="#" class="pagination--pager disabled">다음</a>
     
   </nav>
 
@@ -550,7 +620,7 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/59/" rel="permalink">[운영체제] 프로세스 동기화 (진행중)
+        <a href="/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/58/" rel="permalink">[운영체제] 스레드
 </a>
       
     </h2>
@@ -573,14 +643,14 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          3 분 소요
+          2 분 소요
         
       </span>
     
   </p>
 
 
-    <p class="archive__item-excerpt" itemprop="description">프로세스 동기화에 대해서 이해하기 위해서는 우선 임계 영역과 경쟁 상태에 대해서 이해해야 한다. 차례대로 살펴보며 이해해보자.
+    <p class="archive__item-excerpt" itemprop="description">스레드
 </p> -->
   </article>
 </div>

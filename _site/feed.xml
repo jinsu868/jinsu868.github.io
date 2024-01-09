@@ -1,4 +1,150 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-09T13:27:36+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[운영체제] 스레드</title><link href="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/58/" rel="alternate" type="text/html" title="[운영체제] 스레드" /><published>2024-01-09T00:00:00+09:00</published><updated>2024-01-09T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/58</id><content type="html" xml:base="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/58/">&lt;h1 id=&quot;스레드&quot;&gt;스레드&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-09T16:02:26+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[운영체제] 프로세스 동기화 (진행중)</title><link href="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/59/" rel="alternate" type="text/html" title="[운영체제] 프로세스 동기화 (진행중)" /><published>2024-01-09T00:00:00+09:00</published><updated>2024-01-09T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/59</id><content type="html" xml:base="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/59/">&lt;p&gt;프로세스 동기화에 대해서 이해하기 위해서는 우선 임계 영역과 경쟁 상태에 대해서 이해해야 한다. 차례대로 살펴보며 이해해보자.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;임계-영역-critical-section&quot;&gt;임계 영역 (Critical Section)&lt;/h1&gt;
+
+&lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;임계 영역(Critical Section)이란 프로세스간에 공유자원을 접근함에 있어서 문제가 발생하지 않도록 한번에 하나의 프로세스만 공유자원에 접근하도록 보장해줘야 하는 영역을 말한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;특징&quot;&gt;특징&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;상호 배제 (Mutual Exclusion)&lt;/strong&gt; : 하나의 프로세스가 임계 영역에 들어가 있으면 다른 프로세스는 들어갈 수 없어야 한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;진행 (Progress)&lt;/strong&gt; : 임계 영역에 들어간 프로세스가 없는 상태에서 임계 영역에 들어가려는 프로세스가 여러 개라면 어느 프로세스가 먼저 들어갈 지 결정할 수 있어야 한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;한정 대기 (Bounded Waiting)&lt;/strong&gt; : 다른 프로세스의 기아를 방지하기 위해, 한번 임계 영역에 들어간 프로세스는 다음 임계 영역에 들어갈 때 제한을 두어야 한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;경쟁-상태-race-condition&quot;&gt;경쟁 상태 (Race Condition)&lt;/h1&gt;
+
+&lt;h2 id=&quot;정의-1&quot;&gt;정의&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;경쟁 상태 (Race Condition)이란 공유 자원에 대해 여러 프로세스가 동시에 접근할 때, 결과값이 접근 순서나 접근 시점에 따라 달라질 수 있는 것을 말한다.&lt;/p&gt;
+
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;발생할-수-있는-상황&quot;&gt;발생할 수 있는 상황&lt;/h2&gt;
+
+&lt;h4 id=&quot;커널-작업-수행-중에-인터럽트가-발생하는-경우&quot;&gt;커널 작업 수행 중에 인터럽트가 발생하는 경우&lt;/h4&gt;
+
+&lt;p&gt;해결 방법 : 커널 모드에서 작업을 수행하는 동안 인터럽트를 disable 시켜서 해결할 수 있다.&lt;/p&gt;
+
+&lt;h4 id=&quot;프로세스가-시스템콜을-호출하여-커널-모드로-진입하여-작업을-수행하는-도중에-문맥교환이-발생한-경우&quot;&gt;프로세스가 시스템콜을 호출하여 커널 모드로 진입하여 작업을 수행하는 도중에 문맥교환이 발생한 경우&lt;/h4&gt;
+
+&lt;p&gt;프로세스가 커널 모드에서 작업하는 경우에는 CPU 허용 시간이 초과되더라도 CPU 제어권을 다른 프로세스로 넘기지 않게 함으로써 해결할 수 있다.&lt;/p&gt;
+
+&lt;h4 id=&quot;멀티-프로세스-환경에서-공유-메모리-내의-커널-데이터에-접근할-경우&quot;&gt;멀티 프로세스 환경에서 공유 메모리 내의 커널 데이터에 접근할 경우&lt;/h4&gt;
+
+&lt;p&gt;커널 내부의 공유 메모리에 접근할 때마다 Lock/UnLock을 하여 해결할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;예시&quot;&gt;예시&lt;/h2&gt;
+
+&lt;p&gt;간단한 예를 살펴보며 이해해 보자.&lt;/p&gt;
+
+&lt;h3 id=&quot;코드&quot;&gt;코드&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/58_2.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 코드에서 counter는 공급자와 소비자가 공유하는 부분이다. 만약 공급자에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;counter++&lt;/code&gt;을 하는 시점에 소비자에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;counter--&lt;/code&gt;를 동시에 실행하게 되면 어떻게 될까? (여기서의 counter 연산은 원자적이지 않다.)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/59_1.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;counter++&lt;/code&gt;이라는 연산은 원자적인 연산처럼 보이지만 사실 어셈블러로 내려가면 그렇지 않다. 위의 코드를 보면 알 수 있듯이 3개의 연산으로 쪼개진다.  공급자가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;counter++&lt;/code&gt;을 호출한 시점에 소비자가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;counter--&lt;/code&gt;를 호출한 상황을 살펴보자.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/59_2.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;register1에는 6이 저장되고 counter에 옮기는 작업을 하는 중간에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;counter--&lt;/code&gt;가 끼어들어서 counter의 값이 6이 되자마자 register2(4)의 값으로 덮어써서 공급자 입장에서 counter값 6을 기대했지만 4가 나오는 결과가 도출된다.&lt;/p&gt;
+
+&lt;p&gt;그렇다면 어떻게 이러한 문제들을 해결할 수 있을까? 이제부터 이에 대해서 알아보자.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;뮤텍스-mutex&quot;&gt;뮤텍스 (Mutex)&lt;/h2&gt;
+
+&lt;h3 id=&quot;정의-2&quot;&gt;정의&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;뮤텍스란 여러 스레드를 실행하는 환경에서 자원에 대한 접근에 제한을 강제하기 위한 동기화 매커니즘이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/59_3.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;연산&quot;&gt;연산&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Acquire&lt;/strong&gt; : 현재의 임계 구역에 들어갈 권한을 가져온다. 만약 다른 프로세스가 임계 구역에 있다면 나올때까지 대기한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Release&lt;/strong&gt; : 현재의 임계 구역을 모두 사용했음을 알린다. Release후에 다른 프로세스가 임계 구역에 접근할 수 있게 된다.&lt;/p&gt;
+
+&lt;h3 id=&quot;특징-1&quot;&gt;특징&lt;/h3&gt;
+
+&lt;p&gt;boolean 타입의 lock 변수를 통해 잠금 여부를 확인할 수 있고 한 개의 프로세스/스레드만 공유자원을 소유하고 해제할 수 있다. 그리고 대기중인 프로세스/스레드가 busy waiting 방식으로 대기하지 않고 대기 큐에 잠들어서 기다린다.(CPU 자원 소비 X)&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;busy waiting&lt;/strong&gt; : CPU의 자원을 지속적으로 사용하며 특정 조건이 만족할 때까지 대기하는 방식 (while 문을 계속 돌고있다고 생각하면 된다.)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;세마포어-semaphore&quot;&gt;세마포어 (Semaphore)&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;세마포어는 교착 상태에 대한 해법으로 두 개의 원자적 함수로 제어되는 정수 변수로 멀티프로그래밍 환경에서 공유자원에 대한 접근 제어를 하는 방법으로 사용되며, 1개의 공유되는 자원에 제한된 개수의 프로세스, 또는 스레드만 접근할 수 있도록 한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/59_4.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;흐름&quot;&gt;흐름&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;허용되는 공유 자원에 접근할 수 있는 수로 세마포어 값을 초기화한다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;프로세스/스레드가 공유 자원에 접근할 때마다 세마포어 변수의 값을 1감소 시킨다. (세마포어 변수가 0이 되면 꽉찬 것이다.)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;세마포어 변수값이 0이하면 더 이상 접근할 수 없다는 의미이고 세마포어 변수에 절대값을 씌운 값이 현재 대기큐에서 잠들고 있는 프로세스/스레드의 수이다&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;특징-2&quot;&gt;특징&lt;/h3&gt;
+
+&lt;p&gt;뮤텍스와 다르게 한 개 이상의 프로세스/스레드가 공유 자원에 접근할 수 있다. Wait(P) 연산을 통해 공유자원을 획득하고 Signal(V) 연산을 통해 해제한다. 세마포어도 뮤텍스와 마찬가지로 busy waiting 방식이 아닌 대기 큐에서 잠들다가 깨어나는 방식을 사용한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;종류&quot;&gt;종류&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;이진 세마포어&lt;/strong&gt; : 세마포어 변수값이 0, 1만 될 수 있으며 최대 한개의 프로세스/스레드가 공유 자원에 접근 가능한 세마포어이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;카운팅 세마포어&lt;/strong&gt; : 최대 n개의 프로세스/스레드가 공유 자원에 접근 가능한 세마포어이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;뮤텍스와-세마포어의-차이점&quot;&gt;뮤텍스와 세마포어의 차이점&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;뮤텍스는 소유한 프로세스/스레드만 뮤텍스 락을 변경할 수 있다. 반면 세마포어는 여러 프로세스/스레드가 세마포어 변수값을 변경할 수 있다.&lt;/li&gt;
+  &lt;li&gt;뮤텍스는 세마포어로 사용될 수 없지만 세마포어는 뮤텍스로서 사용될 수 있다.&lt;/li&gt;
+  &lt;li&gt;세마포어는 실행순서의 동기화를 할 수 있다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;참고&quot;&gt;참고&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Operating System Concepts&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=NL9JQh5bbZ8&quot;&gt;https://www.youtube.com/watch?v=NL9JQh5bbZ8&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;##&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="운영체제" /><category term="운영체제" /><category term="CS" /><summary type="html">프로세스 동기화에 대해서 이해하기 위해서는 우선 임계 영역과 경쟁 상태에 대해서 이해해야 한다. 차례대로 살펴보며 이해해보자.</summary></entry><entry><title type="html">[운영체제] 스레드</title><link href="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/58/" rel="alternate" type="text/html" title="[운영체제] 스레드" /><published>2024-01-09T00:00:00+09:00</published><updated>2024-01-09T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/58</id><content type="html" xml:base="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/58/">&lt;h1 id=&quot;스레드&quot;&gt;스레드&lt;/h1&gt;
 
 &lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
 
@@ -489,7 +635,122 @@
 
 &lt;ul&gt;
   &lt;li&gt;헤드 퍼스트 디자인 패턴&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><summary type="html">커맨드 패턴</summary></entry><entry><title type="html">[디자인패턴] 상태 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/53/" rel="alternate" type="text/html" title="[디자인패턴] 상태 패턴" /><published>2023-12-09T00:00:00+09:00</published><updated>2023-12-09T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/53</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/53/">&lt;h1 id=&quot;상태-패턴&quot;&gt;상태 패턴&lt;/h1&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><summary type="html">커맨드 패턴</summary></entry><entry><title type="html">[디자인패턴] 어댑터 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51/" rel="alternate" type="text/html" title="[디자인패턴] 어댑터 패턴" /><published>2023-12-09T00:00:00+09:00</published><updated>2023-12-09T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51/">&lt;h1 id=&quot;어댑터-패턴&quot;&gt;어댑터 패턴&lt;/h1&gt;
+
+&lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Convert the interface of a class into another interface clients expect. 
+Adapter lets classes work together that couldn’t otherwise because of incompatible interfaces.&lt;/p&gt;
+
+  &lt;p&gt;-GoF design pattern&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;어댑터 패턴(Adapter Pattern)은 클래스의 인터페이스를 클라이언트가 원하는 형태의 또 다른 인터페이스로 변환해준다.&lt;/p&gt;
+
+&lt;h2 id=&quot;구조&quot;&gt;구조&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/51_1.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;client&quot;&gt;Client&lt;/h3&gt;
+
+&lt;p&gt;클라이언트 입장에서는 새로운 기능을 사용하기 위해 Adaptee의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;specificRequest()&lt;/code&gt; 써야 되는데 기존에 사용하던 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;request()&lt;/code&gt;로 접근하고 싶다.&lt;/p&gt;
+
+&lt;h3 id=&quot;target&quot;&gt;Target&lt;/h3&gt;
+
+&lt;p&gt;기존에 사용하던 인터페이스라고 생각하면 된다. 새로운 인터페이스(Adaptee)를 어댑터를 사용해서 Target인터페이스를 사용하듯이 하는 것이 목표이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;adapter&quot;&gt;Adapter&lt;/h3&gt;
+
+&lt;p&gt;새로운 인터페이스인 Adaptee를 기존에 사용하던 Target인터페이스처럼 사용할 수 있도록 변환해주는 역할을 수행한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;adaptee&quot;&gt;Adaptee&lt;/h3&gt;
+
+&lt;p&gt;새로운 인터페이스로 기존에 사용하던 Target인터페이스와 다르다.&lt;/p&gt;
+
+&lt;h2 id=&quot;특징&quot;&gt;특징&lt;/h2&gt;
+
+&lt;h3 id=&quot;장점&quot;&gt;장점&lt;/h3&gt;
+
+&lt;p&gt;어댑터 패턴을 사용함으로써 기존 클래스를 수정하지 않고도 클라이언트에서 새로운 인터페이스를 사용할 수 있게 된다.&lt;/p&gt;
+
+&lt;h3 id=&quot;단점&quot;&gt;단점&lt;/h3&gt;
+
+&lt;p&gt;어댑터 클래스를 새로 작성해야 하기 때문에 소스 코드가 늘어나고 코드의 복잡도가 늘어난다.&lt;/p&gt;
+
+&lt;p&gt;어댑터가 중간에 데이터를 변환하는 과정에서 추가적인 처리 시간과 오버헤드가 발생할 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;필요성&quot;&gt;필요성&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/51_2.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;어떤 회사의 시스템이 있다고 해보자. 그런데 새로운 기능을 구현하기 위해 다른 업체에서 제공하는 클래스 라이브러리를 사용해야 하는 상황이 생겼다.&lt;/p&gt;
+
+&lt;p&gt;이 상황에서 만약 기존 시스템의 인터페이스와 새로운 업체에서 사용하는 인터페이스가 다르면 호환성 문제가 발생한다.&lt;/p&gt;
+
+&lt;p&gt;이때 어댑터 패턴을 사용하면 이를 해결할 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;예시&quot;&gt;예시&lt;/h2&gt;
+
+&lt;p&gt;우리는 핸드폰을 사용하고 있다. 이 핸드폰은 두 가지 기능이 있는데 화면을 보여주는 기능과 전원을 종료하는 기능이다.&lt;/p&gt;
+
+&lt;p&gt;이를 코드로 나타내보면 아래와 같다.&lt;/p&gt;
+
+&lt;h4 id=&quot;phone-class-target&quot;&gt;Phone Class (Target)&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/51_3.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;galaxy-phone의-구현-객체&quot;&gt;Galaxy (Phone의 구현 객체)&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/51_4.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;화면 보여주는 기능 : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;display()&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;전원을 종료하는 기능 : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;shutDown()&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 상황에서 태블릿 기기를 선물 받았다고 해보자.&lt;/p&gt;
+
+&lt;p&gt;태블릿 클래스 코드는 아래와 같다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;tablet-adaptee&quot;&gt;Tablet (Adaptee)&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/51_5.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;그런데 우리는 태블릿 기기를 사용하려면 여러가지 기능을 새로 배워야 한다.&lt;/p&gt;
+
+&lt;p&gt;그래서 우리는 태블릿을 기존에 사용하던 핸드폰과 동일한 인터페이스로 사용할 수 있도록 어댑터를 장착하기로 결정했다!&lt;/p&gt;
+
+&lt;h3 id=&quot;phoneadapter-adapter&quot;&gt;PhoneAdapter (Adapter)&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/51_6.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;PhoneAdapter클래스는 Phone을 구현하고 내부적으로 Tablet을 맴버 변수로 가지고 있다.&lt;/p&gt;
+
+&lt;p&gt;기존에 사용하던 Phone인터페이스를 구현하는 것은 같은데 내부적으로는 Tablet의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;show()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exit()&lt;/code&gt;메소드를 호출하게 된다.&lt;/p&gt;
+
+&lt;p&gt;이렇게 하면 우리(Client)는 Tablet클래스를 사용할 때 기존에 사용하던 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;display()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;shutDown()&lt;/code&gt;을 통하여 접근할 수 있게 된다.&lt;/p&gt;
+
+&lt;h2 id=&quot;정리&quot;&gt;정리&lt;/h2&gt;
+
+&lt;p&gt;어댑터 패턴은 인터페이스 사이에 유연성이 필요한 상황에 효율적으로 사용될 수 있는 디자인 패턴이다.&lt;/p&gt;
+
+&lt;p&gt;하지만 코드의 복잡도가 발생할 수 있고 추가적인 오버헤드가 생길 수 있기 때문에 적절한 상황에만 사용하는 것이 좋다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;참고&quot;&gt;참고&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;헤드 퍼스트 디자인 패턴&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://yozm.wishket.com/magazine/detail/2077/&quot;&gt;요즘IT&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><summary type="html">어댑터 패턴</summary></entry><entry><title type="html">[디자인패턴] 상태 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/53/" rel="alternate" type="text/html" title="[디자인패턴] 상태 패턴" /><published>2023-12-09T00:00:00+09:00</published><updated>2023-12-09T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/53</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/53/">&lt;h1 id=&quot;상태-패턴&quot;&gt;상태 패턴&lt;/h1&gt;
 
 &lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
 
@@ -807,209 +1068,7 @@
   &lt;li&gt;
     &lt;p&gt;헤드 퍼스트 디자인 패턴&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><summary type="html">퍼사드 패턴</summary></entry><entry><title type="html">[디자인패턴] 어댑터 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51/" rel="alternate" type="text/html" title="[디자인패턴] 어댑터 패턴" /><published>2023-12-09T00:00:00+09:00</published><updated>2023-12-09T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51/">&lt;h1 id=&quot;어댑터-패턴&quot;&gt;어댑터 패턴&lt;/h1&gt;
-
-&lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Convert the interface of a class into another interface clients expect. 
-Adapter lets classes work together that couldn’t otherwise because of incompatible interfaces.&lt;/p&gt;
-
-  &lt;p&gt;-GoF design pattern&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;어댑터 패턴(Adapter Pattern)은 클래스의 인터페이스를 클라이언트가 원하는 형태의 또 다른 인터페이스로 변환해준다.&lt;/p&gt;
-
-&lt;h2 id=&quot;구조&quot;&gt;구조&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/51_1.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;client&quot;&gt;Client&lt;/h3&gt;
-
-&lt;p&gt;클라이언트 입장에서는 새로운 기능을 사용하기 위해 Adaptee의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;specificRequest()&lt;/code&gt; 써야 되는데 기존에 사용하던 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;request()&lt;/code&gt;로 접근하고 싶다.&lt;/p&gt;
-
-&lt;h3 id=&quot;target&quot;&gt;Target&lt;/h3&gt;
-
-&lt;p&gt;기존에 사용하던 인터페이스라고 생각하면 된다. 새로운 인터페이스(Adaptee)를 어댑터를 사용해서 Target인터페이스를 사용하듯이 하는 것이 목표이다.&lt;/p&gt;
-
-&lt;h3 id=&quot;adapter&quot;&gt;Adapter&lt;/h3&gt;
-
-&lt;p&gt;새로운 인터페이스인 Adaptee를 기존에 사용하던 Target인터페이스처럼 사용할 수 있도록 변환해주는 역할을 수행한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;adaptee&quot;&gt;Adaptee&lt;/h3&gt;
-
-&lt;p&gt;새로운 인터페이스로 기존에 사용하던 Target인터페이스와 다르다.&lt;/p&gt;
-
-&lt;h2 id=&quot;특징&quot;&gt;특징&lt;/h2&gt;
-
-&lt;h3 id=&quot;장점&quot;&gt;장점&lt;/h3&gt;
-
-&lt;p&gt;어댑터 패턴을 사용함으로써 기존 클래스를 수정하지 않고도 클라이언트에서 새로운 인터페이스를 사용할 수 있게 된다.&lt;/p&gt;
-
-&lt;h3 id=&quot;단점&quot;&gt;단점&lt;/h3&gt;
-
-&lt;p&gt;어댑터 클래스를 새로 작성해야 하기 때문에 소스 코드가 늘어나고 코드의 복잡도가 늘어난다.&lt;/p&gt;
-
-&lt;p&gt;어댑터가 중간에 데이터를 변환하는 과정에서 추가적인 처리 시간과 오버헤드가 발생할 수 있다.&lt;/p&gt;
-
-&lt;h2 id=&quot;필요성&quot;&gt;필요성&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/51_2.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;어떤 회사의 시스템이 있다고 해보자. 그런데 새로운 기능을 구현하기 위해 다른 업체에서 제공하는 클래스 라이브러리를 사용해야 하는 상황이 생겼다.&lt;/p&gt;
-
-&lt;p&gt;이 상황에서 만약 기존 시스템의 인터페이스와 새로운 업체에서 사용하는 인터페이스가 다르면 호환성 문제가 발생한다.&lt;/p&gt;
-
-&lt;p&gt;이때 어댑터 패턴을 사용하면 이를 해결할 수 있다.&lt;/p&gt;
-
-&lt;h2 id=&quot;예시&quot;&gt;예시&lt;/h2&gt;
-
-&lt;p&gt;우리는 핸드폰을 사용하고 있다. 이 핸드폰은 두 가지 기능이 있는데 화면을 보여주는 기능과 전원을 종료하는 기능이다.&lt;/p&gt;
-
-&lt;p&gt;이를 코드로 나타내보면 아래와 같다.&lt;/p&gt;
-
-&lt;h4 id=&quot;phone-class-target&quot;&gt;Phone Class (Target)&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/51_3.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;galaxy-phone의-구현-객체&quot;&gt;Galaxy (Phone의 구현 객체)&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/51_4.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;화면 보여주는 기능 : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;display()&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;전원을 종료하는 기능 : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;shutDown()&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;이 상황에서 태블릿 기기를 선물 받았다고 해보자.&lt;/p&gt;
-
-&lt;p&gt;태블릿 클래스 코드는 아래와 같다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;tablet-adaptee&quot;&gt;Tablet (Adaptee)&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/51_5.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;그런데 우리는 태블릿 기기를 사용하려면 여러가지 기능을 새로 배워야 한다.&lt;/p&gt;
-
-&lt;p&gt;그래서 우리는 태블릿을 기존에 사용하던 핸드폰과 동일한 인터페이스로 사용할 수 있도록 어댑터를 장착하기로 결정했다!&lt;/p&gt;
-
-&lt;h3 id=&quot;phoneadapter-adapter&quot;&gt;PhoneAdapter (Adapter)&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/51_6.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;PhoneAdapter클래스는 Phone을 구현하고 내부적으로 Tablet을 맴버 변수로 가지고 있다.&lt;/p&gt;
-
-&lt;p&gt;기존에 사용하던 Phone인터페이스를 구현하는 것은 같은데 내부적으로는 Tablet의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;show()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exit()&lt;/code&gt;메소드를 호출하게 된다.&lt;/p&gt;
-
-&lt;p&gt;이렇게 하면 우리(Client)는 Tablet클래스를 사용할 때 기존에 사용하던 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;display()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;shutDown()&lt;/code&gt;을 통하여 접근할 수 있게 된다.&lt;/p&gt;
-
-&lt;h2 id=&quot;정리&quot;&gt;정리&lt;/h2&gt;
-
-&lt;p&gt;어댑터 패턴은 인터페이스 사이에 유연성이 필요한 상황에 효율적으로 사용될 수 있는 디자인 패턴이다.&lt;/p&gt;
-
-&lt;p&gt;하지만 코드의 복잡도가 발생할 수 있고 추가적인 오버헤드가 생길 수 있기 때문에 적절한 상황에만 사용하는 것이 좋다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;참고&quot;&gt;참고&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;헤드 퍼스트 디자인 패턴&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://yozm.wishket.com/magazine/detail/2077/&quot;&gt;요즘IT&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><summary type="html">어댑터 패턴</summary></entry><entry><title type="html">[디자인패턴] 컴포짓 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50/" rel="alternate" type="text/html" title="[디자인패턴] 컴포짓 패턴" /><published>2023-12-04T00:00:00+09:00</published><updated>2023-12-04T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;컴포짓-패턴&quot;&gt;컴포짓 패턴&lt;/h1&gt;
-
-&lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;Composite design pattern comes under &lt;strong&gt;Structural Patterns&lt;/strong&gt; is one of the most important and usable part of design pattern. Developers, in his daily life uses this pattern in somehow but he doesn’t know that its really a &lt;strong&gt;Composite Design Pattern.&lt;/strong&gt;&lt;/p&gt;
-
-  &lt;p&gt;-GoF design pattern&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;컴포짓 패턴은 클라이언트로 하여금 각 객체와 객체의 묶음을 동일하게 다룰 수 있게 해준다. 복합 객체와 단일 객체를 동일하게 취급하고 싶을 때 사용한다.&lt;/p&gt;
-
-&lt;h2 id=&quot;구조&quot;&gt;구조&lt;/h2&gt;
-&lt;p&gt;&lt;img src=&quot;/assets/images/50_1.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;component&quot;&gt;Component&lt;/h3&gt;
-&lt;p&gt;Leaf와 Composite을 묶는 상위 인터페이스이다. 여기서 Leaf는 단일 객체, Composite은 복합 객체라고 생각하면 된다.&lt;/p&gt;
-
-&lt;h3 id=&quot;composite&quot;&gt;Composite&lt;/h3&gt;
-&lt;p&gt;다른 Component 를 포함할 수 있는 Component로서 개별 객체 또는 다른 복합 객체를 포함시키 수 있다.&lt;br /&gt;
-Component 구현체들을 내부에 리스트로 가지고 있다.&lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;add()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;remove()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getChild()&lt;/code&gt; 메소드는 내부 리스트에 단일, 복합 객체를 저장, 삭제, 조회한다.&lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;operation()&lt;/code&gt;를 복합 객체에서 호출하게 되면 &lt;strong&gt;재귀적&lt;/strong&gt;으로 추가 단일 객체를 저장한 하위 복합 객체를 순회한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;leaf&quot;&gt;Leaf&lt;/h3&gt;
-&lt;p&gt;단일 객체로서, 다른 Component를 포함할 수 없다.&lt;/p&gt;
-
-&lt;p&gt;-&amp;gt; 결국 Composite 패턴의 핵심은 단일 객체와 복합 객체를 Client 입장에서 동일한 인터페이스를 통해서 다룰 수 있게 해준다는 것이다.
-예시 코드를 보면서 이해해보자!&lt;/p&gt;
-
-&lt;h2 id=&quot;예제&quot;&gt;예제&lt;/h2&gt;
-&lt;p&gt;저녁에 너무 배고파서 식당에 왔다. 식당 메뉴를 보니 정말 다양하다. 
-펜케이크 메뉴, 디저트 메뉴, 카페 메뉴, …&lt;br /&gt;
-그리고 한 메뉴 안에서도 또 메뉴가 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/50_2.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;이런 경우에 중첩되어 있는 메뉴(Menu)와 메뉴 항목(Menus)을 동일한 구조로 처리할 수 있다.&lt;/p&gt;
-
-&lt;h3 id=&quot;예제-코드&quot;&gt;예제 코드&lt;/h3&gt;
-
-&lt;h4 id=&quot;menucomponent-component&quot;&gt;MenuComponent (Component)&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/50_4.png&quot; alt=&quot;img4&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;우선 Component부터 살펴보자. Menu와 Menus를 묶는 역할을 한다.
-공통으로 사용하는 operation으로는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getName()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getDescription()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getPrice()&lt;/code&gt;가 있다.
-이제 이를 구현한 Leaf와 Composite을 살펴보자.&lt;/p&gt;
-
-&lt;h4 id=&quot;menu-leaf&quot;&gt;Menu (Leaf)&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/50_5.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;단일 객체인 Menu를 살펴보자. Component에서 정의된 operation들을 구현한 것을 확인할 수 있다.
-여기서는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getPrice()&lt;/code&gt; 함수가 단순히 자신의 맴버 변수인 price를 리턴한다는 것을 보고 넘어가자. 자세한 것은 아래서 설명하겠다.&lt;/p&gt;
-
-&lt;h4 id=&quot;menus-composite&quot;&gt;Menus (Composite)&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/50_6.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;클래스가 길어서 두번에 나눠서 설명하겠다.&lt;br /&gt;
-이 부분을 보면 Component 리스트를 저장하고 있는 것을 볼 수 있다. &lt;br /&gt;
-위에서 설명한 것처럼 복합 객체는 단일 객체, 복합 객체를 모두 가지고 있을 수 있다.&lt;br /&gt;
-그것들이 리스트 형태로 저장된 것이라고 생각하면 된다.&lt;br /&gt;
-리스트에 추가(add), 삭제(remove), 조회(getChild)하는 기능이 들어가 있는 것도 확인할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/50_7.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;이제 가장 주요하게 살펴봐야 하는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getPrice()&lt;/code&gt; 메소드를 보자.&lt;br /&gt;
-이 부분에 어떻게 복합 객체와 단일 객체를 동일하게 사용할 수 있는지에 대한 실마리가 있다. -&amp;gt; 바로 &lt;strong&gt;재귀&lt;/strong&gt;이다.&lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getPrice()&lt;/code&gt; 메소드는 Component 리스트를 순회하면서 각 Component의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getPrice()&lt;/code&gt; 메소드를 호출하게 된다. &lt;br /&gt;
-만약 Component 안의 객체가 단일 객체라면 Menu 클래스에 있는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getPrice()&lt;/code&gt; 메소드처럼 단순하게 맴버 변수인 price를 리턴할 것이다.&lt;br /&gt;
-그런데 복합 객체라면 Menus의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getPrice()&lt;/code&gt; 메소드가 호출되며 제귀적으로 자신의 Component 리스트를 순회하면서 또&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getPrice()&lt;/code&gt;를 호출할 것이다.&lt;/p&gt;
-
-&lt;p&gt;-&amp;gt; &lt;strong&gt;재귀 동작&lt;/strong&gt;을 통해서 하위 객체에게 작업을 위임하게 함으로써 복합 객체와 단일 객체에 동일한 작업을 적용할 수 있게 돼서 이 둘을 구분할 필요가 없어지게 된다.&lt;/p&gt;
-
-&lt;h1 id=&quot;정리&quot;&gt;정리&lt;/h1&gt;
-&lt;p&gt;다시 한번 말하지만 컴포짓 패턴은 단일 객체, 복합 객체를 동일한 인터페이스로 처리하고 싶을 때 사용하면 좋다는 것을 기억하면 좋겠다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;참고&quot;&gt;참고&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://url.kr/eu6sr9&quot;&gt;인파님 블로그&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;헤드 퍼스트 디자인 패턴&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><summary type="html"></summary></entry><entry><title type="html">[디자인패턴] 템플릿 메소드 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49/" rel="alternate" type="text/html" title="[디자인패턴] 템플릿 메소드 패턴" /><published>2023-12-04T00:00:00+09:00</published><updated>2023-12-04T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><summary type="html">퍼사드 패턴</summary></entry><entry><title type="html">[디자인패턴] 템플릿 메소드 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49/" rel="alternate" type="text/html" title="[디자인패턴] 템플릿 메소드 패턴" /><published>2023-12-04T00:00:00+09:00</published><updated>2023-12-04T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/49/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;템플릿-메소드-패턴&quot;&gt;템플릿 메소드 패턴&lt;/h1&gt;
 
