@@ -1,4 +1,79 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-08T15:40:16+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[운영체제] 좀비 프로세스 vs 고아 프로세스</title><link href="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/57/" rel="alternate" type="text/html" title="[운영체제] 좀비 프로세스 vs 고아 프로세스" /><published>2024-01-08T00:00:00+09:00</published><updated>2024-01-08T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/57</id><content type="html" xml:base="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/57/">&lt;p&gt;좀비 프로세스와 고아 프로세스를 이해하기 위해서 먼저 프로세스를 생성하는 과정을 좀 더 자세하게 알아보자.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-09T13:27:36+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[운영체제] 스레드</title><link href="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/58/" rel="alternate" type="text/html" title="[운영체제] 스레드" /><published>2024-01-09T00:00:00+09:00</published><updated>2024-01-09T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/58</id><content type="html" xml:base="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/58/">&lt;h1 id=&quot;스레드&quot;&gt;스레드&lt;/h1&gt;
+
+&lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;스레드는 프로세스 내의 여러 실행 흐름의 단위이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;특징&quot;&gt;특징&lt;/h2&gt;
+
+&lt;p&gt;프로세스내의 스레드끼리는 Stack을 제외한 메모리 공간 (Code, Data, Heap)을 공유한다. 메모리 공간을 공유하기 때문에 하나의 스레드에서 오류가 발생한다면 다른 스레드에서 영향을 받을 수도 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;독립적으로-할당되는-자원&quot;&gt;독립적으로 할당되는 자원&lt;/h3&gt;
+
+&lt;p&gt;그렇다면 스레드마다 별도로 할당되는 자원에는 어떤게 있을까? &lt;strong&gt;Stack&lt;/strong&gt;과 &lt;strong&gt;Reigster&lt;/strong&gt;가 있다.&lt;/p&gt;
+
+&lt;p&gt;각 스레드가 독립적인 Stack을 가지는 이유는 함수의 실행과 연관된다. 독립적으로 Stack을 가진다는 말은 곧 독립적인 함수 호출이 가능하다는 뜻이다. 즉 프로세스 내에서 독립적인 실행 흐름을 만들 수 있다는 것이다. 때문에 Stack은 각 스레드마다 별도로 가지고 있어야 한다.&lt;/p&gt;
+
+&lt;p&gt;그리고 스레드는 별도의 Register를 가지는데 여기서 의문이 있을 것이다. Register는 프로세서에 있는 친구아닌가?&lt;/p&gt;
+
+&lt;p&gt;여기서 말하는 Register란 현재 스레드의 실행 정보가 저장된 상태값이다. 시분할 시스템에서는 문맥교환이 발생하게 되는데 문맥교환이 발생하면 스레드의 경우는 Code, Data, Heap은 공유하기 때문에 자신의 Stack 상태와 어디까지 실행했는지에 대한 정보(PC)만 저장하면 된다. 이 때, 현재 상태가 저장되기 때문에 Register 값이 저장되게 되는 것이다.&lt;/p&gt;
+
+&lt;p&gt;이러한 이유로 각 스레드는 Register를 별도로 가진다고 하는 것이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;문맥교환-context-switching&quot;&gt;문맥교환 (Context Switching)&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;문맥교환이란 하나의 프로세스가 CPU를 사용 중인 상태에서 다른 프로세스가 CPU를 사용하도록 하기 위해, 이전의 프로세스의 상태를 보관하고 새로운 프로세스의 상태를 적재하는 작업을 말한다. 한 프로세스의 문맥은 그 프로세스의 PCB에 저장되어 있다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;발생-상황&quot;&gt;발생 상황&lt;/h4&gt;
+
+&lt;p&gt;문맥교환은 인터럽트 발생, 실행중인 프로세스의 CPU 허용 시간 초과, 입출력 대기시에 발생하게 된다.&lt;/p&gt;
+
+&lt;p&gt;문맥교환을 하는 동안에 CPU는 아무것도 하지 않게 된다. 그럼에도 불구하고 문맥교환을 하는 이유는 I/O와 같은 작업이 발생하여 CPU가 블록되는 시간이 문맥교환 시간보다 길기 때문에 문맥교환을 하여 다른 프로세스를 실행하는 것이 CPU 사용률을 높일 수 있기 때문이다.&lt;/p&gt;
+
+&lt;h2 id=&quot;멀티-스레드&quot;&gt;멀티 스레드&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;멀티 스레드란 하나의 프로세스를 여러 개의 스레드로 구성하여 자원을 공유하며 작업을 수행하는 것을 의미한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;특징-1&quot;&gt;특징&lt;/h3&gt;
+
+&lt;p&gt;멀티 스레드는 하나의 프로세스의 자원을 공유하기 때문에 멀티 프로세스보다 더 적은 메모리를 차지한다.그리고 메모리(Code, Data, Heap)를 공유하기 때문에 문맥교환 속도가 더 빠르다.&lt;/p&gt;
+
+&lt;p&gt;하지만 오류로 인해서 하나의 스레드에 문제가 발생하게 된다면 전체 스레드에 영향을 줄 수도 있다. 그리고 메모리를 공유하기 때문에 동기화에 신경써서 프로그래밍해야 한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;멀티-스레드-vs-멀티-프로세스&quot;&gt;멀티 스레드 vs 멀티 프로세스&lt;/h2&gt;
+
+&lt;p&gt;일반적으로 멀티 스레드 방식을 더 많이 사용한다. 왜 그럴까?&lt;/p&gt;
+
+&lt;p&gt;멀티 스레드 방식의 경우 문맥 교환을 할 때, 스택 영역만 초기화하면 되기 때문에 속도가 빠르다. 그리고 프로세스의 경우 생성할 때 &lt;strong&gt;시스템콜&lt;/strong&gt;을 호출하게 되기 때문에 멀티 스레드 방식에 비해서 비효율적이다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;시스템콜 : 사용자나 응용프로그램이 커널에서 제공하는 기능을 사용하기 위한 인터페이스를 의미한다.
+    &lt;ul&gt;
+      &lt;li&gt;커널이 제공하는 서비스를 시스템콜을 통해서만 접근하게 제한함으로써 컴퓨터 자원을 보호하면서 사용자나 응용프로그램에게 서비스를 제공할 수 있게 된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;정리&quot;&gt;정리&lt;/h2&gt;
+
+&lt;p&gt;스레드는 프로세스 내의 여러 실행 흐름 단위로서 프로세스의 자원을 사용하게 된다.&lt;/p&gt;
+
+&lt;p&gt;프로세스 내에 여러 스레드가 있을 때, 스레드끼리 메모리(Code, Date, Heap)을 공유하며 Stack, Register는 별도로 가진다.&lt;/p&gt;
+
+&lt;p&gt;일반적으로 멀티 프로세스 방식보다는 멀티 스레드 방식을 많이 사용한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;참고&quot;&gt;참고&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;면접을 위한 CS 전공지식 노트&lt;/li&gt;
+  &lt;li&gt;Operating System Concepts&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="운영체제" /><category term="운영체제" /><category term="CS" /><summary type="html">스레드</summary></entry><entry><title type="html">[운영체제] 좀비 프로세스 vs 고아 프로세스</title><link href="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/57/" rel="alternate" type="text/html" title="[운영체제] 좀비 프로세스 vs 고아 프로세스" /><published>2024-01-08T00:00:00+09:00</published><updated>2024-01-08T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/57</id><content type="html" xml:base="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/57/">&lt;p&gt;좀비 프로세스와 고아 프로세스를 이해하기 위해서 먼저 프로세스를 생성하는 과정을 좀 더 자세하게 알아보자.&lt;/p&gt;
 
 &lt;h1 id=&quot;프로세스-생성&quot;&gt;프로세스 생성&lt;/h1&gt;
 
@@ -414,122 +489,7 @@
 
 &lt;ul&gt;
   &lt;li&gt;헤드 퍼스트 디자인 패턴&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><summary type="html">커맨드 패턴</summary></entry><entry><title type="html">[디자인패턴] 어댑터 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51/" rel="alternate" type="text/html" title="[디자인패턴] 어댑터 패턴" /><published>2023-12-09T00:00:00+09:00</published><updated>2023-12-09T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51/">&lt;h1 id=&quot;어댑터-패턴&quot;&gt;어댑터 패턴&lt;/h1&gt;
-
-&lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Convert the interface of a class into another interface clients expect. 
-Adapter lets classes work together that couldn’t otherwise because of incompatible interfaces.&lt;/p&gt;
-
-  &lt;p&gt;-GoF design pattern&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;어댑터 패턴(Adapter Pattern)은 클래스의 인터페이스를 클라이언트가 원하는 형태의 또 다른 인터페이스로 변환해준다.&lt;/p&gt;
-
-&lt;h2 id=&quot;구조&quot;&gt;구조&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/51_1.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;client&quot;&gt;Client&lt;/h3&gt;
-
-&lt;p&gt;클라이언트 입장에서는 새로운 기능을 사용하기 위해 Adaptee의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;specificRequest()&lt;/code&gt; 써야 되는데 기존에 사용하던 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;request()&lt;/code&gt;로 접근하고 싶다.&lt;/p&gt;
-
-&lt;h3 id=&quot;target&quot;&gt;Target&lt;/h3&gt;
-
-&lt;p&gt;기존에 사용하던 인터페이스라고 생각하면 된다. 새로운 인터페이스(Adaptee)를 어댑터를 사용해서 Target인터페이스를 사용하듯이 하는 것이 목표이다.&lt;/p&gt;
-
-&lt;h3 id=&quot;adapter&quot;&gt;Adapter&lt;/h3&gt;
-
-&lt;p&gt;새로운 인터페이스인 Adaptee를 기존에 사용하던 Target인터페이스처럼 사용할 수 있도록 변환해주는 역할을 수행한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;adaptee&quot;&gt;Adaptee&lt;/h3&gt;
-
-&lt;p&gt;새로운 인터페이스로 기존에 사용하던 Target인터페이스와 다르다.&lt;/p&gt;
-
-&lt;h2 id=&quot;특징&quot;&gt;특징&lt;/h2&gt;
-
-&lt;h3 id=&quot;장점&quot;&gt;장점&lt;/h3&gt;
-
-&lt;p&gt;어댑터 패턴을 사용함으로써 기존 클래스를 수정하지 않고도 클라이언트에서 새로운 인터페이스를 사용할 수 있게 된다.&lt;/p&gt;
-
-&lt;h3 id=&quot;단점&quot;&gt;단점&lt;/h3&gt;
-
-&lt;p&gt;어댑터 클래스를 새로 작성해야 하기 때문에 소스 코드가 늘어나고 코드의 복잡도가 늘어난다.&lt;/p&gt;
-
-&lt;p&gt;어댑터가 중간에 데이터를 변환하는 과정에서 추가적인 처리 시간과 오버헤드가 발생할 수 있다.&lt;/p&gt;
-
-&lt;h2 id=&quot;필요성&quot;&gt;필요성&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/51_2.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;어떤 회사의 시스템이 있다고 해보자. 그런데 새로운 기능을 구현하기 위해 다른 업체에서 제공하는 클래스 라이브러리를 사용해야 하는 상황이 생겼다.&lt;/p&gt;
-
-&lt;p&gt;이 상황에서 만약 기존 시스템의 인터페이스와 새로운 업체에서 사용하는 인터페이스가 다르면 호환성 문제가 발생한다.&lt;/p&gt;
-
-&lt;p&gt;이때 어댑터 패턴을 사용하면 이를 해결할 수 있다.&lt;/p&gt;
-
-&lt;h2 id=&quot;예시&quot;&gt;예시&lt;/h2&gt;
-
-&lt;p&gt;우리는 핸드폰을 사용하고 있다. 이 핸드폰은 두 가지 기능이 있는데 화면을 보여주는 기능과 전원을 종료하는 기능이다.&lt;/p&gt;
-
-&lt;p&gt;이를 코드로 나타내보면 아래와 같다.&lt;/p&gt;
-
-&lt;h4 id=&quot;phone-class-target&quot;&gt;Phone Class (Target)&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/51_3.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;galaxy-phone의-구현-객체&quot;&gt;Galaxy (Phone의 구현 객체)&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/51_4.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;화면 보여주는 기능 : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;display()&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;전원을 종료하는 기능 : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;shutDown()&lt;/code&gt;&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;이 상황에서 태블릿 기기를 선물 받았다고 해보자.&lt;/p&gt;
-
-&lt;p&gt;태블릿 클래스 코드는 아래와 같다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;tablet-adaptee&quot;&gt;Tablet (Adaptee)&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/51_5.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;그런데 우리는 태블릿 기기를 사용하려면 여러가지 기능을 새로 배워야 한다.&lt;/p&gt;
-
-&lt;p&gt;그래서 우리는 태블릿을 기존에 사용하던 핸드폰과 동일한 인터페이스로 사용할 수 있도록 어댑터를 장착하기로 결정했다!&lt;/p&gt;
-
-&lt;h3 id=&quot;phoneadapter-adapter&quot;&gt;PhoneAdapter (Adapter)&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/51_6.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;PhoneAdapter클래스는 Phone을 구현하고 내부적으로 Tablet을 맴버 변수로 가지고 있다.&lt;/p&gt;
-
-&lt;p&gt;기존에 사용하던 Phone인터페이스를 구현하는 것은 같은데 내부적으로는 Tablet의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;show()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exit()&lt;/code&gt;메소드를 호출하게 된다.&lt;/p&gt;
-
-&lt;p&gt;이렇게 하면 우리(Client)는 Tablet클래스를 사용할 때 기존에 사용하던 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;display()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;shutDown()&lt;/code&gt;을 통하여 접근할 수 있게 된다.&lt;/p&gt;
-
-&lt;h2 id=&quot;정리&quot;&gt;정리&lt;/h2&gt;
-
-&lt;p&gt;어댑터 패턴은 인터페이스 사이에 유연성이 필요한 상황에 효율적으로 사용될 수 있는 디자인 패턴이다.&lt;/p&gt;
-
-&lt;p&gt;하지만 코드의 복잡도가 발생할 수 있고 추가적인 오버헤드가 생길 수 있기 때문에 적절한 상황에만 사용하는 것이 좋다.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;참고&quot;&gt;참고&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;헤드 퍼스트 디자인 패턴&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://yozm.wishket.com/magazine/detail/2077/&quot;&gt;요즘IT&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><summary type="html">어댑터 패턴</summary></entry><entry><title type="html">[디자인패턴] 상태 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/53/" rel="alternate" type="text/html" title="[디자인패턴] 상태 패턴" /><published>2023-12-09T00:00:00+09:00</published><updated>2023-12-09T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/53</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/53/">&lt;h1 id=&quot;상태-패턴&quot;&gt;상태 패턴&lt;/h1&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><summary type="html">커맨드 패턴</summary></entry><entry><title type="html">[디자인패턴] 상태 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/53/" rel="alternate" type="text/html" title="[디자인패턴] 상태 패턴" /><published>2023-12-09T00:00:00+09:00</published><updated>2023-12-09T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/53</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/53/">&lt;h1 id=&quot;상태-패턴&quot;&gt;상태 패턴&lt;/h1&gt;
 
 &lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
 
@@ -847,7 +807,122 @@ Adapter lets classes work together that couldn’t otherwise because of incompat
   &lt;li&gt;
     &lt;p&gt;헤드 퍼스트 디자인 패턴&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><summary type="html">퍼사드 패턴</summary></entry><entry><title type="html">[디자인패턴] 컴포짓 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50/" rel="alternate" type="text/html" title="[디자인패턴] 컴포짓 패턴" /><published>2023-12-04T00:00:00+09:00</published><updated>2023-12-04T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><summary type="html">퍼사드 패턴</summary></entry><entry><title type="html">[디자인패턴] 어댑터 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51/" rel="alternate" type="text/html" title="[디자인패턴] 어댑터 패턴" /><published>2023-12-09T00:00:00+09:00</published><updated>2023-12-09T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/51/">&lt;h1 id=&quot;어댑터-패턴&quot;&gt;어댑터 패턴&lt;/h1&gt;
+
+&lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Convert the interface of a class into another interface clients expect. 
+Adapter lets classes work together that couldn’t otherwise because of incompatible interfaces.&lt;/p&gt;
+
+  &lt;p&gt;-GoF design pattern&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;어댑터 패턴(Adapter Pattern)은 클래스의 인터페이스를 클라이언트가 원하는 형태의 또 다른 인터페이스로 변환해준다.&lt;/p&gt;
+
+&lt;h2 id=&quot;구조&quot;&gt;구조&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/51_1.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;client&quot;&gt;Client&lt;/h3&gt;
+
+&lt;p&gt;클라이언트 입장에서는 새로운 기능을 사용하기 위해 Adaptee의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;specificRequest()&lt;/code&gt; 써야 되는데 기존에 사용하던 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;request()&lt;/code&gt;로 접근하고 싶다.&lt;/p&gt;
+
+&lt;h3 id=&quot;target&quot;&gt;Target&lt;/h3&gt;
+
+&lt;p&gt;기존에 사용하던 인터페이스라고 생각하면 된다. 새로운 인터페이스(Adaptee)를 어댑터를 사용해서 Target인터페이스를 사용하듯이 하는 것이 목표이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;adapter&quot;&gt;Adapter&lt;/h3&gt;
+
+&lt;p&gt;새로운 인터페이스인 Adaptee를 기존에 사용하던 Target인터페이스처럼 사용할 수 있도록 변환해주는 역할을 수행한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;adaptee&quot;&gt;Adaptee&lt;/h3&gt;
+
+&lt;p&gt;새로운 인터페이스로 기존에 사용하던 Target인터페이스와 다르다.&lt;/p&gt;
+
+&lt;h2 id=&quot;특징&quot;&gt;특징&lt;/h2&gt;
+
+&lt;h3 id=&quot;장점&quot;&gt;장점&lt;/h3&gt;
+
+&lt;p&gt;어댑터 패턴을 사용함으로써 기존 클래스를 수정하지 않고도 클라이언트에서 새로운 인터페이스를 사용할 수 있게 된다.&lt;/p&gt;
+
+&lt;h3 id=&quot;단점&quot;&gt;단점&lt;/h3&gt;
+
+&lt;p&gt;어댑터 클래스를 새로 작성해야 하기 때문에 소스 코드가 늘어나고 코드의 복잡도가 늘어난다.&lt;/p&gt;
+
+&lt;p&gt;어댑터가 중간에 데이터를 변환하는 과정에서 추가적인 처리 시간과 오버헤드가 발생할 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;필요성&quot;&gt;필요성&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/51_2.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;어떤 회사의 시스템이 있다고 해보자. 그런데 새로운 기능을 구현하기 위해 다른 업체에서 제공하는 클래스 라이브러리를 사용해야 하는 상황이 생겼다.&lt;/p&gt;
+
+&lt;p&gt;이 상황에서 만약 기존 시스템의 인터페이스와 새로운 업체에서 사용하는 인터페이스가 다르면 호환성 문제가 발생한다.&lt;/p&gt;
+
+&lt;p&gt;이때 어댑터 패턴을 사용하면 이를 해결할 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;예시&quot;&gt;예시&lt;/h2&gt;
+
+&lt;p&gt;우리는 핸드폰을 사용하고 있다. 이 핸드폰은 두 가지 기능이 있는데 화면을 보여주는 기능과 전원을 종료하는 기능이다.&lt;/p&gt;
+
+&lt;p&gt;이를 코드로 나타내보면 아래와 같다.&lt;/p&gt;
+
+&lt;h4 id=&quot;phone-class-target&quot;&gt;Phone Class (Target)&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/51_3.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;galaxy-phone의-구현-객체&quot;&gt;Galaxy (Phone의 구현 객체)&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/51_4.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;화면 보여주는 기능 : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;display()&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;전원을 종료하는 기능 : &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;shutDown()&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 상황에서 태블릿 기기를 선물 받았다고 해보자.&lt;/p&gt;
+
+&lt;p&gt;태블릿 클래스 코드는 아래와 같다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;tablet-adaptee&quot;&gt;Tablet (Adaptee)&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/51_5.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;그런데 우리는 태블릿 기기를 사용하려면 여러가지 기능을 새로 배워야 한다.&lt;/p&gt;
+
+&lt;p&gt;그래서 우리는 태블릿을 기존에 사용하던 핸드폰과 동일한 인터페이스로 사용할 수 있도록 어댑터를 장착하기로 결정했다!&lt;/p&gt;
+
+&lt;h3 id=&quot;phoneadapter-adapter&quot;&gt;PhoneAdapter (Adapter)&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/51_6.png&quot; alt=&quot;img2&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;PhoneAdapter클래스는 Phone을 구현하고 내부적으로 Tablet을 맴버 변수로 가지고 있다.&lt;/p&gt;
+
+&lt;p&gt;기존에 사용하던 Phone인터페이스를 구현하는 것은 같은데 내부적으로는 Tablet의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;show()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exit()&lt;/code&gt;메소드를 호출하게 된다.&lt;/p&gt;
+
+&lt;p&gt;이렇게 하면 우리(Client)는 Tablet클래스를 사용할 때 기존에 사용하던 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;display()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;shutDown()&lt;/code&gt;을 통하여 접근할 수 있게 된다.&lt;/p&gt;
+
+&lt;h2 id=&quot;정리&quot;&gt;정리&lt;/h2&gt;
+
+&lt;p&gt;어댑터 패턴은 인터페이스 사이에 유연성이 필요한 상황에 효율적으로 사용될 수 있는 디자인 패턴이다.&lt;/p&gt;
+
+&lt;p&gt;하지만 코드의 복잡도가 발생할 수 있고 추가적인 오버헤드가 생길 수 있기 때문에 적절한 상황에만 사용하는 것이 좋다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;참고&quot;&gt;참고&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;헤드 퍼스트 디자인 패턴&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://yozm.wishket.com/magazine/detail/2077/&quot;&gt;요즘IT&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><summary type="html">어댑터 패턴</summary></entry><entry><title type="html">[디자인패턴] 컴포짓 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50/" rel="alternate" type="text/html" title="[디자인패턴] 컴포짓 패턴" /><published>2023-12-04T00:00:00+09:00</published><updated>2023-12-04T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/50/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;컴포짓-패턴&quot;&gt;컴포짓 패턴&lt;/h1&gt;
 
@@ -1016,353 +1091,4 @@ Component 구현체들을 내부에 리스트로 가지고 있다.&lt;br /&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;https://url.kr/tw2s8o&quot;&gt;인파님 블로그&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;헤드 퍼스트 디자인 패턴&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><summary type="html"></summary></entry><entry><title type="html">[DevOps] CI/CD &amp;amp; 무중단 배포</title><link href="http://localhost:4000/devops/48/" rel="alternate" type="text/html" title="[DevOps] CI/CD &amp;amp; 무중단 배포" /><published>2023-11-25T00:00:00+09:00</published><updated>2023-11-25T00:00:00+09:00</updated><id>http://localhost:4000/devops/48</id><content type="html" xml:base="http://localhost:4000/devops/48/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;devops&quot;&gt;&lt;em&gt;DevOps&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/48_8.png&quot; alt=&quot;img1&quot; width=&quot;70%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Development&lt;/code&gt; + &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Operation&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;개발과 운영을 결합시켜 만든 개발 방법론을 의미한다.&lt;/p&gt;
-
-&lt;p&gt;소프트웨어 개발과 운영을 통합하여 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;효율성&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;협력&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;속도&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;안정성&lt;/code&gt;을 개선하는 개발 및 운영 방법론이다.&lt;/p&gt;
-
-&lt;h2 id=&quot;장점&quot;&gt;&lt;em&gt;장점&lt;/em&gt;&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;속도&lt;/strong&gt;&lt;br /&gt;
-애플리케이션 개발 단계를 자동화하여 애플리케이션을 더 짧은 주기로 고객에게 제공할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;신속한 제공&lt;/strong&gt;&lt;br /&gt;
-릴리스 빈도와 속도를 개선하여 제품을 더 빠르게 개선할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;안정성&lt;/strong&gt;&lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CI/CD&lt;/code&gt;와 같은 방식을 사용하여 각 변경 사항이 제대로 작동하고 안전한지 테스트를 할 수 있다.&lt;br /&gt;
-모니터링과 로깅을 통해 실시간으로 성능에 대한 정보를 얻을 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;확장&lt;/strong&gt;&lt;br /&gt;
-자동화와 일관성이 지원되기 때문에 위험을 줄이면서 복합한 시스템을 효율적으로 관리할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;협업 강화&lt;/strong&gt;&lt;br /&gt;
-개발자와 운영팀이 긴밀하게 협력하고 많은 책임을 공유한다.&lt;br /&gt;
-이를 통해서 비효율성을 줄일 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;보안&lt;/strong&gt;&lt;br /&gt;
-자동화된 규정 준수 정책, 세분화된 제어 및 구성 관리 기술을 사용하여 보안을 유지할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;→ 애플리케이션 개발, 배포 단계를 자동화하는 것을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CI/CD (Continuous Integration/Continuous Delivery)&lt;/code&gt;라고 하는데 이에 대해서 자세히 알아보자.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;cicd&quot;&gt;&lt;em&gt;CI/CD&lt;/em&gt;&lt;/h1&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CI/CD&lt;/code&gt;는 애플리케이션 개발 단계를 자동화하여 애플리케이션을 더욱 짧은 주기로 고객에게 제공하는 방법을 말한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/48_1.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;50%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CI&lt;/code&gt; 는 개발자를 위한 자동화 프로세스인 지속적인 통합을 의미하며, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CD&lt;/code&gt;는 지속적인 서비스 제공(Continuous Delivery) 및 지속적인 배포(Continuous Deployment)를 의미한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;이제 각각에 대해서 알아보자.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;ci-continuous-integration&quot;&gt;CI (Continuous Integration)&lt;/h2&gt;
-
-&lt;p&gt;CI는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;지속적인 통합&lt;/code&gt;을 의미하는데 간단하게 &lt;strong&gt;빌드와 테스트를 자동화&lt;/strong&gt;하는 것이라고 생각하면 된다.&lt;/p&gt;
-
-&lt;h3 id=&quot;필요성&quot;&gt;필요성&lt;/h3&gt;
-
-&lt;p&gt;CI가 없을 때는 여러 개발자가 수정한 변경 사항을 한번에 모아서 Merge를 했었는데 이때 만약 에러가 발생하면 어느 곳에서 에러가 발생한지 디버깅 하는 것이 굉장히 어려웠다.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;→ CI를 성공적으로 구축하게 되면 코드를 변경할 때마다 바로 빌드 및 테스트가 진행되기 때문에 위와 같은 문제가 발생하지 않는다.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;과정&quot;&gt;과정&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;개발자가 코드를 수정하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CI tool&lt;/code&gt;에 병합을 요청한다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CI tool&lt;/code&gt;에서 변경된 코드를 빌드하고 테스트를 수행한다.&lt;/li&gt;
-  &lt;li&gt;문제가 없다면 코드를 병합한다.&lt;/li&gt;
-  &lt;li&gt;만약 테스트가 실패하면 바로 개발자에게 피드백을 준다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;cd-continuous-deliverydeployment&quot;&gt;CD (Continuous Delivery/Deployment)&lt;/h2&gt;
-
-&lt;p&gt;CD는 &lt;strong&gt;배포를 자동화하는 과정&lt;/strong&gt;이라고 생각하면 된다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;지속적인 서비스 제공(Continuous Delivery)&lt;/code&gt; 또는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;지속적인 서비스 배포(Continuous Deployment)&lt;/code&gt;를 의미하며 이 두 용어는 상호 교환적으로 사용할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;이 두가지 의미 모두 파이프라인의 추가 단계에 대한 자동화를 의미하지만 때로는 얼마나 많은 자동화가 이루어지고 있는지를 설명하기 위해 별도로 사용되기도 한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;필요성-1&quot;&gt;필요성&lt;/h3&gt;
-
-&lt;p&gt;하나의 서버만 운영한다면 직접 이 서버에 들어가서 배포를 진행하면 된다.&lt;/p&gt;
-
-&lt;p&gt;그런데 서버가 여러대가 있다면?&lt;/p&gt;
-
-&lt;p&gt;하나 하나 서버에 들어가서 수동으로 스크립트를 실행하여 배포해야 한다. 이는 굉장히 비효율적이다.&lt;/p&gt;
-
-&lt;p&gt;→ CD를 구축하게 되면 모든 서버에 자동으로 배포할 수 있다.&lt;/p&gt;
-
-&lt;h3 id=&quot;continuous-delivery&quot;&gt;Continuous Delivery&lt;/h3&gt;
-
-&lt;p&gt;애플리케이션에 적용한 변경 사항이 버그 테스트를 거쳐 리포지토리에 자동으로 업로드되는 것을 의미한다.&lt;/p&gt;
-
-&lt;p&gt;리포지토리에 올라온 것을 개발자나 운영팀에서 직접 검증하고 애플리케이션을 실시간으로 프로덕션 환경에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;수동&lt;/code&gt; 배포한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;continuous-deployment&quot;&gt;Continuous Deployment&lt;/h3&gt;
-
-&lt;p&gt;개발자의 변경 사항을 리포지토리에서 고객이 사용 가능한 프로덕션 환경까지 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;자동&lt;/code&gt;으로 릴리스하는 것을 의미한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;지속적인 서비스 제공(Continuous Delivery)&lt;/code&gt;과의 차이점은 개발자, 운영팀에서 리포지토리에 올라온 릴리스를 확인하지 않고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;자동&lt;/code&gt;으로 배포까지 수행한다는 것이다.&lt;/p&gt;
-
-&lt;h2 id=&quot;cicd를-위한-대표적인-도구&quot;&gt;CI/CD를 위한 대표적인 도구&lt;/h2&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Jenkins&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Gihub Actions&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Circleci&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GitLab CI/CD&lt;/code&gt;등이 있다.&lt;br /&gt;
-이 중에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Jenkins&lt;/code&gt;를 가장 많이 사용한다.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;무중단-배포&quot;&gt;&lt;em&gt;무중단 배포&lt;/em&gt;&lt;/h1&gt;
-
-&lt;h2 id=&quot;다운타임-downtime&quot;&gt;다운타임 (DownTime)&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/48_2.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;한대의 서버를 사용하여 서비스를 운영한다고 생각해보자. V1이 실행되고 있는 상황에서 새로운 기능이 추가된 V2가 개발이 완료됐다. 사용자에게 새로운 기능을 제공하기 위해서는 V2를 배포해야 한다.&lt;/p&gt;
-
-&lt;p&gt;하지만 서버를 한대로 운영하고 있기 때문에 V2를 실행하기 위해서는 V1을 종료하고 V2를 실행해야 한다.&lt;/p&gt;
-
-&lt;p&gt;V1을 종료하고 V2를 실행하는 동안에 사용자는 서비스를 이용할 수 없다. 이를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;다운타임(downTime)&lt;/code&gt;이라고 한다.&lt;/p&gt;
-
-&lt;p&gt;→ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;다운타임&lt;/code&gt; 없이 새로운 기능을 추가하기 위한 방법을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;무중단 배포&lt;/code&gt;라고 한다. 이를 위해서는 최소한 2대의 서버가 있어야 한다.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;리버스-프록시-reverse-proxy&quot;&gt;리버스 프록시 (Reverse Proxy)&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/48_3.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;무중단 배포&lt;/code&gt;를 이해하기 위해서는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;리버스 프록시&lt;/code&gt;에 대해서 알아야 한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;리버스 프록시&lt;/code&gt;란 클라이언트와 웹 서버 간의 중개자 역할을 하는 서버이다.&lt;/p&gt;
-
-&lt;p&gt;서버 대신에 클라이언트의 요청을 대신 받아서 웹 서버로 전달하고, 웹 서버의 응답을 클라이언트에게 전달하는 역할을 수행한다.&lt;/p&gt;
-
-&lt;p&gt;이를 통해서 &lt;strong&gt;웹 서버의 부하를 분산&lt;/strong&gt;시키고, &lt;strong&gt;보안을 강화&lt;/strong&gt;할 수 있다.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h3 id=&quot;장점-1&quot;&gt;장점&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;로드 밸런싱&lt;/strong&gt;&lt;br /&gt;
-웹 서버에 동시에 많은 트래픽이 몰릴 때, 서버에 부하가 발생할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;리버스 프록시를 사용하면 클라이언트의 요청을 여러 대의 서버로 분산시켜 각 서버의 부하를 줄이고, 서버의 가용성을 높여 안정적으로 서비스를 운영할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;보안 강화&lt;/strong&gt;&lt;br /&gt;
-리버스 프록시를 사용하면 외부에서 서버로 바로 접근하지 못하게 된다.&lt;/p&gt;
-
-&lt;p&gt;서버와 클라이언트 사이에서 악성 요청을 필터링하거나, 접근 제한과 같은 역할을 수행할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;캐싱 및 가속화&lt;/strong&gt;&lt;br /&gt;
-자주 사용되는 정적 파일(CSS, JS)를 캐시에 저장하여 빠르게 제공할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;이로 인해 서버의 부하를 줄이고 응답 시간을 단축시킬 수 있다.&lt;/p&gt;
-
-&lt;h3 id=&quot;단점&quot;&gt;단점&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;추가적인 서버 설정 비용&lt;/strong&gt;&lt;br /&gt;
-리버스 프록시를 사용하기 위해서는 추가적인 서버 설정과 관리가 요구된다.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;네트워크 지연&lt;/strong&gt;&lt;br /&gt;
-중간 다리(리버스 프록시)를 거치기 때문에 약간의 네트워크 비용이 발생한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;복잡성 증가&lt;/strong&gt;&lt;br /&gt;
-아키텍처가 복잡해질 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;→ 리버스 프록시의 장단점은 사실 프록시 패턴의 장단점과 동일하다.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;로드-밸런싱&quot;&gt;&lt;em&gt;로드 밸런싱&lt;/em&gt;&lt;/h1&gt;
-
-&lt;h2 id=&quot;정의-1&quot;&gt;정의&lt;/h2&gt;
-
-&lt;p&gt;&lt;em&gt;컴퓨터 네트워크 기술의 일종으로 둘 혹은 셋 이상의 중앙처리장치 혹은 저장장치와 같은 &lt;strong&gt;컴퓨터 자원들에게 작업, 즉 부하를 나누는 것&lt;/strong&gt;을 의미한다.&lt;/em&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;필요성-2&quot;&gt;필요성&lt;/h2&gt;
-
-&lt;p&gt;서비스 런칭 단계에서는 고객이 거의 없기 때문에 서버 한대로도 모든 요청을 처리할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;하지만 점점 고객의 수가 늘어나고 서비스가 확장되면 서버 한대로는 모든 요청을 처리할 수 없게 된다.&lt;/p&gt;
-
-&lt;p&gt;증가하는 트래픽을 대처하기 위해서 사용할 수 있는 방법은 크게 2가지로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Scale-up&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Scale-out&lt;/code&gt; 이 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/48_4.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Scale up&lt;/strong&gt; : 서버 자체의 성능을 향상하는 방법으로 비용이 상대적으로 많이 든다.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Scale out&lt;/strong&gt; : 서버를 증설하는 방법이다. 이 방법을 사용하기 위해서는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;로드밸런싱&lt;/code&gt;이 필수로 요구된다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;종류&quot;&gt;종류&lt;/h2&gt;
-
-&lt;p&gt;&lt;strong&gt;L4 로드밸런싱&lt;/strong&gt;&lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;전송 계층&lt;/code&gt;에서 로드(트래픽)을 분산시킨다.&lt;br /&gt;
-IP주소나 포트번호, MAC주소 등에 따라 트래픽을 나누고 분선처리를 할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;L7 로드밸런싱&lt;/strong&gt;&lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;애플리케이션 계층&lt;/code&gt;에서 로드를 분산시킨다.&lt;br /&gt;
-HTTP, SMTP, FTP 등을 바탕으로 로드를 분산 처리할 수 있다.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h2 id=&quot;로드밸런싱-알고리즘&quot;&gt;로드밸런싱 알고리즘&lt;/h2&gt;
-
-&lt;h3 id=&quot;라운드로빈-방식&quot;&gt;라운드로빈 방식&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;단순히 서버로 요청이 들어온 순서를 바탕으로 처리하는 방식이다.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;클라이언트의 요청 순서에 따라 처리되기 때문에 여러 대의 서버가 동일한 스펙을 가지고 있고, 서버와의 연결이 오래 지속되지 않을 때 사용하면 좋다.&lt;/p&gt;
-
-&lt;h3 id=&quot;가중-라운드로빈-방식&quot;&gt;가중 라운드로빈 방식&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;서버마다 가중치를 설정하고 가중치가 높은 서버에 클라이언트의 요청을 우선적으로 배분하는 방식이다.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;각 서버의 트래픽 처리 능력이 다를 때 사용한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;ip-해시-방식&quot;&gt;IP 해시 방식&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;클라이언트의  IP 주소를 바탕으로 해시함수를 돌려서 항상 동일한 서버에 도달하게 만드는 방식이다.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;클라이언트는 항상 동일한 서버로부터 서비스를 받을 수 있게 된다.&lt;/p&gt;
-
-&lt;h3 id=&quot;최소-연결-방식&quot;&gt;최소 연결 방식&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;클라이언트 요청이 들어올 때를 기준으로 가장 트래픽이 적은 서버로 연결하는 방식이다.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;서버에 분산된 트래픽이 일정하지 않을 때 적합하다.&lt;/p&gt;
-
-&lt;h3 id=&quot;최소-리스폰타임&quot;&gt;최소 리스폰타임&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;서버의 연결 상태와 응답 시간을 모두 고려하여 트래픽을 분산하는 방식이다.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;h1 id=&quot;무중단-배포-방식&quot;&gt;&lt;em&gt;무중단 배포 방식&lt;/em&gt;&lt;/h1&gt;
-
-&lt;h2 id=&quot;롤링rolling-배포&quot;&gt;롤링(Rolling) 배포&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/48_5.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;→ 여기서의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Nginx&lt;/code&gt;는 로드밸런서 역할을 하는 리버스 프록시라고 생각하면 된다.&lt;/p&gt;
-
-&lt;p&gt;롤링 배포 방식은 사용중인 인스턴스 내에서 새로운 버전을 점진적으로 교체해 나가는 방식으로 무중단 배포의 가장 기본적인 방법이다.&lt;/p&gt;
-
-&lt;p&gt;위에서부터 차례대로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;서버1&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;서버2&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;서버3&lt;/code&gt;이라고 해보자.&lt;/p&gt;
-
-&lt;h3 id=&quot;과정-1&quot;&gt;과정&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;로드밸런서(Nginx)에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;서버1&lt;/code&gt;로 라우팅되지 않게 설정한다.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;서버1&lt;/code&gt;에 새로운 버전을 배포한다.&lt;/li&gt;
-  &lt;li&gt;로드밸런서에서 다시 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;서버1&lt;/code&gt;로 라우팅될 수 있도록 변경한다.&lt;/li&gt;
-  &lt;li&gt;이 과정을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;서버2&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;서버3&lt;/code&gt;에 점진적으로 적용한다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;장점-2&quot;&gt;장점&lt;/h3&gt;
-
-&lt;p&gt;차례대로 배포를 진행하기 때문에 상황에 따라서 롤백이 어렵지 않다.&lt;/p&gt;
-
-&lt;p&gt;추가적인 인스턴스를 늘리지 않아도 된다.&lt;/p&gt;
-
-&lt;h3 id=&quot;단점-1&quot;&gt;단점&lt;/h3&gt;
-
-&lt;p&gt;새로운 버전을 배포할 때마다 처리할 수 있는 서버가 줄어들기 때문에 트래픽이 몰릴 수 있다.&lt;/p&gt;
-
-&lt;p&gt;배포가 진행될 때 구버전과 신버전이 동시에 존재하기 때문에 &lt;strong&gt;호환성 문제&lt;/strong&gt;가 발생할 수 있다.&lt;/p&gt;
-
-&lt;h2 id=&quot;blue-green-배포-방식&quot;&gt;Blue Green 배포 방식&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/48_6.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;→ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;블루&lt;/code&gt;는 구버전을, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;그린&lt;/code&gt;은 신버전을 의미한다.&lt;/p&gt;
-
-&lt;p&gt;운영중인 구버전과 동일하게 신버전 인스턴스를 구성하고 로드밸런서를 사용하여 모든 트래픽을 한번에 신버전으로 전환하는 방식이다.&lt;/p&gt;
-
-&lt;h3 id=&quot;장점-3&quot;&gt;장점&lt;/h3&gt;
-
-&lt;p&gt;구버전의 인스턴스가 그대로 남아있기 때문에 롤백이 쉽다.&lt;/p&gt;
-
-&lt;p&gt;한번에 라우팅을 변경하기 때문에 배포하는 속도가 빠르다.&lt;/p&gt;
-
-&lt;p&gt;구버전 환경을 다음 배포에 재사용할 수 있다.&lt;/p&gt;
-
-&lt;h3 id=&quot;단점-2&quot;&gt;단점&lt;/h3&gt;
-
-&lt;p&gt;구버전과 신버전을 가지고 있어야 하기 때문에 시스템 자원이 2배로 필요하다.&lt;/p&gt;
-
-&lt;h2 id=&quot;카나리-배포-방식&quot;&gt;카나리 배포 방식&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/48_7.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt; &lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;과정-2&quot;&gt;과정&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;신버전을 소수의 유저들에게 배포하고 문제가 없는지 확인한다.&lt;/li&gt;
-  &lt;li&gt;만약 문제가 없다면 점차 많은 유저에게 배포한다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;→ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;블루 그린 방식&lt;/code&gt;과 유사하지만 트래픽을 한번에 바꾸는 것이 아니라 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;단계적으로 바꾸는 것&lt;/code&gt;이 차이점이다.&lt;/p&gt;
-
-&lt;h3 id=&quot;장점-4&quot;&gt;장점&lt;/h3&gt;
-
-&lt;p&gt;성능 모니터링에 유용하다.&lt;/p&gt;
-
-&lt;p&gt;A/B 테스트로 활용할 수 있다.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;A/B 테스트란?
-    &lt;blockquote&gt;
-      &lt;p&gt;A/B 테스팅이란 웹 사이트 방문자를 임의로 두 집단으로 나누고, 한 집단에게는 기존 사이트를 보여주고 다른 집단에게는 새로운 사이트를 보여준 다음, 두 집단 중 어떤 집단이 더 높은 성과를 보이는지 측정하여, 새 사이트가 기존 사이트에 비해 좋은지를 정량적으로 평가하는 방식을 말한다.&lt;/p&gt;
-    &lt;/blockquote&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;단점-3&quot;&gt;단점&lt;/h3&gt;
-
-&lt;p&gt;네트워크 트래픽을 제어하는 부담이 있다.&lt;br /&gt;
-&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;참고-사이트&quot;&gt;참고 사이트&lt;/h1&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;https://aws.amazon.com/ko/devops/what-is-devops/&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;https://www.redhat.com/ko/topics/devops&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://velog.io/@lee2302/Deploy-CICD%EC%9E%90%EB%8F%99%ED%99%94-%EB%B0%B0%ED%8F%AC&quot;&gt;https://velog.io/@lee2302/Deploy-CICD자동화-배포&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;https://seosh817.tistory.com/104&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;https://hudi.blog/zero-downtime-deployment/&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;https://www.youtube.com/watch?v=sIPU_VkrguI&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;https://narup.tistory.com/238&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://aday7.tistory.com/entry/%EB%A6%AC%EB%B2%84%EC%8A%A4-%ED%94%84%EB%A1%9D%EC%8B%9CReverse-Proxy-%EC%89%BD%EA%B2%8C-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-%EA%B0%9C%EB%85%90%EB%B6%80%ED%84%B0-%ED%95%84%EC%9A%94%EC%84%B1-%EC%98%A4%ED%94%88-%EC%86%8C%EC%8A%A4-%EC%86%94%EB%A3%A8%EC%85%98%EA%B9%8C%EC%A7%80&quot;&gt;https://aday7.tistory.com/entry/리버스-프록시Reverse-Proxy-쉽게-이해하기-개념부터-필요성-오픈-소스-솔루션까지&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;https://velog.io/@yanghl98/OS%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C-%EB%A1%9C%EB%93%9C%EB%B0%B8%EB%9F%B0%EC%8B%B1-Load-Balancing-%EC%A0%95%EC%9D%98-%EC%A2%85%EB%A5%98-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98&quot;&gt;https://velog.io/@yanghl98/OS운영체제-로드밸런싱-Load-Balancing-정의-종류-알고리즘&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;https://bruno-jang.tistory.com/34&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="DevOps" /><category term="DevOps" /><category term="CI/CD" /><category term="리버스 프록시" /><category term="무중단 배포" /><summary type="html"></summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><summary type="html"></summary></entry></feed>
