@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-09T16:02:26+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[운영체제] 프로세스 동기화 (진행중)</title><link href="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/59/" rel="alternate" type="text/html" title="[운영체제] 프로세스 동기화 (진행중)" /><published>2024-01-09T00:00:00+09:00</published><updated>2024-01-09T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/59</id><content type="html" xml:base="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/59/">&lt;p&gt;프로세스 동기화에 대해서 이해하기 위해서는 우선 임계 영역과 경쟁 상태에 대해서 이해해야 한다. 차례대로 살펴보며 이해해보자.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-01-10T14:11:19+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[운영체제] 프로세스 동기화</title><link href="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/59/" rel="alternate" type="text/html" title="[운영체제] 프로세스 동기화" /><published>2024-01-09T00:00:00+09:00</published><updated>2024-01-09T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/59</id><content type="html" xml:base="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/59/">&lt;p&gt;프로세스 동기화에 대해서 이해하기 위해서는 우선 임계 영역과 경쟁 상태에 대해서 이해해야 한다. 차례대로 살펴보며 이해해보자.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -18,18 +18,16 @@
 
 &lt;p&gt;&lt;strong&gt;한정 대기 (Bounded Waiting)&lt;/strong&gt; : 다른 프로세스의 기아를 방지하기 위해, 한번 임계 영역에 들어간 프로세스는 다음 임계 영역에 들어갈 때 제한을 두어야 한다.&lt;/p&gt;
 
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h1 id=&quot;경쟁-상태-race-condition&quot;&gt;경쟁 상태 (Race Condition)&lt;/h1&gt;
+&lt;h2 id=&quot;경쟁-상태-race-condition&quot;&gt;경쟁 상태 (Race Condition)&lt;/h2&gt;
 
 &lt;h2 id=&quot;정의-1&quot;&gt;정의&lt;/h2&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;경쟁 상태 (Race Condition)이란 공유 자원에 대해 여러 프로세스가 동시에 접근할 때, 결과값이 접근 순서나 접근 시점에 따라 달라질 수 있는 것을 말한다.&lt;/p&gt;
+  &lt;p&gt;경쟁 상태 (Race Condition)란 공유 자원에 대해 여러 프로세스가 동시에 접근할 때, 결과값이 접근 순서나 접근 시점에 따라 달라질 수 있는 것을 말한다.&lt;/p&gt;
 
 &lt;/blockquote&gt;
 
-&lt;h2 id=&quot;발생할-수-있는-상황&quot;&gt;발생할 수 있는 상황&lt;/h2&gt;
+&lt;h2 id=&quot;경쟁-상태가-발생할-수-있는-상황&quot;&gt;경쟁 상태가 발생할 수 있는 상황&lt;/h2&gt;
 
 &lt;h4 id=&quot;커널-작업-수행-중에-인터럽트가-발생하는-경우&quot;&gt;커널 작업 수행 중에 인터럽트가 발생하는 경우&lt;/h4&gt;
 
@@ -137,14 +135,56 @@
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
+&lt;h2 id=&quot;교착상태-dead-lock&quot;&gt;교착상태 (dead lock)&lt;/h2&gt;
+
+&lt;h2 id=&quot;정의-3&quot;&gt;정의&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;둘 이상의 프로세스가 자원을 점유한 상태에서 서로 다른 프로세스가 점유하고 있는 자원을 요구하며 무한정 기다리는 상황&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;교착상태-조건&quot;&gt;교착상태 조건&lt;/h2&gt;
+
+&lt;h3 id=&quot;비선점-non-preemptive&quot;&gt;비선점 (Non Preemptive)&lt;/h3&gt;
+
+&lt;p&gt;다른 프로세스가 사용하고 있는 자원을 선점할 수 없다.&lt;/p&gt;
+
+&lt;h3 id=&quot;순환-대기-circular-wait&quot;&gt;순환 대기 (Circular wait)&lt;/h3&gt;
+
+&lt;p&gt;두 개 이상의 프로세스가 자원 접근을 기다릴 때, 관계가 순환적 구조를 이룬다.&lt;/p&gt;
+
+&lt;h3 id=&quot;점유-대기-hold-and-wait&quot;&gt;점유 대기 (Hold and Wait)&lt;/h3&gt;
+
+&lt;p&gt;공유 자원에 대한 접근 권한을 가진 채로 다른 자원에 대한 접근 권한을 요구한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;상호-배제-mutual-exclusion&quot;&gt;상호 배제 (Mutual Exclusion)&lt;/h3&gt;
+
+&lt;p&gt;한번에 한 프로세스만 공유 자원에 접근이 가능하며, 접근 권한이 제한적이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;-&amp;gt; 위 4가지 조건중에 한 가지라도 만족하지 않으면 데드락은 발생하지 않는다.&lt;/p&gt;
+
+&lt;h2 id=&quot;교착상태-예시&quot;&gt;교착상태 예시&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/59_5.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;자원 R1을 가진 P1과 자원 R2를 가진 P2가 있다. P1은 R2를 필요로 하고 P2는 R1을 필요로 한다면 두 프로세스는 서로의 자원을 얻기 위해 무한정 기다리는 상황이 발생한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;교착상태-해결&quot;&gt;교착상태 해결&lt;/h2&gt;
+
+&lt;p&gt;위에 설명한 4가지 조건중 하나를 만족시키지 않게 상태를 변경하면 된다. 하지만 변경에 여러 비용이 수반된다. 현대의 운영체제는 교착상태가 발생하면 강제 종료를 시켜서 해결한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
 &lt;h2 id=&quot;참고&quot;&gt;참고&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;Operating System Concepts&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=NL9JQh5bbZ8&quot;&gt;https://www.youtube.com/watch?v=NL9JQh5bbZ8&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;##&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="운영체제" /><category term="운영체제" /><category term="CS" /><summary type="html">프로세스 동기화에 대해서 이해하기 위해서는 우선 임계 영역과 경쟁 상태에 대해서 이해해야 한다. 차례대로 살펴보며 이해해보자.</summary></entry><entry><title type="html">[운영체제] 스레드</title><link href="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/58/" rel="alternate" type="text/html" title="[운영체제] 스레드" /><published>2024-01-09T00:00:00+09:00</published><updated>2024-01-09T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/58</id><content type="html" xml:base="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/58/">&lt;h1 id=&quot;스레드&quot;&gt;스레드&lt;/h1&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="운영체제" /><category term="운영체제" /><category term="CS" /><summary type="html">프로세스 동기화에 대해서 이해하기 위해서는 우선 임계 영역과 경쟁 상태에 대해서 이해해야 한다. 차례대로 살펴보며 이해해보자.</summary></entry><entry><title type="html">[운영체제] 스레드</title><link href="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/58/" rel="alternate" type="text/html" title="[운영체제] 스레드" /><published>2024-01-09T00:00:00+09:00</published><updated>2024-01-09T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/58</id><content type="html" xml:base="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/58/">&lt;h1 id=&quot;스레드&quot;&gt;스레드&lt;/h1&gt;
 
 &lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
 

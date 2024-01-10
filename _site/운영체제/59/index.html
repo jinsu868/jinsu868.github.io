@@ -9,7 +9,7 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>[운영체제] 프로세스 동기화 (진행중) - Jinsu’s story</title>
+<!-- begin _includes/seo.html --><title>[운영체제] 프로세스 동기화 - Jinsu’s story</title>
 <meta name="description" content="프로세스 동기화에 대해서 이해하기 위해서는 우선 임계 영역과 경쟁 상태에 대해서 이해해야 한다. 차례대로 살펴보며 이해해보자.">
 
 
@@ -22,7 +22,7 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="Jinsu's story">
-<meta property="og:title" content="[운영체제] 프로세스 동기화 (진행중)">
+<meta property="og:title" content="[운영체제] 프로세스 동기화">
 <meta property="og:url" content="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/59/">
 
 
@@ -335,7 +335,7 @@
 
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="[운영체제] 프로세스 동기화 (진행중)">
+    <meta itemprop="headline" content="[운영체제] 프로세스 동기화">
     <meta itemprop="description" content="프로세스 동기화에 대해서 이해하기 위해서는 우선 임계 영역과 경쟁 상태에 대해서 이해해야 한다. 차례대로 살펴보며 이해해보자.">
     <meta itemprop="datePublished" content="2024-01-09T00:00:00+09:00">
     
@@ -344,7 +344,7 @@
       
         <header>
           <h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/59/" class="u-url" itemprop="url">[운영체제] 프로세스 동기화 (진행중)
+            <a href="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/59/" class="u-url" itemprop="url">[운영체제] 프로세스 동기화
 </a>
           </h1>
           
@@ -361,7 +361,7 @@
       <span class="page__meta-readtime">
         <i class="far fa-clock" aria-hidden="true"></i>
         
-          2 분 소요
+          3 분 소요
         
       </span>
     
@@ -376,7 +376,7 @@
           <aside class="sidebar__right sticky">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu"><li><a href="#임계-영역-critical-section">임계 영역 (Critical Section)</a><ul><li><a href="#정의">정의</a></li><li><a href="#특징">특징</a></li></ul></li><li><a href="#경쟁-상태-race-condition">경쟁 상태 (Race Condition)</a><ul><li><a href="#정의-1">정의</a></li><li><a href="#발생할-수-있는-상황">발생할 수 있는 상황</a><ul><li><a href="#커널-작업-수행-중에-인터럽트가-발생하는-경우">커널 작업 수행 중에 인터럽트가 발생하는 경우</a></li><li><a href="#프로세스가-시스템콜을-호출하여-커널-모드로-진입하여-작업을-수행하는-도중에-문맥교환이-발생한-경우">프로세스가 시스템콜을 호출하여 커널 모드로 진입하여 작업을 수행하는 도중에 문맥교환이 발생한 경우</a></li><li><a href="#멀티-프로세스-환경에서-공유-메모리-내의-커널-데이터에-접근할-경우">멀티 프로세스 환경에서 공유 메모리 내의 커널 데이터에 접근할 경우</a></li></ul></li></ul></li><li><a href="#예시">예시</a><ul><li><a href="#코드">코드</a></li></ul></li><li><a href="#뮤텍스-mutex">뮤텍스 (Mutex)</a><ul><li><a href="#정의-2">정의</a></li><li><a href="#연산">연산</a></li><li><a href="#특징-1">특징</a></li></ul></li><li><a href="#세마포어-semaphore">세마포어 (Semaphore)</a><ul><li><a href="#흐름">흐름</a></li><li><a href="#특징-2">특징</a></li><li><a href="#종류">종류</a></li></ul></li><li><a href="#뮤텍스와-세마포어의-차이점">뮤텍스와 세마포어의 차이점</a></li><li><a href="#참고">참고</a></li></ul></li></ul>
+              <ul class="toc__menu"><li><a href="#임계-영역-critical-section">임계 영역 (Critical Section)</a><ul><li><a href="#정의">정의</a></li><li><a href="#특징">특징</a></li><li><a href="#경쟁-상태-race-condition">경쟁 상태 (Race Condition)</a></li><li><a href="#정의-1">정의</a></li><li><a href="#경쟁-상태가-발생할-수-있는-상황">경쟁 상태가 발생할 수 있는 상황</a><ul><li><a href="#커널-작업-수행-중에-인터럽트가-발생하는-경우">커널 작업 수행 중에 인터럽트가 발생하는 경우</a></li><li><a href="#프로세스가-시스템콜을-호출하여-커널-모드로-진입하여-작업을-수행하는-도중에-문맥교환이-발생한-경우">프로세스가 시스템콜을 호출하여 커널 모드로 진입하여 작업을 수행하는 도중에 문맥교환이 발생한 경우</a></li><li><a href="#멀티-프로세스-환경에서-공유-메모리-내의-커널-데이터에-접근할-경우">멀티 프로세스 환경에서 공유 메모리 내의 커널 데이터에 접근할 경우</a></li></ul></li></ul></li><li><a href="#예시">예시</a><ul><li><a href="#코드">코드</a></li></ul></li><li><a href="#뮤텍스-mutex">뮤텍스 (Mutex)</a><ul><li><a href="#정의-2">정의</a></li><li><a href="#연산">연산</a></li><li><a href="#특징-1">특징</a></li></ul></li><li><a href="#세마포어-semaphore">세마포어 (Semaphore)</a><ul><li><a href="#흐름">흐름</a></li><li><a href="#특징-2">특징</a></li><li><a href="#종류">종류</a></li></ul></li><li><a href="#뮤텍스와-세마포어의-차이점">뮤텍스와 세마포어의 차이점</a></li><li><a href="#교착상태-dead-lock">교착상태 (dead lock)</a></li><li><a href="#정의-3">정의</a></li><li><a href="#교착상태-조건">교착상태 조건</a><ul><li><a href="#비선점-non-preemptive">비선점 (Non Preemptive)</a></li><li><a href="#순환-대기-circular-wait">순환 대기 (Circular wait)</a></li><li><a href="#점유-대기-hold-and-wait">점유 대기 (Hold and Wait)</a></li><li><a href="#상호-배제-mutual-exclusion">상호 배제 (Mutual Exclusion)</a></li></ul></li><li><a href="#교착상태-예시">교착상태 예시</a></li><li><a href="#교착상태-해결">교착상태 해결</a></li><li><a href="#참고">참고</a></li></ul></li></ul>
 
             </nav>
           </aside>
@@ -401,18 +401,16 @@
 
 <p><strong>한정 대기 (Bounded Waiting)</strong> : 다른 프로세스의 기아를 방지하기 위해, 한번 임계 영역에 들어간 프로세스는 다음 임계 영역에 들어갈 때 제한을 두어야 한다.</p>
 
-<p><br /></p>
-
-<h1 id="경쟁-상태-race-condition">경쟁 상태 (Race Condition)</h1>
+<h2 id="경쟁-상태-race-condition">경쟁 상태 (Race Condition)</h2>
 
 <h2 id="정의-1">정의</h2>
 
 <blockquote>
-  <p>경쟁 상태 (Race Condition)이란 공유 자원에 대해 여러 프로세스가 동시에 접근할 때, 결과값이 접근 순서나 접근 시점에 따라 달라질 수 있는 것을 말한다.</p>
+  <p>경쟁 상태 (Race Condition)란 공유 자원에 대해 여러 프로세스가 동시에 접근할 때, 결과값이 접근 순서나 접근 시점에 따라 달라질 수 있는 것을 말한다.</p>
 
 </blockquote>
 
-<h2 id="발생할-수-있는-상황">발생할 수 있는 상황</h2>
+<h2 id="경쟁-상태가-발생할-수-있는-상황">경쟁 상태가 발생할 수 있는 상황</h2>
 
 <h4 id="커널-작업-수행-중에-인터럽트가-발생하는-경우">커널 작업 수행 중에 인터럽트가 발생하는 경우</h4>
 
@@ -520,14 +518,56 @@
 
 <p><br /></p>
 
+<h2 id="교착상태-dead-lock">교착상태 (dead lock)</h2>
+
+<h2 id="정의-3">정의</h2>
+
+<blockquote>
+  <p>둘 이상의 프로세스가 자원을 점유한 상태에서 서로 다른 프로세스가 점유하고 있는 자원을 요구하며 무한정 기다리는 상황</p>
+</blockquote>
+
+<h2 id="교착상태-조건">교착상태 조건</h2>
+
+<h3 id="비선점-non-preemptive">비선점 (Non Preemptive)</h3>
+
+<p>다른 프로세스가 사용하고 있는 자원을 선점할 수 없다.</p>
+
+<h3 id="순환-대기-circular-wait">순환 대기 (Circular wait)</h3>
+
+<p>두 개 이상의 프로세스가 자원 접근을 기다릴 때, 관계가 순환적 구조를 이룬다.</p>
+
+<h3 id="점유-대기-hold-and-wait">점유 대기 (Hold and Wait)</h3>
+
+<p>공유 자원에 대한 접근 권한을 가진 채로 다른 자원에 대한 접근 권한을 요구한다.</p>
+
+<h3 id="상호-배제-mutual-exclusion">상호 배제 (Mutual Exclusion)</h3>
+
+<p>한번에 한 프로세스만 공유 자원에 접근이 가능하며, 접근 권한이 제한적이다.</p>
+
+<p><br /></p>
+
+<p>-&gt; 위 4가지 조건중에 한 가지라도 만족하지 않으면 데드락은 발생하지 않는다.</p>
+
+<h2 id="교착상태-예시">교착상태 예시</h2>
+
+<p><img src="/assets/images/59_5.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>자원 R1을 가진 P1과 자원 R2를 가진 P2가 있다. P1은 R2를 필요로 하고 P2는 R1을 필요로 한다면 두 프로세스는 서로의 자원을 얻기 위해 무한정 기다리는 상황이 발생한다.</p>
+
+<p><br /></p>
+
+<h2 id="교착상태-해결">교착상태 해결</h2>
+
+<p>위에 설명한 4가지 조건중 하나를 만족시키지 않게 상태를 변경하면 된다. 하지만 변경에 여러 비용이 수반된다. 현대의 운영체제는 교착상태가 발생하면 강제 종료를 시켜서 해결한다.</p>
+
+<p><br /></p>
+
 <h2 id="참고">참고</h2>
 
 <ul>
   <li>Operating System Concepts</li>
   <li><a href="https://www.youtube.com/watch?v=NL9JQh5bbZ8">https://www.youtube.com/watch?v=NL9JQh5bbZ8</a></li>
 </ul>
-
-<p>##</p>
 
 
         
@@ -581,7 +621,7 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%5B%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C%5D+%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4+%EB%8F%99%EA%B8%B0%ED%99%94+%28%EC%A7%84%ED%96%89%EC%A4%91%29%20http%3A%2F%2Flocalhost%3A4000%2F%25EC%259A%25B4%25EC%2598%2581%25EC%25B2%25B4%25EC%25A0%259C%2F59%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%5B%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C%5D+%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4+%EB%8F%99%EA%B8%B0%ED%99%94%20http%3A%2F%2Flocalhost%3A4000%2F%25EC%259A%25B4%25EC%2598%2581%25EC%25B2%25B4%25EC%25A0%259C%2F59%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
   <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25EC%259A%25B4%25EC%2598%2581%25EC%25B2%25B4%25EC%25A0%259C%2F59%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
