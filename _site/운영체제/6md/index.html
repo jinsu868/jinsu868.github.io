@@ -1,0 +1,846 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[운영체제] 메모리 (진행중) - Jinsu’s story</title>
+<meta name="description" content="메모리의 종류">
+
+
+  <meta name="author" content="Moon JinSu">
+  
+  <meta property="article:author" content="Moon JinSu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="Jinsu's story">
+<meta property="og:title" content="[운영체제] 메모리 (진행중)">
+<meta property="og:url" content="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/6md/">
+
+
+  <meta property="og:description" content="메모리의 종류">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2024-01-14T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/6md/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "문진수(Moon JinSu)",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Jinsu's story Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Jinsu's story
+          
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Moon JinSu</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>tech blog</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seoul, Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:mjinsu098@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/jinsu868" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+
+<!-- Categories -->
+<nav class="nav__list">
+  <ul class="nav__items" id="category_tag_menu">
+      <li>
+          <span class="nav__sub-title">📂 Total (62)</span>
+          <ul>
+              
+                  
+                  <li>
+                      <a href="/categories/#spring" class="">Spring (15)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#디자인패턴" class="">디자인패턴 (14)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#java" class="">Java (3)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#알고리즘" class="">알고리즘 (2)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#jpa" class="">JPA (7)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#데이터베이스" class="">데이터베이스 (4)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#network" class="">Network (5)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#클린코드" class="">클린코드 (1)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#git" class="">git (1)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#우테코" class="">우테코 (1)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#테스트" class="">테스트 (2)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#devops" class="">DevOps (1)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#운영체제" class="">운영체제 (7)</a>
+                  </li>
+                  
+              
+          </ul>
+      </li>
+  </ul>
+  </nav>
+
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[운영체제] 메모리 (진행중)">
+    <meta itemprop="description" content="메모리의 종류">
+    <meta itemprop="datePublished" content="2024-01-14T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/6md/" class="u-url" itemprop="url">[운영체제] 메모리 (진행중)
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 분 소요
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#메모리의-종류">메모리의 종류</a></li><li><a href="#캐시">캐시</a><ul><li><a href="#시간-지역성">시간 지역성</a></li><li><a href="#공간-지역성">공간 지역성</a></li></ul></li><li><a href="#메모리-할당">메모리 할당</a><ul><li><a href="#연속-할당">연속 할당</a><ul><li><a href="#고정-분할-방식">고정 분할 방식</a></li><li><a href="#가변-분할-방식">가변 분할 방식</a></li></ul></li><li><a href="#불연속-할당">불연속 할당</a></li><li><a href="#페이징">페이징</a></li><li><a href="#세그멘테이션">세그멘테이션</a></li></ul></li><li><a href="#내부-외부-단편화">내부, 외부 단편화</a><ul><li><a href="#단편화">단편화</a></li><li><a href="#내부-단편화">내부 단편화</a></li><li><a href="#외부-단편화">외부 단편화</a></li></ul></li><li><a href="#가상-메모리">가상 메모리</a><ul><li><a href="#장점">장점</a></li><li><a href="#단점">단점</a></li></ul></li><li><a href="#요구-페이징">요구 페이징</a><ul><li><a href="#페이지-교체">페이지 교체</a></li><li><a href="#스와핑">스와핑</a></li><li><a href="#페이지-교체-알고리즘">페이지 교체 알고리즘</a></li></ul></li><li><a href="#스레싱">스레싱</a><ul><li><a href="#해결">해결</a><ul><li><a href="#작업-세트">작업 세트</a></li></ul></li><li><a href="#pff">PFF</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="메모리의-종류">메모리의 종류</h2>
+
+<p>CPU에 가까운 순서대로 레지스터, 캐시, 주기억장치, 보조기억장치가 있다.</p>
+
+<p><img src="/assets/images/61_4.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<h2 id="캐시">캐시</h2>
+
+<p>캐시는 CPU와 메모리 사이의 속도 차이를 완화하기 위해서 사용한다.</p>
+
+<p>캐시는 메모리의 데이터를 미리 가져와 저장해두는 임시 저장소로, 크기는 메인 메모리보다 작기 때문에 앞으로 사용될 것으로 예상되는 데이터를 미리 저장하는 것이 키 포인트이다. 캐시에 있는 데이터를 가져와서 사용하는 것을 캐시 적중이라 하고 적중을 높이기 위해 <strong>지역성의 원리</strong>가 사용된다.</p>
+
+<h3 id="시간-지역성">시간 지역성</h3>
+
+<p>최근 사용한 데이터에 다시 접근하려는 특성을 말한다.</p>
+
+<p>반복문 for문의 인덱스 변수가 여기에 해당한다.</p>
+
+<h3 id="공간-지역성">공간 지역성</h3>
+
+<p>최근 사용한 데이터의 인접한 주소의 내용을 다시 접근하는 것을 말한다.</p>
+
+<p>배열의 연속된 원소들이 같이 조회되는 것을 생각하면 된다.</p>
+
+<p>##</p>
+
+<h2 id="메모리-할당">메모리 할당</h2>
+
+<p>메모리에 프로그램을 할당할 때는 시작 메모리의 위치와 메모리 할당 크기를 기반으로 할당한다. 방법에는 연속 할당, 불연속 할당 방식이 있다.</p>
+
+<h3 id="연속-할당">연속 할당</h3>
+
+<p>연속 할당 방식은 프로세스 이미지가 분리되지 않고 온전한 프로세스를 메인 메모리에 적재하는 방식이다.</p>
+
+<p>연속 할당 방식에는 고정 분할 방식, 가변 분할 방식이 있다.</p>
+
+<h4 id="고정-분할-방식">고정 분할 방식</h4>
+
+<p>메모리를 고정된 파트로 분리하고, 프로세스를 해당 파트에 삽입한다. 고정된 길이의 파트 내에 프로세스가 들어가기 때문에 여백이 생길 수 있는데 이것을 <strong>내부 단편화</strong>라고 한다.</p>
+
+<h4 id="가변-분할-방식">가변 분할 방식</h4>
+
+<p>메모리를 프로세스의 길이에 알맞게 파트를 분리하고, 해당 프로세스를 적재하는 방식이다. 내부 단편화는 발생하지 않지만 가변적인 길이 할당에 의해서 메모리의 일부분이 남기 때문에 <strong>외부 단편화</strong>가 발생한다.</p>
+
+<p>최초 적합 : 메모리의 처음부터 검사하여 크기가 충분한 첫번째 공간에 할당한다.</p>
+
+<p>최적 적합 : 프로세스의 크기 이상인 공간 중 가장 작은 공간에 할당한다.</p>
+
+<p>최악 적합 : 프로세스의 크기와 가장 많이 차이가 나는 공간에 할당한다.</p>
+
+<h3 id="불연속-할당">불연속 할당</h3>
+
+<p>프로세스를 연속된 이미지가 아닌 분리된 이미지로 구성하여 메인 메모리에 적재하는 방식을 말한다. 페이징, 세그멘테이션 방식이 있다.</p>
+
+<h3 id="페이징">페이징</h3>
+
+<p><img src="/assets/images/62_1.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>프로세스를 동일한 크기의 페이지로 분리, 메모리는 해당 페이지와 동일한 크기의 프레임으로 분리하여 메인 메모리에 불연속적으로 저장하는 방식이다.</p>
+
+<p><strong>내부 단편화</strong>가 발생할 수 있다. (프로세스의 크기를 페이지의 크기로 나누고 남은 나머지의 크기만큼)</p>
+
+<h3 id="세그멘테이션">세그멘테이션</h3>
+
+<p><img src="/assets/images/62_2.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>프로세스를 가변적인 크기의 세그먼트로 분리하여 메모리에 적재하는 방식이다. 주로 논리적인 블록 단위로 나누며 Code, Date, Heap, Stack 으로 분리할 수 있다. 세그멘테이션은 <strong>외부 단편화</strong>가 발생할 수 있다.</p>
+
+<h2 id="내부-외부-단편화">내부, 외부 단편화</h2>
+
+<h3 id="단편화">단편화</h3>
+
+<p>단편화란 프로세스들이 차지하는 메모리 사이에 사용하지 못할 만큼의 작은 공간을 의미한다.</p>
+
+<h3 id="내부-단편화">내부 단편화</h3>
+
+<p>내부 단편화는 고정 분할 방식 / 페이지에서 나타나며, 물리 메모리를 고정적인 파트로 잘랐을 때, 해당 파트의 길이보다 더 작은 크기의 조각이 들어가게 되서 생기게 된다.</p>
+
+<h3 id="외부-단편화">외부 단편화</h3>
+
+<p>메모리가 할당되고 해제되는 과정이 반복될 때, 작은 메모리가 사이사이에 생겨나는 것을 말한다. 이러한 메모리 공간이 많이자면 총 사용 가능한 메모리 공간은 충분하지만 메모리를 할당할 수 없는 상황이 생기는데 이를 외부 단편화라고 한다.</p>
+
+<h2 id="가상-메모리">가상 메모리</h2>
+
+<p>가상 메모리는 메모리 관리 기법의 하나로 컴퓨터가 실제로 이용 가능한 메모리 자원을 추상화하여 이를 사용하는 사용자들에게 매우 큰 메모리로 보이게 만드는 것을 말한다.</p>
+
+<p>가상 주소 -&gt; MMU -&gt; 실제 주소</p>
+
+<p>TLB : CPU와 메모리 사이에 있는 주소 변환을 위한 캐시이다. 페이지 테이블에 있는 리스트를 보관하여 CPU가 페이지 테이블까지 가지 않도록 하여 속도를 향상시킨다.</p>
+
+<h3 id="장점">장점</h3>
+
+<p>가상 메모리를 사용하면 동시에 많은 프로세스를 실행할 수 있고, 응답 시간을 유지하며 CPU 이용률과 처리률을 높일 수 있다.</p>
+
+<h3 id="단점">단점</h3>
+
+<p>물리 메모리로 사용하는 것보다는 느리다.</p>
+
+<h2 id="요구-페이징">요구 페이징</h2>
+
+<p>요구 페이징은 프로그램을 실행할 때, 프로그램 전체를 물리 메모리에 적재하는 대신 초기에 필요한 부분들만 적재하여 구동시키는 방식이다. 가상 메모리와 페이지 개념을 활용하여 관리된다.</p>
+
+<h3 id="페이지-교체">페이지 교체</h3>
+
+<p>요구 페이징 방식을 사용하게 되면 초기에 필요한 페이지들만 메인 메모리에 올라가게 된다. 프로세스 동작 중에, 필요한 페이지가 물리 메모리에 없는 상황이 발생할 수 있는데 이를 <strong>페이지 부재</strong>라고 한다.</p>
+
+<p>페이지 부재가 발생하면 원하는 페이지를 하드디스크에 스왑 공간으로부터 가져오게 된다. 하지만 물리 메모리가 모두 사용중이라서 원하는 페이지를 가져오지 못한다면 페이지 교체가 일어난다.</p>
+
+<h3 id="스와핑">스와핑</h3>
+
+<p>메모리에서 당장 사용하지 않는 영역을 하드디스크로 옮기고 하드디스크의 일부분을 마치 메모리처럼 불러와 사용하는 것을 스와핑이라고 한다.</p>
+
+<h3 id="페이지-교체-알고리즘">페이지 교체 알고리즘</h3>
+
+<p><strong>FIFO</strong> : 가장 간단한 방식으로 메모리에 올리온 지 가장 오래된 페이지를 교체하는 알고리즘이다. 페이지가 올라온 순서를 큐에 저장하여 구현한다.</p>
+
+<p><strong>최적 페이지 교체</strong> <strong>(OPT)</strong>: 앞으로 가장 오랫동안 사용되지 않을 페이지를 교체하는 방식이다. 프로세스가 앞으로 사용할 페이지를 미리 알아야 하는데 이는 불가능하기 때문에 구현이 불가능하다.</p>
+
+<p><strong>LRU (Least Recently Used)</strong> : 가장 오래 사용되지 않은 페이지를 교체하는 방식이다. OPT 알고리즘보다 페이지 교체 횟수가 높지만  FIFO 알고리즘보다는 효율적이다.</p>
+
+<p><strong>LFU (Least Frequency Used)</strong> : 참조 횟수가 가장 적은 페이지를 교체하는 방식이다. 만약 대상인 페이지가 여러개일 경우 LRU 알고리즘에 따라 가장 오래 사용되지 않은 페이지를 교체한다.</p>
+
+<p><strong>MFU (Most Frequency Used)</strong> : LFU 알고리즘의 반대로 참조 횟수가 가장 많은 페이지를 교체하는 방식이다.</p>
+
+<h2 id="스레싱">스레싱</h2>
+
+<p>페이지 부재율이 높은 상태를 말한다. 페이지 부재가 발생하면 페이지 교체, 페이지 로드가 일어난다. 다양한 프로세스가 메모리에 올라오면서 메모리의 유효 공간은 줄어들고 CPU의 가동 시간은 올라가며 자원을 최대한 사용하게 된다.</p>
+
+<p>하지만 메모리의 프로세스가 일정 수 이상 올라가면 프로세스당 물리 메모리를 사용할 수 있는 프레임의 개수가 줄어들고, 페이지가 물리 메모리에 적게 올라온 프로세스는 명령어가 진행될 때마다 페이지 부재가 발생한다. 이 경우 역으로 CPU 사용률이 줄어들게 된다.</p>
+
+<p>페이지를 교체하는 과정에서는 CPU가 사용되지 않기 때문에 페이지 교체만 계속해서 실행되면 운영체제는 CPU가 놀고 있다고 판단하고 더 많은 프로세스를 메모리에 적재한다. 이렇게 되면 더 많은 페이지 부재가 발생하는 악순환이 반복된다. 이를 <strong>스레싱</strong>이라고 한다.</p>
+
+<h3 id="해결">해결</h3>
+
+<h4 id="작업-세트">작업 세트</h4>
+
+<p>프로세스의 과거 사용 이력인 지역성을 통해 결정된 페이지 집합을 만들어서 메모리에 로드하는 것을 말한다. 미리 메모리에 로드하면 탐색 비용도 줄일 수 있고 스와핑또한 줄일 수 있다.</p>
+
+<h3 id="pff">PFF</h3>
+
+<p>페이지 폴트 빈도를 조절하는 방식으로 상한선과 하한선을 만드는 방식이다. 만약 상한선에 도달하면 프레임을 늘리고 하한선에 도달하면 프레임을 줄인다.</p>
+
+<p>-&gt; CPU 사용률과 메모리 적재량을 함께 체크해야 스레싱 유무를 확인할 수 있다.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#cs" class="page__taxonomy-item p-category" rel="tag">CS</a><span class="sep">, </span>
+    
+      <a href="/tags/#%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C" class="page__taxonomy-item p-category" rel="tag">운영체제</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C" class="page__taxonomy-item p-category" rel="tag">운영체제</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2024-01-14T00:00:00+09:00">January 14, 2024</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5B%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C%5D+%EB%A9%94%EB%AA%A8%EB%A6%AC+%28%EC%A7%84%ED%96%89%EC%A4%91%29%20http%3A%2F%2Flocalhost%3A4000%2F%25EC%259A%25B4%25EC%2598%2581%25EC%25B2%25B4%25EC%25A0%259C%2F6md%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25EC%259A%25B4%25EC%2598%2581%25EC%25B2%25B4%25EC%25A0%259C%2F6md%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25EC%259A%25B4%25EC%2598%2581%25EC%25B2%25B4%25EC%25A0%259C%2F6md%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/61/" class="pagination--pager" title="[운영체제] 블로킹/논블로킹 &amp; 동기/비동기
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/61/" rel="permalink">[운영체제] 블로킹/논블로킹 &amp; 동기/비동기
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> January 11 2024</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">동기/비동기, 블로킹/논블로킹는 서로 비슷해 보이지만 이 둘을 구분하는 기준이 다르다. 동기/비동기는 각 작업(함수)들이 서로 시간을 맞춰서 실행되는지를 기준으로 나뉘고 블로킹/논블로킹은 한 작업을 처리하는 동안 다른 작업을 처리할 수 있는지를 기준으로 나눈다.
+</p> -->
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/60/" rel="permalink">[운영체제] 프로세스 스케줄링
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> January 10 2024</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">CPU 스케줄링
+</p> -->
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/59/" rel="permalink">[운영체제] 프로세스 동기화
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> January 09 2024</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">프로세스 동기화에 대해서 이해하기 위해서는 우선 임계 영역과 경쟁 상태에 대해서 이해해야 한다. 차례대로 살펴보며 이해해보자.
+</p> -->
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/58/" rel="permalink">[운영체제] 스레드
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> January 09 2024</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">스레드
+</p> -->
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="mailto:mjinsu098@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+        
+      
+        
+          <li><a href="https://github.com/jinsu868" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 문진수(Moon JinSu). Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
