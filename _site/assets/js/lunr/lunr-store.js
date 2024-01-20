@@ -84,7 +84,7 @@ var store = [{
         "teaser": null
       },{
         "title": "[디자인패턴] 프록시 패턴",
-        "excerpt":"Proxy Pattern 프록시 패턴은 대상 객체에 접근하기 전 그 접근에 대한 흐름을 가로채 대상 객체 앞단의 인터페이스 역할을 하는 디자인 패턴이다. 대상 클래스가 민감한 정보를 가지고 있거나 인스턴스화 하기에는 무겁거나, 추가 기능을 넣고 싶은데 원본 객체를 수정할 수 없는 상황일 때 사용한다. 프록시 패턴의 효과 보안 : 프록시는 클라이언트가 작업을...","categories": ["디자인패턴"],
+        "excerpt":"프록시 패턴 The Proxy Pattern provides a surrogate or placeholder for another object to control access to it. In essence, instead of interacting directly with the original object, a client interacts with a proxy, which then determines whether, how, and when to forward these interactions to the underlying object. -GoF...","categories": ["디자인패턴"],
         "tags": ["디자인패턴","CS"],
         "url": "/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Proxy/",
         "teaser": null
@@ -369,5 +369,11 @@ var store = [{
         "excerpt":"메모리의 종류 CPU에 가까운 순서대로 레지스터, 캐시, 주기억장치, 보조기억장치가 있다. 캐시 캐시는 CPU와 메모리 사이의 속도 차이를 완화하기 위해서 사용한다. 캐시는 메모리의 데이터를 미리 가져와 저장해두는 임시 저장소로, 크기는 메인 메모리보다 작기 때문에 앞으로 사용될 것으로 예상되는 데이터를 미리 저장하는 것이 키 포인트이다. 캐시에 있는 데이터를 가져와서 사용하는 것을 캐시...","categories": ["운영체제"],
         "tags": ["운영체제","CS"],
         "url": "/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/6md/",
+        "teaser": null
+      },{
+        "title": "[디자인패턴] 데코레이터 (진행중)",
+        "excerpt":" ","categories": ["디자인패턴"],
+        "tags": ["디자인패턴","CS"],
+        "url": "/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/63/",
         "teaser": null
       }]
