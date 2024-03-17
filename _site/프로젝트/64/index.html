@@ -1,0 +1,954 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[트러블슈팅] 좋아요 동시성 처리 - Jinsu’s story</title>
+<meta name="description" content="문제 상황">
+
+
+  <meta name="author" content="Moon JinSu">
+  
+  <meta property="article:author" content="Moon JinSu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="Jinsu's story">
+<meta property="og:title" content="[트러블슈팅] 좋아요 동시성 처리">
+<meta property="og:url" content="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/64/">
+
+
+  <meta property="og:description" content="문제 상황">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2024-03-08T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/64/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "문진수(Moon JinSu)",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Jinsu's story Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Jinsu's story
+          
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Moon JinSu</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>tech blog</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seoul, Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:mjinsu098@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/jinsu868" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+
+<!-- Categories -->
+<nav class="nav__list">
+  <ul class="nav__items" id="category_tag_menu">
+      <li>
+          <span class="nav__sub-title">📂 Total (64)</span>
+          <ul>
+              
+                  
+                  <li>
+                      <a href="/categories/#spring" class="">Spring (15)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#디자인패턴" class="">디자인패턴 (14)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#java" class="">Java (3)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#알고리즘" class="">알고리즘 (2)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#jpa" class="">JPA (7)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#데이터베이스" class="">데이터베이스 (4)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#network" class="">Network (5)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#클린코드" class="">클린코드 (1)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#git" class="">git (1)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#우테코" class="">우테코 (1)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#테스트" class="">테스트 (2)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#devops" class="">DevOps (1)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#운영체제" class="">운영체제 (7)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#프로젝트" class="">프로젝트 (2)</a>
+                  </li>
+                  
+              
+          </ul>
+      </li>
+  </ul>
+  </nav>
+
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[트러블슈팅] 좋아요 동시성 처리">
+    <meta itemprop="description" content="문제 상황">
+    <meta itemprop="datePublished" content="2024-03-08T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/64/" class="u-url" itemprop="url">[트러블슈팅] 좋아요 동시성 처리
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 분 소요
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#문제-상황">문제 상황</a></li><li><a href="#domain">domain</a><ul><li><a href="#like">Like</a></li><li><a href="#story">Story</a></li><li><a href="#storyservice">StoryService</a></li></ul></li><li><a href="#동시성-테스트">동시성 테스트</a><ul><li><a href="#데드락-발생">데드락 발생</a></li></ul></li><li><a href="#데드락-발생-원인">데드락 발생 원인</a></li><li><a href="#해결-방안">해결 방안</a><ul><li><a href="#try-1--optimistic-lock-실패">Try 1 : Optimistic Lock (실패)</a></li><li><a href="#story-version-추가">Story (Version 추가)</a></li><li><a href="#storyrepository">StoryRepository</a></li><li><a href="#story-조회-부분-수정">Story 조회 부분 수정</a></li><li><a href="#optimisticlockaspect">OptimisticLockAspect</a></li><li><a href="#테스트-결과">테스트 결과</a></li><li><a href="#원인">원인</a></li><li><a href="#try-2-pesmistic-lock-성공-but-성능-이슈">Try 2: Pesmistic Lock (성공 But 성능 이슈)</a></li><li><a href="#storyrepository-1">StoryRepository</a></li><li><a href="#story-조회-부분-수정-1">Story 조회 부분 수정</a></li><li><a href="#테스트-결과-1">테스트 결과</a></li><li><a href="#try-3--redis를-활용한-분산락-최종-선택">Try 3 : Redis를 활용한 분산락 (최종 선택)</a></li><li><a href="#redisson-vs-lettuce">Redisson vs Lettuce</a></li><li><a href="#redisson-라이브러리-추가">Redisson 라이브러리 추가</a></li><li><a href="#redissonlock">@RedissonLock</a></li><li><a href="#redissonlockaop">RedissonLockAop</a></li><li><a href="#targettransaction">TargetTransaction</a></li><li><a href="#갱신-분실">갱신 분실</a></li><li><a href="#likeservice">LikeService</a></li><li><a href="#테스트-결과-2">테스트 결과</a></li><li><a href="#느낀점">느낀점</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="문제-상황">문제 상황</h2>
+
+<p>Story - Like는 1:N 관계이고 스토리를 조회할 때 스토리의 좋아요 수를 같이 가져와야 했다.</p>
+
+<p>이전에는 Story를 가져올 때 Like 테이블을 조인해서 좋아요 수를 같이 가져왔다.</p>
+
+<p>하지만 좋아요 수가 많아질수록 조인 오버헤드가 점점 커질 것으로 판단됐다.</p>
+
+<p>성능 개선을 위해 좋아요 수를 비정규화했다. 그런데 여기서 여러 문제가 발생했고 이를 해결한 과정을 공유하고자 한다.</p>
+
+<p><br /></p>
+
+<h2 id="domain">domain</h2>
+
+<p>설명에 불필요한 부분은 제거하고 필요한 부분만 남겼다.</p>
+
+<h3 id="like">Like</h3>
+
+<p><img src="/assets/images/65_1.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p><br /></p>
+
+<h3 id="story">Story</h3>
+
+<p><img src="/assets/images/65_2.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>→ 좋아요 수(likeCount)를 비정규화해서 Story의 필드로 추가했다.</p>
+
+<p><br /></p>
+
+<h3 id="storyservice">StoryService</h3>
+
+<p><img src="/assets/images/65_3.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>스토리 좋아요 로직이다. <br /></p>
+
+<h2 id="동시성-테스트">동시성 테스트</h2>
+
+<p><img src="/assets/images/65_4.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>여러 스레드에서 동시에 좋아요 요청을 하는 테스트이다.</p>
+
+<p>테스트를 실행시키면 <strong>데드락</strong>이 발생한다.</p>
+
+<h3 id="데드락-발생">데드락 발생</h3>
+
+<p><img src="/assets/images/65_5.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p><br /></p>
+
+<h2 id="데드락-발생-원인">데드락 발생 원인</h2>
+
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/innodb-locks-set.html">Mysql 공식 사이트</a>를 참고해보면 데드락의 발생 원인을 알 수 있다.</p>
+
+<p><img src="/assets/images/65_6.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<ol>
+  <li>fk를 포함한 데이터의 <strong>insert</strong>, <strong>delete</strong>, <strong>update</strong> 가 일어나면 참조되는 fk의 데이터에 S-Lock이 걸린다.</li>
+</ol>
+
+<p><img src="/assets/images/65_7.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<ol>
+  <li>그리고 Mysql에서는 <strong>update</strong> 쿼리가 나갈 때 X-Lock 을 건다.</li>
+</ol>
+
+<p>이 두 가지 사실을 기반으로 데드락이 걸리는 이유를 파악할 수 있었다.</p>
+
+<p><br /> <img src="/assets/images/65_8.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p><strong>&lt;1&gt;</strong> 에서 Story에 S-Lock이 걸리고 <strong>&lt;2&gt;</strong> 에서 Story에 update 쿼리를 날리기 위해 X-Lock을 얻으려고 한다.</p>
+
+<p>그런데 여러 스레드가 동시에 접근한다면 동시에 여러 트랜잭션에서 S-Lock을 가지고 있을 수 있다. 그리고 여러 트랜잭션에서 Story의 likeCount를 변경하고 Dirty Checking을 통해 update 쿼리를 날리는 시점에 X-Lock을 획득하려고 할 것이다. 이때 서로 S-Lock을 가진 상태에서 X-Lock을 얻으려고 하기 때문에 <strong>데드락</strong>이 발생할 수 있다.</p>
+
+<p><br /></p>
+
+<h2 id="해결-방안">해결 방안</h2>
+
+<h3 id="try-1--optimistic-lock-실패">Try 1 : Optimistic Lock (실패)</h3>
+
+<p>사실 좋아요 같은 경우 동시에 누를 확률이 그렇게 높지 않다. 때문에 Optimistic Lock으로 처리하면 괜찮다고 생각했다. 하지만 위에서 데드락이 발생한 이유와 동일한 이유로 데드락이 발생했다.</p>
+
+<p><br /></p>
+
+<h3 id="story-version-추가">Story (Version 추가)</h3>
+
+<p><img src="/assets/images/65_9.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>Story 필드에 <strong>version</strong> 필드를 추가한다.</p>
+
+<p><br /></p>
+
+<h3 id="storyrepository">StoryRepository</h3>
+
+<p><img src="/assets/images/65_10.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<h3 id="story-조회-부분-수정">Story 조회 부분 수정</h3>
+
+<p><img src="/assets/images/65_11.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<h3 id="optimisticlockaspect">OptimisticLockAspect</h3>
+
+<p><img src="/assets/images/65_12.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>충돌이 발생했을 때 Retry 로직은 Aop 로 구현했다.</p>
+
+<p><br /></p>
+
+<h3 id="테스트-결과">테스트 결과</h3>
+
+<p><img src="/assets/images/65_13.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p><img src="/assets/images/65_14.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>예상한 것처럼 Optimistic Lock을 걸어도 <strong>데드락</strong>이 걸린다.</p>
+
+<p><br /></p>
+
+<h3 id="원인">원인</h3>
+
+<p>Optimistic Lock을 사용하더라도 Mysql을 쓰는 이상 Like를 Insert 할 때 Story에 S-lock은 걸리게 되고 Dirty Checking으로 update 쿼리가 나가는 순간 똑같이 데드락이 발생한다. 때문에 이 방법으로는 문제를 해결할 수 없다.</p>
+
+<p><br /></p>
+
+<h3 id="try-2-pesmistic-lock-성공-but-성능-이슈">Try 2: Pesmistic Lock (성공 <strong>But</strong> 성능 이슈)</h3>
+
+<p>앞서 말한 것처럼 좋아요 같은 경우 <strong>Race Condition</strong>이 발생할 확률이 그렇게 높지 않을 것으로 예상된다.</p>
+
+<p>하지만 Optimistic Lock으로는 데드락이 걸리는 문제를 해결할 수 없었다.</p>
+
+<p>이번에는 Pesmistic Lock을 사용해서 동시성 처리를 해보겠다.</p>
+
+<p><br /></p>
+
+<h3 id="storyrepository-1">StoryRepository</h3>
+
+<p><img src="/assets/images/65_15.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>조회할 때부터 X-Lock을 가져온다.</p>
+
+<h3 id="story-조회-부분-수정-1">Story 조회 부분 수정</h3>
+
+<p><img src="/assets/images/65_16.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p><br /></p>
+
+<h3 id="테스트-결과-1">테스트 결과</h3>
+
+<p><img src="/assets/images/65_17.png" alt="img1" style="zoom:80%;" /></p>
+
+<p>테스트 성공적으로 통과!</p>
+
+<p>Story를 조회하는 시점에 X-Lock을 걸게 되면 다른 트랜잭션에서 값을 변경할 수 없기 때문에 데이터의 정합성을 보장할 수 있다.</p>
+
+<p>문제점 : 트랜잭션이 끝날 때까지 다른 트랜잭션에서 대기해야 하기 때문에 성능은 좋지 않다. <br /> <br /></p>
+
+<h3 id="try-3--redis를-활용한-분산락-최종-선택">Try 3 : Redis를 활용한 분산락 (최종 선택)</h3>
+
+<p>redis는 inmemory에서 작동하기 때문에 mysql에 비해서 속도가 훨씬 빠르다. 그리고 현재 프로젝트에서 메일 인증 기능을 구현하면서 redis를 이미 사용하고 있기 때문에 추가적인 인프라 설정 비용은 없었다.</p>
+
+<p>→ <strong>redis를 사용하여 좋아요 동시성 문제를 처리하기로 결정했다.</strong></p>
+
+<p><br /></p>
+
+<h3 id="redisson-vs-lettuce">Redisson vs Lettuce</h3>
+
+<p>Lettuce의 경우 분산락을 직접 구현해야 하고 재시도, 타임아웃도 직접 구현해야 한다. 그리고 스핀락 방식이기 때문에 동시에 여러 스레드에서 요청을 한다면 redis에 부하가 많이 간다.</p>
+
+<p>Redisson은 pub/sub 구조로 구현되어 있기 때문에 redis의 부하가 적게 가고 Lock 획득 재시도를 기본으로 제공하기 때문에 사용하기 편리하다.</p>
+
+<p><strong>→ Redisson을 사용하기로 결정!</strong></p>
+
+<p><br /></p>
+
+<h3 id="redisson-라이브러리-추가">Redisson 라이브러리 추가</h3>
+
+<p><img src="/assets/images/65_18.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p><br /></p>
+
+<h3 id="redissonlock">@RedissonLock</h3>
+
+<p><img src="/assets/images/65_19.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p><br /></p>
+
+<h3 id="redissonlockaop">RedissonLockAop</h3>
+
+<p><img src="/assets/images/65_20.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /><img src="/assets/images/65_21.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>분산락 처리는 횡단 관심사이기 때문에 Aop로 처리했다.</p>
+
+<p>여기서 중요한 부분은 <code class="language-plaintext highlighter-rouge">TargetTransaction.proceed(joinPoint);</code> 이다.</p>
+
+<p><br /></p>
+
+<h3 id="targettransaction">TargetTransaction</h3>
+
+<p><img src="/assets/images/65_22.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>타겟 메서드는 부모 트랜잭션과 관계없이 동작하도록 <code class="language-plaintext highlighter-rouge">Propagation.REQUIRES_NEW</code> 설정을 해줬다.</p>
+
+<p>이렇게 해주는 이유는 트랜잭션 커밋 시점이 Lock의 해제 시점 이후일 때 동시성 문제가 발생할 수 있기 때문이다.</p>
+
+<p>→ 어떤 이유로 동시성 문제가 생길 수 있는지 알아보자.</p>
+
+<p><br /></p>
+
+<h3 id="갱신-분실">갱신 분실</h3>
+
+<p>트랜잭션 A(TxA)와 트랜잭션 B(TxB)가 있다고 가정하자. 그리고 현재 likeCount = 0이라고 해보자.</p>
+
+<p>TxA, TxB가 좋아요 로직을 수행하기 위해서 동시에 <code class="language-plaintext highlighter-rouge">storyLike()</code> 메서드에 접근한다고 가정하자.</p>
+
+<p>TxA가 아주 미세한 차이로 먼저 Lock을 획득하고 likeCount를 1 증가시키고 Lock을 해제시켰다. (아직 트랜잭션을 커밋하지 않았다.)</p>
+
+<p>이 상태에서 TxB가 Lock을 획득하여 Story를 조회했다. (이때 조회된 Story는 TxA가 수정하기 전의 Story이다. 즉 Story의 likeCount = 0이다.)</p>
+
+<p>다시 TxA에서 트랜잭션 커밋을 한다. 그러면 Story의 likeCount = 1이 된다.</p>
+
+<p>그리고 다시 TxB에서 Story의 likeCount를 1 증가시키고 트랜잭션을 커밋한다. (이때 TxB에서 조회한 likeCount는 0이었기 때문에 최종적으로 Story의 likeCount는 1이 된다.)</p>
+
+<p>2번의 좋아요 요청이 있었는데 likeCount는 1만 증가하게 된 것이다.</p>
+
+<p>→ 위와 같이 새로운 트랜잭션에서 처리하지 않으면 트랜잭션 커밋이 Lock 해제 이후에 일어나서 갱신 분실 문제가 발생할 수 있다.</p>
+
+<p><br /></p>
+
+<h3 id="likeservice">LikeService</h3>
+
+<p><img src="/assets/images/65_23.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>스토리 좋아요, 좋아요 취소 로직에 <code class="language-plaintext highlighter-rouge">@RedissonLock</code> 에노테이션을 붙여서 Aop를 적용시켰다.</p>
+
+<p><br /></p>
+
+<h3 id="테스트-결과-2">테스트 결과</h3>
+
+<p><img src="/assets/images/65_24.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>정상적으로 테스트가 통과하는 것을 확인할 수 있다.</p>
+
+<h3 id="느낀점">느낀점</h3>
+
+<p>동시성 처리를 위한 여러 방식을 직접 구현해 보고 비교해 봄으로써 각 방식의 장단점을 알 수 있었고 어느 시점에 어떤 방식을 사용하면 좋을지 감을 잡을 수 있었다.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#%ED%8A%B8%EB%9F%AC%EB%B8%94%EC%8A%88%ED%8C%85" class="page__taxonomy-item p-category" rel="tag">트러블슈팅</a><span class="sep">, </span>
+    
+      <a href="/tags/#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8" class="page__taxonomy-item p-category" rel="tag">프로젝트</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8" class="page__taxonomy-item p-category" rel="tag">프로젝트</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2024-03-08T00:00:00+09:00">March 8, 2024</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5B%ED%8A%B8%EB%9F%AC%EB%B8%94%EC%8A%88%ED%8C%85%5D+%EC%A2%8B%EC%95%84%EC%9A%94+%EB%8F%99%EC%8B%9C%EC%84%B1+%EC%B2%98%EB%A6%AC%20http%3A%2F%2Flocalhost%3A4000%2F%25ED%2594%2584%25EB%25A1%259C%25EC%25A0%259D%25ED%258A%25B8%2F64%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25ED%2594%2584%25EB%25A1%259C%25EC%25A0%259D%25ED%258A%25B8%2F64%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25ED%2594%2584%25EB%25A1%259C%25EC%25A0%259D%25ED%258A%25B8%2F64%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/63/" class="pagination--pager" title="[트러블슈팅] 커서 기반 페이지네이션
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/63/" rel="permalink">[트러블슈팅] 커서 기반 페이지네이션
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> March 02 2024</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">문제 인식
+</p> -->
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/6md/" rel="permalink">[운영체제] 메모리 (진행중)
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> January 14 2024</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">메모리의 종류
+</p> -->
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/61/" rel="permalink">[운영체제] 블로킹/논블로킹 &amp; 동기/비동기
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> January 11 2024</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">동기/비동기, 블로킹/논블로킹는 서로 비슷해 보이지만 이 둘을 구분하는 기준이 다르다. 동기/비동기는 각 작업(함수)들이 서로 시간을 맞춰서 실행되는지를 기준으로 나뉘고 블로킹/논블로킹은 한 작업을 처리하는 동안 다른 작업을 처리할 수 있는지를 기준으로 나눈다.
+</p> -->
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/60/" rel="permalink">[운영체제] 프로세스 스케줄링
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> January 10 2024</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">CPU 스케줄링
+</p> -->
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="mailto:mjinsu098@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+        
+      
+        
+          <li><a href="https://github.com/jinsu868" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 문진수(Moon JinSu). Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

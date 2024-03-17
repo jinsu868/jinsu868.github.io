@@ -1,4 +1,248 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-03-17T17:50:21+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[트러블슈팅] 커서 기반 페이지네이션</title><link href="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/63/" rel="alternate" type="text/html" title="[트러블슈팅] 커서 기반 페이지네이션" /><published>2024-03-02T00:00:00+09:00</published><updated>2024-03-02T00:00:00+09:00</updated><id>http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/63</id><content type="html" xml:base="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/63/">&lt;h2 id=&quot;문제-인식&quot;&gt;문제 인식&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-03-17T18:43:05+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[트러블슈팅] 좋아요 동시성 처리</title><link href="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/64/" rel="alternate" type="text/html" title="[트러블슈팅] 좋아요 동시성 처리" /><published>2024-03-08T00:00:00+09:00</published><updated>2024-03-08T00:00:00+09:00</updated><id>http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/64</id><content type="html" xml:base="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/64/">&lt;h2 id=&quot;문제-상황&quot;&gt;문제 상황&lt;/h2&gt;
+
+&lt;p&gt;Story - Like는 1:N 관계이고 스토리를 조회할 때 스토리의 좋아요 수를 같이 가져와야 했다.&lt;/p&gt;
+
+&lt;p&gt;이전에는 Story를 가져올 때 Like 테이블을 조인해서 좋아요 수를 같이 가져왔다.&lt;/p&gt;
+
+&lt;p&gt;하지만 좋아요 수가 많아질수록 조인 오버헤드가 점점 커질 것으로 판단됐다.&lt;/p&gt;
+
+&lt;p&gt;성능 개선을 위해 좋아요 수를 비정규화했다. 그런데 여기서 여러 문제가 발생했고 이를 해결한 과정을 공유하고자 한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;domain&quot;&gt;domain&lt;/h2&gt;
+
+&lt;p&gt;설명에 불필요한 부분은 제거하고 필요한 부분만 남겼다.&lt;/p&gt;
+
+&lt;h3 id=&quot;like&quot;&gt;Like&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/65_1.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;story&quot;&gt;Story&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/65_2.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;→ 좋아요 수(likeCount)를 비정규화해서 Story의 필드로 추가했다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;storyservice&quot;&gt;StoryService&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/65_3.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;스토리 좋아요 로직이다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;동시성-테스트&quot;&gt;동시성 테스트&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/65_4.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;여러 스레드에서 동시에 좋아요 요청을 하는 테스트이다.&lt;/p&gt;
+
+&lt;p&gt;테스트를 실행시키면 &lt;strong&gt;데드락&lt;/strong&gt;이 발생한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;데드락-발생&quot;&gt;데드락 발생&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/65_5.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;데드락-발생-원인&quot;&gt;데드락 발생 원인&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://dev.mysql.com/doc/refman/8.0/en/innodb-locks-set.html&quot;&gt;Mysql 공식 사이트&lt;/a&gt;를 참고해보면 데드락의 발생 원인을 알 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/65_6.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;fk를 포함한 데이터의 &lt;strong&gt;insert&lt;/strong&gt;, &lt;strong&gt;delete&lt;/strong&gt;, &lt;strong&gt;update&lt;/strong&gt; 가 일어나면 참조되는 fk의 데이터에 S-Lock이 걸린다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/65_7.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;그리고 Mysql에서는 &lt;strong&gt;update&lt;/strong&gt; 쿼리가 나갈 때 X-Lock 을 건다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;이 두 가지 사실을 기반으로 데드락이 걸리는 이유를 파악할 수 있었다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt; &lt;img src=&quot;/assets/images/65_8.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&amp;lt;1&amp;gt;&lt;/strong&gt; 에서 Story에 S-Lock이 걸리고 &lt;strong&gt;&amp;lt;2&amp;gt;&lt;/strong&gt; 에서 Story에 update 쿼리를 날리기 위해 X-Lock을 얻으려고 한다.&lt;/p&gt;
+
+&lt;p&gt;그런데 여러 스레드가 동시에 접근한다면 동시에 여러 트랜잭션에서 S-Lock을 가지고 있을 수 있다. 그리고 여러 트랜잭션에서 Story의 likeCount를 변경하고 Dirty Checking을 통해 update 쿼리를 날리는 시점에 X-Lock을 획득하려고 할 것이다. 이때 서로 S-Lock을 가진 상태에서 X-Lock을 얻으려고 하기 때문에 &lt;strong&gt;데드락&lt;/strong&gt;이 발생할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;해결-방안&quot;&gt;해결 방안&lt;/h2&gt;
+
+&lt;h3 id=&quot;try-1--optimistic-lock-실패&quot;&gt;Try 1 : Optimistic Lock (실패)&lt;/h3&gt;
+
+&lt;p&gt;사실 좋아요 같은 경우 동시에 누를 확률이 그렇게 높지 않다. 때문에 Optimistic Lock으로 처리하면 괜찮다고 생각했다. 하지만 위에서 데드락이 발생한 이유와 동일한 이유로 데드락이 발생했다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;story-version-추가&quot;&gt;Story (Version 추가)&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/65_9.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Story 필드에 &lt;strong&gt;version&lt;/strong&gt; 필드를 추가한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;storyrepository&quot;&gt;StoryRepository&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/65_10.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;story-조회-부분-수정&quot;&gt;Story 조회 부분 수정&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/65_11.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;optimisticlockaspect&quot;&gt;OptimisticLockAspect&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/65_12.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;충돌이 발생했을 때 Retry 로직은 Aop 로 구현했다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;테스트-결과&quot;&gt;테스트 결과&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/65_13.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/65_14.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;예상한 것처럼 Optimistic Lock을 걸어도 &lt;strong&gt;데드락&lt;/strong&gt;이 걸린다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;원인&quot;&gt;원인&lt;/h3&gt;
+
+&lt;p&gt;Optimistic Lock을 사용하더라도 Mysql을 쓰는 이상 Like를 Insert 할 때 Story에 S-lock은 걸리게 되고 Dirty Checking으로 update 쿼리가 나가는 순간 똑같이 데드락이 발생한다. 때문에 이 방법으로는 문제를 해결할 수 없다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;try-2-pesmistic-lock-성공-but-성능-이슈&quot;&gt;Try 2: Pesmistic Lock (성공 &lt;strong&gt;But&lt;/strong&gt; 성능 이슈)&lt;/h3&gt;
+
+&lt;p&gt;앞서 말한 것처럼 좋아요 같은 경우 &lt;strong&gt;Race Condition&lt;/strong&gt;이 발생할 확률이 그렇게 높지 않을 것으로 예상된다.&lt;/p&gt;
+
+&lt;p&gt;하지만 Optimistic Lock으로는 데드락이 걸리는 문제를 해결할 수 없었다.&lt;/p&gt;
+
+&lt;p&gt;이번에는 Pesmistic Lock을 사용해서 동시성 처리를 해보겠다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;storyrepository-1&quot;&gt;StoryRepository&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/65_15.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;조회할 때부터 X-Lock을 가져온다.&lt;/p&gt;
+
+&lt;h3 id=&quot;story-조회-부분-수정-1&quot;&gt;Story 조회 부분 수정&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/65_16.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;테스트-결과-1&quot;&gt;테스트 결과&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/65_17.png&quot; alt=&quot;img1&quot; style=&quot;zoom:80%;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;테스트 성공적으로 통과!&lt;/p&gt;
+
+&lt;p&gt;Story를 조회하는 시점에 X-Lock을 걸게 되면 다른 트랜잭션에서 값을 변경할 수 없기 때문에 데이터의 정합성을 보장할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;문제점 : 트랜잭션이 끝날 때까지 다른 트랜잭션에서 대기해야 하기 때문에 성능은 좋지 않다. &lt;br /&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;try-3--redis를-활용한-분산락-최종-선택&quot;&gt;Try 3 : Redis를 활용한 분산락 (최종 선택)&lt;/h3&gt;
+
+&lt;p&gt;redis는 inmemory에서 작동하기 때문에 mysql에 비해서 속도가 훨씬 빠르다. 그리고 현재 프로젝트에서 메일 인증 기능을 구현하면서 redis를 이미 사용하고 있기 때문에 추가적인 인프라 설정 비용은 없었다.&lt;/p&gt;
+
+&lt;p&gt;→ &lt;strong&gt;redis를 사용하여 좋아요 동시성 문제를 처리하기로 결정했다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;redisson-vs-lettuce&quot;&gt;Redisson vs Lettuce&lt;/h3&gt;
+
+&lt;p&gt;Lettuce의 경우 분산락을 직접 구현해야 하고 재시도, 타임아웃도 직접 구현해야 한다. 그리고 스핀락 방식이기 때문에 동시에 여러 스레드에서 요청을 한다면 redis에 부하가 많이 간다.&lt;/p&gt;
+
+&lt;p&gt;Redisson은 pub/sub 구조로 구현되어 있기 때문에 redis의 부하가 적게 가고 Lock 획득 재시도를 기본으로 제공하기 때문에 사용하기 편리하다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;→ Redisson을 사용하기로 결정!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;redisson-라이브러리-추가&quot;&gt;Redisson 라이브러리 추가&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/65_18.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;redissonlock&quot;&gt;@RedissonLock&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/65_19.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;redissonlockaop&quot;&gt;RedissonLockAop&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/65_20.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;img src=&quot;/assets/images/65_21.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;분산락 처리는 횡단 관심사이기 때문에 Aop로 처리했다.&lt;/p&gt;
+
+&lt;p&gt;여기서 중요한 부분은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TargetTransaction.proceed(joinPoint);&lt;/code&gt; 이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;targettransaction&quot;&gt;TargetTransaction&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/65_22.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;타겟 메서드는 부모 트랜잭션과 관계없이 동작하도록 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Propagation.REQUIRES_NEW&lt;/code&gt; 설정을 해줬다.&lt;/p&gt;
+
+&lt;p&gt;이렇게 해주는 이유는 트랜잭션 커밋 시점이 Lock의 해제 시점 이후일 때 동시성 문제가 발생할 수 있기 때문이다.&lt;/p&gt;
+
+&lt;p&gt;→ 어떤 이유로 동시성 문제가 생길 수 있는지 알아보자.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;갱신-분실&quot;&gt;갱신 분실&lt;/h3&gt;
+
+&lt;p&gt;트랜잭션 A(TxA)와 트랜잭션 B(TxB)가 있다고 가정하자. 그리고 현재 likeCount = 0이라고 해보자.&lt;/p&gt;
+
+&lt;p&gt;TxA, TxB가 좋아요 로직을 수행하기 위해서 동시에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;storyLike()&lt;/code&gt; 메서드에 접근한다고 가정하자.&lt;/p&gt;
+
+&lt;p&gt;TxA가 아주 미세한 차이로 먼저 Lock을 획득하고 likeCount를 1 증가시키고 Lock을 해제시켰다. (아직 트랜잭션을 커밋하지 않았다.)&lt;/p&gt;
+
+&lt;p&gt;이 상태에서 TxB가 Lock을 획득하여 Story를 조회했다. (이때 조회된 Story는 TxA가 수정하기 전의 Story이다. 즉 Story의 likeCount = 0이다.)&lt;/p&gt;
+
+&lt;p&gt;다시 TxA에서 트랜잭션 커밋을 한다. 그러면 Story의 likeCount = 1이 된다.&lt;/p&gt;
+
+&lt;p&gt;그리고 다시 TxB에서 Story의 likeCount를 1 증가시키고 트랜잭션을 커밋한다. (이때 TxB에서 조회한 likeCount는 0이었기 때문에 최종적으로 Story의 likeCount는 1이 된다.)&lt;/p&gt;
+
+&lt;p&gt;2번의 좋아요 요청이 있었는데 likeCount는 1만 증가하게 된 것이다.&lt;/p&gt;
+
+&lt;p&gt;→ 위와 같이 새로운 트랜잭션에서 처리하지 않으면 트랜잭션 커밋이 Lock 해제 이후에 일어나서 갱신 분실 문제가 발생할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;likeservice&quot;&gt;LikeService&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/65_23.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;스토리 좋아요, 좋아요 취소 로직에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@RedissonLock&lt;/code&gt; 에노테이션을 붙여서 Aop를 적용시켰다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;테스트-결과-2&quot;&gt;테스트 결과&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/65_24.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;정상적으로 테스트가 통과하는 것을 확인할 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;느낀점&quot;&gt;느낀점&lt;/h3&gt;
+
+&lt;p&gt;동시성 처리를 위한 여러 방식을 직접 구현해 보고 비교해 봄으로써 각 방식의 장단점을 알 수 있었고 어느 시점에 어떤 방식을 사용하면 좋을지 감을 잡을 수 있었다.&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="프로젝트" /><category term="트러블슈팅" /><category term="프로젝트" /><summary type="html">문제 상황</summary></entry><entry><title type="html">[트러블슈팅] 커서 기반 페이지네이션</title><link href="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/63/" rel="alternate" type="text/html" title="[트러블슈팅] 커서 기반 페이지네이션" /><published>2024-03-02T00:00:00+09:00</published><updated>2024-03-02T00:00:00+09:00</updated><id>http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/63</id><content type="html" xml:base="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/63/">&lt;h2 id=&quot;문제-인식&quot;&gt;문제 인식&lt;/h2&gt;
 
 &lt;p&gt;필자는 &lt;strong&gt;Palgona&lt;/strong&gt; 프로젝트에서 상품 리스트 조회 로직 구현을 맡았다.&lt;/p&gt;
 
@@ -1107,149 +1351,4 @@
 
 &lt;p&gt;&lt;img src=&quot;/assets/images/55_8.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;코드를 보면 알 수 있듯이 반복문을 활용하여 가지고 있는 모든 Provider를 활용하여 인증을 시도한다. 모든 Provider에 대해서 인증이 실패하면 실패 Authentication 객체를 반환하고 성공하&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><category term="Security" /><summary type="html">스프링 시큐리티</summary></entry><entry><title type="html">[디자인패턴] 커맨드 패턴</title><link href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/54/" rel="alternate" type="text/html" title="[디자인패턴] 커맨드 패턴" /><published>2023-12-10T00:00:00+09:00</published><updated>2023-12-10T00:00:00+09:00</updated><id>http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/54</id><content type="html" xml:base="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/54/">&lt;h1 id=&quot;커맨드-패턴&quot;&gt;커맨드 패턴&lt;/h1&gt;
-
-&lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Encapsulate a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable operations.&lt;/p&gt;
-
-  &lt;p&gt;-GoF design pattern&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;요구사항(요청, 명령)을 객체로 캡슐화하여 서로 다른 요구사항을 가진 클라이언트를 매개변수화시킬 수 있고 요구사항을 큐에 넣어 로그를 남기거나 작업을 취소할 수 있는 기능을 가능하게 한다.&lt;/p&gt;
-
-&lt;h2 id=&quot;구조&quot;&gt;구조&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/54_1.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;invoker&quot;&gt;Invoker&lt;/h3&gt;
-
-&lt;p&gt;요청을 받고 이를 실행시키는 역할을 수행한다. Command 인터페이스만 알고 있으며 실제로 Command가 어떻게 실행되는지는 알지 못한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;command&quot;&gt;Command&lt;/h3&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;execute()&lt;/code&gt; 메소드를 선언한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;concretecommand&quot;&gt;ConcreteCommand&lt;/h3&gt;
-
-&lt;p&gt;Command 인터페이스를 구현하며 맴버 변수로 Receiver를 가지고 있다.  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;execute()&lt;/code&gt;메소드 안에서 Receiver 메소드를 호출하여 로직이 실행된다.&lt;/p&gt;
-
-&lt;h3 id=&quot;receiver&quot;&gt;Receiver&lt;/h3&gt;
-
-&lt;p&gt;실제 명령이 실행되는 부분이다.&lt;/p&gt;
-
-&lt;h2 id=&quot;특징&quot;&gt;특징&lt;/h2&gt;
-
-&lt;h3 id=&quot;장점&quot;&gt;장점&lt;/h3&gt;
-
-&lt;h4 id=&quot;1-실제로-실행하는-객체receiver와-실행을-요청하는-객체invoker를-분리하여-결합도를-낮춘다&quot;&gt;1. 실제로 실행하는 객체(Receiver)와 실행을 요청하는 객체(Invoker)를 분리하여 결합도를 낮춘다.&lt;/h4&gt;
-
-&lt;p&gt;Invoker는 Reciver를 알지 못한 채로 Command의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;execute()&lt;/code&gt;메소드를 통해 실행을 하게 된다.&lt;/p&gt;
-
-&lt;h4 id=&quot;2-기존의-코드를-수정하지-않고도-새로운-명령을-추가할-수-있다-ocp-원칙&quot;&gt;2. 기존의 코드를 수정하지 않고도 새로운 명령을 추가할 수 있다. (OCP 원칙)&lt;/h4&gt;
-
-&lt;p&gt;새로운 명령이 추가되도 Invoker를 수정하지 않고 Revicer와  Command만 구현하면 된다.&lt;/p&gt;
-
-&lt;h3 id=&quot;단점&quot;&gt;단점&lt;/h3&gt;
-
-&lt;h4 id=&quot;1-새로운-명령이-생길때마다-클래스가-추가되기-때문에-코드-복잡성이-증가할-수-있다&quot;&gt;1. 새로운 명령이 생길때마다 클래스가 추가되기 때문에 코드 복잡성이 증가할 수 있다.&lt;/h4&gt;
-
-&lt;p&gt;-&amp;gt; 이제 예제를 보면서 이해해보자!&lt;/p&gt;
-
-&lt;h2 id=&quot;예제&quot;&gt;예제&lt;/h2&gt;
-
-&lt;p&gt;다음과 같은 기능을 가진 리모컨을 생각해보자.&lt;/p&gt;
-
-&lt;h3 id=&quot;리모컨-기능&quot;&gt;리모컨 기능&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;전등  ON/OFF&lt;/li&gt;
-  &lt;li&gt;TV ON/OFF&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;이를 표현하기 위해서는 리모컨, 전등, TV 클래스가 필요할 것이다. 아래 코드를 보자.&lt;/p&gt;
-
-&lt;h3 id=&quot;remote-class&quot;&gt;Remote Class&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/54_2.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;리모컨 클래스이다. 불끄기, 불켜기, Tv켜기, Tv끄기 메소드를 가진다.&lt;/p&gt;
-
-&lt;h3 id=&quot;light--tv-class&quot;&gt;Light &amp;amp; Tv Class&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/54_3.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;만약 이 상황에서 새로운 요구사항이 생겼다고 가정해보자.&lt;/p&gt;
-
-&lt;h4 id=&quot;추가된-요구사항&quot;&gt;추가된 요구사항&lt;/h4&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;리모컨을 통해 프로젝트를 켜고 끄는 기능을 추가해주세요.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;이를 만족시키기 위해서는 Remote 클래스에 맴버 변수로 Project를 추가하고 Project를 켜고 끄는 메소드를 추가해야 한다. 이는 기존 코드인 Remote를 수정하는 것이기 때문에 OCP를 위반하게 된다. 커맨드 패턴을 적용하면 요청을 호출하는 Remote 클래스와 실제 실행이 되는 Tv, Light 클래스 사이의 결합도를 낮추고 새로운 요구사항(프로젝트 Up/Down)이 생겼을 때 기존 코드(Remote 클래스)를 손보지 않고 기능을 추가할 수 있게 된다.&lt;/p&gt;
-
-&lt;p&gt;코드를 통해서 확인해보자!&lt;/p&gt;
-
-&lt;h3 id=&quot;커맨드-패턴을-적용한-코드&quot;&gt;커맨드 패턴을 적용한 코드&lt;/h3&gt;
-
-&lt;h3 id=&quot;command-1&quot;&gt;Command&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/54_5.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;명령을 추상화한 Command 인터페이스이다.&lt;/p&gt;
-
-&lt;h3 id=&quot;project-receiver&quot;&gt;Project (Receiver)&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/54_4.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;새로 추가된 명령을 수행하는 Project 클래스이다. 위의 클래스 다이어그램에서 설명했던 Receiver 역할을 수행하는 클래스이다.&lt;/p&gt;
-
-&lt;p&gt;앞서 봤던 Light, Tv도 모두 Receiver이다. (Light, Tv는 코드가 동일하니 위의 코드를 참고하자.)&lt;/p&gt;
-
-&lt;h3 id=&quot;lightoncommandlightoffcommand-concrete-command&quot;&gt;LightOnCommand/LightOffCommand (Concrete Command)&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/54_6.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Command 인터페이스를 구현하고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;execute()&lt;/code&gt;메소드 안에서 Light(Receiver)의 메소드를 호출한다.&lt;/p&gt;
-
-&lt;p&gt;이를 통해 Remote 클래스(Invoker)와 Light 클래스(Receiver) 사이의 결합도를 낮추게 된다.&lt;/p&gt;
-
-&lt;h3 id=&quot;tvoncommandtvoffcommand-concrete-command&quot;&gt;TvOnCommand/TvOffCommand (Concrete Command)&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/54_7.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;위에 설명한 Light의 경우와 완전히 동일하다.&lt;/p&gt;
-
-&lt;h3 id=&quot;projectoncommandprojectoffcommand-concrete-command&quot;&gt;ProjectOnCommand/ProjectOffCommand (Concrete Command)&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/54_8.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;마찬가지로 Light, Tv와 완전히 동일하니 설명은 생략한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;remote-invoker&quot;&gt;Remote (Invoker)&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/54_9.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Remote 클래스는 Command 인터페이스에만 의존한다. 때문에 실제로 각 ConcreteCommand가 어떤 Recevier를 호출하는지 알지 못한다.&lt;/p&gt;
-
-&lt;p&gt;커맨드를 추가하는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setCommand()&lt;/code&gt;, On/Off 버튼을 누르는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onButtonPush()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;offButtonPush()&lt;/code&gt;메소드를 가지고 있다.&lt;/p&gt;
-
-&lt;p&gt;이 함수 내부에서는 Command의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;execute()&lt;/code&gt;를 호출하게 된다.&lt;/p&gt;
-
-&lt;p&gt;코드를 보면 알 수 있듯이 새로운 기능을 추가함에 있어서 기존 코드를 수정할 필요가 없다 (OCP원칙). 그저 새로운 Receiver (여기서는 Project)와 ConcreteCommand(ProjectOnCommand, ProjectOffComand)만 새로 만들면 된다.&lt;/p&gt;
-
-&lt;h2 id=&quot;정리&quot;&gt;정리&lt;/h2&gt;
-
-&lt;p&gt;커맨드 패턴을 사용하면 실행을 요청하는 객체와 실제 실행하는 객체 사이의 결합도를 낮출 수 있다.&lt;/p&gt;
-
-&lt;p&gt;때문에 새로운 요구사항이 발생해도 유연하게 대처할 수 있다. 하지만 관리해야 하는 객체의 수가 늘어나기 때문에 무분별한 사용은 코드의 복잡도를 증가시킬 수 있다.&lt;/p&gt;
-
-&lt;p&gt;무작정 적용하기보다는 꼭 필요한 곳에만 사용하도록 하자.&lt;/p&gt;
-
-&lt;h2 id=&quot;참고&quot;&gt;참고&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;헤드 퍼스트 디자인 패턴&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="디자인패턴" /><category term="디자인패턴" /><summary type="html">커맨드 패턴</summary></entry></feed>
+&lt;p&gt;코드를 보면 알 수 있듯이 반복문을 활용하여 가지고 있는 모든 Provider를 활용하여 인증을 시도한다. 모든 Provider에 대해서 인증이 실패하면 실패 Authentication 객체를 반환하고 성공하&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><category term="Security" /><summary type="html">스프링 시큐리티</summary></entry></feed>
