@@ -1,4 +1,127 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-03-17T18:43:05+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[트러블슈팅] 좋아요 동시성 처리</title><link href="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/64/" rel="alternate" type="text/html" title="[트러블슈팅] 좋아요 동시성 처리" /><published>2024-03-08T00:00:00+09:00</published><updated>2024-03-08T00:00:00+09:00</updated><id>http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/64</id><content type="html" xml:base="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/64/">&lt;h2 id=&quot;문제-상황&quot;&gt;문제 상황&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-03-17T18:53:36+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[트러블슈팅] OneToOne 즉시로딩 문제</title><link href="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/65/" rel="alternate" type="text/html" title="[트러블슈팅] OneToOne 즉시로딩 문제" /><published>2024-03-10T00:00:00+09:00</published><updated>2024-03-10T00:00:00+09:00</updated><id>http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/65</id><content type="html" xml:base="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/65/">&lt;h2 id=&quot;문제상황&quot;&gt;문제상황&lt;/h2&gt;
+
+&lt;p&gt;Member와 Application 은 OneToOne 관계이고 지연 로딩 세팅을 했음에도 Member를 조회하면 Application이 즉시 로딩되는 문제가 발생했다.&lt;/p&gt;
+
+&lt;p&gt;이 문제의 원인과 해결한 방법을 공유하고자 글을 쓴다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;domain&quot;&gt;domain&lt;/h2&gt;
+
+&lt;h3 id=&quot;member-유저&quot;&gt;Member (유저)&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/66_1.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;application-멘토-인증-신청서&quot;&gt;Application (멘토 인증 신청서)&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/66_2.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;설명에 필요한 매핑 정보를 제외한 부분은 거둬냈다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;연관관계&quot;&gt;연관관계&lt;/h3&gt;
+
+&lt;p&gt;위의 매핑 정보를 보면 알 수 있듯이 연관관계의 주인은 Application이고 XToOne 관계의 기본 fetch 전략은 EAGER이기 때문에 LAZY 세팅을 해준 모습을 볼 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;즉시-로딩-발생&quot;&gt;즉시 로딩 발생&lt;/h3&gt;
+
+&lt;p&gt;현재 프로젝트는 Jwt 토큰 기반으로 인증/인가 처리를 하고 있기 때문에 요청이 들어올 때마다 JwtAuthenticationFilter에서 access Token을 검증하고 유저의 이메일을 추출한다. 그리고 이메일을 통해 유저 정보를 찾고 SecurityContextHolder에 인증 객체를 저장한다.&lt;/p&gt;
+
+&lt;p&gt;그런데 유저를 찾는 과정에서 Application이 즉시 로딩 돼서 Select 쿼리가 한 번씩 더 나가는 문제가 발생했다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/66_3.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;member-조회-시-나가는-쿼리&quot;&gt;Member 조회 시 나가는 쿼리&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/66_4.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;img src=&quot;/assets/images/66_5.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;분명 지연 로딩 세팅을 했음에도 불구하고 즉시 로딩으로 작동해서 select 쿼리가 한 번 더 나가는 것을 확인할 수 있었다.&lt;/p&gt;
+
+&lt;p&gt;→ 연관관계의 주인이 아닌 Member를 조회할 때 Application이 즉시 로딩되는 모습이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;원인-분석&quot;&gt;원인 분석&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;지연 로딩 조회가 가능하기 위해서는 JPA 구현체에서 프록시를 만들어야 된다.&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;그리고 연관 관계 엔티티는 null 또는 프록시 객체가 할당되어야 한다.
+    &lt;ul&gt;
+      &lt;li&gt;null은 연관관계에 해당한 엔티티가 존재하지 않음을 의미하고 프록시 객체는 연관관계에 해당하는 엔티티가 존재한다는 의미이다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;1, 2를 바탕으로 Application과 Member 테이블을 생각해 보자.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;application-관점&quot;&gt;Application 관점&lt;/h3&gt;
+
+&lt;p&gt;Application의 경우 연관관계의 주인이기 때문에 외래키로 member_id를 가지고 있다. 즉 Member의 존재를 파악할 수 있는 필드가 존재하는 것이다.&lt;/p&gt;
+
+&lt;p&gt;만약 member_id가 null이라면 연관된 Member가 없는 것이고 null이 아니라면 프록시 객체를 설정하여 지연 로딩을 할 수 있는 것이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;member-관점&quot;&gt;Member 관점&lt;/h3&gt;
+
+&lt;p&gt;Member의 경우 연관관계의 주인이 아니기 때문에 Application과 연결할 수 있는 필드 자체가 존재하지 않는다. 때문에 연관된 Application이 존재하지는 지 알 수도 없어서 null, 프록시 객체 중 어떤 값을 세팅할지 결정하기가 어렵다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;→ OneToOne 양방향 매핑 관계에서 연관관계의 주인이 아닌 Member를 조회하게 되면 프록시 객체를 생성할 수 없기 때문에 즉시 로딩으로 동작된다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;문제-해결&quot;&gt;문제 해결&lt;/h2&gt;
+
+&lt;h3 id=&quot;member를-조회할-때-application을-fetch-join-하기&quot;&gt;&lt;strong&gt;Member를 조회할 때 Application을 fetch join 하기&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;모든 로그인이 필요한 API에서 인증을 위해 Member가 조회되고 있는 상황이고 해당 로직에서 Application은 사용되지 않는다. 사용되지도 않는 Application을 모든 요청에 fetch join해서 가져오는 것은 적절하지 않다고 생각돼서 이 방식은 채택하지 않았다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;연관관계-재설정-member1---applicationn-최종-채택&quot;&gt;&lt;strong&gt;연관관계 재설정 Member(1) - Application(N) (최종 채택)&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;우리 프로젝트에서는 최종적으로 OneToOne 관계를 OneToMany 관계로 바꿈으로써 문제를 해결했다.&lt;/p&gt;
+
+&lt;h3 id=&quot;onetomany&quot;&gt;OneToMany&lt;/h3&gt;
+
+&lt;p&gt;OneToMany의 경우 지연 로딩이 가능하다. 컬렉션을 사용하면 null을 표현할 수 있기 때문이다. 일단 프록시 객체를 만들어 두고 만약 조회했을 때 size = 0이라면 연관된 객체가 없는 것으로 판단할 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;선택-이유&quot;&gt;선택 이유&lt;/h3&gt;
+
+&lt;p&gt;멘토 인증과 같은 경우 사용자가 적절한 명함 사진을 올리지 않는 경우에 관리자가 인증을 거부할 수 있다. 때문에 하나의 Member가 여러 번의 Application (멘토 인증 신청)을 할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;→ Member와 Application의 관계는 OneToOne보다는 OneToMany가 더 적절하다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;변경-후-member&quot;&gt;변경 후 Member&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/66_6.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;변경-후-application&quot;&gt;변경 후 Application&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/66_7.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;변경-후-쿼리&quot;&gt;변경 후 쿼리&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/66_8.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Member 조회 시 Application이 즉시 로딩되지 않는 모습을 볼 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;느낀점&quot;&gt;느낀점&lt;/h3&gt;
+
+&lt;p&gt;사실 처음부터 Member와 Application은 1:1이 아닌 1:N으로 설계하는 것이 맞다. 하지만 잘못된 설계로 인해 지연 로딩이 안되는 문제를 경험할 수 있었고 JPA에 대해서 더 깊게 이해할 수 있었던 것 같다.&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="프로젝트" /><category term="트러블슈팅" /><category term="프로젝트" /><summary type="html">문제상황</summary></entry><entry><title type="html">[트러블슈팅] 좋아요 동시성 처리</title><link href="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/64/" rel="alternate" type="text/html" title="[트러블슈팅] 좋아요 동시성 처리" /><published>2024-03-08T00:00:00+09:00</published><updated>2024-03-08T00:00:00+09:00</updated><id>http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/64</id><content type="html" xml:base="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/64/">&lt;h2 id=&quot;문제-상황&quot;&gt;문제 상황&lt;/h2&gt;
 
 &lt;p&gt;Story - Like는 1:N 관계이고 스토리를 조회할 때 스토리의 좋아요 수를 같이 가져와야 했다.&lt;/p&gt;
 
@@ -1278,77 +1401,4 @@
   &lt;li&gt;
     &lt;p&gt;면접을 위한 CS 전공지식 노트&lt;/p&gt;
   &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="운영체제" /><category term="운영체제" /><category term="CS" /><summary type="html">프로세스</summary></entry><entry><title type="html">[Spring] Spring Security (진행중)</title><link href="http://localhost:4000/spring/55/" rel="alternate" type="text/html" title="[Spring] Spring Security (진행중)" /><published>2023-12-21T00:00:00+09:00</published><updated>2023-12-21T00:00:00+09:00</updated><id>http://localhost:4000/spring/55</id><content type="html" xml:base="http://localhost:4000/spring/55/">&lt;h1 id=&quot;스프링-시큐리티&quot;&gt;스프링 시큐리티&lt;/h1&gt;
-
-&lt;h2 id=&quot;필요성&quot;&gt;필요성&lt;/h2&gt;
-
-&lt;p&gt;애플리케이션을 개발함에 있어서 보안은 굉장히 중요한 이슈이다. 보안이 뚫리게 되면 단순히 데이터, 돈을 잃는 것을 넘어서 수년간 쌓아온 브랜드 평판과 유저로부터의 신뢰를 한번에 잃을 수 있다. 그렇다고 애플리케이션을 만들때마다 자체 보안 시스템을 만드는 것은 매우 비효율적이다. 기능적으로 문제가 발생할 위험도 있고 많은 시간과 돈이 들어간다. 스프링은 이런 문제를 해결해주기 위해 스프링 시큐리티라는 스프링 하부 프레임워크를 제공한다.&lt;/p&gt;
-
-&lt;h2 id=&quot;흐름&quot;&gt;흐름&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/55_1.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;위 그림은 가장 기본적인 Security의 흐름을 보여준다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;클라이언트로부터 HTTP 요청이 들어오면 Spring Security의 필터가 이를 가로챈다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;요청에 들어있는 유저의 아이디, 패스워드를 추출하여 Authentication을 구현한 UsernamePasswordAuthenticationToken을 생성하고 AuthenticationManager를 구현한 ProviderManager의 authenticate()메서드를 호출하며 이를 넘겨준다.&lt;/li&gt;
-  &lt;li&gt;ProviderManager는 모든 AuthenticationProvider를 순차적으로 호출하여 인증을 수행한다.&lt;/li&gt;
-  &lt;li&gt;AuthenticationProvider에서는 UserDetailService/UserDetailManager와 PasswordEncoder의 도움을 받아 인증을 수행하며 Authentication 객체를 반환한다.&lt;/li&gt;
-  &lt;li&gt;인증에 성공하게 되면 AuthenticationManager는 Authentication 객체를 반환하고 필터에서 이를 받아 SecurityContextHolder 내부의 Context에 인증 객체를 저장하게 된다.&lt;/li&gt;
-  &lt;li&gt;만약 실패하게 되면 AuthenticationManager는 또 다른 AuthenticationProvider를 호출하여 위 과정을 계속 반복하게 된다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;이제 각각의 역할에 대해서 더 자세하게 알아보자&lt;/p&gt;
-
-&lt;h2 id=&quot;spring-security-filter&quot;&gt;Spring Security Filter&lt;/h2&gt;
-
-&lt;h3 id=&quot;defaultloginpagegeneratorfilter&quot;&gt;DefaultLoginPageGeneratorFilter&lt;/h3&gt;
-
-&lt;p&gt;스프링 시큐리티 의존성을 추가하고 우리의 서비스에 접근하려고 하면 아래와 같은 로그인 페이지로 넘어가지는 경험을 해봤을 것이다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/55_4.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;이러한 로그인 기능을 구현한 필터가 바로 DefaultLoginPageGeneratorFilter이다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/55_3.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;요청으로부터 로그인 정보를 확인하여 로그인을 하지 않은 상태라면 위와 같은 로그인 페이지를 만든다. 실질적으로 로그인 페이지를 만드는 로직은 generateLoginPageHtml()메서드 안에 존재한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/55_5.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;한땀한땀 html 코드가 작성되어 있는 것을 볼 수 있다.&lt;/p&gt;
-
-&lt;h3 id=&quot;usernamepasswordauthenticationfilter&quot;&gt;UsernamePasswordAuthenticationFilter&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/55_2.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;다음으로는 UsernamePasswordAuthenticationFilter이다. 코드를 보면 request로부터 유저의 아이디, 패스워드를 추출하고 Authentication을 구현한 UsernamePasswordAuthenticationToken을 생성하는 것을 볼 수 있다. 그리고 AuthenticationManager의 authenticate() 메서드를 호출하며 이를 넘기는 것을 볼 수 있다. 그렇다면 이 UsernamePasswordAuthenToken의 정체는 무엇일까?&lt;/p&gt;
-
-&lt;p&gt;아래 코드를 보자.&lt;/p&gt;
-
-&lt;h3 id=&quot;authentication&quot;&gt;Authentication&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/55_9.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;img src=&quot;/assets/images/55_10.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Authentication 객체는 현재 요청하고 있는 주체의 정보가 들어있다. 이 객체는 SecurityContextHolder 안의 ContextHolder에 실질적으로 저장되는 유저의 정보이기도 하다. 뜬금없이 Authentication에 대해서 설명한 이유는 UsernamePasswordAuthenticationToken이 authentication을 구현한 클래스이기 때문이다. (실제로는 AbstractAuthenticationToken을 상속받는데 이 추상 클래스가 Authentication을 구현하고 있다.)&lt;/p&gt;
-
-&lt;h3 id=&quot;usernamepasswordauthenticationtoken&quot;&gt;UsernamePasswordAuthenticationToken&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/55_7.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;UsernamePasswordAuthenticationToken을 보면 두 개의 생성자가 있는 것을 볼 수 있다. 위 생성자는 내부에서 setAuthenticated(false)로 인증 실패 상태를 넣는 것을 볼 수 있고 아래는 true를 넣어 성공 상태를 넣는다. 우리가 위에서 설명한 UsernamePasswordAuthenticationFilter 내부에서는 첫번째 생성자를 이용하여 객체를 생성한다.&lt;/p&gt;
-
-&lt;p&gt;그렇다면 두번째 생성자는 언제 사용될까? AuthenticationProvider에서 실질적인 인증을 수행한 후 인증에 성공하면 Authentication 객체를 반환하는데 이 때 두번째 생성자를 사용하게 된다.&lt;/p&gt;
-
-&lt;p&gt;다음으로 AuthenticationManager에 대해서 알아보자.&lt;/p&gt;
-
-&lt;h2 id=&quot;authenticationmanager&quot;&gt;AuthenticationManager&lt;/h2&gt;
-
-&lt;p&gt;AuthenticationManager는 인터페이스이고 단 하나의 메소드 authenticate()를 정의하고 있다. AuthenticationManager를 구현한 ProviderManager내부의 authenticate() 메서드 내부를 보자.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/55_8.png&quot; alt=&quot;img1&quot; width=&quot;90%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;코드를 보면 알 수 있듯이 반복문을 활용하여 가지고 있는 모든 Provider를 활용하여 인증을 시도한다. 모든 Provider에 대해서 인증이 실패하면 실패 Authentication 객체를 반환하고 성공하&lt;/p&gt;</content><author><name>Moon JinSu</name></author><category term="Spring" /><category term="Spring" /><category term="Security" /><summary type="html">스프링 시큐리티</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="운영체제" /><category term="운영체제" /><category term="CS" /><summary type="html">프로세스</summary></entry></feed>

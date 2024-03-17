@@ -382,4 +382,10 @@ var store = [{
         "tags": ["트러블슈팅","프로젝트"],
         "url": "/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/64/",
         "teaser": null
+      },{
+        "title": "[트러블슈팅] OneToOne 즉시로딩 문제",
+        "excerpt":"문제상황 Member와 Application 은 OneToOne 관계이고 지연 로딩 세팅을 했음에도 Member를 조회하면 Application이 즉시 로딩되는 문제가 발생했다. 이 문제의 원인과 해결한 방법을 공유하고자 글을 쓴다. domain Member (유저) Application (멘토 인증 신청서) 설명에 필요한 매핑 정보를 제외한 부분은 거둬냈다. 연관관계 위의 매핑 정보를 보면 알 수 있듯이 연관관계의 주인은 Application이고...","categories": ["프로젝트"],
+        "tags": ["트러블슈팅","프로젝트"],
+        "url": "/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/65/",
+        "teaser": null
       }]
