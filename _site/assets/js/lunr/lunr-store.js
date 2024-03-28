@@ -388,4 +388,10 @@ var store = [{
         "tags": ["트러블슈팅","프로젝트"],
         "url": "/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/65/",
         "teaser": null
+      },{
+        "title": "[DevOps] Github Action CI/CD",
+        "excerpt":"배경 필자는 palgona 프로젝트에서 배포를 담당하고 있다. 이전까지는 기능을 개발하고 develop 브랜치에 merge한 후 수동으로 서버에 들어가서 재배포를 수행했었다. 매번 수동으로 Docker image를 생성해서 다시 실행시켰었는데 서버 성능도 좋지 않아서 빌드 중에 멈추거나 시간이 오래 걸리는 일이 다반사였다. 그래서 이를 자동화하면 좋겠다고 생각했고 사용하기 간편한 github Action를 통해 CI/CD를 구축했다....","categories": ["프로젝트","DevOps"],
+        "tags": ["CI/CD","프로젝트"],
+        "url": "/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/devops/66/",
+        "teaser": null
       }]

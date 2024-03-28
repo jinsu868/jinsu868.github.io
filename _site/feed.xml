@@ -1,4 +1,117 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-03-17T18:53:36+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[트러블슈팅] OneToOne 즉시로딩 문제</title><link href="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/65/" rel="alternate" type="text/html" title="[트러블슈팅] OneToOne 즉시로딩 문제" /><published>2024-03-10T00:00:00+09:00</published><updated>2024-03-10T00:00:00+09:00</updated><id>http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/65</id><content type="html" xml:base="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/65/">&lt;h2 id=&quot;문제상황&quot;&gt;문제상황&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-03-28T19:36:05+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[DevOps] Github Action CI/CD</title><link href="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/devops/66/" rel="alternate" type="text/html" title="[DevOps] Github Action CI/CD" /><published>2024-03-28T00:00:00+09:00</published><updated>2024-03-28T00:00:00+09:00</updated><id>http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/devops/66</id><content type="html" xml:base="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/devops/66/">&lt;h2 id=&quot;배경&quot;&gt;배경&lt;/h2&gt;
+
+&lt;p&gt;필자는 palgona 프로젝트에서 배포를 담당하고 있다. 이전까지는 기능을 개발하고 develop 브랜치에 merge한 후 수동으로 서버에 들어가서 재배포를 수행했었다. 매번 수동으로 Docker image를 생성해서 다시 실행시켰었는데 서버 성능도 좋지 않아서 빌드 중에 멈추거나 시간이 오래 걸리는 일이 다반사였다. 그래서 이를 자동화하면 좋겠다고 생각했고 사용하기 간편한 github Action를 통해 CI/CD를 구축했다. CI/CD에 대해서 잘 모른다면 &lt;a href=&quot;https://jinsu868.github.io/devops/48/&quot;&gt;CI/CD &amp;amp; 무중단 배포&lt;/a&gt;를 참고하자.&lt;/p&gt;
+
+&lt;p&gt;이번 포스팅에서는 필자가 CI/CD를 구축한 과정에 대해서 설명하겠다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;github-action&quot;&gt;Github Action&lt;/h2&gt;
+
+&lt;p&gt;먼저 Github Action에 대해서 간단하게 알아보자.&lt;/p&gt;
+
+&lt;h3 id=&quot;workflow&quot;&gt;Workflow&lt;/h3&gt;
+
+&lt;p&gt;하나의 자동화된 프로세스로 여러 Job으로 구성되고 특정 Event가 발생했을 때 실행된다. Workflow 파일은 yml 파일로 작성되며 .github/workflows/ 경로에 저장된다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;event&quot;&gt;Event&lt;/h3&gt;
+
+&lt;p&gt;Workflow가 실행되도록 하는 특정한 활동이나 규칙을 의미한다.&lt;/p&gt;
+
+&lt;p&gt;ex) 특정 브랜치에 push가 발생하거나 pull-request가 발생하거나 하는 일련의 과정 등등. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;job&quot;&gt;Job&lt;/h3&gt;
+
+&lt;p&gt;여러 Step으로 구성되며, 가상 환경의 인스턴스(Runner)에서 실행된다.&lt;/p&gt;
+
+&lt;p&gt;다른 Job과 의존 관계를 가질 수도 있고, 독립적으로 병렬 실행될 수도 있다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;step&quot;&gt;Step&lt;/h3&gt;
+
+&lt;p&gt;Task들의 집합으로, 커맨드를 실행하거나 Action을 실행할 수 있다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;action&quot;&gt;Action&lt;/h3&gt;
+
+&lt;p&gt;가장 작은 단위로 Job을 만들기 위해 step들을 연결한다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;runner&quot;&gt;Runner&lt;/h3&gt;
+
+&lt;p&gt;Workflow가 실행되는 인스턴스를 말한다. 간단하게 github에서 빌려주는 작은 서버라고 생각하면 된다. &lt;br /&gt; 위의 개념을 기반으로 palgona 프로젝트에 적용한 workflow 파일을 보자. &lt;br /&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;workflowsdevyml&quot;&gt;Workflows/dev.yml&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/67_2.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;img src=&quot;/assets/images/67_3.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;전체 코드는 위와 같다. 하나씩 살펴보자. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;실행-조건-event&quot;&gt;실행 조건 (Event)&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/67_4.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;위에서 설명한 Event 개념을 생각하면 된다. develop 브랜치에 push나 pull-request가 발생하면 해당 workflow 파일이 실행된다는 뜻이다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;실행-환경-runner&quot;&gt;실행 환경 (Runner)&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/67_5.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;runs-on은 runner가 어떤 환경으로 실행될지 지정하는 부분이다. 필자는 ubuntu 환경을 설정했다.  &lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;step-1&quot;&gt;step&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/67_6.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Job을 구성하는 step들에 대해서 살펴보자. step은 name을 통해 이름을 어떤 작업인지 이름을 지어줄 수 있다. 그리고  uses와 run이 있는데 uses는 이미 있는 것을 쓰는 것이고 run은 직접 실행한 명령어를 지정하는 것이다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;actions/checkout@v4&lt;/code&gt; 부분은 chekout을 하는 부분인데 레포지토리의 코드를 runner로 옮기는 부분이다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;actions/setup-java@v4&lt;/code&gt;에서는 jdk를 설정하는데 이 프로젝트는 jdk-17을 사용하고 있기 때문에 17로 설정했다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;applicationyml-생성&quot;&gt;application.yml 생성&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/67_7.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 부분은 application.yml 파일을 생성해서 넣는 부분이다. github에는 일반적으로 민감한 정보가 들어있는 application.yml 파일을 올리면 안 된다. 하지만 빌드를 하기 위해서는 여러 설정 정보가 들어있는 apllication.yml 파일이 있어야 한다.&lt;/p&gt;
+
+&lt;p&gt;github은 이러한 민감한 설정 정보를 저장하고 불러올 수 있는 기능을 제공한다.&lt;/p&gt;
+
+&lt;p&gt;github repostiroy -&amp;gt; settings -&amp;gt; Secrets and variables에서 이러한 값들을 저장해둘 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/67_1.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;이렇게 설정한 변수는 workflow 파일에서 $  으로 접근할 수 있다.  &lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;애플리케이션-빌드&quot;&gt;애플리케이션 빌드&lt;/h3&gt;
+
+&lt;h3&gt;&lt;img src=&quot;/assets/images/67_8.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/h3&gt;
+
+&lt;p&gt;여기서는 gradlew에 실행 권한을 주고 테스트 없이 빌드를 진행하게 된다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;도커-build-및-push&quot;&gt;도커 build 및 push&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/67_9.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;다음으로 docker를 빌드하고 docker hub에 푸시하는 부분이다. 마찬가지로 docker username과 password는 민감한 정보이기 때문에 github에 저장해둔 값을 사용했다. &lt;br /&gt; 당연히 도커를 빌드하기 위해서는 Dockerfile이 있어야 한다. (commit 방식은 잘 사용 X) &lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;dockerfile&quot;&gt;Dockerfile&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/67_10.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;배포&quot;&gt;배포&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/67_11.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;마지막으로 서버에 배포하는 부분이다. 기존에 ec2 t3 micro를 사용하고 있었는데 Docker build할 때 ec2 멈춤 현상이 자주 발생해서 아직 학교를 다니고 있는 팀원의 학교 서버를 사용해서 배포를 진행했다. 👍 &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;ssh-action은 ssh로 접근할 때 많이 사용되는 프로젝트이다. 사용법은 간단한데 host에 public IPv4 주소를 넣어주고 username에 접속 대상 Id, password에 private Key를 넣어주면 된다. 물론 이 정보들은 외부에 공개되면 안 되기 때문에 github에 세팅해뒀다.&lt;/p&gt;
+
+&lt;p&gt;그리고 ssh로 서버에 접속한 이후에 이전에 실행하던 컨테이너, 이미지를 삭제한 후 docker hub에서 새로 생성한 이미지를 pull 받아서 실행시켜줬다. &lt;br /&gt; 이로써 CI/CD 파이프라인 구축을 완료했다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;참고&quot;&gt;참고&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://zzsza.github.io/development/2020/06/06/github-action/&quot;&gt;https://zzsza.github.io/development/2020/06/06/github-action/&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://velog.io/@sweetchip/Github-Actions-%EC%99%B8%EB%B6%80-%EC%84%9C%EB%B2%84%EC%97%90-SSH%EB%A1%9C-%EC%A0%91%EC%86%8D%ED%95%B4%EC%84%9C-%EC%BB%A4%EB%A7%A8%EB%93%9C-%EC%8B%A4%ED%96%89%ED%95%98%EA%B8%B0&quot;&gt;https://velog.io/@sweetchip/Github-Actions-%EC%99%B8%EB%B6%80-%EC%84%9C%EB%B2%84%EC%97%90-SSH%EB%A1%9C-%EC%A0%91%EC%86%8D%ED%95%B4%EC%84%9C-%EC%BB%A4%EB%A7%A8%EB%93%9C-%EC%8B%A4%ED%96%89%ED%95%98%EA%B8%B0&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="프로젝트" /><category term="DevOps" /><category term="CI/CD" /><category term="프로젝트" /><summary type="html">배경</summary></entry><entry><title type="html">[트러블슈팅] OneToOne 즉시로딩 문제</title><link href="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/65/" rel="alternate" type="text/html" title="[트러블슈팅] OneToOne 즉시로딩 문제" /><published>2024-03-10T00:00:00+09:00</published><updated>2024-03-10T00:00:00+09:00</updated><id>http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/65</id><content type="html" xml:base="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/65/">&lt;h2 id=&quot;문제상황&quot;&gt;문제상황&lt;/h2&gt;
 
 &lt;p&gt;Member와 Application 은 OneToOne 관계이고 지연 로딩 세팅을 했음에도 Member를 조회하면 Application이 즉시 로딩되는 문제가 발생했다.&lt;/p&gt;
 
@@ -1286,119 +1399,4 @@
   &lt;li&gt;면접을 위한 CS 전공지식 노트&lt;/li&gt;
   &lt;li&gt;Operating System Concepts&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://itstory1592.tistory.com/89&quot;&gt;https://itstory1592.tistory.com/89&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="운영체제" /><category term="운영체제" /><category term="CS" /><summary type="html">좀비 프로세스와 고아 프로세스를 이해하기 위해서 먼저 프로세스를 생성하는 과정을 좀 더 자세하게 알아보자.</summary></entry><entry><title type="html">[운영체제] 프로세스</title><link href="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/56/" rel="alternate" type="text/html" title="[운영체제] 프로세스" /><published>2023-12-27T00:00:00+09:00</published><updated>2023-12-27T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/56</id><content type="html" xml:base="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/56/">&lt;h1 id=&quot;프로세스&quot;&gt;프로세스&lt;/h1&gt;
-
-&lt;h2 id=&quot;정의&quot;&gt;정의&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;프로세스는 컴퓨터에서 실행 중인 프로그램을 말한다. 프로그램이 메모리에 올라가면 프로세스가 되고 CPU에 의해서 프로세스가 실행된다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;특징&quot;&gt;특징&lt;/h2&gt;
-
-&lt;p&gt;각 프로세스는 서로 완전히 독립적이기 때문에 메모리 영역을 다른 프로세스와 공유하지 않는다. 때문에 한 프로세스에서 오류가 발생하더라도 다른 프로세스에 영향을 주지 않는다.&lt;/p&gt;
-
-&lt;h2 id=&quot;상태&quot;&gt;상태&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/56_1.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;new&quot;&gt;new&lt;/h3&gt;
-
-&lt;p&gt;프로세스가 생성된 상태&lt;/p&gt;
-
-&lt;h3 id=&quot;ready&quot;&gt;ready&lt;/h3&gt;
-
-&lt;p&gt;프로세스가 CPU 할당을 기다리고 있는 상태&lt;/p&gt;
-
-&lt;p&gt;CPU만 받으면 바로 실행할 수 있는 상태이다.&lt;/p&gt;
-
-&lt;h3 id=&quot;running&quot;&gt;running&lt;/h3&gt;
-
-&lt;p&gt;프로세스가 CPU를 할당 받아서 명령어를 실행하고 있는 상태이다.&lt;/p&gt;
-
-&lt;h3 id=&quot;waiting&quot;&gt;waiting&lt;/h3&gt;
-
-&lt;p&gt;프로세스가 이벤트가 발생할 때까지 대기하고 있는 상태&lt;/p&gt;
-
-&lt;h3 id=&quot;terminated&quot;&gt;terminated&lt;/h3&gt;
-
-&lt;p&gt;프로세스가 종료된 상태&lt;/p&gt;
-
-&lt;p&gt;프로세스가 소유한 모든 자원을 반납하게 된다.&lt;/p&gt;
-
-&lt;h2 id=&quot;메모리-구조&quot;&gt;메모리 구조&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/56_2.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;코드-영역-code&quot;&gt;코드 영역 (code)&lt;/h3&gt;
-
-&lt;p&gt;실행할 프로그램의 코드가 저장되는 영역이다. CPU는 코드 영역에 저장된 명령어를 하나씩 가져가서(fetch) 실행(execution)한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;데이터-영역-data&quot;&gt;데이터 영역 (data)&lt;/h3&gt;
-
-&lt;p&gt;전역변수, 정적변수가 저장되는 영역으로 프로그램이 시작될 때 할당되며 프로그램이 종료할 때 소멸한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;힙-영역-heap&quot;&gt;힙 영역 (heap)&lt;/h3&gt;
-
-&lt;p&gt;메모리 공간이 동적으로 할당되고 헤제되는 영역이다.&lt;/p&gt;
-
-&lt;p&gt;낮은 주소에서 높은 주소로 채워진다.&lt;/p&gt;
-
-&lt;h3 id=&quot;스택-영역-stack&quot;&gt;스택 영역 (stack)&lt;/h3&gt;
-
-&lt;p&gt;함수 호출에 따른 지역변수와 매개변수가 저장되는 영역이다. 함수가 호출될 때마다 호출될 떄의 환경 등 특정 정보가 스택에 계속 저장된다.&lt;/p&gt;
-
-&lt;p&gt;높은 주소에서 낮은 주소로 채워진다.&lt;/p&gt;
-
-&lt;h4 id=&quot;힙과-스택의-차이&quot;&gt;힙과 스택의 차이&lt;/h4&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/56_3.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;pcb&quot;&gt;PCB&lt;/h2&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;PCB는 프로세스 제어 블록으로 프로세스를 관리하기 위한 정보를 포함하는 운영체제 커널의 자료구조이다. 프로세스의 중요한 정보를 저장하고 있기 때문에 보호된 메모리에 저장된다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;구조&quot;&gt;구조&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;프로세스 식별자&lt;/strong&gt; :  프로세스 식별변호&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;프로세스 상태&lt;/strong&gt; : new, ready, running, wating, terminated 등의 상태를 저장&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;프로그램 카운터 (PC)&lt;/strong&gt; : 프로세스가 다음에 실행할 명령어의 주소를 저장&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;CPU 레지스터&lt;/strong&gt; : 프로세스를 실행하기 위해 저장해야 할 레지스터 정보&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;CPU 스케줄링 정보&lt;/strong&gt; : 프로세스의 우선순위, 스케줄 큐에 대한 포인터 등&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;계정 정보&lt;/strong&gt; : 프로세스 실행에 사용된 CPU 사용량, 실행 유저 정보&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;메모리 관리 정보&lt;/strong&gt; : 페이지, 세그먼트 테이블 등과 같은 정보를 저장&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;I/O 상태 정보&lt;/strong&gt; : 프로세스에 할당된 I/O 디바이스 목록&lt;/p&gt;
-
-&lt;h2 id=&quot;멀티-프로세싱&quot;&gt;멀티 프로세싱&lt;/h2&gt;
-
-&lt;h3 id=&quot;정의-1&quot;&gt;정의&lt;/h3&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;여러 개의 프로세스를 통해서 병렬적으로 작업을 수행하는 것을 말한다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;특징-1&quot;&gt;특징&lt;/h3&gt;
-
-&lt;p&gt;프로세스끼리는 메모리를 공유하지 않기 때문에 하나의 프로세스에 문제가 발생하더라도 다른 프로세스에 영향을 끼치지 않는다.&lt;/p&gt;
-
-&lt;p&gt;하지만 멀티 스레드 방식보다 많은 양의 메모리 공간과 CPU를 차지한다는 단점이 있다.&lt;/p&gt;
-
-&lt;h2 id=&quot;참고&quot;&gt;참고&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;Operating System Concepts&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;면접을 위한 CS 전공지식 노트&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="운영체제" /><category term="운영체제" /><category term="CS" /><summary type="html">프로세스</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="운영체제" /><category term="운영체제" /><category term="CS" /><summary type="html">좀비 프로세스와 고아 프로세스를 이해하기 위해서 먼저 프로세스를 생성하는 과정을 좀 더 자세하게 알아보자.</summary></entry></feed>
