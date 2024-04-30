@@ -1,4 +1,92 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-03-28T19:36:05+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[DevOps] Github Action CI/CD</title><link href="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/devops/66/" rel="alternate" type="text/html" title="[DevOps] Github Action CI/CD" /><published>2024-03-28T00:00:00+09:00</published><updated>2024-03-28T00:00:00+09:00</updated><id>http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/devops/66</id><content type="html" xml:base="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/devops/66/">&lt;h2 id=&quot;배경&quot;&gt;배경&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2024-04-30T21:23:53+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Jinsu’s story</title><subtitle>매일 정리하는 습관</subtitle><author><name>Moon JinSu</name></author><entry><title type="html">[프로젝트] Spring Interceptor 인증/인가</title><link href="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/spring/67/" rel="alternate" type="text/html" title="[프로젝트] Spring Interceptor 인증/인가" /><published>2024-04-29T00:00:00+09:00</published><updated>2024-04-29T00:00:00+09:00</updated><id>http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/spring/67</id><content type="html" xml:base="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/spring/67/">&lt;h2 id=&quot;배경&quot;&gt;배경&lt;/h2&gt;
+
+&lt;p&gt;이전에는 Spring Security를 사용하여 인증/인가 처리를 해왔는데 이번 프로젝트(talk-talk)에서는 Spring에 대한 이해도 높일겸 interceptor에서 인증/인가를 구현해봤다.&lt;/p&gt;
+
+&lt;h2 id=&quot;인터셉터&quot;&gt;인터셉터&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/68_1.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;출처: &lt;a href=&quot;https://mangkyu.tistory.com/173&quot;&gt;https://mangkyu.tistory.com/173&lt;/a&gt; [MangKyu’s Diary:티스토리]&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;인터셉터는 J2EE 표준 스펙인 필터와 달리 Spring에서 제공하는 기술로써, DispatcherServlet이 컨트롤러를 호출하기 전 ,후에 요청과 응답을 참조하거나 조작할 수 있다. DispatcherServlet에서는 핸들러 매핑을 통해서 적절한 컨트롤러를 찾는데 이 응답값으로 HandlerExcurtionChain을 반환한다. 만약 1개 이상의 인터셉터가 등록되어 있다면 순차적으로 인터셉터를 실행하고 컨트롤러를 호출하게 된다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;DispatcherServlet이 컨트롤러 호출 전후 요청, 응답을 조작할 수 있기 떄문에 인터셉터에서 인증/인가 처리를 하면 깔끔하다. 물론 Spring Security를 사용하여 Filter에서 인증/인가를 구현할 수도 있고 Aop를 사용하여 처리할 수도 있다.&lt;/p&gt;
+
+&lt;p&gt;이제 인터셉터를 등록해보자.&lt;/p&gt;
+
+&lt;h2 id=&quot;인터셉터-등록&quot;&gt;인터셉터 등록&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/68_2.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;img src=&quot;/assets/images/68_3.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;인터셉터를 등록하기 위해서는 WebMvcConfigurer를 구현하여 addInterceptors()를 오버라이딩하고 우리가 만든 인터셉터를 추가해주면 된다.&lt;/p&gt;
+
+&lt;p&gt;위의 코드에서는  ArgumentResolver도 추가돼있는 것을 볼 수 있는데 이는 컨트롤러에서 인증된 사용자 정보를 받아서 쓰기 위해서이다. Spring Security의 @AuthenticationPrinciple과 같은 맥락이라고 생각하면 된다.&lt;/p&gt;
+
+&lt;p&gt;참고) Spring Security에서는 SecurityContextHolder에 저장한 인증 객체를 컨트롤러에서 @AuthenticationPrinciple 어노테이션을 통해서 가져올 수 있다.&lt;/p&gt;
+
+&lt;p&gt;이제 등록을 완료했으니 인터셉터를 구현해보자.&lt;/p&gt;
+
+&lt;h2 id=&quot;authenticationinterceptor&quot;&gt;AuthenticationInterceptor&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/68_4.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;img src=&quot;/assets/images/68_5.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;우선 커스텀 인터셉터는 HandlerInterceptor를 구현해야 한다. HandlerInterceptor에는 총 3개의 메서드가 있는데 우리는 컨트롤러 이전에 호출되는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;preHandle()&lt;/code&gt;만 구현하여 인증/인가를 처리할 것이다.&lt;/p&gt;
+
+&lt;p&gt;먼저 isRequiredAuth() 메서드는 로그인이 필요한 API인지 확인하는 메서드이다. 로그인, 회원가입등 로그인이 요구되지 않는 API가 있을 것이다. 이런 API는 인증을 수행할 필요가 없다.&lt;/p&gt;
+
+&lt;p&gt;그리고 요청으로부터 payload를 꺼내서 실제 유저가 존재하는 지 검증하고 setAttribute() 를 통해서 방금 꺼낸 payload 값인 memberId를 request에 넣어준다. 이렇게 해주는 이유는 컨트롤러에 인증 객체를 파라미터로 넘겨주기 위해서다.&lt;/p&gt;
+
+&lt;p&gt;각각의 메서드를 살펴보자.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;isrequiredauth&quot;&gt;isRequiredAuth&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/68_6.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;컨트롤러 메서드에 달린 어노테이션중에 @PreAuthorize가 붙은 API에 대해서만 true를 반환한다. 따라서 위에서 로그인이 필요 없으면 그냥 넘어가게 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;extractmemberidfromrequest&quot;&gt;extractMemberIdFromRequest&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/68_7.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;단순히 request 로부터 토큰을 파싱하여 payload를 꺼내는 부분이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;authresolver&quot;&gt;AuthResolver&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/68_8.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;AuthResolver에서는 인증된 유저가 요구되는 컨트롤러의 파라미터를 세팅해주기 위해서 필요하다. supportsParameter에서 AuthMember 파라미터를 가진 컨트롤러들에 대해서 해당 리졸버가 동작하게 된다.&lt;/p&gt;
+
+&lt;p&gt;resolveArgument에서는 인터셉터에서 세팅한 유저의 정보(id)를 바탕으로 유저를 찾고 인증 객체를 생성하여 반환한다.&lt;/p&gt;
+
+&lt;p&gt;이렇게 되면 컨트롤러에서 인증 객체(AuthMember)를 파라미터로 꺼내서 사용할 수 있게 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;authmember를-사용하는-컨트롤러&quot;&gt;AuthMember를 사용하는 컨트롤러&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/images/68_9.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;실제 컨트롤러 부분이다. 필자가 커스텀한 어노테이션(@PreAuthorize)가 붙어 있는 것을 확인할 수 있다. @PreAuthorize 어노테이션이 붙어 있으면 위에 설명한 AuthInterceptor에서 isRequiredAuth()가 true를 반환하게 된다.&lt;/p&gt;
+
+&lt;p&gt;그리고 파라미터 부분에 AuthMember가 있는 것을 볼 수 있다. 이는 마찬가지로 바로 위에 설명한 AuthResolver에서 채워지게 된다.&lt;/p&gt;
+
+&lt;p&gt;이로써 Interceptor를 활용한 인증/인가 처리 부분에 대한 설명을 마치겠다.&lt;/p&gt;
+
+&lt;p&gt;전체 코드는 &lt;a href=&quot;https://github.com/jinsu868/talk-talk&quot;&gt;talk-talk&lt;/a&gt; 에서 확인할 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;참고-자료&quot;&gt;참고 자료&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://mangkyu.tistory.com/173&quot;&gt;https://mangkyu.tistory.com/173&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="프로젝트" /><category term="Spring" /><category term="Spring" /><category term="프로젝트" /><summary type="html">배경</summary></entry><entry><title type="html">[DevOps] Github Action CI/CD</title><link href="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/devops/66/" rel="alternate" type="text/html" title="[DevOps] Github Action CI/CD" /><published>2024-03-28T00:00:00+09:00</published><updated>2024-03-28T00:00:00+09:00</updated><id>http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/devops/66</id><content type="html" xml:base="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/devops/66/">&lt;h2 id=&quot;배경&quot;&gt;배경&lt;/h2&gt;
 
 &lt;p&gt;필자는 palgona 프로젝트에서 배포를 담당하고 있다. 이전까지는 기능을 개발하고 develop 브랜치에 merge한 후 수동으로 서버에 들어가서 재배포를 수행했었다. 매번 수동으로 Docker image를 생성해서 다시 실행시켰었는데 서버 성능도 좋지 않아서 빌드 중에 멈추거나 시간이 오래 걸리는 일이 다반사였다. 그래서 이를 자동화하면 좋겠다고 생각했고 사용하기 간편한 github Action를 통해 CI/CD를 구축했다. CI/CD에 대해서 잘 모른다면 &lt;a href=&quot;https://jinsu868.github.io/devops/48/&quot;&gt;CI/CD &amp;amp; 무중단 배포&lt;/a&gt;를 참고하자.&lt;/p&gt;
 
@@ -1316,87 +1404,4 @@
 &lt;ul&gt;
   &lt;li&gt;면접을 위한 CS 전공지식 노트&lt;/li&gt;
   &lt;li&gt;Operating System Concepts&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="운영체제" /><category term="운영체제" /><category term="CS" /><summary type="html">스레드</summary></entry><entry><title type="html">[운영체제] 좀비 프로세스 vs 고아 프로세스</title><link href="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/57/" rel="alternate" type="text/html" title="[운영체제] 좀비 프로세스 vs 고아 프로세스" /><published>2024-01-08T00:00:00+09:00</published><updated>2024-01-08T00:00:00+09:00</updated><id>http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/57</id><content type="html" xml:base="http://localhost:4000/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C/57/">&lt;p&gt;좀비 프로세스와 고아 프로세스를 이해하기 위해서 먼저 프로세스를 생성하는 과정을 좀 더 자세하게 알아보자.&lt;/p&gt;
-
-&lt;h1 id=&quot;프로세스-생성&quot;&gt;프로세스 생성&lt;/h1&gt;
-
-&lt;p&gt;부모 프로세스는 시스템 콜 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fork()&lt;/code&gt;를 통해서 자식 프로세스를 생성한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fork()&lt;/code&gt;는 부모 프로세스의 주소 공간을 그대로 복사한다. 이 상태에서 시스템 콜 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exec()&lt;/code&gt;을 호출하게 되면 생성된 자식 프로세스의 메모리 공간을 새로운 프로그램으로 대체할 수 있다. 이러한 과정을 통해 부모와 다른 실행 흐름을 가진 자식 프로세스를 생성할 수 있다.&lt;/p&gt;
-
-&lt;h2 id=&quot;자식-프로세스-트리&quot;&gt;자식 프로세스 트리&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/57_1.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;리눅스에서는 커널이 자체적으로 생성한 init 프로세스가 있고 이후에 생성된 모든 프로세스는 init의 자손이 되며 트리구조를 이룬다.&lt;/p&gt;
-
-&lt;p&gt;일단 모든 프로세스의 조상 프로세스는 커널이 생성한 init이라는 것만 기억하고 넘어가자. (아래에 설명하겠다.)&lt;/p&gt;
-
-&lt;h2 id=&quot;실행-흐름&quot;&gt;실행 흐름&lt;/h2&gt;
-
-&lt;p&gt;위에서 자식 프로세스를 생성하는 방법을 설명했다. 그렇다면 이렇게 생성된 자식 프로세스와 부모 프로세스는 어떤 방식으로 실행될 수 있을까?&lt;/p&gt;
-
-&lt;p&gt;결론부터 말하자면 2가지 흐름이 있을 수 있다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;부모 프로세스가 자식 프로세스의 종료까지 기다리고 이후에 실행한다.&lt;/li&gt;
-  &lt;li&gt;부모 프로세스와 자식 프로세스를 동시에 실행한다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;1번-케이스&quot;&gt;1번 케이스&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/57_2.png&quot; alt=&quot;img1&quot; width=&quot;100%&amp;quot;&amp;quot;, height=&amp;quot;40%&amp;quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;이 경우는 부모 프로세스가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wait()&lt;/code&gt;을 호출하여 자식 프로세스의 종료를 기다린다. 그리고 자식 프로세스가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;exit()&lt;/code&gt;을 호출하면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wait()&lt;/code&gt;의 파라미터로 자식 프로세스의 상태가 들어오게 되는데 이를 통해서 자식 프로세스가 사용하던 자원을 모두 반납한다.&lt;/p&gt;
-
-&lt;p&gt;이 경우는 별다른 문제가 없는 것을 확인할 수 있다.&lt;/p&gt;
-
-&lt;h3 id=&quot;2번-케이스&quot;&gt;2번 케이스&lt;/h3&gt;
-
-&lt;p&gt;이 케이스는 부모 프로세스에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wait()&lt;/code&gt;을 호출하지 않는다. 부모 프로세스가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wait()&lt;/code&gt;을 호출하지 않는다면 어떤 일이 생길까?&lt;/p&gt;
-
-&lt;p&gt;이제 좀비 프로세스와 고아 프로세스가 등장한다.&lt;/p&gt;
-
-&lt;h2 id=&quot;좀비-프로세스&quot;&gt;좀비 프로세스&lt;/h2&gt;
-
-&lt;h3 id=&quot;정의&quot;&gt;정의&lt;/h3&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;좀비 프로세스는 자식 프로세스가 부모 프로세스보다 먼저 종료된 프로세스를 말한다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;정의만 보면 무슨말인지 잘 이해가 안될 것이다. 자식 프로세스가 종료되면 종료된 것 아닌가?&lt;/p&gt;
-
-&lt;p&gt;여기서 주목해야 하는 점은 부모 프로세스에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wait()&lt;/code&gt; 을 호출하지 않았다는 것이다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wait()&lt;/code&gt;을 호출하지 않았기 때문에 자식 프로세스가 종료되더라도 종료에 대한 정보가 부모 프로세스에 전달되지 못하고 사용하던 리소스를 반납할 방법이 없어진다.&lt;/p&gt;
-
-&lt;p&gt;종료되도 리소스가 계속 남아있기 때문에 &lt;strong&gt;좀비 프로세스&lt;/strong&gt;라고 부른다.&lt;/p&gt;
-
-&lt;p&gt;커널은 이런 상황을 대비하여 프로세스에 대한 최소한의 정보를 저장하고 있다. 이후에 부모 프로세스에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wait()&lt;/code&gt;을 호출하여 남아있는 리소스를 제거할 수 있다.&lt;/p&gt;
-
-&lt;h2 id=&quot;고아-프로세스&quot;&gt;고아 프로세스&lt;/h2&gt;
-
-&lt;h3 id=&quot;정의-1&quot;&gt;정의&lt;/h3&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;고아 프로세스는 부모 프로세스가 자식 프로세스보다 먼저 종료된 프로세스를 말한다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;이 경우도 좀비 프로세스 경우와 마찬가지로 부모 프로세스에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wait()&lt;/code&gt;을 호출하지 않은 경우에 발생한다.&lt;/p&gt;
-
-&lt;p&gt;부모 프로세스가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wait()&lt;/code&gt;을 호출하지 않고 자신의 로직을 수행하다 자식 프로세스보다 먼저 종료되면 자식 프로세스는 종료됐을 때 리소스를 반납해줄 주체가 없어진다. 이렇게 부모가 없이 남겨진 프로세스를 &lt;strong&gt;고아 프로세스&lt;/strong&gt;라고 한다.&lt;/p&gt;
-
-&lt;p&gt;이렇게 부모가 사라진 경우 고아 프로세스는 위에서 설명한 init 프로세스의 자식 프로세스가 된다. init 프로세스는 이 프로세스가 종료되면 리소스를 회수하고 정상적으로 프로세스를 제거한다.&lt;/p&gt;
-
-&lt;h2 id=&quot;정리&quot;&gt;정리&lt;/h2&gt;
-
-&lt;p&gt;좀비 프로세스 : 부모가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;wait()&lt;/code&gt;을 호출하지 않은 상태에서 자식 프로세스가 종료되어 리소스를 반납하지 못하는 프로세스&lt;/p&gt;
-
-&lt;p&gt;고아 프로세스 : 부모가 먼저 종료되서 남겨진 프로세스&lt;/p&gt;
-
-&lt;h2 id=&quot;참고&quot;&gt;참고&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;면접을 위한 CS 전공지식 노트&lt;/li&gt;
-  &lt;li&gt;Operating System Concepts&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://itstory1592.tistory.com/89&quot;&gt;https://itstory1592.tistory.com/89&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="운영체제" /><category term="운영체제" /><category term="CS" /><summary type="html">좀비 프로세스와 고아 프로세스를 이해하기 위해서 먼저 프로세스를 생성하는 과정을 좀 더 자세하게 알아보자.</summary></entry></feed>
+&lt;/ul&gt;</content><author><name>Moon JinSu</name></author><category term="운영체제" /><category term="운영체제" /><category term="CS" /><summary type="html">스레드</summary></entry></feed>

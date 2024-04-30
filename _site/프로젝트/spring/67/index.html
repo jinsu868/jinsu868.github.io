@@ -1,0 +1,801 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[프로젝트] Spring Interceptor 인증/인가 - Jinsu’s story</title>
+<meta name="description" content="배경">
+
+
+  <meta name="author" content="Moon JinSu">
+  
+  <meta property="article:author" content="Moon JinSu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="Jinsu's story">
+<meta property="og:title" content="[프로젝트] Spring Interceptor 인증/인가">
+<meta property="og:url" content="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/spring/67/">
+
+
+  <meta property="og:description" content="배경">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2024-04-29T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/spring/67/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "문진수(Moon JinSu)",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Jinsu's story Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Jinsu's story
+          
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Moon JinSu</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>tech blog</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seoul, Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:mjinsu098@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/jinsu868" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+
+<!-- Categories -->
+<nav class="nav__list">
+  <ul class="nav__items" id="category_tag_menu">
+      <li>
+          <span class="nav__sub-title">📂 Total (67)</span>
+          <ul>
+              
+                  
+                  <li>
+                      <a href="/categories/#spring" class="">Spring (16)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#디자인패턴" class="">디자인패턴 (14)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#java" class="">Java (3)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#알고리즘" class="">알고리즘 (2)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#jpa" class="">JPA (7)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#데이터베이스" class="">데이터베이스 (4)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#network" class="">Network (5)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#클린코드" class="">클린코드 (1)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#git" class="">git (1)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#우테코" class="">우테코 (1)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#테스트" class="">테스트 (2)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#devops" class="">DevOps (2)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#운영체제" class="">운영체제 (7)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#프로젝트" class="">프로젝트 (5)</a>
+                  </li>
+                  
+              
+          </ul>
+      </li>
+  </ul>
+  </nav>
+
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[프로젝트] Spring Interceptor 인증/인가">
+    <meta itemprop="description" content="배경">
+    <meta itemprop="datePublished" content="2024-04-29T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/spring/67/" class="u-url" itemprop="url">[프로젝트] Spring Interceptor 인증/인가
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#배경">배경</a></li><li><a href="#인터셉터">인터셉터</a></li><li><a href="#인터셉터-등록">인터셉터 등록</a></li><li><a href="#authenticationinterceptor">AuthenticationInterceptor</a><ul><li><a href="#isrequiredauth">isRequiredAuth</a></li><li><a href="#extractmemberidfromrequest">extractMemberIdFromRequest</a></li></ul></li><li><a href="#authresolver">AuthResolver</a></li><li><a href="#authmember를-사용하는-컨트롤러">AuthMember를 사용하는 컨트롤러</a></li><li><a href="#참고-자료">참고 자료</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="배경">배경</h2>
+
+<p>이전에는 Spring Security를 사용하여 인증/인가 처리를 해왔는데 이번 프로젝트(talk-talk)에서는 Spring에 대한 이해도 높일겸 interceptor에서 인증/인가를 구현해봤다.</p>
+
+<h2 id="인터셉터">인터셉터</h2>
+
+<p><img src="/assets/images/68_1.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>출처: <a href="https://mangkyu.tistory.com/173">https://mangkyu.tistory.com/173</a> [MangKyu’s Diary:티스토리]</p>
+
+<blockquote>
+  <p>인터셉터는 J2EE 표준 스펙인 필터와 달리 Spring에서 제공하는 기술로써, DispatcherServlet이 컨트롤러를 호출하기 전 ,후에 요청과 응답을 참조하거나 조작할 수 있다. DispatcherServlet에서는 핸들러 매핑을 통해서 적절한 컨트롤러를 찾는데 이 응답값으로 HandlerExcurtionChain을 반환한다. 만약 1개 이상의 인터셉터가 등록되어 있다면 순차적으로 인터셉터를 실행하고 컨트롤러를 호출하게 된다.</p>
+</blockquote>
+
+<p>DispatcherServlet이 컨트롤러 호출 전후 요청, 응답을 조작할 수 있기 떄문에 인터셉터에서 인증/인가 처리를 하면 깔끔하다. 물론 Spring Security를 사용하여 Filter에서 인증/인가를 구현할 수도 있고 Aop를 사용하여 처리할 수도 있다.</p>
+
+<p>이제 인터셉터를 등록해보자.</p>
+
+<h2 id="인터셉터-등록">인터셉터 등록</h2>
+
+<p><img src="/assets/images/68_2.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /><img src="/assets/images/68_3.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>인터셉터를 등록하기 위해서는 WebMvcConfigurer를 구현하여 addInterceptors()를 오버라이딩하고 우리가 만든 인터셉터를 추가해주면 된다.</p>
+
+<p>위의 코드에서는  ArgumentResolver도 추가돼있는 것을 볼 수 있는데 이는 컨트롤러에서 인증된 사용자 정보를 받아서 쓰기 위해서이다. Spring Security의 @AuthenticationPrinciple과 같은 맥락이라고 생각하면 된다.</p>
+
+<p>참고) Spring Security에서는 SecurityContextHolder에 저장한 인증 객체를 컨트롤러에서 @AuthenticationPrinciple 어노테이션을 통해서 가져올 수 있다.</p>
+
+<p>이제 등록을 완료했으니 인터셉터를 구현해보자.</p>
+
+<h2 id="authenticationinterceptor">AuthenticationInterceptor</h2>
+
+<p><img src="/assets/images/68_4.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /><img src="/assets/images/68_5.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>우선 커스텀 인터셉터는 HandlerInterceptor를 구현해야 한다. HandlerInterceptor에는 총 3개의 메서드가 있는데 우리는 컨트롤러 이전에 호출되는 <code class="language-plaintext highlighter-rouge">preHandle()</code>만 구현하여 인증/인가를 처리할 것이다.</p>
+
+<p>먼저 isRequiredAuth() 메서드는 로그인이 필요한 API인지 확인하는 메서드이다. 로그인, 회원가입등 로그인이 요구되지 않는 API가 있을 것이다. 이런 API는 인증을 수행할 필요가 없다.</p>
+
+<p>그리고 요청으로부터 payload를 꺼내서 실제 유저가 존재하는 지 검증하고 setAttribute() 를 통해서 방금 꺼낸 payload 값인 memberId를 request에 넣어준다. 이렇게 해주는 이유는 컨트롤러에 인증 객체를 파라미터로 넘겨주기 위해서다.</p>
+
+<p>각각의 메서드를 살펴보자.</p>
+
+<p><br /></p>
+
+<h3 id="isrequiredauth">isRequiredAuth</h3>
+
+<p><img src="/assets/images/68_6.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>컨트롤러 메서드에 달린 어노테이션중에 @PreAuthorize가 붙은 API에 대해서만 true를 반환한다. 따라서 위에서 로그인이 필요 없으면 그냥 넘어가게 된다.</p>
+
+<p><br /></p>
+
+<h3 id="extractmemberidfromrequest">extractMemberIdFromRequest</h3>
+
+<p><img src="/assets/images/68_7.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>단순히 request 로부터 토큰을 파싱하여 payload를 꺼내는 부분이다.</p>
+
+<p><br /></p>
+
+<h2 id="authresolver">AuthResolver</h2>
+
+<p><img src="/assets/images/68_8.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>AuthResolver에서는 인증된 유저가 요구되는 컨트롤러의 파라미터를 세팅해주기 위해서 필요하다. supportsParameter에서 AuthMember 파라미터를 가진 컨트롤러들에 대해서 해당 리졸버가 동작하게 된다.</p>
+
+<p>resolveArgument에서는 인터셉터에서 세팅한 유저의 정보(id)를 바탕으로 유저를 찾고 인증 객체를 생성하여 반환한다.</p>
+
+<p>이렇게 되면 컨트롤러에서 인증 객체(AuthMember)를 파라미터로 꺼내서 사용할 수 있게 된다.</p>
+
+<p><br /></p>
+
+<h2 id="authmember를-사용하는-컨트롤러">AuthMember를 사용하는 컨트롤러</h2>
+
+<p><img src="/assets/images/68_9.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>실제 컨트롤러 부분이다. 필자가 커스텀한 어노테이션(@PreAuthorize)가 붙어 있는 것을 확인할 수 있다. @PreAuthorize 어노테이션이 붙어 있으면 위에 설명한 AuthInterceptor에서 isRequiredAuth()가 true를 반환하게 된다.</p>
+
+<p>그리고 파라미터 부분에 AuthMember가 있는 것을 볼 수 있다. 이는 마찬가지로 바로 위에 설명한 AuthResolver에서 채워지게 된다.</p>
+
+<p>이로써 Interceptor를 활용한 인증/인가 처리 부분에 대한 설명을 마치겠다.</p>
+
+<p>전체 코드는 <a href="https://github.com/jinsu868/talk-talk">talk-talk</a> 에서 확인할 수 있다.</p>
+
+<h2 id="참고-자료">참고 자료</h2>
+
+<ul>
+  <li><a href="https://mangkyu.tistory.com/173">https://mangkyu.tistory.com/173</a></li>
+</ul>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#spring" class="page__taxonomy-item p-category" rel="tag">Spring</a><span class="sep">, </span>
+    
+      <a href="/tags/#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8" class="page__taxonomy-item p-category" rel="tag">프로젝트</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#spring" class="page__taxonomy-item p-category" rel="tag">Spring</a><span class="sep">, </span>
+    
+      <a href="/categories/#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8" class="page__taxonomy-item p-category" rel="tag">프로젝트</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2024-04-29T00:00:00+09:00">April 29, 2024</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5B%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%5D+Spring+Interceptor+%EC%9D%B8%EC%A6%9D%2F%EC%9D%B8%EA%B0%80%20http%3A%2F%2Flocalhost%3A4000%2F%25ED%2594%2584%25EB%25A1%259C%25EC%25A0%259D%25ED%258A%25B8%2Fspring%2F67%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25ED%2594%2584%25EB%25A1%259C%25EC%25A0%259D%25ED%258A%25B8%2Fspring%2F67%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25ED%2594%2584%25EB%25A1%259C%25EC%25A0%259D%25ED%258A%25B8%2Fspring%2F67%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/devops/66/" class="pagination--pager" title="[DevOps] Github Action CI/CD
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/devops/66/" rel="permalink">[DevOps] Github Action CI/CD
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> March 28 2024</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">배경
+</p> -->
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/65/" rel="permalink">[트러블슈팅] OneToOne 즉시로딩 문제
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> March 10 2024</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">문제상황
+</p> -->
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/64/" rel="permalink">[트러블슈팅] 좋아요 동시성 처리
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> March 08 2024</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">문제 상황
+</p> -->
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/63/" rel="permalink">[트러블슈팅] 커서 기반 페이지네이션
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> March 02 2024</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">문제 인식
+</p> -->
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="mailto:mjinsu098@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+        
+      
+        
+          <li><a href="https://github.com/jinsu868" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 문진수(Moon JinSu). Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

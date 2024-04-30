@@ -394,4 +394,10 @@ var store = [{
         "tags": ["CI/CD","프로젝트"],
         "url": "/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/devops/66/",
         "teaser": null
+      },{
+        "title": "[프로젝트] Spring Interceptor 인증/인가",
+        "excerpt":"배경 이전에는 Spring Security를 사용하여 인증/인가 처리를 해왔는데 이번 프로젝트(talk-talk)에서는 Spring에 대한 이해도 높일겸 interceptor에서 인증/인가를 구현해봤다. 인터셉터 출처: https://mangkyu.tistory.com/173 [MangKyu’s Diary:티스토리] 인터셉터는 J2EE 표준 스펙인 필터와 달리 Spring에서 제공하는 기술로써, DispatcherServlet이 컨트롤러를 호출하기 전 ,후에 요청과 응답을 참조하거나 조작할 수 있다. DispatcherServlet에서는 핸들러 매핑을 통해서 적절한 컨트롤러를 찾는데 이...","categories": ["프로젝트","Spring"],
+        "tags": ["Spring","프로젝트"],
+        "url": "/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/spring/67/",
+        "teaser": null
       }]
