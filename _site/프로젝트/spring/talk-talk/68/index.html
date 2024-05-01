@@ -1,0 +1,906 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[프로젝트] Spring STOMP 채팅 기능 [1] - Jinsu’s story</title>
+<meta name="description" content="">
+
+
+  <meta name="author" content="Moon JinSu">
+  
+  <meta property="article:author" content="Moon JinSu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="Jinsu's story">
+<meta property="og:title" content="[프로젝트] Spring STOMP 채팅 기능 [1]">
+<meta property="og:url" content="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/spring/talk-talk/68/">
+
+
+  <meta property="og:description" content="">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2024-04-30T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/spring/talk-talk/68/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "문진수(Moon JinSu)",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Jinsu's story Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          Jinsu's story
+          
+        </a>
+        <ul class="visible-links"></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="http://localhost:4000/" itemprop="url">Moon JinSu</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>tech blog</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seoul, Korea</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:mjinsu098@gmail.com" rel="nofollow noopener noreferrer me"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">Email</span></a></li>
+          
+        
+          
+            <li><a href="https://github.com/jinsu868" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+
+<!-- Categories -->
+<nav class="nav__list">
+  <ul class="nav__items" id="category_tag_menu">
+      <li>
+          <span class="nav__sub-title">📂 Total (68)</span>
+          <ul>
+              
+                  
+                  <li>
+                      <a href="/categories/#spring" class="">Spring (17)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#디자인패턴" class="">디자인패턴 (14)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#java" class="">Java (3)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#알고리즘" class="">알고리즘 (2)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#jpa" class="">JPA (7)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#데이터베이스" class="">데이터베이스 (4)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#network" class="">Network (5)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#클린코드" class="">클린코드 (1)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#git" class="">git (1)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#우테코" class="">우테코 (1)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#테스트" class="">테스트 (2)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#devops" class="">DevOps (2)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#운영체제" class="">운영체제 (7)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#프로젝트" class="">프로젝트 (6)</a>
+                  </li>
+                  
+              
+                  
+                  <li>
+                      <a href="/categories/#talk-talk" class="">talk-talk (1)</a>
+                  </li>
+                  
+              
+          </ul>
+      </li>
+  </ul>
+  </nav>
+
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[프로젝트] Spring STOMP 채팅 기능 [1]">
+    <meta itemprop="description" content="">
+    <meta itemprop="datePublished" content="2024-04-30T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="http://localhost:4000/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/spring/talk-talk/68/" class="u-url" itemprop="url">[프로젝트] Spring STOMP 채팅 기능 [1]
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 분 소요
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu"><li><a href="#배경">배경</a></li><li><a href="#요구사항">요구사항</a><ul><li><a href="#http">HTTP</a></li><li><a href="#polling">Polling</a></li><li><a href="#webscoket">WebScoket</a></li></ul></li><li><a href="#stomp-특징">STOMP 특징</a><ul><li><a href="#pubsub-구조">pub/sub 구조</a></li><li><a href="#메시지-프레임">메시지 프레임</a></li></ul></li><li><a href="#통신-흐름">통신 흐름</a></li><li><a href="#stomp-설정">STOMP 설정</a></li><li><a href="#채팅방-생성">채팅방 생성</a><ul><li><a href="#chatroomcontrollercreate">ChatRoomController:create</a></li><li><a href="#chatroomcreaterequest">ChatRoomCreateRequest</a></li><li><a href="#chatroomservicecreatechatroom">ChatRoomService:createChatRoom</a></li></ul></li><li><a href="#채팅-전송">채팅 전송</a><ul><li><a href="#messageservicesave">MessageService:save</a></li></ul></li><li><a href="#apic-채팅-테스트">APIC 채팅 테스트</a><ul><li><a href="#구독subscribe">구독(subscribe)</a></li><li><a href="#publish">publish</a></li></ul></li><li><a href="#참고-출처">참고 출처</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p><img src="/assets/images/69_14.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<h2 id="배경">배경</h2>
+
+<p>채팅 고도화 프로젝트를 진행함에 있어 과정을 기록하고자 본 포스팅을 하게 됐다. 이번 포스팅에서는 STOMP 프로토콜에 대해서 간단하게 알아보고 APIC 툴을 활용하여 채팅이 전송되는 것까지 확인할 것이다. <br /></p>
+
+<h2 id="요구사항">요구사항</h2>
+
+<p>어떤 서비스를 개발함에 있어서 요구사항을 잘 파악하는 것이 중요하다. 필자가 진행한 프로젝트에서 정의한 채팅의 요구사항은 다음과 같다.</p>
+
+<ol>
+  <li>실시간성 보장</li>
+  <li>유저가 많아질 때 대응할 수 있는 고가용성을 가져야 한다.</li>
+</ol>
+
+<p>아래 후보군을 보자. <br /></p>
+
+<h3 id="http">HTTP</h3>
+
+<p>채팅은 송신자가 발송하면 실시간으로 수신자가 이를 확인할 수 있어야 한다. 일반적인 HTTP 통신을 생각해보자. HTTP 통신의 경우 비연결성이라는 특성을 가진다. 요청 -&gt; 응답을 받으면 연결이 바로 끊킨다. 이는 실시간 채팅에 적합하지 않음을 알 수 있다. <br /></p>
+
+<h3 id="polling">Polling</h3>
+
+<p><img src="/assets/images/69_1.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>사진 출처 : <a href="https://warmth424.tistory.com/18">https://warmth424.tistory.com/18</a></p>
+
+<p>다음으로 Polling 방식을 생각해보자. Polling 방식은 클라이언트가 서버에게 일정한 주기로 요청을 해서 응답을 받아오는 방식이다. 만약 채팅이 없더라도 클라이언트는 서버로 일정 주기마다 요쳥을 보낼 것이다. 때문에 클라이언트의 수가 늘어나게 되면 서버에 굉장히 부담이 갈 것이다.</p>
+
+<p>그렇다면 Long Polling은 어떨까? Long Polling은 클라이언트에서 요청을 걸어두고 서버에 특정 이벤트(채팅)가 발생할 때까지 기다렸다가 응답하는 방식이다. Polling 방식에 비해서 요청 횟수는 적지만 클라이언트의 수가 증가하면 서버에 부담이 많이 가는 것은 동일하다. <br /></p>
+
+<h3 id="webscoket">WebScoket</h3>
+
+<p>웹소켓은 단일 TCP 연결을 통해서 클라이언트와 서버 간의 전이중 양방향 통신을 제공하는 프로토콜이다.</p>
+
+<p><img src="/assets/images/69_13.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>출처 : <a href="https://innu3368.tistory.com/213">https://innu3368.tistory.com/213</a></p>
+
+<p>헤더에 보면 Upgrade에 websocket이 들어있는 것을 확인할 수 있다. 최초 연결은 HTTP로 진행하게 되고 Upgrade: websocket이 있으면 웹소켓 프로토콜로 전환되게 된다. 그래서 이후 프로토콜은 http/s가 아닌 ws/s가 된다.</p>
+
+<p>웹소켓의 경우  TCP 연결을 끊지 않는다. 때문에 실시간성을 만족시킬 수 있고 다른 방식처럼 끊킴/연결이 발생하지 않기 때문에 지속적인 통신이 요구될 때 적합하다.</p>
+
+<p>웹소켓은 우리 요구사항을 만족시킨다. 하지만 웹소켓을 사용하면 몇가지 단점이 있다.</p>
+
+<ol>
+  <li>웹소켓은 정해진 메시지 프레임이 없다. 때문에 서버와 클라이언트가 합의해서 메시지 프레임을 정의해서 사용해야 한다.</li>
+  <li>채팅방에 세션 관리를 직접 해줘야 한다.</li>
+</ol>
+
+<p>물론 웹소켓만으로 잘 동작하는 채팅 서비스를 구현할 수 있다. 하지만 이번 프로젝트에서는 STOMP를 사용하여 좀 더 간편하게 채팅 기능을 구현해보고자 한다. <br /></p>
+
+<h2 id="stomp-특징">STOMP 특징</h2>
+
+<p>STOMP의 첫번째 특징은 pub/sub 구조를 가진다는 것이다. <br /></p>
+
+<p>여기서 말하는 pub/sub 구조란 무엇일까? <br /></p>
+
+<h3 id="pubsub-구조">pub/sub 구조</h3>
+
+<p>옵저버 패턴을 생각하면 된다. 옵저버 패턴에서 Observer는 특정 Subject를 바라보고 있는다. 그리고 Subject에 특정 이벤트가 발생하면 이를 주시하던 모든 옵저버가 자신이 정의한 특정한 행위를 하게 된다. <br /></p>
+
+<p>이와 완전히 동일하다. 클라이언트들은 특정 채널을 subscribe한다. 그리고 만약 누군가 채널에 publish하면 이를 주시하던 모든 구독자들은 이를 받아볼 수 있게 된다. <br /></p>
+
+<p>두번째 특징으로는 메시지 프레임이 정의돼있다는 것이다.</p>
+
+<h3 id="메시지-프레임">메시지 프레임</h3>
+
+<p><img src="/assets/images/69_3.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>사진 출처 : <a href="https://dev-gorany.tistory.com/235">https://dev-gorany.tistory.com/235</a></p>
+
+<p>위에 보면 알 수 있듯이 COMMAND, header, body로 나뉘어 있는 것을 볼 수 있다. 이와 같이 이미 메시지 프레임이 약속되어 있기 때문에 클라이언트, 서버간의 메시지를 정의할 필요가 없다. <br /></p>
+
+<p>이제 통신 흐름을 살펴보자. <br /></p>
+
+<h2 id="통신-흐름">통신 흐름</h2>
+
+<p><img src="/assets/images/69_2.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>출처 : <a href="https://docs.spring.io/spring-framework/reference/web/websocket/stomp/overview.html">Spring 공식 문서</a></p>
+
+<p>위 그림은 내장 브로커를 사용할 때의 메시지 흐름이다. 단일 WAS 환경에서는 문제가 없지만 서버를 다중화하게 되면 위 모델로는 제대로된 채팅 기능을 제공할 수 없다. 차차 개선하는 과정을 포스팅할 예정이니 우선 위 그림부터 이해해보도록 하자. <br />(여기서 /app = /pub, /topic = /sub이라고 생각하면 된다.) <br /></p>
+
+<p>총 3개의 channel이 있는 것을 볼 수 있다.</p>
+
+<ul>
+  <li>clientInboundChannel : WebSocket 클라이언트로부터 받은 메시지를 전달하는 데 사용된다.</li>
+  <li>clientOutboundChannel : WebSocket 클라이언트에 서버 메시지를 보내는 데 사용된다.</li>
+  <li>brokerChannel : 서버 측 애플리케이션 코드 내에서 메시지 브로커로 메시지를 보내는 데 사용된다.</li>
+</ul>
+
+<ol>
+  <li>
+    <p>처음 요청이 들어오면 clientInboundChannel로 들어온다.</p>
+  </li>
+  <li>만약 서버 가공이 필요한 경우 /app 경로로 들어가서 서버에서 가공을 하고 brokerChannel를 통해서 /topic 경로로 브로커에게 전송한다. 가공이 필요하지 않다면 바로 브로커로 전송할 수도 있다.</li>
+  <li>마지막으로 clientOutboundChannel를 통해서 토픽을 구독하고 있는 구독자에게 메시지가 전송된다. <br /></li>
+</ol>
+
+<p>이제 기본적인 흐름은 다 살펴본 것 같다. 이제 코드를 보면서 위 과정을 하나씩 이해해보자. <br /></p>
+
+<h2 id="stomp-설정">STOMP 설정</h2>
+
+<p><img src="/assets/images/69_4.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<ul>
+  <li>configureMessageBroker() 메서드에서는 메시지 브로커를 설정한다.</li>
+</ul>
+
+<p>DestinationPrefixes를 /app으로 설정했는데 만약 STOMP 메시지의 헤더가 /app으로 시작하면 @MessageMapping로 라우팅되게 된다. 그리고 enableSimpleBorker() 설정을 통해 스프링 내장 브로커를 사용하도록 했고 /queue, /topic 경로로 들어오면 브로커에게 전송되도록 했다. <br /></p>
+
+<ul>
+  <li>registerStompEndpoints() 에서는 웹소켓 연결을 위해 핸드쉐이크할 HTTP URL Path이다.</li>
+</ul>
+
+<p>/ws를 endpoint로 설정했다. <br /></p>
+
+<h2 id="채팅방-생성">채팅방 생성</h2>
+
+<p>당연히 채팅을 하기 위해서는 둘 사이에 채팅방이 존재해야 한다. 채팅방 생성 로직을 살펴보자. <br /></p>
+
+<h3 id="chatroomcontrollercreate">ChatRoomController:create</h3>
+
+<h3><img src="/assets/images/69_5.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></h3>
+
+<h3 id="chatroomcreaterequest">ChatRoomCreateRequest</h3>
+
+<p><img src="/assets/images/69_6.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<h3 id="chatroomservicecreatechatroom">ChatRoomService:createChatRoom</h3>
+
+<p><img src="/assets/images/69_7.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>채팅을 할 상대의 Id를 통해 visitor 객체를 찾고 이 둘사이에 채팅방이 존재하는지 검증하고나서 채팅방을 생성한다. 로직이 워낙 단순해서 설명은 크게 필요없을 것 같다. 다음으로 채팅을 보내는 로직을 살펴보자. <br /></p>
+
+<h2 id="채팅-전송">채팅 전송</h2>
+
+<p><img src="/assets/images/69_8.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>여기서 중요한 부분이 나온다. @MessageMapping과 sendOperations 객체이다. <br /></p>
+
+<p>설정 부분에서 살펴봤듯이 /app prefix를 가진 요청이 들어오면 @Controller의 @MessageMapping으로 라우팅된다고 했다. @MessageMapping에 추가로 /message 경로를 넣었기 때문에 /app/message로 요청이 들어오게 되면 해당 컨트롤러로 매핑된는 것이다. <br /></p>
+
+<p>여기서 sendingOperations.convertAndSend() 를 통해서 메시지가 /queue/chat-rooms/{roomId}를 구독하는 구독자에게 전송되게 된다. 그리고 메시지는 db에 저장되도록 했다. <br /></p>
+
+<h3 id="messageservicesave">MessageService:save</h3>
+
+<p><img src="/assets/images/69_9.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>채팅 메시지를 저장하는 로직이다. 간단하게 채팅방에 송신자가 있는지 확인하고 메시지를 저장하게 된다. <br /></p>
+
+<p>이제 실제 테스트 결과를 보면서 마무리하겠다. <br /></p>
+
+<h2 id="apic-채팅-테스트">APIC 채팅 테스트</h2>
+
+<h3 id="구독subscribe">구독(subscribe)</h3>
+
+<p><img src="/assets/images/69_10.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>우선 채팅방이 없으면 동작하지 않기 때문에 DB에 미리 charRoomId = 1인 채팅방을 하나 생성해두었다. <br /></p>
+
+<p>좌측 상단에 ws://127.0.0.1:8080/ws 로 서버와의 핸드쉐이크 경로를 지정했다. 그리고 Stomp 설정에서 구독할 경로 /queue/chat-rooms/1을 설정하고 서버와 연결했다. <br /></p>
+
+<h3 id="publish">publish</h3>
+
+<p><img src="/assets/images/69_11.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>다음으로 송신자를 설정했다. 마찬가지 endpoint로 연결해주고 좌측 하단에 메시지를 publish할 경로를 설정하고 메시지를 Json form으로 작성했다. <br /> 이제 Send를 눌러서 실제로 채팅을 보내보겠다. <br /></p>
+
+<p><img src="/assets/images/69_12.png" alt="img1" width="100%&quot;&quot;, height=&quot;40%&quot;" /></p>
+
+<p>구독자에게 성공적으로 메시지가 전송된 것을 확인할 수 있다. 이상으로 STOMP 프로토콜을 활용한 채팅 서비스 구축하기 1편을 마무리하겠다. <br /></p>
+
+<p>다음편에서는 다중 WAS 환경에서 채팅이 잘 동작하도록 바꿔볼 것이다. redis, RabbitMQ, Kafka 순으로 브로커를 바꿔가며 테스트할 예정이다. <br /></p>
+
+<h2 id="참고-출처">참고 출처</h2>
+
+<ul>
+  <li><a href="https://docs.spring.io/spring-framework/reference/web/websocket/stomp/overview.html">Spring 공식 문서</a></li>
+  <li><a href="https://dev-gorany.tistory.com/235">https://dev-gorany.tistory.com/235</a></li>
+  <li><a href="https://warmth424.tistory.com/18">https://warmth424.tistory.com/18</a></li>
+  <li><a href="https://innu3368.tistory.com/213">https://innu3368.tistory.com/213</a></li>
+</ul>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#spring" class="page__taxonomy-item p-category" rel="tag">Spring</a><span class="sep">, </span>
+    
+      <a href="/tags/#talk-talk" class="page__taxonomy-item p-category" rel="tag">talk-talk</a><span class="sep">, </span>
+    
+      <a href="/tags/#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8" class="page__taxonomy-item p-category" rel="tag">프로젝트</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#spring" class="page__taxonomy-item p-category" rel="tag">Spring</a><span class="sep">, </span>
+    
+      <a href="/categories/#talk-talk" class="page__taxonomy-item p-category" rel="tag">talk-talk</a><span class="sep">, </span>
+    
+      <a href="/categories/#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8" class="page__taxonomy-item p-category" rel="tag">프로젝트</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time class="dt-published" datetime="2024-04-30T00:00:00+09:00">April 30, 2024</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5B%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8%5D+Spring+STOMP+%EC%B1%84%ED%8C%85+%EA%B8%B0%EB%8A%A5+%5B1%5D%20http%3A%2F%2Flocalhost%3A4000%2F%25ED%2594%2584%25EB%25A1%259C%25EC%25A0%259D%25ED%258A%25B8%2Fspring%2Ftalk-talk%2F68%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25ED%2594%2584%25EB%25A1%259C%25EC%25A0%259D%25ED%258A%25B8%2Fspring%2Ftalk-talk%2F68%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25ED%2594%2584%25EB%25A1%259C%25EC%25A0%259D%25ED%258A%25B8%2Fspring%2Ftalk-talk%2F68%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/spring/67/" class="pagination--pager" title="[프로젝트] Spring Interceptor 인증/인가
+">이전</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">참고</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/spring/67/" rel="permalink">[프로젝트] Spring Interceptor 인증/인가
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> April 29 2024</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">배경
+</p> -->
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/devops/66/" rel="permalink">[DevOps] Github Action CI/CD
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> March 28 2024</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">배경
+</p> -->
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/65/" rel="permalink">[트러블슈팅] OneToOne 즉시로딩 문제
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> March 10 2024</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          2 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">문제상황
+</p> -->
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/64/" rel="permalink">[트러블슈팅] 좋아요 동시성 처리
+</a>
+      
+    </h2>
+
+    
+      <p class="page__meta"><i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i> March 08 2024</p>
+    
+
+    <!-- 
+
+  <p class="page__meta">
+    
+
+    
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 분 소요
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">문제 상황
+</p> -->
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="mailto:mjinsu098@gmail.com" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+        
+      
+        
+          <li><a href="https://github.com/jinsu868" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2024 문진수(Moon JinSu). Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -400,4 +400,10 @@ var store = [{
         "tags": ["Spring","프로젝트"],
         "url": "/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/spring/67/",
         "teaser": null
+      },{
+        "title": "[프로젝트] Spring STOMP 채팅 기능 [1]",
+        "excerpt":"배경 채팅 고도화 프로젝트를 진행함에 있어 과정을 기록하고자 본 포스팅을 하게 됐다. 이번 포스팅에서는 STOMP 프로토콜에 대해서 간단하게 알아보고 APIC 툴을 활용하여 채팅이 전송되는 것까지 확인할 것이다. 요구사항 어떤 서비스를 개발함에 있어서 요구사항을 잘 파악하는 것이 중요하다. 필자가 진행한 프로젝트에서 정의한 채팅의 요구사항은 다음과 같다. 실시간성 보장 유저가 많아질 때...","categories": ["프로젝트","Spring","talk-talk"],
+        "tags": ["Spring","프로젝트","talk-talk"],
+        "url": "/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/spring/talk-talk/68/",
+        "teaser": null
       }]
